@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# data files (contain client PII — do not commit)
+/data/
+/public/data/periods/
+/public/data/clients/
+/public/data/shared/
+/public/data/Monthly analysis - HG/
+
+# Google service account credentials
+service-account.json
+
+# local env overrides
+.env.local
+
+# Local Netlify folder
+.netlify
