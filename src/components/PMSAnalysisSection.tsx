@@ -288,10 +288,23 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
           <SectionLabel number={showPromo ? 2 : 1} title="Instagram Lead Analysis" />
 
           <div className="grid grid-cols-2 gap-3 mb-5">
-            <StatCard label="Email Matches" value={instagram.matchCount || '—'} />
+            <StatCard
+              label="Email Matches"
+              value={instagram.totalGHLLeads > 0 ? instagram.matchCount : '—'}
+              sub={
+                instagram.totalGHLLeads > 0
+                  ? `of ${instagram.totalGHLLeads} Instagram-tagged leads checked against direct bookings`
+                  : 'No Instagram-tagged leads in GHL'
+              }
+            />
             <StatCard
               label="Total Revenue"
-              value={instagram.totalRevenue > 0 ? formatCurrency(instagram.totalRevenue) : '—'}
+              value={
+                instagram.matchCount > 0
+                  ? formatCurrency(instagram.totalRevenue)
+                  : instagram.totalGHLLeads > 0 ? formatCurrency(0) : '—'
+              }
+              sub={instagram.matchCount === 0 && instagram.totalGHLLeads > 0 ? 'No matched leads booked this period' : undefined}
             />
           </div>
 
@@ -318,10 +331,23 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
           <SectionLabel number={showPromo ? 3 : 2} title="Facebook / Meta Lead Analysis" />
 
           <div className="grid grid-cols-2 gap-3 mb-5">
-            <StatCard label="Email Matches" value={facebook.matchCount || '—'} />
+            <StatCard
+              label="Email Matches"
+              value={facebook.totalGHLLeads > 0 ? facebook.matchCount : '—'}
+              sub={
+                facebook.totalGHLLeads > 0
+                  ? `of ${facebook.totalGHLLeads} Meta-tagged leads checked against direct bookings`
+                  : 'No Facebook/Meta-tagged leads in GHL'
+              }
+            />
             <StatCard
               label="Total Revenue"
-              value={facebook.totalRevenue > 0 ? formatCurrency(facebook.totalRevenue) : '—'}
+              value={
+                facebook.matchCount > 0
+                  ? formatCurrency(facebook.totalRevenue)
+                  : facebook.totalGHLLeads > 0 ? formatCurrency(0) : '—'
+              }
+              sub={facebook.matchCount === 0 && facebook.totalGHLLeads > 0 ? 'No matched leads booked this period' : undefined}
             />
           </div>
 
