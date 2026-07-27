@@ -65,6 +65,11 @@ function CampaignPanel({
       ? (costPerBooking / avgDirectBookingValue) * 100
       : null;
 
+  // Booking attribution comes from promo codes (Followers), FB purchase events
+  // (Retargeting) or matched leads (New Leads). When none is available, hide the
+  // tiles instead of showing empty "—" placeholders.
+  const hasBookingData = attributedBookings > 0 || bookingRevenue > 0;
+
   const bookingRevenueSub =
     s.type === 'Retargeting' && s.purchases > 0 && avgDirectBookingValue
       ? `${formatNumber(s.purchases)} FB events × ${formatCurrency(avgDirectBookingValue)} avg booking value`
@@ -115,34 +120,37 @@ function CampaignPanel({
         </div>
       )}
 
-      {/* Row 2: Booking attribution */}
-      <div className="grid grid-cols-3 gap-3">
-        <StatCard
-          label="Total Bookings"
-          value={attributedBookings > 0 ? formatNumber(attributedBookings) : '—'}
-          sub={totalBookingsSub}
-        />
-        <StatCard
-          label="Cost Per Booking"
-          value={costPerBooking !== null ? formatCurrency(costPerBooking) : '—'}
-          sub={costPerBooking !== null ? `${formatCurrency(s.spend)} ÷ ${attributedBookings} booking${attributedBookings !== 1 ? 's' : ''}` : undefined}
-        />
-        <StatCard
-          label="% of Booking Value"
-          value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : '—'}
-          sub={pctOfBookingValue !== null ? 'Cost per booking ÷ avg booking value' : undefined}
-        />
-      </div>
+      {/* Rows 2 & 3: Booking attribution + revenue — only when we have attribution data */}
+      {hasBookingData && (
+        <>
+          <div className="grid grid-cols-3 gap-3">
+            <StatCard
+              label="Total Bookings"
+              value={formatNumber(attributedBookings)}
+              sub={totalBookingsSub}
+            />
+            <StatCard
+              label="Cost Per Booking"
+              value={costPerBooking !== null ? formatCurrency(costPerBooking) : '—'}
+              sub={costPerBooking !== null ? `${formatCurrency(s.spend)} ÷ ${attributedBookings} booking${attributedBookings !== 1 ? 's' : ''}` : undefined}
+            />
+            <StatCard
+              label="% of Booking Value"
+              value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : '—'}
+              sub={pctOfBookingValue !== null ? 'Cost per booking ÷ avg booking value' : undefined}
+            />
+          </div>
 
-      {/* Row 3: Revenue */}
-      <div className="grid grid-cols-3 gap-3">
-        <StatCard
-          label="Booking Revenue"
-          value={bookingRevenue > 0 ? formatCurrency(bookingRevenue) : '—'}
-          sub={bookingRevenueSub}
-        />
-        <StatCard label="ROAS" value={roas} sub={roas !== '—' ? 'Revenue ÷ Spend' : undefined} />
-      </div>
+          <div className="grid grid-cols-3 gap-3">
+            <StatCard
+              label="Booking Revenue"
+              value={bookingRevenue > 0 ? formatCurrency(bookingRevenue) : '—'}
+              sub={bookingRevenueSub}
+            />
+            <StatCard label="ROAS" value={roas} sub={roas !== '—' ? 'Revenue ÷ Spend' : undefined} />
+          </div>
+        </>
+      )}
       {s.type === 'Followers' && instagramLeads && instagramLeads.matchCount > 0 && (
         <p className="text-xs text-gray-400">
           <span className="font-medium text-gray-600">{instagramLeads.matchCount} email match{instagramLeads.matchCount !== 1 ? 'es' : ''}</span>

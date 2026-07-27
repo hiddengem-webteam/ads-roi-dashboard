@@ -3,16 +3,9 @@
 import { ClientFacebookStats, PMSSummary } from '@/types';
 import { formatCurrency } from '@/lib/utils';
 
-interface CampaignRevenue {
-  followers: number;
-  retargeting: number;
-  newLeads: number;
-}
-
 interface ClientSummarySectionProps {
   facebookStats: ClientFacebookStats | null;
   pmsSummary: PMSSummary | null;
-  campaignRevenue: CampaignRevenue;
 }
 
 function SummaryCard({
@@ -41,17 +34,29 @@ function SummaryCard({
   );
 }
 
-export default function ClientSummarySection({ facebookStats, pmsSummary, campaignRevenue }: ClientSummarySectionProps) {
+export default function ClientSummarySection({ facebookStats, pmsSummary }: ClientSummarySectionProps) {
   const totalSpend =
     (facebookStats?.followers?.spend ?? 0) +
     (facebookStats?.retargeting?.spend ?? 0) +
     (facebookStats?.newLeads?.spend ?? 0);
 
-  const totalRevenue = campaignRevenue.followers + campaignRevenue.retargeting + campaignRevenue.newLeads;
-  const blendedRoas = totalSpend > 0 && totalRevenue > 0 ? totalRevenue / totalSpend : null;
-
+  // Direct booking revenue = the platform's PMS direct-booking total. OTA
+  // bookings (Airbnb/VRBO/Booking.com/…) are already excluded upstream by
+  // roi-export, so every booking here is a direct booking.
+  const directBookingRevenue = pmsSummary?.totalRevenue ?? 0;
   const hasSpend = totalSpend > 0;
-  const hasAvg = pmsSummary && pmsSummary.avgDirectBookingValue > 0;
+  const hasRevenue = !!pmsSummary && directBookingRevenue > 0;
+
+  // Blended ROAS = total direct booking revenue ÷ ad spend (the platform's blended_roas).
+  const blendedRoas = hasSpend && hasRevenue ? directBookingRevenue / totalSpend : null;
+
+  let revenueSub: string | undefined;
+  if (hasRevenue && pmsSummary) {
+    const n = pmsSummary.directBookingCount;
+    revenueSub =
+      `${n} direct booking${n !== 1 ? 's' : ''} · ${formatCurrency(pmsSummary.avgDirectBookingValue)} avg` +
+      (pmsSummary.zeroRevenueCount > 0 ? ` · ${pmsSummary.zeroRevenueCount} $0 excluded` : '');
+  }
 
   return (
     <div className="flex gap-4">
@@ -62,21 +67,15 @@ export default function ClientSummarySection({ facebookStats, pmsSummary, campai
         placeholder="No ad data"
       />
       <SummaryCard
-        label="Avg Direct Booking Value"
-        value={hasAvg ? formatCurrency(pmsSummary.avgDirectBookingValue) : undefined}
-        sub={
-          hasAvg
-            ? pmsSummary.zeroRevenueCount > 0
-              ? `Based on ${pmsSummary.directBookingCount} bookings · ${pmsSummary.zeroRevenueCount} $0 entr${pmsSummary.zeroRevenueCount === 1 ? 'y' : 'ies'} excluded`
-              : `Based on ${pmsSummary.directBookingCount} bookings`
-            : undefined
-        }
+        label="Direct Booking Revenue"
+        value={hasRevenue ? formatCurrency(directBookingRevenue) : undefined}
+        sub={revenueSub}
         placeholder="No PMS data"
       />
       <SummaryCard
         label="Blended ROAS"
         value={blendedRoas !== null ? `${blendedRoas.toFixed(2)}x` : undefined}
-        sub={blendedRoas !== null ? `${formatCurrency(totalRevenue)} revenue ÷ ${formatCurrency(totalSpend)} spend` : undefined}
+        sub={blendedRoas !== null ? `${formatCurrency(directBookingRevenue)} direct booking revenue ÷ ${formatCurrency(totalSpend)} spend` : undefined}
         placeholder="No data"
       />
     </div>

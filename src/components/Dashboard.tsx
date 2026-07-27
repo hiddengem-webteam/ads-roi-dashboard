@@ -230,7 +230,6 @@ export default function Dashboard() {
               <ClientSummarySection
                 facebookStats={currentClient.facebookStats}
                 pmsSummary={currentClient.pmsAnalysis?.summary ?? null}
-                campaignRevenue={campaignRevenue}
               />
 
               {currentClient.facebookStats && (

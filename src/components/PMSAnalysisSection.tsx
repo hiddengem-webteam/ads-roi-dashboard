@@ -200,10 +200,14 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
   const totalPromoUses = promoCode.codes.reduce((s, c) => s + c.uses, 0);
   const totalPromoRev = promoCode.codes.reduce((s, c) => s + c.revenue, 0);
   const activeCodeCount = promoCode.codes.filter((c) => c.uses > 0).length;
+  // Promo codes aren't available from the platform — hide the section entirely
+  // when there's nothing to show rather than render an empty card.
+  const showPromo = promoCode.codes.length > 0;
 
   return (
     <div className="space-y-4">
-      {/* 1. Promo Code Analysis */}
+      {/* Promo Code Analysis */}
+      {showPromo && (
       <Card>
         <CardContent>
           <SectionLabel number={1} title="Promo Code Analysis" />
@@ -276,11 +280,12 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
           )}
         </CardContent>
       </Card>
+      )}
 
-      {/* 2. Instagram Lead Analysis */}
+      {/* Instagram Lead Analysis */}
       <Card>
         <CardContent>
-          <SectionLabel number={2} title="Instagram Lead Analysis" />
+          <SectionLabel number={showPromo ? 2 : 1} title="Instagram Lead Analysis" />
 
           <div className="grid grid-cols-2 gap-3 mb-5">
             <StatCard label="Email Matches" value={instagram.matchCount || '—'} />
@@ -310,7 +315,7 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
       {/* 3. Facebook Lead Analysis */}
       <Card>
         <CardContent>
-          <SectionLabel number={3} title="Facebook / Meta Lead Analysis" />
+          <SectionLabel number={showPromo ? 3 : 2} title="Facebook / Meta Lead Analysis" />
 
           <div className="grid grid-cols-2 gap-3 mb-5">
             <StatCard label="Email Matches" value={facebook.matchCount || '—'} />
