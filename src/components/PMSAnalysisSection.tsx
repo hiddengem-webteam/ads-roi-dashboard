@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ClientPMSAnalysis, PromoCodeResult, LeadMatchEntry, ConfidenceLevel } from '@/types';
-import { formatCurrency } from '@/lib/utils';
+import { ClientPMSAnalysis, ClientFacebookStats, PromoCodeResult, LeadMatchEntry, ConfidenceLevel } from '@/types';
+import { formatCurrency, formatNumber } from '@/lib/utils';
 import { promoListToTabText } from '@/lib/analysis/promoAnalysis';
 import { leadListToTabText } from '@/lib/analysis/leadAnalysis';
 import { Card, CardContent, StatCard } from './ui/Card';
@@ -28,6 +28,7 @@ function ConfidenceDot({ level, reason }: { level: ConfidenceLevel; reason: stri
 
 interface PMSAnalysisSectionProps {
   analysis: ClientPMSAnalysis;
+  facebookStats?: ClientFacebookStats | null;
 }
 
 function SectionLabel({ number, title }: { number: number; title: string }) {
@@ -195,8 +196,17 @@ function Td({
   );
 }
 
-export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps) {
+export default function PMSAnalysisSection({ analysis, facebookStats }: PMSAnalysisSectionProps) {
   const { promoCode, instagram, facebook } = analysis;
+
+  // Facebook/Meta metrics come from the Meta Ads connection (Ads Manager data,
+  // synced per campaign per day) — period-correct, unlike the all-time GHL tag
+  // counts. Summed across the three campaign buckets.
+  const buckets = [facebookStats?.followers, facebookStats?.retargeting, facebookStats?.newLeads];
+  const metaLeads = buckets.reduce((s, b) => s + (b?.leads ?? 0), 0);
+  const metaPurchases = buckets.reduce((s, b) => s + (b?.purchases ?? 0), 0);
+  const metaValue = buckets.reduce((s, b) => s + (b?.purchasesConversionValue ?? 0), 0);
+  const hasMeta = !!facebookStats;
   const totalPromoUses = promoCode.codes.reduce((s, c) => s + c.uses, 0);
   const totalPromoRev = promoCode.codes.reduce((s, c) => s + c.revenue, 0);
   const activeCodeCount = promoCode.codes.filter((c) => c.uses > 0).length;
@@ -330,24 +340,28 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
         <CardContent>
           <SectionLabel number={showPromo ? 3 : 2} title="Facebook / Meta Lead Analysis" />
 
-          <div className="grid grid-cols-2 gap-3 mb-5">
+          {/* Primary: Meta Ads connection (Ads Manager numbers for this period) */}
+          <div className="grid grid-cols-3 gap-3 mb-5">
             <StatCard
-              label="Email Matches"
-              value={facebook.totalGHLLeads > 0 ? facebook.matchCount : '—'}
-              sub={
-                facebook.totalGHLLeads > 0
-                  ? `of ${facebook.totalGHLLeads} Meta-tagged leads checked against direct bookings`
-                  : 'No Facebook/Meta-tagged leads in GHL'
-              }
+              label="Leads"
+              value={hasMeta ? formatNumber(metaLeads) : '—'}
+              sub={hasMeta ? 'Meta Ads Manager · this period' : 'No Meta ad account connected'}
             />
             <StatCard
-              label="Total Revenue"
-              value={
-                facebook.matchCount > 0
-                  ? formatCurrency(facebook.totalRevenue)
-                  : facebook.totalGHLLeads > 0 ? formatCurrency(0) : '—'
+              label="Attributed Bookings"
+              value={hasMeta ? formatNumber(metaPurchases) : '—'}
+              sub={hasMeta ? 'Meta pixel purchase events' : undefined}
+            />
+            <StatCard
+              label="Attributed Revenue"
+              value={hasMeta ? formatCurrency(metaValue) : '—'}
+              sub={
+                hasMeta
+                  ? metaValue > 0
+                    ? 'Meta pixel purchase value'
+                    : 'No pixel purchase value tracked this period'
+                  : undefined
               }
-              sub={facebook.matchCount === 0 && facebook.totalGHLLeads > 0 ? 'No matched leads booked this period' : undefined}
             />
           </div>
 
@@ -358,8 +372,17 @@ export default function PMSAnalysisSection({ analysis }: PMSAnalysisSectionProps
             </div>
           )}
 
+          {/* Secondary: GHL email verification against direct bookings */}
+          {facebook.matchCount > 0 && (
+            <p className="text-xs text-gray-400 mb-3">
+              <span className="font-medium text-gray-600">
+                {facebook.matchCount} verified email match{facebook.matchCount !== 1 ? 'es' : ''}
+              </span>
+              {' '}from Meta-tagged GHL leads · {formatCurrency(facebook.totalRevenue)} direct booking revenue
+            </p>
+          )}
           <CollapsibleList
-            label="Facebook List"
+            label="Verified guest matches (GHL)"
             count={facebook.matchCount}
             copyButton={<CopyButton getText={() => leadListToTabText(facebook, 'FACEBOOK LEADS')} label="Copy list" />}
           >

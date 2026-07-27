@@ -244,7 +244,10 @@ export default function Dashboard() {
               )}
 
               {currentClient.pmsAnalysis && (
-                <PMSAnalysisSection analysis={currentClient.pmsAnalysis} />
+                <PMSAnalysisSection
+                  analysis={currentClient.pmsAnalysis}
+                  facebookStats={currentClient.facebookStats}
+                />
               )}
 
               {!currentClient.facebookStats && !currentClient.pmsAnalysis && (
