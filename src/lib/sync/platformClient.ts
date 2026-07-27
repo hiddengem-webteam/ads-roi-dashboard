@@ -21,18 +21,38 @@ export function getPlatformConfig(): PlatformConfig {
   return { baseUrl, secret };
 }
 
-export async function platformGet<T>(cfg: PlatformConfig, pathAndQuery: string): Promise<T> {
-  const res = await fetch(`${cfg.baseUrl}${pathAndQuery}`, {
-    headers: { Authorization: `Bearer ${cfg.secret}` },
-    cache: 'no-store', // server-to-server sync reads must never be cached
-  });
-  if (!res.ok) {
-    const body = await res.text().catch(() => '');
-    throw new Error(
-      `GET ${pathAndQuery} → ${res.status} ${res.statusText}${body ? `: ${body.slice(0, 200)}` : ''}`,
-    );
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+// GET with retry on transient failures. The platform's roi-export can
+// intermittently fail on the current (actively-syncing) month; retrying in-build
+// keeps a single blip from dropping that month until the next 4h rebuild.
+// Retries network errors, timeouts, 429, and 5xx; fails fast on other 4xx.
+export async function platformGet<T>(
+  cfg: PlatformConfig,
+  pathAndQuery: string,
+  retries = 3,
+): Promise<T> {
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const res = await fetch(`${cfg.baseUrl}${pathAndQuery}`, {
+        headers: { Authorization: `Bearer ${cfg.secret}` },
+        cache: 'no-store', // server-to-server sync reads must never be cached
+      });
+      if (res.ok) return (await res.json()) as T;
+      const body = await res.text().catch(() => '');
+      throw Object.assign(
+        new Error(`GET ${pathAndQuery} → ${res.status} ${res.statusText}${body ? `: ${body.slice(0, 200)}` : ''}`),
+        { status: res.status },
+      );
+    } catch (err) {
+      lastErr = err;
+      const status = (err as { status?: number }).status;
+      if (typeof status === 'number' && status >= 400 && status < 500 && status !== 429) break; // client error — don't retry
+      if (attempt < retries) await sleep(attempt * 800); // 0.8s, 1.6s backoff
+    }
   }
-  return res.json() as Promise<T>;
+  throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
 
 // ─── Response shapes (ground-truthed against the platform route handlers) ──────
