@@ -1,11 +1,44 @@
 import { FacebookAdsRow, CampaignType, CampaignStats, ClientFacebookStats } from '@/types';
-import { resolveClientName } from '@/lib/accountMapping';
+import { resolveClientName, isExcludedAccount } from '@/lib/accountMapping';
 
+// Client-run "launch boom" campaigns are excluded from agency ROI (per Shawal,
+// Jul 2026): the "LB " / "LB-" prefix marks Launch Boom, and the word "launch"
+// catches client launch campaigns (Launch Blitz, Launch Special, etc.).
+// Matched on a word boundary so "relaunch"/"launchpad" aren't swept up.
+function isExcludedCampaign(lower: string): boolean {
+  return lower.startsWith('lb ') || lower.startsWith('lb-') || /\blaunch\b/.test(lower);
+}
+
+// Bucket a Meta campaign by name, or null to leave it out of ROI.
+// Keyword rules confirmed with Shawal (Jul 2026): the agency names campaigns by
+// objective/funnel stage, so we key off those words.
+//
+// Precedence matters when a name matches multiple buckets: purchase-intent
+// (Retargeting) and lead-gen (New Leads) win over the broad awareness keywords
+// (Followers), so e.g. "BOF Video Retargeting" is Retargeting, not Followers.
 export function classifyCampaign(campaignName: string): CampaignType | null {
   const lower = campaignName.toLowerCase();
-  if (lower.includes('discovery') || lower.includes('follower') || lower.includes('giveaway')) return 'Followers';
-  if (lower.includes('retarget') || lower.includes('retargeting') || /\brt\b/.test(lower)) return 'Retargeting';
+
+  if (isExcludedCampaign(lower)) return null;
+
+  // Retargeting — warm audience / purchase-conversion
+  if (
+    lower.includes('retarget') || /\brt\b/.test(lower) ||
+    lower.includes('purchase') || lower.includes('sales') ||
+    /\bmof\b/.test(lower) || /\bbof\b/.test(lower)
+  ) return 'Retargeting';
+
+  // New Leads — cold prospecting / lead-gen
   if (lower.includes('leads') || lower.includes('new lead')) return 'New Leads';
+
+  // Followers — awareness / engagement / follower growth (lowest precedence)
+  if (
+    lower.includes('discovery') || lower.includes('follower') || lower.includes('giveaway') ||
+    lower.includes('video') || lower.includes('awareness') || lower.includes('engagement') ||
+    lower.includes('boosted') || lower.includes('instagram post') ||
+    lower.includes('pre-booking') || lower.includes('pre booking') || /\btof\b/.test(lower)
+  ) return 'Followers';
+
   return null;
 }
 
@@ -27,6 +60,7 @@ export function aggregateFacebookStats(rows: FacebookAdsRow[]): Record<string, C
 
   for (const row of rows) {
     const clientName = resolveClientName(row.accountName);
+    if (isExcludedAccount(clientName)) continue; // account removed from reporting
     const campaignType = classifyCampaign(row.campaignName);
     if (!campaignType) continue;
 

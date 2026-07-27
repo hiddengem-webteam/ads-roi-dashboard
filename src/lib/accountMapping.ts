@@ -63,6 +63,16 @@ export function resolveClientName(accountName: string): string {
   return trimmed;
 }
 
+// Ad accounts excluded from ROI reporting entirely (canonical client names,
+// lowercased). Per Shawal (Jul 2026): the Berkeley Springs / "Canopy" account
+// — canonically "Stay With Branch" — is run outside our reporting scope, so all
+// of its campaigns (Scale / CBO / Adv+ etc.) are dropped.
+export const EXCLUDED_ACCOUNTS = new Set<string>(['stay with branch']);
+
+export function isExcludedAccount(clientName: string): boolean {
+  return EXCLUDED_ACCOUNTS.has(clientName.trim().toLowerCase());
+}
+
 // Platform / relay emails to exclude from matching
 export const PLATFORM_EMAIL_PATTERNS = [
   'privaterelay.appleid.com',
