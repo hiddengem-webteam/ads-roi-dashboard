@@ -83,6 +83,9 @@ export function detectRevenueColumn(headers: string[]): { column: string; isNetI
     const found = headers.find((h) => normalizeHeader(h) === norm);
     if (found) return { column: found, isNetIncome: normalizeHeader(found) === 'net income' };
   }
+  // Any header containing 'revenue' (e.g. "Gross revenue", "Rental revenue")
+  const revenueCol = headers.find((h) => h.toLowerCase().includes('revenue'));
+  if (revenueCol) return { column: revenueCol, isNetIncome: false };
   return null;
 }
 

@@ -12,6 +12,7 @@ interface CampaignRevenue {
   followersUses: number;
   followersDeduped: number;
   retargeting: number;
+  retargetingUsesConversionValue: boolean;
   newLeads: number;
 }
 
@@ -39,6 +40,7 @@ function CampaignPanel({
   bookingRevenue,
   followersUses,
   followersDeduped,
+  retargetingUsesConversionValue,
   instagramLeads,
   facebookLeads,
   avgDirectBookingValue,
@@ -47,6 +49,7 @@ function CampaignPanel({
   bookingRevenue: number;
   followersUses?: number;
   followersDeduped?: number;
+  retargetingUsesConversionValue?: boolean;
   instagramLeads?: LeadAnalysis | null;
   facebookLeads?: LeadAnalysis | null;
   avgDirectBookingValue?: number;
@@ -60,9 +63,14 @@ function CampaignPanel({
     : (facebookLeads?.matchCount ?? 0);
 
   const costPerBooking = attributedBookings > 0 && s.spend > 0 ? s.spend / attributedBookings : null;
+
+  // Campaign-specific avg booking value, derived from this campaign's own
+  // Booking Revenue ÷ its attributed bookings — not the client-wide PMS
+  // average — so the % stays consistent with the Booking Revenue shown above.
+  const campaignAvgBookingValue = attributedBookings > 0 && bookingRevenue > 0 ? bookingRevenue / attributedBookings : null;
   const pctOfBookingValue =
-    costPerBooking !== null && avgDirectBookingValue && avgDirectBookingValue > 0
-      ? (costPerBooking / avgDirectBookingValue) * 100
+    costPerBooking !== null && campaignAvgBookingValue !== null
+      ? (costPerBooking / campaignAvgBookingValue) * 100
       : null;
 
   // Booking attribution comes from promo codes (Followers), FB purchase events
@@ -71,8 +79,10 @@ function CampaignPanel({
   const hasBookingData = attributedBookings > 0 || bookingRevenue > 0;
 
   const bookingRevenueSub =
-    s.type === 'Retargeting' && s.purchases > 0 && avgDirectBookingValue
-      ? `${formatNumber(s.purchases)} FB events × ${formatCurrency(avgDirectBookingValue)} avg booking value`
+    s.type === 'Retargeting' && retargetingUsesConversionValue
+      ? 'Facebook Ads Manager purchase conversion value'
+      : s.type === 'Retargeting' && s.purchases > 0 && avgDirectBookingValue
+      ? `${formatNumber(s.purchases)} FB events × ${formatCurrency(avgDirectBookingValue)} avg booking value (no conversion value reported)`
       : s.type === 'Followers'
       ? `${followersUses ?? 0} booking${(followersUses ?? 0) !== 1 ? 's' : ''} · From promo code attribution`
       : s.type === 'New Leads' && facebookLeads
@@ -137,7 +147,7 @@ function CampaignPanel({
             <StatCard
               label="% of Booking Value"
               value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : '—'}
-              sub={pctOfBookingValue !== null ? 'Cost per booking ÷ avg booking value' : undefined}
+              sub={pctOfBookingValue !== null ? `Cost per booking ÷ ${formatCurrency(campaignAvgBookingValue!)} avg booking value (this campaign)` : undefined}
             />
           </div>
 
@@ -217,6 +227,7 @@ export default function FacebookStatsSection({ stats, campaignRevenue, instagram
             bookingRevenue={activeRevenue}
             followersUses={campaignRevenue.followersUses}
             followersDeduped={campaignRevenue.followersDeduped}
+            retargetingUsesConversionValue={campaignRevenue.retargetingUsesConversionValue}
             instagramLeads={activeTab === 'followers' ? instagramLeads : null}
             facebookLeads={activeTab === 'newLeads' ? facebookLeads : null}
             avgDirectBookingValue={avgDirectBookingValue}

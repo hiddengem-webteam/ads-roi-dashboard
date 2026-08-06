@@ -141,9 +141,13 @@ export async function parsePMSData(file: File): Promise<PMSParseResult> {
 
         const checkInCandidates = ['Check-in date', 'Check In', 'Checkin', 'check_in', 'Arrival', 'check-in', 'booking_date', 'Booking Date', 'Reservation Date', 'DateCreated', 'Date Created', 'date_created', 'Booked'];
         const checkInCol = checkInCandidates.find((c) => headers.includes(c)) ??
+          headers.find((h) => checkInCandidates.some((c) => h.toLowerCase() === c.toLowerCase())) ??
           headers.find((h) => {
             const l = h.toLowerCase().replace(/_/g,' ');
-            return (l.includes('check') && l.includes('in')) || l.includes('booking date') || l.includes('date created') || l === 'booked';
+            // 'booked' covers "Booked on"/"Booked at"/"Date Booked"/"Booked Date"; 'creation date'
+            // covers "Creation Date" (reversed word order from "Date Created"); 'reservation date'
+            // catches case variants like "Reservation date" that the exact-match tier above misses.
+            return (l.includes('check') && l.includes('in')) || l.includes('booking date') || l.includes('date created') || l.includes('creation date') || l.includes('booked') || l.includes('reservation date');
           }) ?? null;
 
         const checkOutCandidates = ['Check-out date', 'Check Out', 'Checkout', 'check_out', 'Departure', 'check-out'];
