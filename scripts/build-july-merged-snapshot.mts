@@ -88,9 +88,27 @@ async function main() {
 
   const files: UploadedFilesMap = { metaAds: null, promoCodes: null, pmsFiles: {}, ghlFiles: {} };
 
+  // Starlight Haven Weiss Lake / Hot Springs Meta campaigns, July 1–31 2026
+  // (manually provided — not in the platform's Meta Ads.csv since these two
+  // accounts aren't synced there at all). Appended to the base Meta Ads CSV
+  // so they flow through the same classifyCampaign()/aggregateFacebookStats()
+  // pipeline as every other client.
+  const STARLIGHT_META_ROWS: [string, string, number, number, number, number, number, number][] = [
+    ['Starlight Haven Weiss Lake', 'Website Retargeting Campaign - 03/03/26', 1538.49, 2484, 4, 118290, 41, 23329.84],
+    ['Starlight Haven Weiss Lake', 'New Leads Campaign - 03/03/26', 614.69, 2133, 826, 78608, 1, 185.69],
+    ['Starlight Haven Weiss Lake', 'ToF Keyword Engagement - 07/29/26', 9.42, 36, 0, 670, 0, 0],
+    ['Starlight Haven Hot Springs', 'New Leads Campaign - 03/03/26', 922.07, 4439, 2813, 144797, 2, 1164.89],
+    ['Starlight Haven Hot Springs', 'Discovery Campaign - Giveaway - 12/16/2025', 616.11, 1825, 0, 52562, 0, 0],
+    ['Starlight Haven Hot Springs', 'Website Retargeting Campaign - 03/03/26', 613.27, 1693, 7, 63882, 16, 10500.17],
+    ['Starlight Haven Hot Springs', 'ToF Keyword Engagement - 07/31/26', 8.16, 45, 0, 673, 0, 0],
+  ];
+  const META_ADS_HEADERS = ['Account name', 'Campaign name', 'Amount spent', 'Link clicks', 'Leads', 'Impressions', 'Purchases', 'Purchases conversion value'];
+
   if (period.metaAds) {
-    const buf = fs.readFileSync(path.join(ROOT, 'public', period.metaAds));
-    files.metaAds = new File([buf], 'Meta Ads.csv', { type: 'text/csv' });
+    const baseBuf = fs.readFileSync(path.join(ROOT, 'public', period.metaAds));
+    const starlightCsv = rowsToCSV(META_ADS_HEADERS, STARLIGHT_META_ROWS).split('\n').slice(1).join('\n');
+    const combined = baseBuf.toString('utf8').replace(/\n?$/, '\n') + starlightCsv;
+    files.metaAds = new File([combined], 'Meta Ads.csv', { type: 'text/csv' });
   }
 
   // Promo codes: prefer the CRM-provided sheet dropped into July's xlsx data folder.

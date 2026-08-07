@@ -1,17 +1,17 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import Sidebar from './Sidebar';
-import ClientSummarySection from './ClientSummarySection';
-import FacebookStatsSection from './FacebookStatsSection';
-import PMSAnalysisSection from './PMSAnalysisSection';
-import FlagPanel from './FlagPanel';
-import PeriodOverviewSection from './PeriodOverviewSection';
-import DataStatusPanel from './DataStatusPanel';
+import Sidebar from './july/Sidebar';
+import ClientSummarySection from './july/ClientSummarySection';
+import FacebookStatsSection from './july/FacebookStatsSection';
+import PMSAnalysisSection from './july/PMSAnalysisSection';
+import FlagPanel from './july/FlagPanel';
+import PeriodOverviewSection from './july/PeriodOverviewSection';
+import DataStatusPanel from './july/DataStatusPanel';
 import { ProcessedData, ClientData } from '@/types';
 import { computeCampaignRevenue } from '@/lib/analysis/campaignRevenue';
 import { AlertCircle, Loader2 } from 'lucide-react';
-import { Badge } from './ui/Badge';
+import { Badge } from './july/ui/Badge';
 
 interface ManifestClient {
   name: string;
@@ -84,10 +84,10 @@ export default function JulyDashboard() {
   const campaignRevenue = useMemo(() => computeCampaignRevenue(currentClient), [currentClient]);
 
   return (
-    <div className="flex h-screen bg-[#f8f8f7] overflow-hidden">
+    <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       {!loading && !error && orderedClients.length > 0 && (
-        <div className="bg-white border-r border-gray-100 flex flex-col overflow-hidden flex-shrink-0 w-[220px]">
+        <div className="bg-[var(--surface-strong)] border-r border-[var(--border)] flex flex-col overflow-hidden flex-shrink-0 w-[220px]">
           <Sidebar
             clients={orderedClients}
             selectedClient={activeView === 'client' ? selectedClient : ''}
@@ -98,20 +98,20 @@ export default function JulyDashboard() {
       )}
 
       {/* Main content */}
-      <div className="flex-1 overflow-y-auto" id="main-scroll">
+      <div className="flex-1 overflow-y-auto july-scrollbar" id="main-scroll">
         {/* Top bar */}
         {!loading && !error && data && (
-          <div className="sticky top-0 z-10 bg-[#f8f8f7]/90 backdrop-blur-sm border-b border-gray-100 px-8 py-3 flex items-center justify-between gap-4">
+          <div className="sticky top-0 z-10 bg-[var(--canvas-tint)]/85 backdrop-blur-sm border-b border-[var(--border)] px-8 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setActiveView('overview')}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${activeView === 'overview' ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-700'}`}
+                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 Overview
               </button>
               <button
                 onClick={() => setActiveView('client')}
-                className={`flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-lg transition-colors ${activeView === 'client' ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-700'}`}
+                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 {activeView === 'client' && currentClient ? (
                   <>
@@ -128,8 +128,8 @@ export default function JulyDashboard() {
             </div>
 
             {/* Fixed period badge — no selector; this view is locked to July 2026 */}
-            <span className="text-sm font-medium border border-gray-200 rounded-xl px-4 py-2 bg-white text-gray-700 shadow-sm">
-              {snapshot?.period.label} <span className="text-gray-400">(frozen snapshot)</span>
+            <span className="text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] px-4 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_2px_12px_rgba(15,23,42,.04)]">
+              {snapshot?.period.label} <span className="text-[var(--muted-soft)] font-medium">(frozen snapshot)</span>
             </span>
           </div>
         )}
@@ -147,18 +147,18 @@ export default function JulyDashboard() {
           {/* Loading */}
           {loading && (
             <div className="flex flex-col items-center justify-center py-40 gap-4">
-              <Loader2 className="w-7 h-7 text-gray-300 animate-spin" />
-              <p className="text-sm text-gray-400">Loading July snapshot...</p>
+              <Loader2 className="w-7 h-7 text-[var(--muted-soft)] animate-spin" />
+              <p className="text-[13px] text-[var(--muted-soft)]">Loading July snapshot...</p>
             </div>
           )}
 
           {/* Error */}
           {error && !loading && (
-            <div className="max-w-lg p-6 bg-red-50 border border-red-100 rounded-2xl flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <div className="max-w-lg p-6 bg-[rgba(220,38,38,.06)] border border-[rgba(220,38,38,.18)] rounded-[16px] flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-[var(--danger)] flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-red-700 text-sm">Failed to load July snapshot</p>
-                <p className="text-sm text-red-500 mt-1">{error}</p>
+                <p className="font-semibold text-[var(--danger)] text-[13px]">Failed to load July snapshot</p>
+                <p className="text-[13px] text-[var(--danger)]/80 mt-1">{error}</p>
               </div>
             </div>
           )}
@@ -199,8 +199,8 @@ export default function JulyDashboard() {
               )}
 
               {!currentClient.facebookStats && !currentClient.pmsAnalysis && (
-                <div className="rounded-2xl border border-dashed border-gray-200 px-8 py-16 text-center">
-                  <p className="text-sm text-gray-400">No data available for this client.</p>
+                <div className="rounded-[16px] border border-dashed border-[var(--border-strong)] px-8 py-16 text-center">
+                  <p className="text-[13px] text-[var(--muted-soft)]">No data available for this client.</p>
                 </div>
               )}
 

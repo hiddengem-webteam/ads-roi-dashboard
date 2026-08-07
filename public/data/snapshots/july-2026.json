@@ -6202,9 +6202,117 @@
         "hasPMS": true,
         "hasGHL": true
       },
+      "Starlight Haven Weiss Lake": {
+        "name": "Starlight Haven Weiss Lake",
+        "facebookStats": {
+          "clientName": "Starlight Haven Weiss Lake",
+          "accountName": "Starlight Haven Weiss Lake",
+          "followers": {
+            "type": "Followers",
+            "spend": 9.42,
+            "impressions": 670,
+            "linkClicks": 36,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 1538.49,
+            "impressions": 118290,
+            "linkClicks": 2484,
+            "leads": 4,
+            "purchases": 41,
+            "purchasesConversionValue": 23329.84
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 614.69,
+            "impressions": 78608,
+            "linkClicks": 2133,
+            "leads": 826,
+            "purchases": 1,
+            "purchasesConversionValue": 185.69
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Starlight Haven Weiss Lake",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "STAR23",
+                "discount": "10%",
+                "purpose": "New leads",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 122
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1284
+          },
+          "summary": {
+            "totalRevenue": 20868.7,
+            "avgDirectBookingValue": 463.7488888888889,
+            "directBookingCount": 45,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": true
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
       "Starlight Haven Hot Springs": {
         "name": "Starlight Haven Hot Springs",
-        "facebookStats": null,
+        "facebookStats": {
+          "clientName": "Starlight Haven Hot Springs",
+          "accountName": "Starlight Haven Hot Springs",
+          "followers": {
+            "type": "Followers",
+            "spend": 624.27,
+            "impressions": 53235,
+            "linkClicks": 1870,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 613.27,
+            "impressions": 63882,
+            "linkClicks": 1693,
+            "leads": 7,
+            "purchases": 16,
+            "purchasesConversionValue": 10500.17
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 922.07,
+            "impressions": 144797,
+            "linkClicks": 4439,
+            "leads": 2813,
+            "purchases": 2,
+            "purchasesConversionValue": 1164.89
+          }
+        },
         "pmsAnalysis": {
           "clientName": "Starlight Haven Hot Springs",
           "promoCode": {
@@ -6253,54 +6361,6 @@
             "totalRevenue": 132010.3200000001,
             "avgDirectBookingValue": 550.0430000000003,
             "directBookingCount": 240,
-            "zeroRevenueCount": 0,
-            "hasSourceColumn": true
-          }
-        },
-        "hasPMS": true,
-        "hasGHL": true
-      },
-      "Starlight Haven Weiss Lake": {
-        "name": "Starlight Haven Weiss Lake",
-        "facebookStats": null,
-        "pmsAnalysis": {
-          "clientName": "Starlight Haven Weiss Lake",
-          "promoCode": {
-            "codes": [
-              {
-                "code": "STAR23",
-                "discount": "10%",
-                "purpose": "New leads",
-                "campaignType": "Followers",
-                "uses": 0,
-                "revenue": 0,
-                "guests": []
-              }
-            ],
-            "totalUses": 0,
-            "totalRevenue": 0,
-            "unrecognizedCodes": [],
-            "missingFromPromoSheet": false,
-            "netIncomeWarning": false
-          },
-          "instagram": {
-            "matchCount": 0,
-            "totalRevenue": 0,
-            "matches": [],
-            "hasNoEmail": false,
-            "totalGHLLeads": 122
-          },
-          "facebook": {
-            "matchCount": 0,
-            "totalRevenue": 0,
-            "matches": [],
-            "hasNoEmail": false,
-            "totalGHLLeads": 1284
-          },
-          "summary": {
-            "totalRevenue": 20868.7,
-            "avgDirectBookingValue": 463.7488888888889,
-            "directBookingCount": 45,
             "zeroRevenueCount": 0,
             "hasSourceColumn": true
           }
@@ -6927,6 +6987,6 @@
         "details": "Guest: Rosemary Minasian | Email: tpczxq66@proxy.hipcamp.com"
       }
     ],
-    "lastProcessed": "2026-08-06T20:58:52.902Z"
+    "lastProcessed": "2026-08-07T14:49:57.969Z"
   }
 }
