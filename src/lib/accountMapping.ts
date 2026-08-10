@@ -63,14 +63,20 @@ export function resolveClientName(accountName: string): string {
   return trimmed;
 }
 
-// Ad accounts excluded from ROI reporting entirely (canonical client names,
-// lowercased). Per Shawal (Jul 2026): the Berkeley Springs / "Canopy" account
-// — canonically "Stay With Branch" — is run outside our reporting scope, so all
-// of its campaigns (Scale / CBO / Adv+ etc.) are dropped.
-export const EXCLUDED_ACCOUNTS = new Set<string>(['stay with branch']);
+// Ad accounts excluded from ROI reporting entirely (raw ad-account names,
+// lowercased). Per Shawal (Jul 2026): the client-run Berkeley Springs /
+// "Canopy" accounts are outside our reporting scope, so their campaigns
+// (Scale / CBO / Adv+ / Sales etc.) are dropped. Account-level, NOT
+// client-level: the agency-run "@staywithbranch" account for the same client
+// IS reported (per Shawal, Aug 2026 — previously the whole client was
+// excluded, which also swallowed the agency campaigns).
+export const EXCLUDED_ACCOUNTS = new Set<string>([
+  'branch berkeley springs',
+  'the canopy at moody moon ridge',
+]);
 
-export function isExcludedAccount(clientName: string): boolean {
-  return EXCLUDED_ACCOUNTS.has(clientName.trim().toLowerCase());
+export function isExcludedAccount(accountName: string): boolean {
+  return EXCLUDED_ACCOUNTS.has(accountName.trim().toLowerCase());
 }
 
 // Platform / relay emails to exclude from matching

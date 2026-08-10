@@ -11,6 +11,50 @@ interface SidebarProps {
   periodLabel?: string;
 }
 
+// Account manager per client, derived from whose July 2026 direct-booking
+// spreadsheet each client's data came from (every client appears in exactly
+// one AM's file). Clients absent from all AM files came via the platform
+// sync only and have no AM attribution here.
+const ACCOUNT_MANAGERS: Record<string, string> = {
+  'Three Suns Cabins': 'Anna',
+  'Stay Different': 'Anna',
+  'The Outpost': 'Anna',
+  'Ponderosa Pines Resort': 'Anna',
+  'Bison Ridge Retreat': 'Chiara',
+  'Stay Southen Illinois': 'Chiara',
+  'Hillside Amble': 'Chiara',
+  'Paradise Pointe': 'Makenna',
+  'Treetop Escapes': 'Makenna',
+  'Stay Saluda': 'Makenna',
+  'Inspired Retreats': 'Makenna',
+  'Flohom': 'Makenna',
+  'The Cohost Company': 'Makenna',
+  'Stay with Branch': 'Charlotte',
+  'Asheville River Cabins': 'Charlotte',
+  'Myrinn': 'Charlotte',
+  'Home Base': 'Charlotte',
+  'Stay on 30a': 'Charlotte',
+  'Big Moon Ranch': 'Charlotte',
+  'Sunapee Stays': 'Charlotte',
+  'Dwell': 'Charlotte',
+  'Starlight Haven Hot Springs': 'Charlotte',
+  'Starlight Haven Weiss Lake': 'Charlotte',
+  'Wanderin Star Farms': 'Alicia',
+  'Hiawassee Glamping': 'Alicia',
+  'Awayframes': 'Alicia',
+  'Tàberg Falls': 'Alicia',
+  'Reflections Resorts': 'Alicia',
+  'Selah Place': 'Alicia',
+  'Green Springs Inn': 'Alicia',
+  'Away2PA': 'Alicia',
+  'Evergreen Cabins': 'Nicole',
+  'Parker Reserve': 'Nicole',
+  'StayLuxe': 'Nicole',
+  'Endless Stays': 'Nicole',
+  'Red White & Blue Views': 'Nicole',
+  'Best Texas Travel': 'Nicole',
+};
+
 export default function Sidebar({ clients, selectedClient, onSelectClient, periodLabel }: SidebarProps) {
   return (
     <aside className="w-[220px] flex-shrink-0 flex flex-col h-full">
@@ -38,12 +82,13 @@ export default function Sidebar({ clients, selectedClient, onSelectClient, perio
         <nav className="space-y-0.5">
           {clients.map((client) => {
             const isActive = client.name === selectedClient;
+            const am = ACCOUNT_MANAGERS[client.name];
             return (
               <button
                 key={client.name}
                 onClick={() => onSelectClient(client.name)}
                 className={cn(
-                  'relative w-full flex items-center gap-2.5 px-3 py-2.5 rounded-[10px] text-[13px] font-semibold text-left transition-colors duration-150',
+                  'relative w-full flex items-center gap-2.5 px-3 py-2 rounded-[10px] text-[13px] font-semibold text-left transition-colors duration-150',
                   isActive
                     ? 'bg-[var(--fill-blue)] text-[var(--brand)]'
                     : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]',
@@ -53,7 +98,14 @@ export default function Sidebar({ clients, selectedClient, onSelectClient, perio
                   <span className="absolute left-0 top-1.5 bottom-1.5 w-[3px] rounded-full bg-[var(--brand)]" />
                 )}
                 <Users className={cn('w-3.5 h-3.5 flex-shrink-0', isActive ? 'text-[var(--brand)]' : 'text-[var(--muted-soft)]')} />
-                <span className="truncate">{client.name}</span>
+                <span className="min-w-0">
+                  <span className="block truncate">{client.name}</span>
+                  {am && (
+                    <span className="block truncate text-[11px] font-normal text-[var(--muted-soft)]">
+                      {am}
+                    </span>
+                  )}
+                </span>
               </button>
             );
           })}

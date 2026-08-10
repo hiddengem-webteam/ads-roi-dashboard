@@ -59,8 +59,8 @@ export function aggregateFacebookStats(rows: FacebookAdsRow[]): Record<string, C
   const byClient: Record<string, ClientFacebookStats> = {};
 
   for (const row of rows) {
+    if (isExcludedAccount(row.accountName)) continue; // account removed from reporting
     const clientName = resolveClientName(row.accountName);
-    if (isExcludedAccount(clientName)) continue; // account removed from reporting
     const campaignType = classifyCampaign(row.campaignName);
     if (!campaignType) continue;
 

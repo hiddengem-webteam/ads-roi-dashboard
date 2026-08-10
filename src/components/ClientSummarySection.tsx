@@ -73,17 +73,30 @@ export default function ClientSummarySection({
 
   // Revenue attributed across all three Meta campaign types (Followers promo
   // attribution + Retargeting purchase events + New Leads matched bookings).
-  const metaAttributedRevenue =
+  // Retargeting's figure comes from Meta's own pixel-reported purchase value,
+  // independent of our PMS booking list — when that list is incomplete, the
+  // pixel can report more purchase value than we actually have on record.
+  // Capped at the real total so "attributed" never nonsensically exceeds
+  // "total" on the dashboard (per decision — the raw pixel number is still
+  // useful for spotting tracking gaps, but shouldn't be shown as a sum here).
+  const metaAttributedRevenueRaw =
     campaignRevenue.followers + campaignRevenue.retargeting + campaignRevenue.newLeads;
+  const metaAttributedRevenue = hasRevenue
+    ? Math.min(metaAttributedRevenueRaw, directBookingRevenue)
+    : metaAttributedRevenueRaw;
   const hasMetaAttributedRevenue = metaAttributedRevenue > 0;
 
   // Bookings attributed to Meta — same per-campaign-type attribution logic used
   // in the Facebook Campaign Stats tabs: Followers via promo code, Retargeting
-  // via FB purchase events, New Leads via matched PMS bookings.
-  const metaAttributedBookings =
+  // via FB purchase events, New Leads via matched PMS bookings. Capped at the
+  // total direct booking count for the same reason as revenue above.
+  const metaAttributedBookingsRaw =
     campaignRevenue.followersUses +
     (facebookStats?.retargeting?.purchases ?? 0) +
     (facebookLeads?.matchCount ?? 0);
+  const metaAttributedBookings = bookingCount > 0
+    ? Math.min(metaAttributedBookingsRaw, bookingCount)
+    : metaAttributedBookingsRaw;
   const hasMetaAttributedBookings = metaAttributedBookings > 0;
 
   const costPerMetaBooking =
@@ -132,7 +145,7 @@ export default function ClientSummarySection({
         <SummaryCard
           label="Total Direct Bookings Attributed to Meta"
           value={hasMetaAttributedBookings ? formatNumber(metaAttributedBookings) : undefined}
-          sub={hasMetaAttributedBookings ? 'Followers + Retargeting + New Leads' : undefined}
+          sub={hasMetaAttributedBookings ? (metaAttributedBookingsRaw > metaAttributedBookings ? 'Followers + Retargeting + New Leads · capped at total bookings' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
         />
         <SummaryCard
@@ -154,7 +167,7 @@ export default function ClientSummarySection({
         <SummaryCard
           label="Direct Booking Revenue (Attributed to Meta Ads)"
           value={hasMetaAttributedRevenue ? formatCurrency(metaAttributedRevenue) : undefined}
-          sub={hasMetaAttributedRevenue ? 'Followers + Retargeting + New Leads' : undefined}
+          sub={hasMetaAttributedRevenue ? (metaAttributedRevenueRaw > metaAttributedRevenue ? 'Followers + Retargeting + New Leads · capped at total revenue' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
         />
         <SummaryCard

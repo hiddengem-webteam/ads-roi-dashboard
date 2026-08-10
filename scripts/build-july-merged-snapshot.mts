@@ -12,6 +12,7 @@
 
 import fs from 'fs';
 import path from 'path';
+import Papa from 'papaparse';
 import { parsePMSData } from '../src/lib/parsers/pmsData';
 import { processAllData, UploadedFilesMap } from '../src/lib/analysis/processor';
 import { normalizeEmail } from '../src/lib/utils';
@@ -104,10 +105,67 @@ async function main() {
   ];
   const META_ADS_HEADERS = ['Account name', 'Campaign name', 'Amount spent', 'Link clicks', 'Leads', 'Impressions', 'Purchases', 'Purchases conversion value'];
 
+  // July campaigns for the xlsx-only clients, from the manually exported Meta
+  // "Monthly Report" (the platform's Meta Ads.csv only covers its own synced
+  // ad accounts). Account names are rewritten to exact dashboard client names
+  // via this explicit map — never fuzzy-matched (same auditability rationale
+  // as MANIFEST_TO_XLSX_SOURCE). Accounts in the report but deliberately NOT
+  // mapped: platform-synced clients (already covered — would double-count),
+  // both Starlights (hardcoded above), The Canopy At Moody Moon Ridge /
+  // Reflections Resorts (per instruction), and off-dashboard accounts
+  // (VillaDestino, CGG, Austin Surf Lodge, American River Resort, Oak &
+  // Ember, Nature Nooks, Edenwood NC, Tuxedo Falls).
+  const MONTHLY_REPORT_ACCOUNT_TO_CLIENT: Record<string, string> = {
+    'Wanderin Star Farms New Ad Account': 'Wanderin Star Farms',
+    'Hiawassee Glamping': 'Hiawassee Glamping',
+    'Stay Different Ads': 'Stay Different',
+    'The Outpost Grand Canyon': 'The Outpost',
+    'Ponderosa Pines Resort': 'Ponderosa Pines Resort',
+    'Bison Ridge Retreat Ad Account': 'Bison Ridge Retreat',
+    '@staywithbranch': 'Stay with Branch',
+    'Big Moon Ranch': 'Big Moon Ranch',
+    'Sunapee Stays Ads Account': 'Sunapee Stays',
+    'Dwell Luxury Rentals Ads': 'Dwell',
+    'Stay Luxe Ads': 'StayLuxe',
+    'Endless Stays': 'Endless Stays',
+  };
+
+  function monthlyReportRows(): unknown[][] {
+    const reportPath = path.join(ROOT, 'July 2026 PMS Data', 'Meta Monthly Report - July 2026.csv');
+    if (!fs.existsSync(reportPath)) {
+      console.warn('Meta Monthly Report CSV not found — skipping xlsx-only clients’ ad data');
+      return [];
+    }
+    const parsed = Papa.parse<Record<string, string>>(fs.readFileSync(reportPath, 'utf8'), {
+      header: true,
+      skipEmptyLines: true,
+    });
+    const num = (v: string | undefined) => (v && v.trim() ? Number(v) : 0);
+    const rows: unknown[][] = [];
+    for (const r of parsed.data) {
+      const account = (r['Account name'] ?? '').trim();
+      const campaign = (r['Campaign name'] ?? '').trim();
+      let client = MONTHLY_REPORT_ACCOUNT_TO_CLIENT[account];
+      // The Outpost also ran three campaigns under the agency's shared
+      // "HiddenGem Marketing" account — routed by campaign name.
+      if (!client && account === 'HiddenGem Marketing' && /outpost/i.test(campaign)) {
+        client = 'The Outpost';
+      }
+      if (!client) continue;
+      const spend = num(r['Amount spent (USD)']);
+      const cpm = num(r['CPM (cost per 1,000 impressions)']);
+      // The report has CPM instead of raw impressions: impressions = spend / CPM × 1000.
+      const impressions = cpm > 0 ? Math.round((spend / cpm) * 1000) : 0;
+      rows.push([client, campaign, spend, num(r['Link clicks']), num(r['Leads']), impressions, num(r['Purchases']), num(r['Purchases conversion value'])]);
+    }
+    return rows;
+  }
+
   if (period.metaAds) {
     const baseBuf = fs.readFileSync(path.join(ROOT, 'public', period.metaAds));
-    const starlightCsv = rowsToCSV(META_ADS_HEADERS, STARLIGHT_META_ROWS).split('\n').slice(1).join('\n');
-    const combined = baseBuf.toString('utf8').replace(/\n?$/, '\n') + starlightCsv;
+    const extraRows = [...STARLIGHT_META_ROWS, ...monthlyReportRows()];
+    const extraCsv = rowsToCSV(META_ADS_HEADERS, extraRows).split('\n').slice(1).join('\n');
+    const combined = baseBuf.toString('utf8').replace(/\n?$/, '\n') + extraCsv;
     files.metaAds = new File([combined], 'Meta Ads.csv', { type: 'text/csv' });
   }
 
@@ -123,12 +181,65 @@ async function main() {
 
   const mergeLog: Record<string, unknown>[] = [];
 
+  // Clients where the platform PMS data and the xlsx export overlap so little
+  // (or the platform figure was independently confirmed wrong) that merging
+  // them would double-count. For these, the xlsx export is used exclusively —
+  // platform PMS data is ignored entirely. Evergreen Cabins: platform's 34
+  // rows ($51,885.29) vs xlsx's 49 rows ($62,289.95, confirmed correct).
+  // Stay Southen Illinois: platform's 121 rows ($79,360.01) are stays
+  // checking in during July across this client's ~34 cabins; the account
+  // manager's sheet (11 rows, $6,600.23) scopes to reservations booked
+  // during July instead — user chose the booked-in-July scope explicitly.
+  // Away2PA: platform's 27 rows total $201,667 vs the AM sheet's 23 rows
+  // at $86,385 — user confirmed ~86K is correct (Aug 2026), platform
+  // roi-export overstates this client, so the AM sheet wins outright.
+  // Awayframes: same pattern — platform+merge gave $62,138.81, user
+  // confirmed ~34K; the AM sheet's 17 rows ($34,466.13) win outright.
+  // Best Texas Travel: platform gave $152K; the AM sheet's own totals row
+  // says $27,623.94 across 41 bookings — user confirmed ~27K correct.
+  // Flohom: platform+merge gave $248K/198 bookings; the AM sheet's 153
+  // rows total $114,182.04 — user confirmed ~114K correct.
+  // Green Springs Inn: platform+merge gave $59,668.39/122 bookings; the AM
+  // sheet's 87 rows total $26,998.76 — user confirmed ~26K correct.
+  // Home Base: platform+merge gave $143,424.99/31 bookings; the AM sheet's
+  // 43 rows total $138,923.48 — user confirmed ~138K correct.
+  const USE_XLSX_EXCLUSIVELY = new Set([
+    'Evergreen Cabins',
+    'Stay Southen Illinois',
+    'Away2PA',
+    'Awayframes',
+    'Best Texas Travel',
+    'Flohom',
+    'Green Springs Inn',
+    'Home Base',
+    // Inspired Retreats: platform gave $3,368.45/5 bookings; the AM sheet's
+    // 2 rows total $5,163.69 — user confirmed ~5K correct.
+    'Inspired Retreats',
+    // Myrinn: platform+add-all-merge gave $26,833.59/25 bookings; the AM
+    // sheet's 12 rows total $12,494.08 — user confirmed ~12K correct.
+    // (Supersedes the earlier add-all-rows merge exception for this client.)
+    'Myrinn',
+    // Paradise Pointe: platform+merge gave $258,118.51/217 bookings; the AM
+    // sheet's 89 rows total $100,192.38 — user confirmed ~100K correct.
+    'Paradise Pointe',
+    // Batch of AM-confirmed totals (user, Aug 2026) — in every case the AM
+    // sheet total matched the confirmed figure exactly and the platform
+    // (or platform+merge) figure did not:
+    'Selah Place', // $21,795.23 (platform+merge gave $19,702.30)
+    'Stay on 30a', // $529,070.56 (platform+merge gave $819,037.97)
+    'Stay Saluda', // $17,371.79 (platform+merge gave $12,550.97)
+    'Tàberg Falls', // $127,465.25 (platform gave $51,847.60)
+    'The Cohost Company', // $72,305.78 (platform+merge gave $63,244.54)
+    'Treetop Escapes', // $44,179.45 (platform+merge gave $477,657.44)
+    'Three Suns Cabins', // $13,488.66 payout basis (platform+merge gave $24,683.09)
+  ]);
+
   for (const client of period.clients) {
     if (client.ghl) {
       const buf = fs.readFileSync(path.join(ROOT, 'public', client.ghl));
       files.ghlFiles[client.name] = new File([buf], 'GHL data.csv', { type: 'text/csv' });
     }
-    if (!client.pms) {
+    if (!client.pms || USE_XLSX_EXCLUSIVELY.has(client.name)) {
       // Platform has no PMS data for this client at all this period — nothing
       // to conflict with, so fill the gap from the xlsx source directly if we
       // have one (rather than leaving it blank when real booking data exists).
@@ -136,7 +247,14 @@ async function main() {
       const xlsxPath = xlsxFolder ? path.join(XLSX_SOURCE_DIR, xlsxFolder, 'PMS data.csv') : null;
       if (xlsxPath && fs.existsSync(xlsxPath)) {
         files.pmsFiles[client.name] = new File([fs.readFileSync(xlsxPath)], 'PMS data.csv', { type: 'text/csv' });
-        mergeLog.push({ client: client.name, xlsxMatch: xlsxFolder, platformRows: 0, note: 'platform had no PMS data — used xlsx directly' });
+        mergeLog.push({
+          client: client.name,
+          xlsxMatch: xlsxFolder,
+          platformRows: 0,
+          note: USE_XLSX_EXCLUSIVELY.has(client.name)
+            ? 'forced xlsx-exclusive override — platform PMS data ignored for this client'
+            : 'platform had no PMS data — used xlsx directly',
+        });
       }
       continue;
     }
@@ -214,6 +332,41 @@ async function main() {
       enriched: enrichedCount,
       addedAsNewBookings: addedCount,
     });
+  }
+
+  // Clients with no platform sync at all (no manifest entry, no Meta Ads, no
+  // GHL) whose July bookings exist only in the account managers' xlsx exports.
+  // Added PMS-only per decision — ad data can be layered in later per client.
+  // Display names are chosen to match the CRM promo sheet's client names so
+  // promo-code attribution resolves (e.g. the xlsx tab "Wanderin Stars" is
+  // "Wanderin Star Farms" in the promo sheet).
+  const XLSX_ONLY_CLIENTS: Record<string, string> = {
+    'Wanderin Star Farms': 'Wanderin Stars',
+    'Hiawassee Glamping': 'Hiawassee Glamping',
+    'Stay Different': 'Stay Different',
+    'The Outpost': 'The Outpost',
+    'Ponderosa Pines Resort': 'Ponderosa Pines Resort',
+    'Bison Ridge Retreat': 'Bison Ridge Retreat',
+    'Hillside Amble': 'Hillside Amble',
+    'Stay with Branch': 'Branch',
+    'Big Moon Ranch': 'Big Moon Ranch',
+    'Sunapee Stays': 'Sunapee',
+    'Dwell': 'Dwell',
+    'StayLuxe': 'StayLuxe',
+    'Endless Stays': 'Endless Stays',
+  };
+  for (const [name, xlsxFolder] of Object.entries(XLSX_ONLY_CLIENTS)) {
+    const pmsPath = path.join(XLSX_SOURCE_DIR, xlsxFolder, 'PMS data.csv');
+    if (!fs.existsSync(pmsPath)) {
+      mergeLog.push({ client: name, xlsxMatch: xlsxFolder, note: 'SKIPPED — xlsx-source PMS file missing' });
+      continue;
+    }
+    files.pmsFiles[name] = new File([fs.readFileSync(pmsPath)], 'PMS data.csv', { type: 'text/csv' });
+    period.clients.push({
+      name,
+      pms: `/data/periods/${PERIOD_ID}/xlsx-source/${xlsxFolder}/PMS data.csv`,
+    });
+    mergeLog.push({ client: name, xlsxMatch: xlsxFolder, note: 'xlsx-only client — PMS data only, no platform/Meta/GHL yet' });
   }
 
   // Starlight Haven Hot Springs / Weiss Lake: registered on the platform (real
