@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { ProcessedData } from '../src/types';
+import { ProcessedData, CampaignStats } from '../src/types';
 import { computeCampaignRevenue } from '../src/lib/analysis/campaignRevenue';
 import { CLIENT_REPORTING_SHEET } from '../src/components/july/clientReportingSheetData';
 
@@ -15,6 +15,43 @@ const ROOT = path.resolve(import.meta.dirname, '..');
 
 function round2(n: number): number {
   return Math.round(n * 100) / 100;
+}
+
+// Per-campaign-type breakdown matching the dashboard's Facebook Campaign
+// Stats tabs: same attribution logic (Followers via promo codes, Retargeting
+// via Meta purchase events, New Leads via lead-email matches).
+function campaignBlock(
+  stats: CampaignStats | null | undefined,
+  attributedBookings: number,
+  bookingRevenue: number,
+  opts: { includeLeads?: boolean; instagramTagLeads?: number } = {},
+) {
+  if (!stats || (stats.spend === 0 && stats.impressions === 0)) return null;
+  const costPerBooking = stats.spend > 0 && attributedBookings > 0 ? stats.spend / attributedBookings : null;
+  // Avg booking value within THIS campaign's attributed bookings — the
+  // denominator of the campaign tab's "% of Booking Value" card.
+  const campaignAvgBookingValue = attributedBookings > 0 && bookingRevenue > 0
+    ? bookingRevenue / attributedBookings
+    : null;
+  const pctOfBookingValue = costPerBooking !== null && campaignAvgBookingValue !== null
+    ? round2((costPerBooking / campaignAvgBookingValue) * 100)
+    : null;
+  return {
+    spend: round2(stats.spend),
+    impressions: stats.impressions,
+    linkClicks: stats.linkClicks,
+    ...(opts.includeLeads ? {
+      leads: stats.leads,
+      costPerLead: stats.leads > 0 && stats.spend > 0 ? round2(stats.spend / stats.leads) : null,
+    } : {}),
+    ...(opts.instagramTagLeads !== undefined ? { instagramTagLeads: opts.instagramTagLeads } : {}),
+    totalBookings: attributedBookings,
+    costPerBooking: costPerBooking !== null ? round2(costPerBooking) : null,
+    campaignAvgBookingValue: campaignAvgBookingValue !== null ? round2(campaignAvgBookingValue) : null,
+    pctOfBookingValue,
+    bookingRevenue: round2(bookingRevenue),
+    roas: stats.spend > 0 && bookingRevenue > 0 ? round2(bookingRevenue / stats.spend) : null,
+  };
 }
 
 async function main() {
@@ -63,10 +100,18 @@ async function main() {
       overallMetaAdSpend: round2(totalSpend),
       totalBookingsAttributedToMeta: metaAttributedBookings,
       costPerMetaAttributedBooking: costPerMetaBooking !== null ? round2(costPerMetaBooking) : null,
+      avgDirectBookingValue: avgDirectBookingValue > 0 ? round2(avgDirectBookingValue) : null,
       pctOfBookingValue,
       directBookingRevenueAttributedToMeta: round2(metaAttributedRevenue),
       metaAttributedRevenueCappedAtTotal: metaAttributedRevenueRaw > metaAttributedRevenue,
       roas,
+      campaigns: {
+        followers: campaignBlock(fb?.followers, cr.followersUses, cr.followers, {
+          instagramTagLeads: pms?.instagram.totalGHLLeads ?? 0,
+        }),
+        retargeting: campaignBlock(fb?.retargeting, fb?.retargeting?.purchases ?? 0, cr.retargeting),
+        newLeads: campaignBlock(fb?.newLeads, pms?.facebook.matchCount ?? 0, cr.newLeads, { includeLeads: true }),
+      },
     };
   });
 
