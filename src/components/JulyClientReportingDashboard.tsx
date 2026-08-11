@@ -1,0 +1,203 @@
+'use client';
+
+import { useState, useEffect, useMemo } from 'react';
+import Sidebar from './july/Sidebar';
+import ClientReportingSummarySection from './july/ClientReportingSummarySection';
+import FacebookStatsSection from './july/FacebookStatsSection';
+import PMSAnalysisSection from './july/PMSAnalysisSection';
+import PeriodOverviewSection from './july/PeriodOverviewSection';
+import { ProcessedData, ClientData } from '@/types';
+import { computeCampaignRevenue } from '@/lib/analysis/campaignRevenue';
+import { AlertCircle, Loader2 } from 'lucide-react';
+import { Badge } from './july/ui/Badge';
+
+interface ManifestClient {
+  name: string;
+  pms?: string;
+  ghl?: string;
+}
+interface SnapshotPeriod {
+  id: string;
+  label: string;
+  clients: ManifestClient[];
+}
+interface Snapshot {
+  period: SnapshotPeriod;
+  data: ProcessedData;
+}
+
+// Client-reporting copy of the frozen July view (served at /july-client-reporting-sheet).
+// Forked from JulyDashboard so it can diverge for client-facing reporting without
+// touching /july; reads the same july-2026.json snapshot.
+export default function JulyClientReportingDashboard() {
+  const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
+  const [selectedClient, setSelectedClient] = useState<string>('');
+  const [activeView, setActiveView] = useState<'overview' | 'client'>('overview');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  function scrollToTop() {
+    document.getElementById('main-scroll')?.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function goToClient(name: string) {
+    setSelectedClient(name);
+    setActiveView('client');
+    scrollToTop();
+  }
+
+  useEffect(() => {
+    fetch('/data/snapshots/july-2026.json')
+      .then((res) => {
+        if (!res.ok) throw new Error(`Could not load July snapshot (${res.status})`);
+        return res.json();
+      })
+      .then((snap: Snapshot) => {
+        setSnapshot(snap);
+        const firstClient = snap.period.clients[0]?.name;
+        if (firstClient && snap.data.clients[firstClient]) {
+          setSelectedClient(firstClient);
+        } else {
+          const first = Object.keys(snap.data.clients)[0];
+          if (first) setSelectedClient(first);
+        }
+      })
+      .catch((err) => setError(String(err)))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const data = snapshot?.data ?? null;
+
+  const orderedClients: ClientData[] = useMemo(() => {
+    if (!data) return [];
+    return Object.values(data.clients)
+      .filter((c) => c.facebookStats != null || c.pmsAnalysis != null)
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [data]);
+
+  const currentClient = data && selectedClient ? data.clients[selectedClient] : null;
+
+  const campaignRevenue = useMemo(() => computeCampaignRevenue(currentClient), [currentClient]);
+
+  return (
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      {!loading && !error && orderedClients.length > 0 && (
+        <div className="bg-[var(--surface-strong)] border-r border-[var(--border)] flex flex-col overflow-hidden flex-shrink-0 w-[220px]">
+          <Sidebar
+            clients={orderedClients}
+            selectedClient={activeView === 'client' ? selectedClient : ''}
+            onSelectClient={(name) => goToClient(name)}
+            periodLabel={snapshot?.period.label}
+          />
+        </div>
+      )}
+
+      {/* Main content */}
+      <div className="flex-1 overflow-y-auto july-scrollbar" id="main-scroll">
+        {/* Top bar */}
+        {!loading && !error && data && (
+          <div className="sticky top-0 z-10 bg-[var(--canvas-tint)]/85 backdrop-blur-sm border-b border-[var(--border)] px-8 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setActiveView('overview')}
+                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+              >
+                Overview
+              </button>
+              <button
+                onClick={() => setActiveView('client')}
+                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+              >
+                {activeView === 'client' && currentClient ? (
+                  <>
+                    {selectedClient}
+                    <div className="flex gap-1">
+                      {currentClient.facebookStats && <Badge variant="info">Facebook</Badge>}
+                      {currentClient.pmsAnalysis && <Badge variant="success">PMS</Badge>}
+                      {currentClient.hasGHL && <Badge variant="neutral">GHL</Badge>}
+                    </div>
+                  </>
+                ) : 'Client View'}
+              </button>
+            </div>
+
+            {/* Fixed period badge — no selector; this view is locked to July 2026 */}
+            <span className="text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] px-4 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_2px_12px_rgba(15,23,42,.04)]">
+              {snapshot?.period.label} <span className="text-[var(--muted-soft)] font-medium">(frozen snapshot)</span>
+            </span>
+          </div>
+        )}
+
+        {/* Overview tab */}
+        {!loading && !error && data && activeView === 'overview' && (
+          <PeriodOverviewSection
+            manifestClients={snapshot?.period.clients ?? []}
+            data={data}
+            onSelectClient={(name) => goToClient(name)}
+          />
+        )}
+
+        <div className="px-8 py-8 max-w-5xl space-y-6">
+          {/* Loading */}
+          {loading && (
+            <div className="flex flex-col items-center justify-center py-40 gap-4">
+              <Loader2 className="w-7 h-7 text-[var(--muted-soft)] animate-spin" />
+              <p className="text-[13px] text-[var(--muted-soft)]">Loading July snapshot...</p>
+            </div>
+          )}
+
+          {/* Error */}
+          {error && !loading && (
+            <div className="max-w-lg p-6 bg-[rgba(220,38,38,.06)] border border-[rgba(220,38,38,.18)] rounded-[16px] flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-[var(--danger)] flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold text-[var(--danger)] text-[13px]">Failed to load July snapshot</p>
+                <p className="text-[13px] text-[var(--danger)]/80 mt-1">{error}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Client content */}
+          {!loading && !error && currentClient && activeView === 'client' && (
+            <>
+              <ClientReportingSummarySection
+                clientName={currentClient.name}
+                facebookStats={currentClient.facebookStats}
+                pmsSummary={currentClient.pmsAnalysis?.summary ?? null}
+                campaignRevenue={campaignRevenue}
+                instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
+                facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
+              />
+
+              {currentClient.facebookStats && (
+                <FacebookStatsSection
+                  key={selectedClient}
+                  stats={currentClient.facebookStats}
+                  campaignRevenue={campaignRevenue}
+                  instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
+                  facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
+                  avgDirectBookingValue={currentClient.pmsAnalysis?.summary.avgDirectBookingValue}
+                />
+              )}
+
+              {currentClient.pmsAnalysis && (
+                <PMSAnalysisSection
+                  analysis={currentClient.pmsAnalysis}
+                  facebookStats={currentClient.facebookStats}
+                />
+              )}
+
+              {!currentClient.facebookStats && !currentClient.pmsAnalysis && (
+                <div className="rounded-[16px] border border-dashed border-[var(--border-strong)] px-8 py-16 text-center">
+                  <p className="text-[13px] text-[var(--muted-soft)]">No data available for this client.</p>
+                </div>
+              )}
+
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
