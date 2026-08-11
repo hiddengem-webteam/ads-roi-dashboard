@@ -13,13 +13,22 @@ function isExcludedCampaign(lower: string): boolean {
 // Keyword rules confirmed with Shawal (Jul 2026): the agency names campaigns by
 // objective/funnel stage, so we key off those words.
 //
-// Precedence matters when a name matches multiple buckets: purchase-intent
-// (Retargeting) and lead-gen (New Leads) win over the broad awareness keywords
-// (Followers), so e.g. "BOF Video Retargeting" is Retargeting, not Followers.
+// Precedence matters when a name matches multiple buckets: explicit lead-gen
+// campaigns win first (per Shawal, Aug 2026 — "MoF - Lead Campaign -
+// Retargeting Engagers" is a lead campaign run against a retargeting
+// audience, and was previously mis-bucketed into Retargeting because the
+// MoF/RT keywords were checked first). Then purchase-intent (Retargeting)
+// wins over the broad awareness keywords (Followers), so e.g. "BOF Video
+// Retargeting" is Retargeting, not Followers.
 export function classifyCampaign(campaignName: string): CampaignType | null {
   const lower = campaignName.toLowerCase();
 
   if (isExcludedCampaign(lower)) return null;
+
+  // New Leads — campaigns whose objective is lead-gen, regardless of the
+  // audience they run against (matches "Leads Campaign", "Lead Campaign",
+  // "New Leads", "Outpost - Leads", …)
+  if (/\blead(s)?\b/.test(lower)) return 'New Leads';
 
   // Retargeting — warm audience / purchase-conversion
   if (
@@ -27,9 +36,6 @@ export function classifyCampaign(campaignName: string): CampaignType | null {
     lower.includes('purchase') || lower.includes('sales') ||
     /\bmof\b/.test(lower) || /\bbof\b/.test(lower)
   ) return 'Retargeting';
-
-  // New Leads — cold prospecting / lead-gen
-  if (lower.includes('leads') || lower.includes('new lead')) return 'New Leads';
 
   // Followers — awareness / engagement / follower growth (lowest precedence)
   if (

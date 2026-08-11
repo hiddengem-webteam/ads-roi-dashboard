@@ -205,12 +205,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 8635.039999999999,
-            "impressions": 658540,
-            "linkClicks": 26102,
-            "leads": 2367,
-            "purchases": 79,
-            "purchasesConversionValue": 113808.89000000001
+            "spend": 7076.719999999999,
+            "impressions": 502482,
+            "linkClicks": 16264,
+            "leads": 47,
+            "purchases": 78,
+            "purchasesConversionValue": 112062.83000000002
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 1558.3199999999995,
+            "impressions": 156058,
+            "linkClicks": 9838,
+            "leads": 2320,
+            "purchases": 1,
+            "purchasesConversionValue": 1746.06
           }
         },
         "pmsAnalysis": {
@@ -433,12 +442,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 1263.4599999999994,
-            "impressions": 90880,
-            "linkClicks": 2778,
-            "leads": 92,
+            "spend": 1232.3399999999995,
+            "impressions": 89307,
+            "linkClicks": 2687,
+            "leads": 71,
             "purchases": 33,
             "purchasesConversionValue": 27315.93
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 31.12,
+            "impressions": 1573,
+            "linkClicks": 91,
+            "leads": 21,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -947,12 +965,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 81.49000000000001,
-            "impressions": 4804,
-            "linkClicks": 164,
-            "leads": 32,
+            "spend": 38.150000000000006,
+            "impressions": 2959,
+            "linkClicks": 61,
+            "leads": 0,
             "purchases": 1,
             "purchasesConversionValue": 693.38
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 43.34,
+            "impressions": 1845,
+            "linkClicks": 103,
+            "leads": 32,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -1166,8 +1193,8 @@
             "purchases": 0,
             "purchasesConversionValue": 0
           },
-          "retargeting": {
-            "type": "Retargeting",
+          "newLeads": {
+            "type": "New Leads",
             "spend": 13.83,
             "impressions": 821,
             "linkClicks": 54,
@@ -1592,12 +1619,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 4432.9400000000005,
-            "impressions": 184963,
-            "linkClicks": 6744,
-            "leads": 584,
+            "spend": 3712.0000000000005,
+            "impressions": 160385,
+            "linkClicks": 4682,
+            "leads": 1,
             "purchases": 17,
             "purchasesConversionValue": 54072
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 720.94,
+            "impressions": 24578,
+            "linkClicks": 2062,
+            "leads": 583,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -2293,12 +2329,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 79.03,
-            "impressions": 5384,
-            "linkClicks": 273,
-            "leads": 52,
+            "spend": 39.61,
+            "impressions": 2980,
+            "linkClicks": 97,
+            "leads": 3,
             "purchases": 4,
             "purchasesConversionValue": 3416.59
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 39.42,
+            "impressions": 2404,
+            "linkClicks": 176,
+            "leads": 49,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -2610,12 +2655,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 148.2,
-            "impressions": 18494,
-            "linkClicks": 1010,
-            "leads": 7,
-            "purchases": 17,
-            "purchasesConversionValue": 10493.980000000001
+            "spend": 74.66999999999999,
+            "impressions": 10192,
+            "linkClicks": 425,
+            "leads": 3,
+            "purchases": 10,
+            "purchasesConversionValue": 6345.870000000001
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 73.53,
+            "impressions": 8302,
+            "linkClicks": 585,
+            "leads": 4,
+            "purchases": 7,
+            "purchasesConversionValue": 4148.110000000001
           }
         },
         "pmsAnalysis": {
@@ -2910,12 +2964,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 355.71000000000004,
-            "impressions": 27538,
-            "linkClicks": 449,
-            "leads": 9,
+            "spend": 310.49,
+            "impressions": 24762,
+            "linkClicks": 364,
+            "leads": 1,
             "purchases": 9,
             "purchasesConversionValue": 4529.0199999999995
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 45.220000000000006,
+            "impressions": 2776,
+            "linkClicks": 85,
+            "leads": 8,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -3276,12 +3339,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 4042.3399999999997,
-            "impressions": 240716,
-            "linkClicks": 8299,
-            "leads": 359,
+            "spend": 3536.6299999999997,
+            "impressions": 210214,
+            "linkClicks": 6512,
+            "leads": 293,
             "purchases": 65,
             "purchasesConversionValue": 67587.81
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 505.71,
+            "impressions": 30502,
+            "linkClicks": 1787,
+            "leads": 66,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -4209,12 +4281,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 1443.6399999999999,
-            "impressions": 106022,
-            "linkClicks": 2813,
-            "leads": 133,
+            "spend": 1352.6599999999999,
+            "impressions": 100201,
+            "linkClicks": 2500,
+            "leads": 43,
             "purchases": 48,
             "purchasesConversionValue": 22541.769999999997
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 90.98,
+            "impressions": 5821,
+            "linkClicks": 313,
+            "leads": 90,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -4715,12 +4796,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 1369.0300000000002,
-            "impressions": 81756,
-            "linkClicks": 2000,
-            "leads": 209,
+            "spend": 1110.72,
+            "impressions": 70540,
+            "linkClicks": 1298,
+            "leads": 37,
             "purchases": 9,
             "purchasesConversionValue": 11629.03
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 258.31000000000006,
+            "impressions": 11216,
+            "linkClicks": 702,
+            "leads": 172,
+            "purchases": 0,
+            "purchasesConversionValue": 0
           }
         },
         "pmsAnalysis": {
@@ -5189,8 +5279,8 @@
             "purchases": 0,
             "purchasesConversionValue": 0
           },
-          "retargeting": {
-            "type": "Retargeting",
+          "newLeads": {
+            "type": "New Leads",
             "spend": 4.88,
             "impressions": 203,
             "linkClicks": 8,
@@ -5599,9 +5689,18 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 46.230000000000004,
-            "impressions": 3543,
-            "linkClicks": 152,
+            "spend": 8.23,
+            "impressions": 755,
+            "linkClicks": 20,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 38,
+            "impressions": 2788,
+            "linkClicks": 132,
             "leads": 19,
             "purchases": 0,
             "purchasesConversionValue": 0
@@ -6146,8 +6245,8 @@
             "purchases": 0,
             "purchasesConversionValue": 0
           },
-          "retargeting": {
-            "type": "Retargeting",
+          "newLeads": {
+            "type": "New Leads",
             "spend": 18.58,
             "impressions": 1168,
             "linkClicks": 65,
@@ -6432,9 +6531,18 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 23.130000000000003,
-            "impressions": 1371,
-            "linkClicks": 56,
+            "spend": 3.96,
+            "impressions": 217,
+            "linkClicks": 6,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 19.17,
+            "impressions": 1154,
+            "linkClicks": 50,
             "leads": 21,
             "purchases": 0,
             "purchasesConversionValue": 0
@@ -6702,9 +6810,18 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 78.12,
-            "impressions": 7225,
-            "linkClicks": 247,
+            "spend": 37.88,
+            "impressions": 4464,
+            "linkClicks": 91,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 40.24,
+            "impressions": 2761,
+            "linkClicks": 156,
             "leads": 23,
             "purchases": 0,
             "purchasesConversionValue": 0
@@ -7257,8 +7374,8 @@
             "purchases": 0,
             "purchasesConversionValue": 0
           },
-          "retargeting": {
-            "type": "Retargeting",
+          "newLeads": {
+            "type": "New Leads",
             "spend": 89.31,
             "impressions": 6996,
             "linkClicks": 275,
@@ -8191,6 +8308,6 @@
         "details": "Guest: Rosemary Minasian | Email: tpczxq66@proxy.hipcamp.com"
       }
     ],
-    "lastProcessed": "2026-08-11T19:08:14.063Z"
+    "lastProcessed": "2026-08-11T19:52:22.888Z"
   }
 }
