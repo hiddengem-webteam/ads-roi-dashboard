@@ -117,6 +117,11 @@ async function main() {
   // Ember, Nature Nooks, Edenwood NC, Tuxedo Falls).
   const MONTHLY_REPORT_ACCOUNT_TO_CLIENT: Record<string, string> = {
     'Wanderin Star Farms New Ad Account': 'Wanderin Star Farms',
+    // Added Aug 11 per Shawal: ARR joins the dashboard. Its sheet tab is a
+    // discounts ledger (no booking revenue), so the client is Meta-ads +
+    // reporting-sheet only — no PMS rows.
+    'American River Resort': 'American River Resort',
+    'Nature Nooks Ad Account': 'Nature Nooks',
     'Hiawassee Glamping': 'Hiawassee Glamping',
     'Stay Different Ads': 'Stay Different',
     'The Outpost Grand Canyon': 'The Outpost',
@@ -354,6 +359,15 @@ async function main() {
     'Dwell': 'Dwell',
     'StayLuxe': 'StayLuxe',
     'Endless Stays': 'Endless Stays',
+    // ARR's sheet tab is a discounts ledger with no booking amounts, so this
+    // PMS file holds ONLY the 4 WELCOME20 uses (revenue back-computed from
+    // the 20% discount: paid = 4 × discount) — per Shawal (Aug 11), those
+    // four go to the Followers campaign. Full booking revenue lives in the
+    // client reporting sheet, not here.
+    'American River Resort': 'American River Resort',
+    // Added Aug 11 from the Nature Nooks tab Alicia added to her live sheet
+    // ($19,986.13 — matches the client reporting sheet exactly).
+    'Nature Nooks': 'Nature Nooks',
   };
   for (const [name, xlsxFolder] of Object.entries(XLSX_ONLY_CLIENTS)) {
     const pmsPath = path.join(XLSX_SOURCE_DIR, xlsxFolder, 'PMS data.csv');
@@ -398,6 +412,32 @@ async function main() {
   for (const entry of mergeLog) console.log(' ', JSON.stringify(entry));
 
   const data = await processAllData(files);
+
+  // GHL lead-count corrections from the team's July QA pass (Aug 11 2026).
+  // The platform's GHL tag-based counts were wrong for these clients (tags
+  // over/under-counted, or GHL never synced at all); the team supplied the
+  // verified counts. Only totalGHLLeads is overridden — email-match lists
+  // stay as computed.
+  const GHL_LEAD_OVERRIDES: Record<string, { instagram?: number; facebook?: number }> = {
+    'Stay with Branch': { instagram: 149 },
+    'Asheville River Cabins': { instagram: 283 },
+    'Myrinn': { instagram: 242 },
+    'Starlight Haven Hot Springs': { instagram: 82 },
+    'Starlight Haven Weiss Lake': { instagram: 49 },
+    'Big Moon Ranch': { instagram: 196, facebook: 459 },
+    'Home Base': { instagram: 212 },
+    'Stay on 30a': { instagram: 308 },
+  };
+  for (const [name, o] of Object.entries(GHL_LEAD_OVERRIDES)) {
+    const client = data.clients[name];
+    if (!client?.pmsAnalysis) {
+      console.warn(`GHL override skipped — no pmsAnalysis for ${name}`);
+      continue;
+    }
+    if (o.instagram !== undefined) client.pmsAnalysis.instagram.totalGHLLeads = o.instagram;
+    if (o.facebook !== undefined) client.pmsAnalysis.facebook.totalGHLLeads = o.facebook;
+  }
+
   console.log(`\nProcessed ${Object.keys(data.clients).length} clients, ${data.flags.length} flags.`);
 
   const outDir = path.join(ROOT, 'public', 'data', 'snapshots');

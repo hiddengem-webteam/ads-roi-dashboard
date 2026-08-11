@@ -14,6 +14,7 @@ export interface ClientReportingFigures {
 }
 
 export const CLIENT_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
+  'American River Resort': { directBookingRevenue: 551604.78, newLeads: 483 },
   'Asheville River Cabins': { directBookingRevenue: 143049.76, newLeads: 1034 },
   'Away2PA': { directBookingRevenue: 100747.01, newLeads: 1317 },
   'Awayframes': { directBookingRevenue: 34056.72, newLeads: 248 },
@@ -30,6 +31,7 @@ export const CLIENT_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
   'Home Base': { directBookingRevenue: 129300.16, newLeads: 939 },
   'Inspired Retreats': { directBookingRevenue: 5163, newLeads: 149 },
   'Myrinn': { directBookingRevenue: 9011.7, newLeads: 264 },
+  'Nature Nooks': { directBookingRevenue: 19986.13, newLeads: 412 },
   'Paradise Pointe': { directBookingRevenue: 100287, newLeads: 1114 },
   'Parker Reserve': { directBookingRevenue: 9906.96, newLeads: 82 },
   'Ponderosa Pines Resort': { directBookingRevenue: 35719.99, newLeads: 1470 },
