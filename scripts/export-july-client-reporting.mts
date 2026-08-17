@@ -104,7 +104,9 @@ async function main() {
       pctOfBookingValue,
       directBookingRevenueAttributedToMeta: round2(metaAttributedRevenue),
       metaAttributedRevenueCappedAtTotal: metaAttributedRevenueRaw > metaAttributedRevenue,
-      roas,
+      // "Blended ROAS" — the client's overall Meta-attributed revenue ÷ total
+      // spend across all campaign types (per-campaign roas lives in campaigns.*).
+      blendedRoas: roas,
       campaigns: {
         followers: campaignBlock(fb?.followers, cr.followersUses, cr.followers, {
           instagramTagLeads: pms?.instagram.totalGHLLeads ?? 0,

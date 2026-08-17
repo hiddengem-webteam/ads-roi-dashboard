@@ -173,7 +173,7 @@ export default function ClientReportingSummarySection({
           placeholder="No attribution data"
         />
         <SummaryCard
-          label="ROAS"
+          label="Blended ROAS"
           value={metaRoas !== null ? `${metaRoas.toFixed(2)}x` : undefined}
           sub={metaRoas !== null ? `${formatCurrency(metaAttributedRevenue)} Meta-attributed revenue ÷ ${formatCurrency(totalSpend)} spend` : undefined}
           placeholder="No data"
