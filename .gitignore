@@ -46,6 +46,7 @@ next-env.d.ts
 # which lists the client roster) and regenerated on every predev/prebuild.
 /data/
 /public/data/*
+!/public/data/ghl-lead-counts.json
 # Exception: the frozen July 2026 snapshot is an intentional one-off — deploying
 # /july needs it on Netlify since the snapshot/merge scripts aren't part of the
 # predev/prebuild pipeline. Still real guest PII; committed by explicit decision.

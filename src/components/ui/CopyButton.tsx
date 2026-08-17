@@ -24,7 +24,7 @@ export function CopyButton({ getText, label = 'Copy list' }: CopyButtonProps) {
 
   return (
     <Button variant="outline" size="sm" onClick={handleCopy}>
-      {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
+      {copied ? <Check className="w-3.5 h-3.5 text-[var(--success-ink)]" /> : <Copy className="w-3.5 h-3.5" />}
       {copied ? 'Copied!' : label}
     </Button>
   );

@@ -47,12 +47,12 @@ export default function DataStatusPanel({ hasPMS, hasGHL, flags }: DataStatusPan
       {issues.map((issue, i) => (
         <div
           key={i}
-          className={`flex items-start gap-2.5 rounded-xl px-4 py-3 text-sm border ${
+          className={`flex items-start gap-2.5 rounded-[10px] px-4 py-3 text-[13px] border ${
             issue.type === 'error'
-              ? 'bg-red-50 border-red-100 text-red-700'
+              ? 'bg-[rgba(220,38,38,.06)] border-[rgba(220,38,38,.18)] text-[var(--danger)]'
               : issue.type === 'warning'
-              ? 'bg-amber-50 border-amber-100 text-amber-700'
-              : 'bg-blue-50 border-blue-100 text-blue-700'
+              ? 'bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)] text-[var(--warning-ink)]'
+              : 'bg-[var(--fill-blue)] border-[var(--border)] text-[var(--brand)]'
           }`}
         >
           {issue.type === 'error' ? (

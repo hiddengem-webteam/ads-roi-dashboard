@@ -16,9 +16,9 @@ interface PeriodOverviewSectionProps {
 }
 
 function StatusIcon({ status }: { status: 'ok' | 'missing' | 'none' }) {
-  if (status === 'ok') return <CheckCircle2 className="w-4 h-4 text-emerald-500" />;
-  if (status === 'missing') return <XCircle className="w-4 h-4 text-red-400" />;
-  return <Minus className="w-4 h-4 text-gray-300" />;
+  if (status === 'ok') return <CheckCircle2 className="w-4 h-4 text-[var(--success-ink)]" />;
+  if (status === 'missing') return <XCircle className="w-4 h-4 text-[var(--danger)]" />;
+  return <Minus className="w-4 h-4 text-[var(--muted-soft)]" />;
 }
 
 function statusLabel(status: 'ok' | 'missing' | 'none') {
@@ -64,43 +64,43 @@ export default function PeriodOverviewSection({
   return (
     <div className="px-8 py-8 max-w-5xl space-y-6">
       {/* Top stats */}
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid grid-cols-4 gap-4">
         {[
-          { label: 'Total Clients', value: withFB },
+          { label: 'Total Clients', value: allNames.size },
           { label: 'With Facebook', value: withFB },
           { label: 'With PMS', value: withPMS },
           { label: 'With GHL', value: withGHL },
         ].map(({ label, value }) => (
-          <div key={label} className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] px-5 py-4">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-1">{label}</p>
-            <p className="text-2xl font-bold text-gray-900">{value}</p>
+          <div key={label} className="bg-[var(--surface)] rounded-[16px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] px-5 py-4">
+            <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-1">{label}</p>
+            <p className="text-[24px] font-extrabold text-[var(--foreground)] tracking-[-0.01em] july-tabular">{value}</p>
           </div>
         ))}
       </div>
 
       {/* Client table */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-100 flex items-center justify-between">
-          <p className="text-sm font-semibold text-gray-700">Client Data Status</p>
+      <div className="bg-[var(--surface)] rounded-[16px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] overflow-hidden">
+        <div className="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between">
+          <p className="text-[14px] font-bold text-[var(--foreground)]">Client Data Status</p>
           {totalFlags > 0 && (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-amber-600 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-lg">
+            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border border-[rgba(255,159,10,.25)] px-2.5 py-1 rounded-full">
               <AlertTriangle className="w-3.5 h-3.5" />
               {totalFlags} flag{totalFlags !== 1 ? 's' : ''} across all clients
             </span>
           )}
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full text-sm">
+          <table className="min-w-full text-[13px]">
             <thead>
-              <tr className="bg-gray-50 border-b border-gray-100">
-                <th className="px-6 py-3 text-left text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Client</th>
-                <th className="px-4 py-3 text-center text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Facebook</th>
-                <th className="px-4 py-3 text-center text-[11px] font-semibold text-gray-400 uppercase tracking-wider">PMS</th>
-                <th className="px-4 py-3 text-center text-[11px] font-semibold text-gray-400 uppercase tracking-wider">GHL</th>
-                <th className="px-4 py-3 text-center text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Flags</th>
+              <tr className="bg-[var(--fill-gray)] border-b border-[var(--border)]">
+                <th className="px-6 py-3 text-left text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Client</th>
+                <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Facebook</th>
+                <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">PMS</th>
+                <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">GHL</th>
+                <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Flags</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-[var(--divider)]">
               {orderedNames.map((name) => {
                 const client = data.clients[name];
                 const mc = manifestClients.find((c) => c.name === name);
@@ -125,13 +125,13 @@ export default function PeriodOverviewSection({
                   <tr
                     key={name}
                     onClick={() => client && onSelectClient(name)}
-                    className={`transition-colors ${client ? 'cursor-pointer hover:bg-gray-50/60' : 'opacity-50'} ${hasMissing ? 'bg-red-50/30' : ''}`}
+                    className={`bg-white transition-colors duration-150 ${client ? 'cursor-pointer hover:bg-[var(--fill-cool)]' : 'opacity-50'} ${hasMissing ? 'bg-[rgba(220,38,38,.03)]' : ''}`}
                   >
-                    <td className="px-6 py-3 font-medium text-gray-800">{name}</td>
+                    <td className="px-6 py-3 font-semibold text-[var(--foreground)]">{name}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-center gap-1.5">
                         <StatusIcon status={fbStatus} />
-                        <span className={`text-xs ${fbStatus === 'ok' ? 'text-emerald-600' : 'text-gray-300'}`}>
+                        <span className={`text-[12px] ${fbStatus === 'ok' ? 'text-[var(--success-ink)]' : 'text-[var(--muted-soft)]'}`}>
                           {statusLabel(fbStatus)}
                         </span>
                       </div>
@@ -139,7 +139,7 @@ export default function PeriodOverviewSection({
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-center gap-1.5">
                         <StatusIcon status={pmsStatus} />
-                        <span className={`text-xs ${pmsStatus === 'ok' ? 'text-emerald-600' : pmsStatus === 'missing' ? 'text-red-500 font-medium' : 'text-gray-300'}`}>
+                        <span className={`text-[12px] ${pmsStatus === 'ok' ? 'text-[var(--success-ink)]' : pmsStatus === 'missing' ? 'text-[var(--danger)] font-semibold' : 'text-[var(--muted-soft)]'}`}>
                           {statusLabel(pmsStatus)}
                         </span>
                       </div>
@@ -147,19 +147,19 @@ export default function PeriodOverviewSection({
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-center gap-1.5">
                         <StatusIcon status={ghlStatus} />
-                        <span className={`text-xs ${ghlStatus === 'ok' ? 'text-emerald-600' : ghlStatus === 'missing' ? 'text-red-500 font-medium' : 'text-gray-300'}`}>
+                        <span className={`text-[12px] ${ghlStatus === 'ok' ? 'text-[var(--success-ink)]' : ghlStatus === 'missing' ? 'text-[var(--danger)] font-semibold' : 'text-[var(--muted-soft)]'}`}>
                           {statusLabel(ghlStatus)}
                         </span>
                       </div>
                     </td>
                     <td className="px-4 py-3 text-center">
                       {flags.length > 0 ? (
-                        <span className="inline-flex items-center gap-1 text-xs font-medium text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] px-2 py-0.5 rounded-[6px]">
                           <AlertTriangle className="w-3 h-3" />
                           {flags.length}
                         </span>
                       ) : (
-                        <span className="text-gray-300 text-xs">—</span>
+                        <span className="text-[var(--muted-soft)] text-[12px]">—</span>
                       )}
                     </td>
                   </tr>

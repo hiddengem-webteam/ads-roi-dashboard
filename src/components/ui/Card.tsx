@@ -9,19 +9,24 @@ interface CardProps {
 
 export function Card({ className, children }: CardProps) {
   return (
-    <div className={cn('bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)]', className)}>
+    <div
+      className={cn(
+        'bg-[var(--surface)] rounded-[16px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)]',
+        className,
+      )}
+    >
       {children}
     </div>
   );
 }
 
 export function CardHeader({ className, children }: CardProps) {
-  return <div className={cn('px-6 py-5 border-b border-gray-100', className)}>{children}</div>;
+  return <div className={cn('px-6 py-5 border-b border-[var(--border)]', className)}>{children}</div>;
 }
 
 export function CardTitle({ className, children }: CardProps) {
   return (
-    <h3 className={cn('text-xs font-semibold text-gray-400 uppercase tracking-widest', className)}>
+    <h3 className={cn('text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]', className)}>
       {children}
     </h3>
   );
@@ -47,14 +52,16 @@ export function StatCard({
   return (
     <div
       className={cn(
-        'rounded-xl px-5 py-4',
-        accent ? 'bg-gray-900 text-white' : 'bg-gray-50 border border-gray-100',
+        'rounded-[12px] px-5 py-4',
+        accent ? 'bg-[var(--brand)] text-white' : 'bg-[var(--fill-gray)] border border-[var(--border)]',
         className,
       )}
     >
-      <p className={cn('text-xs font-medium mb-2', accent ? 'text-gray-400' : 'text-gray-500')}>{label}</p>
-      <p className={cn('text-2xl font-bold tracking-tight', accent ? 'text-white' : 'text-gray-900')}>{value}</p>
-      {sub && <p className={cn('text-xs mt-1', accent ? 'text-gray-500' : 'text-gray-400')}>{sub}</p>}
+      <p className={cn('text-[12px] font-medium mb-2', accent ? 'text-white/70' : 'text-[var(--muted)]')}>{label}</p>
+      <p className={cn('text-[20px] font-bold tracking-[-0.01em] july-tabular', accent ? 'text-white' : 'text-[var(--foreground)]')}>
+        {value}
+      </p>
+      {sub && <p className={cn('text-[12px] mt-1', accent ? 'text-white/60' : 'text-[var(--muted-soft)]')}>{sub}</p>}
     </div>
   );
 }

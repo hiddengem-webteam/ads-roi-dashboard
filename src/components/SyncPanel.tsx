@@ -95,7 +95,7 @@ export default function SyncPanel() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-gray-900 text-white text-sm font-medium px-4 py-2.5 rounded-2xl shadow-lg hover:bg-gray-700 transition-colors"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[var(--brand)] text-white text-[13px] font-semibold px-4 py-2.5 rounded-[14px] shadow-lg hover:bg-[var(--brand-deep)] transition-colors"
         aria-label="Sync Month"
       >
         <RefreshCw className="w-4 h-4" />
@@ -104,13 +104,13 @@ export default function SyncPanel() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-20 right-6 z-50 w-96 bg-white rounded-2xl border border-gray-100 shadow-xl flex flex-col max-h-[80vh]">
+        <div className="fixed bottom-20 right-6 z-50 w-96 bg-[var(--surface-strong)] rounded-[16px] border border-[var(--border)] shadow-xl flex flex-col max-h-[80vh]">
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-            <p className="font-semibold text-gray-900 text-sm">Sync from Google Drive</p>
+          <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
+            <p className="font-semibold text-[var(--foreground)] text-[13px]">Sync from Google Drive</p>
             <button
               onClick={() => setOpen(false)}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-[var(--muted-soft)] hover:text-[var(--muted)] transition-colors"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -120,7 +120,7 @@ export default function SyncPanel() {
           <div className="overflow-y-auto flex-1 px-5 py-4 space-y-4">
             {/* Loading months */}
             {loadingMonths && (
-              <div className="flex items-center gap-2 text-sm text-gray-400 py-4 justify-center">
+              <div className="flex items-center gap-2 text-[13px] text-[var(--muted-soft)] py-4 justify-center">
                 <Loader2 className="w-4 h-4 animate-spin" />
                 Loading months...
               </div>
@@ -136,20 +136,20 @@ export default function SyncPanel() {
 
             {/* Month list */}
             {!loadingMonths && !monthsError && months.length === 0 && (
-              <p className="text-sm text-gray-400 text-center py-4">No months found in Drive.</p>
+              <p className="text-[13px] text-[var(--muted-soft)] text-center py-4">No months found in Drive.</p>
             )}
 
             {!loadingMonths && months.map((entry) => (
               <div
                 key={entry.periodId}
-                className="flex items-center justify-between gap-3 rounded-xl px-4 py-3 border border-gray-200 bg-white"
+                className="flex items-center justify-between gap-3 rounded-[12px] px-4 py-3 border border-[var(--border-strong)] bg-[var(--surface)]"
               >
                 <div>
-                  <p className={`text-sm font-medium ${entry.alreadySynced ? 'text-gray-400' : 'text-gray-800'}`}>
+                  <p className={`text-sm font-medium ${entry.alreadySynced ? 'text-[var(--muted-soft)]' : 'text-[var(--foreground)]'}`}>
                     {entry.name}
                   </p>
                   {entry.alreadySynced && (
-                    <p className="text-xs text-gray-400 mt-0.5">Already synced</p>
+                    <p className="text-xs text-[var(--muted-soft)] mt-0.5">Already synced</p>
                   )}
                 </div>
                 <button
@@ -157,8 +157,8 @@ export default function SyncPanel() {
                   disabled={syncingId !== null}
                   className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors ${
                     entry.alreadySynced
-                      ? 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                      : 'bg-gray-900 text-white hover:bg-gray-700'
+                      ? 'bg-[var(--fill-gray)] text-[var(--muted)] hover:bg-[var(--fill-cool)]'
+                      : 'bg-[var(--brand)] text-white hover:bg-[var(--brand-deep)]'
                   }`}
                 >
                   {syncingId === entry.periodId ? (
@@ -178,12 +178,12 @@ export default function SyncPanel() {
             {/* Sync log */}
             {syncLog.length > 0 && (
               <div className="mt-2">
-                <p className="text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">
+                <p className="text-xs font-semibold text-[var(--muted)] mb-1.5 uppercase tracking-wide">
                   Progress log
                 </p>
-                <div className="bg-gray-50 rounded-xl p-3 space-y-0.5 max-h-48 overflow-y-auto font-mono">
+                <div className="bg-[var(--fill-cool)] rounded-[12px] p-3 space-y-0.5 max-h-48 overflow-y-auto font-mono">
                   {syncLog.map((line, i) => (
-                    <p key={i} className="text-xs text-gray-600 leading-relaxed">
+                    <p key={i} className="text-xs text-[var(--muted)] leading-relaxed">
                       {line}
                     </p>
                   ))}

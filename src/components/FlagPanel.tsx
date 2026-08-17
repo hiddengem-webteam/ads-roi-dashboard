@@ -8,37 +8,37 @@ import { cn } from '@/lib/utils';
 const FLAG_CONFIG: Record<FlagType, { label: string; className: string; icon: React.ElementType }> = {
   'unrecognized-code': {
     label: 'Unrecognized Code',
-    className: 'text-red-700 bg-red-50 border-red-100',
+    className: 'text-[var(--danger)] bg-[rgba(220,38,38,.06)] border-[rgba(220,38,38,.18)]',
     icon: AlertCircle,
   },
   'missing-from-promo-sheet': {
     label: 'Missing from Promo Sheet',
-    className: 'text-amber-700 bg-amber-50 border-amber-100',
+    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
     icon: AlertTriangle,
   },
   'net-income-warning': {
     label: 'NET INCOME Revenue',
-    className: 'text-amber-700 bg-amber-50 border-amber-100',
+    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
     icon: AlertTriangle,
   },
   'name-only-match': {
     label: 'Name-Only Match',
-    className: 'text-blue-700 bg-blue-50 border-blue-100',
+    className: 'text-[var(--brand)] bg-[var(--fill-blue)] border-[var(--border)]',
     icon: Info,
   },
   'platform-email': {
     label: 'Platform Email Excluded',
-    className: 'text-gray-600 bg-gray-50 border-gray-200',
+    className: 'text-[var(--muted)] bg-[var(--fill-gray)] border-[var(--border)]',
     icon: Info,
   },
   'no-pms-data': {
     label: 'Parse Error',
-    className: 'text-red-700 bg-red-50 border-red-100',
+    className: 'text-[var(--danger)] bg-[rgba(220,38,38,.06)] border-[rgba(220,38,38,.18)]',
     icon: AlertCircle,
   },
   'missing-ghl': {
     label: 'Missing GHL Data',
-    className: 'text-amber-700 bg-amber-50 border-amber-100',
+    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
     icon: AlertTriangle,
   },
 };
@@ -54,10 +54,10 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
   }
 
   return (
-    <div className="rounded-2xl border border-amber-100 overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.04)]">
+    <div className="rounded-[16px] border border-[rgba(255,159,10,.25)] overflow-hidden shadow-[0_2px_12px_rgba(15,23,42,.04)]">
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between px-6 py-4 bg-amber-50 text-sm font-semibold text-amber-800 hover:bg-amber-100 transition-colors"
+        className="w-full flex items-center justify-between px-6 py-4 bg-[rgba(255,159,10,.1)] text-[13px] font-semibold text-[var(--warning-ink)] hover:bg-[rgba(255,159,10,.16)] transition-colors duration-150"
       >
         <span className="flex items-center gap-2">
           <AlertTriangle className="w-4 h-4" />
@@ -67,13 +67,13 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
       </button>
 
       {expanded && (
-        <div className="bg-white divide-y divide-gray-50">
+        <div className="bg-[var(--surface-strong)] divide-y divide-[var(--divider)]">
           {Object.entries(byType).map(([type, typeFlags]) => {
             const config = FLAG_CONFIG[type as FlagType];
             const Icon = config.icon;
             return (
               <div key={type} className="px-6 py-4">
-                <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">
+                <p className="text-[11px] font-semibold text-[var(--muted-soft)] uppercase tracking-[0.04em] mb-2">
                   {config.label}
                 </p>
                 <ul className="space-y-2">
@@ -81,7 +81,7 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
                     <li
                       key={f.id}
                       className={cn(
-                        'flex items-start gap-2 text-sm rounded-xl px-4 py-3 border',
+                        'flex items-start gap-2 text-[13px] rounded-[10px] px-4 py-3 border',
                         config.className,
                       )}
                     >
@@ -89,7 +89,7 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
                       <div>
                         <span className="font-semibold">[{f.clientName}]</span> {f.message}
                         {f.details && (
-                          <p className="text-xs opacity-70 mt-0.5">{f.details}</p>
+                          <p className="text-[12px] opacity-70 mt-0.5">{f.details}</p>
                         )}
                       </div>
                     </li>

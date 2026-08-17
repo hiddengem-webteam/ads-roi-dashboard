@@ -25,9 +25,9 @@ interface FacebookStatsSectionProps {
 }
 
 const CAMPAIGN_TABS = [
-  { key: 'followers', label: 'Followers', color: 'text-blue-600 bg-blue-50 border-blue-100' },
-  { key: 'retargeting', label: 'Retargeting', color: 'text-amber-600 bg-amber-50 border-amber-100' },
-  { key: 'newLeads', label: 'New Leads', color: 'text-emerald-600 bg-emerald-50 border-emerald-100' },
+  { key: 'followers', label: 'Followers' },
+  { key: 'retargeting', label: 'Retargeting' },
+  { key: 'newLeads', label: 'New Leads' },
 ] as const;
 
 function formatRoas(revenue: number, spend: number): string {
@@ -162,14 +162,14 @@ function CampaignPanel({
         </>
       )}
       {s.type === 'Followers' && instagramLeads && instagramLeads.matchCount > 0 && (
-        <p className="text-xs text-gray-400">
-          <span className="font-medium text-gray-600">{instagramLeads.matchCount} email match{instagramLeads.matchCount !== 1 ? 'es' : ''}</span>
+        <p className="text-[12px] text-[var(--muted-soft)]">
+          <span className="font-semibold text-[var(--muted)]">{instagramLeads.matchCount} email match{instagramLeads.matchCount !== 1 ? 'es' : ''}</span>
           {' '}from Instagram leads · {formatCurrency(instagramLeads.totalRevenue)} revenue
         </p>
       )}
       {s.type === 'Followers' && (followersDeduped ?? 0) > 0 && (
-        <p className="text-xs text-amber-600">
-          <span className="font-medium">{followersDeduped} booking{followersDeduped !== 1 ? 's' : ''} moved to New Leads</span>
+        <p className="text-[12px] text-[var(--warning-ink)]">
+          <span className="font-semibold">{followersDeduped} booking{followersDeduped !== 1 ? 's' : ''} moved to New Leads</span>
           {' '}— guest{followersDeduped !== 1 ? 's' : ''} matched in both promo codes and Facebook lead ads; attributed to New Leads campaign
         </p>
       )}
@@ -186,7 +186,7 @@ export default function FacebookStatsSection({ stats, campaignRevenue, instagram
 
   if (available.length === 0) {
     return (
-      <div className="text-sm text-gray-400 italic px-1">No Facebook campaigns found for this client.</div>
+      <div className="text-[13px] text-[var(--muted-soft)] italic px-1">No Facebook campaigns found for this client.</div>
     );
   }
 
@@ -200,19 +200,19 @@ export default function FacebookStatsSection({ stats, campaignRevenue, instagram
     <Card>
       {/* Section label */}
       <div className="px-6 pt-5 pb-0">
-        <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+        <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-4">
           Facebook Campaign Stats
         </p>
         {/* Tabs */}
-        <div className="flex gap-2 border-b border-gray-100 -mx-6 px-6">
+        <div className="flex gap-2 border-b border-[var(--border)] -mx-6 px-6">
           {available.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`pb-3 text-sm font-medium transition-colors border-b-2 -mb-px px-1 ${
+              className={`pb-3 text-[13px] font-semibold transition-colors duration-150 border-b-2 -mb-px px-1 ${
                 activeTab === tab.key
-                  ? 'border-gray-900 text-gray-900'
-                  : 'border-transparent text-gray-400 hover:text-gray-600'
+                  ? 'border-[var(--brand)] text-[var(--foreground)]'
+                  : 'border-transparent text-[var(--muted-soft)] hover:text-[var(--muted)]'
               }`}
             >
               {tab.label}

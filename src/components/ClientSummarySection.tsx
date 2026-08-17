@@ -10,12 +10,20 @@ interface CampaignRevenue {
   newLeads: number;
 }
 
+export interface GhlTagLeadCounts {
+  'meta ads lead': number | null;
+  'instagram lead': number | null;
+  'facebook lead': number | null;
+}
+
 interface ClientSummarySectionProps {
   facebookStats: ClientFacebookStats | null;
   pmsSummary: PMSSummary | null;
   campaignRevenue: CampaignRevenue;
   instagramLeads: LeadAnalysis | null;
   facebookLeads: LeadAnalysis | null;
+  /** Live tag-scoped counts from the GHL API sync (null = not synced for this client/period) */
+  ghlTagLeads?: GhlTagLeadCounts | null;
 }
 
 function SummaryCard({
@@ -30,15 +38,15 @@ function SummaryCard({
   placeholder?: string;
 }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] px-6 py-5">
-      <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">{label}</p>
+    <div className="bg-[var(--surface)] rounded-[20px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] px-6 py-6">
+      <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-2">{label}</p>
       {value ? (
         <>
-          <p className="text-3xl font-bold text-gray-900 tracking-tight">{value}</p>
-          {sub && <p className="text-xs text-gray-400 mt-1">{sub}</p>}
+          <p className="text-[28px] font-extrabold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
+          {sub && <p className="text-[12px] text-[var(--muted-soft)] mt-1.5">{sub}</p>}
         </>
       ) : (
-        <p className="text-2xl font-bold text-gray-300">{placeholder ?? '—'}</p>
+        <p className="text-[20px] font-bold text-[var(--muted-soft)]">{placeholder ?? '—'}</p>
       )}
     </div>
   );
@@ -50,6 +58,7 @@ export default function ClientSummarySection({
   campaignRevenue,
   instagramLeads,
   facebookLeads,
+  ghlTagLeads,
 }: ClientSummarySectionProps) {
   const totalSpend =
     (facebookStats?.followers?.spend ?? 0) +
@@ -113,8 +122,6 @@ export default function ClientSummarySection({
 
   const metaRoas = hasSpend && hasMetaAttributedRevenue ? metaAttributedRevenue / totalSpend : null;
 
-  const totalMetaLeads = facebookLeads?.totalGHLLeads ?? 0;
-  const totalInstagramLeads = instagramLeads?.totalGHLLeads ?? 0;
 
   return (
     <div className="space-y-4">
@@ -171,25 +178,33 @@ export default function ClientSummarySection({
           placeholder="No attribution data"
         />
         <SummaryCard
-          label="ROAS"
+          label="Blended ROAS"
           value={metaRoas !== null ? `${metaRoas.toFixed(2)}x` : undefined}
           sub={metaRoas !== null ? `${formatCurrency(metaAttributedRevenue)} Meta-attributed revenue ÷ ${formatCurrency(totalSpend)} spend` : undefined}
           placeholder="No data"
         />
       </div>
 
-      {/* Row 4: GHL lead volume */}
-      <div className="grid grid-cols-2 gap-4">
+      {/* Row 4: GHL lead volume — live tag-scoped counts pulled from the GHL
+          API per period (sync-ghl-lead-counts.mts), not the platform's synced
+          contact list. */}
+      <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="Meta Leads (from GHL)"
-          value={totalMetaLeads > 0 ? formatNumber(totalMetaLeads) : undefined}
-          sub={totalMetaLeads > 0 ? 'Facebook/Meta-tagged leads in GHL' : undefined}
+          label="Meta Ads Leads (from GHL)"
+          value={ghlTagLeads?.['meta ads lead'] != null ? formatNumber(ghlTagLeads['meta ads lead']) : undefined}
+          sub={ghlTagLeads?.['meta ads lead'] != null ? 'Meta lead ads · tag “meta ads lead”' : undefined}
           placeholder="No GHL data"
         />
         <SummaryCard
           label="Instagram Leads (from GHL)"
-          value={totalInstagramLeads > 0 ? formatNumber(totalInstagramLeads) : undefined}
-          sub={totalInstagramLeads > 0 ? 'Instagram-tagged leads in GHL' : undefined}
+          value={ghlTagLeads?.['instagram lead'] != null ? formatNumber(ghlTagLeads['instagram lead']) : undefined}
+          sub={ghlTagLeads?.['instagram lead'] != null ? 'IG bio + organic · tag “instagram lead”' : undefined}
+          placeholder="No GHL data"
+        />
+        <SummaryCard
+          label="Facebook Leads (from GHL)"
+          value={ghlTagLeads?.['facebook lead'] != null ? formatNumber(ghlTagLeads['facebook lead']) : undefined}
+          sub={ghlTagLeads?.['facebook lead'] != null ? 'FB bio + organic · tag “facebook lead”' : undefined}
           placeholder="No GHL data"
         />
       </div>

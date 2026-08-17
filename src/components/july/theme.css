@@ -1,6 +1,7 @@
-/* HiddenGem AI design system — scoped to .july-theme only.
-   The live dashboard keeps its existing look; this class wraps just the
-   /july page tree so these tokens never leak into the rest of the app. */
+/* HiddenGem AI design system.
+   Originally scoped to /july only (hence the .july-theme class name); as of
+   Aug 2026 the main dashboard adopted the branding too, so /, /july, and
+   /july-client-reporting-sheet all wrap their trees in this class. */
 
 .july-theme {
   /* Canvas + surfaces */

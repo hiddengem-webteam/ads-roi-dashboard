@@ -6,10 +6,11 @@
     "sync": "tsx scripts/sync-all.mts",
     "predev": "tsx scripts/sync-all.mts",
     "dev": "next dev",
-    "prebuild": "tsx scripts/sync-all.mts",
+    "prebuild": "tsx scripts/sync-all.mts && tsx scripts/sync-ghl-lead-counts.mts",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "sync:ghl": "tsx scripts/sync-ghl-lead-counts.mts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
