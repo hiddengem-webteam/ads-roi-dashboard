@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "sync": "tsx scripts/sync-all.mts",
-    "predev": "tsx scripts/sync-all.mts",
+    "sync": "tsx scripts/sync-all.mts && tsx scripts/sync-ghl-lead-counts.mts && tsx scripts/sync-ghl-email-matches.mts",
+    "predev": "tsx scripts/sync-all.mts && tsx scripts/sync-ghl-lead-counts.mts && tsx scripts/sync-ghl-email-matches.mts",
     "dev": "next dev",
-    "prebuild": "tsx scripts/sync-all.mts && tsx scripts/sync-ghl-lead-counts.mts",
+    "prebuild": "tsx scripts/sync-all.mts && tsx scripts/sync-ghl-lead-counts.mts && tsx scripts/sync-ghl-email-matches.mts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "sync:ghl": "tsx scripts/sync-ghl-lead-counts.mts"
+    "sync:ghl": "tsx scripts/sync-ghl-lead-counts.mts",
+    "sync:ghl-emails": "tsx scripts/sync-ghl-email-matches.mts"
   },
   "dependencies": {
     "clsx": "^2.1.1",

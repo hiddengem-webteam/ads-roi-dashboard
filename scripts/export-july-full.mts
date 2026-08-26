@@ -82,9 +82,20 @@ function buildClientExport(client: ClientData) {
   const bookingCount = pms?.summary.directBookingCount ?? 0;
   const avgDirectBookingValue = pms?.summary.avgDirectBookingValue ?? 0;
 
-  const metaAttributedRevenue = campaignRevenue.followers + campaignRevenue.retargeting + campaignRevenue.newLeads;
+  // A campaign type only contributes to blended attribution if it ran this
+  // period (has spend) — promo revenue doesn't count without a Followers
+  // campaign (per Shawal, Aug 2026).
+  const followersRan = (fb?.followers?.spend ?? 0) > 0;
+  const retargetingRan = (fb?.retargeting?.spend ?? 0) > 0;
+  const newLeadsRan = (fb?.newLeads?.spend ?? 0) > 0;
+  const metaAttributedRevenue =
+    (followersRan ? campaignRevenue.followers : 0) +
+    (retargetingRan ? campaignRevenue.retargeting : 0) +
+    (newLeadsRan ? campaignRevenue.newLeads : 0);
   const metaAttributedBookings =
-    campaignRevenue.followersUses + (fb?.retargeting?.purchases ?? 0) + (pms?.facebook.matchCount ?? 0);
+    (followersRan ? campaignRevenue.followersUses : 0) +
+    (retargetingRan ? fb?.retargeting?.purchases ?? 0 : 0) +
+    (newLeadsRan ? pms?.facebook.matchCount ?? 0 : 0);
   const costPerMetaBooking = totalSpend > 0 && metaAttributedBookings > 0 ? totalSpend / metaAttributedBookings : null;
   const pctOfBookingValue = costPerMetaBooking !== null && avgDirectBookingValue > 0
     ? round2((costPerMetaBooking / avgDirectBookingValue) * 100)

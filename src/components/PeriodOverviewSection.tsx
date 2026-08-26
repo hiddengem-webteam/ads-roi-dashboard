@@ -7,6 +7,8 @@ interface ManifestClient {
   name: string;
   pms?: string;
   ghl?: string;
+  /** PMS provider (guesty/hostaway/hospitable/uplisting) from the platform sync */
+  pmsProvider?: string;
 }
 
 interface PeriodOverviewSectionProps {
@@ -94,6 +96,8 @@ export default function PeriodOverviewSection({
             <thead>
               <tr className="bg-[var(--fill-gray)] border-b border-[var(--border)]">
                 <th className="px-6 py-3 text-left text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Client</th>
+                <th className="px-4 py-3 text-left text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">PMS System</th>
+                <th className="px-4 py-3 text-left text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Promo Codes</th>
                 <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">Facebook</th>
                 <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">PMS</th>
                 <th className="px-4 py-3 text-center text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">GHL</th>
@@ -128,6 +132,37 @@ export default function PeriodOverviewSection({
                     className={`bg-white transition-colors duration-150 ${client ? 'cursor-pointer hover:bg-[var(--fill-cool)]' : 'opacity-50'} ${hasMissing ? 'bg-[rgba(220,38,38,.03)]' : ''}`}
                   >
                     <td className="px-6 py-3 font-semibold text-[var(--foreground)]">{name}</td>
+                    <td className="px-4 py-3 text-[12px] text-[var(--muted)] capitalize whitespace-nowrap">
+                      {mc?.pmsProvider || <span className="text-[var(--muted-soft)]">—</span>}
+                    </td>
+                    <td className="px-4 py-3 text-[12px] text-[var(--muted)]">
+                      {(() => {
+                        const all = client?.pmsAnalysis?.promoCode.codes ?? [];
+                        const used = all.filter((c) => c.uses > 0);
+                        if (used.length > 0) {
+                          const shown = used.slice(0, 3).map((c) => `${c.code} ×${c.uses}`).join(', ');
+                          return (
+                            <span title={used.map((c) => `${c.code} ×${c.uses}`).join(', ')}>
+                              {shown}
+                              {used.length > 3 && <span className="text-[var(--muted-soft)]"> +{used.length - 3}</span>}
+                            </span>
+                          );
+                        }
+                        // No uses this month — still show the client's registry
+                        // codes (from the CRM sheet) so it's clear what exists.
+                        if (all.length > 0) {
+                          const shown = all.slice(0, 3).map((c) => c.code).join(', ');
+                          return (
+                            <span className="text-[var(--muted-soft)] italic" title={all.map((c) => c.code).join(', ') + ' — no uses this month'}>
+                              {shown}
+                              {all.length > 3 && ` +${all.length - 3}`}
+                              {' · no uses'}
+                            </span>
+                          );
+                        }
+                        return <span className="text-[var(--muted-soft)]">—</span>;
+                      })()}
+                    </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-center gap-1.5">
                         <StatusIcon status={fbStatus} />

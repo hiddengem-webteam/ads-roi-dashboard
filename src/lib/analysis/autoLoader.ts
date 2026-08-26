@@ -2,6 +2,7 @@ import { ProcessedData } from '@/types';
 import { processAllData, UploadedFilesMap } from './processor';
 
 interface ManifestClient {
+  pmsProvider?: string;
   name: string;
   pms?: string;
   ghl?: string;

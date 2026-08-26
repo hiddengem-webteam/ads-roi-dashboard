@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { ClientPMSAnalysis, ClientFacebookStats, PromoCodeResult, LeadMatchEntry, ConfidenceLevel } from '@/types';
+import { ClientPMSAnalysis, ClientFacebookStats, PromoCodeResult, ConfidenceLevel } from '@/types';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import { promoListToTabText } from '@/lib/analysis/promoAnalysis';
-import { leadListToTabText } from '@/lib/analysis/leadAnalysis';
+ 
 import { Card, CardContent, StatCard } from './ui/Card';
 import { CopyButton } from './ui/CopyButton';
 import { AlertTriangle, Info, ChevronDown } from 'lucide-react';
@@ -26,7 +26,30 @@ function ConfidenceDot({ level, reason }: { level: ConfidenceLevel; reason: stri
   );
 }
 
+export interface EmailMatchRow {
+  guest: string;
+  email: string;
+  bookings: number;
+  revenue: number;
+  via: string;
+  source?: 'instagram' | 'facebook';
+}
+export interface EmailMatchGroup {
+  matchedEmails: number;
+  bookings: number;
+  revenue: number;
+  instagram?: number;
+  facebook?: number;
+  matches: EmailMatchRow[];
+}
+export interface ClientEmailMatches {
+  ads: EmailMatchGroup;
+  organic: EmailMatchGroup;
+}
+
 interface PMSAnalysisSectionProps {
+  /** Live GHL email-match analysis (sync-ghl-email-matches.mts); null = not synced */
+  emailMatches?: ClientEmailMatches | null;
   analysis: ClientPMSAnalysis;
   facebookStats?: ClientFacebookStats | null;
 }
@@ -85,31 +108,36 @@ function PromoCodeTable({ codes }: { codes: PromoCodeResult[] }) {
   );
 }
 
-function LeadTable({ matches }: { matches: LeadMatchEntry[] }) {
-  if (matches.length === 0) return <EmptyState message="No matching leads found." />;
 
+function EmailMatchTable({ matches, showSource }: { matches: EmailMatchRow[]; showSource?: boolean }) {
+  if (matches.length === 0) return <EmptyState message="No matched lead emails." />;
   return (
     <div className="overflow-x-auto rounded-[12px] border border-[var(--border)]">
       <table className="min-w-full text-[13px]">
         <thead>
           <tr className="bg-[var(--fill-gray)] border-b border-[var(--border)]">
-            <Th>Guest Name</Th>
+            <Th>Guest</Th>
             <Th>Email</Th>
-            <Th right>Amount Paid</Th>
+            {showSource && <Th>Source</Th>}
+            <Th>Matched Via</Th>
+            <Th right>Bookings</Th>
+            <Th right>Revenue</Th>
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--divider)]">
           {matches.map((m, i) => (
-            <tr key={i} className={`bg-white hover:bg-[var(--fill-cool)] transition-colors duration-150 ${m.nameOnlyMatch ? 'bg-[rgba(255,159,10,.06)]' : ''}`}>
-              <Td>
-                {m.guestName || '—'}
-                {m.nameOnlyMatch && (
-                  <span className="ml-2 text-[10px] font-semibold text-[var(--warning-ink)] bg-[rgba(255,159,10,.14)] px-1.5 py-0.5 rounded-[4px]">
-                    name only
+            <tr key={i} className="bg-white hover:bg-[var(--fill-cool)] transition-colors duration-150">
+              <Td>{m.guest || '—'}</Td>
+              <Td muted>{m.email}</Td>
+              {showSource && (
+                <Td>
+                  <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-[6px] ${m.source === 'instagram' ? 'bg-[rgba(124,77,243,.1)] text-[var(--ai-purple)]' : 'bg-[var(--fill-blue)] text-[var(--brand)]'}`}>
+                    {m.source === 'instagram' ? 'Instagram' : 'Facebook'}
                   </span>
-                )}
-              </Td>
-              <Td muted>{m.pmsEmail || m.ghlEmail || '—'}</Td>
+                </Td>
+              )}
+              <Td muted>{m.via}</Td>
+              <Td right>{m.bookings}</Td>
               <Td right bold>{formatCurrency(m.revenue)}</Td>
             </tr>
           ))}
@@ -196,17 +224,9 @@ function Td({
   );
 }
 
-export default function PMSAnalysisSection({ analysis, facebookStats }: PMSAnalysisSectionProps) {
-  const { promoCode, instagram, facebook } = analysis;
+export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalysisSectionProps) {
+  const { promoCode } = analysis;
 
-  // Facebook/Meta metrics come from the Meta Ads connection (Ads Manager data,
-  // synced per campaign per day) — period-correct, unlike the all-time GHL tag
-  // counts. Summed across the three campaign buckets.
-  const buckets = [facebookStats?.followers, facebookStats?.retargeting, facebookStats?.newLeads];
-  const metaLeads = buckets.reduce((s, b) => s + (b?.leads ?? 0), 0);
-  const metaPurchases = buckets.reduce((s, b) => s + (b?.purchases ?? 0), 0);
-  const metaValue = buckets.reduce((s, b) => s + (b?.purchasesConversionValue ?? 0), 0);
-  const hasMeta = !!facebookStats;
   const totalPromoUses = promoCode.codes.reduce((s, c) => s + c.uses, 0);
   const totalPromoRev = promoCode.codes.reduce((s, c) => s + c.revenue, 0);
   const activeCodeCount = promoCode.codes.filter((c) => c.uses > 0).length;
@@ -292,102 +312,80 @@ export default function PMSAnalysisSection({ analysis, facebookStats }: PMSAnaly
       </Card>
       )}
 
-      {/* Instagram Lead Analysis */}
+      {/* Ads Email Analysis — PMS booking emails matched to GHL contacts whose
+          lead tag or attribution says Meta ADS (hybrid logic; see
+          scripts/sync-ghl-email-matches.mts) */}
       <Card>
         <CardContent>
-          <SectionLabel number={showPromo ? 2 : 1} title="Instagram Lead Analysis" />
-
-          <div className="grid grid-cols-2 gap-3 mb-5">
-            <StatCard
-              label="Email Matches"
-              value={instagram.totalGHLLeads > 0 ? instagram.matchCount : '—'}
-              sub={
-                instagram.totalGHLLeads > 0
-                  ? `of ${instagram.totalGHLLeads} Instagram-tagged leads checked against direct bookings`
-                  : 'No Instagram-tagged leads in GHL'
-              }
-            />
-            <StatCard
-              label="Total Revenue"
-              value={
-                instagram.matchCount > 0
-                  ? formatCurrency(instagram.totalRevenue)
-                  : instagram.totalGHLLeads > 0 ? formatCurrency(0) : '—'
-              }
-              sub={instagram.matchCount === 0 && instagram.totalGHLLeads > 0 ? 'No matched leads booked this period' : undefined}
-            />
-          </div>
-
-          {instagram.hasNoEmail && (
-            <div className="flex items-center gap-2 text-[12px] text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border border-[rgba(255,159,10,.25)] rounded-[10px] px-3 py-2 mb-4">
-              <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
-              PMS has no email column — matches via name only
-            </div>
+          <SectionLabel number={showPromo ? 2 : 1} title="Ads Email Analysis" />
+          {emailMatches ? (
+            <>
+              <div className="grid grid-cols-3 gap-3 mb-5">
+                <StatCard
+                  label="Matched Emails"
+                  value={formatNumber(emailMatches.ads.matchedEmails)}
+                  sub="Booking emails matched to Meta-ads leads in GHL"
+                />
+                <StatCard
+                  label="Attributed Bookings"
+                  value={formatNumber(emailMatches.ads.bookings)}
+                  sub="Bookings by those guests this period"
+                />
+                <StatCard
+                  label="Attributed Revenue"
+                  value={formatCurrency(emailMatches.ads.revenue)}
+                  sub="Revenue from the matched emails"
+                />
+              </div>
+              <CollapsibleList
+                label="Matched emails"
+                count={emailMatches.ads.matchedEmails}
+                copyButton={<CopyButton getText={() => emailMatches.ads.matches.map((m) => `${m.guest}\t${m.email}\t${m.revenue}`).join('\n')} label="Copy list" />}
+              >
+                <EmailMatchTable matches={emailMatches.ads.matches} />
+              </CollapsibleList>
+            </>
+          ) : (
+            <EmptyState message="No GHL email-match data — run the sync (npm run sync:ghl-emails)." />
           )}
-
-          <CollapsibleList
-            label="Instagram List"
-            count={instagram.matchCount}
-            copyButton={<CopyButton getText={() => leadListToTabText(instagram, 'INSTAGRAM LEADS')} label="Copy list" />}
-          >
-            <LeadTable matches={instagram.matches} />
-          </CollapsibleList>
         </CardContent>
       </Card>
 
-      {/* 3. Facebook Lead Analysis */}
+      {/* Organic Lead Email Analysis — same matching, tags/attribution point to
+          organic Instagram or Facebook */}
       <Card>
         <CardContent>
-          <SectionLabel number={showPromo ? 3 : 2} title="Facebook / Meta Lead Analysis" />
-
-          {/* Primary: Meta Ads connection (Ads Manager numbers for this period) */}
-          <div className="grid grid-cols-3 gap-3 mb-5">
-            <StatCard
-              label="Leads"
-              value={hasMeta ? formatNumber(metaLeads) : '—'}
-              sub={hasMeta ? 'Meta Ads Manager · this period' : 'No Meta ad account connected'}
-            />
-            <StatCard
-              label="Attributed Bookings"
-              value={hasMeta ? formatNumber(metaPurchases) : '—'}
-              sub={hasMeta ? 'Meta pixel purchase events' : undefined}
-            />
-            <StatCard
-              label="Attributed Revenue"
-              value={hasMeta ? formatCurrency(metaValue) : '—'}
-              sub={
-                hasMeta
-                  ? metaValue > 0
-                    ? 'Meta pixel purchase value'
-                    : 'No pixel purchase value tracked this period'
-                  : undefined
-              }
-            />
-          </div>
-
-          {facebook.hasNoEmail && (
-            <div className="flex items-center gap-2 text-[12px] text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border border-[rgba(255,159,10,.25)] rounded-[10px] px-3 py-2 mb-4">
-              <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
-              PMS has no email column — matches via name only
-            </div>
+          <SectionLabel number={showPromo ? 3 : 2} title="Organic Lead Email Analysis" />
+          {emailMatches ? (
+            <>
+              <div className="grid grid-cols-3 gap-3 mb-5">
+                <StatCard
+                  label="Matched Emails"
+                  value={formatNumber(emailMatches.organic.matchedEmails)}
+                  sub={`Instagram ${emailMatches.organic.instagram ?? 0} · Facebook ${emailMatches.organic.facebook ?? 0}`}
+                />
+                <StatCard
+                  label="Attributed Bookings"
+                  value={formatNumber(emailMatches.organic.bookings)}
+                  sub="Bookings by those guests this period"
+                />
+                <StatCard
+                  label="Attributed Revenue"
+                  value={formatCurrency(emailMatches.organic.revenue)}
+                  sub="Revenue from the matched emails"
+                />
+              </div>
+              <CollapsibleList
+                label="Matched emails"
+                count={emailMatches.organic.matchedEmails}
+                copyButton={<CopyButton getText={() => emailMatches.organic.matches.map((m) => `${m.guest}\t${m.email}\t${m.source}\t${m.revenue}`).join('\n')} label="Copy list" />}
+              >
+                <EmailMatchTable matches={emailMatches.organic.matches} showSource />
+              </CollapsibleList>
+            </>
+          ) : (
+            <EmptyState message="No GHL email-match data — run the sync (npm run sync:ghl-emails)." />
           )}
-
-          {/* Secondary: GHL email verification against direct bookings */}
-          {facebook.matchCount > 0 && (
-            <p className="text-[12px] text-[var(--muted-soft)] mb-3">
-              <span className="font-semibold text-[var(--muted)]">
-                {facebook.matchCount} verified email match{facebook.matchCount !== 1 ? 'es' : ''}
-              </span>
-              {' '}from Meta-tagged GHL leads · {formatCurrency(facebook.totalRevenue)} direct booking revenue
-            </p>
-          )}
-          <CollapsibleList
-            label="Verified guest matches (GHL)"
-            count={facebook.matchCount}
-            copyButton={<CopyButton getText={() => leadListToTabText(facebook, 'FACEBOOK LEADS')} label="Copy list" />}
-          >
-            <LeadTable matches={facebook.matches} />
-          </CollapsibleList>
         </CardContent>
       </Card>
     </div>

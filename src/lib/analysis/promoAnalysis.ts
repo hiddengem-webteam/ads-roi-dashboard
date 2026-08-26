@@ -240,24 +240,11 @@ export function analyzePromoCodes(
 
     const code = attribution.code.toUpperCase();
 
-    // Track unrecognized codes
-    if (!knownCodes.has(code) && !code.startsWith('UNKNOWN')) {
-      unrecognizedCodes.add(code);
-      if (!results.has(code)) {
-        results.set(code, {
-          code,
-          discount: '',
-          purpose: '',
-          campaignType: '',
-          uses: 0,
-          revenue: 0,
-          guests: [],
-          unrecognized: true,
-        });
-      }
-    }
-
-    if (!results.has(code)) continue; // UNKNOWN($x) entries — skip accumulation
+    // Only registry codes are analyzed. Clients create plenty of their own
+    // PMS coupons; the agency tracks just the few in the Google Sheet, so
+    // unknown codes are ignored silently (no rows, no flags) — per Shawal,
+    // Aug 2026.
+    if (!results.has(code)) continue;
 
     const entry = results.get(code)!;
     entry.uses += 1;
@@ -272,17 +259,6 @@ export function analyzePromoCodes(
       isZeroRevenue: row.revenue === 0,
     };
     entry.guests.push(guestEntry);
-  }
-
-  // Flags for unrecognized codes
-  for (const code of unrecognizedCodes) {
-    flags.push({
-      id: flagId('unrecognized-code', clientName, code),
-      type: 'unrecognized-code',
-      clientName,
-      message: `Unrecognized promo code in PMS: ${code}`,
-      details: `Add ${code} to the promo sheet for ${clientName}`,
-    });
   }
 
   if (clientPromos.length === 0) {

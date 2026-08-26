@@ -87,6 +87,10 @@ export interface RoiExportBooking {
   revenue: number;
   guest: string | null;
   email: string | null;
+  /** Promo/coupon code as the PMS reports it (added Aug 2026). Hospitable wraps
+   * it as "Promotion (X)"; Uplisting sends generic labels ("Weekly discount"). */
+  coupon_code: string | null;
+  discount_amount: number | null;
 }
 
 export interface RoiExportTenant {

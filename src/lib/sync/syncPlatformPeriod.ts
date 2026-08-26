@@ -19,12 +19,15 @@ import {
 //
 // Coverage vs. the 4 dashboard inputs:
 //   • Meta Ads — full (per-campaign spend/impressions/link clicks/leads/purchases/value)
-//   • PMS      — direct bookings: guest/email/revenue/check-in (no coupon/listing/checkout/source)
+//   • PMS      — direct bookings: guest/email/revenue/check-in + coupon code/discount
+//                (coupon fields added by the platform Aug 2026; normalized below)
 //   • GHL      — contacts: id/name/phone/email/created/tags (name is one field; tags in `role`).
 //                Contacts are all-time (not date-filtered), so they're fetched once and reused
 //                across every month — the same GHL data backs every period for a client.
-//   • Promo    — NOT on the platform; a manually-placed Promo codes.csv in the period's
-//                shared/ dir is preserved and referenced (hybrid).
+//   • Promo    — the CRM code list isn't on the platform; each period's shared/
+//                Promo codes.csv is seeded from the repo's data/promo-codes.csv
+//                (or preserved if manually placed) so coupon uses resolve to
+//                campaign types.
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const MONTH_RE = /^(\d{4})-(\d{2})$/;
@@ -38,7 +41,55 @@ const META_HEADERS = [
   'Account name', 'Campaign name', 'Amount spent', 'Link clicks',
   'Leads', 'Impressions', 'Purchases', 'Purchases conversion value',
 ];
-const PMS_HEADERS = ['Guest', 'Email', 'Revenue', 'Check-in date'];
+const PMS_HEADERS = ['Guest', 'Email', 'Revenue', 'Check-in date', 'Coupon name', 'Coupon discount'];
+
+// Known promo codes from the CRM sheet (data/promo-codes.csv, "Code" column).
+// Used to pull a real code out of combined PMS labels like
+// "Weekly / Monthly discount + WELCOME100" or "Last Minute (Direct) + VIP10".
+let knownCodesCache: string[] | null = null;
+function knownCodes(): string[] {
+  if (knownCodesCache) return knownCodesCache;
+  knownCodesCache = [];
+  const promoSheet = path.join(process.cwd(), 'data', 'promo-codes.csv');
+  if (fs.existsSync(promoSheet)) {
+    for (const line of fs.readFileSync(promoSheet, 'utf8').split('\n').slice(1)) {
+      const code = (line.split(',')[2] ?? '').trim().toUpperCase();
+      if (code) knownCodesCache.push(code);
+    }
+    // Longest first so "WELCOME100" wins over "WELCOME10" on containment.
+    knownCodesCache.sort((a, b) => b.length - a.length);
+  }
+  return knownCodesCache;
+}
+
+// Purely operational stay-length/manual discounts — not promo codes; storing
+// them would flood the promo analysis with fake "unrecognized codes".
+const OPERATIONAL_DISCOUNT = /weekly|monthly|last minute|ad-?hoc|custom approved|special discount|wedding discount|length of stay/i;
+
+// Normalize the coupon label the PMS reports into a promo code:
+//  1. unwrap Hospitable's "Promotion (WELCOME50)" and strip "Promotion code " prefixes
+//  2. single-token values are codes as-is (WELCOME100, 9OFF, VIP10…)
+//  3. multi-word labels containing a known CRM code resolve to that code
+//     (handles Guesty's "A + B" combined-discount labels)
+//  4. operational discounts are dropped (see OPERATIONAL_DISCOUNT)
+//  5. anything else (descriptive promo names like "First Stay Incentive") is
+//     kept verbatim, uppercased — it surfaces as an unrecognized code so it can
+//     be mapped to a campaign type in the CRM sheet.
+function normalizeCouponCode(raw: string | null | undefined): string {
+  if (!raw) return '';
+  let code = raw.trim();
+  const wrapped = code.match(/^Promotion \((.+)\)$/i);
+  if (wrapped) code = wrapped[1].trim();
+  code = code.replace(/^promotion code\s+/i, '').trim();
+  if (!code) return '';
+  if (!/\s/.test(code)) return code.toUpperCase();
+  const upper = code.toUpperCase();
+  for (const known of knownCodes()) {
+    if (new RegExp(`(^|[^A-Z0-9])${known}([^A-Z0-9]|$)`).test(upper)) return known;
+  }
+  if (OPERATIONAL_DISCOUNT.test(code)) return '';
+  return upper;
+}
 const GHL_HEADERS = ['Contact Id', 'First Name', 'Last Name', 'Phone', 'Email', 'Created', 'Tags'];
 
 // ─── Result shapes ────────────────────────────────────────────────────────────
@@ -80,13 +131,14 @@ interface ManifestPeriod {
   label: string;
   metaAds: string;
   promoCodes: string;
-  clients: Array<{ name: string; pms: string; ghl: string }>;
+  clients: Array<{ name: string; pms: string; ghl: string; pmsProvider: string }>;
 }
 
 interface RunCtx {
   cfg: PlatformConfig;
   publicDir: string;
   contactsCache: Map<string, PlatformContact[]>;
+  pmsProviderCache: Map<string, string>;
   contactsErrored: Set<string>;
   log: string[];
   errors: string[];
@@ -173,6 +225,7 @@ function makeCtx(cfg: PlatformConfig, onLog?: (msg: string) => void): RunCtx {
     cfg,
     publicDir: path.join(process.cwd(), 'public'),
     contactsCache: new Map(),
+    pmsProviderCache: new Map(),
     contactsErrored: new Set(),
     log,
     errors,
@@ -198,6 +251,21 @@ function usableEntries(roi: RoiExportResponse): Array<[string, RoiExportTenant]>
   // Guard against a 200 whose body lacks `tenants` (or is null) so a single
   // malformed month can't throw out of the whole backfill loop.
   return Object.entries(roi?.tenants ?? {}).filter(([, t]) => t.campaigns.length > 0);
+}
+
+/** Fetch a tenant's PMS provider once and cache it (e.g. 'guesty', 'hostaway'). */
+async function getPmsProvider(ctx: RunCtx, tenantId: string): Promise<string> {
+  const cached = ctx.pmsProviderCache.get(tenantId);
+  if (cached !== undefined) return cached;
+  let provider = '';
+  try {
+    const res = await platformGet<{ connection?: { provider?: string } }>(ctx.cfg, `/api/v1/clients/${tenantId}/pms`, 1);
+    provider = res.connection?.provider ?? '';
+  } catch {
+    // no PMS connection endpoint / no connection — leave blank
+  }
+  ctx.pmsProviderCache.set(tenantId, provider);
+  return provider;
 }
 
 /** Fetch a tenant's contacts once and cache them (contacts are all-time, not per-month). */
@@ -305,7 +373,10 @@ async function writePeriod(
 
     // PMS ← direct bookings
     if (t.direct_bookings.length > 0) {
-      const pmsRows = t.direct_bookings.map((b) => [b.guest ?? '', b.email ?? '', b.revenue ?? 0, b.check_in ?? '']);
+      const pmsRows = t.direct_bookings.map((b) => {
+        const code = normalizeCouponCode(b.coupon_code);
+        return [b.guest ?? '', b.email ?? '', b.revenue ?? 0, b.check_in ?? '', code, code ? Math.abs(b.discount_amount ?? 0) : ''];
+      });
       fs.writeFileSync(path.join(clientDir, 'PMS data.csv'), toCSV(PMS_HEADERS, pmsRows), 'utf8');
       pmsPath = `/data/periods/${periodId}/clients/${safe}/PMS data.csv`;
     } else {
@@ -334,12 +405,19 @@ async function writePeriod(
       missingGHL.push(clientName);
     }
 
-    clients.push({ name: clientName, pms: pmsPath, ghl: ghlPath });
+    clients.push({ name: clientName, pms: pmsPath, ghl: ghlPath, pmsProvider: await getPmsProvider(ctx, tid) });
     synced.push(clientName);
   }
 
-  // Promo codes aren't on the platform — preserve a manually-placed file (hybrid).
+  // Promo codes aren't on the platform — seed each synced period from the
+  // registry (data/promo-codes.csv, refreshed from the live Google Sheet at
+  // the start of every run), overwriting so sheet updates propagate on the
+  // 4-hour cadence.
   let promoCodesPath = '';
+  const promoSeed = path.join(process.cwd(), 'data', 'promo-codes.csv');
+  if (fs.existsSync(promoSeed)) {
+    fs.copyFileSync(promoSeed, path.join(sharedDir, 'Promo codes.csv'));
+  }
   if (fs.existsSync(path.join(sharedDir, 'Promo codes.csv'))) {
     promoCodesPath = `/data/periods/${periodId}/shared/Promo codes.csv`;
   }
@@ -405,6 +483,105 @@ export async function syncPlatformPeriod(
 
 // ─── Public: backfill all months ──────────────────────────────────────────────
 
+
+// ─── Live promo-code registry ──────────────────────────────────────────────────
+// The team maintains promo codes in the "Client Promo Codes" tab of the CRM
+// Google Sheet (link-viewable, so its CSV export needs no credentials). Every
+// sync run re-fetches it and MERGES it into data/promo-codes.csv:
+//   • entries/types from the sheet win when present
+//   • entries/types that exist only in the local registry are kept (the sheet
+//     is historically incomplete — blind replacement would erase the July QA
+//     attribution fixes)
+// On any fetch/validation failure the existing registry file is kept as-is.
+const PROMO_SHEET_ID = '1oEUngQE3ZXc6U4ciRkkg55UrlR-M065kTmCzG8HFhM4';
+const PROMO_SHEET_GID = '2117232046'; // "Client Promo Codes" tab
+
+type PromoEntry = { client: string; discount: string; code: string; purpose: string; type: string };
+
+function parsePromoCSV(text: string): PromoEntry[] {
+  const out: PromoEntry[] = [];
+  let client = '';
+  for (const line of text.split(/\r?\n/).slice(1)) {
+    // registry columns are simple (no embedded commas except quoted Purpose —
+    // strip quoted segments before splitting to stay safe)
+    const cells: string[] = [];
+    let cur = '', inQ = false;
+    for (const ch of line) {
+      if (ch === '"') inQ = !inQ;
+      else if (ch === ',' && !inQ) { cells.push(cur); cur = ''; }
+      else cur += ch;
+    }
+    cells.push(cur);
+    if (cells[0]?.trim()) client = cells[0].trim();
+    const code = (cells[2] ?? '').trim().toUpperCase();
+    if (!code || code === 'CODE') continue;
+    out.push({
+      client,
+      discount: (cells[1] ?? '').trim(),
+      code,
+      purpose: (cells[3] ?? '').trim(),
+      type: (cells[5] ?? '').trim(),
+    });
+  }
+  return out;
+}
+
+function promoEntriesToCSV(entries: PromoEntry[]): string {
+  const byClient = new Map<string, PromoEntry[]>();
+  for (const e of entries) {
+    if (!byClient.has(e.client)) byClient.set(e.client, []);
+    byClient.get(e.client)!.push(e);
+  }
+  const lines = ['Client,Discount,Code,Purpose,,Campaign Type'];
+  for (const [client, rows] of byClient) {
+    rows.forEach((e, i) => {
+      const purpose = /[",]/.test(e.purpose) ? '"' + e.purpose.replace(/"/g, '""') + '"' : e.purpose;
+      lines.push([i === 0 ? client : '', e.discount, e.code, purpose, '', e.type].join(','));
+    });
+    lines.push(',,,,,');
+  }
+  return lines.join('\n') + '\n';
+}
+
+async function refreshPromoRegistry(ctx: RunCtx): Promise<void> {
+  const registryPath = path.join(process.cwd(), 'data', 'promo-codes.csv');
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${PROMO_SHEET_ID}/export?format=csv&gid=${PROMO_SHEET_GID}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(15000), redirect: 'follow' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const text = await res.text();
+    if (!/^Client,Discount,Code/i.test(text)) throw new Error('unexpected header — not the promo tab?');
+    const live = parsePromoCSV(text);
+    if (live.length < 20) throw new Error(`only ${live.length} entries — refusing to shrink the registry`);
+
+    const local = fs.existsSync(registryPath) ? parsePromoCSV(fs.readFileSync(registryPath, 'utf8')) : [];
+    const key = (e: PromoEntry) => `${e.client.toLowerCase()}|${e.code}`;
+    const merged = new Map<string, PromoEntry>();
+    for (const e of local) merged.set(key(e), e);
+    let added = 0, typed = 0;
+    for (const e of live) {
+      const existing = merged.get(key(e));
+      if (!existing) { merged.set(key(e), e); added++; continue; }
+      // sheet wins field-by-field, but never blanks out a known campaign type
+      const next: PromoEntry = {
+        client: existing.client,
+        discount: e.discount || existing.discount,
+        code: e.code,
+        purpose: e.purpose || existing.purpose,
+        type: e.type || existing.type,
+      };
+      if (next.type !== existing.type) typed++;
+      merged.set(key(e), next);
+    }
+    fs.mkdirSync(path.dirname(registryPath), { recursive: true });
+    fs.writeFileSync(registryPath, promoEntriesToCSV([...merged.values()]), 'utf8');
+    knownCodesCache = null; // re-read on next coupon normalization
+    ctx.emit(`Promo registry: live sheet merged — ${live.length} sheet entries, ${added} new, ${typed} type updates, ${merged.size} total.`);
+  } catch (err) {
+    ctx.emit(`Promo registry: live sheet fetch failed (${err}) — keeping existing data/promo-codes.csv.`);
+  }
+}
+
 export async function syncAllPlatformPeriods(opts: SyncAllOptions = {}): Promise<PlatformSyncAllResult> {
   const maxMonths = opts.maxMonths ?? 36;
   const stopAfterEmpty = opts.stopAfterEmpty ?? 3;
@@ -413,6 +590,8 @@ export async function syncAllPlatformPeriods(opts: SyncAllOptions = {}): Promise
 
   const cfg = getPlatformConfig();
   const ctx = makeCtx(cfg, opts.onLog);
+
+  await refreshPromoRegistry(ctx);
 
   ctx.emit(
     opts.startMonth

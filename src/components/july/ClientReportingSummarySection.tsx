@@ -89,17 +89,25 @@ export default function ClientReportingSummarySection({
   // otherwise "attributed" could exceed the total shown right above it
   // whenever the sheet's figure is lower than the snapshot's.
   const capRevenue = hasDisplayRevenue ? displayRevenue : (hasSnapshotRevenue ? snapshotRevenue : 0);
+  // A campaign type only contributes to the blended Meta-attribution figures
+  // if it actually ran this period (has spend) — e.g. promo-code revenue does
+  // not count when no Followers campaign ran (per Shawal, Aug 2026).
+  const followersRan = (facebookStats?.followers?.spend ?? 0) > 0;
+  const retargetingRan = (facebookStats?.retargeting?.spend ?? 0) > 0;
+  const newLeadsRan = (facebookStats?.newLeads?.spend ?? 0) > 0;
   const metaAttributedRevenueRaw =
-    campaignRevenue.followers + campaignRevenue.retargeting + campaignRevenue.newLeads;
+    (followersRan ? campaignRevenue.followers : 0) +
+    (retargetingRan ? campaignRevenue.retargeting : 0) +
+    (newLeadsRan ? campaignRevenue.newLeads : 0);
   const metaAttributedRevenue = capRevenue > 0
     ? Math.min(metaAttributedRevenueRaw, capRevenue)
     : metaAttributedRevenueRaw;
   const hasMetaAttributedRevenue = metaAttributedRevenue > 0;
 
   const metaAttributedBookingsRaw =
-    campaignRevenue.followersUses +
-    (facebookStats?.retargeting?.purchases ?? 0) +
-    (facebookLeads?.matchCount ?? 0);
+    (followersRan ? campaignRevenue.followersUses : 0) +
+    (retargetingRan ? facebookStats?.retargeting?.purchases ?? 0 : 0) +
+    (newLeadsRan ? facebookLeads?.matchCount ?? 0 : 0);
   const metaAttributedBookings = bookingCount > 0
     ? Math.min(metaAttributedBookingsRaw, bookingCount)
     : metaAttributedBookingsRaw;

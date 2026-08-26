@@ -73,13 +73,22 @@ async function main() {
 
     const displayRevenue = fig ? fig.directBookingRevenue : snapshotRevenue;
 
-    const metaAttributedRevenueRaw = cr.followers + cr.retargeting + cr.newLeads;
+    // A campaign type only contributes to blended attribution if it ran this
+    // period (has spend) — promo revenue doesn't count without a Followers
+    // campaign (per Shawal, Aug 2026).
+    const followersRan = (fb?.followers?.spend ?? 0) > 0;
+    const retargetingRan = (fb?.retargeting?.spend ?? 0) > 0;
+    const newLeadsRan = (fb?.newLeads?.spend ?? 0) > 0;
+    const metaAttributedRevenueRaw =
+      (followersRan ? cr.followers : 0) + (retargetingRan ? cr.retargeting : 0) + (newLeadsRan ? cr.newLeads : 0);
     const metaAttributedRevenue = displayRevenue > 0
       ? Math.min(metaAttributedRevenueRaw, displayRevenue)
       : metaAttributedRevenueRaw;
 
     const metaAttributedBookingsRaw =
-      cr.followersUses + (fb?.retargeting?.purchases ?? 0) + (pms?.facebook.matchCount ?? 0);
+      (followersRan ? cr.followersUses : 0) +
+      (retargetingRan ? fb?.retargeting?.purchases ?? 0 : 0) +
+      (newLeadsRan ? pms?.facebook.matchCount ?? 0 : 0);
     const metaAttributedBookings = bookingCount > 0
       ? Math.min(metaAttributedBookingsRaw, bookingCount)
       : metaAttributedBookingsRaw;
