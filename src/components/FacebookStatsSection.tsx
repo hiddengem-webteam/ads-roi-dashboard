@@ -103,16 +103,6 @@ function CampaignPanel({
         <StatCard label="Link Clicks" value={formatNumber(s.linkClicks)} sub="Facebook Ads Manager" />
       </div>
 
-      {/* Row 1b: Instagram GHL leads — Followers only */}
-      {s.type === 'Followers' && instagramLeads && (
-        <div className="grid grid-cols-3 gap-3">
-          <StatCard
-            label="Instagram Tag Leads"
-            value={instagramLeads.totalGHLLeads > 0 ? formatNumber(instagramLeads.totalGHLLeads) : '—'}
-            sub="Total leads with Instagram tag in GHL"
-          />
-        </div>
-      )}
 
       {/* Row 1c: Leads + CPL — New Leads campaigns only */}
       {s.type === 'New Leads' && (

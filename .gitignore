@@ -48,12 +48,14 @@ next-env.d.ts
 !/data/promo-codes.csv
 /public/data/*
 !/public/data/ghl-lead-counts.json
-# Exception: the frozen July 2026 snapshot is an intentional one-off — deploying
-# /july needs it on Netlify since the snapshot/merge scripts aren't part of the
-# predev/prebuild pipeline. Still real guest PII; committed by explicit decision.
+# Exception: the frozen monthly snapshots are intentional one-offs — deploying
+# /july and /august needs them on Netlify since the snapshot/merge scripts
+# aren't part of the predev/prebuild pipeline. Still real guest PII; committed
+# by explicit decision (July: Aug 2026, August: Sep 2026).
 !/public/data/snapshots/
 /public/data/snapshots/*
 !/public/data/snapshots/july-2026.json
+!/public/data/snapshots/august-2026.json
 
 # Raw account-manager PMS exports (real guest PII) — never commit.
 /July 2026 PMS Data/
@@ -76,3 +78,5 @@ scripts/.july-xlsx-conversion-report.json
 
 # Sentinel tool artifacts
 /sentinel-ultra/
+/August 2026 PMS Data/
+/August 2026/
