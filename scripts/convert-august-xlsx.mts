@@ -40,15 +40,22 @@ const TAB_TO_CLIENT: Record<string, string> = {
   'Starlight Haven WL': 'Starlight Haven Weiss Lake',
   'Sunapee Stays': 'Sunapee Stays',
 };
-const SKIP_TABS = new Set(['American River Resort - Updated']); // handled below
+const SKIP_TABS = new Set([
+  // ARR's old discounts-only ledger — superseded Sep 2 by a real per-booking
+  // "American River Resort" tab (Invoice/Customer/Email/Revenue/Discount Code)
+  // that the generic path handles. Guard kept in case the ledger returns.
+  'American River Resort - Updated',
+  'Sheet14', // scratch tab in Nicole's workbook (formula objects, no client)
+]);
 
 function cellVal(v: unknown): unknown {
-  if (v && typeof v === 'object') {
+  if (v && typeof v === 'object' && !(v instanceof Date)) {
     const o = v as Record<string, unknown>;
-    if ('result' in o) return o.result;
+    // hyperlink cells can nest: { text: { richText: [...] }, hyperlink } —
+    // unwrap recursively until a primitive falls out
+    if ('result' in o) return cellVal(o.result);
     if ('richText' in o) return (o.richText as { text: string }[]).map((t) => t.text).join('');
-    if ('hyperlink' in o && 'text' in o) return o.text;
-    if ('text' in o) return o.text;
+    if ('text' in o) return cellVal(o.text);
   }
   return v;
 }
@@ -87,7 +94,7 @@ function detectCols(hdr: string[]): ColMap | null {
   if (revenue < 0) return null;
 
   // guest: single column or first+last pair
-  const guestSingle = find('guest', 'guest name', 'name');
+  const guestSingle = find('guest', 'guest name', 'name', 'customer');
   const first = find('first name', 'guest first name', 'guest_first_name');
   const last = find('last name', 'guest last name', 'guest_last_name');
   const email = H.findIndex((h) => /email/.test(h) && !/platform/.test(h));
@@ -116,7 +123,12 @@ async function main() {
     await wb.xlsx.readFile(path.join(SRC, file));
     for (const ws of wb.worksheets) {
       const tab = ws.name.trim();
-      if (SKIP_TABS.has(tab)) continue;
+      if (SKIP_TABS.has(tab)) {
+        if (tab === 'American River Resort - Updated') {
+          report['American River Resort'] = await convertAmericanRiverResort(ws);
+        }
+        continue;
+      }
       const client = TAB_TO_CLIENT[tab] ?? tab;
 
       // header row = first row (within 3) whose cells include 'Revenue'/'Total paid'
@@ -143,6 +155,10 @@ async function main() {
         // Hiawassee's Sep 2 sheet drag-filled WELCOME50 into WELCOME51…58 (plus
         // a WELCOM50 typo) — every one is a −$50 discount, all the same code.
         if (client === 'Hiawassee Glamping') code = code.replace(/^WELCOME?5\d$/, 'WELCOME50');
+        // ARR's Sep 2 tab: WELCOME20 drag-filled on a filtered view became
+        // WELCOME21…WELCOME213 on the ~194 marked bookings (scattered rows,
+        // strictly incrementing) — ARR's only registry code is WELCOME20.
+        if (client === 'American River Resort') code = code.replace(/^WELCOME\d+$/, 'WELCOME20');
         // skip pivot/summary/empty/totals rows: a real guest contains letters
         // (SUM rows carry 0s or blanks in the guest column)
         if (!guest || !/[a-z]/i.test(guest) || (!Number.isFinite(revenue) && !code)) continue;
