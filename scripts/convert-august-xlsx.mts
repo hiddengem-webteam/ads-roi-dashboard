@@ -83,21 +83,31 @@ interface ColMap { guest: number[]; email: number; revenue: number; date: number
 
 function detectCols(hdr: string[]): ColMap | null {
   const H = hdr.map((h) => h.trim().toLowerCase());
+  const revenue = H.findIndex((h) => h === 'revenue' || h === 'total paid');
+  if (revenue < 0) return null;
+
+  // Some tabs carry a second side table to the right (e.g. Tuxedo Falls:
+  // Res#/Date/Name/... for Welcome Offer packages), separated by blank
+  // headers. Restrict detection to the contiguous header block containing
+  // the Revenue column so a side table's "Name" column can't hijack the
+  // guest column.
+  let lo = revenue, hi = revenue;
+  while (lo - 1 >= 1 && H[lo - 1]) lo--;
+  while (hi + 1 < H.length && H[hi + 1]) hi++;
+  const inBlock = (i: number) => i >= lo && i <= hi;
   const find = (...names: string[]) => {
     for (const n of names) {
-      const i = H.findIndex((h) => h === n);
+      const i = H.findIndex((h, idx) => h === n && inBlock(idx));
       if (i >= 0) return i;
     }
     return -1;
   };
-  const revenue = find('revenue', 'total paid');
-  if (revenue < 0) return null;
 
   // guest: single column or first+last pair
-  const guestSingle = find('guest', 'guest name', 'name', 'customer');
+  const guestSingle = find('guest', 'guest name', 'name', 'customer', 'client');
   const first = find('first name', 'guest first name', 'guest_first_name');
   const last = find('last name', 'guest last name', 'guest_last_name');
-  const email = H.findIndex((h) => /email/.test(h) && !/platform/.test(h));
+  const email = H.findIndex((h, idx) => /email/.test(h) && !/platform/.test(h) && inBlock(idx));
   let guest: number[] = guestSingle >= 0 ? [guestSingle] : first >= 0 ? (last >= 0 ? [first, last] : [first]) : [];
   if (guest.length === 0 && email >= 0) guest = [email]; // e.g. Big Moon Ranch: email-only sheet
   if (guest.length === 0) return null;
@@ -150,6 +160,10 @@ async function main() {
         const guest = cols.guest.map((i) => String(vals[i] ?? '').trim()).filter(Boolean).join(' ');
         const revenue = Number(vals[cols.revenue] ?? NaN);
         let code = cols.code >= 0 ? String(vals[cols.code] ?? '').trim() : '';
+        // "WELCOME50 (-$50)" style (Nature Nooks): code with inline discount
+        let inlineDiscount = 0;
+        const dm = code.match(/^(.*?)\s*\(\s*-?\s*\$?\s*([\d,]+(?:\.\d+)?)\s*\)\s*$/);
+        if (dm) { code = dm[1].trim(); inlineDiscount = Number(dm[2].replace(/,/g, '')) || 0; }
         if (!code || NOT_A_CODE.test(code)) code = '';
         code = code.toUpperCase();
         // Hiawassee's Sep 2 sheet drag-filled WELCOME50 into WELCOME51…58 (plus
@@ -165,7 +179,7 @@ async function main() {
         if (!Number.isFinite(revenue)) continue;
         const email = cols.email >= 0 ? String(vals[cols.email] ?? '').trim() : '';
         const date = cols.date >= 0 ? asDate(vals[cols.date]) : '';
-        const discount = cols.discount >= 0 ? Math.abs(Number(vals[cols.discount] ?? 0) || 0) : 0;
+        const discount = cols.discount >= 0 ? Math.abs(Number(vals[cols.discount] ?? 0) || 0) : inlineDiscount;
         outRows.push([guest, email, revenue, date, code, discount || '', '']);
         total += revenue; count++;
         if (code) { coded++; codes[code] = (codes[code] ?? 0) + 1; }

@@ -78,7 +78,7 @@ async function main() {
     'Southern Illinois Cabins Ads': 'Stay Southen Illinois',
     'Starlight Haven Hot Springs': 'Starlight Haven Hot Springs',
     'Starlight Haven Weiss Lake - 74756899': 'Starlight Haven Weiss Lake',
-    'Stay Different Ads': 'Stay Different',
+    // 'Stay Different Ads' removed — client offboarded (per Shawal, Sep 3 2026)
     'Stay Luxe Ads': 'StayLuxe',
     'Stay Saluda Ads': 'Stay Saluda',
     'Stay on 30a Ads': 'Stay on 30a',
