@@ -156,6 +156,16 @@ td.nowrap{white-space:nowrap}
 .rcard .open{margin-top:auto;font:500 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
 .rcard.muted{opacity:.6}
 .week{scroll-margin-top:24px}
+.sources{margin:0 0 16px;font:400 12px/18px 'Inter',sans-serif;color:var(--text-4)}
+.sources summary{cursor:pointer;font:500 12px/18px 'Inter',sans-serif;color:var(--text-3);list-style:none;display:inline-flex;align-items:center;gap:6px;padding:2px 0}
+.sources summary::-webkit-details-marker{display:none}
+.sources summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;margin-right:2px}
+.sources[open] summary::before{transform:rotate(45deg)}
+.sources summary:focus-visible{outline:none;box-shadow:var(--focus);border-radius:4px}
+.sources dl{margin:8px 0 0;display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 12px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2)}
+.sources dt{font-weight:500;color:var(--text-3)}
+.sources dd{margin:0;max-width:110ch}
+@media (max-width:640px){.sources dl{grid-template-columns:1fr;gap:2px 0}.sources dt{margin-top:6px}.sources dt:first-child{margin-top:0}}
 .week+.week{border-top:1px solid var(--border);padding-top:28px}
 .month-head{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin:0 0 12px}
 @media (max-width:900px){
@@ -202,6 +212,7 @@ td.nowrap{white-space:nowrap}
 <p class="month-head" id="month-head"></p>
 <section class="week" id="2026-09-21" data-month="2026-09">
 <div class="sec-head"><div><h2>Monday 21 September 2026</h2><p class="sec-desc">W39 · run date 2026-09-21</p></div></div>
+<details class="sources" open><summary>Sources used this week</summary><dl><dt>Shared</dt><dd>Master Meta Ads sheet (Google Sheets), tab Meta Ad Links: client list, status, documented daily budget, comments · CRM – HiddenGem Media sheet (Google Sheets): account manager per client · Meta Ads connector (claude.ai): live reads from each client's ad account · Ads Manager export 2026-09-21_W39_meta-ads-report.csv, 2026-09-01 to 2026-09-21, used only for accounts the connector cannot read</dd><dt>Ad spend check</dt><dd>Meta connector: ad account list, active campaign and ad set daily budgets, lifetime budgets converted to daily, 7-day spend (live reads 10:58–11:05) · export used for 5 MCP-disabled accounts, marked provisional · previous week's sidecar: none, first run</dd><dt>Pixel domain check</dt><dd>Meta datasets via the connector: HiddenGem Business Manager pixel listing plus per-account listings, 7-day host breakdown, event totals, event match quality · Master sheet: Attribution Tracking Setup column and PMS tab (booking engines) · expected-domains.csv, the per-client list of expected domains (47 rows: 46 inferred, 1 sheet) · previous week's sidecar: none, first run</dd><dt>Client benchmark</dt><dd>Benchmarks doc (Google Docs): Decision Making table for states; per-type Investigate lines as diagnostics · CRM sheet, tab Clients - Onboarding, Meta Ads column = Advanced (16 clients: 12 live, 4 from the export) · Meta connector campaign insights: last 30 days (Lead Gen) and last 14 days (Sales/Retargeting); leads, purchases, ROAS, CPM, CTR, CPC, frequency · Monthly ROI data JSON (August 2026, July 2026); revenue from the Client Performance Tracking sheet, not the pixel · Meeting notes by Gemini via Google Calendar + Drive: Meta Ads Strategy 2026-09-16, Meta Ads Sync 2026-09-17 · HG AI Reports folder: none dropped in · previous week's sidecar: none, first run</dd></dl></details>
 <div class="grid3"><a class="card rcard" href="/ad-spend/2026-09-21.html"><div class="card-body">
 <h3>Ad spend check</h3><p class="sec-desc">Documented daily budget on the Master sheet vs the live budget in each ad account.</p>
 <div class="hl"><span class="badge err"><span class="dot err"></span>2 critical</span><span class="badge warn"><span class="dot warn"></span>10 warning</span><span class="badge ok"><span class="dot ok"></span>30 match</span><span class="badge gray"><span class="dot gray"></span>0 blocked</span><span class="chip">42 accounts</span></div>
