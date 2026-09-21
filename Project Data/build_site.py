@@ -112,7 +112,7 @@ def sources_for(date):
     if not items:
         return ""
     chips = "".join(f'<span class="src {k}"><span class="dot {k}"></span>{esc(t)}</span>' for k, t in items)
-    return f'<div class="sources"><span class="src-label">Beyond live Meta reads</span>{chips}</div>'
+    return f'<div class="sources"><span class="src-label">Data sources in addition to Meta MCP</span>{chips}</div>'
 
 def main():
     if os.path.isdir(SITE): shutil.rmtree(SITE)
