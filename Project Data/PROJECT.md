@@ -138,7 +138,7 @@ Weekly publish, after the three skills have written their `.md` + `.csv`:
 python3 "Project Data/build_html.py" YYYY-MM-DD
 python3 "Project Data/build_site.py"
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
-npx netlify-cli deploy --prod --dir site
+npx netlify-cli deploy --prod --no-build --dir site
 ```
 
 Open: one stable claude.ai artifact URL per workflow (overwrite weekly) or one per week; Netlify push-to-deploy from GitHub (one-time link in the Netlify UI) instead of the CLI deploy; email delivery (Mailtrap) not wired yet.
