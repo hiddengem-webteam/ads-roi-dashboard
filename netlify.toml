@@ -1,0 +1,11 @@
+# Static publish of the pre-built site/ folder. Run `python3 "Project Data/build_site.py"` before committing.
+[build]
+  publish = "site"
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "no-referrer"
