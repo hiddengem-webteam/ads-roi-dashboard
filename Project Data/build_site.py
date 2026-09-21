@@ -92,7 +92,7 @@ def main():
 <h3>{esc(title)}</h3><p class="sec-desc">{esc(desc)}</p>
 <div class="hl">{chips}</div>
 <div class="open">Open report &#8594;</div></div></a>''')
-        sections.append(f'''<section class="week" id="{date}">
+        sections.append(f'''<section class="week" id="{date}" data-month="{date[:7]}">
 <div class="sec-head"><div><h2>{esc(label)}</h2><p class="sec-desc">{week} · run date {date}</p></div></div>
 <div class="grid3">{"".join(cards)}</div>
 </section>''')
@@ -100,8 +100,54 @@ def main():
         sections.append('<div class="empty">No reviews yet.</div>')
     n_weeks = len(by_date)
     first = min(by_date) if by_date else ""
+    # ---- sidebar: months -> Mondays
+    months = collections.OrderedDict()
+    for date in sorted(by_date, reverse=True):
+        months.setdefault(date[:7], []).append(date)
+    side_items = []
+    for i, (ym, dates) in enumerate(months.items()):
+        d0 = datetime.date.fromisoformat(dates[0])
+        label = d0.strftime("%B %Y"); n = len(dates)
+        weeks = "".join(
+            f'<li><a class="wk" href="#{dt}" data-week="{dt}">{datetime.date.fromisoformat(dt).strftime("%a %-d %b")}'
+            f'<span class="wn">W{datetime.date.fromisoformat(dt).isocalendar()[1]}</span></a></li>' for dt in dates)
+        side_items.append(
+            f'<li class="mo"><button type="button" class="month" data-month="{ym}" aria-expanded="{"true" if i == 0 else "false"}" aria-controls="m-{ym}">'
+            f'<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>'
+            f'<span class="mlabel">{esc(label)}</span><span class="count">{n} week{"s" if n != 1 else ""}</span></button>'
+            f'<ul class="weeks" id="m-{ym}"{"" if i == 0 else " hidden"}>{weeks}</ul></li>')
+    sidebar = f'''<nav class="side" aria-label="Reviews by month">
+<div class="side-title">Browse</div>
+<ul class="months">
+<li><button type="button" class="month all" data-month="all" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="mlabel">All weeks</span><span class="count">{n_weeks}</span></button></li>
+{"".join(side_items)}
+</ul>
+<div class="side-title" style="margin-top:20px">Latest</div>
+<ul class="months latest-list">{"".join(f'<li><a class="wk" href="/{slug}/latest.html">{esc(title)}</a></li>' for slug, title, *_ in WORKFLOWS if slug in latest)}</ul>
+</nav>'''
     index_css = """
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
+.side{position:sticky;top:24px}
+.side-title{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);padding:0 12px 6px}
+.months{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.month{appearance:none;width:100%;display:flex;align-items:center;gap:8px;padding:8px 12px;border:0;border-radius:8px;background:transparent;color:var(--text-2);font:500 14px/20px 'Inter',sans-serif;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.month:hover{background:var(--panel-3);color:var(--text)}
+.month:focus-visible{outline:none;box-shadow:var(--focus)}
+.month[aria-expanded="true"],.month[aria-pressed="true"]{background:var(--brand-bg);color:var(--brand-text)}
+.month .mlabel{flex:1}
+.month .count{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4)}
+.month[aria-expanded="true"] .count,.month[aria-pressed="true"] .count{color:inherit;opacity:.8}
+.month svg{flex:none;color:var(--text-4)}
+.month[aria-expanded="true"] svg,.month[aria-pressed="true"] svg{color:inherit}
+.chev{transition:transform .15s}
+.month[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.weeks{list-style:none;margin:2px 0 6px;padding:0 0 0 14px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--border);margin-left:19px}
+.wk{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;border-radius:6px;color:var(--text-3);font:400 14px/20px 'Inter',sans-serif;text-decoration:none}
+.wk:hover{background:var(--panel-3);color:var(--text);text-decoration:none}
+.wk[aria-current="true"]{color:var(--brand-text);font-weight:500}
+.wk .wn{font:500 12px/18px 'Roboto Mono',monospace;color:var(--text-4)}
+.latest-list .wk{padding-left:12px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .rcard{display:block;color:inherit;text-decoration:none;transition:box-shadow .15s,border-color .15s}
 .rcard:hover{text-decoration:none;border-color:var(--border-strong);box-shadow:0 4px 6px -1px rgba(10,13,18,.10),0 2px 4px -2px rgba(10,13,18,.06)}
 .rcard:focus-visible{outline:none;box-shadow:var(--focus)}
@@ -109,12 +155,50 @@ def main():
 .rcard .hl{display:flex;flex-wrap:wrap;gap:6px}
 .rcard .open{margin-top:auto;font:500 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
 .rcard.muted{opacity:.6}
+.week{scroll-margin-top:24px}
 .week+.week{border-top:1px solid var(--border);padding-top:28px}
-.latest{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 28px}
-.latest a{font:500 13px/20px 'Inter',sans-serif;padding:6px 12px;border:1px solid var(--border);border-radius:8px;background:var(--panel);color:var(--text-2);box-shadow:var(--shadow-xs)}
-.latest a:hover{background:var(--panel-2);text-decoration:none}
+.month-head{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin:0 0 12px}
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr;gap:20px}
+  .side{position:static;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:var(--shadow-xs)}
+}
 """
-    latest_links = "".join(f'<a href="/{slug}/latest.html">{esc(title)}: latest</a>' for slug, title, *_ in WORKFLOWS if slug in latest)
+    index_js = """
+(function(){
+  const monthBtns=[...document.querySelectorAll('.month[data-month]')];
+  const weekLinks=[...document.querySelectorAll('.wk[data-week]')];
+  const sections=[...document.querySelectorAll('section.week')];
+  const head=document.getElementById('month-head');
+  function show(month){
+    monthBtns.forEach(b=>{
+      const isAll=b.dataset.month==='all';
+      if(isAll){ b.setAttribute('aria-pressed', month==='all'?'true':'false'); return; }
+      const on=b.dataset.month===month;
+      b.setAttribute('aria-expanded', on?'true':'false');
+      const list=document.getElementById(b.getAttribute('aria-controls')); if(list) list.hidden=!on;
+    });
+    let n=0;
+    sections.forEach(s=>{const v=month==='all'||s.dataset.month===month; s.hidden=!v; if(v)n++;});
+    if(head){
+      if(month==='all') head.textContent='All '+n+' week'+(n===1?'':'s');
+      else { const d=new Date(month+'-01T00:00:00'); head.textContent=d.toLocaleString('en-GB',{month:'long',year:'numeric'})+' \u00b7 '+n+' week'+(n===1?'':'s'); }
+    }
+    try{localStorage.setItem('reviews.month',month);}catch(e){}
+  }
+  function current(week){ weekLinks.forEach(a=>a.setAttribute('aria-current', a.dataset.week===week?'true':'false')); }
+  monthBtns.forEach(b=>b.addEventListener('click',()=>{ show(b.dataset.month); current(null); }));
+  weekLinks.forEach(a=>a.addEventListener('click',e=>{
+    const w=a.dataset.week; show(w.slice(0,7)); current(w);
+    const t=document.getElementById(w); if(t){ e.preventDefault(); history.replaceState(null,'','#'+w); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
+  }));
+  let start=null;
+  const h=location.hash.replace('#','');
+  if(/^\d{4}-\d{2}-\d{2}$/.test(h) && document.getElementById(h)){ start=h.slice(0,7); show(start); current(h); document.getElementById(h).scrollIntoView(); return; }
+  try{ const saved=localStorage.getItem('reviews.month'); if(saved && (saved==='all' || monthBtns.some(b=>b.dataset.month===saved))) start=saved; }catch(e){}
+  if(!start){ const first=monthBtns.find(b=>b.dataset.month!=='all'); start=first?first.dataset.month:'all'; }
+  show(start);
+})();
+"""
     index = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -130,13 +214,19 @@ def main():
 <div class="page">
 <div class="masthead">{wordmark}<div class="eyebrow">Weekly Meta Ads review · Archive</div></div>
 <header class="title"><h1>Meta Ads weekly reviews</h1>
-<p class="lede">Every Monday's ad spend check, pixel domain check and client benchmark review, newest first. Each report compares against the previous week, so a flag that stays open shows how many weeks it has been open.</p>
+<p class="lede">Every Monday's ad spend check, pixel domain check and client benchmark review. Pick a month on the left to see its weeks; each report compares against the previous week, so a flag that stays open shows how many weeks it has been open.</p>
 <div class="meta"><span class="chip">{n_weeks} week{"s" if n_weeks != 1 else ""} on file</span><span class="chip">Since {first}</span><span class="chip">Internal, HiddenGem Marketing</span></div>
 </header>
-<div class="latest">{latest_links}</div>
+<div class="layout">
+{sidebar}
+<main>
+<p class="month-head" id="month-head"></p>
 {"".join(sections)}
 <div class="foot"><p>Built from the dated reports in the project's Weekly Checks folders. Numbers on the cards come from each report's CSV sidecar.</p></div>
+</main>
 </div>
+</div>
+<script>{index_js}</script>
 </body>
 </html>
 """
