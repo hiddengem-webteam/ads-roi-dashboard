@@ -130,7 +130,7 @@ Next: week-over-week diff in `generate_report.py` (currently hardcodes "First ru
 | Pixel domain check | https://claude.ai/artifact/PvVhNRBCtnniJGzsehkTWf |
 | Client benchmark | https://claude.ai/artifact/HFu3dZGrVBK9zHuYBu9qJ4 |
 
-**Repo and live archive (added 2026-09-21).** The whole project folder is a private git repo: `https://github.com/hiddengem-webteam/meta-ads-weekly-reviews` (account hiddengem-webteam). `Project Data/build_site.py` rebuilds `site/` (index of every Monday, `/<slug>/<date>.html`, `/<slug>/latest.html`, redirects) and Netlify serves it at `https://hg-ads-reviews.netlify.app` (site `hg-ads-reviews`, team adsbyshawal, deployed with `netlify deploy --prod --dir site`). Pages are `noindex`; the site must be put behind Netlify password or team access before the link is shared, because it names clients, account IDs, pixel IDs and budgets.
+**Repo and live archive (added 2026-09-21).** The whole project folder is a private git repo: `https://github.com/hiddengem-webteam/meta-ads-weekly-reviews` (account hiddengem-webteam). `Project Data/build_site.py` rebuilds `site/` (index of every Monday, `/<slug>/<date>.html`, `/<slug>/latest.html`, redirects) and Netlify serves it at `https://hiddengem-ads-reviews.netlify.app` (site `hiddengem-ads-reviews` (id f7b6b654-f0d8-4f24-9d69-03d351daff49), team hgwebteam (Pro, HiddenGem Media login hgwebteam@gmail.com), deployed with `netlify deploy --prod --dir site`). Pages are `noindex`; the site must be put behind Netlify password or team access before the link is shared, because it names clients, account IDs, pixel IDs and budgets.
 
 Weekly publish, after the three skills have written their `.md` + `.csv`:
 
@@ -138,7 +138,7 @@ Weekly publish, after the three skills have written their `.md` + `.csv`:
 python3 "Project Data/build_html.py" YYYY-MM-DD
 python3 "Project Data/build_site.py"
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
-npx netlify-cli deploy --prod --no-build --dir site
+npx netlify-cli deploy --prod --no-build --dir site --site f7b6b654-f0d8-4f24-9d69-03d351daff49
 ```
 
 Open: one stable claude.ai artifact URL per workflow (overwrite weekly) or one per week; Netlify push-to-deploy from GitHub (one-time link in the Netlify UI) instead of the CLI deploy; email delivery (Mailtrap) not wired yet.

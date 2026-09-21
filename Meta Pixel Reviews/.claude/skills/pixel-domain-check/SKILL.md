@@ -145,10 +145,10 @@ After the `.md` and `.csv` are written and the project files are updated:
 python3 "Project Data/build_html.py" YYYY-MM-DD
 python3 "Project Data/build_site.py"
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
-npx netlify-cli deploy --prod --no-build --dir site
+npx netlify-cli deploy --prod --no-build --dir site --site f7b6b654-f0d8-4f24-9d69-03d351daff49
 ```
 
-This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `site/` and publishes it to `https://hg-ads-reviews.netlify.app`. If the other two workflows have not run yet this week, run this anyway; the index shows "Not run this week" for them until they do.
+This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `site/` and publishes it to `https://hiddengem-ads-reviews.netlify.app`. If the other two workflows have not run yet this week, run this anyway; the index shows "Not run this week" for them until they do.
 
 ## Do not
 
