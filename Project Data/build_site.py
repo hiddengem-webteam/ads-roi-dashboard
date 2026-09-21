@@ -201,7 +201,7 @@ def main():
 .month svg{flex:none;color:var(--text-4)}
 .month[aria-expanded="true"] svg,.month[aria-pressed="true"] svg{color:inherit}
 .chev{transition:transform .15s}
-.month[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.month[aria-expanded="true"]:not(.collapsed) .chev{transform:rotate(90deg)}
 .weeks{list-style:none;margin:2px 0 6px;padding:0 0 0 14px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--border);margin-left:19px}
 .wk{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;border-radius:6px;color:var(--text-3);font:400 14px/20px 'Inter',sans-serif;text-decoration:none}
 .wk:hover{background:var(--panel-3);color:var(--text);text-decoration:none}
@@ -240,6 +240,7 @@ def main():
       if(isAll){ b.setAttribute('aria-pressed', month==='all'?'true':'false'); return; }
       const on=b.dataset.month===month;
       b.setAttribute('aria-expanded', on?'true':'false');
+      if(on) b.classList.remove('collapsed');
       const list=document.getElementById(b.getAttribute('aria-controls')); if(list) list.hidden=!on;
     });
     let n=0;
@@ -251,7 +252,19 @@ def main():
     try{localStorage.setItem('reviews.month',month);}catch(e){}
   }
   function current(week){ weekLinks.forEach(a=>a.setAttribute('aria-current', a.dataset.week===week?'true':'false')); }
-  monthBtns.forEach(b=>b.addEventListener('click',()=>{ show(b.dataset.month); current(null); }));
+  monthBtns.forEach(b=>b.addEventListener('click',()=>{
+    const m=b.dataset.month;
+    if(m!=='all' && b.getAttribute('aria-expanded')==='true'){
+      // already selected: collapse or re-open its week list, keep the filter
+      const list=document.getElementById(b.getAttribute('aria-controls'));
+      const open=list && !list.hidden;
+      if(list) list.hidden=open;
+      b.classList.toggle('collapsed', open);
+      return;
+    }
+    b.classList.remove('collapsed');
+    show(m); current(null);
+  }));
   weekLinks.forEach(a=>a.addEventListener('click',e=>{
     const w=a.dataset.week; show(w.slice(0,7)); current(w);
     const t=document.getElementById(w); if(t){ e.preventDefault(); history.replaceState(null,'','#'+w); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
