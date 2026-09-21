@@ -70,59 +70,49 @@ def _prev(md):
     t = m.group(1).strip().rstrip(".")
     return "none, first run" if "first run" in t.lower() or t.lower().startswith("none") else t
 
+def _nice(d):
+    return datetime.date.fromisoformat(d).strftime("%-d %b")
+
 def sources_for(date):
-    """Per-week source list, grouped: shared, then one entry per workflow. Dynamic bits are read from that week's .md files."""
+    """One small line per week: only the data used ON TOP of the live Meta connector reads."""
     sp, px, bm = _md("ad-spend", date), _md("pixel-domains", date), _md("client-benchmark", date)
-    # weekly export used that week
-    exp_dir = os.path.join(ROOT, "Weekly CSV Reports")
-    exports = sorted(f for f in os.listdir(exp_dir) if f.endswith("_meta-ads-report.csv") and f[:10] <= date) if os.path.isdir(exp_dir) else []
-    export = exports[-1] if exports else None
+    items = []
+    # 1. Ads Manager export used as fallback for accounts the connector cannot read
     m = re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for (\d+) blocked accounts", sp)
-    exp_range = f", {m.group(1)} to {m.group(2)}" if m else ""
-    n_sp_csv = m.group(3) if m else None
-    live_times = re.search(r"live reads ([\d:–\-]+)", sp)
-    shared = [
-        "Master Meta Ads sheet (Google Sheets), tab Meta Ad Links: client list, status, documented daily budget, comments",
-        "CRM – HiddenGem Media sheet (Google Sheets): account manager per client",
-        "Meta Ads connector (claude.ai): live reads from each client's ad account",
-    ]
-    if export:
-        shared.append(f"Ads Manager export {export}{exp_range}, used only for accounts the connector cannot read")
-    spend = [
-        "Meta connector: ad account list, active campaign and ad set daily budgets, lifetime budgets converted to daily, 7-day spend" + (f" (live reads {live_times.group(1)})" if live_times else ""),
-    ]
-    if n_sp_csv: spend.append(f"export used for {n_sp_csv} MCP-disabled accounts, marked provisional")
-    pv = _prev(sp);  spend.append(f"previous week's sidecar: {pv}" if pv else "previous week's sidecar: see report footer")
-    ed_path = os.path.join(ROOT, "Meta Pixel Reviews", "expected-domains.csv"); ed_note = ""
-    if os.path.exists(ed_path):
-        ed = list(csv.DictReader(open(ed_path, encoding="utf-8")))
-        c = collections.Counter(r["source"] for r in ed)
-        ed_note = f" ({len(ed)} rows: " + ", ".join(f"{v} {k}" for k, v in sorted(c.items(), key=lambda kv: -kv[1])) + ")"
-    pixel = [
-        "Meta datasets via the connector: HiddenGem Business Manager pixel listing plus per-account listings, 7-day host breakdown, event totals, event match quality",
-        "Master sheet: Attribution Tracking Setup column and PMS tab (booking engines)",
-        f"expected-domains.csv, the per-client list of expected domains{ed_note}",
-    ]
-    pv = _prev(px);  pixel.append(f"previous week's sidecar: {pv}" if pv else "previous week's sidecar: see report footer")
-    adv = re.search(r"^\| (\d+) \| (\d+) \| (\d+) \| \d+ \|", bm, re.M)
-    bench = [
-        "Benchmarks doc (Google Docs): Decision Making table for states; per-type Investigate lines as diagnostics",
-        "CRM sheet, tab Clients - Onboarding, Meta Ads column = Advanced" + (f" ({adv.group(1)} clients: {adv.group(2)} live, {adv.group(3)} from the export)" if adv else ""),
-        "Meta connector campaign insights: last 30 days (Lead Gen) and last 14 days (Sales/Retargeting); leads, purchases, ROAS, CPM, CTR, CPC, frequency",
-    ]
-    roi = re.search(r"Monthly ROI context from `Monthly ROI data/` \(([^)]*)\)", bm)
-    bench.append(f"Monthly ROI data JSON ({roi.group(1)}); revenue from the Client Performance Tracking sheet, not the pixel" if roi else "Monthly ROI data JSON files")
+    mb = re.search(r"for the (\d+) accounts the connector cannot read", bm)
+    if m or mb:
+        rng = f"{_nice(m.group(1))} to {_nice(m.group(2))}" if m else ""
+        parts = []
+        if m: parts.append(f"{m.group(3)} spend accounts")
+        if mb: parts.append(f"{mb.group(1)} benchmark accounts")
+        items.append(("warn", f"Ads Manager export {rng}".strip() + f" for {' and '.join(parts)}"))
+    # 2. Meeting notes
     meets = re.findall(r"^### (.+?) — (\d{4}-\d{2}-\d{2}) — doc", bm, re.M)
-    bench.append("Meeting notes by Gemini via Google Calendar + Drive: " + ", ".join(f"{t} {d}" for t, d in meets) if meets else "Meeting notes by Gemini: none found this week")
+    if meets:
+        items.append(("brand", "Meeting notes: " + ", ".join(f"{t} {_nice(d)}" for t, d in meets)))
+    elif bm:
+        items.append(("gray", "Meeting notes: none found"))
+    # 3. Monthly ROI data
+    roi = re.search(r"Monthly ROI context from `Monthly ROI data/` \(([^)]*)\)", bm)
+    if roi:
+        months = [x.strip() for x in roi.group(1).split(",")]
+        months.sort(key=lambda x: datetime.datetime.strptime(x, "%B %Y"))
+        items.append(("brand", "Monthly ROI data: " + ", ".join(months)))
+    # 4. HG AI reports
     hg = re.findall(r"^HG AI notes:\s*(.+)$", bm, re.M)
-    bench.append("HG AI Reports folder: " + ("none dropped in" if hg and all("none" in x.lower() for x in hg) else ("reports summarised per client" if hg else "not checked")))
-    pv = _prev(bm);  bench.append(f"previous week's sidecar: {pv}" if pv else "previous week's sidecar: see report footer")
-    groups = [("Shared", shared)]
-    if sp: groups.append(("Ad spend check", spend))
-    if px: groups.append(("Pixel domain check", pixel))
-    if bm: groups.append(("Client benchmark", bench))
-    rows = "".join(f"<dt>{esc(k)}</dt><dd>{' · '.join(esc(x) for x in v)}</dd>" for k, v in groups)
-    return f'<details class="sources" open><summary>Sources used this week</summary><dl>{rows}</dl></details>'
+    if hg:
+        used = [x for x in hg if "none" not in x.lower()]
+        items.append(("brand", f"HG AI reports: {len(used)} client{'s' if len(used) != 1 else ''}") if used else ("gray", "HG AI reports: none"))
+    # 5. previous week's sidecar, only when one was actually compared
+    prevs = [_prev(x) for x in (sp, px, bm) if x]
+    if prevs and any(p_ and p_ != "none, first run" for p_ in prevs):
+        items.append(("gray", "Compared against the previous week's reports"))
+    elif prevs:
+        items.append(("gray", "First run, no previous week to compare"))
+    if not items:
+        return ""
+    chips = "".join(f'<span class="src {k}"><span class="dot {k}"></span>{esc(t)}</span>' for k, t in items)
+    return f'<div class="sources"><span class="src-label">Beyond live Meta reads</span>{chips}</div>'
 
 def main():
     if os.path.isdir(SITE): shutil.rmtree(SITE)
@@ -227,16 +217,10 @@ def main():
 .rcard .open{margin-top:auto;font:500 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
 .rcard.muted{opacity:.6}
 .week{scroll-margin-top:24px}
-.sources{margin:0 0 16px;font:400 12px/18px 'Inter',sans-serif;color:var(--text-4)}
-.sources summary{cursor:pointer;font:500 12px/18px 'Inter',sans-serif;color:var(--text-3);list-style:none;display:inline-flex;align-items:center;gap:6px;padding:2px 0}
-.sources summary::-webkit-details-marker{display:none}
-.sources summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s;margin-right:2px}
-.sources[open] summary::before{transform:rotate(45deg)}
-.sources summary:focus-visible{outline:none;box-shadow:var(--focus);border-radius:4px}
-.sources dl{margin:8px 0 0;display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 12px;padding:10px 14px;border:1px solid var(--border);border-radius:8px;background:var(--panel-2)}
-.sources dt{font-weight:500;color:var(--text-3)}
-.sources dd{margin:0;max-width:110ch}
-@media (max-width:640px){.sources dl{grid-template-columns:1fr;gap:2px 0}.sources dt{margin-top:6px}.sources dt:first-child{margin-top:0}}
+.sources{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 16px}
+.src-label{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin-right:2px}
+.src{display:inline-flex;align-items:center;gap:6px;font:400 12px/18px 'Inter',sans-serif;color:var(--text-3);padding:2px 10px 2px 8px;border:1px solid var(--border);border-radius:9999px;background:var(--panel)}
+.src .dot{width:6px;height:6px}
 .week+.week{border-top:1px solid var(--border);padding-top:28px}
 .month-head{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin:0 0 12px}
 @media (max-width:900px){
