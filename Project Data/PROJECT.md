@@ -18,7 +18,8 @@ Long-term: automate with Supabase as the store, then move to HTML email output. 
 
 ```
 Meta Ads Analysis - 21:09:26/
-├── Project Data/                     this file + CHANGELOG.md + build_html.py (HTML report builder) + assets/hg-wordmark.svg
+├── Project Data/                     this file + CHANGELOG.md + build_html.py + build_site.py + assets/hg-wordmark.svg
+├── site/                             generated static archive Netlify serves (index + every dated page); rebuild, never hand-edit
 ├── Weekly CSV Reports/               Ads Manager exports, one per week, dated filename
 ├── Ad Spends Checks/
 │   ├── .claude/skills/ad-spend-check/SKILL.md   the runnable skill (/ad-spend-check)
@@ -129,7 +130,18 @@ Next: week-over-week diff in `generate_report.py` (currently hardcodes "First ru
 | Pixel domain check | https://claude.ai/artifact/PvVhNRBCtnniJGzsehkTWf |
 | Client benchmark | https://claude.ai/artifact/HFu3dZGrVBK9zHuYBu9qJ4 |
 
-Open: one stable URL per workflow (overwrite weekly) or one artifact per week. Email delivery (Mailtrap) not wired yet.
+**Repo and live archive (added 2026-09-21).** The whole project folder is a private git repo: `https://github.com/hiddengem-webteam/meta-ads-weekly-reviews` (account hiddengem-webteam). `Project Data/build_site.py` rebuilds `site/` (index of every Monday, `/<slug>/<date>.html`, `/<slug>/latest.html`, redirects) and Netlify serves it at `https://hg-ads-reviews.netlify.app` (site `hg-ads-reviews`, team adsbyshawal, deployed with `netlify deploy --prod --dir site`). Pages are `noindex`; the site must be put behind Netlify password or team access before the link is shared, because it names clients, account IDs, pixel IDs and budgets.
+
+Weekly publish, after the three skills have written their `.md` + `.csv`:
+
+```
+python3 "Project Data/build_html.py" YYYY-MM-DD
+python3 "Project Data/build_site.py"
+git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
+npx netlify-cli deploy --prod --dir site
+```
+
+Open: one stable claude.ai artifact URL per workflow (overwrite weekly) or one per week; Netlify push-to-deploy from GitHub (one-time link in the Netlify UI) instead of the CLI deploy; email delivery (Mailtrap) not wired yet.
 
 ## 5. Client → ad account map (as of 2026-09-21)
 

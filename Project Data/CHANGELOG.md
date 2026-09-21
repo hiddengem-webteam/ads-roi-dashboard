@@ -4,6 +4,7 @@ Major changes to the Meta Ads Analysis project. Newest first. Small wording fixe
 
 ## 2026-09-21 (night)
 
+- **Git repo + live archive.** Project folder pushed to private repo `hiddengem-webteam/meta-ads-weekly-reviews`. `Project Data/build_site.py` builds `site/` (index of every Monday's three reviews, dated pages, latest redirects); Netlify site `hg-ads-reviews` serves it at `https://hg-ads-reviews.netlify.app`. Each skill's last step now includes rebuilding the HTML and site, committing, pushing and deploying.
 - **HTML reports added.** `Project Data/build_html.py` turns each workflow's dated `.md` + `.csv` into a `.html` in the same `Weekly Checks/` folder, styled from the HiddenGem Media design system (Untitled UI base: Inter, neutral grays, brand blue `#0066DE` accents, green/amber/red badges with dots in place of the ✅⚠️❌🔴 emoji, sentence case, dark mode). Wordmark copied to `Project Data/assets/hg-wordmark.svg`. All three W39 pages published as claude.ai artifacts; URLs in `PROJECT.md` section 4.4.
 - **Reviewed the Cowork-era emails** (7 Sep spend + pixel audits, 31 Aug creative report). Findings not yet turned into decisions: sheet lost 5 clients and gained 2 between 7 and 21 Sep; Táberg at exactly 10% flipped ❌→✅ under the new rule; sister-account spend (Stay With Branch) flipped ❌→✅; Stay Southern Illinois flipped ❌→⚠️ on the same evidence; Tuxedo Falls pixel died ~1 Sep; the creative report is a fourth workflow with no skill yet.
 

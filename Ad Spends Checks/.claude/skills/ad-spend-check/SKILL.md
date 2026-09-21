@@ -145,6 +145,19 @@ Open `Project Data/PROJECT.md` and:
 
 If the skill itself was changed during the session (thresholds, columns, sources, output location), add a dated bullet to `Project Data/CHANGELOG.md` describing what changed and why. Newest entries go at the top.
 
+## Step 9: Publish the HTML and the archive
+
+After the `.md` and `.csv` are written and the project files are updated:
+
+```
+python3 "Project Data/build_html.py" YYYY-MM-DD
+python3 "Project Data/build_site.py"
+git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
+npx netlify-cli deploy --prod --dir site
+```
+
+This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `site/` and publishes it to `https://hg-ads-reviews.netlify.app`. If the other two workflows have not run yet this week, run this anyway; the index shows "Not run this week" for them until they do.
+
 ## Do not
 
 - Do not send email. That comes later.
