@@ -121,10 +121,19 @@ td.nowrap{white-space:nowrap}
 .kv dt{color:var(--text-4);font-weight:500}.kv dd{margin:0;color:var(--text-2)}
 @media (max-width:640px){.kv{grid-template-columns:1fr;gap:2px 0}.kv dt{margin-top:8px}.kv dt:first-child{margin-top:0}}
 .tof{padding:12px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-3)}
-.meeting{padding:16px 20px}
+.meeting{padding:0}
 .meeting + .meeting{border-top:1px solid var(--border)}
-.meeting h3{margin-bottom:4px}
-.meeting .when{font-size:13px;color:var(--text-4);margin-bottom:12px}
+.meeting summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}
+.meeting summary::-webkit-details-marker{display:none}
+.meeting summary:hover{background:var(--panel-2)}
+.meeting summary:focus-visible{outline:none;box-shadow:inset var(--focus)}
+.meeting .chev{flex:none;width:8px;height:8px;margin-top:8px;border-right:1.5px solid var(--text-4);border-bottom:1.5px solid var(--text-4);transform:rotate(-45deg);transition:transform .15s}
+.meeting[open] .chev{transform:rotate(45deg)}
+.meeting .mtxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.meeting .mtitle{font:600 16px/24px 'Inter',sans-serif;color:var(--text)}
+.meeting .when{font-size:13px;line-height:18px;color:var(--text-4)}
+.meeting .mlead{font-size:14px;line-height:21px;color:var(--text-3);margin-top:4px;max-width:80ch}
+.meeting .mbody{padding:0 20px 20px 40px}
 .meeting p{margin:0 0 8px;font-size:14px;line-height:21px;color:var(--text-2);max-width:80ch}
 .meeting .lbl{font:600 13px/18px 'Inter',sans-serif;color:var(--text);margin:12px 0 4px}
 .meeting ul{margin:0;padding-left:20px;font-size:14px;line-height:21px;color:var(--text-2);max-width:80ch}
@@ -398,7 +407,9 @@ def build_bench():
         sp="".join(f"<p>{inline(p)}</p>" for p in summ)
         dh=f'<div class="lbl">Decisions</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in dec)}</ul>' if dec else ""
         nh=f'<div class="lbl">Next steps</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in nxt)}</ul>' if nxt else ""
-        mhtml.append(f'<div class="meeting"><h3>{esc(title)}</h3><div class="when">{esc(date)} · Notes by Gemini · doc <span class="mono">{esc(doc)}</span></div>{sp}{dh}{nh}</div>')
+        lead = inline(summ[0]) if summ else ""
+        rest = "".join(f"<p>{inline(p)}</p>" for p in summ[1:])
+        mhtml.append(f'<details class="meeting"><summary><span class="chev" aria-hidden="true"></span><span class="mtxt"><span class="mtitle">{esc(title)}</span><span class="when">{esc(date)} · Notes by Gemini · doc <span class="mono">{esc(doc)}</span></span>{f"<span class=mlead>{lead}</span>" if lead else ""}</span></summary><div class="mbody">{rest}{dh}{nh}</div></details>')
     hdr=["Client","AM","Campaign","Type","Spend / window","Governing metric","State","Status vs last week"]
     kinds=["first","text","text","nowrap","num","num","badge","nowrap"]
     act=render_table("act",hdr,tables(S["Action needed"])[0][1:],kinds,flag_col=6,flag_map=flag_state)
