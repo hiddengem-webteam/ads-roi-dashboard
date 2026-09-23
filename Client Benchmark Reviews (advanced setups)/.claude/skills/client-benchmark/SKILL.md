@@ -18,6 +18,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 - **Metrics come from Meta**: Purchase event (`omni_purchase`, `purchase_roas`, `cost_per_omni_purchase`) and Lead event (`lead`, `cost_per_lead`). Not PMS bookings, not CRM leads.
 - **Advanced-setup list** is the CRM sheet, tab "Clients - Onboarding" (header row reads "Management Clients"), column "Meta Ads" = `Advanced`. Nothing outside the CRM is scored, even if it spends.
 - **No HG AI hand-off block** is generated. Shawal does the analysis. Any HG AI report Shawal drops into `HG AI Reports/` is summarised in one line under the client.
+- **Live campaigns only (2026-09-23).** Only campaigns with `effective_status` ACTIVE at run time are scored. A paused campaign that spent inside the window is listed in one line under its client ("Paused in window, not scored") so the spend is visible, and never enters Action needed, Scale candidates or the counts. Reason: paused means the team already acted on it.
 
 ## Inputs
 
@@ -65,7 +66,7 @@ By objective first, name second:
 
 CSV accounts have no objective column. Classify by name: lead → Lead Gen; bof / retarget / sales → Sales; discovery / giveaway / keyword / tof → ToF.
 
-Paused campaigns that spent inside the window are scored and marked "campaign paused" in Notes.
+Paused campaigns (any `effective_status` other than ACTIVE) are not scored. Record name, type, window spend, results and governing value for the client's "Paused in window" line and move on. CSV-fallback accounts have no status column, so their rows stay provisional and are scored as before.
 
 ## Step 4: State
 

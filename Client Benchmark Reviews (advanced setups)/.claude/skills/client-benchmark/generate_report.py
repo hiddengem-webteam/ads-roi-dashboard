@@ -174,7 +174,7 @@ def mentions(client):
     return out
 
 # ---------- score ----------
-records=[]; unclassified=[]
+records=[]; unclassified=[]; paused_by_client=collections.defaultdict(list)
 for client,(am,acct,acctname,src) in ADV.items():
     tof_spend=0.0
     if src=="live":
@@ -184,6 +184,13 @@ for client,(am,acct,acctname,src) in ADV.items():
             t=ctype(base["obj"],base["name"])
             if t=="ToF": tof_spend+=(r30 or {}).get("spend") or 0; continue
             if t=="UNCLASSIFIED": unclassified.append((client,base["name"])); continue
+            if base["status"]!="ACTIVE":
+                # decision 2026-09-23: only live campaigns are scored; paused ones are listed, not judged
+                rr=r30 if t==LEAD else (r14 or r30)
+                paused_by_client[client].append(dict(name=base["name"],type=t,win=30 if t==LEAD else 14,spend=rr["spend"] or 0,
+                    results=f"{int(rr['leads'] or 0)} leads" if t==LEAD else f"{int(rr['purch'] or 0)} purchases",
+                    gov=f"CPL {money(rr['cpl'])}" if t==LEAD else f"ROAS {x(rr['roas'])}"))
+                continue
             if t==LEAD:
                 r=r30; win=30; gate=100
                 if r is None: continue
@@ -199,7 +206,6 @@ for client,(am,acct,acctname,src) in ADV.items():
             if r["spend"]<gate: state="Under gate"; why=f"spend {money(r['spend'])} < ${gate} gate"
             dg=diags(t,r["cpc"],r["cpm"],r["ctr"],r["cpp"],r["freq"])
             notes=[]
-            if r["status"]!="ACTIVE": notes.append(f"campaign {r['status'].lower()}")
             if why: notes.append(why)
             if extra: notes.append(extra)
             records.append(dict(client=client,am=am,acct=acct,cid=cid,name=r["name"],type=t,win=win,src="live",spend=r["spend"],results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=r["status"]))
@@ -278,13 +284,15 @@ for c in order:
     L.append(f"ToF (Discovery / Keyword) spend, not scored: {money(tof,0)} over {'30 days' if src=='live' else f'{csv_days} days (export)'}.\n")
     rs_=by_client.get(c,[])
     if not rs_:
-        L.append("No Lead Gen or Sales campaigns with spend in the window.\n")
+        L.append("No live Lead Gen or Sales campaigns with spend in the window.\n")
     else:
         L.append("| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |")
         L.append("|---|---|---|---|---|---|---|---|---|---|")
         for r in sorted(rs_,key=lambda r:(ORDER[r["state"]],-r["spend"])):
             L.append(f"| {r['name']} | {r['type']} | {r['win']}d | {money(r['spend'],0)} | {r['results']} | {r['gov']} | {r['state']} | {r['diag']} | {r['notes']} | First run |")
         L.append("")
+    for pz in paused_by_client.get(c,[]):
+        L.append(f"Paused in window, not scored: {pz['name']} ({pz['type']}), {money(pz['spend'],0)} / {pz['win']}d, {pz['results']}, {pz['gov']}. Live campaigns only are scored (decision 2026-09-23).\n")
     L.append(roi_line(c)+"\n")
     ms=mentions(c)
     if ms:
@@ -300,7 +308,7 @@ L.append("- Classification: by campaign objective (OUTCOME_LEADS → Lead Gen; O
 L.append("- Sales campaigns with an MoF or lookalike prefix are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting sales campaigns; confirm or add one.")
 L.append("- CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.")
 L.append("- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21).")
-L.append("- Paused campaigns that still spent inside the window are scored and marked paused.")
+L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as \"Paused in window\" and never enter Action needed or the counts (decision 2026-09-23).")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append("- Previous report: none, first run.")
 L.append("- Meeting notes: every \"Meta Ads Strategy\" or \"Meta Ads Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber = Tàberg Falls).")

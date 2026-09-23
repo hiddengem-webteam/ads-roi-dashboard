@@ -1,10 +1,10 @@
 # Client Benchmark Review (advanced setups) — 2026-09-21
 
-Run: 21 September 2026. Live reads via the Meta connector; CSV export 2026-09-01 to 2026-09-21 for the 4 accounts the connector cannot read. Scope: clients marked **Advanced** in the CRM "Meta Ads" column (Clients - Onboarding tab). Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.
+Run: 21 September 2026 (tables regenerated 2026-09-23 under the live-campaigns-only rule). Live reads via the Meta connector; CSV export 2026-09-01 to 2026-09-21 for the 4 accounts the connector cannot read. Scope: clients marked **Advanced** in the CRM "Meta Ads" column (Clients - Onboarding tab). Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.
 
 | Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI |
 |---|---|---|---|---|---|---|---|---|---|
-| 16 | 12 | 4 | 30 | 9 | 2 | 12 | 4 | 6 | 6 |
+| 16 | 12 | 4 | 28 | 7 | 0 | 12 | 4 | 6 | 6 |
 
 States come from the Decision Making table in the Benchmarks doc. Lead Gen: CPL under $0.30 Scale, $0.30–0.50 Healthy, $0.50–1.00 Monitor, $1.00–2.50 Review, $2.50+ Flag, 30-day window, $100 gate. Sales/Retargeting: ROAS above 15x Scale, 8–15x Healthy, 5–8x Monitor, 2–5x Review, under 2x Flag, 14-day window, $200 gate. Band edges are inclusive on the lower bound.
 
@@ -75,8 +75,6 @@ Flag to Shawal first, then Review w/ HG AI. Within a state, highest spend first.
 
 | Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |
 |---|---|---|---|---|---|---|---|
-| American River Resort | Nicole | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | $262 / 30d | CPL $261.69 | Flag to Shawal | New (first run) |
-| Canopy at Moody Moon | Alicia | 09/02 - Sales | Sales | $224 / 14d | ROAS 0.5x | Flag to Shawal | New (first run) |
 | Stay On 30A | Charlotte | MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | $1,512 / 30d | CPL $2.23 | Review w/ HG AI | New (first run) |
 | Tàberg Falls | Alicia | MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | $1,417 / 14d | ROAS 3.3x | Review w/ HG AI | New (first run) |
 | Tàberg Falls | Alicia | BoF - Website Retargeting Campaign - 08/21/2026 | Retargeting (BoF) | $1,404 / 14d | ROAS 4.5x | Review w/ HG AI | New (first run) |
@@ -263,8 +261,9 @@ ToF (Discovery / Keyword) spend, not scored: $906 over 30 days.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $262 | 1 leads | CPL $261.69 | Flag to Shawal | CPC $0.36 > $0.30; CPM $25.51 > $14.84 | campaign paused | First run |
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $302 | 217 leads | CPL $1.39 | Review w/ HG AI | CPM $17.13 > $14.84 | 14d CPL $1.39 | First run |
+
+Paused in window, not scored: MoF - Lead Campaign - Retargeting Engagers (Lead Gen (MoF)), $262 / 30d, 1 leads, CPL $261.69. Live campaigns only are scored (decision 2026-09-23).
 
 Monthly ROI: August: spend $1,529, 3 Meta-attributed bookings, blended ROAS 1.4x, CPL $18.30 on 30 leads · July: spend $1,544, 4 Meta-attributed bookings, blended ROAS 1.1x.
 
@@ -280,7 +279,8 @@ ToF (Discovery / Keyword) spend, not scored: $605 over 30 days.
 |---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $238 | 104 leads | CPL $2.29 | Review w/ HG AI | within lines | 14d CPL $1.76 | First run |
 | BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $137 | 5 purchases | ROAS 8.9x | Under gate | CPC $0.65 > $0.62 | spend $137.23 < $200 gate; 30d ROAS 10.9x, 9 purchases | First run |
-| MoF - Lead Campaign/07/28/2026 | Lead Gen (MoF) | 30d | $59 | 5 leads | CPL $11.81 | Under gate | CPC $0.36 > $0.30 | campaign paused; spend $59.05 < $100 gate | First run |
+
+Paused in window, not scored: MoF - Lead Campaign/07/28/2026 (Lead Gen (MoF)), $59 / 30d, 5 leads, CPL $11.81. Live campaigns only are scored (decision 2026-09-23).
 
 Monthly ROI: August: spend $1,247, 23 Meta-attributed bookings, blended ROAS 8.2x, retargeting ROAS 17.1x, CPL $9.09 on 34 leads · July: spend $1,222, 17 Meta-attributed bookings, blended ROAS 7.8x, retargeting ROAS 14.6x, CPL $5.65 on 8 leads.
 
@@ -309,10 +309,11 @@ HG AI notes: none dropped in yet.
 
 ToF (Discovery / Keyword) spend, not scored: $0 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| 09/02 - Sales | Sales | 14d | $224 | 2 purchases | ROAS 0.5x | Flag to Shawal | CPC $1.88 > $0.62; CPM $63.13 > $16.50; cost/booking $111.86 > $90 | campaign paused; 30d ROAS 0.5x, 9 purchases | First run |
-| Sales ABO Ads Tests - 08/28/2026 | Sales | 14d | $87 | 2 purchases | ROAS 1.1x | Under gate | CPC $2.06 > $0.62; CPM $114.54 > $16.50 | campaign paused; spend $86.71 < $200 gate; 30d ROAS 0.2x, 2 purchases | First run |
+No live Lead Gen or Sales campaigns with spend in the window.
+
+Paused in window, not scored: 09/02 - Sales (Sales), $224 / 14d, 2 purchases, ROAS 0.5x. Live campaigns only are scored (decision 2026-09-23).
+
+Paused in window, not scored: Sales ABO Ads Tests - 08/28/2026 (Sales), $87 / 14d, 2 purchases, ROAS 1.1x. Live campaigns only are scored (decision 2026-09-23).
 
 Monthly ROI: no record in the Monthly ROI data files.
 
@@ -358,7 +359,7 @@ HG AI notes: none dropped in yet.
 - Sales campaigns with an MoF or lookalike prefix are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting sales campaigns; confirm or add one.
 - CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.
 - Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21).
-- Paused campaigns that still spent inside the window are scored and marked paused.
+- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as "Paused in window" and never enter Action needed or the counts (decision 2026-09-23; this report was regenerated under that rule on 2026-09-23).
 - Unclassified campaigns: none.
 - Previous report: none, first run.
 - Meeting notes: every "Meta Ads Strategy" or "Meta Ads Sync" calendar event since the previous run that has a "Notes by Gemini" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber = Tàberg Falls).

@@ -421,7 +421,8 @@ def build_bench():
         ps=paras(c["lines"]); tbls=tables(c["lines"])
         tof=[p for p in ps if p.startswith("ToF")]; roi=[p for p in ps if p.startswith("Monthly ROI")]
         notes=[p for p in ps if p.startswith("Meeting notes")]; hg=[p for p in ps if p.startswith("HG AI notes")]
-        nocamp=[p for p in ps if p.startswith("No Lead Gen")]
+        nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
+        pausedl=[p for p in ps if p.startswith("Paused in window")]
         tid=f"c{i}"
         if tbls: tbl=render_table(tid,chdr,tbls[0][1:],ckinds,flag_col=6,flag_map=flag_state)
         else: tbl=f'<div class="empty">{inline(nocamp[0]) if nocamp else "No scored campaigns."}</div>'
@@ -432,8 +433,10 @@ def build_bench():
             m=re.match(r"^\(([^)]*?) (\d{4}-\d{2}-\d{2})\):\s*(.*)$",n)
             return f"<strong>{esc(m.group(1))}, {esc(m.group(2))}.</strong> {inline(m.group(3))}" if m else inline(n)
         notes_html="".join(f"<dt>Meeting notes</dt><dd>{fmt_note(n)}</dd>" for n in notes) if notes else "<dt>Meeting notes</dt><dd>Not mentioned in this week's meetings.</dd>"
+        PZ=re.compile(r"^Paused in window, not scored:\s*")
+        paused_html="".join(f"<dt>Paused in window</dt><dd>{inline(PZ.sub('',pl))}</dd>" for pl in pausedl)
         kv=f"""<dl class="kv">
-<dt>Monthly ROI</dt><dd>{inline(strip_lbl(roi[0],"Monthly ROI")) if roi else "—"}</dd>
+{paused_html}<dt>Monthly ROI</dt><dd>{inline(strip_lbl(roi[0],"Monthly ROI")) if roi else "—"}</dd>
 {notes_html}
 <dt>HG AI notes</dt><dd>{inline(strip_lbl(hg[0],"HG AI notes")[:1].upper()+strip_lbl(hg[0],"HG AI notes")[1:]) if hg else "—"}</dd>
 </dl>"""

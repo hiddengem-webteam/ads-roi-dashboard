@@ -2,6 +2,11 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-09-23
+
+- **Client Benchmark scores live campaigns only.** Shawal's ruling: a paused campaign has already been acted on, so it must not drive Flag / Review. `generate_report.py` and the skill now skip any campaign whose `effective_status` is not ACTIVE, list it under the client as "Paused in window, not scored" with spend, results and governing value, and keep it out of Action needed and the counts. The 2026-09-21 report and sidecar were regenerated under the rule (both former Flag rows were paused campaigns; Flag count is now 0). HTML report, claude.ai artifact and the Netlify archive republished.
+- **Local preview server** added at `Project Data/serve_site.py` (no-cache, port 8765).
+
 ## 2026-09-21 (night)
 
 - **Git repo + live archive.** Project folder pushed to private repo `hiddengem-webteam/meta-ads-weekly-reviews`. `Project Data/build_site.py` builds `site/` (index of every Monday's three reviews, dated pages, latest redirects); Netlify site `hiddengem-ads-reviews` (team hgwebteam) serves it at `https://hiddengem-ads-reviews.netlify.app`. Each skill's last step now includes rebuilding the HTML and site, committing, pushing and deploying.
