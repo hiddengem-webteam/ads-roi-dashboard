@@ -5,6 +5,7 @@ Major changes to the Meta Ads Analysis project. Newest first. Small wording fixe
 ## 2026-09-23
 
 - **Client Benchmark scores live campaigns only.** Shawal's ruling: a paused campaign has already been acted on, so it must not drive Flag / Review. `generate_report.py` and the skill now skip any campaign whose `effective_status` is not ACTIVE, list it under the client as "Paused in window, not scored" with spend, results and governing value, and keep it out of Action needed and the counts. The 2026-09-21 report and sidecar were regenerated under the rule (both former Flag rows were paused campaigns; Flag count is now 0). HTML report, claude.ai artifact and the Netlify archive republished.
+- **Action needed order:** Sales and Retargeting campaigns first, then Lead Gen; within each Flag before Review, highest spend first. Same order for Scale candidates. Applied to the generator, the skill, the HTML builder and the saved 2026-09-21 report.
 - **Local preview server** added at `Project Data/serve_site.py` (no-cache, port 8765).
 
 ## 2026-09-21 (night)

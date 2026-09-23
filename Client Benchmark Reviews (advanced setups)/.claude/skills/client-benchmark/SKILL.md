@@ -103,8 +103,8 @@ Join on `campaign_id` (live) or `client + campaign` (CSV) against the previous s
 
 1. Header line and counts table: Advanced clients, live reads, from CSV, campaigns scored, under gate, count per state.
 1b. **Weekly Meta Ads meetings since last run**: one sub-heading per meeting (title, date, doc ID) with Gemini's Summary, Decisions, Next steps.
-2. **Action needed**: Flag then Review, highest spend first. Columns: `Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week`.
-3. **Scale candidates**: same columns.
+2. **Action needed**: Sales and Retargeting (BoF and MoF-lookalike) campaigns first, then Lead Gen; within each, Flag before Review, highest spend first (Shawal, 2026-09-23). Columns: `Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week`.
+3. **Scale candidates**: same columns, same order.
 4. **Per client**, ordered by scored MoF + BoF spend, highest first. Heading with AM, account name and ID, live or CSV. One ToF spend line. Table: `Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week`. Then one "Monthly ROI:" line, one "Meeting notes (meeting date):" line per meeting that names the client (up to three Details sentences, timestamps stripped), or "not mentioned in this week's meetings", and one "HG AI notes:" line.
 5. **Footer**: windows, gates, classification rule, the MoF-lookalike-on-Retargeting-bands caveat, CTR caveat, frequency caveat, unclassified campaigns, previous report, ROI data source caveat (sheet revenue, not pixel).
 

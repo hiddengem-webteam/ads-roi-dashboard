@@ -264,17 +264,18 @@ else:
     L.append("## Weekly Meta Ads meetings since last run\n\nNo \"Notes by Gemini\" doc found on the Meta Ads Strategy or Meta Ads Sync events.\n")
 
 L.append("## Action needed\n")
-L.append("Flag to Shawal first, then Review w/ HG AI. Within a state, highest spend first.\n")
+L.append("Sales and Retargeting campaigns first, then Lead Gen. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.\n")
 L.append("| Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |")
 L.append("|---|---|---|---|---|---|---|---|")
 act=[r for r in records if r["state"] in ("Flag to Shawal","Review w/ HG AI")]
-for r in sorted(act,key=lambda r:(ORDER[r["state"]],-r["spend"])): L.append(srow(r))
+def act_key(r): return (0 if r["type"]!=LEAD else 1, ORDER[r["state"]], -r["spend"])  # decision 2026-09-23: sales/retargeting on top
+for r in sorted(act,key=act_key): L.append(srow(r))
 L.append("")
 L.append("## Scale candidates\n")
 L.append("| Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |")
 L.append("|---|---|---|---|---|---|---|---|")
 sc=[r for r in records if r["state"]=="Scale w/ HG AI"]
-for r in sorted(sc,key=lambda r:-r["spend"]): L.append(srow(r))
+for r in sorted(sc,key=act_key): L.append(srow(r))
 if not sc: L.append("| — | | | | | | | |")
 L.append("")
 L.append("## Per client, ordered by scored MoF + BoF spend\n")

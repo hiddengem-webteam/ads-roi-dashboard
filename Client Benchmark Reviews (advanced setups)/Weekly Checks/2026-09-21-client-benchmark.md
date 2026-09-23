@@ -71,18 +71,18 @@ Next steps:
 
 ## Action needed
 
-Flag to Shawal first, then Review w/ HG AI. Within a state, highest spend first.
+Sales and Retargeting campaigns first, then Lead Gen. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.
 
 | Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |
 |---|---|---|---|---|---|---|---|
-| Stay On 30A | Charlotte | MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | $1,512 / 30d | CPL $2.23 | Review w/ HG AI | New (first run) |
 | Tàberg Falls | Alicia | MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | $1,417 / 14d | ROAS 3.3x | Review w/ HG AI | New (first run) |
 | Tàberg Falls | Alicia | BoF - Website Retargeting Campaign - 08/21/2026 | Retargeting (BoF) | $1,404 / 14d | ROAS 4.5x | Review w/ HG AI | New (first run) |
 | Paradise Pointe | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $1,026 / 21d | ROAS 2.7x | Review w/ HG AI | New (first run) |
+| Stay Saluda NC | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $414 / 14d | ROAS 4.3x | Review w/ HG AI | New (first run) |
+| Stay On 30A | Charlotte | MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | $1,512 / 30d | CPL $2.23 | Review w/ HG AI | New (first run) |
 | Treetop Escapes | Makenna | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | $901 / 30d | CPL $1.10 | Review w/ HG AI | New (first run) |
 | Starlight Haven Weiss Lake | Charlotte | New Leads Campaign - 03/03/26 | Lead Gen (MoF) | $758 / 30d | CPL $1.37 | Review w/ HG AI | New (first run) |
 | Stay Saluda NC | Makenna | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | $593 / 30d | CPL $1.19 | Review w/ HG AI | New (first run) |
-| Stay Saluda NC | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $414 / 14d | ROAS 4.3x | Review w/ HG AI | New (first run) |
 | American River Resort | Nicole | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | $302 / 30d | CPL $1.39 | Review w/ HG AI | New (first run) |
 | Green Springs Inn | Alicia | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | $238 / 30d | CPL $2.29 | Review w/ HG AI | New (first run) |
 | AwayFrames | Alicia | MoF - Lead Campaign - Retargeting Engagers 07/31/2026 | Lead Gen (MoF) | $150 / 30d | CPL $2.35 | Review w/ HG AI | New (first run) |

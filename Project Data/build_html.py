@@ -455,7 +455,7 @@ def build_bench():
   <div class="card">{"".join(mhtml)}</div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Action needed</h2><p class="sec-desc">Flag to Shawal first, then Review w/ HG AI. Within a state, highest spend first.</p></div></div>
+  <div class="sec-head"><div><h2>Action needed</h2><p class="sec-desc">Sales and Retargeting campaigns first, then Lead Gen. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.</p></div></div>
   <div class="card">{act}</div>
 </section>
 <section>
