@@ -41,7 +41,7 @@ Do this for every client on the sheet, including Not Live and Paused. Spend on a
 Access rules. Do not retry these. Before marking a 🔴 Blocker, check the CSV fallback below. If the account is in this week's export, score it from the CSV instead and note the source. Only if it is missing from the export too, flag and move on:
 
 - `is_ads_mcp_enabled: false` -> 🔴 Blocker, Actual $/day `n/a`, note exactly: "Claude doesn't have access — please check the spend manually"
-- Account not in the list at all -> 🔴 Blocker, note: "No account access — needs access fix". An account can vanish from the list week to week (Big Moon Ranch, 2026-09-28); check the CSV export before flagging, and if it is missing there too, ask Shawal to add it to the saved report.
+- Account not in the list at all -> 🔴 Blocker, note: "No account access — needs access fix". An account can vanish from the list week to week (Big Moon Ranch, 2026-09-28); check the CSV export before flagging, and if it is missing there too, ask Shawal to add it to the saved report. Exception: a client marked offboarded in `PROJECT.md` section 5 or 9 is not a blocker. If it is still on the Master sheet, mark it ⚠️ with the note "offboarded on <date>, remove from sheet or set Status to Not Live" and skip the account reads.
 - `is_queryable: false` -> 🔴 Blocker, note the `not_queryable_reason`
 - Two candidate accounts for one client -> query the one owned by the client's own business, not a legacy or "NOT IN USE" account under the HiddenGem BM. Add a ⚠️ note about the duplicate.
 

@@ -154,7 +154,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Away2PA | Alicia | Away2Pa | 603977626130795 | ok |
 | Awayframes | Alicia | Awayframes Ad Account | 2471256056603833 | ok |
 | Best Texas Travel | Nicole | Best Texas Travel Ad Account | 1982551189319458 | ok |
-| Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | MCP disabled → CSV. 2026-09-28: account no longer appears in the connector's account list at all and is missing from the export; 🔴 until Shawal adds it to the saved report or access is restored |
+| Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | **Offboarded 2026-09-28** (Shawal). Not in the connector list or the export any more. Not a blocker: if the row is still on the Master sheet, the spend check marks it ⚠️ "offboarded, remove from sheet or set Status to Not Live" and stops once the row is gone |
 | Bison Ridge Retreat | Chiara | Bison Ridge Retreat Ad Account | 950241787963535 | MCP disabled → CSV |
 | Canopy at Moody Moon Ridge | Alicia | The Canopy At Moody Moon Ridge | 1293707265980102 | ok. Second account "Moody Moon Ridge" (Sue Hough) 1061646495537777 is MCP disabled |
 | Columbia Gorge Getaways | Chiara | CGG | 490940113157881 | ok |
@@ -205,7 +205,7 @@ Primary pixel per client, plus live secondaries. Full domain expectations live i
 | Away2PA | Away 2PA Meta Pixel → 772693422494226 | HG BM | |
 | Awayframes | Awayframes - Meta Pixel → 773898245792839 | HG BM | |
 | Best Texas Travel | Best Texas - Meta Pixel → 4108409325970216 | HG BM | |
-| Big Moon Ranch | Big Moon Ranch - Meta Pixel → 1208874174466414 | HG BM | account MCP-disabled, pixel readable |
+| Big Moon Ranch | Big Moon Ranch - Meta Pixel → 1208874174466414 | HG BM | client offboarded 2026-09-28; pixel stays in the HG BM listing, expect it to go silent |
 | Bison Ridge Retreat | Bison Ridge - Meta Pixel → 1241959234316508 | HG BM | account MCP-disabled, pixel readable |
 | Canopy at Moody Moon Ridge | Moody Moon Pixel Main → 861460105842405 | client BM 1798221880199326 | |
 | Columbia Gorge Getaways | Columbia Gorge Getaways Pixel → 700947282709400 (primary); CGG Pixel → 595257656540749 (Wix embed only) | client BMs | two live pixels |
@@ -288,7 +288,7 @@ Things that were not obvious and change how the workflows are built or run.
 | 1 | Dollar floor before Critical on small accounts? | Keep pure % rule / add $15 floor | Open |
 | 2 | Add the five unlisted active accounts to the Master sheet? | Yes / No / some | Open |
 | 3 | Add account IDs to the Master sheet? | Recommended | Open |
-| 4 | Ads Manager saved report: add delivery columns, last 7 days | Recommended | Resolved 2026-09-28: columns added, export is 7 days; Big Moon Ranch still needs adding to the report's account list |
+| 4 | Ads Manager saved report: add delivery columns, last 7 days | Recommended | Resolved 2026-09-28: columns added, export is 7 days. Big Moon Ranch no longer needs adding (offboarded 2026-09-28) |
 | 5 | AM for North Star Resort & Lodge | Add to CRM | Open |
 | 6 | Where does the expected pixel domain per client live? (workflow 2) | Sheet column / file in folder | Resolved 2026-09-21: `Meta Pixel Reviews/expected-domains.csv`, seeded from run 1 with `source=inferred`; Shawal flips rows to `confirmed` |
 | 7 | Source and format for weekly ads meeting summary (workflow 3) | Fireflies connector / pasted file | Resolved 2026-09-21: Gemini "Notes by Gemini" docs attached to the weekly "Meta Ads Strategy" and "Meta Ads Sync" calendar events, fetched automatically via the Calendar + Drive connectors. No manual step |
@@ -333,3 +333,4 @@ What Shawal or an AM changed in the accounts between two Monday runs, so the nex
 | 2026-09-28 | Tàberg Falls | Added audience segments; new "MoF - Broad (Acquire new customers) - 09/28/2026" Sales campaign at $50/day (starts 21:00 UTC); Lookalike Sales campaign cut from $100 to $50/day | Shawal | Live: Lookalike $50 + BoF $100 + Giveaway $100 + Leads $60 + Broad $50 = $360/day, same total as the W40 read | Done | Spend check stays ✅ ($360 vs $400 sheet). Benchmark: Lookalike (Review, 3.8x) is on half the budget, judge on 14 days after 28 Sep; Broad is a prospecting Sales campaign, scored on the Retargeting bands per decision 15, under the $200 gate until about 2 Oct |
 | 2026-09-28 | Inspired Retreats ← Stay Saluda (pixel) | Blocked the contaminated traffic (Saluda hosts sending to pixel 1547510566197386) | Shawal | Saluda hosts still hit the pixel at 10:00 and 11:00 PT on 28 Sep (last: links.staysaluda.com 11:00); the block was applied after that or is not yet effective | Reported | Pixel check: ❌ row closes only if no staysaluda.com host appears in the 7-day window; if the block was applied 28 Sep the row will still show a few events in the first day of the window, so read the daily buckets before deciding |
 | 2026-09-28 | Little River Landing ← North Star (pixel) | Blocked the contaminated traffic | Shawal | No North Star host on pixel 1816709606431185 since 23 Sep 07:00 PT; only staylittleriver.com hosts on 26–28 Sep | Done | Pixel check: ❌ row should close (Fixed) on 5 Oct |
+| 2026-09-28 | Big Moon Ranch | Client offboarded | Shawal | Account 758851247064974 already absent from the connector list and the export in the W40 run | Done | Spend check: no longer 🔴. If the row is still on the Master sheet, ⚠️ with "offboarded, remove from sheet or set Status to Not Live"; once removed, the diff shows "Removed from sheet". Pixel check: pixel 1208874174466414 should fall silent; the row drops when the client leaves the sheet |
