@@ -4,6 +4,7 @@ Major changes to the Meta Ads Analysis project. Newest first. Small wording fixe
 
 ## 2026-09-28
 
+- **Actions log added** (`PROJECT.md` section 9). Shawal reported the day's account changes after the W40 run (CGG new lead campaign, Selah payment error and planned budget move, Ridge & Falls lead relaunch planned, Tàberg new Broad campaign at $50 and Lookalike cut to $50, pixel contamination blocked). Each was checked against the connector and logged as Done / Planned / Reported with what next week's diff should see. The three skills' diff steps now read the log.
 - **Week 40 run of all three reviews** (28 Sep): first week-over-week diffs. Reports, sidecars, HTML, artifacts and the Netlify archive published.
 - **Client Benchmark generator now diffs against the previous sidecar** (`campaign_id` for live rows, client + campaign for CSV rows): "Status vs last week" and "Change vs last week" columns, `diff_status` / `weeks_open` in the CSV, a "Removed since last week" line, and per-client HG AI one-liners read from `HG AI Reports/`. The Advanced list is rebuilt from the CRM download each run (24 clients, 21 mapped); Gemini docs titled "Meta Ads x HiddenGem AI Sync" are included. CSV-fallback rows honour the export's new Campaign delivery column.
 - **Ad Spend Check uses the export's delivery columns.** Only campaigns with Campaign delivery = active count toward the CSV budget total; the "provisional" marker is dropped. Skill text updated.

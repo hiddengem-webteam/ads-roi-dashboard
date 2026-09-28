@@ -93,6 +93,8 @@ Every ⚠️, ❌ and 🔴 row gets a one-line next action written for the accou
 
 Find the newest `*-pixel-domain-check.csv` dated before today. If none, write "First run, no prior report". Join on `pixel_id`. Rows flagged last week that are ✅ now → **Fixed**. Still flagged → **Still open** with `weeks_open` + 1. New flags → **New**. Pixels gone → **Removed**.
 
+Also read `Project Data/PROJECT.md` section 9 (Actions log). A contamination row that Shawal reports as blocked mid-window may still carry a few foreign events from the first day of the window; read the daily buckets, and if the foreign host stops on the day of the block, call the row Fixed and say so in the note.
+
 ## Step 7: Write the report
 
 Write two files to `Meta Pixel Reviews/Weekly Checks/`.

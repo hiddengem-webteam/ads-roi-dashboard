@@ -106,6 +106,8 @@ Join on `ad_account_id`. For each row that was ⚠️, ❌ or 🔴 last week:
 
 New flags this week are marked **New**.
 
+Also read `Project Data/PROJECT.md` section 9 (Actions log). If a client's row changed and the log has an entry for it since the previous run, cite the entry in the row's note ("Shawal moved the test budget into BoF on 28 Sep") instead of rediscovering it, and mark a Planned entry Done when the account shows it.
+
 ## Step 6: Write the report
 
 Write two files to `Ad Spends Checks/Weekly Checks/`:

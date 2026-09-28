@@ -97,6 +97,8 @@ Also add the other window's governing value to Notes (14d CPL for Lead Gen, 30d 
 
 `generate_report.py` does this: it loads the newest sidecar older than today and joins on `campaign_id` (live) or `client + campaign` (CSV). For rows that were Flag or Review last week: now Healthy / Monitor / Scale → **Fixed**; still Flag or Review → **Still open (N weeks)**; gone → **Removed**. New Flag or Review rows → **New**. First run → "First run" everywhere.
 
+Also read `Project Data/PROJECT.md` section 9 (Actions log) and add the relevant entry to the client's notes (`EXTRA_NOTES` in the generator) when a campaign was relaunched, rebudgeted or paused since the previous run, so a Fixed / Paused-in-window row says why.
+
 ## Step 7: Write the report
 
 `Weekly Checks/YYYY-MM-DD-client-benchmark.md`, sections in this order:
