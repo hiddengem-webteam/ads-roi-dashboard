@@ -2,6 +2,10 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-09-28
+
+- **HG AI Reports folder moved to the project root.** Shawal had created a top-level `HG AI Reports/` and was looking there; the nested copy under the benchmark folder is removed and the skill reads the root folder. First three notes (Stay Saluda, Paradise Pointe, Táberg Falls, HG AI chats of 2026-09-23) transcribed from screenshots and saved there.
+
 ## 2026-09-23
 
 - **Client Benchmark scores live campaigns only.** Shawal's ruling: a paused campaign has already been acted on, so it must not drive Flag / Review. `generate_report.py` and the skill now skip any campaign whose `effective_status` is not ACTIVE, list it under the client as "Paused in window, not scored" with spend, results and governing value, and keep it out of Action needed and the counts. The 2026-09-21 report and sidecar were regenerated under the rule (both former Flag rows were paused campaigns; Flag count is now 0). HTML report, claude.ai artifact and the Netlify archive republished.

@@ -29,9 +29,9 @@ Meta Ads Analysis - 21:09:26/
 │   ├── expected-domains.csv          source of truth for each client's expected domains (seeded 2026-09-21, all inferred)
 │   └── Weekly Checks/                dated reports (.md) + sidecar (.csv), one pair per run
 ├── Monthly ROI data/                 monthly ROI JSON per month (Shawal drops these in; July + August 2026 so far)
+├── HG AI Reports/                    HG AI diagnoses Shawal drops in, client name + date in filename (moved to root 2026-09-28)
 └── Client Benchmark Reviews (advanced setups)/
     ├── .claude/skills/client-benchmark/SKILL.md   the runnable skill (/client-benchmark) + generate_report.py
-    ├── HG AI Reports/                HG AI diagnoses Shawal drops in, client name in filename
     └── Weekly Checks/                dated reports (.md) + sidecar (.csv), one pair per run
 ```
 
@@ -114,7 +114,7 @@ States (Decision Making table, lower bound inclusive):
 | Review w/ HG AI | $1.00–2.50 | 2–5x | HG AI diagnoses |
 | Flag to Shawal | ≥ $2.50 or no leads | < 2x or no purchases | Manual review, likely setup / technical |
 
-Classification is by objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Retargeting if the name says BoF / Retarget, else MoF lookalike sales, scored on the same ROAS bands). Frequency, cost per booking, CPC, CPM and CTR are diagnostics only. Only campaigns live (ACTIVE) at run time are scored; paused campaigns that spent in the window are listed per client as "Paused in window" and never enter Action needed or the counts (Shawal, 2026-09-23: paused means already acted on). MCP-disabled accounts fall back to the weekly CSV export (21-day window, provisional). No HG AI hand-off block; Shawal drops HG AI reports into `HG AI Reports/` and the skill summarises them per client.
+Classification is by objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Retargeting if the name says BoF / Retarget, else MoF lookalike sales, scored on the same ROAS bands). Frequency, cost per booking, CPC, CPM and CTR are diagnostics only. Only campaigns live (ACTIVE) at run time are scored; paused campaigns that spent in the window are listed per client as "Paused in window" and never enter Action needed or the counts (Shawal, 2026-09-23: paused means already acted on). MCP-disabled accounts fall back to the weekly CSV export (21-day window, provisional). No HG AI hand-off block; Shawal drops HG AI reports into the root `HG AI Reports/` folder and the skill summarises them per client.
 
 Output: `Client Benchmark Reviews (advanced setups)/Weekly Checks/YYYY-MM-DD-client-benchmark.md` and `.csv` (one row per campaign, keyed on campaign ID). Report order: header counts, last Meta Ads Strategy meeting (Gemini notes: summary, decisions, next steps), Action needed (Flag then Review), Scale candidates, per-client sections ordered by scored spend (each with a Monthly ROI line, a Meeting notes line and an HG AI notes line), footer.
 

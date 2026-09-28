@@ -17,7 +17,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 - **ROAS alone** sets the Retargeting state. Cost per booking and frequency are diagnostics only.
 - **Metrics come from Meta**: Purchase event (`omni_purchase`, `purchase_roas`, `cost_per_omni_purchase`) and Lead event (`lead`, `cost_per_lead`). Not PMS bookings, not CRM leads.
 - **Advanced-setup list** is the CRM sheet, tab "Clients - Onboarding" (header row reads "Management Clients"), column "Meta Ads" = `Advanced`. Nothing outside the CRM is scored, even if it spends.
-- **No HG AI hand-off block** is generated. Shawal does the analysis. Any HG AI report Shawal drops into `HG AI Reports/` is summarised in one line under the client.
+- **No HG AI hand-off block** is generated. Shawal does the analysis. Any HG AI report Shawal drops into the top-level `HG AI Reports/` folder (project root, not inside this workflow folder) is summarised in one line under the client.
 - **Live campaigns only (2026-09-23).** Only campaigns with `effective_status` ACTIVE at run time are scored. A paused campaign that spent inside the window is listed in one line under its client ("Paused in window, not scored") so the spend is visible, and never enters Action needed, Scale candidates or the counts. Reason: paused means the team already acted on it.
 
 ## Inputs
@@ -30,7 +30,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 | CSV fallback | Newest `Weekly CSV Reports/*_meta-ads-report.csv` | Only for accounts with `is_ads_mcp_enabled: false` or not queryable. Aggregate ad set rows to campaign. ROAS = Purchases conversion value / Amount spent. |
 | Monthly ROI context | `Monthly ROI data/*.json` (one file per month, `clients[]` with `overallMetaAdSpend`, `totalBookingsAttributedToMeta`, `blendedRoas` or `roas`, `campaigns.retargeting.roas`, `campaigns.newLeads.costPerLead`) | One context line per client, oldest month first. Match on normalised client name. |
 | Weekly Meta Ads meeting notes | Calendar connector `search_events` for **both** "Meta Ads Strategy" (Dustin, Wed 1–2pm ET) and "Meta Ads Sync" (Dustin, Thu 11–11:30am ET, the follow-on working session). Take every past occurrence since the previous run that has an attachment titled "Notes by Gemini"; read each Google Doc ID with Drive `read_file_content`. Fallback: Drive `search_files` for `title contains 'Notes by Gemini' and modifiedTime > <last run>`. | The doc has three parts: Quick notes, Full notes (Summary, Decisions, Next steps, Details), Transcript. Use Full notes only. Summary + Decisions + Next steps go in a report section; sentences in Details that name a client go in that client's section. Never quote the transcript. |
-| HG AI reports | `Client Benchmark Reviews (advanced setups)/HG AI Reports/` | Any file whose name contains the client name and is dated since the previous run. Summarise in one line. |
+| HG AI reports | `HG AI Reports/` at the project root | Any file whose name contains the client name and is dated since the previous run. Summarise in one line. |
 | Previous report | Newest `Weekly Checks/*-client-benchmark.csv` older than today | Prior state per `campaign_id` (live) or `client + campaign` (CSV) for the week-over-week diff. |
 
 Use one `client_conversation_id` for every Meta call in the run. Budgets and costs come back as formatted strings ("$1,337.28 USD"); strip to numbers.
