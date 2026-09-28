@@ -256,6 +256,25 @@ def footer(bullets_, extra=""):
     lis="".join(f"<li>{inline(b)}</li>" for b in bullets_)
     return f'<div class="foot"><ul>{lis}</ul>{extra}<p>HiddenGem Marketing · weekly Meta Ads review · generated {RUN} from the saved report and CSV sidecar.</p></div>'
 
+def fixed_html(S, kinds=None):
+    """'Fixed since last week' is a paragraph on a first run and a table afterwards."""
+    lines=S.get("Fixed since last week",[]); t=tables(lines)
+    if t and len(t[0])>1:
+        k=kinds or (["first"]+["text"]*(len(t[0][0])-2)+["notes"])
+        return render_table("fixed",t[0][0],t[0][1:],k)
+    ps=paras(lines)
+    return f'<div class="card-body" style="color:var(--text-3);font-size:14px">{inline(ps[0]) if ps else "None."}</div>'
+def compare_chip(S):
+    for b in bullets(S.get("Footer",[])):
+        if b.startswith("Previous report"):
+            m=re.match(r"Previous report[^:]*:\s*([^\s.]+(?:\.[a-z]{3})?)",b)
+            return f"Compared against {m.group(1)}" if m else re.split(r"\. ",b)[0]
+    return "First run, no prior report"
+def run_line(S):
+    for p_ in paras(S.get("_pre",[])):
+        if p_.startswith("Run:"): return p_
+    return ""
+
 # =====================================================================
 # 1. AD SPEND CHECK
 # =====================================================================
@@ -272,19 +291,20 @@ def build_spend():
     all_actual=sum(float(r["actual_daily_budget"] or 0) for r in rows)
     n_csv=sum(1 for r in rows if r["source"]=="csv")
     stats=(stat("Clients on sheet",str(len(rows)),f"{len(live)} live, {len(rows)-len(live)} not live or paused")
-        +stat("Live connector reads",str(len(liveread)),f"{n_csv} scored from the CSV export, 0 blocked")
+        +stat("Live connector reads",str(len(liveread)),f"{n_csv} scored from the CSV export, {cnt.get('blocker',0)} blocked")
         +stat("Documented live $/day",f"${documented:,.0f}","Master sheet, Live rows")
         +stat("Confirmed live $/day",f"${confirmed:,.0f}",f"vs ${doc_same:,.0f} documented for the same {len(liveread)} accounts")
         +stat("Critical",str(cnt["critical"]),"over 25% off or spend on a dark account",dot="err")
         +stat("Warning",str(cnt["warning"]),"10 to 25% off, or a sheet note that changes the figure",dot="warn")
-        +stat("Match",str(cnt["match"]),"within 10% or $5",dot="ok"))
+        +stat("Match",str(cnt["match"]),"within 10% or $5",dot="ok")
+        +stat("Blocked",str(cnt.get("blocker",0)),"account unreadable by the connector and absent from the export",dot="gray"))
     issues=tables(S["Issues, action needed"])[0]
     it=render_table("issues",["Client","AM","Flag","Sheet $/day","Actual $/day","Status vs last week","Next action"],issues[1:],
         ["first","text","badge","num","num","nowrap","notes"],flag_col=2,flag_map=flag_sym)
     allrows=tables(S["All accounts"])[0]
     at=render_table("all",["Client","AM","Sheet status","Sheet $/day","Actual $/day","Match","Notes and issues"],allrows[1:],
         ["first","text","nowrap","num","num","badge","notes"],flag_col=5,flag_map=flag_sym)
-    fixed=paras(S["Fixed since last week"])
+    fixed_block=fixed_html(S)
     notsheet=paras(S["Not on the sheet"])
     body=f"""
 <div class="stats">{stats}</div>
@@ -294,10 +314,10 @@ def build_spend():
 </section>
 <section>
   <div class="sec-head"><div><h2>Fixed since last week</h2></div></div>
-  <div class="card"><div class="card-body" style="color:var(--text-3);font-size:14px">{inline(fixed[0])}</div></div>
+  <div class="card">{fixed_block}</div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>All accounts</h2><p class="sec-desc">Every client on the Master sheet, alphabetical. Five accounts the connector cannot read are scored from the Ads Manager export and marked provisional in the notes.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
+  <div class="sec-head"><div><h2>All accounts</h2><p class="sec-desc">Every client on the Master sheet, alphabetical. {n_csv} accounts the connector cannot read are scored from the Ads Manager export; the source is named in the row.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
   <div class="card">{at}</div>
 </section>
 <section>
@@ -306,7 +326,8 @@ def build_spend():
 {footer(bullets(S["Footer"]))}
 """
     lede="Compares the documented daily budget on the Master Meta Ads sheet against the live daily budget in each client's ad account. Every client on the sheet is checked, including Not Live and Paused."
-    chips=[f"Run {RUN}", "Live reads 10:58 to 11:05", "CSV export 2026-09-01 to 2026-09-21 for 5 blocked accounts", "First run, no prior report"]
+    rl=run_line(S); m1=re.search(r"live reads ([^,)]+)",rl); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for (\d+) blocked accounts",rl)
+    chips=[f"Run {RUN}"]+([f"Live reads {m1.group(1).replace('–',' to ')}"] if m1 else [])+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} blocked accounts"] if m2 else [])+[compare_chip(S)]
     return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
 
 # =====================================================================
@@ -341,7 +362,7 @@ def build_pixel():
     ct=render_table("crit",hdr,tables(crit_lines)[0][1:],kinds,flag_col=6,flag_map=flag_sym)
     wt=render_table("warn",hdr,tables(S["Warnings (⚠️)"])[0][1:],kinds,flag_col=6,flag_map=flag_sym)
     at=render_table("all",hdr,tables(S["All pixels (alphabetical by client)"])[0][1:],kinds,flag_col=6,flag_map=flag_sym)
-    fixed=paras(S["Fixed since last week"])
+    fixed_block=fixed_html(S)
     body=f"""
 <div class="stats">{stats}</div>
 <section>
@@ -355,7 +376,7 @@ def build_pixel():
 </section>
 <section>
   <div class="sec-head"><div><h2>Fixed since last week</h2></div></div>
-  <div class="card"><div class="card-body" style="color:var(--text-3);font-size:14px">{inline(fixed[0])}</div></div>
+  <div class="card">{fixed_block}</div>
 </section>
 <section>
   <div class="sec-head"><div><h2>All pixels</h2><p class="sec-desc">Alphabetical by client. Domains come from the pixel's own 7-day host breakdown in Meta; expected domains are from the expected-domains file, inferred from the brand name unless marked otherwise.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
@@ -364,7 +385,7 @@ def build_pixel():
 {footer(bullets(S["Footer"]))}
 """
     lede="Verifies each client's Meta Pixel receives events only from that client's own site, link pages, GoHighLevel funnel and booking engine, and flags cross-contamination, silent pixels and split or duplicate setups."
-    chips=[f"Run {RUN}","Rolling 7-day window","Sources: HiddenGem BM dataset listing, per-account listings, host and event totals","First run of workflow 2"]
+    chips=[f"Run {RUN}","Rolling 7-day window","Sources: HiddenGem BM dataset listing, per-account listings, host and event totals",compare_chip(S)]
     return page(f"Pixel domain check {WEEK}","Weekly Meta Ads review · Pixel domain check","Pixel domain check",lede,[esc(c) for c in chips],body)
 
 # =====================================================================
@@ -377,7 +398,8 @@ def build_bench():
     cnt=collections.Counter(r["state"] for r in rows)
     clients={r["client"] for r in rows}
     scored=sum(1 for r in rows if r["state"]!="Under gate")
-    stats=(stat("Advanced clients","16","12 live reads, 4 from the CSV export")
+    ct0=tables(S["_pre"]); hdrv=dict(zip(ct0[0][0],ct0[0][1])) if ct0 and len(ct0[0])>1 else {}
+    stats=(stat("Advanced clients",hdrv.get("Advanced clients","—"),f"{hdrv.get('Live reads','—')} live reads, {hdrv.get('From CSV','—')} from the CSV export")
         +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} more listed under the spend gate")
         +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"CPL $2.50+ or no leads; ROAS under 2x or no purchases",dot="err")
         +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00 to 2.50; ROAS 2 to 5x",dot="warn")
@@ -480,7 +502,8 @@ def build_bench():
 {footer(bullets(S["Footer"]))}
 """
     lede="Scores every Lead Gen (MoF) and Sales or Retargeting (BoF) campaign of each CRM-Advanced client against the Benchmarks doc decision table, with monthly ROI context and this week's meeting notes."
-    chips=[f"Run {RUN}","Lead Gen: 30-day window, $100 gate","Sales/Retargeting: 14-day window, $200 gate","CSV export 2026-09-01 to 2026-09-21 for 4 accounts","First run, no prior report"]
+    rl=run_line(S); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for the (\d+) accounts",rl)
+    chips=[f"Run {RUN}","Lead Gen: 30-day window, $100 gate","Sales/Retargeting: 14-day window, $200 gate"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
     return page(f"Client benchmark {WEEK}","Weekly Meta Ads review · Client benchmark, advanced setups","Client benchmark review",lede,[esc(c) for c in chips],body)
 
 if __name__ == "__main__":

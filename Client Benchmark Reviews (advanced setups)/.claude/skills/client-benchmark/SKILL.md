@@ -24,12 +24,12 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 
 | Source | Where | What to take |
 |---|---|---|
-| CRM sheet | Google Drive file `1oEUngQE3ZXc6U4ciRkkg55UrlR-M065kTmCzG8HFhM4`, first table containing a "Meta Ads" header | Client Business, AM, Meta Ads. Keep rows where Meta Ads = Advanced. The sheet is too large for the tool output; it is saved to disk, parse it with Python. |
+| CRM sheet | Google Drive file `1oEUngQE3ZXc6U4ciRkkg55UrlR-M065kTmCzG8HFhM4`, Clients - Onboarding tab | Client Business, AM, Meta Ads. Keep rows where Meta Ads = Advanced. Fetch it with `download_file_content` (`exportMimeType: text/csv`, base64) and decode locally; `read_file_content` truncates the tab at Oak & Ember and hides Advanced clients below it. Update the generator's `ADV` map from it every run; Advanced clients with no account in PROJECT.md go in `ADV_UNMAPPED` (footer only). |
 | Client → account map | `Project Data/PROJECT.md` section 5 | Ad account ID and connector status per client. Match CRM names to the map (FLOHOM/Flohom, AwayFrames/Awayframes, "Stay On 30A"/"Stay on 30a", "Stay Saluda NC"/"Stay Saluda", "Canopy at Moody Moon"/"Canopy at Moody Moon Ridge", "Tàberg"/"Taberg"). |
 | Live campaign metrics | `ads_get_ad_entities`, `level: campaign`, two calls per account: `date_preset: last_30d` and `last_14d` | Fields: `id, name, objective, effective_status, stop_time, amount_spent, impressions, cpm, ctr, link_click, cost_per_link_click, frequency, lead, cost_per_lead, omni_purchase, cost_per_omni_purchase, purchase_roas, results, cost_per_result`. Filter `campaign.amount_spent GREATER_THAN 0`. Set `include_additional_context: false`. |
 | CSV fallback | Newest `Weekly CSV Reports/*_meta-ads-report.csv` | Only for accounts with `is_ads_mcp_enabled: false` or not queryable. Aggregate ad set rows to campaign. ROAS = Purchases conversion value / Amount spent. |
 | Monthly ROI context | `Monthly ROI data/*.json` (one file per month, `clients[]` with `overallMetaAdSpend`, `totalBookingsAttributedToMeta`, `blendedRoas` or `roas`, `campaigns.retargeting.roas`, `campaigns.newLeads.costPerLead`) | One context line per client, oldest month first. Match on normalised client name. |
-| Weekly Meta Ads meeting notes | Calendar connector `search_events` for **both** "Meta Ads Strategy" (Dustin, Wed 1–2pm ET) and "Meta Ads Sync" (Dustin, Thu 11–11:30am ET, the follow-on working session). Take every past occurrence since the previous run that has an attachment titled "Notes by Gemini"; read each Google Doc ID with Drive `read_file_content`. Fallback: Drive `search_files` for `title contains 'Notes by Gemini' and modifiedTime > <last run>`. | The doc has three parts: Quick notes, Full notes (Summary, Decisions, Next steps, Details), Transcript. Use Full notes only. Summary + Decisions + Next steps go in a report section; sentences in Details that name a client go in that client's section. Never quote the transcript. |
+| Weekly Meta Ads meeting notes | Calendar connector `search_events` for "Meta Ads Strategy" (Dustin, Wed 1–2pm ET), "Meta Ads Sync" and "Meta Ads x HiddenGem AI Sync" (Gillian, the follow-on working session; there can be two the same day). Large docs exceed the tool limit and land in a persisted file; copy that file as `meetingN.json`, it already has the `fileContent` shape the generator reads. Take every past occurrence since the previous run that has an attachment titled "Notes by Gemini"; read each Google Doc ID with Drive `read_file_content`. Fallback: Drive `search_files` for `title contains 'Notes by Gemini' and modifiedTime > <last run>`. | The doc has three parts: Quick notes, Full notes (Summary, Decisions, Next steps, Details), Transcript. Use Full notes only. Summary + Decisions + Next steps go in a report section; sentences in Details that name a client go in that client's section. Never quote the transcript. |
 | HG AI reports | `HG AI Reports/` at the project root | Any file whose name contains the client name and is dated since the previous run. Summarise in one line. |
 | Previous report | Newest `Weekly Checks/*-client-benchmark.csv` older than today | Prior state per `campaign_id` (live) or `client + campaign` (CSV) for the week-over-week diff. |
 
@@ -66,7 +66,7 @@ By objective first, name second:
 
 CSV accounts have no objective column. Classify by name: lead → Lead Gen; bof / retarget / sales → Sales; discovery / giveaway / keyword / tof → ToF.
 
-Paused campaigns (any `effective_status` other than ACTIVE) are not scored. Record name, type, window spend, results and governing value for the client's "Paused in window" line and move on. CSV-fallback accounts have no status column, so their rows stay provisional and are scored as before.
+Paused campaigns (any `effective_status` other than ACTIVE) are not scored. Record name, type, window spend, results and governing value for the client's "Paused in window" line and move on. CSV-fallback accounts: the export carries `Campaign delivery` since 2026-09-28; only `active` campaigns are scored and the rest go to the Paused line. Rows stay provisional because the export window (7 days) is not the scoring window.
 
 ## Step 4: State
 
@@ -95,7 +95,7 @@ Also add the other window's governing value to Notes (14d CPL for Lead Gen, 30d 
 
 ## Step 6: Week-over-week diff
 
-Join on `campaign_id` (live) or `client + campaign` (CSV) against the previous sidecar. For rows that were Flag or Review last week: now Healthy / Monitor / Scale → **Fixed**; still Flag or Review → **Still open (N weeks)**; gone → **Removed**. New Flag or Review rows → **New**. First run → "First run" everywhere.
+`generate_report.py` does this: it loads the newest sidecar older than today and joins on `campaign_id` (live) or `client + campaign` (CSV). For rows that were Flag or Review last week: now Healthy / Monitor / Scale → **Fixed**; still Flag or Review → **Still open (N weeks)**; gone → **Removed**. New Flag or Review rows → **New**. First run → "First run" everywhere.
 
 ## Step 7: Write the report
 

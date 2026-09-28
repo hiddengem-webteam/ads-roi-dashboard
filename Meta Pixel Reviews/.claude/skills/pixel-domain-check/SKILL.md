@@ -41,6 +41,7 @@ Read `expected-domains.csv`. If a client on the sheet has no row, add one at the
 Access rules, do not retry:
 - `ads_get_datasets` on an MCP-disabled account errors. Fall back to the HG BM listing for that client. If the pixel is there, read it normally and note "account MCP-disabled, pixel read via HG BM".
 - Pixel visible nowhere → 🔴 Blocker, note "No pixel found, confirm one exists or create one".
+- Attached pixel silent (zero events) → before flagging, look in the HG BM listing for another dataset with the same `business_id` that did fire (Tuxedo Falls' "Website" pixel, 2026-09-28). If one exists, read it, give it its own ⚠️ row ("live but not shared to the ad account") and write the next action as share-or-swap.
 - Stats call fails on a pixel → 🔴 Blocker, note "Claude doesn't have access, please check the pixel manually".
 
 ## Step 3: Pull domains and volume for every active pixel

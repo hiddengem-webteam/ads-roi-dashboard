@@ -154,7 +154,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Away2PA | Alicia | Away2Pa | 603977626130795 | ok |
 | Awayframes | Alicia | Awayframes Ad Account | 2471256056603833 | ok |
 | Best Texas Travel | Nicole | Best Texas Travel Ad Account | 1982551189319458 | ok |
-| Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | MCP disabled → CSV |
+| Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | MCP disabled → CSV. 2026-09-28: account no longer appears in the connector's account list at all and is missing from the export; 🔴 until Shawal adds it to the saved report or access is restored |
 | Bison Ridge Retreat | Chiara | Bison Ridge Retreat Ad Account | 950241787963535 | MCP disabled → CSV |
 | Canopy at Moody Moon Ridge | Alicia | The Canopy At Moody Moon Ridge | 1293707265980102 | ok. Second account "Moody Moon Ridge" (Sue Hough) 1061646495537777 is MCP disabled |
 | Columbia Gorge Getaways | Chiara | CGG | 490940113157881 | ok |
@@ -176,7 +176,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Raven Rock Mountain | Anna | Raven Rock Mountain Ad Account | 1065186195582056 | ok |
 | Red White & Blue Views | Nicole | Red White & Blue Views | 1419930382946246 | ok |
 | Ridge & Falls | Makenna | Ridge & Falls ad account | 1313401330776046 | ok |
-| Selah Place | Alicia | Selah.place | 1275283434220508 | ok |
+| Selah Place | Alicia | Selah.place | 1275283434220508 | ok, but listed as UNSETTLED / not queryable on 2026-09-28 (reads still worked); payment method to check |
 | Starlight Haven - Hot Springs | Charlotte | Starlight Haven Hot Springs | 901138032027913 | ok, ad set budgets |
 | Starlight Haven - Weiss Lake | Charlotte | Starlight Haven Weiss Lake | 74756899 | ok, ad set budgets |
 | Stay on 30a | Charlotte | Stay on 30a Ads | 25640434272252212 | ok. Legacy "[NOT IN USE] Stay on 30A" 908452332132644 under HG BM, MCP disabled |
@@ -192,7 +192,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Treetop Escapes | Makenna | Treetop Escapes Ads | 967636478877602 | ok |
 | Tuxedo Falls | Chiara | Tuxedo Falls - Ad Account | 2077151009889326 | ok |
 
-Active accounts with spend but no sheet row: Hillside Amble (Anna), Cowan Creek Lodges (Anna), Edenwood NC (Charlotte), Stay Different (Anna), Branch Berkeley Springs. Decision pending on whether to add them.
+Active accounts with spend but no sheet row: Hillside Amble (Anna), Cowan Creek Lodges (Anna), Edenwood NC (Charlotte), Stay Different (Anna), Branch Berkeley Springs. Decision pending on whether to add them. Walden Retreats (CRM Advanced, AM Anna) has ad account 973261794434226 in the connector list (2026-09-28); Treetop Hideaways and Glasscombe have none yet.
 
 ### 5.1 Client → pixel map (as of 2026-09-21)
 
@@ -226,13 +226,13 @@ Primary pixel per client, plus live secondaries. Full domain expectations live i
 | Ponderosa Pines Resort | Ponderosa Pines Resort - Meta Pixel → 1293211539656211 | HG BM | account MCP-disabled, pixel readable |
 | Raven Rock Mountain | Raven Rock Meta Pixel → 1359649962298380 | HG BM | NOT shared to ad account 1065186195582056 |
 | Red White & Blue Views | Red White & Blue - Meta Pixel → 1625871301864243 | HG BM | |
-| Ridge & Falls | Ridge & Falls - Meta Pixel → 1332286819018269 | client BM 1887518261927124 | HG BM copy 2059709192087667 never fired |
-| Selah Place | Selah.Place Event Data → 1235173718368839 (primary); LinkTree → 3327546500757583 | client BM 1662038040809917 | Selah 2026 Pixel never fired |
+| Ridge & Falls | Ridge & Falls - Meta Pixel → 1332286819018269 | client BM 1887518261927124 | HG BM copy 2059709192087667 never fired; server events stopped 16 Sep 2026 |
+| Selah Place | Selah.Place Event Data → 1235173718368839 (primary); LinkTree → 3327546500757583 | client BM 1662038040809917 | Selah 2026 Pixel never fired; a third pixel "Wix Pixel for fc9ae0e6" 375795251002998 fired once on 22 Sep 2026 |
 | Starlight Haven (Hot Springs + Weiss Lake) | Starlight Haven Pixel - ResNexus → 766226461367996 | client BM 735291970494853 | one pixel, two accounts, browser only |
 | Stay on 30a | Stay on 30a - Meta Pixel → 1464927198465632 | HG BM | |
 | Stay Saluda NC | Stay Saluda - Meta Pixel → 4250460185185664 | HG BM | |
 | Stay Southern Illinois | Southern Illinois Cabins - Meta Pixel → 1328561309169535 | HG BM | multi-brand domains |
-| Stay With Branch | Branch → 1107997340818783 | client BM 2066827277052066 | Business Meta Pixel dead since May 2026 |
+| Stay With Branch | Branch → 1107997340818783 | client BM 2066827277052066 | Business Meta Pixel dead since May 2026; server (CAPI) events stopped 17 Sep 2026 |
 | StayLuxe | StayLuxe Meta Pixel → 4293491110916917 | HG BM | |
 | Sunapee Stays | sunapeestays's Pixel → 471248637966769 | client BM 1296150947517054 | |
 | Taberg Falls | Taberg Falls - Meta Pixel → 964214909847907 | HG BM | 5 other clients' pixels also shared into this account |
@@ -240,7 +240,7 @@ Primary pixel per client, plus live secondaries. Full domain expectations live i
 | The Outpost | HG - The Outpost Grand Canyon Event Data → 1691591692267740 (bio only); Outpost Grand Canyon → 734783866381382 (site + Newbook, client BM) | split | decide canonical |
 | Three Suns Cabins | Three Suns Cabins - Pixel → 691977289952800 | HG BM | bio subdomain only |
 | Treetop Escapes | Treetop Escapes - Pixel → 1178838797064774 | client BM 1190724359426537 | |
-| Tuxedo Falls | Tuxedo Falls - Ad Account's Pixel → 1561325308991270 | client BM 1400770510587476 | silent since 1 Sep 2026 |
+| Tuxedo Falls | Tuxedo Falls - Ad Account's Pixel → 1561325308991270 (attached, silent since 1 Sep 2026); Website → 1839806973541001 (same business, carries site + ResNexus + GHL, ~26k events/week, NOT attached to the ad account) | client BM 1400770510587476 | found 2026-09-28: the site tracks on the unattached pixel |
 
 ## 6. Learnings
 
@@ -273,6 +273,14 @@ Things that were not obvious and change how the workflows are built or run.
 - **Gemini meeting notes are reachable without Fireflies.** The "Meta Ads Strategy" calendar event carries the "Notes by Gemini" Google Doc as an attachment (owner Dustin, shared to Shawal). The doc has Quick notes, Full notes (Summary / Decisions / Next steps / Details) and a Transcript; the Full notes sections parse cleanly, the transcript is noise. The word "Transcript" also appears in a link near the top, so cut at the transcript heading, not the first occurrence.
 - **Canopy at Moody Moon paused everything after five Sales campaigns ran at 0.15x to 0.47x ROAS with $71 to $94 CPMs** in Aug–Sep. That is a setup problem, not a creative one, and is why the spend check saw zero live budget.
 
+- **A silent attached pixel can hide a live unattached one.** Tuxedo Falls' ad account pixel has been silent since 1 Sep, but a second pixel ("Website") in the same client business carries the whole site. When a pixel is silent, list the client's business datasets in the HG BM listing (same `business_id`) before calling the client untracked.
+- **The Ads Manager saved report now carries Campaign delivery and Ad set delivery** (Shawal added them 2026-09-28) and exports 7 days. Both the spend check and the benchmark filter CSV rows to `active`, and the provisional marker is gone. Three of the four CSV accounts moved to ✅ on the spend check the same day.
+- **The CRM Advanced list is bigger than the first run showed.** Downloading the sheet with `download_file_content` (base64 CSV) returns the whole Clients - Onboarding tab: 24 Advanced clients on 2026-09-28, including The Outpost, Selah Place, Sunapee Stays, Ridge & Falls, Little River Landing and North Star, which the truncated `read_file_content` view had cut off. Canopy at Moody Moon is Basic there. Use the download, not the read.
+- **`ads_get_ad_accounts` can drop an account entirely.** Big Moon Ranch (758851247064974) was MCP-disabled on 21 Sep and absent from all three pages on 28 Sep. Absent means 🔴, and it also needs the CSV export to include the account.
+- **hiddengem.media carries client pixels.** HG's own site fired the FLOHOM and Táberg Falls pixels in the week of 21 Sep. Housekeeping, not contamination, but it pollutes those clients' audiences.
+- **Gemini's follow-on meeting is titled "Meta Ads x HiddenGem AI Sync"** (organiser Gillian), not "Meta Ads Sync"; search both. A short Strategy call can produce a transcript but no notes ("not enough conversation in a supported language").
+- **Ad-account status UNSETTLED shows up as `is_queryable: false`** (Selah Place, Villa Destino, 2026-09-28) while reads still succeed. Treat it as a payment warning, not a blocker.
+
 ## 7. Open decisions
 
 | # | Question | Options | Status |
@@ -280,7 +288,7 @@ Things that were not obvious and change how the workflows are built or run.
 | 1 | Dollar floor before Critical on small accounts? | Keep pure % rule / add $15 floor | Open |
 | 2 | Add the five unlisted active accounts to the Master sheet? | Yes / No / some | Open |
 | 3 | Add account IDs to the Master sheet? | Recommended | Open |
-| 4 | Ads Manager saved report: add delivery columns, last 7 days | Recommended | Open, Shawal to change the saved report |
+| 4 | Ads Manager saved report: add delivery columns, last 7 days | Recommended | Resolved 2026-09-28: columns added, export is 7 days; Big Moon Ranch still needs adding to the report's account list |
 | 5 | AM for North Star Resort & Lodge | Add to CRM | Open |
 | 6 | Where does the expected pixel domain per client live? (workflow 2) | Sheet column / file in folder | Resolved 2026-09-21: `Meta Pixel Reviews/expected-domains.csv`, seeded from run 1 with `source=inferred`; Shawal flips rows to `confirmed` |
 | 7 | Source and format for weekly ads meeting summary (workflow 3) | Fireflies connector / pasted file | Resolved 2026-09-21: Gemini "Notes by Gemini" docs attached to the weekly "Meta Ads Strategy" and "Meta Ads Sync" calendar events, fetched automatically via the Calendar + Drive connectors. No manual step |
@@ -288,17 +296,24 @@ Things that were not obvious and change how the workflows are built or run.
 | 14 | Cost per follower source for IG Discovery scoring (Ads Manager follows result / IG follower delta / cost per profile visit proxy) | | Parked 2026-09-21: ToF not scored in v1 |
 | 15 | Do "MoF - Lookalike Sales" campaigns get their own ROAS band, or stay on the Retargeting bands? | Add a band to the doc / keep | Open, currently scored on Retargeting bands |
 | 16 | Benchmarks doc: reconcile the summary table with the per-type sections (IG Scale $0.20 vs $0.30, gate $200 vs $500, Investigate lines inside Monitor bands) | Edit the doc | Open, skill uses the Decision Making table |
-| 17 | The Drive export of the CRM cuts the Clients - Onboarding table at Oak & Ember; any Advanced clients below that row (The Outpost?) are missed | Move column to a smaller tab / confirm list manually | Open |
+| 17 | The Drive export of the CRM cuts the Clients - Onboarding table at Oak & Ember; any Advanced clients below that row (The Outpost?) are missed | Move column to a smaller tab / confirm list manually | Resolved 2026-09-28: `download_file_content` (CSV export) returns the full tab; six more Advanced clients scored from this run |
 | 9 | North Star: which pixel is canonical (account pixel 3440147309499983 vs HG BM 1904436107168032)? | Pick one, install everywhere, share to account | Open |
 | 10 | The Outpost: consolidate HG Event Data pixel and client pixel? | Pick one | Open |
 | 11 | Green Springs Inn: stop booking-engine events landing on both pixels | Remove from one | Open |
-| 12 | Confirm inferred domains flagged in run 1: canopytreehouse.com, parkerhouseohio.com, Southern Illinois sister brands, links.stayson30a.com, threesunscabins.com, tuxedofalls.com | Shawal confirms, edit expected-domains.csv | Open |
+| 12 | Confirm inferred domains flagged in run 1: canopytreehouse.com, parkerhouseohio.com, Southern Illinois sister brands, links.stayson30a.com, threesunscabins.com, tuxedofalls.com | Shawal confirms, edit expected-domains.csv | Open (tuxedofalls.com confirmed by traffic on the Website pixel 2026-09-28) |
 | 13 | Táberg Falls ad account has 5 other clients' pixels shared into it | Remove shares | Open |
+| 18 | Tuxedo Falls: share the live "Website" pixel 1839806973541001 to ad account 2077151009889326 and retire 1561325308991270, or install the attached pixel on the site? | Share the live one (recommended) | Open, raised 2026-09-28 (Chiara) |
+| 19 | Ad account mapping for the three Advanced clients without one (Walden Retreats 973261794434226 seen in the connector; Treetop Hideaways, Glasscombe not launched) | Add to section 5 when live | Open |
+| 20 | Endless Stays budgets tripled to $200/day (export 21–27 Sep) against a $50 sheet budget | Nicole confirms with client / revert | Open, raised 2026-09-28 |
+| 21 | Selah Place $100/day prospecting test (4 ad sets) on top of $35/day, sheet says $50; account also UNSETTLED | Alicia confirms; check payment | Open, raised 2026-09-28 |
 
 ## 8. Run log
 
 | Date | Workflow | Mode | Result | Saved? |
 |---|---|---|---|---|
+| 2026-09-28 | Ad Spend Check | Second run, saved | 42 clients, 37 live reads, 4 from CSV (export now has delivery columns, provisional marker dropped), 1 🔴 (Big Moon Ranch: account gone from the connector list and missing from the export). 3 ❌ (Endless Stays $200 vs $50, Selah Place $135 vs $50 after a $100/day prospecting test launched, Columbia Gorge $40 vs $30), 7 ⚠️ (Stay on 30a, FLOHOM now 12% under, Ridge & Falls and Little River Landing #REF! sheet cells, Away2PA comment, Three Suns expired note, Canopy no budget), 31 ✅. Fixed: Bison Ridge, Paradise Pointe, Ponderosa (delivery columns), Stay Saluda (sheet updated to $80). $2,615/day confirmed live vs $2,410 documented for the same accounts | Yes: `Ad Spends Checks/Weekly Checks/2026-09-28-ad-spend-check.md` + `.csv` |
+| 2026-09-28 | Client Benchmark Review | Second run, saved | CRM re-read: 24 Advanced (21 with an account, 17 live + 4 CSV); Outpost, Selah, Sunapee, Ridge & Falls, Little River Landing, North Star in scope for the first time, Canopy dropped (now Basic). 43 rows, 33 scored, 10 under gate. 2 Flag (Selah prospecting test 1.3x, Ridge & Falls leads $9.35 CPL), 11 Review (Tàberg lookalike 3.8x, Treetop BoF 4.7x new, Saluda BoF 2.6x, 8 lead campaigns $1.04–2.08), 9 Monitor, 6 Healthy, 5 Scale. 3 fixed (Tàberg BoF 7.2x, Paradise Pointe BoF 8.1x from CSV, Treetop leads $0.94). Meeting notes from the two 24 Sep "Meta Ads x HiddenGem AI Sync" calls; 23 Sep Strategy call produced no Gemini notes. HG AI notes for Saluda, Paradise Pointe, Tàberg summarised | Yes: `Client Benchmark Reviews (advanced setups)/Weekly Checks/2026-09-28-client-benchmark.md` + `.csv` |
+| 2026-09-28 | Pixel Domain Check | Second run, saved | 42 clients, 48 pixel rows (47 pixels), 1,029,987 events in 7d. 2 ❌ still open (Inspired Retreats ← Saluda unchanged; Little River Landing ← North Star stopped 23 Sep, closes next week if clean), 17 ⚠️ (14 carried over + Tuxedo Falls' real pixel "Website" 1839806973541001 not shared to the ad account, Stay With Branch CAPI silent since 17 Sep, Ridge & Falls CAPI silent since 16 Sep), 29 ✅, 0 fixed | Yes: `Meta Pixel Reviews/Weekly Checks/2026-09-28-pixel-domain-check.md` + `.csv` |
 | 2026-09-23 | Client Benchmark Review | Regenerated 2026-09-21 report under the live-campaigns-only rule | 4 paused rows removed (American River paused lead campaign $261.69 CPL, Canopy "09/02 - Sales" 0.5x and ABO test, Green Springs 07/28 lead campaign). Now 35 rows, 28 scored, 7 under gate, 0 Flag, 12 Review, 4 Monitor, 6 Healthy, 6 Scale. Paused spend shown per client. HTML, artifact and site republished | Yes, same files overwritten |
 | 2026-09-21 | Client Benchmark Review | First run, saved | 16 Advanced clients, 12 live + 4 from CSV (provisional). 39 campaign rows, 30 scored, 9 under gate. 2 Flag to Shawal (American River paused lead campaign at $261 CPL; Canopy "09/02 - Sales" 0.5x ROAS, paused), 12 Review w/ HG AI (Stay on 30A leads $2.23 CPL, Tàberg both sales campaigns 3.3x / 4.5x, Paradise Pointe retargeting 2.7x, plus 8 lead campaigns at $1.10–2.35 CPL), 4 Monitor, 6 Healthy, 6 Scale (Stay on 30A both sales 23.7x / 30.0x, Asheville retargeting 49.5x, both Starlight Havens ~20x, Ponderosa 24.9x) | Yes: `Client Benchmark Reviews (advanced setups)/Weekly Checks/2026-09-21-client-benchmark.md` + `.csv` |
 | 2026-09-21 | Pixel Domain Check | First run, saved | 42 clients, 47 pixel rows (46 pixels), 975,003 events in 7d. 2 ❌ cross-contamination (Inspired Retreats ← Stay Saluda GHL; Little River Landing ← North Star GHL), 14 ⚠️ (Tuxedo Falls silent since 1 Sep, Three Suns bio-only, Outpost + North Star split pixels, Raven Rock pixel not shared to account, Green Springs + Selah double pixels, CGG Wix-only pixel, Asheville no CAPI, Canopy low volume, Parker + Southern Illinois unconfirmed domains), 31 ✅ | Yes, `Meta Pixel Reviews/Weekly Checks/2026-09-21-pixel-domain-check.md` + `.csv` |

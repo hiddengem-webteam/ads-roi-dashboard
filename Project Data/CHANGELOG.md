@@ -4,6 +4,11 @@ Major changes to the Meta Ads Analysis project. Newest first. Small wording fixe
 
 ## 2026-09-28
 
+- **Week 40 run of all three reviews** (28 Sep): first week-over-week diffs. Reports, sidecars, HTML, artifacts and the Netlify archive published.
+- **Client Benchmark generator now diffs against the previous sidecar** (`campaign_id` for live rows, client + campaign for CSV rows): "Status vs last week" and "Change vs last week" columns, `diff_status` / `weeks_open` in the CSV, a "Removed since last week" line, and per-client HG AI one-liners read from `HG AI Reports/`. The Advanced list is rebuilt from the CRM download each run (24 clients, 21 mapped); Gemini docs titled "Meta Ads x HiddenGem AI Sync" are included. CSV-fallback rows honour the export's new Campaign delivery column.
+- **Ad Spend Check uses the export's delivery columns.** Only campaigns with Campaign delivery = active count toward the CSV budget total; the "provisional" marker is dropped. Skill text updated.
+- **Pixel check learning:** when a client's attached pixel is silent, check the HG BM listing for another dataset under the same client business before calling the client untracked (Tuxedo Falls). Skill text updated; `expected-domains.csv` gained the Tuxedo "Website" pixel row.
+
 - **HG AI Reports folder moved to the project root.** Shawal had created a top-level `HG AI Reports/` and was looking there; the nested copy under the benchmark folder is removed and the skill reads the root folder. First three notes (Stay Saluda, Paradise Pointe, Táberg Falls, HG AI chats of 2026-09-23) transcribed from screenshots and saved there.
 
 ## 2026-09-23

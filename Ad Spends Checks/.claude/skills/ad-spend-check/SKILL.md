@@ -26,7 +26,7 @@ Use one `client_conversation_id` for every Meta call in the run.
 
 Read the Master Meta Ads sheet with `read_file_content`. Take every client row. The first header cell is blank and columns can shift, so anchor on the header names, not positions. Normalise Status to one of `Live`, `Not Live`, `Paused`. Parse Total Budget as a number; blank or non-numeric means "no documented budget".
 
-Read the CRM sheet and build a client -> AM map.
+Read the CRM sheet and build a client -> AM map. Download it with `download_file_content` (`exportMimeType: text/csv`, base64) and parse the Clients - Onboarding tab; `read_file_content` truncates it. Clients with no CRM row keep last week's AM with a note.
 
 Match sheet clients to ad accounts by the account ID in the Ads Account Link column where present, otherwise by name. Record which method was used in Notes when it was name matching.
 
@@ -41,7 +41,7 @@ Do this for every client on the sheet, including Not Live and Paused. Spend on a
 Access rules. Do not retry these. Before marking a 🔴 Blocker, check the CSV fallback below. If the account is in this week's export, score it from the CSV instead and note the source. Only if it is missing from the export too, flag and move on:
 
 - `is_ads_mcp_enabled: false` -> 🔴 Blocker, Actual $/day `n/a`, note exactly: "Claude doesn't have access — please check the spend manually"
-- Account not in the list at all -> 🔴 Blocker, note: "No account access — needs access fix"
+- Account not in the list at all -> 🔴 Blocker, note: "No account access — needs access fix". An account can vanish from the list week to week (Big Moon Ranch, 2026-09-28); check the CSV export before flagging, and if it is missing there too, ask Shawal to add it to the saved report.
 - `is_queryable: false` -> 🔴 Blocker, note the `not_queryable_reason`
 - Two candidate accounts for one client -> query the one owned by the client's own business, not a legacy or "NOT IN USE" account under the HiddenGem BM. Add a ⚠️ note about the duplicate.
 
@@ -66,7 +66,7 @@ Shawal drops an Ads Manager export into `Weekly CSV Reports/` each week. Use it 
 - Read the `Reporting starts` / `Reporting ends` columns. If `Reporting ends` is more than 7 days before today, treat the file as stale: do not use it, and flag the accounts as 🔴 with the note "CSV export is stale (ends YYYY-MM-DD), please re-export".
 
 **Columns** (UTF-8 with BOM, ad set level, one row per ad set, first row is an account-wide total with a blank Account name; skip it):
-`Account name, Campaign name, Ad set name, Currency, Campaign budget, Campaign budget type, Ad set budget, Ad set budget type, Amount spent (USD), Impressions, Link clicks, Purchases, Cost per purchase, Purchases conversion value, Leads, Cost per lead, Reporting starts, Reporting ends`
+`Account name, Campaign name, Ad set name, Campaign delivery, Ad set delivery, Currency, Campaign budget, Campaign budget type, Ad set budget, Ad set budget type, Amount spent (USD), Impressions, Link clicks, Reach, Frequency, Leads, Cost per lead, Purchases, Cost per purchase, Purchases conversion value, ROAS - CM, Reporting starts, Reporting ends`
 
 **Matching**: match `Account name` to the Meta ad account name from `ads_get_ad_accounts` (e.g. "Paradise Pointe Ads", "Bison Ridge Retreat Ad Account"). Fall back to the sheet client name if needed and say so in Notes.
 
@@ -75,7 +75,7 @@ Shawal drops an Ads Manager export into `Weekly CSV Reports/` each week. Use it 
 2. Actual $/day = sum across campaigns.
 3. Also compute spend per day = total `Amount spent (USD)` / number of days in the reporting period. Show both in Notes.
 
-**Known limitation**: the export has no delivery or status column, so it includes campaigns that were paused or replaced during the period. Budget totals from the CSV therefore tend to overstate what is live today. When spend per day is well below the budget total, say so and mark the flag as provisional. Ask the user to add the "Campaign delivery" and "Ad set delivery" columns to the saved report and export the last 7 days; once those columns exist, filter to Active rows only and drop the provisional marker.
+**Delivery columns (added to the saved report 2026-09-28)**: the export carries `Campaign delivery` and `Ad set delivery`. Count a campaign's budget only when its `Campaign delivery` is `active`; list non-active campaigns that spent in the period in Notes. With these columns present the row is no longer provisional. If a future export lacks them, fall back to the old behaviour: count every campaign, say the total probably overstates what is live, and mark the flag provisional.
 
 **Marking**: every row scored from the CSV gets "source: CSV export YYYY-MM-DD to YYYY-MM-DD, not live" at the start of Notes, and `source=csv` in the CSV sidecar (add a `source` column: `live` or `csv`).
 
