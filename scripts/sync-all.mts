@@ -61,6 +61,31 @@ const explicitStrict = process.env.HG_SYNC_STRICT === '1';
 const isCI = process.env.NETLIFY === 'true' || process.env.CI === 'true';
 const failOnNoData = explicitStrict || isCI;
 
+// The frozen monthly report pages (/july, /august, /september) run entirely
+// off committed snapshots and need no sync. If the platform API is down (Oct
+// 2026: every /api/v1/clients* route 401s — "valid session required"), a red
+// build would block those pages too, so CI deploys anyway when snapshots
+// exist; the live dashboard shows its data-unavailable state until the
+// platform auth is fixed.
+function hasFrozenSnapshots(cwd: string): boolean {
+  try {
+    return fs.readdirSync(path.join(cwd, 'public', 'data', 'snapshots')).some((f) => f.endsWith('.json'));
+  } catch {
+    return false;
+  }
+}
+
+function failOrDeployFrozen(msg: string): void {
+  if (!failOnNoData) {
+    console.warn(`[sync-all] ${msg}.`);
+  } else if (hasFrozenSnapshots(process.cwd())) {
+    console.warn(`[sync-all] ${msg} — continuing anyway: committed frozen snapshots exist, so the monthly report pages still deploy. The LIVE dashboard will show no periods until the platform sync works again.`);
+  } else {
+    console.error(`[sync-all] ${msg} — failing build (no frozen snapshots to fall back on).`);
+    process.exitCode = 1;
+  }
+}
+
 async function main() {
   if (!process.env.HG_PLATFORM_URL || !process.env.HG_CRON_SECRET) {
     const msg = 'HG_PLATFORM_URL / HG_CRON_SECRET not set';
@@ -91,20 +116,13 @@ async function main() {
     if (explicitStrict) process.exitCode = 1; // only an explicit strict flag fails on partial errors
   }
 
-  // Refuse to ship a blank dashboard on CI: credentials were present, so we
-  // expected data. If none landed (platform down / empty), fail the build.
+  // Credentials were present, so we expected data. If none landed (platform
+  // down / empty), fail unless the frozen snapshots can carry the deploy.
   if (!manifestHasPeriods(process.cwd())) {
-    const msg = 'sync produced no periods — the dashboard would be empty';
-    if (failOnNoData) {
-      console.error(`[sync-all] ${msg} — failing build.`);
-      process.exitCode = 1;
-    } else {
-      console.warn(`[sync-all] ${msg}.`);
-    }
+    failOrDeployFrozen('sync produced no periods — the live dashboard would be empty');
   }
 }
 
 main().catch((err) => {
-  console.error('[sync-all] Sync failed:', err instanceof Error ? err.message : err);
-  if (failOnNoData) process.exitCode = 1;
+  failOrDeployFrozen(`sync failed: ${err instanceof Error ? err.message : err}`);
 });
