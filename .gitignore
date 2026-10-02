@@ -56,6 +56,7 @@ next-env.d.ts
 /public/data/snapshots/*
 !/public/data/snapshots/july-2026.json
 !/public/data/snapshots/august-2026.json
+!/public/data/snapshots/september-2026.json
 
 # Raw account-manager PMS exports (real guest PII) — never commit.
 /July 2026 PMS Data/
@@ -80,3 +81,6 @@ scripts/.july-xlsx-conversion-report.json
 /sentinel-ultra/
 /August 2026 PMS Data/
 /August 2026/
+/September 2026 PMS Data/
+/September 2026/
+/Sept Data/
