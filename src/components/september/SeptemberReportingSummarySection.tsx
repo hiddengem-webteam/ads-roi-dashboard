@@ -3,6 +3,7 @@
 import { ClientFacebookStats, PMSSummary, LeadAnalysis } from '@/types';
 import { formatCurrency, formatNumber } from '@/lib/utils';
 import { SEPTEMBER_REPORTING_SHEET } from './septemberReportingSheetData';
+import { SEPTEMBER_CLIENT_NOTES } from './septemberClientNotes';
 
 interface CampaignRevenue {
   followers: number;
@@ -131,8 +132,16 @@ export default function AugustReportingSummarySection({
 
   const totalLeads = sheetFigures?.newLeads ?? null;
 
+  const note = SEPTEMBER_CLIENT_NOTES[clientName];
+
   return (
     <div className="space-y-4">
+      {note && (
+        <div className="bg-[var(--fill-blue)] border border-[rgba(10,95,255,.18)] rounded-[14px] px-5 py-3.5">
+          <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Note</p>
+          <p className="text-[13px] text-[var(--foreground)] leading-relaxed">{note}</p>
+        </div>
+      )}
       {/* Row 1: overall direct booking totals */}
       <div className="grid grid-cols-2 gap-4">
         <SummaryCard

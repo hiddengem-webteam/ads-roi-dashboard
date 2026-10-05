@@ -160,6 +160,18 @@ async function main() {
     byCampaign.set(key, e);
     mappedSpend += spend;
   }
+  // Manual adjustment (per Shawal, Oct 5 2026): Meta recorded 12 Paradise
+  // Pointe purchases in Sep (10 in the 09/15–21 week, 2 in 09/29–30) with NO
+  // conversion value on the "Website, IG & FB Engagers" ad set. Add them at
+  // the September avg direct booking value (12 × $1,170.59 = $14,047.08).
+  const pp = byCampaign.get('Paradise Pointe\u0000BoF - Sales Campaign - Retargeting Website Visitors');
+  if (pp) {
+    pp.conv += 12 * 1170.59;
+    console.log('Manual adjustment: Paradise Pointe BoF RT conversion value +$14,047.08 (12 unvalued purchases × $1,170.59 avg booking).');
+  } else {
+    console.warn('Manual adjustment target not found: Paradise Pointe BoF RT campaign.');
+  }
+
   const rows: string[] = ['Account name,Campaign name,Amount spent,Link clicks,Leads,Impressions,Purchases,Purchases conversion value'];
   for (const e of byCampaign.values()) {
     rows.push([e.client, e.campaign, e.spend, e.clicks, e.leads, e.impressions, e.purchases, e.conv].map(csvCell).join(','));

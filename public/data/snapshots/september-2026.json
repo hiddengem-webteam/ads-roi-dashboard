@@ -1019,7 +1019,7 @@
             "linkClicks": 1810,
             "leads": 50,
             "purchases": 46,
-            "purchasesConversionValue": 6558.379999999999
+            "purchasesConversionValue": 20605.459999999995
           },
           "newLeads": {
             "type": "New Leads",
@@ -7102,6 +7102,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-10-05T16:09:53.826Z"
+    "lastProcessed": "2026-10-05T16:57:46.284Z"
   }
 }
