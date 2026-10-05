@@ -97,19 +97,29 @@ async function main() {
       : metaAttributedBookingsRaw;
 
     const costPerMetaBooking = totalSpend > 0 && metaAttributedBookings > 0 ? totalSpend / metaAttributedBookings : null;
-    const avgDirectBookingValue = pms?.summary.avgDirectBookingValue ?? 0;
-    const pctOfBookingValue = costPerMetaBooking !== null && avgDirectBookingValue > 0
-      ? round2((costPerMetaBooking / avgDirectBookingValue) * 100)
+    // Avg booking value derives from the DISPLAYED revenue so revenue ÷
+    // bookings always ties out in the export (the PMS summary's own average
+    // can disagree when the reporting sheet overrides revenue).
+    const avgDirectBookingValue = bookingCount > 0 && displayRevenue > 0 ? displayRevenue / bookingCount : 0;
+    // % of booking value = spend ÷ actual ad-attributed revenue, matching the
+    // campaign-level formula (was cost-per-booking ÷ avg value, which drifted
+    // from the campaign blocks).
+    const pctOfBookingValue = totalSpend > 0 && metaAttributedRevenue > 0
+      ? round2((totalSpend / metaAttributedRevenue) * 100)
       : null;
     const roas = totalSpend > 0 && metaAttributedRevenue > 0 ? round2(metaAttributedRevenue / totalSpend) : null;
 
     return {
-      clientName: client.name,
+      // canonical internal name is 'Stay Southen Illinois' (July legacy);
+      // correct the spelling in the client-facing export
+      clientName: client.name === 'Stay Southen Illinois' ? 'Stay Southern Illinois' : client.name,
       note: SEPTEMBER_CLIENT_NOTES[client.name] ?? null,
       revenueSource,
-      totalDirectBookings: bookingCount,
+      // null (not 0) when the client has no booking-level data at all
+      totalDirectBookings: pms ? bookingCount : null,
       totalDirectBookingRevenue: round2(displayRevenue),
-      totalLeads: fig ? fig.newLeads : null,
+      totalLeads: fig ? fig.newLeads : (fb?.newLeads?.leads ?? 0) > 0 ? fb!.newLeads!.leads : null,
+      leadsSource: fig ? 'client-reporting-sheet' : (fb?.newLeads?.leads ?? 0) > 0 ? 'meta-lead-campaigns (no sheet row)' : null,
       overallMetaAdSpend: round2(totalSpend),
       totalBookingsAttributedToMeta: metaAttributedBookings,
       costPerMetaAttributedBooking: costPerMetaBooking !== null ? round2(costPerMetaBooking) : null,

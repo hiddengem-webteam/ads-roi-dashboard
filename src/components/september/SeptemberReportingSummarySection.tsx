@@ -122,10 +122,11 @@ export default function AugustReportingSummarySection({
   const costPerMetaBooking =
     hasSpend && hasMetaAttributedBookings ? totalSpend / metaAttributedBookings : null;
 
-  const avgDirectBookingValue = pmsSummary?.avgDirectBookingValue ?? 0;
+  // spend ÷ actual ad-attributed revenue — same formula as the per-campaign
+  // "% of Booking Value" cards, so the two levels agree (per review, Oct 2026)
   const pctOfBookingValue =
-    costPerMetaBooking !== null && avgDirectBookingValue > 0
-      ? (costPerMetaBooking / avgDirectBookingValue) * 100
+    totalSpend > 0 && metaAttributedRevenue > 0
+      ? (totalSpend / metaAttributedRevenue) * 100
       : null;
 
   const metaRoas = hasSpend && hasMetaAttributedRevenue ? metaAttributedRevenue / totalSpend : null;
@@ -185,7 +186,7 @@ export default function AugustReportingSummarySection({
         <SummaryCard
           label="% of Booking Value"
           value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : undefined}
-          sub={pctOfBookingValue !== null ? `Cost per Meta booking ÷ ${formatCurrency(avgDirectBookingValue)} avg booking value` : undefined}
+          sub={pctOfBookingValue !== null ? `${formatCurrency(totalSpend)} spend ÷ ${formatCurrency(metaAttributedRevenue)} Meta-attributed revenue` : undefined}
           placeholder="No data"
         />
         <SummaryCard
