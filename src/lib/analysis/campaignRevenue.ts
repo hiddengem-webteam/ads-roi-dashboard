@@ -28,7 +28,13 @@ export function computeCampaignRevenue(client: ClientData | null | undefined): C
     const ct = code.campaignType.toLowerCase();
     if (ct.includes('follower')) {
       for (const guest of code.guests) {
-        if (guest.isZeroRevenue) continue;
+        if (guest.isZeroRevenue) {
+          // A recorded use without revenue this month (e.g. Tuxedo's promo-use
+          // list naming prior-month bookings): counts as an attributed booking
+          // so the campaign card matches the promo table, adds no revenue.
+          followersUses++;
+          continue;
+        }
         const email = guest.email?.toLowerCase().trim();
         if (email && fbLeadEmailSet.has(email)) {
           followersDeduped++;
