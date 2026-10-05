@@ -2,6 +2,11 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-10-05
+
+- **Week 41 run of all three reviews** (5 Oct): reports, sidecars, HTML and the Netlify archive published. Benchmark generator now resolves `ROOT` from its own location (the project moved to `HG - Github Stuff/meta-ads-weekly-reviews`), names a CSV row whose purchases carry no conversion value instead of showing a bare 0.0x ROAS, and strips Gemini's section breaks from the per-client meeting lines. Spend check: an UNSETTLED account (Asheville) is scored from the CSV with $0 active and flagged ❌ with the payment issue named; a stalled-delivery account (Stay With Branch) is raised ⚠️ on judgement and the footer says so.
+- **Client Benchmark CSV fallback now carries the frequency diagnostic** (Shawal, 5 Oct: keep a check on retargeting frequency). `generate_report.py` aggregates the export's Reach column alongside Impressions and derives campaign frequency as impressions / reach (approximate where ad sets overlap in audience), so CSV-scored Sales / Retargeting rows get the same "freq > 3.0" diagnostic as live rows. Reach and Frequency are now required columns in the weekly export; the W41 export (28 Sep – 4 Oct) already has them. States are unchanged: frequency stays a diagnostic.
+
 ## 2026-09-28
 
 - **Big Moon Ranch offboarded** (Shawal, 28 Sep). The W40 🔴 for the missing account is closed; the spend check treats a sheet row for an offboarded client as ⚠️ sheet housekeeping, not a blocker. Ad-spend skill and section 5 maps updated.

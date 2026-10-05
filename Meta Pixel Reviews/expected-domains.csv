@@ -3,7 +3,7 @@ American River Resort,2862601447415133,americanriverresort.com,,inferred,seeded 
 Asheville River Cabins,1634367080775220,ashevillerivercabins.com,hotels.cloudbeds.com|us1.cloudbeds.com,inferred,Cloudbeds PMS
 Away2PA,772693422494226,away2pa.com|awaytopa.com,booking.ownerrez.com|app.ownerrez.com,inferred,second brand domain awaytopa.com used for bio/links
 Awayframes,773898245792839,awayframes.com,,inferred,
-Best Texas Travel,4108409325970216,besttexastravel.com,,inferred,book. subdomain is the booking engine
+Best Texas Travel,4108409325970216,besttexastravel.com,besttexastravel.holidayfuture.com,inferred,book. subdomain is the booking engine; Holiday Future booking engine seen 1 Oct 2026
 Big Moon Ranch,1208874174466414,bigmoonranch.com|staybigmoonranch.com,,inferred,client offboarded 2026-09-28; drop the row when the client leaves the Master sheet
 Bison Ridge Retreat,1241959234316508,bisonridgeretreat.com,,inferred,
 Canopy at Moody Moon Ridge,861460105842405,moodymoonridge.com|canopytreehouse.com,canopy-moodymoonridge.netlify.app,inferred,two brand domains; CONFIRM canopytreehouse.com is the client's
@@ -15,12 +15,12 @@ FLOHOM,139231105894533,flohom.com|goflohom.com,flohom-ai-hgm.netlify.app|flohoml
 Green Springs Inn,1602971745164199,greenspringsinn.com,gsi.holidayfuture.com,inferred,Event Data pixel (booking engine only)
 Green Springs Inn,1098954801239133,greenspringsinn.com|staygreenspringsinn.com,gsi.holidayfuture.com,inferred,GSI Wix pixel (primary)
 Hiawassee Glamping,1149628220675980,hiawasseeglamping.com,,inferred,Lodgify PMS
-Home Base,1467511861488785,homebasebnbs.com|stayhomebase.com,homebasebnbs.guestybookings.com,inferred,Guesty PMS; staging hosts are client dev
+Home Base,1467511861488785,homebasebnbs.com|stayhomebase.com,homebasebnbs.guestybookings.com|homebase.rentamira.com,inferred,"Guesty PMS; staging hosts are client dev; homebase.rentamira.com seen 2 Oct 2026 (Mira listing/booking vendor), accepted 2026-10-05, CONFIRM"
 Inspired Retreats,1547510566197386,stayinspiredretreats.com,,inferred,
 Little River Landing,1816709606431185,staylittleriver.com,little-river-landing-website.netlify.app|littleriverlanding-landingpage.netlify.app,inferred,
 Myrinn,1943632852972363,staywithmyrinn.com,,inferred,
 Nature Nooks,844302611320158,naturenooksacadia.com,,inferred,Streamline PMS
-North Star Resort & Lodge,3440147309499983,northstarkillington.com,northstarlodgelandingpage.netlify.app,inferred,account pixel (client BM); CONFIRM domain
+North Star Resort & Lodge,3440147309499983,northstarkillington.com,northstarlodgelandingpage.netlify.app|go.northstarkillington.com|hotels.cloudbeds.com,inferred,account pixel (client BM); CONFIRM domain; GHL funnel fires this pixel from 1 Oct 2026
 North Star Resort & Lodge,1904436107168032,northstarkillington.com,hotels.cloudbeds.com|northstarlodgelandingpage.netlify.app,inferred,HG BM pixel; Cloudbeds PMS
 Oak & Ember,1729106025177871,stayoakandember.com,booking.hospitable.com,inferred,Hospitable PMS
 Paradise Pointe,707016175006193,stayparadisepointe.com,paradise-pointe-hgm-ai.netlify.app,inferred,HomeRunner
@@ -44,6 +44,6 @@ The Cohost Company,638998632168952,thecohostcompany.com|gocohostcompany.com,the-
 The Outpost,1691591692267740,outpostgrandcanyon.com,,inferred,HG Event Data pixel (bio only)
 The Outpost,734783866381382,outpostgrandcanyon.com,bookingsus.newbook.cloud,inferred,client BM pixel (site + Newbook)
 Three Suns Cabins,691977289952800,threesunscabins.com,,inferred,only bio subdomain seen; CONFIRM main site domain
-Treetop Escapes,1178838797064774,staytreetopescapes.com,uniquestays.guestybookings.com,inferred,Guesty account "uniquestays"; HomeRunner
+Treetop Escapes,1178838797064774,staytreetopescapes.com,uniquestays.guestybookings.com,inferred,"Guesty account ""uniquestays""; HomeRunner"
 Tuxedo Falls,1561325308991270,tuxedofalls.com,,inferred,no events seen; ResNexus PMS; CONFIRM domain
 Tuxedo Falls,1839806973541001,tuxedofalls.com,resnexus.com|sites.leadconnectorhq.com,inferred,"'Website' pixel in Tuxedo's own business, carries the site + ResNexus + GHL; not attached to the ad account (found 2026-09-28)"

@@ -1,14 +1,14 @@
 import csv, json, glob, os, re, collections, datetime
-ROOT="/Users/shawal/Desktop/Meta Ads Analysis - 21:09:26"
+ROOT=os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","..",".."))
 SP=os.path.dirname(os.path.abspath(__file__))
-TODAY="2026-09-28"
-PREV_DATE="2026-09-21"
+TODAY="2026-10-05"
+PREV_DATE="2026-09-28"
 OUT=f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks"
-ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-09-28: name -> (AM, account id, account name, connector)
+ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-05: name -> (AM, account id, account name, connector)
  "FLOHOM":("Makenna","2100710320122219","FLOHOM Ads","live"),
  "Treetop Escapes":("Makenna","967636478877602","Treetop Escapes Ads","live"),
  "Paradise Pointe":("Makenna","1585826092078255","Paradise Pointe Ads","csv"),
- "Asheville River Cabins":("Charlotte","615836588009747","Asheville River Cabins Ads","live"),
+ "Asheville River Cabins":("Charlotte","615836588009747","Asheville River Cabins Ads","csv"),
  "Green Springs Inn":("Alicia","1390516335151357","Green Springs Inn","live"),
  "Starlight Haven Hot Springs":("Charlotte","901138032027913","Starlight Haven Hot Springs","live"),
  "Starlight Haven Weiss Lake":("Charlotte","74756899","Starlight Haven Weiss Lake","live"),
@@ -28,9 +28,9 @@ ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-09-28: na
  "North Star Lodge & Resort":("Charlotte","2003562593933799","North Star Lodge & Resort Ads","live"),
 }
 # Advanced in the CRM but with no ad account in PROJECT.md section 5 (footer only)
-ADV_UNMAPPED={"Treetop Hideaways":"Kristal","Walden Retreats":"Anna","Glasscombe":"Charlotte"}
+ADV_UNMAPPED={"Treetop Hideaways":"Kristal","Walden Retreats":"Anna","Glasscombe":"Charlotte","Cabin Collective":"Chiara","Casey Key Resort":"Alicia","Arca Roatan":"—"}
 # Was Advanced on 2026-09-21, now Basic in the CRM: dropped from scope this run
-ADV_DROPPED={"Canopy at Moody Moon":"CRM Meta Ads column now reads Basic (AM Kristal); was Advanced on 21 Sep"}
+ADV_DROPPED={}  # no scope changes vs 2026-09-28; three new Advanced clients in the CRM (Cabin Collective, Casey Key Resort, Arca Roatan) have no ad account yet
 def f(x):
     try: return float(x)
     except: return None
@@ -97,7 +97,7 @@ csvstatus={}
 for r in rows:
     if not r["Account name"]: continue
     k=(r["Account name"].strip(),r["Campaign name"])
-    for c in ["Amount spent (USD)","Impressions","Link clicks","Purchases","Purchases conversion value","Leads"]:
+    for c in ["Amount spent (USD)","Impressions","Reach","Link clicks","Purchases","Purchases conversion value","Leads"]:
         csvagg[k][c]+=f(r[c]) or 0
     d=(r.get("Campaign delivery") or "").strip().lower()
     csvstatus[k]="ACTIVE" if d=="active" or csvstatus.get(k)=="ACTIVE" else (d.upper() or "unknown")
@@ -133,21 +133,19 @@ def roi_line(client):
 # ---------- Weekly Meta Ads meeting notes (Gemini) ----------
 # One entry per meeting doc found on the calendar since the previous run. Oldest first.
 MEETINGS=[
- dict(title="Meta Ads Strategy", date="2026-09-23", doc_id="1fs5ztTn1bKVuGo0lltwTASgoAeP0hTkJFuG2ykyK42U", file=f"{SP}/meeting0.json", note="Gemini produced no notes for this call (\"not enough conversation in a supported language\"); only a 32-minute transcript exists, which this report does not use."),
- dict(title="Meta Ads x HiddenGem AI Sync (12:03 ET)", date="2026-09-24", doc_id="1dpv2D1nk5cDoHxTAn7yP0Ff7wheeZJ457OHZVLlrNNI", file=f"{SP}/meeting1.json"),
- dict(title="Meta Ads x HiddenGem AI Sync (13:33 ET)", date="2026-09-24", doc_id="11gWAmc-R6mCIXj3AlG7j_zLyW583SHloC0JPxJCNud0", file=f"{SP}/meeting2.json"),
+ dict(title="Meta Ads Strategy", date="2026-10-01", doc_id="1Jy5fp33nsdX6kzkDLoSU-4abEvppm7is4zpoC84FNlo", file=f"{SP}/meeting1.json"),
 ]
 # How Gemini spells clients in the notes. Lower-case substrings.
 ALIASES={
  "FLOHOM":["flohom","flow home","flo home"],
- "Tàberg Falls":["taberg","tabber","taber falls","tàberg","táberg"],
- "Stay On 30A":["30a"],
+ "Tàberg Falls":["taberg","tabber","taber falls","tàberg","táberg","tipik falls","debug falls"],
+ "Stay On 30A":["30a","stay on 38"],
  "Canopy at Moody Moon":["canopy","moody moon"],
- "Starlight Haven Hot Springs":["starlight","hot springs"],
+ "Starlight Haven Hot Springs":["starlight","hot springs","starlight haven"],
  "Starlight Haven Weiss Lake":["starlight","weiss"],
  "Stay Saluda NC":["saluda"],
  "American River Resort":["american river"],
- "Asheville River Cabins":["asheville"],
+ "Asheville River Cabins":["asheville","ashwood river"],
  "Green Springs Inn":["green springs"],
  "Treetop Escapes":["treetop","tree top"],
  "Paradise Pointe":["paradise pointe","paradise point"],
@@ -156,7 +154,7 @@ ALIASES={
  "Bison Ridge Retreat":["bison"],
  "Ponderosa Pines Resort":["ponderosa"],
  "The Outpost":["outpost"],
- "Selah Place":["selah"],
+ "Selah Place":["selah","sailor place"],
  "Sunapee Stays":["sunapee"],
  "Ridge & Falls":["ridge & falls","ridge and falls","ridge falls"],
  "Little River Landing":["little river"],
@@ -185,7 +183,7 @@ for M in MEETINGS:
     dec=[clean(l) for l in section(body,"Decisions",["Next steps"]).splitlines() if l.strip().startswith("-")]
     nxt=[clean(l) for l in section(body,"Next steps",["Details"]).splitlines() if l.strip().startswith("-")]
     details=clean(section(body,"Details",[]))
-    sents=[x.strip(" -") for x in re.split(r"(?<=[.!?])\s+",details) if x.strip()]
+    sents=[re.sub(r"\s+"," ",x.strip(" -\n")) for x in re.split(r"(?<=[.!?])\s+",details) if x.strip(" -\n")]
     meetings.append(dict(M,summary=summ,decisions=dec,next=nxt,sents=sents))
 def mentions(client):
     keys=set(ALIASES.get(client,[]))|{client.lower()}
@@ -207,7 +205,7 @@ FLAGGED=("Flag to Shawal","Review w/ HG AI")
 def diff_for(rec):
     key=rec["cid"] or (rec["client"]+"||"+rec["name"])
     p=prev.get(key)
-    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 21 Sep run")
+    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 28 Sep run")
     ps=p["state"]; pw=int(p.get("weeks_open") or 0)
     if ps in FLAGGED and rec["state"] in FLAGGED: return ("still_open",pw+1,f"Still open, week {pw+1}"+("" if ps==rec["state"] else f" (was {ps})"))
     if ps in FLAGGED and rec["state"] not in FLAGGED: return ("fixed",0,f"Fixed, was {ps}")
@@ -221,11 +219,18 @@ for fn in sorted(glob.glob(f"{ROOT}/HG AI Reports/*.md")):
     if d<PREV_DATE: continue
     HGAI[b]=fn
 HGAI_LINES={
- "Paradise Pointe":"HG AI notes (23 Sep): Meta-credited BoF retargeting purchases fell 76% month over month (ROAS 20.2x to 4.2x, purchase days 18 to 5) while PMS direct revenue stayed flat at about $134k, and the direct-booking channel label switched from BE-API to website in the same window. Check Purchase tracking (Events Manager, pixel and CAPI, test booking) before changing budget; hold BoF spend, add creative and widen the audience if frequency is above 3.",
- "Stay Saluda NC":"HG AI notes (23 Sep): account ROAS 1.71x to 2.12x on the mix change, but BoF retargeting weakened in the second half of the month (6.07x to 2.40x, CTR down 14%) on flat spend. ToF was already scaled to about $25/day on 18 to 22 Sep, so fix the retargeting pool first (4 to 6 fresh review-led ads, add IG/FB engagers and the GHL list), keep ToF steps at 20% or less, and point creative at the open calendar (next 30 days 47% occupied).",
- "Tàberg Falls":"HG AI notes (23 Sep): hold off moving $50/day from the lookalike into retargeting and the giveaway. Both sales campaigns fell together in the last 15 days on flat spend (retargeting 11.2x to 3.7x, lookalike 4.8x to 3.2x), so the cause is shared (creative age, checkout, offer or tracking), not the lookalike. Check retargeting frequency and creative age first; if moving money now, trim the lookalike 20% into the giveaway and leave retargeting alone. Weekend nights to 18 Dec are 46% booked, December weekends 8%.",
+ "Paradise Pointe":"HG AI notes (23 Sep, carried from last week, no new file): Meta-credited BoF retargeting purchases fell 76% month over month (ROAS 20.2x to 4.2x, purchase days 18 to 5) while PMS direct revenue stayed flat at about $134k, and the direct-booking channel label switched from BE-API to website in the same window. Check Purchase tracking (Events Manager, pixel and CAPI, test booking) before changing budget; hold BoF spend, add creative and widen the audience if frequency is above 3.",
+ "Stay Saluda NC":"HG AI notes (23 Sep, carried from last week, no new file): account ROAS 1.71x to 2.12x on the mix change, but BoF retargeting weakened in the second half of the month (6.07x to 2.40x, CTR down 14%) on flat spend. ToF was already scaled to about $25/day on 18 to 22 Sep, so fix the retargeting pool first (4 to 6 fresh review-led ads, add IG/FB engagers and the GHL list), keep ToF steps at 20% or less, and point creative at the open calendar (next 30 days 47% occupied).",
+ "Tàberg Falls":"HG AI notes (23 Sep, carried from last week, no new file): hold off moving $50/day from the lookalike into retargeting and the giveaway. Both sales campaigns fell together in the last 15 days on flat spend (retargeting 11.2x to 3.7x, lookalike 4.8x to 3.2x), so the cause is shared (creative age, checkout, offer or tracking), not the lookalike. Check retargeting frequency and creative age first; if moving money now, trim the lookalike 20% into the giveaway and leave retargeting alone. Weekend nights to 18 Dec are 46% booked, December weekends 8%.",
 }
-EXTRA_NOTES={"Selah Place":"Account status: the connector lists ad account 1275283434220508 as UNSETTLED (unpaid balance) and not queryable this week, although the read went through. Check the payment method before delivery stops."}
+EXTRA_NOTES={
+ "Selah Place":"Actions log: the $100/day prospecting test was paused after 28 Sep (Done) and the account is back to ACTIVE and queryable, so the payment error is cleared; the planned move of that budget into the BoF retargeting campaign has not happened yet (BoF still $15/day).",
+ "Ridge & Falls":"Actions log: the lead-campaign relaunch with a fixed conversion event (planned 28 Sep) has not happened; the 09/01 campaign is still the live one, so it is scored as is.",
+ "Tàberg Falls":"Actions log: Shawal's 28 Sep restructure is live (new 'MoF - Broad (Acquire new customers) - 09/28/2026' at $50/day, Lookalike cut from $100 to $50/day). The Broad campaign is a prospecting Sales campaign scored on the Retargeting bands (decision 15); it crossed the $200 gate on about 2 Oct, so its first scored week is on 7 days of data.",
+ "Paradise Pointe":"Shawal's 29 Sep change note: new 'MoF - LoL Sales Campaign - 09/28/26' at $50/day (account now $150/day); 1 Oct meeting: 3 purchases at about $40 each in its first days.",
+ "Asheville River Cabins":"Account status: the connector lists ad account 615836588009747 as UNSETTLED (unpaid balance) and not queryable this week, so the account is scored from the CSV export. All three campaigns show Campaign delivery = not_delivering and the account spent $90 in 7 days against $80/day of budgets, so nothing is scored; the BoF campaign that was Scale (41.8x) last week is listed as paused in window until delivery resumes.",
+ "Stay On 30A":"1 Oct meeting: named as a scaling candidate (as 'Stay on 38').",
+}
 def hgai_line(client):
     n=norm(client); hits=[b for b in HGAI if norm(b).find(n[:8])>=0 or n.find(norm(b.split(" - ")[0][11:]))>=0]
     if client in HGAI_LINES: return HGAI_LINES[client]+(f" (file: {hits[0]})" if hits else "")
@@ -282,15 +287,17 @@ for client,(am,acct,acctname,src) in ADV.items():
                     gov=(f"CPL {money(spend/leads)}" if leads else "CPL —") if t==LEAD else (f"ROAS {x(val/spend)}" if spend else "ROAS —")))
                 continue
             cpc=spend/clicks if clicks else None; cpm=spend/impr*1000 if impr else None; ctr=clicks/impr*100 if impr else None
+            reach=v.get("Reach") or 0; freq=impr/reach if reach else None  # campaign frequency = impressions / reach summed over ad sets (approximate when audiences overlap)
             if t==LEAD:
                 win=csv_days; gate=100; cpl=spend/leads if leads else None
                 gov=f"CPL {money(cpl)}"; govval=cpl; results=f"{int(leads)} leads"; state,why=cpl_state(cpl,leads,spend); cpp=None
             else:
                 win=csv_days; gate=200; roas=val/spend if spend else None; cpp=spend/purch if purch else None
                 gov=f"ROAS {x(roas)}"; govval=roas; results=f"{int(purch)} purchases"; state,why=roas_state(roas,purch)
+                if purch and not val: why=f"{int(purch)} purchases but no conversion value in the export, so ROAS reads 0.0x; check the Purchase value parameter before treating this as a performance Flag"
             if spend<gate: state="Under gate"; why=f"spend {money(spend)} < ${gate} gate"
-            dg=diags(t,cpc,cpm,ctr,cpp,None)+"; CTR here is link CTR from the export"
-            notes=[f"source: CSV export {rs} to {re_} ({csv_days} days, not the {14 if t!=LEAD else 30}-day window), not live; provisional. Export now carries Campaign delivery, so only active campaigns are scored"]
+            dg=diags(t,cpc,cpm,ctr,cpp,freq)+"; CTR here is link CTR from the export"
+            notes=[f"source: CSV export {rs} to {re_} ({csv_days} days, not the {14 if t!=LEAD else 30}-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored"]
             if why: notes.append(why)
             records.append(dict(client=client,am=am,acct=acct,cid="",name=cname,type=t,win=win,src="csv",spend=spend,results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=st))
     ADV[client]=(am,acct,acctname,src,tof_spend)
@@ -313,7 +320,7 @@ def srow(r,first=True):
     return f"| {r['client']} | {r['am']} | {r['name']} | {r['type']} | {money(r['spend'],0)} / {r['win']}d | {r['gov']} | {r['state']} | {r['difftxt']} |"
 L=[]
 L.append(f"# Client Benchmark Review (advanced setups) — {TODAY}\n")
-L.append(f"Run: 28 September 2026, second run, compared against {PREVFILE}. Live reads via the Meta connector; CSV export {rs} to {re_} for the 4 accounts the connector cannot read. Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Six clients are in scope for the first time (The Outpost, Selah Place, Sunapee Stays, Ridge & Falls, Little River Landing, North Star Lodge & Resort) and Canopy at Moody Moon has dropped out (CRM now says Basic). Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
+L.append(f"Run: 5 October 2026, third run, compared against {PREVFILE}. Live reads via the Meta connector (09:05 to 09:55 PT); CSV export {rs} to {re_} for the {sum(1 for v in ADV.values() if v[3]=='csv')} accounts the connector cannot read (Asheville River Cabins joins them this week, UNSETTLED). Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Scope unchanged since 28 Sep apart from three new Advanced clients in the CRM (Cabin Collective, Casey Key Resort, Arca Roatan) that have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
 L.append("| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI |")
 L.append("|---|---|---|---|---|---|---|---|---|---|")
 L.append(f"| {len(ADV)} (+{len(ADV_UNMAPPED)} unmapped) | {sum(1 for v in ADV.values() if v[3]=='live')} | {sum(1 for v in ADV.values() if v[3]=='csv')} | {len(scored)} | {counts['Under gate']} | {counts['Flag to Shawal']} | {counts['Review w/ HG AI']} | {counts['Monitor']} | {counts['Healthy']} | {counts['Scale w/ HG AI']} |\n")
@@ -342,7 +349,7 @@ def act_key(r): return (0 if r["type"]!=LEAD else 1, ORDER[r["state"]], -r["spen
 for r in sorted(act,key=act_key): L.append(srow(r))
 if removed:
     L.append("")
-    L.append("Removed since last week (flagged on 21 Sep, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
+    L.append("Removed since last week (flagged on 28 Sep, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
 L.append("")
 L.append("## Scale candidates\n")
 L.append("| Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |")
@@ -385,10 +392,10 @@ L.append("- Frequency and cost per booking are diagnostics only and do not chang
 L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as \"Paused in window\" and never enter Action needed or the counts (decision 2026-09-23).")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append(f"- Previous report: {PREVFILE}. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: {sum(1 for r in records if r['diff']=='new')} new, {sum(1 for r in records if r['diff']=='still_open')} still open, {sum(1 for r in records if r['diff']=='fixed')} fixed, {sum(1 for r in records if r['diff']=='unchanged')} unchanged, {len(removed)} removed.")
-L.append("- Scope changes vs 21 Sep: "+"; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items())+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
+L.append("- Scope changes vs 28 Sep: "+("; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "none; the CRM now lists 27 Advanced clients, three of them new (Cabin Collective, Casey Key Resort, Arca Roatan) and not yet launched")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
 L.append("- HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: "+(", ".join(HGAI) if HGAI else "none")+".")
-L.append("- Selah Place's prospecting campaign is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with dashes.")
-L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber = Tàberg Falls).")
+L.append("- Selah Place's prospecting campaign (paused this week) is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with slashes.")
+L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).")
 L.append(f"- Monthly ROI context from `Monthly ROI data/` ({', '.join(sorted({p for v in roi.values() for p in v}))}). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.")
 open(f"{OUT}/{TODAY}-client-benchmark.md","w",encoding="utf-8").write("\n".join(L)+"\n")
 with open(f"{OUT}/{TODAY}-client-benchmark.csv","w",newline="",encoding="utf-8") as fh:
