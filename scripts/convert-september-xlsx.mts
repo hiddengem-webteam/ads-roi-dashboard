@@ -137,6 +137,26 @@ async function main() {
       let total = 0, count = 0, coded = 0, discounted = 0;
       const codes: Record<string, number> = {};
 
+      // Tuxedo Falls appends a promo-use list below the booking table (per
+      // Shawal, Oct 2026): rows with a guest name + code but NO revenue. Those
+      // markers tag the matching main-table booking with the code; the marker
+      // rows themselves stay excluded (no revenue to double count).
+      const promoMarkers = new Map<string, { name: string; code: string }>();
+      const norm = (s: string) => s.toLowerCase().replace(/[^a-z]/g, '');
+      if (client === 'Tuxedo Falls' && cols.code >= 0) {
+        for (let r = hdrRowIdx + 1; r <= ws.rowCount; r++) {
+          const vals = (ws.getRow(r).values as unknown[]).map(cellVal);
+          const name = String(vals[1] ?? '').trim();
+          const mCode = String(vals[cols.code] ?? '').trim().toUpperCase();
+          const rev = Number(vals[cols.revenue] ?? NaN);
+          if (name && /[a-z]/i.test(name) && mCode && !NOT_A_CODE.test(mCode) && !Number.isFinite(rev)) {
+            promoMarkers.set(norm(name), { name, code: mCode });
+          }
+        }
+        if (promoMarkers.size) console.log(`Tuxedo Falls: ${promoMarkers.size} promo-use marker rows found`);
+      }
+      const consumedMarkers = new Set<string>();
+
       for (let r = hdrRowIdx + 1; r <= ws.rowCount; r++) {
         const vals = (ws.getRow(r).values as unknown[]).map(cellVal);
         const guest = cols.guest.map((i) => String(vals[i] ?? '').trim()).filter(Boolean).join(' ');
@@ -155,6 +175,13 @@ async function main() {
         if (client === 'American River Resort') code = code.replace(/^WELCOME\d+$/, 'WELCOME20');
         // Sunapee Sept: WELCOME10 drag-filled into WELCOME11…WELCOME20
         if (client === 'Sunapee Stays') code = code.replace(/^WELCOME(1\d|20)$/, 'WELCOME10');
+        // promo-use marker from the list below the table: tag the matching
+        // booking. Only a real booking row (finite revenue) consumes a marker —
+        // the marker rows themselves also pass through here and must not.
+        if (Number.isFinite(revenue) && promoMarkers.has(norm(guest))) {
+          if (!code) code = promoMarkers.get(norm(guest))!.code;
+          consumedMarkers.add(norm(guest));
+        }
         // skip pivot/summary/empty/totals rows: a real guest contains letters
         if (!guest || !/[a-z]/i.test(guest) || (!Number.isFinite(revenue) && !code)) continue;
         if (!Number.isFinite(revenue)) continue;
@@ -165,6 +192,15 @@ async function main() {
         total += revenue; count++;
         if (code) { coded++; codes[code] = (codes[code] ?? 0) + 1; }
         if (discount > 0) discounted++;
+      }
+
+      // Markers whose guest has no booking row this month (they booked in a
+      // prior month with the code): keep them as zero-revenue uses so the use
+      // count matches the AM's list, without inventing revenue.
+      for (const [key, m] of promoMarkers) {
+        if (consumedMarkers.has(key)) continue;
+        outRows.push([`${m.name} (prior-month booking)`, '', 0, '', m.code, '', '']);
+        coded++; codes[m.code] = (codes[m.code] ?? 0) + 1;
       }
 
       // No codes but discount amounts recorded → drop the code column so

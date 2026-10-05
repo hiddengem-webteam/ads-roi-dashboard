@@ -6081,7 +6081,7 @@
                 "code": "BISON100",
                 "discount": "$100 off",
                 "purpose": "generic code",
-                "campaignType": "",
+                "campaignType": "Followers",
                 "uses": 4,
                 "revenue": 5945.130000000001,
                 "guests": [
@@ -6193,13 +6193,21 @@
                 "discount": "10% OFF",
                 "purpose": "2-night min",
                 "campaignType": "Followers",
-                "uses": 2,
-                "revenue": 2575,
+                "uses": 15,
+                "revenue": 6342,
                 "guests": [
                   {
                     "name": "Bruce Horowitz",
                     "email": "bruce1000@outlook.com",
                     "revenue": 876,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "John Medlin",
+                    "email": "chris@aikenai.com",
+                    "revenue": 1080,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -6211,6 +6219,102 @@
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Patty Sumpter",
+                    "email": "pattysumpter@gmail.com",
+                    "revenue": 1757,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sandra Mcconnell",
+                    "email": "passingangel1@yahoo.com",
+                    "revenue": 930,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Deanna Brzeg (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Leisa Leonard (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Christy Peek (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Kathleen S Mills (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Kevin Chelko (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "KELLI KIRKLAND (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Katherine Sieber (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Sarah Denney (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Jack Miceli (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
+                  },
+                  {
+                    "name": "Tina Outlaw (prior-month booking)",
+                    "email": "",
+                    "revenue": 0,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": true
                   }
                 ]
               },
@@ -6224,8 +6328,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 2,
-            "totalRevenue": 2575,
+            "totalUses": 15,
+            "totalRevenue": 6342,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -6248,7 +6352,7 @@
             "totalRevenue": 41905,
             "avgDirectBookingValue": 1232.5,
             "directBookingCount": 34,
-            "zeroRevenueCount": 0,
+            "zeroRevenueCount": 10,
             "hasSourceColumn": true
           }
         },
@@ -6998,6 +7102,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-10-02T16:32:04.886Z"
+    "lastProcessed": "2026-10-05T16:09:53.826Z"
   }
 }
