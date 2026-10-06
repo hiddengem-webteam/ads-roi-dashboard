@@ -272,7 +272,7 @@ for client,(am,acct,acctname,src) in ADV.items():
             notes=[]
             if why: notes.append(why)
             if extra: notes.append(extra)
-            records.append(dict(client=client,am=am,acct=acct,cid=cid,name=r["name"],type=t,win=win,src="live",spend=r["spend"],results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=r["status"]))
+            records.append(dict(client=client,am=am,acct=acct,cid=cid,name=r["name"],type=t,win=win,src="live",spend=r["spend"],results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=r["status"],freq=r["freq"]))
     else:
         for (a,cname),v in csvagg.items():
             if a!=acctname: continue
@@ -299,11 +299,18 @@ for client,(am,acct,acctname,src) in ADV.items():
             dg=diags(t,cpc,cpm,ctr,cpp,freq)+"; CTR here is link CTR from the export"
             notes=[f"source: CSV export {rs} to {re_} ({csv_days} days, not the {14 if t!=LEAD else 30}-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored"]
             if why: notes.append(why)
-            records.append(dict(client=client,am=am,acct=acct,cid="",name=cname,type=t,win=win,src="csv",spend=spend,results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=st))
+            records.append(dict(client=client,am=am,acct=acct,cid="",name=cname,type=t,win=win,src="csv",spend=spend,results=results,gov=gov,govval=govval,state=state,diag=dg,notes="; ".join(notes),status=st,freq=freq))
     ADV[client]=(am,acct,acctname,src,tof_spend)
 
 for r in records:
     r["diff"],r["weeks"],r["difftxt"]=diff_for(r)
+FREQ_FLAG=5.0  # Shawal, 2026-10-06: flag any Sales / Retargeting campaign whose frequency is above 5. Diagnostic + its own section; the ROAS state is unchanged.
+for r in records:
+    r["freq_flag"]=bool(r["type"] in SALES and r.get("freq") is not None and r["freq"]>FREQ_FLAG)
+def freq_cell(r):
+    if r["type"]==LEAD or r.get("freq") is None: return "—"
+    return f"{r['freq']:.2f}"+(" ⚠️ > 5" if r["freq_flag"] else "")
+freq_watch=sorted([r for r in records if r["freq_flag"]],key=lambda r:-r["freq"])
 seen={(r["cid"] or (r["client"]+"||"+r["name"])) for r in records}
 removed=[p for k,p in prev.items() if k not in seen and p["state"] in FLAGGED]
 
@@ -321,9 +328,9 @@ def srow(r,first=True):
 L=[]
 L.append(f"# Client Benchmark Review (advanced setups) — {TODAY}\n")
 L.append(f"Run: 5 October 2026, third run, compared against {PREVFILE}. Live reads via the Meta connector (09:05 to 09:55 PT); CSV export {rs} to {re_} for the {sum(1 for v in ADV.values() if v[3]=='csv')} accounts the connector cannot read (Asheville River Cabins joins them this week, UNSETTLED). Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Scope unchanged since 28 Sep apart from three new Advanced clients in the CRM (Cabin Collective, Casey Key Resort, Arca Roatan) that have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
-L.append("| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI |")
-L.append("|---|---|---|---|---|---|---|---|---|---|")
-L.append(f"| {len(ADV)} (+{len(ADV_UNMAPPED)} unmapped) | {sum(1 for v in ADV.values() if v[3]=='live')} | {sum(1 for v in ADV.values() if v[3]=='csv')} | {len(scored)} | {counts['Under gate']} | {counts['Flag to Shawal']} | {counts['Review w/ HG AI']} | {counts['Monitor']} | {counts['Healthy']} | {counts['Scale w/ HG AI']} |\n")
+L.append("| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI | Frequency over 5 |")
+L.append("|---|---|---|---|---|---|---|---|---|---|---|")
+L.append(f"| {len(ADV)} (+{len(ADV_UNMAPPED)} unmapped) | {sum(1 for v in ADV.values() if v[3]=='live')} | {sum(1 for v in ADV.values() if v[3]=='csv')} | {len(scored)} | {counts['Under gate']} | {counts['Flag to Shawal']} | {counts['Review w/ HG AI']} | {counts['Monitor']} | {counts['Healthy']} | {counts['Scale w/ HG AI']} | {len(freq_watch)} |\n")
 L.append("States come from the Decision Making table in the Benchmarks doc. Lead Gen: CPL under $0.30 Scale, $0.30–0.50 Healthy, $0.50–1.00 Monitor, $1.00–2.50 Review, $2.50+ Flag, 30-day window, $100 gate. Sales/Retargeting: ROAS above 15x Scale, 8–15x Healthy, 5–8x Monitor, 2–5x Review, under 2x Flag, 14-day window, $200 gate. Band edges are inclusive on the lower bound.\n")
 
 if meetings:
@@ -358,6 +365,13 @@ sc=[r for r in records if r["state"]=="Scale w/ HG AI"]
 for r in sorted(sc,key=act_key): L.append(srow(r))
 if not sc: L.append("| — | | | | | | | |")
 L.append("")
+L.append("## Frequency watch (Sales / Retargeting above 5)\n")
+L.append("Sales, Retargeting and MoF-lookalike campaigns whose 14-day frequency is above 5.0 (Shawal, 6 Oct 2026). Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on. The diagnostics column still notes anything above 3.0.\n")
+L.append("| Client | AM | Campaign | Type | Frequency | Spend / window | Governing metric | State |")
+L.append("|---|---|---|---|---|---|---|---|")
+for r in freq_watch: L.append(f"| {r['client']} | {r['am']} | {r['name']} | {r['type']} | {r['freq']:.2f} | {money(r['spend'],0)} / {r['win']}d | {r['gov']} | {r['state']} |")
+if not freq_watch: L.append("| — | | | | | | | |")
+L.append("")
 L.append("## Per client, ordered by scored MoF + BoF spend\n")
 for c in order:
     am,acct,acctname,src,tof=ADV[c]
@@ -367,10 +381,10 @@ for c in order:
     if not rs_:
         L.append("No live Lead Gen or Sales campaigns with spend in the window.\n")
     else:
-        L.append("| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |")
-        L.append("|---|---|---|---|---|---|---|---|---|---|")
+        L.append("| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |")
+        L.append("|---|---|---|---|---|---|---|---|---|---|---|")
         for r in sorted(rs_,key=lambda r:(ORDER[r["state"]],-r["spend"])):
-            L.append(f"| {r['name']} | {r['type']} | {r['win']}d | {money(r['spend'],0)} | {r['results']} | {r['gov']} | {r['state']} | {r['diag']} | {r['notes']} | {r['difftxt']} |")
+            L.append(f"| {r['name']} | {r['type']} | {r['win']}d | {money(r['spend'],0)} | {r['results']} | {r['gov']} | {freq_cell(r)} | {r['state']} | {r['diag']} | {r['notes']} | {r['difftxt']} |")
         L.append("")
     for pz in paused_by_client.get(c,[]):
         L.append(f"Paused in window, not scored: {pz['name']} ({pz['type']}), {money(pz['spend'],0)} / {pz['win']}d, {pz['results']}, {pz['gov']}. Live campaigns only are scored (decision 2026-09-23).\n")
@@ -388,7 +402,7 @@ L.append("- Gates: $100 Lead Gen, $200 Sales/Retargeting. Campaigns under the ga
 L.append("- Classification: by campaign objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Sales, split into Retargeting (BoF) or MoF lookalike by name; OUTCOME_TRAFFIC / OUTCOME_ENGAGEMENT → ToF, not scored). CSV accounts have no objective column, so classification there is by name.")
 L.append("- Sales campaigns with an MoF or lookalike prefix are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting sales campaigns; confirm or add one.")
 L.append("- CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.")
-L.append("- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21).")
+L.append("- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.")
 L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as \"Paused in window\" and never enter Action needed or the counts (decision 2026-09-23).")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append(f"- Previous report: {PREVFILE}. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: {sum(1 for r in records if r['diff']=='new')} new, {sum(1 for r in records if r['diff']=='still_open')} still open, {sum(1 for r in records if r['diff']=='fixed')} fixed, {sum(1 for r in records if r['diff']=='unchanged')} unchanged, {len(removed)} removed.")
@@ -399,8 +413,8 @@ L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"M
 L.append(f"- Monthly ROI context from `Monthly ROI data/` ({', '.join(sorted({p for v in roi.values() for p in v}))}). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.")
 open(f"{OUT}/{TODAY}-client-benchmark.md","w",encoding="utf-8").write("\n".join(L)+"\n")
 with open(f"{OUT}/{TODAY}-client-benchmark.csv","w",newline="",encoding="utf-8") as fh:
-    w=csv.writer(fh); w.writerow("run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes".split(","))
+    w=csv.writer(fh); w.writerow("run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes,frequency,freq_flag".split(","))
     for r in records:
         gm="cpl" if r["type"]==LEAD else "roas"
-        w.writerow([TODAY,r["client"],r["am"],r["acct"],r["cid"],r["name"],r["type"],r["win"],r["src"],f"{r['spend']:.2f}",r["results"],gm,"" if r["govval"] is None else f"{r['govval']:.2f}",r["state"],r["diag"],r["diff"],r["weeks"],r["notes"]])
+        w.writerow([TODAY,r["client"],r["am"],r["acct"],r["cid"],r["name"],r["type"],r["win"],r["src"],f"{r['spend']:.2f}",r["results"],gm,"" if r["govval"] is None else f"{r['govval']:.2f}",r["state"],r["diag"],r["diff"],r["weeks"],r["notes"],"" if r.get("freq") is None else f"{r['freq']:.2f}","yes" if r["freq_flag"] else ""])
 print("records",len(records),"counts",dict(counts)); print("unclassified",unclassified)

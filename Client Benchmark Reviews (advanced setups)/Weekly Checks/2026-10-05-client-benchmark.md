@@ -2,9 +2,9 @@
 
 Run: 5 October 2026, third run, compared against 2026-09-28-client-benchmark.csv. Live reads via the Meta connector (09:05 to 09:55 PT); CSV export 2026-09-28 to 2026-10-04 for the 5 accounts the connector cannot read (Asheville River Cabins joins them this week, UNSETTLED). Scope: clients marked **Advanced** in the CRM "Meta Ads" column (Clients - Onboarding tab), re-read today: 27 clients, 21 with an ad account. Scope unchanged since 28 Sep apart from three new Advanced clients in the CRM (Cabin Collective, Casey Key Resort, Arca Roatan) that have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.
 
-| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI |
-|---|---|---|---|---|---|---|---|---|---|
-| 21 (+6 unmapped) | 16 | 5 | 34 | 9 | 3 | 8 | 12 | 5 | 6 |
+| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI | Frequency over 5 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 21 (+6 unmapped) | 16 | 5 | 34 | 9 | 3 | 8 | 12 | 5 | 6 | 1 |
 
 States come from the Decision Making table in the Benchmarks doc. Lead Gen: CPL under $0.30 Scale, $0.30–0.50 Healthy, $0.50–1.00 Monitor, $1.00–2.50 Review, $2.50+ Flag, 30-day window, $100 gate. Sales/Retargeting: ROAS above 15x Scale, 8–15x Healthy, 5–8x Monitor, 2–5x Review, under 2x Flag, 14-day window, $200 gate. Band edges are inclusive on the lower bound.
 
@@ -75,17 +75,25 @@ Removed since last week (flagged on 28 Sep, not scored today): Selah Place: SP -
 | Starlight Haven Hot Springs | Charlotte | Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | $277 / 14d | ROAS 40.0x | Scale w/ HG AI | Unchanged |
 | Selah Place | Alicia | BoF-Website Retarget Campaign - 07/24/2026 | Retargeting (BoF) | $210 / 14d | ROAS 16.5x | Scale w/ HG AI | Was Under gate |
 
+## Frequency watch (Sales / Retargeting above 5)
+
+Sales, Retargeting and MoF-lookalike campaigns whose 14-day frequency is above 5.0 (Shawal, 6 Oct 2026). Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on. The diagnostics column still notes anything above 3.0.
+
+| Client | AM | Campaign | Type | Frequency | Spend / window | Governing metric | State |
+|---|---|---|---|---|---|---|---|
+| Stay Saluda NC | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 5.00 | $421 / 14d | ROAS 3.8x | Review w/ HG AI |
+
 ## Per client, ordered by scored MoF + BoF spend
 
 ### Stay On 30A — AM Charlotte — account Stay on 30a Ads (25640434272252212) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $2,990 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | 30d | $1,489 | 1084 leads | CPL $1.37 | Review w/ HG AI | CPC $0.39 > $0.30; CPM $34.14 > $14.84 | 14d CPL $1.33 | Still open, week 3 |
-| MoF - Sales Campaign - HiddenGem Pixel LoL - 07/17/26 | Sales (MoF lookalike) | 14d | $2,532 | 15 purchases | ROAS 19.4x | Scale w/ HG AI | CPC $0.91 > $0.62; CPM $27.72 > $16.50; cost/booking $168.82 > $90 | 30d ROAS 20.6x, 30 purchases | Unchanged |
-| BoF - Sales Campaign - RT Website Visitors - 07/13/26 | Retargeting (BoF) | 14d | $1,693 | 16 purchases | ROAS 32.3x | Scale w/ HG AI | CPC $1.38 > $0.62; CPM $31.05 > $16.50; cost/booking $105.79 > $90; freq 4.6 > 3.0 | 30d ROAS 31.0x, 28 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | 30d | $1,489 | 1084 leads | CPL $1.37 | — | Review w/ HG AI | CPC $0.39 > $0.30; CPM $34.14 > $14.84 | 14d CPL $1.33 | Still open, week 3 |
+| MoF - Sales Campaign - HiddenGem Pixel LoL - 07/17/26 | Sales (MoF lookalike) | 14d | $2,532 | 15 purchases | ROAS 19.4x | 2.04 | Scale w/ HG AI | CPC $0.91 > $0.62; CPM $27.72 > $16.50; cost/booking $168.82 > $90 | 30d ROAS 20.6x, 30 purchases | Unchanged |
+| BoF - Sales Campaign - RT Website Visitors - 07/13/26 | Retargeting (BoF) | 14d | $1,693 | 16 purchases | ROAS 32.3x | 4.57 | Scale w/ HG AI | CPC $1.38 > $0.62; CPM $31.05 > $16.50; cost/booking $105.79 > $90; freq 4.6 > 3.0 | 30d ROAS 31.0x, 28 purchases | Unchanged |
 
 Monthly ROI: August: spend $12,420, 85 Meta-attributed bookings, blended ROAS 17.8x, retargeting ROAS 15.5x, CPL $2.58 on 594 leads · July: spend $6,407, 67 Meta-attributed bookings, blended ROAS 32.3x, retargeting ROAS 14.6x, CPL $1.24 on 583 leads.
 
@@ -97,12 +105,12 @@ HG AI notes: none dropped in since the previous run. 1 Oct meeting: named as a s
 
 ToF (Discovery / Keyword) spend, not scored: $2,991 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Leads Campaign - 06/19/26 | Lead Gen (MoF) | 30d | $1,799 | 3224 leads | CPL $0.56 | Monitor | within lines | 14d CPL $0.58 | Unchanged |
-| BoF - Website Retargeting Campaign - 08/21/2026 | Retargeting (BoF) | 14d | $1,399 | 7 purchases | ROAS 7.1x | Monitor | CPC $0.72 > $0.62; CPM $24.62 > $16.50; cost/booking $199.87 > $90; freq 3.3 > 3.0 | 30d ROAS 5.8x, 12 purchases | Unchanged |
-| MoF - Broad (Acquire new customers) - 09/28/2026 | Sales (MoF lookalike) | 14d | $320 | 1 purchases | ROAS 5.2x | Monitor | CPM $22.24 > $16.50; cost/booking $319.95 > $90 | 30d ROAS 5.2x, 1 purchases | New, not in the 28 Sep run |
-| MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | 14d | $1,085 | 7 purchases | ROAS 10.5x | Healthy | CPM $25.78 > $16.50; cost/booking $154.97 > $90 | 30d ROAS 7.0x, 11 purchases | Fixed, was Review w/ HG AI |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Leads Campaign - 06/19/26 | Lead Gen (MoF) | 30d | $1,799 | 3224 leads | CPL $0.56 | — | Monitor | within lines | 14d CPL $0.58 | Unchanged |
+| BoF - Website Retargeting Campaign - 08/21/2026 | Retargeting (BoF) | 14d | $1,399 | 7 purchases | ROAS 7.1x | 3.33 | Monitor | CPC $0.72 > $0.62; CPM $24.62 > $16.50; cost/booking $199.87 > $90; freq 3.3 > 3.0 | 30d ROAS 5.8x, 12 purchases | Unchanged |
+| MoF - Broad (Acquire new customers) - 09/28/2026 | Sales (MoF lookalike) | 14d | $320 | 1 purchases | ROAS 5.2x | 1.59 | Monitor | CPM $22.24 > $16.50; cost/booking $319.95 > $90 | 30d ROAS 5.2x, 1 purchases | New, not in the 28 Sep run |
+| MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | 14d | $1,085 | 7 purchases | ROAS 10.5x | 1.49 | Healthy | CPM $25.78 > $16.50; cost/booking $154.97 > $90 | 30d ROAS 7.0x, 11 purchases | Fixed, was Review w/ HG AI |
 
 Monthly ROI: August: spend $11,259, 31 Meta-attributed bookings, blended ROAS 4.5x, retargeting ROAS 8.0x, CPL $0.46 on 4015 leads · July: spend $11,739, 80 Meta-attributed bookings, blended ROAS 9.5x, retargeting ROAS 15.8x, CPL $0.67 on 2320 leads.
 
@@ -114,12 +122,12 @@ HG AI notes (23 Sep, carried from last week, no new file): hold off moving $50/d
 
 ToF (Discovery / Keyword) spend, not scored: $1,355 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,290 | 11 purchases | ROAS 5.9x | Monitor | CPM $18.46 > $16.50; cost/booking $117.28 > $90 | 30d ROAS 9.6x, 33 purchases | Was Healthy |
-| MoF - Lead Campaign - Retargeting Engagers – 08/17/26 | Lead Gen (MoF) | 30d | $992 | 1928 leads | CPL $0.51 | Monitor | within lines | 14d CPL $0.50 | Unchanged |
-| MoF - Lookalike Sales Campaign - 07/29/26 | Sales (MoF lookalike) | 14d | $1,262 | 12 purchases | ROAS 8.9x | Healthy | CPC $0.65 > $0.62; CPM $20.01 > $16.50; cost/booking $105.17 > $90 | 30d ROAS 9.4x, 30 purchases | Unchanged |
-| [Myrtle Beach] MoF - Lookalike Sales Campaign - 09/17/26 | Sales (MoF lookalike) | 14d | $334 | 4 purchases | ROAS 14.4x | Healthy | CPC $1.45 > $0.62; CPM $22.44 > $16.50; freq 3.0 > 3.0 | 30d ROAS 13.3x, 5 purchases | Was Monitor |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,290 | 11 purchases | ROAS 5.9x | 2.34 | Monitor | CPM $18.46 > $16.50; cost/booking $117.28 > $90 | 30d ROAS 9.6x, 33 purchases | Was Healthy |
+| MoF - Lead Campaign - Retargeting Engagers – 08/17/26 | Lead Gen (MoF) | 30d | $992 | 1928 leads | CPL $0.51 | — | Monitor | within lines | 14d CPL $0.50 | Unchanged |
+| MoF - Lookalike Sales Campaign - 07/29/26 | Sales (MoF lookalike) | 14d | $1,262 | 12 purchases | ROAS 8.9x | 1.98 | Healthy | CPC $0.65 > $0.62; CPM $20.01 > $16.50; cost/booking $105.17 > $90 | 30d ROAS 9.4x, 30 purchases | Unchanged |
+| [Myrtle Beach] MoF - Lookalike Sales Campaign - 09/17/26 | Sales (MoF lookalike) | 14d | $334 | 4 purchases | ROAS 14.4x | 3.00 | Healthy | CPC $1.45 > $0.62; CPM $22.44 > $16.50; freq 3.0 > 3.0 | 30d ROAS 13.3x, 5 purchases | Was Monitor |
 
 Monthly ROI: August: spend $9,331, 57 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 8.2x, CPL $2.24 on 708 leads · July: spend $5,555, 103 Meta-attributed bookings, blended ROAS 17.2x, retargeting ROAS 19.1x, CPL $7.66 on 66 leads.
 
@@ -131,10 +139,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $902 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $904 | 1107 leads | CPL $0.82 | Monitor | within lines | 14d CPL $0.75 | Unchanged |
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $545 | 5 purchases | ROAS 10.1x | Healthy | CPM $18.52 > $16.50; cost/booking $108.96 > $90; freq 3.3 > 3.0 | 30d ROAS 10.8x, 12 purchases | Fixed, was Review w/ HG AI |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $904 | 1107 leads | CPL $0.82 | — | Monitor | within lines | 14d CPL $0.75 | Unchanged |
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $545 | 5 purchases | ROAS 10.1x | 3.34 | Healthy | CPM $18.52 > $16.50; cost/booking $108.96 > $90; freq 3.3 > 3.0 | 30d ROAS 10.8x, 12 purchases | Fixed, was Review w/ HG AI |
 
 Monthly ROI: August: spend $3,082, 28 Meta-attributed bookings, blended ROAS 8.8x, retargeting ROAS 16.3x, CPL $1.49 on 620 leads · July: spend $2,487, 44 Meta-attributed bookings, blended ROAS 14.5x, retargeting ROAS 22.2x, CPL $1.48 on 21 leads.
 
@@ -146,10 +154,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $62 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $744 | 805 leads | CPL $0.92 | Monitor | within lines | 14d CPL $0.85 | Fixed, was Review w/ HG AI |
-| Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $619 | 28 purchases | ROAS 27.3x | Scale w/ HG AI | CPC $0.71 > $0.62; CPM $19.45 > $16.50; freq 3.0 > 3.0 | 30d ROAS 22.6x, 59 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $744 | 805 leads | CPL $0.92 | — | Monitor | within lines | 14d CPL $0.85 | Fixed, was Review w/ HG AI |
+| Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $619 | 28 purchases | ROAS 27.3x | 3.03 | Scale w/ HG AI | CPC $0.71 > $0.62; CPM $19.45 > $16.50; freq 3.0 > 3.0 | 30d ROAS 22.6x, 59 purchases | Unchanged |
 
 Monthly ROI: August: spend $2,351, 36 Meta-attributed bookings, blended ROAS 10.7x, retargeting ROAS 17.6x, CPL $1.23 on 617 leads · July: spend $2,163, 41 Meta-attributed bookings, blended ROAS 10.8x, retargeting ROAS 15.2x, CPL $0.74 on 826 leads.
 
@@ -161,10 +169,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $692 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $904 | 2651 leads | CPL $0.34 | Healthy | within lines | 14d CPL $0.33 | Unchanged |
-| Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $277 | 12 purchases | ROAS 40.0x | Scale w/ HG AI | within lines | 30d ROAS 28.1x, 20 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $904 | 2651 leads | CPL $0.34 | — | Healthy | within lines | 14d CPL $0.33 | Unchanged |
+| Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $277 | 12 purchases | ROAS 40.0x | 2.28 | Scale w/ HG AI | within lines | 30d ROAS 28.1x, 20 purchases | Unchanged |
 
 Monthly ROI: August: spend $2,193, 19 Meta-attributed bookings, blended ROAS 6.3x, retargeting ROAS 22.3x, CPL $0.36 on 2589 leads · July: spend $2,160, 17 Meta-attributed bookings, blended ROAS 5.1x, retargeting ROAS 17.1x, CPL $0.33 on 2813 leads.
 
@@ -176,10 +184,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $896 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $421 | 3 purchases | ROAS 3.8x | Review w/ HG AI | CPC $0.80 > $0.62; CPM $18.53 > $16.50; cost/booking $140.37 > $90; freq 5.0 > 3.0 | 30d ROAS 3.8x, 6 purchases | Still open, week 3 |
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $599 | 637 leads | CPL $0.94 | Monitor | within lines | 14d CPL $0.95 | Fixed, was Review w/ HG AI |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $421 | 3 purchases | ROAS 3.8x | 5.00 ⚠️ > 5 | Review w/ HG AI | CPC $0.80 > $0.62; CPM $18.53 > $16.50; cost/booking $140.37 > $90; freq 5.0 > 3.0 | 30d ROAS 3.8x, 6 purchases | Still open, week 3 |
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $599 | 637 leads | CPL $0.94 | — | Monitor | within lines | 14d CPL $0.95 | Fixed, was Review w/ HG AI |
 
 Monthly ROI: August: spend $2,367, 9 Meta-attributed bookings, blended ROAS 3.7x, retargeting ROAS 5.2x, CPL $2.59 on 146 leads · July: spend $2,140, 10 Meta-attributed bookings, blended ROAS 2.6x, retargeting ROAS 0.8x.
 
@@ -191,11 +199,11 @@ HG AI notes (23 Sep, carried from last week, no new file): account ROAS 1.71x to
 
 ToF (Discovery / Keyword) spend, not scored: $174 over 7 days (export).
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 7d | $359 | 5 purchases | ROAS 0.0x | Flag to Shawal | CPC $0.92 > $0.62; CTR 1.34% < 2%; freq 4.9 > 3.0; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; 5 purchases but no conversion value in the export, so ROAS reads 0.0x; check the Purchase value parameter before treating this as a performance Flag | New flag, was Healthy |
-| MoF - LoL Sales Campaign - 09/28/26 | Sales (MoF lookalike) | 7d | $328 | 6 purchases | ROAS 4.4x | Review w/ HG AI | CPC $0.64 > $0.62; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | New, not in the 28 Sep run |
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 7d | $176 | 187 leads | CPL $0.94 | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 7d | $359 | 5 purchases | ROAS 0.0x | 4.90 | Flag to Shawal | CPC $0.92 > $0.62; CTR 1.34% < 2%; freq 4.9 > 3.0; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; 5 purchases but no conversion value in the export, so ROAS reads 0.0x; check the Purchase value parameter before treating this as a performance Flag | New flag, was Healthy |
+| MoF - LoL Sales Campaign - 09/28/26 | Sales (MoF lookalike) | 7d | $328 | 6 purchases | ROAS 4.4x | 1.83 | Review w/ HG AI | CPC $0.64 > $0.62; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | New, not in the 28 Sep run |
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 7d | $176 | 187 leads | CPL $0.94 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
 
 Monthly ROI: August: spend $3,109, 94 Meta-attributed bookings, blended ROAS 16.8x, retargeting ROAS 18.0x, CPL $1.64 on 471 leads · July: spend $2,237, 74 Meta-attributed bookings, blended ROAS 21.6x, retargeting ROAS 16.7x, CPL $1.01 on 90 leads.
 
@@ -207,10 +215,10 @@ HG AI notes (23 Sep, carried from last week, no new file): Meta-credited BoF ret
 
 ToF (Discovery / Keyword) spend, not scored: $534 over 7 days (export).
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 7d | $511 | 0 purchases | ROAS 0.0x | Flag to Shawal | CPM $19.20 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; no purchases | New flag, was Monitor |
-| MoF Lead Campaign - Retargeting Engagers - 09/09/2026 | Lead Gen (MoF) | 7d | $346 | 427 leads | CPL $0.81 | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Fixed, was Review w/ HG AI |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 7d | $511 | 0 purchases | ROAS 0.0x | 2.42 | Flag to Shawal | CPM $19.20 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; no purchases | New flag, was Monitor |
+| MoF Lead Campaign - Retargeting Engagers - 09/09/2026 | Lead Gen (MoF) | 7d | $346 | 427 leads | CPL $0.81 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Fixed, was Review w/ HG AI |
 
 Monthly ROI: August: spend $1,553, 10 Meta-attributed bookings, blended ROAS 11.6x, retargeting ROAS 38.8x, CPL $9.73 on 26 leads · July: spend $1,534, 9 Meta-attributed bookings, blended ROAS 16.0x.
 
@@ -222,9 +230,9 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $902 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $581 | 450 leads | CPL $1.29 | Review w/ HG AI | CPM $16.56 > $14.84 | 14d CPL $1.20 | Still open, week 3 |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $581 | 450 leads | CPL $1.29 | — | Review w/ HG AI | CPM $16.56 > $14.84 | 14d CPL $1.20 | Still open, week 3 |
 
 Monthly ROI: August: spend $1,529, 3 Meta-attributed bookings, blended ROAS 1.4x, CPL $18.30 on 30 leads · July: spend $1,544, 4 Meta-attributed bookings, blended ROAS 1.1x.
 
@@ -236,10 +244,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $606 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $301 | 177 leads | CPL $1.70 | Review w/ HG AI | within lines | 14d CPL $1.60 | Still open, week 3 |
-| BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $142 | 5 purchases | ROAS 10.5x | Under gate | CPC $0.69 > $0.62; freq 3.1 > 3.0 | spend $141.78 < $200 gate; 30d ROAS 9.0x, 10 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $301 | 177 leads | CPL $1.70 | — | Review w/ HG AI | within lines | 14d CPL $1.60 | Still open, week 3 |
+| BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $142 | 5 purchases | ROAS 10.5x | 3.11 | Under gate | CPC $0.69 > $0.62; freq 3.1 > 3.0 | spend $141.78 < $200 gate; 30d ROAS 9.0x, 10 purchases | Unchanged |
 
 Monthly ROI: August: spend $1,247, 23 Meta-attributed bookings, blended ROAS 8.2x, retargeting ROAS 17.1x, CPL $9.09 on 34 leads · July: spend $1,222, 17 Meta-attributed bookings, blended ROAS 7.8x, retargeting ROAS 14.6x, CPL $5.65 on 8 leads.
 
@@ -251,10 +259,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $903 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $299 | 204 leads | CPL $1.47 | Review w/ HG AI | CPM $15.16 > $14.84 | 14d CPL $1.38 | Still open, week 2 |
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $140 | 2 purchases | ROAS 13.0x | Under gate | CPC $0.68 > $0.62; freq 3.2 > 3.0 | spend $139.53 < $200 gate; 30d ROAS 6.9x, 3 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $299 | 204 leads | CPL $1.47 | — | Review w/ HG AI | CPM $15.16 > $14.84 | 14d CPL $1.38 | Still open, week 2 |
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $140 | 2 purchases | ROAS 13.0x | 3.23 | Under gate | CPC $0.68 > $0.62; freq 3.2 > 3.0 | spend $139.53 < $200 gate; 30d ROAS 6.9x, 3 purchases | Unchanged |
 
 Monthly ROI: August: spend $1,494, 10 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 25.1x, CPL $2.74 on 112 leads · July: spend $939, 16 Meta-attributed bookings, blended ROAS 9.9x, CPL $2.06 on 9 leads.
 
@@ -266,10 +274,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $281 over 7 days (export).
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| Leads Campaign - 07/16/26 | Lead Gen (MoF) | 7d | $140 | 199 leads | CPL $0.70 | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
-| Website Retarget Campaign - 07/13/26 | Retargeting (BoF) | 7d | $281 | 13 purchases | ROAS 28.9x | Scale w/ HG AI | CPC $0.81 > $0.62; CPM $23.12 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Was Healthy |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Leads Campaign - 07/16/26 | Lead Gen (MoF) | 7d | $140 | 199 leads | CPL $0.70 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
+| Website Retarget Campaign - 07/13/26 | Retargeting (BoF) | 7d | $281 | 13 purchases | ROAS 28.9x | 2.98 | Scale w/ HG AI | CPC $0.81 > $0.62; CPM $23.12 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Was Healthy |
 
 Monthly ROI: August: spend $3,101, 103 Meta-attributed bookings, blended ROAS 15.0x, retargeting ROAS 21.3x, CPL $1.32 on 471 leads · July: spend $2,089, 17 Meta-attributed bookings, blended ROAS 3.6x, retargeting ROAS 22.3x, CPL $0.91 on 356 leads.
 
@@ -281,10 +289,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $843 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $149 | 249 leads | CPL $0.60 | Monitor | within lines | 14d CPL $0.70 | Unchanged |
-| BoF-Website Retarget Campaign - 07/24/2026 | Retargeting (BoF) | 14d | $210 | 6 purchases | ROAS 16.5x | Scale w/ HG AI | CPC $0.64 > $0.62; CPM $17.79 > $16.50; freq 3.7 > 3.0 | 30d ROAS 33.8x, 20 purchases | Was Under gate |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $149 | 249 leads | CPL $0.60 | — | Monitor | within lines | 14d CPL $0.70 | Unchanged |
+| BoF-Website Retarget Campaign - 07/24/2026 | Retargeting (BoF) | 14d | $210 | 6 purchases | ROAS 16.5x | 3.68 | Scale w/ HG AI | CPC $0.64 > $0.62; CPM $17.79 > $16.50; freq 3.7 > 3.0 | 30d ROAS 33.8x, 20 purchases | Was Under gate |
 
 Paused in window, not scored: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Sales), $422 / 14d, 1 purchases, ROAS 1.1x. Live campaigns only are scored (decision 2026-09-23).
 
@@ -298,10 +306,10 @@ HG AI notes: none dropped in since the previous run. Actions log: the $100/day p
 
 ToF (Discovery / Keyword) spend, not scored: $598 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers 07/31/2026 | Lead Gen (MoF) | 30d | $150 | 90 leads | CPL $1.67 | Review w/ HG AI | CPC $0.32 > $0.30 | 14d CPL $1.49 | Still open, week 3 |
-| BoF - Sales Campaign - Retargeting Website Visitors 07/31/2026 | Retargeting (BoF) | 14d | $70 | 1 purchases | ROAS 10.4x | Under gate | CPC $0.70 > $0.62 | spend $69.86 < $200 gate; 30d ROAS 4.9x, 1 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers 07/31/2026 | Lead Gen (MoF) | 30d | $150 | 90 leads | CPL $1.67 | — | Review w/ HG AI | CPC $0.32 > $0.30 | 14d CPL $1.49 | Still open, week 3 |
+| BoF - Sales Campaign - Retargeting Website Visitors 07/31/2026 | Retargeting (BoF) | 14d | $70 | 1 purchases | ROAS 10.4x | 2.35 | Under gate | CPC $0.70 > $0.62 | spend $69.86 < $200 gate; 30d ROAS 4.9x, 1 purchases | Unchanged |
 
 Monthly ROI: August: spend $869, 8 Meta-attributed bookings, blended ROAS 21.8x, retargeting ROAS 27.0x, CPL $2.68 on 58 leads · July: spend $923, 9 Meta-attributed bookings, blended ROAS 18.6x, CPL $2.44 on 2 leads.
 
@@ -313,10 +321,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $1,009 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $148 | 21 leads | CPL $7.03 | Flag to Shawal | CPC $0.31 > $0.30; CPM $17.92 > $14.84 | 14d CPL $4.12 | Still open, week 2 |
-| BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26 | Retargeting (BoF) | 14d | $70 | 3 purchases | ROAS 15.3x | Under gate | CPM $16.81 > $16.50; freq 3.9 > 3.0 | spend $69.98 < $200 gate; 30d ROAS 9.7x, 3 purchases | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $148 | 21 leads | CPL $7.03 | — | Flag to Shawal | CPC $0.31 > $0.30; CPM $17.92 > $14.84 | 14d CPL $4.12 | Still open, week 2 |
+| BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26 | Retargeting (BoF) | 14d | $70 | 3 purchases | ROAS 15.3x | 3.92 | Under gate | CPM $16.81 > $16.50; freq 3.9 > 3.0 | spend $69.98 < $200 gate; 30d ROAS 9.7x, 3 purchases | Unchanged |
 
 Monthly ROI: no record in the Monthly ROI data files.
 
@@ -328,10 +336,10 @@ HG AI notes: none dropped in since the previous run. Actions log: the lead-campa
 
 ToF (Discovery / Keyword) spend, not scored: $991 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers - 09/16/2026 | Lead Gen (MoF) | 30d | $105 | 64 leads | CPL $1.64 | Review w/ HG AI | CPC $0.36 > $0.30; CPM $18.41 > $14.84 | 14d CPL $1.47 | New flag, was Under gate |
-| BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026 | Retargeting (BoF) | 14d | $73 | 0 purchases | ROAS — | Under gate | freq 3.5 > 3.0 | spend $72.52 < $200 gate | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers - 09/16/2026 | Lead Gen (MoF) | 30d | $105 | 64 leads | CPL $1.64 | — | Review w/ HG AI | CPC $0.36 > $0.30; CPM $18.41 > $14.84 | 14d CPL $1.47 | New flag, was Under gate |
+| BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026 | Retargeting (BoF) | 14d | $73 | 0 purchases | ROAS — | 3.45 | Under gate | freq 3.5 > 3.0 | spend $72.52 < $200 gate | Unchanged |
 
 Monthly ROI: no record in the Monthly ROI data files.
 
@@ -343,9 +351,9 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $899 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors - 08/29/2026 | Retargeting (BoF) | 14d | $143 | 0 purchases | ROAS — | Under gate | CPC $0.65 > $0.62 | spend $143.45 < $200 gate | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors - 08/29/2026 | Retargeting (BoF) | 14d | $143 | 0 purchases | ROAS — | 2.23 | Under gate | CPC $0.65 > $0.62 | spend $143.45 < $200 gate | Unchanged |
 
 Monthly ROI: August: spend $1,876, 7 Meta-attributed bookings, blended ROAS 2.1x, CPL $1.71 on 181 leads · July: spend $2,182, 1 Meta-attributed bookings, blended ROAS 0.2x, CPL $1.61 on 202 leads.
 
@@ -357,10 +365,10 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $140 over 7 days (export).
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - RT Website Visitors | Retargeting (BoF) | 7d | $35 | 0 purchases | ROAS 0.0x | Under gate | CPC $0.77 > $0.62; CTR 1.79% < 2%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.46 < $200 gate | Unchanged |
-| MoF - Lead Campaign - RT Engagers | Lead Gen (MoF) | 7d | $35 | 22 leads | CPL $1.60 | Under gate | CTR 2.85% < 3.03%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.10 < $100 gate | Unchanged |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - RT Website Visitors | Retargeting (BoF) | 7d | $35 | 0 purchases | ROAS 0.0x | 1.76 | Under gate | CPC $0.77 > $0.62; CTR 1.79% < 2%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.46 < $200 gate | Unchanged |
+| MoF - Lead Campaign - RT Engagers | Lead Gen (MoF) | 7d | $35 | 22 leads | CPL $1.60 | — | Under gate | CTR 2.85% < 3.03%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.10 < $100 gate | Unchanged |
 
 Monthly ROI: August: spend $952, 3 Meta-attributed bookings, blended ROAS 8.0x, retargeting ROAS —, CPL $2.47 on 63 leads · July: spend $924, 9 Meta-attributed bookings, blended ROAS 20.3x, retargeting ROAS —, CPL $1.75 on 23 leads.
 
@@ -372,9 +380,9 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $675 over 30 days.
 
-| Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors - 09/09/2026 | Retargeting (BoF) | 14d | $22 | 0 purchases | ROAS — | Under gate | within lines | spend $21.72 < $200 gate | New, not in the 28 Sep run |
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| BoF - Sales Campaign - Retargeting Website Visitors - 09/09/2026 | Retargeting (BoF) | 14d | $22 | 0 purchases | ROAS — | 2.47 | Under gate | within lines | spend $21.72 < $200 gate | New, not in the 28 Sep run |
 
 Monthly ROI: no record in the Monthly ROI data files.
 
@@ -405,7 +413,7 @@ HG AI notes: none dropped in since the previous run. Account status: the connect
 - Classification: by campaign objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Sales, split into Retargeting (BoF) or MoF lookalike by name; OUTCOME_TRAFFIC / OUTCOME_ENGAGEMENT → ToF, not scored). CSV accounts have no objective column, so classification there is by name.
 - Sales campaigns with an MoF or lookalike prefix are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting sales campaigns; confirm or add one.
 - CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.
-- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21).
+- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.
 - Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as "Paused in window" and never enter Action needed or the counts (decision 2026-09-23).
 - Unclassified campaigns: none.
 - Previous report: 2026-09-28-client-benchmark.csv. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: 6 new, 7 still open, 5 fixed, 25 unchanged, 1 removed.

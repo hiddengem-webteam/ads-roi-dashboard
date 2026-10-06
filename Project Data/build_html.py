@@ -405,7 +405,8 @@ def build_bench():
         +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00 to 2.50; ROAS 2 to 5x",dot="warn")
         +stat("Monitor",str(cnt["Monitor"]),"CPL $0.50 to 1.00; ROAS 5 to 8x",dot="gray")
         +stat("Healthy",str(cnt["Healthy"]),"CPL $0.30 to 0.50; ROAS 8 to 15x",dot="ok")
-        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"CPL under $0.30; ROAS above 15x",dot="brand"))
+        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"CPL under $0.30; ROAS above 15x",dot="brand")
+        +stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Sales/Retargeting campaigns to refresh creative on; state unchanged",dot="warn"))
     # meetings
     mkey=[k for k in S if k.startswith("Weekly Meta Ads meetings")][0]
     mlines=S[mkey]; meetings=[]; cur=None
@@ -436,6 +437,12 @@ def build_bench():
     kinds=["first","text","text","nowrap","num","num","badge","nowrap"]
     act=render_table("act",hdr,tables(S["Action needed"])[0][1:],kinds,flag_col=6,flag_map=flag_state)
     sc=render_table("scale",hdr,tables(S["Scale candidates"])[0][1:],kinds,flag_col=6,flag_map=flag_state)
+    fkey=[k for k in S if k.startswith("Frequency watch")]
+    fhdr=["Client","AM","Campaign","Type","Frequency","Spend / window","Governing metric","State"]
+    fkinds=["first","text","text","nowrap","num","num","num","badge"]
+    frows=[r for r in tables(S[fkey[0]])[0][1:] if r and r[0].strip()!="—"] if fkey and tables(S[fkey[0]]) else []
+    fw=render_table("freq",fhdr,frows,fkinds,flag_col=7,flag_map=flag_state) if frows else '<div class="empty">No Sales or Retargeting campaign above a frequency of 5 this week.</div>'
+
     # per client
     pkey=[k for k in S if k.startswith("Per client")][0]
     plines=S[pkey]; clients_blocks=[]; cur=None
@@ -444,8 +451,10 @@ def build_bench():
             cur={"head":l[4:].strip(),"lines":[]}; clients_blocks.append(cur)
         elif cur is not None: cur["lines"].append(l)
     chtml=[]
-    chdr=["Campaign","Type","Window","Spend","Results","Governing metric","State","Diagnostics vs investigate lines","Notes","Change vs last week"]
-    ckinds=["first","nowrap","nowrap","num","num","num","badge","notes","notes","nowrap"]
+    chdr=["Campaign","Type","Window","Spend","Results","Governing metric","Frequency","State","Diagnostics vs investigate lines","Notes","Change vs last week"]
+    ckinds=["first","nowrap","nowrap","num","num","num","num","badge","notes","notes","nowrap"]
+    # reports before 2026-10-06 have no Frequency column
+    old_chdr=chdr[:6]+chdr[7:]; old_ckinds=ckinds[:6]+ckinds[7:]
     for i,c in enumerate(clients_blocks):
         parts=[p.strip() for p in c["head"].split(" — ")]
         name=parts[0]; am=parts[1].replace("AM ",""); acct=parts[2].replace("account ",""); src=parts[3]
@@ -457,7 +466,8 @@ def build_bench():
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
         pausedl=[p for p in ps if p.startswith("Paused in window")]
         tid=f"c{i}"
-        if tbls: tbl=render_table(tid,chdr,tbls[0][1:],ckinds,flag_col=6,flag_map=flag_state)
+        if tbls and len(tbls[0][0])>=11: tbl=render_table(tid,chdr,tbls[0][1:],ckinds,flag_col=7,flag_map=flag_state)
+        elif tbls: tbl=render_table(tid,old_chdr,tbls[0][1:],old_ckinds,flag_col=6,flag_map=flag_state)
         else: tbl=f'<div class="empty">{inline(nocamp[0]) if nocamp else "No scored campaigns."}</div>'
         def strip_lbl(p,lbl): return re.sub(r"^"+lbl+r"[^:]*:\s*","",p)
         MN=re.compile(r"^Meeting notes\s*")
@@ -494,6 +504,10 @@ def build_bench():
 <section>
   <div class="sec-head"><div><h2>Scale candidates</h2><p class="sec-desc">Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.</p></div></div>
   <div class="card">{sc}</div>
+</section>
+<section>
+  <div class="sec-head"><div><h2>Frequency watch</h2><p class="sec-desc">Sales, Retargeting and MoF-lookalike campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.</p></div></div>
+  <div class="card">{fw}</div>
 </section>
 <section>
   <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is shown for context and not scored.</p></div></div>

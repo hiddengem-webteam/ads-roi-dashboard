@@ -15,6 +15,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 - **Scope**: only Lead Gen (MoF) and Sales / Retargeting (BoF) campaigns are scored. IG Discovery / Keyword (ToF) spend is shown as one line per client, unscored. Cost per follower is parked.
 - **Retargeting gate** is $200 in the 14-day window. Lead Gen gate is $100 in the 30-day window.
 - **ROAS alone** sets the Retargeting state. Cost per booking and frequency are diagnostics only.
+- **Frequency watch (2026-10-06, Shawal).** Every Sales / Retargeting / MoF-lookalike row shows its 14-day frequency. Above 5.0 it is marked ⚠️ in the Frequency column and listed in a "Frequency watch" section after Scale candidates. The state is still set by ROAS alone; the watch list is the creative-refresh queue.
 - **Metrics come from Meta**: Purchase event (`omni_purchase`, `purchase_roas`, `cost_per_omni_purchase`) and Lead event (`lead`, `cost_per_lead`). Not PMS bookings, not CRM leads.
 - **Advanced-setup list** is the CRM sheet, tab "Clients - Onboarding" (header row reads "Management Clients"), column "Meta Ads" = `Advanced`. Nothing outside the CRM is scored, even if it spends.
 - **No HG AI hand-off block** is generated. Shawal does the analysis. Any HG AI report Shawal drops into the top-level `HG AI Reports/` folder (project root, not inside this workflow folder) is summarised in one line under the client.
@@ -88,6 +89,7 @@ Compare against the per-type Investigate lines and list only the breaches, or "w
 
 - Lead Gen: CPC > $0.30, CPM > $14.84, CTR < 3.03%.
 - Sales / Retargeting: CPC > $0.62, CPM > $16.50, CTR < 2%, cost per booking > $90, frequency > 3.0.
+- Frequency above 5.0 on a Sales / Retargeting / MoF-lookalike row: ⚠️ in the Frequency column and a row in the Frequency watch section. Still not a state change.
 
 Live CTR is Meta's all-clicks CTR, not link CTR. Say so in the footer.
 
@@ -107,20 +109,23 @@ Also read `Project Data/PROJECT.md` section 9 (Actions log) and add the relevant
 1b. **Weekly Meta Ads meetings since last run**: one sub-heading per meeting (title, date, doc ID) with Gemini's Summary, Decisions, Next steps.
 2. **Action needed**: Sales and Retargeting (BoF and MoF-lookalike) campaigns first, then Lead Gen; within each, Flag before Review, highest spend first (Shawal, 2026-09-23). Columns: `Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week`.
 3. **Scale candidates**: same columns, same order.
-4. **Per client**, ordered by scored MoF + BoF spend, highest first. Heading with AM, account name and ID, live or CSV. One ToF spend line. Table: `Campaign | Type | Window | Spend | Results | Governing metric | State | Diagnostics vs investigate lines | Notes | Change vs last week`. Then one "Monthly ROI:" line, one "Meeting notes (meeting date):" line per meeting that names the client (up to three Details sentences, timestamps stripped), or "not mentioned in this week's meetings", and one "HG AI notes:" line.
+3b. **Frequency watch (Sales / Retargeting above 5)**: columns `Client | AM | Campaign | Type | Frequency | Spend / window | Governing metric | State`, highest frequency first; a single `—` row when empty.
+4. **Per client**, ordered by scored MoF + BoF spend, highest first. Heading with AM, account name and ID, live or CSV. One ToF spend line. Table: `Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week`. Frequency is `—` on Lead Gen rows, the 14-day value on Sales rows, with ` ⚠️ > 5` appended when flagged. Then one "Monthly ROI:" line, one "Meeting notes (meeting date):" line per meeting that names the client (up to three Details sentences, timestamps stripped), or "not mentioned in this week's meetings", and one "HG AI notes:" line.
 5. **Footer**: windows, gates, classification rule, the MoF-lookalike-on-Retargeting-bands caveat, CTR caveat, frequency caveat, unclassified campaigns, previous report, ROI data source caveat (sheet revenue, not pixel).
 
 `Weekly Checks/YYYY-MM-DD-client-benchmark.csv`, one row per scored or under-gate campaign:
 
 ```
-run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes
+run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes,frequency,freq_flag
 ```
+
+`frequency` is the 14-day (live) or export-period (CSV) campaign frequency; `freq_flag` is `yes` when it is above 5.0 on a Sales / Retargeting row.
 
 `generate_report.py` next to this file is the reference implementation from the first run. It reads a pipe-separated `live.psv` (client|acct|am|win|id|name|objective|status|spend|impr|cpm|ctr|clicks|cpc|freq|leads|cpl|purch|cpp|roas) written from the connector output, plus the CSV export and the ROI JSON files. Reuse it; update the `ADV` map from the CRM each run.
 
 ## Step 8: Report back in chat
 
-Counts line, the Action needed table, and the Scale candidates table. Point to the file for the per-client detail.
+Counts line, the Action needed table, the Scale candidates table, and the Frequency watch table. Point to the file for the per-client detail.
 
 ## Step 9: Update the project file
 
@@ -142,7 +147,7 @@ This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `site/
 ## Do not
 
 - Do not score IG Discovery, Keyword or any ToF campaign.
-- Do not let frequency, cost per booking or the per-type Investigate lines change a state.
+- Do not let frequency, cost per booking or the per-type Investigate lines change a state. Frequency above 5 is raised in its own section and column, never as a state.
 - Do not include clients that are not marked Advanced in the CRM, whatever they spend.
 - Do not quote the meeting transcript, only the Full notes sections.
 - Do not send email or build HTML. That comes after the text version is signed off.

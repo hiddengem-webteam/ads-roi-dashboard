@@ -2,6 +2,10 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-10-06
+
+- **Client Benchmark shows frequency on every Sales / Retargeting row and flags it above 5** (Shawal, 6 Oct: "add the frequency for the sales campaigns, flag it if it's going above 5"). `generate_report.py` adds a Frequency column to the per-client tables (14-day live value, impressions / reach for CSV rows, `—` on Lead Gen), marks values above 5.0 with ⚠️, adds a "Frequency watch" section after Scale candidates and a count in the header table, and writes `frequency` + `freq_flag` to the sidecar. States are unchanged: ROAS alone still sets them. `build_html.py` renders the new column, section and stat tile and still reads older reports without the column. The 2026-10-05 report was regenerated and republished.
+
 ## 2026-10-05
 
 - **Week 41 run of all three reviews** (5 Oct): reports, sidecars, HTML and the Netlify archive published. Benchmark generator now resolves `ROOT` from its own location (the project moved to `HG - Github Stuff/meta-ads-weekly-reviews`), names a CSV row whose purchases carry no conversion value instead of showing a bare 0.0x ROAS, and strips Gemini's section breaks from the per-client meeting lines. Spend check: an UNSETTLED account (Asheville) is scored from the CSV with $0 active and flagged ❌ with the payment issue named; a stalled-delivery account (Stay With Branch) is raised ⚠️ on judgement and the footer says so.
