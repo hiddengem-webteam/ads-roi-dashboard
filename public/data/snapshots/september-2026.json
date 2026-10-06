@@ -86,6 +86,11 @@
         "ghl": "/data/periods/september-2026/clients/Myrinn/GHL data.csv"
       },
       {
+        "name": "Nature Nooks",
+        "pms": "/data/periods/september-2026/xlsx-source/Nature Nooks/PMS data.csv",
+        "ghl": ""
+      },
+      {
         "name": "Oak & Ember",
         "pms": "/data/periods/september-2026/xlsx-source/Oak & Ember/PMS data.csv",
         "ghl": ""
@@ -6693,8 +6698,124 @@
             "purchasesConversionValue": 0
           }
         },
-        "pmsAnalysis": null,
-        "hasPMS": false,
+        "pmsAnalysis": {
+          "clientName": "Nature Nooks",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME50",
+                "discount": "$50 off",
+                "purpose": "New Leads - 2 night minimum",
+                "campaignType": "Followers",
+                "uses": 7,
+                "revenue": 4156.44,
+                "guests": [
+                  {
+                    "name": "Karin Plante",
+                    "email": "plantek16@gmail.com",
+                    "revenue": 768.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "abigail klaver",
+                    "email": "aklaver28@gmail.com",
+                    "revenue": 725.95,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mario J. Soriano Mendoza",
+                    "email": "mariosoriano95@yahoo.com",
+                    "revenue": 521.02,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Daniela Salazar Guzmán",
+                    "email": "danybop3003@gmail.com",
+                    "revenue": 746.56,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kelly McFadden",
+                    "email": "kellyand2reds@gmail.com",
+                    "revenue": 308.83,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sety Fu",
+                    "email": "sety.yim@gmail.com",
+                    "revenue": 508.9,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Aayushi Kapadia",
+                    "email": "aayushikapadia1995@gmail.com",
+                    "revenue": 576.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past Guests",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "ACADIA15",
+                "discount": "15% off",
+                "purpose": "When bookings are low (use this promo)",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 7,
+            "totalRevenue": 4156.44,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 7606.99,
+            "avgDirectBookingValue": 691.5445454545454,
+            "directBookingCount": 11,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": true
+          }
+        },
+        "hasPMS": true,
         "hasGHL": false
       },
       "Parker Reserve": {
@@ -7004,6 +7125,13 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       },
       {
+        "id": "missing-ghl-Nature-Nooks-",
+        "type": "missing-ghl",
+        "clientName": "Nature Nooks",
+        "message": "Nature Nooks: No GHL data file — lead matching unavailable",
+        "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
+      },
+      {
         "id": "missing-ghl-Oak-&-Ember-",
         "type": "missing-ghl",
         "clientName": "Oak & Ember",
@@ -7102,6 +7230,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-10-05T16:57:46.284Z"
+    "lastProcessed": "2026-10-06T20:30:56.167Z"
   }
 }
