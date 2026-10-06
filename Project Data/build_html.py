@@ -218,6 +218,8 @@ def render_table(tid, header, rows, kinds, flag_col=None, flag_map=None, first_c
         for i,(c,k) in enumerate(zip(r,kinds)):
             if k=="badge": tds.append(f"<td class=nowrap>{flag_badge(c) if flag_map is not flag_state else state_badge(c)}</td>")
             elif k=="first": tds.append(f"<td class=first>{inline(c)}</td>")
+            elif k=="num" and "⚠️" in c:
+                fc=" ".join(c.replace("⚠️"," ").split()); tds.append(f"<td class=num>{badge('warn', fc)}</td>")
             elif k=="num": tds.append(f"<td class=num>{inline(c)}</td>")
             elif k=="mono": tds.append(f"<td class=mono>{inline(c)}</td>")
             elif k=="notes": tds.append(f"<td class=notes>{inline(c)}</td>")
