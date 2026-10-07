@@ -2,6 +2,10 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-10-07
+
+- **September 2026 ROI file added** (`Monthly ROI data/September 2026 - Client Reporting (1).json`, 39 clients, Shawal 7 Oct). The benchmark generator now orders ROI months by calendar (July → August → September) instead of a July/August hard-coding, and appends the latest month's per-client `note` to the Monthly ROI line. The 2026-10-05 benchmark was regenerated and republished with the September context.
+
 ## 2026-10-06
 
 - **Client Benchmark shows frequency on every Sales / Retargeting row and flags it above 5** (Shawal, 6 Oct: "add the frequency for the sales campaigns, flag it if it's going above 5"). `generate_report.py` adds a Frequency column to the per-client tables (14-day live value, impressions / reach for CSV rows, `—` on Lead Gen), marks values above 5.0 with ⚠️, adds a "Frequency watch" section after Scale candidates and a count in the header table, and writes `frequency` + `freq_flag` to the sidecar. States are unchanged: ROAS alone still sets them. `build_html.py` renders the new column, section and stat tile and still reads older reports without the column. The 2026-10-05 report was regenerated and republished.

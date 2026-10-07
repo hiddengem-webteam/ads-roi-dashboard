@@ -286,6 +286,7 @@ Things that were not obvious and change how the workflows are built or run.
 - **Delivery can stall with budgets intact.** Stay With Branch kept its $20/day budgets but spent $8.50/day with the full daily budget still remaining at read time; the pixel's traffic dropped at the same time. The spend check has no rule for this; it was raised as ⚠️ on judgement and noted in the footer.
 - **A reported GHL pixel block is not a fix until the hourly hosts go quiet.** The Saluda → Inspired Retreats block reported on 28 Sep had no effect by 5 Oct; the North Star → Little River Landing one did. Keep a Reported entry open until the host disappears from the window.
 - **The export can carry purchases with no conversion value** (Paradise Pointe BoF, 5 purchases, blank value, 2026-10-05), which makes CSV ROAS 0.0x. The generator now says so in the row instead of reporting a bare 0.0x.
+- **Monthly ROI files carry a per-client `note`** (September 2026 file, added 2026-10-07): launch-month caveats, missing PMS data, pixel purchases above total bookings (Stay Southern Illinois), and the Paradise Pointe missing-value case. The generator now appends the latest month's note to the client's Monthly ROI line. Months sort by calendar order, not by the July/August hard-coding used before.
 
 ## 7. Open decisions
 
@@ -316,7 +317,7 @@ Things that were not obvious and change how the workflows are built or run.
 | 23 | Asheville River Cabins ad account UNSETTLED; all campaigns not delivering since about 29 Sep | Charlotte clears the balance | Open, raised 2026-10-05 |
 | 24 | Stay With Branch delivery stalled (spending 40% of its $20/day budgets since 1 Oct) | Kristal checks payment / ad review / audiences | Open, raised 2026-10-05 |
 | 25 | Big Moon Ranch offboarded but the HG BM pixel is still installed on bigmoonranch.com (about 1.6k events a day) | Remove the pixel from the site or transfer it | Open, raised 2026-10-05 |
-| 26 | Paradise Pointe BoF: 5 purchases with no conversion value in the export (ROAS 0.0x); the 23 Sep HG AI note already asked for a purchase-tracking check | Verify Purchase value parameter (pixel + CAPI) | Open, raised 2026-10-05 |
+| 26 | Paradise Pointe BoF: 5 purchases with no conversion value in the export (ROAS 0.0x); the 23 Sep HG AI note already asked for a purchase-tracking check | Verify Purchase value parameter (pixel + CAPI) | Open, raised 2026-10-05. Confirmed 2026-10-07 by the September ROI file: Meta recorded no revenue for 12 retargeting purchases (15–21 Sep and 29–30 Sep); their value was added manually at the average booking value |
 
 ## 8. Run log
 

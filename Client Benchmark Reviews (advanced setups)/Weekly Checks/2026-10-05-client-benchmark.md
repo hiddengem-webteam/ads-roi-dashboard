@@ -95,7 +95,7 @@ ToF (Discovery / Keyword) spend, not scored: $2,990 over 30 days.
 | MoF - Sales Campaign - HiddenGem Pixel LoL - 07/17/26 | Sales (MoF lookalike) | 14d | $2,532 | 15 purchases | ROAS 19.4x | 2.04 | Scale w/ HG AI | CPC $0.91 > $0.62; CPM $27.72 > $16.50; cost/booking $168.82 > $90 | 30d ROAS 20.6x, 30 purchases | Unchanged |
 | BoF - Sales Campaign - RT Website Visitors - 07/13/26 | Retargeting (BoF) | 14d | $1,693 | 16 purchases | ROAS 32.3x | 4.57 | Scale w/ HG AI | CPC $1.38 > $0.62; CPM $31.05 > $16.50; cost/booking $105.79 > $90; freq 4.6 > 3.0 | 30d ROAS 31.0x, 28 purchases | Unchanged |
 
-Monthly ROI: August: spend $12,420, 85 Meta-attributed bookings, blended ROAS 17.8x, retargeting ROAS 15.5x, CPL $2.58 on 594 leads · July: spend $6,407, 67 Meta-attributed bookings, blended ROAS 32.3x, retargeting ROAS 14.6x, CPL $1.24 on 583 leads.
+Monthly ROI: July: spend $6,407, 67 Meta-attributed bookings, blended ROAS 32.3x, retargeting ROAS 14.6x, CPL $1.24 on 583 leads · August: spend $12,420, 85 Meta-attributed bookings, blended ROAS 17.8x, retargeting ROAS 15.5x, CPL $2.58 on 594 leads · September: spend $12,606, 91 Meta-attributed bookings, blended ROAS 24.4x, retargeting ROAS 23.1x, CPL $1.52 on 1001 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Scaling Ad Candidates and Campaign Flags: Shawal Nazir presented weekly scaling ad account notes, identifying Stay on 38, Starlight Haven, Ashwood River Cabins, and Starlight Hot Springs as scaling candidates, while flagging a conversion events issue in the Sailor Place purchase campaign that Alicia was addressing with the owner.
 
@@ -112,7 +112,7 @@ ToF (Discovery / Keyword) spend, not scored: $2,991 over 30 days.
 | MoF - Broad (Acquire new customers) - 09/28/2026 | Sales (MoF lookalike) | 14d | $320 | 1 purchases | ROAS 5.2x | 1.59 | Monitor | CPM $22.24 > $16.50; cost/booking $319.95 > $90 | 30d ROAS 5.2x, 1 purchases | New, not in the 28 Sep run |
 | MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | 14d | $1,085 | 7 purchases | ROAS 10.5x | 1.49 | Healthy | CPM $25.78 > $16.50; cost/booking $154.97 > $90 | 30d ROAS 7.0x, 11 purchases | Fixed, was Review w/ HG AI |
 
-Monthly ROI: August: spend $11,259, 31 Meta-attributed bookings, blended ROAS 4.5x, retargeting ROAS 8.0x, CPL $0.46 on 4015 leads · July: spend $11,739, 80 Meta-attributed bookings, blended ROAS 9.5x, retargeting ROAS 15.8x, CPL $0.67 on 2320 leads.
+Monthly ROI: July: spend $11,739, 80 Meta-attributed bookings, blended ROAS 9.5x, retargeting ROAS 15.8x, CPL $0.67 on 2320 leads · August: spend $11,259, 31 Meta-attributed bookings, blended ROAS 4.5x, retargeting ROAS 8.0x, CPL $0.46 on 4015 leads · September: spend $10,800, 27 Meta-attributed bookings, blended ROAS 4.0x, retargeting ROAS 7.1x, CPL $0.55 on 3261 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Tipik Falls and Paradise Point Campaign Adjustments: Shawal Nazir detailed recent changes to ad accounts, including a new broad campaign for Tipik Falls targeting new customers at $50 per day that generated one purchase at $128, and a lookalike campaign for Paradise Point running at $50 per day that generated three purchases at $40 each.
 
@@ -129,7 +129,7 @@ ToF (Discovery / Keyword) spend, not scored: $1,355 over 30 days.
 | MoF - Lookalike Sales Campaign - 07/29/26 | Sales (MoF lookalike) | 14d | $1,262 | 12 purchases | ROAS 8.9x | 1.98 | Healthy | CPC $0.65 > $0.62; CPM $20.01 > $16.50; cost/booking $105.17 > $90 | 30d ROAS 9.4x, 30 purchases | Unchanged |
 | [Myrtle Beach] MoF - Lookalike Sales Campaign - 09/17/26 | Sales (MoF lookalike) | 14d | $334 | 4 purchases | ROAS 14.4x | 3.00 | Healthy | CPC $1.45 > $0.62; CPM $22.44 > $16.50; freq 3.0 > 3.0 | 30d ROAS 13.3x, 5 purchases | Was Monitor |
 
-Monthly ROI: August: spend $9,331, 57 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 8.2x, CPL $2.24 on 708 leads · July: spend $5,555, 103 Meta-attributed bookings, blended ROAS 17.2x, retargeting ROAS 19.1x, CPL $7.66 on 66 leads.
+Monthly ROI: July: spend $5,555, 103 Meta-attributed bookings, blended ROAS 17.2x, retargeting ROAS 19.1x, CPL $7.66 on 66 leads · August: spend $9,331, 57 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 8.2x, CPL $2.24 on 708 leads · September: spend $8,855, 66 Meta-attributed bookings, blended ROAS 6.7x, retargeting ROAS 8.9x, CPL $0.50 on 2192 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -144,7 +144,7 @@ ToF (Discovery / Keyword) spend, not scored: $902 over 30 days.
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $904 | 1107 leads | CPL $0.82 | — | Monitor | within lines | 14d CPL $0.75 | Unchanged |
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $545 | 5 purchases | ROAS 10.1x | 3.34 | Healthy | CPM $18.52 > $16.50; cost/booking $108.96 > $90; freq 3.3 > 3.0 | 30d ROAS 10.8x, 12 purchases | Fixed, was Review w/ HG AI |
 
-Monthly ROI: August: spend $3,082, 28 Meta-attributed bookings, blended ROAS 8.8x, retargeting ROAS 16.3x, CPL $1.49 on 620 leads · July: spend $2,487, 44 Meta-attributed bookings, blended ROAS 14.5x, retargeting ROAS 22.2x, CPL $1.48 on 21 leads.
+Monthly ROI: July: spend $2,487, 44 Meta-attributed bookings, blended ROAS 14.5x, retargeting ROAS 22.2x, CPL $1.48 on 21 leads · August: spend $3,082, 28 Meta-attributed bookings, blended ROAS 8.8x, retargeting ROAS 16.3x, CPL $1.49 on 620 leads · September: spend $2,998, 10 Meta-attributed bookings, blended ROAS 3.8x, retargeting ROAS 7.9x, CPL $0.88 on 1019 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -159,7 +159,7 @@ ToF (Discovery / Keyword) spend, not scored: $62 over 30 days.
 | New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $744 | 805 leads | CPL $0.92 | — | Monitor | within lines | 14d CPL $0.85 | Fixed, was Review w/ HG AI |
 | Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $619 | 28 purchases | ROAS 27.3x | 3.03 | Scale w/ HG AI | CPC $0.71 > $0.62; CPM $19.45 > $16.50; freq 3.0 > 3.0 | 30d ROAS 22.6x, 59 purchases | Unchanged |
 
-Monthly ROI: August: spend $2,351, 36 Meta-attributed bookings, blended ROAS 10.7x, retargeting ROAS 17.6x, CPL $1.23 on 617 leads · July: spend $2,163, 41 Meta-attributed bookings, blended ROAS 10.8x, retargeting ROAS 15.2x, CPL $0.74 on 826 leads.
+Monthly ROI: July: spend $2,163, 41 Meta-attributed bookings, blended ROAS 10.8x, retargeting ROAS 15.2x, CPL $0.74 on 826 leads · August: spend $2,351, 36 Meta-attributed bookings, blended ROAS 10.7x, retargeting ROAS 17.6x, CPL $1.23 on 617 leads · September: spend $2,152, 79 Meta-attributed bookings, blended ROAS 17.4x, retargeting ROAS 23.8x, CPL $1.01 on 734 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Scaling Ad Candidates and Campaign Flags: Shawal Nazir presented weekly scaling ad account notes, identifying Stay on 38, Starlight Haven, Ashwood River Cabins, and Starlight Hot Springs as scaling candidates, while flagging a conversion events issue in the Sailor Place purchase campaign that Alicia was addressing with the owner.
 
@@ -174,7 +174,7 @@ ToF (Discovery / Keyword) spend, not scored: $692 over 30 days.
 | New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $904 | 2651 leads | CPL $0.34 | — | Healthy | within lines | 14d CPL $0.33 | Unchanged |
 | Website Retargeting Campaign - 03/03/26 | Retargeting (BoF) | 14d | $277 | 12 purchases | ROAS 40.0x | 2.28 | Scale w/ HG AI | within lines | 30d ROAS 28.1x, 20 purchases | Unchanged |
 
-Monthly ROI: August: spend $2,193, 19 Meta-attributed bookings, blended ROAS 6.3x, retargeting ROAS 22.3x, CPL $0.36 on 2589 leads · July: spend $2,160, 17 Meta-attributed bookings, blended ROAS 5.1x, retargeting ROAS 17.1x, CPL $0.33 on 2813 leads.
+Monthly ROI: July: spend $2,160, 17 Meta-attributed bookings, blended ROAS 5.1x, retargeting ROAS 17.1x, CPL $0.33 on 2813 leads · August: spend $2,193, 19 Meta-attributed bookings, blended ROAS 6.3x, retargeting ROAS 22.3x, CPL $0.36 on 2589 leads · September: spend $2,155, 61 Meta-attributed bookings, blended ROAS 16.5x, retargeting ROAS 28.5x, CPL $0.34 on 2597 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Scaling Ad Candidates and Campaign Flags: Shawal Nazir presented weekly scaling ad account notes, identifying Stay on 38, Starlight Haven, Ashwood River Cabins, and Starlight Hot Springs as scaling candidates, while flagging a conversion events issue in the Sailor Place purchase campaign that Alicia was addressing with the owner.
 
@@ -189,7 +189,7 @@ ToF (Discovery / Keyword) spend, not scored: $896 over 30 days.
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $421 | 3 purchases | ROAS 3.8x | 5.00 ⚠️ > 5 | Review w/ HG AI | CPC $0.80 > $0.62; CPM $18.53 > $16.50; cost/booking $140.37 > $90; freq 5.0 > 3.0 | 30d ROAS 3.8x, 6 purchases | Still open, week 3 |
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $599 | 637 leads | CPL $0.94 | — | Monitor | within lines | 14d CPL $0.95 | Fixed, was Review w/ HG AI |
 
-Monthly ROI: August: spend $2,367, 9 Meta-attributed bookings, blended ROAS 3.7x, retargeting ROAS 5.2x, CPL $2.59 on 146 leads · July: spend $2,140, 10 Meta-attributed bookings, blended ROAS 2.6x, retargeting ROAS 0.8x.
+Monthly ROI: July: spend $2,140, 10 Meta-attributed bookings, blended ROAS 2.6x, retargeting ROAS 0.8x · August: spend $2,367, 9 Meta-attributed bookings, blended ROAS 3.7x, retargeting ROAS 5.2x, CPL $2.59 on 146 leads · September: spend $2,394, 6 Meta-attributed bookings, blended ROAS 1.3x, retargeting ROAS 3.5x, CPL $1.00 on 596 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -205,7 +205,7 @@ ToF (Discovery / Keyword) spend, not scored: $174 over 7 days (export).
 | MoF - LoL Sales Campaign - 09/28/26 | Sales (MoF lookalike) | 7d | $328 | 6 purchases | ROAS 4.4x | 1.83 | Review w/ HG AI | CPC $0.64 > $0.62; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | New, not in the 28 Sep run |
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 7d | $176 | 187 leads | CPL $0.94 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
 
-Monthly ROI: August: spend $3,109, 94 Meta-attributed bookings, blended ROAS 16.8x, retargeting ROAS 18.0x, CPL $1.64 on 471 leads · July: spend $2,237, 74 Meta-attributed bookings, blended ROAS 21.6x, retargeting ROAS 16.7x, CPL $1.01 on 90 leads.
+Monthly ROI: July: spend $2,237, 74 Meta-attributed bookings, blended ROAS 21.6x, retargeting ROAS 16.7x, CPL $1.01 on 90 leads · August: spend $3,109, 94 Meta-attributed bookings, blended ROAS 16.8x, retargeting ROAS 18.0x, CPL $1.64 on 471 leads · September: spend $3,074, 48 Meta-attributed bookings, blended ROAS 7.0x, retargeting ROAS 13.0x, CPL $0.97 on 764 leads. Note in the September file: Meta did not record revenue for 12 retargeting purchases (week of Sep 15–21 and Sep 29–30); their value was added manually at the average booking value (12 × $1,170.59 = $14,047.08) and the ROAS updated.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Tipik Falls and Paradise Point Campaign Adjustments: Shawal Nazir detailed recent changes to ad accounts, including a new broad campaign for Tipik Falls targeting new customers at $50 per day that generated one purchase at $128, and a lookalike campaign for Paradise Point running at $50 per day that generated three purchases at $40 each. Paradise Point Ad Format Review and Broad Testing Proposal: Dustin Baker reviewed Paradise Point's ad formats, proposing to remove underperforming static image carousels while doubling down on reels, carousels, and looping videos to combat high frequency, and suggested running a controlled broad purchase campaign to compare against lookalike performance. Custom Performance Dashboard Creation: Dustin Baker suggested building a custom dashboard to display top-performing content for each client, such as Paradise Point, so marketing assistants can review successful materials via preview links and produce similar content.
 
@@ -220,7 +220,7 @@ ToF (Discovery / Keyword) spend, not scored: $534 over 7 days (export).
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 7d | $511 | 0 purchases | ROAS 0.0x | 2.42 | Flag to Shawal | CPM $19.20 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; no purchases | New flag, was Monitor |
 | MoF Lead Campaign - Retargeting Engagers - 09/09/2026 | Lead Gen (MoF) | 7d | $346 | 427 leads | CPL $0.81 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Fixed, was Review w/ HG AI |
 
-Monthly ROI: August: spend $1,553, 10 Meta-attributed bookings, blended ROAS 11.6x, retargeting ROAS 38.8x, CPL $9.73 on 26 leads · July: spend $1,534, 9 Meta-attributed bookings, blended ROAS 16.0x.
+Monthly ROI: July: spend $1,534, 9 Meta-attributed bookings, blended ROAS 16.0x · August: spend $1,553, 10 Meta-attributed bookings, blended ROAS 11.6x, retargeting ROAS 38.8x, CPL $9.73 on 26 leads · September: spend $2,539, 6 Meta-attributed bookings, blended ROAS 2.9x, retargeting ROAS 4.7x, CPL $1.05 on 532 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -234,7 +234,7 @@ ToF (Discovery / Keyword) spend, not scored: $902 over 30 days.
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $581 | 450 leads | CPL $1.29 | — | Review w/ HG AI | CPM $16.56 > $14.84 | 14d CPL $1.20 | Still open, week 3 |
 
-Monthly ROI: August: spend $1,529, 3 Meta-attributed bookings, blended ROAS 1.4x, CPL $18.30 on 30 leads · July: spend $1,544, 4 Meta-attributed bookings, blended ROAS 1.1x.
+Monthly ROI: July: spend $1,544, 4 Meta-attributed bookings, blended ROAS 1.1x · August: spend $1,529, 3 Meta-attributed bookings, blended ROAS 1.4x, CPL $18.30 on 30 leads · September: spend $1,453, 0 Meta-attributed bookings, blended ROAS —, CPL $1.48 on 377 leads. Note in the September file: We had no promo code usages this month.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -249,7 +249,7 @@ ToF (Discovery / Keyword) spend, not scored: $606 over 30 days.
 | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $301 | 177 leads | CPL $1.70 | — | Review w/ HG AI | within lines | 14d CPL $1.60 | Still open, week 3 |
 | BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $142 | 5 purchases | ROAS 10.5x | 3.11 | Under gate | CPC $0.69 > $0.62; freq 3.1 > 3.0 | spend $141.78 < $200 gate; 30d ROAS 9.0x, 10 purchases | Unchanged |
 
-Monthly ROI: August: spend $1,247, 23 Meta-attributed bookings, blended ROAS 8.2x, retargeting ROAS 17.1x, CPL $9.09 on 34 leads · July: spend $1,222, 17 Meta-attributed bookings, blended ROAS 7.8x, retargeting ROAS 14.6x, CPL $5.65 on 8 leads.
+Monthly ROI: July: spend $1,222, 17 Meta-attributed bookings, blended ROAS 7.8x, retargeting ROAS 14.6x, CPL $5.65 on 8 leads · August: spend $1,247, 23 Meta-attributed bookings, blended ROAS 8.2x, retargeting ROAS 17.1x, CPL $9.09 on 34 leads · September: spend $1,199, 24 Meta-attributed bookings, blended ROAS 8.5x, retargeting ROAS 9.0x, CPL $1.84 on 166 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -264,7 +264,7 @@ ToF (Discovery / Keyword) spend, not scored: $903 over 30 days.
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $299 | 204 leads | CPL $1.47 | — | Review w/ HG AI | CPM $15.16 > $14.84 | 14d CPL $1.38 | Still open, week 2 |
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $140 | 2 purchases | ROAS 13.0x | 3.23 | Under gate | CPC $0.68 > $0.62; freq 3.2 > 3.0 | spend $139.53 < $200 gate; 30d ROAS 6.9x, 3 purchases | Unchanged |
 
-Monthly ROI: August: spend $1,494, 10 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 25.1x, CPL $2.74 on 112 leads · July: spend $939, 16 Meta-attributed bookings, blended ROAS 9.9x, CPL $2.06 on 9 leads.
+Monthly ROI: July: spend $939, 16 Meta-attributed bookings, blended ROAS 9.9x, CPL $2.06 on 9 leads · August: spend $1,494, 10 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 25.1x, CPL $2.74 on 112 leads · September: spend $1,495, 14 Meta-attributed bookings, blended ROAS 6.5x, retargeting ROAS 6.7x, CPL $1.64 on 184 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -279,7 +279,7 @@ ToF (Discovery / Keyword) spend, not scored: $281 over 7 days (export).
 | Leads Campaign - 07/16/26 | Lead Gen (MoF) | 7d | $140 | 199 leads | CPL $0.70 | — | Monitor | within lines; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Unchanged |
 | Website Retarget Campaign - 07/13/26 | Retargeting (BoF) | 7d | $281 | 13 purchases | ROAS 28.9x | 2.98 | Scale w/ HG AI | CPC $0.81 > $0.62; CPM $23.12 > $16.50; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored | Was Healthy |
 
-Monthly ROI: August: spend $3,101, 103 Meta-attributed bookings, blended ROAS 15.0x, retargeting ROAS 21.3x, CPL $1.32 on 471 leads · July: spend $2,089, 17 Meta-attributed bookings, blended ROAS 3.6x, retargeting ROAS 22.3x, CPL $0.91 on 356 leads.
+Monthly ROI: July: spend $2,089, 17 Meta-attributed bookings, blended ROAS 3.6x, retargeting ROAS 22.3x, CPL $0.91 on 356 leads · August: spend $3,101, 103 Meta-attributed bookings, blended ROAS 15.0x, retargeting ROAS 21.3x, CPL $1.32 on 471 leads · September: spend $2,985, 119 Meta-attributed bookings, blended ROAS 17.9x, retargeting ROAS 21.6x, CPL $0.84 on 708 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -296,7 +296,7 @@ ToF (Discovery / Keyword) spend, not scored: $843 over 30 days.
 
 Paused in window, not scored: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Sales), $422 / 14d, 1 purchases, ROAS 1.1x. Live campaigns only are scored (decision 2026-09-23).
 
-Monthly ROI: August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads.
+Monthly ROI: July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads · August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · September: spend $1,304, 27 Meta-attributed bookings, blended ROAS 10.4x, retargeting ROAS 38.2x, CPL $0.63 on 232 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Scaling Ad Candidates and Campaign Flags: Shawal Nazir presented weekly scaling ad account notes, identifying Stay on 38, Starlight Haven, Ashwood River Cabins, and Starlight Hot Springs as scaling candidates, while flagging a conversion events issue in the Sailor Place purchase campaign that Alicia was addressing with the owner.
 
@@ -311,7 +311,7 @@ ToF (Discovery / Keyword) spend, not scored: $598 over 30 days.
 | MoF - Lead Campaign - Retargeting Engagers 07/31/2026 | Lead Gen (MoF) | 30d | $150 | 90 leads | CPL $1.67 | — | Review w/ HG AI | CPC $0.32 > $0.30 | 14d CPL $1.49 | Still open, week 3 |
 | BoF - Sales Campaign - Retargeting Website Visitors 07/31/2026 | Retargeting (BoF) | 14d | $70 | 1 purchases | ROAS 10.4x | 2.35 | Under gate | CPC $0.70 > $0.62 | spend $69.86 < $200 gate; 30d ROAS 4.9x, 1 purchases | Unchanged |
 
-Monthly ROI: August: spend $869, 8 Meta-attributed bookings, blended ROAS 21.8x, retargeting ROAS 27.0x, CPL $2.68 on 58 leads · July: spend $923, 9 Meta-attributed bookings, blended ROAS 18.6x, CPL $2.44 on 2 leads.
+Monthly ROI: July: spend $923, 9 Meta-attributed bookings, blended ROAS 18.6x, CPL $2.44 on 2 leads · August: spend $869, 8 Meta-attributed bookings, blended ROAS 21.8x, retargeting ROAS 27.0x, CPL $2.68 on 58 leads · September: spend $895, 7 Meta-attributed bookings, blended ROAS 11.1x, retargeting ROAS 4.9x, CPL $1.83 on 82 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -326,7 +326,7 @@ ToF (Discovery / Keyword) spend, not scored: $1,009 over 30 days.
 | MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $148 | 21 leads | CPL $7.03 | — | Flag to Shawal | CPC $0.31 > $0.30; CPM $17.92 > $14.84 | 14d CPL $4.12 | Still open, week 2 |
 | BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26 | Retargeting (BoF) | 14d | $70 | 3 purchases | ROAS 15.3x | 3.92 | Under gate | CPM $16.81 > $16.50; freq 3.9 > 3.0 | spend $69.98 < $200 gate; 30d ROAS 9.7x, 3 purchases | Unchanged |
 
-Monthly ROI: no record in the Monthly ROI data files.
+Monthly ROI: September: spend $1,036, 0 Meta-attributed bookings, blended ROAS —, retargeting ROAS —, CPL $8.16 on 16 leads. Note in the September file: Newly launched campaigns — $1,036.47 spent, no revenue from ads yet (spend exceeds the $871.49 September direct revenue, as expected for a launch month).
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -341,7 +341,7 @@ ToF (Discovery / Keyword) spend, not scored: $991 over 30 days.
 | MoF - Lead Campaign - Retargeting Engagers - 09/16/2026 | Lead Gen (MoF) | 30d | $105 | 64 leads | CPL $1.64 | — | Review w/ HG AI | CPC $0.36 > $0.30; CPM $18.41 > $14.84 | 14d CPL $1.47 | New flag, was Under gate |
 | BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026 | Retargeting (BoF) | 14d | $73 | 0 purchases | ROAS — | 3.45 | Under gate | freq 3.5 > 3.0 | spend $72.52 < $200 gate | Unchanged |
 
-Monthly ROI: no record in the Monthly ROI data files.
+Monthly ROI: September: spend $921, 0 Meta-attributed bookings, blended ROAS —, retargeting ROAS —, CPL $1.86 on 46 leads. Note in the September file: Newly launched campaigns — $921.36 spent, no revenue from ads yet.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -355,7 +355,7 @@ ToF (Discovery / Keyword) spend, not scored: $899 over 30 days.
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors - 08/29/2026 | Retargeting (BoF) | 14d | $143 | 0 purchases | ROAS — | 2.23 | Under gate | CPC $0.65 > $0.62 | spend $143.45 < $200 gate | Unchanged |
 
-Monthly ROI: August: spend $1,876, 7 Meta-attributed bookings, blended ROAS 2.1x, CPL $1.71 on 181 leads · July: spend $2,182, 1 Meta-attributed bookings, blended ROAS 0.2x, CPL $1.61 on 202 leads.
+Monthly ROI: July: spend $2,182, 1 Meta-attributed bookings, blended ROAS 0.2x, CPL $1.61 on 202 leads · August: spend $1,876, 7 Meta-attributed bookings, blended ROAS 2.1x, CPL $1.71 on 181 leads · September: spend $2,081, 18 Meta-attributed bookings, blended ROAS 3.8x, retargeting ROAS —, CPL $1.80 on 167 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -370,7 +370,7 @@ ToF (Discovery / Keyword) spend, not scored: $140 over 7 days (export).
 | BoF - Sales Campaign - RT Website Visitors | Retargeting (BoF) | 7d | $35 | 0 purchases | ROAS 0.0x | 1.76 | Under gate | CPC $0.77 > $0.62; CTR 1.79% < 2%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 14-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.46 < $200 gate | Unchanged |
 | MoF - Lead Campaign - RT Engagers | Lead Gen (MoF) | 7d | $35 | 22 leads | CPL $1.60 | — | Under gate | CTR 2.85% < 3.03%; CTR here is link CTR from the export | source: CSV export 2026-09-28 to 2026-10-04 (7 days, not the 30-day window), not live; provisional. Export carries Campaign delivery, so only active campaigns are scored; spend $35.10 < $100 gate | Unchanged |
 
-Monthly ROI: August: spend $952, 3 Meta-attributed bookings, blended ROAS 8.0x, retargeting ROAS —, CPL $2.47 on 63 leads · July: spend $924, 9 Meta-attributed bookings, blended ROAS 20.3x, retargeting ROAS —, CPL $1.75 on 23 leads.
+Monthly ROI: July: spend $924, 9 Meta-attributed bookings, blended ROAS 20.3x, retargeting ROAS —, CPL $1.75 on 23 leads · August: spend $952, 3 Meta-attributed bookings, blended ROAS 8.0x, retargeting ROAS —, CPL $2.47 on 63 leads · September: spend $893, 5 Meta-attributed bookings, blended ROAS 9.3x, retargeting ROAS —, CPL $2.54 on 59 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -384,7 +384,7 @@ ToF (Discovery / Keyword) spend, not scored: $675 over 30 days.
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors - 09/09/2026 | Retargeting (BoF) | 14d | $22 | 0 purchases | ROAS — | 2.47 | Under gate | within lines | spend $21.72 < $200 gate | New, not in the 28 Sep run |
 
-Monthly ROI: no record in the Monthly ROI data files.
+Monthly ROI: September: spend $580, 0 Meta-attributed bookings, blended ROAS —. Note in the September file: Newly launched campaigns — $579.92 spent, no revenue from ads yet. Revenue shown is from the client reporting sheet; no booking-level data this month.
 
 Meeting notes: not mentioned in this week's meetings.
 
@@ -400,7 +400,7 @@ Paused in window, not scored: BoF - Website Retargeting Campaign - 06/08/26 (Ret
 
 Paused in window, not scored: MoF - Lead Campaign - Retargeting Engagers (Lead Gen (MoF)), $11 / 7d, 30 leads, CPL $0.38. Live campaigns only are scored (decision 2026-09-23).
 
-Monthly ROI: August: spend $2,424, 82 Meta-attributed bookings, blended ROAS 27.2x, retargeting ROAS 65.0x, CPL $0.42 on 605 leads · July: spend $2,029, 39 Meta-attributed bookings, blended ROAS 18.6x, retargeting ROAS 51.6x.
+Monthly ROI: July: spend $2,029, 39 Meta-attributed bookings, blended ROAS 18.6x, retargeting ROAS 51.6x · August: spend $2,424, 82 Meta-attributed bookings, blended ROAS 27.2x, retargeting ROAS 65.0x, CPL $0.42 on 605 leads · September: spend $2,252, 70 Meta-attributed bookings, blended ROAS 19.1x, retargeting ROAS 42.5x, CPL $0.30 on 936 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-01): Scaling Ad Candidates and Campaign Flags: Shawal Nazir presented weekly scaling ad account notes, identifying Stay on 38, Starlight Haven, Ashwood River Cabins, and Starlight Hot Springs as scaling candidates, while flagging a conversion events issue in the Sailor Place purchase campaign that Alicia was addressing with the owner.
 
@@ -421,4 +421,4 @@ HG AI notes: none dropped in since the previous run. Account status: the connect
 - HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: none.
 - Selah Place's prospecting campaign (paused this week) is named with pipes in Meta ("SP | Prospecting Test | LAL + Interests x Creative | 09-2026"); shown here with slashes.
 - Meeting notes: every "Meta Ads Strategy", "Meta Ads Sync" or "Meta Ads x HiddenGem AI Sync" calendar event since the previous run that has a "Notes by Gemini" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).
-- Monthly ROI context from `Monthly ROI data/` (August 2026, July 2026). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.
+- Monthly ROI context from `Monthly ROI data/` (July 2026, August 2026, September 2026). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.

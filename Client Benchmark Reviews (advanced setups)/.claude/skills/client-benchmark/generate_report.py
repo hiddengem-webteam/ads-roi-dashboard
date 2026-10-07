@@ -119,7 +119,8 @@ def roi_line(client):
     r=roi_for(client)
     if not r: return "Monthly ROI: no record in the Monthly ROI data files."
     parts=[]
-    for period in sorted(r, key=lambda p: ("July" in p, "Aug" in p)):  # July then August
+    MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"]
+    for period in sorted(r, key=lambda p: (p.split()[-1], next((i for i,m in enumerate(MONTHS) if p.startswith(m[:3])),99))):  # oldest month first
         c=r[period]; camp=c.get("campaigns") or {}
         rt=camp.get("retargeting") or {}; nl=camp.get("newLeads") or {}
         blended=c.get("blendedRoas", c.get("roas"))
@@ -127,7 +128,11 @@ def roi_line(client):
         if rt: seg+=f", retargeting ROAS {x(rt.get('roas'))}"
         if nl and nl.get("costPerLead") is not None: seg+=f", CPL {money(nl.get('costPerLead'))} on {nl.get('leads')} leads"
         parts.append(seg)
-    return "Monthly ROI: "+" · ".join(parts)+"."
+    out="Monthly ROI: "+" · ".join(parts)+"."
+    last=max(r, key=lambda p: (p.split()[-1], next((i for i,m in enumerate(MONTHS) if p.startswith(m[:3])),99)))
+    note=(r[last].get("note") or "").strip()
+    if note: out+=f" Note in the {last.split()[0]} file: {note}"
+    return out
 
 
 # ---------- Weekly Meta Ads meeting notes (Gemini) ----------
@@ -410,7 +415,7 @@ L.append("- Scope changes vs 28 Sep: "+("; ".join(f"{c} dropped ({why})" for c,w
 L.append("- HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: "+(", ".join(HGAI) if HGAI else "none")+".")
 L.append("- Selah Place's prospecting campaign (paused this week) is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with slashes.")
 L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).")
-L.append(f"- Monthly ROI context from `Monthly ROI data/` ({', '.join(sorted({p for v in roi.values() for p in v}))}). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.")
+L.append(f"- Monthly ROI context from `Monthly ROI data/` ({', '.join(sorted({p for v in roi.values() for p in v}, key=lambda p:(p.split()[-1], p[:3] in ('Oct','Nov','Dec'), p[:3]=='Sep', p[:3]=='Aug')))}). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.")
 open(f"{OUT}/{TODAY}-client-benchmark.md","w",encoding="utf-8").write("\n".join(L)+"\n")
 with open(f"{OUT}/{TODAY}-client-benchmark.csv","w",newline="",encoding="utf-8") as fh:
     w=csv.writer(fh); w.writerow("run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes,frequency,freq_flag".split(","))
