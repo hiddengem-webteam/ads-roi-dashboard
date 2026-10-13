@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 .netlify/
+
+# Local secrets, never committed
+.env
+.env.*
