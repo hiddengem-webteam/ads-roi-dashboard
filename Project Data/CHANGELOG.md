@@ -2,6 +2,10 @@
 
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
+## 2026-10-13
+
+- **Week 42 run through the Meta Marketing API.** The claude.ai Meta connector was unreachable from the session (needed re-authorisation, which did not propagate), so Shawal issued a system-user token (HiddenGem-Claude, `ads_read` + `business_management`, no expiry) and placed it in a gitignored `.env` at the repo root. All three reviews ran from `graph.facebook.com` v21.0 with the same fields the connector exposes; see PROJECT.md section 6 for the endpoint map and the pagination caveat. The token also reads the four accounts the connector had MCP-disabled, so they are live rows now. Canopy is the one account the system user cannot see. The benchmark diff now falls back to client + campaign name when a row moves from CSV to live.
+
 ## 2026-10-07
 
 - **September 2026 ROI file added** (`Monthly ROI data/September 2026 - Client Reporting (1).json`, 39 clients, Shawal 7 Oct). The benchmark generator now orders ROI months by calendar (July → August → September) instead of a July/August hard-coding, and appends the latest month's per-client `note` to the Monthly ROI line. The 2026-10-05 benchmark was regenerated and republished with the September context.

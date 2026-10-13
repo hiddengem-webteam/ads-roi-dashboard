@@ -10,7 +10,7 @@ Canopy at Moody Moon Ridge,861460105842405,moodymoonridge.com|canopytreehouse.co
 Columbia Gorge Getaways,595257656540749,columbiagorgegetaways.com|columbiagorgeglamping.com,www-columbiagorgegetaways-com.filesusr.com,inferred,CGG Pixel (secondary)
 Columbia Gorge Getaways,700947282709400,columbiagorgegetaways.com,resnexus.com,inferred,primary pixel; ResNexus PMS
 Endless Stays,876508505381758,stayendless.com,booking.hospitable.com|stayendless.hospitable.rentals,inferred,Hospitable PMS
-Evergreen Cabins,1474685406530880,evergreencabins.co,booking.hospitable.com,inferred,Hospitable PMS
+Evergreen Cabins,1474685406530880,evergreencabins.co,booking.hospitable.com,inferred,"Hospitable PMS; distinctdestinations.co seen 2026-10-13 (2 events), CONFIRM"
 FLOHOM,139231105894533,flohom.com|goflohom.com,flohom-ai-hgm.netlify.app|flohomlandingpage.netlify.app,inferred,HomeRunner; netlify = HG dev
 Green Springs Inn,1602971745164199,greenspringsinn.com,gsi.holidayfuture.com,inferred,Event Data pixel (booking engine only)
 Green Springs Inn,1098954801239133,greenspringsinn.com|staygreenspringsinn.com,gsi.holidayfuture.com,inferred,GSI Wix pixel (primary)
@@ -47,3 +47,5 @@ Three Suns Cabins,691977289952800,threesunscabins.com,,inferred,only bio subdoma
 Treetop Escapes,1178838797064774,staytreetopescapes.com,uniquestays.guestybookings.com,inferred,"Guesty account ""uniquestays""; HomeRunner"
 Tuxedo Falls,1561325308991270,tuxedofalls.com,,inferred,no events seen; ResNexus PMS; CONFIRM domain
 Tuxedo Falls,1839806973541001,tuxedofalls.com,resnexus.com|sites.leadconnectorhq.com,inferred,"'Website' pixel in Tuxedo's own business, carries the site + ResNexus + GHL; not attached to the ad account (found 2026-09-28)"
+Walden Retreats,505477285266646,waldenretreats.com,resnexus.com,inferred,client-business pixel; ResNexus PMS; added 2026-10-13 when the client joined the sheet
+Ponderosa Pines Resort,1743173753375733,ponderosapinesresort.com,,inferred,"second pixel on the main site, attached to the ad account, found 2026-10-13; double-counts page views with 1293211539656211"
