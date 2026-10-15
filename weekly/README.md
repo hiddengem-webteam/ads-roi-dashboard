@@ -14,7 +14,8 @@ Run the skills from the repo root (`/ad-spend-check`, `/pixel-domain-check`, `/c
 
 ```sh
 python3 "weekly/Project Data/build_html.py" YYYY-MM-DD   # .md + .csv -> .html for each workflow
-python3 "weekly/Project Data/build_site.py"              # rebuilds public/weekly/ (index + every dated page)
+python3 "weekly/Project Data/build_site.py"
+npx tsx scripts/sync-roi-memory.mts   # push the new rows to the roi schema in Supabase              # rebuilds public/weekly/ (index + every dated page)
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
 ```
 

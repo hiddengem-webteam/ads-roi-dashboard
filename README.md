@@ -26,6 +26,27 @@ The three Monday reviews (ad spend check, pixel domain check, client benchmark) 
 generated into `public/weekly/` and served at `/weekly/` by this site; the dashboard's
 top bar links to it. See `weekly/README.md` for the publish steps.
 
+## ROI memory in Supabase (`roi` schema, HGM Reporting project)
+
+Past numbers and decisions are queryable in the HGM Reporting Supabase project
+(`ytewxihtllthqkvnmlex`), schema `roi`:
+
+| Table | What | Source |
+| --- | --- | --- |
+| `roi.monthly_client_metrics` | one row per client per finalized month: revenue, leads, Meta spend, attributed bookings and revenue, blended ROAS, campaign blocks, AM note | `weekly/Monthly ROI data/*.json` (the client-reporting export) |
+| `roi.weekly_ad_spend_checks` / `roi.weekly_pixel_checks` / `roi.weekly_benchmark_rows` | every row of every Monday review | `weekly/*/Weekly Checks/*.csv` |
+| `roi.decisions` / `roi.actions_log` / `roi.run_log` | open decisions, account changes between runs, run history | `weekly/Project Data/PROJECT.md` sections 7, 9, 8 |
+| `roi.notes` | free text, full-text searchable: AM notes per month, HG AI diagnoses, the full text of each weekly review, learnings | JSON notes, `weekly/HG AI Reports`, weekly `.md` reports, PROJECT.md section 6 |
+
+Refresh after a weekly run or a month close:
+
+```sh
+npx tsx scripts/sync-roi-memory.mts            # upserts everything (needs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY in .env.local)
+npx tsx scripts/sync-roi-memory.mts --dry-run  # row counts only
+```
+
+Everything is an upsert keyed by period/date and client, so re-running is safe.
+
 ## HiddenGem AI platform data (automatic)
 
 The dashboard renders from `public/data/manifest.json` + per-period CSVs. These

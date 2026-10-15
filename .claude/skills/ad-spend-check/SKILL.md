@@ -154,6 +154,7 @@ After the `.md` and `.csv` are written and the project files are updated:
 ```
 python3 "weekly/Project Data/build_html.py" YYYY-MM-DD
 python3 "weekly/Project Data/build_site.py"
+npx tsx scripts/sync-roi-memory.mts   # push the new rows to the roi schema in Supabase
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
 ```
 
