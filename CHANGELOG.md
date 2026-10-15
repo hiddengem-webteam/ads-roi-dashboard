@@ -1,0 +1,13 @@
+# Changelog
+
+Dashboard-level changes. The weekly reviews keep their own log in `weekly/Project Data/CHANGELOG.md`.
+
+## 2026-10-15
+
+- **One platform for weekly and monthly.** The `meta-ads-weekly-reviews` repo was subtree-merged into `weekly/` (history kept). The three Monday skills now live in `.claude/skills/` and run from this repo root; their archive is generated into `public/weekly/` and served at `/weekly/` by this site. Latest-page redirects and the `noindex` header for `/weekly/*` are in `netlify.toml`. The dashboard's top bar links to the archive and the archive links back. The old repo and `hiddengem-ads-reviews.netlify.app` are superseded.
+- **Finalized months on the main dashboard.** July, August and September 2026 are listed first in the period selector, marked Final, and rendered from their frozen snapshots plus the Client Performance Tracking sheet figures and AM notes (`src/lib/analysis/finalizedPeriods.ts`, `FinalizedReportingSummarySection`). Live-synced months are unchanged. The old `/july`, `/august`, `/september` routes still exist but are redundant.
+- **ROI memory in Supabase.** New `roi` schema in the HGM Reporting project (`ytewxihtllthqkvnmlex`): finalized monthly metrics per client, every weekly review row, decisions, actions log, run log and full-text notes. `scripts/sync-roi-memory.mts` loads it from the repo (REST with `SUPABASE_SERVICE_ROLE_KEY`, or `--emit-sql` / `--seed`). The weekly skills run it after publishing; `AGENTS.md` tells future sessions to query it for history. First load was the slim seed; the weekly CSV tables fill on the first run with the service key.
+- **Design system.** The dashboard now uses the weekly reviews' tokens (neutral canvas, white panels, hairline borders, brand blue, semantic badge sets) with dark mode, Inter + Roboto Mono, the HiddenGem wordmark in the sidebar, 12px cards and the weekly badge shape.
+- **Removed the localhost Google Drive sync panel** and its API routes, Drive client, period sync and client matcher; dropped the `googleapis` dependency. Monthly data comes from the platform sync and the snapshots.
+- **Client benchmark "This month" strip.** Each client card opens with direct revenue month to date, the change against the same days of the previous month, and promo-code uses, pulled from the HiddenGem AI platform with `.claude/skills/client-benchmark/pms_mtd.sql`. Five `mtd_*` columns added to the CSV sidecar. The 2026-10-13 report was regenerated.
+- **Dev ergonomics.** `next.config.ts` adds dev-only rewrites so `/weekly/` and the latest-page shortcuts resolve under `next dev` the way Netlify resolves them in production. Monthly export scripts also write their JSON into `weekly/Monthly ROI data/` for the benchmark review.
