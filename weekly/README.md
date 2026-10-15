@@ -4,7 +4,7 @@ HiddenGem Marketing's three weekly Meta Ads reviews, run every Monday from Claud
 
 | Workflow | Skill (repo root) | Outputs |
 |---|---|---|
-| Ad spend check | `.claude/skills/ad-spend-check` | `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-check.{md,csv,html}` + `YYYY-MM-DD-ad-spend-by-type.csv` (also appended to the Master sheet's "Meta Ad Spends" tab) |
+| Ad spend check | `.claude/skills/ad-spend-check` + `scripts/ad-spend-check.mts` | `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-check.{md,csv,html}` (live budget per client and campaign type, no sheet comparison from 2026-10-15; the rows are also appended to the Master sheet's "Meta Ad Spends" tab) |
 | Pixel domain check | `.claude/skills/pixel-domain-check` | `weekly/Meta Pixel Reviews/Weekly Checks/YYYY-MM-DD-pixel-domain-check.{md,csv,html}` |
 | Client benchmark (advanced setups) | `.claude/skills/client-benchmark` | `weekly/Client Benchmark Reviews (advanced setups)/Weekly Checks/YYYY-MM-DD-client-benchmark.{md,csv,html}` |
 

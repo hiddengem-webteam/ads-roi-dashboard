@@ -122,9 +122,11 @@ function weekly(b: Batches) {
   const specs: [string, string, RegExp, (r: Row) => Row][] = [
     ['weekly_ad_spend_checks', 'Ad Spends Checks/Weekly Checks', /-ad-spend-check\.csv$/, (r) => ({
       run_date: r.run_date, client: r.client, am: str(r.am), ad_account_id: str(r.ad_account_id) ?? '',
-      sheet_status: str(r.sheet_status), sheet_daily_budget: num(r.sheet_daily_budget), actual_daily_budget: num(r.actual_daily_budget),
-      spend_7d: num(r.spend_7d), source: str(r.source), flag: str(r.flag), diff_status: str(r.diff_status),
-      weeks_open: int(r.weeks_open), notes: str(r.notes),
+      // Two formats: up to 2026-10-13 sheet-vs-live (sheet_status, flag, diff_status, notes);
+      // from 2026-10-15 the live ledger (total_live, status, what_changed, campaigns, per-type columns).
+      sheet_status: str(r.sheet_status), sheet_daily_budget: num(r.sheet_daily_budget), actual_daily_budget: num(r.actual_daily_budget ?? r.total_live),
+      spend_7d: num(r.spend_7d), source: str(r.source), flag: str(r.flag ?? r.status), diff_status: str(r.diff_status ?? r.status),
+      weeks_open: int(r.weeks_open), notes: str(r.notes ?? (r.what_changed ? `${r.what_changed} | ${r.campaigns}` : r.campaigns)),
     })],
     ['weekly_pixel_checks', 'Meta Pixel Reviews/Weekly Checks', /-pixel-domain-check\.csv$/, (r) => ({
       run_date: r.run_date, client: r.client, pixel_id: str(r.pixel_id) ?? '', pixel_name: str(r.pixel_name),

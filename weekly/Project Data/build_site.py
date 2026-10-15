@@ -18,7 +18,7 @@ BASE = "/weekly"  # URL prefix on the merged site
 WORKFLOWS = [
     # slug, title, folder, filename suffix, csv suffix, one-line description
     ("ad-spend", "Ad spend check", "Ad Spends Checks/Weekly Checks", "-ad-spend-check.html", "-ad-spend-check.csv",
-     "Documented daily budget on the Master sheet vs the live budget in each ad account."),
+     "Live daily budget per client and campaign type from each ad account, with the change since the previous run."),
     ("pixel-domains", "Pixel domain check", "Meta Pixel Reviews/Weekly Checks", "-pixel-domain-check.html", "-pixel-domain-check.csv",
      "Which domains fire into each client's Meta Pixel; cross-contamination, silent and split pixels."),
     ("client-benchmark", "Client benchmark", "Client Benchmark Reviews (advanced setups)/Weekly Checks", "-client-benchmark.html", "-client-benchmark.csv",
@@ -47,6 +47,12 @@ def headline(slug, csv_path):
     """Short status line for the index card, from the CSV sidecar."""
     if not os.path.exists(csv_path): return []
     rows = list(csv.DictReader(open(csv_path, encoding="utf-8")))
+    if slug == "ad-spend" and rows and "total_live" in rows[0]:
+        live = [r for r in rows if r["source"] == "live"]
+        total = sum(float(r["total_live"] or 0) for r in live)
+        c = collections.Counter(r["status"] for r in rows)
+        return [("brand", f"${total:,.0f}/day live"), ("warn", f"{c['up'] + c['down']} changed"), ("ok", f"{c['new']} new"),
+                ("gray", f"{c['blocked']} blocked"), ("plain", f"{len(rows)} clients")]
     if slug in ("ad-spend", "pixel-domains"):
         c = collections.Counter(r["flag"] for r in rows)
         unit = "accounts" if slug == "ad-spend" else "pixel rows"

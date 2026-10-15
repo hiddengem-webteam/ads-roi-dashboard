@@ -213,7 +213,7 @@ def paras(lines):
     return ps
 def bullets(lines): return [l.strip()[2:] for l in lines if l.strip().startswith("- ")]
 
-def render_table(tid, header, rows, kinds, flag_col=None, flag_map=None, first_col=True):
+def render_table(tid, header, rows, kinds, flag_col=None, flag_map=None, first_col=True, badge_fn=None):
     """kinds: list per column of 'first','num','mono','notes','domains','badge','text','nowrap'"""
     th="".join(f'<th{" class=num" if k=="num" else ""}>{esc(h)}</th>' for h,k in zip(header,kinds))
     trs=[]
@@ -224,7 +224,7 @@ def render_table(tid, header, rows, kinds, flag_col=None, flag_map=None, first_c
             attrs=f' data-flag="{flag_map(r[flag_col])}"'
         tds=[]
         for i,(c,k) in enumerate(zip(r,kinds)):
-            if k=="badge": tds.append(f"<td class=nowrap>{flag_badge(c) if flag_map is not flag_state else state_badge(c)}</td>")
+            if k=="badge": tds.append(f"<td class=nowrap>{badge_fn(c) if badge_fn else (flag_badge(c) if flag_map is not flag_state else state_badge(c))}</td>")
             elif k=="first": tds.append(f"<td class=first>{inline(c)}</td>")
             elif k=="num" and "⚠️" in c:
                 fc=" ".join(c.replace("⚠️"," ").split()); tds.append(f"<td class=num>{badge('warn', fc)}</td>")
@@ -288,10 +288,9 @@ def run_line(S):
 # =====================================================================
 # 1. AD SPEND CHECK
 # =====================================================================
-def build_spend():
-    md=open(f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.md",encoding="utf-8").read()
+def build_spend_legacy(md, rows):
+    """Pre-2026-10-15 format: documented sheet budget vs live, with Match / Warning / Critical flags."""
     S=sections(md)
-    rows=list(csv.DictReader(open(f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.csv",encoding="utf-8")))
     cnt=collections.Counter(r["flag"] for r in rows)
     live=[r for r in rows if r["sheet_status"]=="Live"]
     documented=sum(float(r["sheet_daily_budget"] or 0) for r in live)
@@ -339,6 +338,67 @@ def build_spend():
     rl=run_line(S); m1=re.search(r"live reads ([^,)]+)",rl); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for (\d+) blocked accounts",rl)
     chips=[f"Run {RUN}"]+([f"Live reads {m1.group(1).replace('–',' to ')}"] if m1 else [])+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} blocked accounts"] if m2 else [])+[compare_chip(S)]
     return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
+
+# ---- 2026-10-15 onwards: live spend ledger, no sheet comparison ----
+STATUS = {"up":("brand","Up"),"down":("warn","Down"),"new":("ok","New"),"same":("gray","Same"),"unchanged":("gray","Same"),
+          "blocked":("err","Blocked"),"first run":("gray","First run"),"removed":("gray","Removed")}
+def status_badge(c):
+    k,l=STATUS.get(c.strip().lower(),("gray",c.strip())); return badge(k,l)
+def status_group(c): return "same" if c.strip().lower() in ("same","unchanged","first run") else "changed"
+
+def build_spend_v2(md, rows):
+    S=sections(md)
+    live=[r for r in rows if r["source"]=="live"]
+    blocked=[r for r in rows if r["source"]!="live"]
+    tot=lambda k: sum(float(r[k] or 0) for r in live)
+    total=tot("total_live"); spent=tot("spend_7d")
+    has_prev=any(r["prev_total"] for r in live)
+    prev=sum(float(r["prev_total"] or 0) for r in live if r["prev_total"])
+    cnt=collections.Counter(r["status"] for r in rows)
+    if has_prev:
+        d=total-prev; hint=f"vs ${prev:,.0f} last run ({'+' if d>=0 else '−'}${abs(d):,.0f})"
+    else: hint="first run"
+    changed=cnt["up"]+cnt["down"]+cnt["new"]
+    stats=(stat("Clients checked",str(len(rows)),f"{len(live)} live reads, {len(blocked)} blocked")
+        +stat("Total live $/day",f"${total:,.0f}",hint)
+        +stat("Spent last 7 days",f"${spent:,.0f}",f"${spent/7:,.0f} per day across {len(live)} accounts")
+        +stat("ToF Giveaway",f"${tot('tof_giveaway'):,.0f}","per day")
+        +stat("MoF Leads",f"${tot('mof_leads'):,.0f}","per day")
+        +stat("MoF Sales LoL",f"${tot('mof_sales_lol'):,.0f}","per day")
+        +stat("BoF Sales",f"${tot('bof_sales'):,.0f}","per day")
+        +(stat("Other",f"${tot('other'):,.0f}","per day") if tot("other") else "")
+        +stat("Changed since last run",str(changed),f"{cnt['up']} up, {cnt['down']} down, {cnt['new']} new",dot="brand"))
+    ch_lines=S.get("Changes since last week",[]); ch_t=tables(ch_lines)
+    if ch_t and len(ch_t[0])>1:
+        ch=render_table("changes",ch_t[0][0],ch_t[0][1:],["first","text","num","num","num","badge","notes"],flag_col=5,flag_map=status_group,badge_fn=status_badge)
+    else:
+        ps=paras(ch_lines); ch=f'<div class="card-body" style="color:var(--text-3);font-size:14px">{inline(ps[0]) if ps else "None."}</div>'
+    led=tables(S["Live spend by client"])[0]
+    lt=render_table("ledger",led[0],led[1:],["first","text","num","num","num","num","num","num","num","num","badge","notes"],flag_col=10,flag_map=status_group,badge_fn=status_badge)
+    pre=paras(S["_pre"]); rl=run_line(S)
+    m1=re.search(r"live reads ([^)]+?) through",rl)
+    tab=next((p_ for p_ in pre if p_.startswith("Meta Ad Spends tab:")),"")
+    chips=[f"Run {RUN}"]+([f"Live reads {m1.group(1).replace('–',' to ')}"] if m1 else [])+([tab.rstrip('.')] if tab else [])+[compare_chip(S)]
+    body=f"""
+<div class="stats">{stats}</div>
+<section>
+  <div class="sec-head"><div><h2>Changes since last run</h2><p class="sec-desc">Clients whose live daily budget moved, largest change first, with the campaigns behind it.</p></div></div>
+  <div class="card">{ch}</div>
+</section>
+<section>
+  <div class="sec-head"><div><h2>Live spend by client</h2><p class="sec-desc">Every client in the map, highest daily budget first. Spent 7d is the account's actual spend over the last 7 days.</p></div>{seg("ledger",[("all","All"),("changed","Changed"),("same","Unchanged")])}</div>
+  <div class="card">{lt}</div>
+</section>
+{footer(bullets(S["Footer"]))}
+"""
+    lede="Live daily budget per client and per campaign type, read from each client's ad account through the Meta Marketing API, with the change since the previous run. The same rows are appended to the Meta Ad Spends tab of the Master Meta Ads sheet."
+    return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
+
+def build_spend():
+    md=open(f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.md",encoding="utf-8").read()
+    rows=list(csv.DictReader(open(f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.csv",encoding="utf-8")))
+    if rows and "total_live" in rows[0] and "status" in rows[0]: return build_spend_v2(md, rows)
+    return build_spend_legacy(md, rows)
 
 # =====================================================================
 # 2. PIXEL DOMAIN CHECK
@@ -565,4 +625,7 @@ if __name__ == "__main__":
      f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.html": build_bench,
     }
     for p,fn in outs.items():
-        h=fn(); open(p,"w",encoding="utf-8").write(h); print(p, len(h))
+        try: h=fn()
+        except FileNotFoundError as e:
+            print(f"skipped {os.path.basename(p)}: no report for {DATE} ({os.path.basename(e.filename)})"); continue
+        open(p,"w",encoding="utf-8").write(h); print(p, len(h))

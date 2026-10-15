@@ -1,187 +1,91 @@
 ---
 name: ad-spend-check
-description: Weekly HiddenGem Meta Ads budget and spend audit. Compares documented daily budgets in the Master Meta Ads sheet against live budgets in each client's ad account, diffs against last week's run, and saves a dated plain-text report to the "weekly/Ad Spends Checks/Weekly Checks" folder. Use when the user says "run the ad spend check", "weekly spend audit", "budget audit", or invokes /ad-spend-check.
+description: Weekly HiddenGem Meta Ads spend ledger. Reads the live daily budget of every client's ad account through the Meta Marketing API, splits it by campaign type (ToF Giveaway, MoF Leads, MoF Sales LoL, BoF Sales), diffs against the previous run, saves a dated report to "weekly/Ad Spends Checks/Weekly Checks" and appends the rows to the Master Meta Ads sheet's "Meta Ad Spends" tab. Use when the user says "run the ad spend check", "weekly spend audit", "ad spend report", or invokes /ad-spend-check.
 ---
 
 # Ad Spend Check
 
-You are running the HiddenGem Marketing weekly Meta Ads budget and spend audit. Output is a plain-text report saved to the `weekly/Ad Spends Checks/Weekly Checks/` folder. No email is sent in this version.
+You are running the HiddenGem Marketing weekly Meta Ads spend check. It reports what each client's ad account is set to spend per day, by campaign type, and how that moved since the previous run. It does **not** compare against the documented budget on the Master sheet (that comparison was dropped on 2026-10-15 at Shawal's request; reports up to 2026-10-13 still carry it).
+
+Output: `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-check.{md,csv,html}`, plus one block of rows appended to the **Meta Ad Spends** tab of the Master Meta Ads sheet. No email.
 
 Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 
 ## Inputs
 
-| Source | Where | What to take |
+| Source | Where | What it gives |
 |---|---|---|
-| Master Meta Ads sheet | Google Drive file `1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM` (tab "Meta Ad Links") | Every client row regardless of status. Capture: Client Business, Status, Total Budget (documented $/day), Ads Account Link, Comments. |
-| CRM sheet | Google Drive file `1oEUngQE3ZXc6U4ciRkkg55UrlR-M065kTmCzG8HFhM4` | Account manager (AM) per client. If a client appears in several tabs with different AMs, use the most recent tab. If no AM, show `—`. Never guess. |
-| Meta ad accounts | `ads_get_ad_accounts`, paginate with `next_cursor` until null (expect 110+ across pages) | `ad_account_id`, `ad_account_name`, `business_name`, `is_ads_mcp_enabled`, `is_queryable`, `not_queryable_reason`. |
-| Live budgets | `ads_get_ad_entities` per client account | See "Reading live budgets". |
-| Previous report | Newest `weekly/Ad Spends Checks/Weekly Checks/*-ad-spend-check.csv` older than today | Prior Match flag and Notes per ad account ID, for the week-over-week diff. |
-| Manual export (fallback) | Newest `weekly/Weekly CSV Reports/*_meta-ads-report.csv` | Ads Manager export used for accounts the connector cannot read. See "CSV fallback". |
+| Client map | `weekly/Project Data/PROJECT.md` section 5 | Client, AM, ad account ID. Rows whose Connector cell starts with **Offboarded** are skipped (Big Moon Ranch 2026-09-28, Canopy at Moody Moon Ridge 2026-10-15). |
+| Meta Marketing API | system-user token `META_ACCESS_TOKEN` in the repo-root `.env` (gitignored) | Active campaigns, their daily budgets (or their active ad sets' budgets), objective, stop time; account spend for the last 7 days. |
+| Previous run | newest `*-ad-spend-check.csv` dated before today in the output folder | Last run's total per account and, from 2026-10-15 on, its campaign list, for the week-over-week diff. |
+| Master Meta Ads sheet | Google Sheets `1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM`, tab "Meta Ad Links" | Only to spot clients on the sheet that are missing from the client map (step 3). The Total Budget column is not used. |
 
-Use one `client_conversation_id` for every Meta call in the run.
+## Step 1: Generate the report
 
-## Step 1: Read both sheets
-
-Read the Master Meta Ads sheet with `read_file_content`. Take every client row. The first header cell is blank and columns can shift, so anchor on the header names, not positions. Normalise Status to one of `Live`, `Not Live`, `Paused`. Parse Total Budget as a number; blank or non-numeric means "no documented budget".
-
-Read the CRM sheet and build a client -> AM map. Download it with `download_file_content` (`exportMimeType: text/csv`, base64) and parse the Clients - Onboarding tab; `read_file_content` truncates it. Clients with no CRM row keep last week's AM with a note.
-
-Match sheet clients to ad accounts by the account ID in the Ads Account Link column where present, otherwise by name. Record which method was used in Notes when it was name matching.
-
-## Step 2: Fetch all ad accounts
-
-Call `ads_get_ad_accounts` and follow `next_cursor` until it is null. Build a map by `ad_account_id`.
-
-## Step 3: Read live budgets for every client
-
-Do this for every client on the sheet, including Not Live and Paused. Spend on a dark account is the most important thing this report catches.
-
-**Offboarded clients are left out entirely.** A client whose Connector cell in `weekly/Project Data/PROJECT.md` section 5 starts with **Offboarded** (Big Moon Ranch 2026-09-28, Canopy at Moody Moon Ridge 2026-10-15) gets no row in the report, the CSV or the Meta Ad Spends tab, even while it is still listed on the Master sheet. Name them in one footer line ("Offboarded, not checked: ...") so the reader knows why the client count differs from the sheet.
-
-Access rules. Do not retry these. Before marking a 🔴 Blocker, check the CSV fallback below. If the account is in this week's export, score it from the CSV instead and note the source. Only if it is missing from the export too, flag and move on:
-
-- `is_ads_mcp_enabled: false` -> 🔴 Blocker, Actual $/day `n/a`, note exactly: "Claude doesn't have access — please check the spend manually"
-- Account not in the list at all -> 🔴 Blocker, note: "No account access — needs access fix". An account can vanish from the list week to week (Big Moon Ranch, 2026-09-28); check the CSV export before flagging, and if it is missing there too, ask Shawal to add it to the saved report. Exception: a client marked offboarded in `PROJECT.md` section 5 or 9 is not a blocker. If it is still on the Master sheet, mark it ⚠️ with the note "offboarded on <date>, remove from sheet or set Status to Not Live" and skip the account reads.
-- `is_queryable: false` -> 🔴 Blocker, note the `not_queryable_reason`
-- Two candidate accounts for one client -> query the one owned by the client's own business, not a legacy or "NOT IN USE" account under the HiddenGem BM. Add a ⚠️ note about the duplicate.
-
-### Reading live budgets
-
-On the first run of a session, call `ads_get_field_context` once to confirm the canonical names for the budget and status fields at campaign and adset level, then use those names for the rest of the run.
-
-1. Query `level: campaign`, filtering `campaign.effective_status` IN `["ACTIVE"]`, fields: id, name, effective_status, daily_budget, lifetime_budget, budget_remaining, and any campaign budget flag the field context exposes. Also request `amount_spent` with `date_preset: last_7d`.
-2. For each active campaign with a `daily_budget`, use it.
-3. For each active campaign with no campaign-level budget, query `level: adset` for that campaign, filtering `adset.effective_status` IN `["ACTIVE"]`, and sum the ad set `daily_budget` values.
-4. Lifetime budgets: convert to a daily equivalent as `budget_remaining / days left until end_time`. If there is no end time, use `lifetime_budget / 30` and add a ⚠️ note "lifetime budget, daily figure is an estimate".
-5. Meta returns budgets in cents. Divide by 100.
-6. Actual $/day for the client = sum of steps 2 to 4 across all active campaigns.
-7. Also record 7-day `amount_spent` / 7 as a sanity check. If Actual $/day is 0 but 7-day spend is above $5, note "no active budget but spent $X in the last 7 days" and treat it as active spend for flag purposes.
-
-### CSV fallback for blocked accounts
-
-Shawal drops an Ads Manager export into `weekly/Weekly CSV Reports/` each week. Use it only for accounts the connector cannot read (MCP disabled, not queryable, or absent from the account list). Never prefer it over a live read.
-
-**File handling**
-- Pick the newest file in `weekly/Weekly CSV Reports/`. If its name does not already follow `YYYY-MM-DD_Www_meta-ads-report.csv`, rename it to that pattern using today's date and ISO week (e.g. `2026-09-21_W39_meta-ads-report.csv`) before reading it. Tell the user you renamed it.
-- Read the `Reporting starts` / `Reporting ends` columns. If `Reporting ends` is more than 7 days before today, treat the file as stale: do not use it, and flag the accounts as 🔴 with the note "CSV export is stale (ends YYYY-MM-DD), please re-export".
-
-**Columns** (UTF-8 with BOM, ad set level, one row per ad set, first row is an account-wide total with a blank Account name; skip it):
-`Account name, Campaign name, Ad set name, Campaign delivery, Ad set delivery, Currency, Campaign budget, Campaign budget type, Ad set budget, Ad set budget type, Amount spent (USD), Impressions, Link clicks, Reach, Frequency, Leads, Cost per lead, Purchases, Cost per purchase, Purchases conversion value, ROAS - CM, Reporting starts, Reporting ends`
-
-**Matching**: match `Account name` to the Meta ad account name from `ads_get_ad_accounts` (e.g. "Paradise Pointe Ads", "Bison Ridge Retreat Ad Account"). Fall back to the sheet client name if needed and say so in Notes.
-
-**Computing Actual $/day from the CSV**
-1. Group rows by Campaign name. If `Ad set budget` is "Using campaign budget", count the `Campaign budget` once per campaign. Otherwise sum the `Ad set budget` values for that campaign. Only `Daily` budget types count; a `Lifetime` budget is converted as lifetime / days in the reporting period and noted.
-2. Actual $/day = sum across campaigns.
-3. Also compute spend per day = total `Amount spent (USD)` / number of days in the reporting period. Show both in Notes.
-
-**Delivery columns (added to the saved report 2026-09-28)**: the export carries `Campaign delivery` and `Ad set delivery`. Count a campaign's budget only when its `Campaign delivery` is `active`; list non-active campaigns that spent in the period in Notes. With these columns present the row is no longer provisional. If a future export lacks them, fall back to the old behaviour: count every campaign, say the total probably overstates what is live, and mark the flag provisional.
-
-**Marking**: every row scored from the CSV gets "source: CSV export YYYY-MM-DD to YYYY-MM-DD, not live" at the start of Notes, and `source=csv` in the CSV sidecar (add a `source` column: `live` or `csv`).
-
-## Step 4: Flag each client
-
-Thresholds. `diff` = |Actual − Sheet|, `pct` = diff / Sheet.
-
-| Flag | Rule |
-|---|---|
-| ✅ Match | Status Live and (diff <= $5 or pct <= 10%); OR Status Not Live/Paused and Actual $/day is 0 and 7-day spend under $5 |
-| ⚠️ Warning | Status Live and 10% < pct <= 25%; OR no documented budget; OR duplicate accounts; OR lifetime-budget estimate; OR a Comments note on the sheet that changes the expected figure |
-| ❌ Critical | Status Live and pct > 25%; OR any active budget or 7-day spend >= $5 on a Not Live/Paused account |
-| 🔴 Blocker | Any access rule from Step 3 |
-
-Spend on a supposedly dark account is always ❌, never downgraded.
-
-Every ⚠️, ❌ and 🔴 row gets a one-line next action in Notes, written for the AM. Examples: "Confirm with client whether $130/day is the new agreed budget, then update sheet", "Pause campaign X, account is marked Not Live", "Request MCP access in Business Manager".
-
-## Step 5: Week-over-week diff
-
-Find the newest `weekly/Ad Spends Checks/Weekly Checks/*-ad-spend-check.csv` dated before today. If none exists, skip this step and write "First run, no prior report" in the Fixed section.
-
-Join on `ad_account_id`. For each row that was ⚠️, ❌ or 🔴 last week:
-
-- Now ✅ -> **Fixed**
-- Still flagged, same or worse -> **Still open**, and add the week count (weeks flagged in a row, carried from the previous CSV's `weeks_open` + 1)
-- Client no longer on sheet -> **Removed from sheet**
-
-New flags this week are marked **New**.
-
-Also read `weekly/Project Data/PROJECT.md` section 9 (Actions log). If a client's row changed and the log has an entry for it since the previous run, cite the entry in the row's note ("Shawal moved the test budget into BoF on 28 Sep") instead of rediscovering it, and mark a Planned entry Done when the account shows it.
-
-## Step 6: Write the report
-
-Write two files to `weekly/Ad Spends Checks/Weekly Checks/`:
-
-### `YYYY-MM-DD-ad-spend-check.md`
-
-Plain text with pipe tables. Sections in this order:
-
-1. Header line: date, clients reviewed, accounts queried, blocked count, total documented Live $/day, total confirmed live $/day.
-2. **Issues, action needed.** ❌ and 🔴 rows first, then ⚠️. Columns: `Client | AM | Flag | Sheet $/day | Actual $/day | Status vs last week | Next action`.
-3. **Fixed since last week.** Columns: `Client | AM | Last week | This week | What changed`.
-4. **All accounts.** Every client, alphabetical A to Z with no special handling of "The". Columns exactly: `Client | AM | Sheet Status | Sheet $/day | Actual $/day | Match | Notes/Issues`.
-5. Footer: clients on sheet, Live vs Not Live/Paused counts, total confirmed daily spend across queryable accounts, blocked count, previous report compared against.
-
-### `YYYY-MM-DD-ad-spend-check.csv`
-
-Machine-readable sidecar for next week's diff and for Supabase later. One row per client, header:
+From the repo root:
 
 ```
-run_date,client,am,ad_account_id,sheet_status,sheet_daily_budget,actual_daily_budget,spend_7d,source,flag,diff_status,weeks_open,notes
+npx tsx scripts/ad-spend-check.mts YYYY-MM-DD
 ```
 
-`flag` is one of `match`, `warning`, `critical`, `blocker`. `diff_status` is one of `new`, `still_open`, `fixed`, `unchanged`, `first_run`.
+The script reads every non-offboarded client in the map, pulls each account's ACTIVE campaigns (campaign `daily_budget`, else the sum of its ACTIVE ad sets' `daily_budget`; cents divided by 100; campaigns past their `stop_time` ignored), buckets them by objective first and then name into ToF Giveaway / MoF Leads / MoF Sales LoL / BoF Sales / Other, reads the account's 7-day `spend`, and diffs the totals and campaign lists against the previous run. It writes:
 
-## Step 7: Report back in chat
+- `YYYY-MM-DD-ad-spend-check.csv`: `run_date, client, am, ad_account_id, source, tof_giveaway, mof_leads, mof_sales_lol, bof_sales, other, total_live, spend_7d, prev_total, change, status, what_changed, campaigns`. `source` is `live` or `blocked`; `status` is `up`, `down`, `new`, `unchanged`, `blocked` or `first_run`.
+- `YYYY-MM-DD-ad-spend-check.md`: header line with the live-read window, a `Meta Ad Spends tab: not pushed yet.` line, the counts table, **Changes since last week**, **Live spend by client** (sorted by total $/day, highest first) and the **Footer**.
 
-Give the user the counts line and the Issues table only. Point them to the file for the rest. Do not paste the full table into chat.
+If the script reports an account as blocked, do not retry. Note it in the chat summary; the row stays in the report with `n/a` figures. If `META_ACCESS_TOKEN` is missing, stop and say so; there is no connector fallback for this report.
 
-## Step 8: Update the project file
+## Step 2: Push the rows to the Meta Ad Spends tab
 
-Open `weekly/Project Data/PROJECT.md` and:
+With the Google Sheets connector:
 
-1. Add a row to **8. Run log** with today's date, mode (saved or chat only), the counts line, and whether files were written.
-2. If the run revealed anything not already in **6. Learnings** (a new account quirk, a data-source change, a matching failure), add one bullet. Don't repeat what's there.
-3. If a client → account mapping changed or a new client appeared on the sheet, update the table in **5. Client → ad account map**.
-4. If an open decision in **7. Open decisions** was resolved during the run, mark it resolved with the date and outcome.
-
-If the skill itself was changed during the session (thresholds, columns, sources, output location), add a dated bullet to `weekly/Project Data/CHANGELOG.md` describing what changed and why. Newest entries go at the top.
-
-## Step 8b: Live budget per campaign type → "Meta Ad Spends" tab (added 2026-10-15, Shawal)
-
-After the report is written, push this week's live daily budget per campaign type for every sheet client into the **Meta Ad Spends** tab of the Master Meta Ads sheet (`1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM`), one row per client per run, appended under the previous run so the tab keeps a week-by-week history.
-
-1. Write today's documented budgets for the script: from the Master sheet's "Meta Ad Links" tab (already read in Step 1), save `{"<Client Business>": <Total Budget $/day>, ...}` as `.claude/skills/ad-spend-check/sheet-budgets.json` (blank cells and #REF! omitted). Then run `npx tsx scripts/pull-live-budgets.mts YYYY-MM-DD` from the repo root. It reads every active campaign's daily budget through the Marketing API (system-user token in `.env`), buckets them as ToF Giveaway / MoF Leads / MoF Sales LoL / BoF Sales / other (objective first, then name, same rules as the benchmark generator), skips campaigns past their `stop_time`, and writes `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-by-type.csv` with `sheet_budget`, `diff` and `flag` taken from today's spend-check CSV. Clients marked Offboarded in PROJECT.md section 5 are skipped by the script.
-2. With the Google Sheets connector, `get_values` on `'Meta Ad Spends'!A1:K1`. The tab's layout (set by Shawal on 2026-10-15, after the first push) is:
-   `Last Update Data | Client | AM | Update source | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Campaign details`
-   If the tab is ever empty, write that header row with `update_values` at `'Meta Ad Spends'!A1`. The tab carries live budgets only: no ad account ID, sheet budget, diff or flag columns (removed 2026-10-15; those stay in the CSV and the report).
-3. `get_values` on `'Meta Ad Spends'!B:B` to find the first empty row (column A is blank on most rows, so do not use it), then `update_values` starting at that row with one row per client from the CSV, **sorted by `total_live` descending** (ties by client name) so the biggest spenders sit at the top of the run block:
-   - `Last Update Data`: the run date as `YYYY-MM-DD` text on the **first row of the run only**; leave it blank on the other rows of the same run, so each run reads as one dated block.
-   - `Update source`: where the per-type budgets came from. `Live API` when `pull-live-budgets.mts` read them through the Marketing API (the normal case); `Monday CSV` when the API pull could not run and the figures were taken from Monday's spend-check CSV instead; `Live API (blocked, no data)` for an account the API refused.
-   - Budgets as numbers, `Campaign details` as the CSV's campaign list.
+1. `get_values` on `'Meta Ad Spends'!A1:K1`. The layout (Shawal, 2026-10-15) is
+   `Last Update Data | Client | AM | Update source | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Campaign details`.
+   If the tab is ever empty, write that header at `A1` first.
+2. `get_values` on `'Meta Ad Spends'!B:B` to find the first empty row (column A is blank on most rows, so do not use it).
+3. `update_values` from that row with one row per client from the CSV, sorted by `total_live` descending (ties by client name):
+   - `Last Update Data`: the run date as text on the first row of the run only, blank on the rest, so each run reads as one dated block.
+   - `Update source`: `Live API` (the normal case); `Live API (blocked, no data)` for a blocked account.
+   - Budgets as numbers; `Campaign details` is the CSV's `campaigns` cell.
    Never overwrite earlier runs; never touch any other tab.
-4. Read back the written range once and check the row count equals the CSV's client count. Mention the tab in the chat summary ("Meta Ad Spends tab: 42 rows appended for 2026-10-20").
+4. Read the written range back once and check the row count equals the CSV's client count.
+5. Replace the `Meta Ad Spends tab: not pushed yet.` line in the `.md` with `Meta Ad Spends tab: pushed YYYY-MM-DD HH:MM PT, N rows (rows A to B).` using the time of the write. The HTML shows this line as a chip.
 
-If the Sheets connector is not available in the session, say so, leave the CSV in place, and do not fall back to editing the sheet any other way.
+If the Sheets connector is not available, leave the line as `not pushed yet`, say so in chat, and do not edit the sheet any other way.
 
-## Step 9: Publish the HTML and the archive
+## Step 3: Cross-check the Master sheet for new clients
 
-After the `.md` and `.csv` are written and the project files are updated:
+`get_values` on `'Meta Ad Links'!B:B` (Client Business). Any name there that is not in the client map and not marked Offboarded gets a footer bullet in the `.md`: `- On the Master sheet but not in the client map: <names>. Add the ad account ID to PROJECT.md section 5 to include them next week.` (Glasscombe on 2026-10-15.) Do not look up or invent the account ID during the run; raise it in chat.
+
+## Step 4: Report back in chat
+
+Give the counts line (clients, live reads, blocked, total live $/day with the four type totals, spent last 7 days), the Changes table, and the Meta Ad Spends tab line. Point to the file for the ledger; do not paste it.
+
+## Step 5: Update the project file
+
+In `weekly/Project Data/PROJECT.md`:
+
+1. Add a row to **8. Run log**: date, workflow, mode, the counts line with the notable changes, and whether files were written.
+2. Add a bullet to **6. Learnings** only for something new (an account quirk, a bucketing miss, a data-source change).
+3. Update **5. Client → ad account map** if a client was added, offboarded or remapped.
+4. Resolve an **7. Open decisions** row if the run settled it.
+
+If the skill, the script or the output format changed during the session, add a dated bullet at the top of `weekly/Project Data/CHANGELOG.md`.
+
+## Step 6: Publish
 
 ```
 python3 "weekly/Project Data/build_html.py" YYYY-MM-DD
 python3 "weekly/Project Data/build_site.py"
-npx tsx scripts/sync-roi-memory.mts   # push the new rows to the roi schema in Supabase
+npx tsx scripts/sync-roi-memory.mts   # needs SUPABASE_SERVICE_ROLE_KEY in .env.local; skip and say so if unset
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
 ```
 
-This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `public/weekly/` (the merged ROI dashboard serves it at `/weekly/`); Netlify deploys it with the dashboard on the next push to `main`. If the other two workflows have not run yet this week, run this anyway; the index shows "Not run this week" for them until they do.
+`build_html.py` renders the `.md` and `.csv` to the dated `.html` (it still renders the pre-2026-10-15 sheet-comparison reports with their old layout); `build_site.py` rebuilds `public/weekly/`, which Netlify deploys with the dashboard on the next push to `main`.
 
 ## Do not
 
-- Do not send email. That comes later.
-- Do not skip Not Live or Paused clients.
-- Do not call `ads_get_ad_entities` on an account with `is_ads_mcp_enabled: false` or `is_queryable: false`.
-- Do not invent an AM, a budget, or an account ID. Missing means `—` or `n/a` with a note.
+- Do not compare live budgets against the Master sheet's Total Budget, and do not flag Match / Warning / Critical. Budget discrepancies are the AMs' job to read off the tab.
+- Do not send email.
+- Do not invent an AM, a budget or an account ID. Missing means `—` or `n/a`.
+- Do not retry a blocked account or fall back to an Ads Manager export; note it and move on.

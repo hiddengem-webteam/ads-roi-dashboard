@@ -93,4 +93,3 @@ scripts/.july-xlsx-conversion-report.json
 /Sept Data/
 
 # Written by the ad spend check each Monday from the Master sheet; regenerated every run
-.claude/skills/ad-spend-check/sheet-budgets.json
