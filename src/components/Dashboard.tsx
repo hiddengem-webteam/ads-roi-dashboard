@@ -10,15 +10,48 @@ import FlagPanel from './FlagPanel';
 import SyncPanel from './SyncPanel';
 import PeriodOverviewSection from './PeriodOverviewSection';
 import DataStatusPanel from './DataStatusPanel';
+import FinalizedReportingSummarySection from './FinalizedReportingSummarySection';
 import { ProcessedData, ClientData } from '@/types';
-import { loadManifest, loadPeriod, Manifest } from '@/lib/analysis/autoLoader';
+import { loadManifest, loadPeriod, Manifest, ManifestClient, ManifestPeriod } from '@/lib/analysis/autoLoader';
+import { FINALIZED_PERIODS, FinalizedPeriod, periodSortKey } from '@/lib/analysis/finalizedPeriods';
 import { computeCampaignRevenue } from '@/lib/analysis/campaignRevenue';
 import { AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { Badge } from './ui/Badge';
 
+// A month in the period selector: either a live-synced manifest period, a
+// finalized snapshot, or both (finalized wins for rendering).
+interface DashboardPeriod {
+  id: string;
+  label: string;
+  clients: ManifestClient[];
+  manifest?: ManifestPeriod;
+  finalized?: FinalizedPeriod;
+}
+
+interface Snapshot {
+  period: { id: string; label: string; clients: ManifestClient[] };
+  data: ProcessedData;
+}
+
+// Finalized months first (newest), then live-synced months not finalized yet.
+function mergePeriods(manifest: Manifest | null): DashboardPeriod[] {
+  const byId = new Map<string, DashboardPeriod>();
+  for (const p of manifest?.periods ?? []) {
+    byId.set(p.id, { id: p.id, label: p.label, clients: p.clients, manifest: p });
+  }
+  for (const f of FINALIZED_PERIODS) {
+    const existing = byId.get(f.id);
+    byId.set(f.id, { id: f.id, label: f.label, clients: existing?.clients ?? [], manifest: existing?.manifest, finalized: f });
+  }
+  return [...byId.values()].sort((a, b) => periodSortKey(b.id) - periodSortKey(a.id));
+}
+
 export default function Dashboard() {
   const [manifest, setManifest] = useState<Manifest | null>(null);
+  const [manifestReady, setManifestReady] = useState(false);
   const [data, setData] = useState<ProcessedData | null>(null);
+  // Client list of the loaded period (from the snapshot for finalized months).
+  const [loadedClients, setLoadedClients] = useState<ManifestClient[] | null>(null);
   const [selectedPeriodId, setSelectedPeriodId] = useState<string>('');
   const [selectedClient, setSelectedClient] = useState<string>('');
   const [activeView, setActiveView] = useState<'overview' | 'client'>('overview');
@@ -54,34 +87,52 @@ export default function Dashboard() {
   }, []);
 
   useEffect(() => {
+    // The manifest is optional: finalized months render from their snapshots
+    // even when the platform sync hasn't run (no manifest on disk).
     loadManifest()
+      .catch((): Manifest => ({ periods: [] }))
       .then((m) => {
         setManifest(m);
-        if (m.periods.length > 0) setSelectedPeriodId(m.periods[0].id);
+        const first = mergePeriods(m)[0];
+        if (first) setSelectedPeriodId(first.id);
       })
-      .catch((err) => setError(String(err)))
-      .finally(() => setLoading(false));
+      .finally(() => setManifestReady(true));
   }, []);
 
+  const periods: DashboardPeriod[] = useMemo(() => mergePeriods(manifest), [manifest]);
+
   useEffect(() => {
-    if (!manifest || !selectedPeriodId) return;
-    const period = manifest.periods.find((p) => p.id === selectedPeriodId);
+    if (!selectedPeriodId) return;
+    const period = periods.find((p) => p.id === selectedPeriodId);
     if (!period) return;
 
     setLoading(true);
     setError(null);
     setData(null);
+    setLoadedClients(null);
     // Landing view for every period load (first load AND month switches) is
     // the Overview — switching months while inside a client would otherwise
     // dump you on the manifest's first client (currently Tàberg Falls).
     setActiveView('overview');
     scrollToTop();
 
-    loadPeriod(period)
-      .then((result) => {
+    const load: Promise<{ data: ProcessedData; clients: ManifestClient[] }> = period.finalized
+      ? fetch(period.finalized.snapshot)
+          .then((res) => {
+            if (!res.ok) throw new Error(`Could not load ${period.label} snapshot (${res.status})`);
+            return res.json() as Promise<Snapshot>;
+          })
+          .then((snap) => ({ data: snap.data, clients: snap.period.clients }))
+      : period.manifest
+        ? loadPeriod(period.manifest).then((d) => ({ data: d, clients: period.clients }))
+        : Promise.reject(new Error(`No data source for ${period.label}`));
+
+    load
+      .then(({ data: result, clients }) => {
         setData(result);
-        // Default to first client in manifest order
-        const firstClient = period.clients[0]?.name;
+        setLoadedClients(clients);
+        // Default to first client in period order
+        const firstClient = clients[0]?.name;
         if (firstClient && result.clients[firstClient]) {
           setSelectedClient(firstClient);
         } else {
@@ -91,19 +142,22 @@ export default function Dashboard() {
       })
       .catch((err) => setError(String(err)))
       .finally(() => setLoading(false));
-  }, [manifest, selectedPeriodId]);
+  }, [periods, selectedPeriodId]);
 
-  // Ordered client list: alphabetical, FB-only clients
+  const currentPeriod = periods.find((p) => p.id === selectedPeriodId);
+  const isFinalized = !!currentPeriod?.finalized;
+
+  // Ordered client list: alphabetical. Live months list clients with ad data;
+  // finalized months also list PMS-only clients, as their month pages did.
   const orderedClients: ClientData[] = useMemo(() => {
     if (!data) return [];
     return Object.values(data.clients)
-      .filter((c) => c.facebookStats != null)
+      .filter((c) => c.facebookStats != null || (isFinalized && c.pmsAnalysis != null))
       .sort((a, b) => a.name.localeCompare(b.name));
-  }, [data]);
+  }, [data, isFinalized]);
 
   const currentClient = data && selectedClient ? data.clients[selectedClient] : null;
   const clientFlags = data ? data.flags.filter((f) => f.clientName === selectedClient) : [];
-  const currentPeriod = manifest?.periods.find((p) => p.id === selectedPeriodId);
 
   // Revenue attributed to each campaign type
   const campaignRevenue = useMemo(() => computeCampaignRevenue(currentClient), [currentClient]);
@@ -163,16 +217,21 @@ export default function Dashboard() {
             >
               Weekly reviews
             </a>
+            {currentPeriod?.finalized && (
+              <span title={`Numbers signed off ${currentPeriod.finalized.finalizedOn}. Rendered from the frozen snapshot and the Client Performance Tracking sheet.`}>
+                <Badge variant="success">Final</Badge>
+              </span>
+            )}
             {/* Period selector (only if multiple periods) */}
-            {manifest && manifest.periods.length > 1 && (
+            {periods.length > 1 && (
               <div className="relative">
                 <select
                   value={selectedPeriodId}
                   onChange={(e) => setSelectedPeriodId(e.target.value)}
                   className="appearance-none text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] pl-4 pr-9 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand)] shadow-[0_2px_12px_rgba(15,23,42,.04)]"
                 >
-                  {manifest.periods.map((p) => (
-                    <option key={p.id} value={p.id}>{p.label}</option>
+                  {periods.map((p) => (
+                    <option key={p.id} value={p.id}>{p.label}{p.finalized ? ' · Final' : ''}</option>
                   ))}
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--muted-soft)]" />
@@ -185,7 +244,7 @@ export default function Dashboard() {
         {/* Overview tab */}
         {!loading && !error && data && activeView === 'overview' && (
           <PeriodOverviewSection
-            manifestClients={currentPeriod?.clients ?? []}
+            manifestClients={loadedClients ?? currentPeriod?.clients ?? []}
             data={data}
             onSelectClient={(name) => goToClient(name)}
           />
@@ -197,7 +256,11 @@ export default function Dashboard() {
             <div className="flex flex-col items-center justify-center py-40 gap-4">
               <Loader2 className="w-7 h-7 text-[var(--muted-soft)] animate-spin" />
               <p className="text-[13px] text-[var(--muted-soft)]">
-                {!manifest ? 'Loading data...' : `Processing ${currentPeriod?.label ?? 'data'}...`}
+                {!manifestReady
+                  ? 'Loading data...'
+                  : currentPeriod?.finalized
+                    ? `Loading ${currentPeriod.label} snapshot...`
+                    : `Processing ${currentPeriod?.label ?? 'data'}...`}
               </p>
             </div>
           )}
@@ -216,22 +279,37 @@ export default function Dashboard() {
           {/* Client content */}
           {!loading && !error && currentClient && activeView === 'client' && (
             <>
-              {/* Data status diagnostics */}
-              <DataStatusPanel
-                hasPMS={currentClient.hasPMS}
-                hasGHL={currentClient.hasGHL}
-                flags={clientFlags}
-              />
+              {currentPeriod?.finalized ? (
+                /* Finalized month: sheet revenue + leads, AM note, no sync diagnostics */
+                <FinalizedReportingSummarySection
+                  clientName={currentClient.name}
+                  period={currentPeriod.finalized}
+                  facebookStats={currentClient.facebookStats}
+                  pmsSummary={currentClient.pmsAnalysis?.summary ?? null}
+                  campaignRevenue={campaignRevenue}
+                  instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
+                  facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
+                />
+              ) : (
+                <>
+                  {/* Data status diagnostics */}
+                  <DataStatusPanel
+                    hasPMS={currentClient.hasPMS}
+                    hasGHL={currentClient.hasGHL}
+                    flags={clientFlags}
+                  />
 
-              {/* Summary bar */}
-              <ClientSummarySection
-                facebookStats={currentClient.facebookStats}
-                pmsSummary={currentClient.pmsAnalysis?.summary ?? null}
-                campaignRevenue={campaignRevenue}
-                instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
-                facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
-                ghlTagLeads={ghlTagLeads}
-              />
+                  {/* Summary bar */}
+                  <ClientSummarySection
+                    facebookStats={currentClient.facebookStats}
+                    pmsSummary={currentClient.pmsAnalysis?.summary ?? null}
+                    campaignRevenue={campaignRevenue}
+                    instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
+                    facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
+                    ghlTagLeads={ghlTagLeads}
+                  />
+                </>
+              )}
 
               {currentClient.facebookStats && (
                 <FacebookStatsSection

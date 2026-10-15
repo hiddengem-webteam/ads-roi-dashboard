@@ -1,14 +1,14 @@
 import { ProcessedData } from '@/types';
 import { processAllData, UploadedFilesMap } from './processor';
 
-interface ManifestClient {
+export interface ManifestClient {
   pmsProvider?: string;
   name: string;
   pms?: string;
   ghl?: string;
 }
 
-interface ManifestPeriod {
+export interface ManifestPeriod {
   id: string;
   label: string;
   metaAds?: string;
