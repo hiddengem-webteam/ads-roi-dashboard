@@ -147,6 +147,18 @@ Open `weekly/Project Data/PROJECT.md` and:
 
 If the skill itself was changed during the session (thresholds, columns, sources, output location), add a dated bullet to `weekly/Project Data/CHANGELOG.md` describing what changed and why. Newest entries go at the top.
 
+## Step 8b: Live budget per campaign type → "Meta Ad Spends" tab (added 2026-10-15, Shawal)
+
+After the report is written, push this week's live daily budget per campaign type for every sheet client into the **Meta Ad Spends** tab of the Master Meta Ads sheet (`1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM`), one row per client per run, appended under the previous run so the tab keeps a week-by-week history.
+
+1. Write today's documented budgets for the script: from the Master sheet's "Meta Ad Links" tab (already read in Step 1), save `{"<Client Business>": <Total Budget $/day>, ...}` as `.claude/skills/ad-spend-check/sheet-budgets.json` (blank cells and #REF! omitted). Then run `npx tsx scripts/pull-live-budgets.mts YYYY-MM-DD` from the repo root. It reads every active campaign's daily budget through the Marketing API (system-user token in `.env`), buckets them as ToF Giveaway / MoF Leads / MoF Sales LoL / BoF Sales / other (objective first, then name, same rules as the benchmark generator), skips campaigns past their `stop_time`, and writes `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-by-type.csv` with `sheet_budget`, `diff` and `flag` taken from today's spend-check CSV. Canopy at Moody Moon Ridge comes back as a blocker (decision 31); carry its row with the connector's figures if you read them in step 2, otherwise leave the budgets blank.
+2. With the Google Sheets connector, `get_values` on `'Meta Ad Spends'!A1:N1`. If the tab is empty, first write the header row with `update_values` at `'Meta Ad Spends'!A1`:
+   `Run date | Client | AM | Ad account ID | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Sheet budget | Diff | Flag | Campaigns`
+3. `get_values` on `'Meta Ad Spends'!A:A` to find the first empty row, then `update_values` starting at that row with one row per client from the CSV, in the CSV's order: date as `YYYY-MM-DD` text, ad account ID with a leading apostrophe so it stays text, budgets as numbers, `Flag` as the CSV value (`match` / `warning` / `critical` / `blocker` / `no sheet budget`), `Campaigns` as the CSV's campaign list. Never overwrite earlier runs; never touch any other tab.
+4. Read back the written range once and check the row count equals the CSV's client count. Mention the tab in the chat summary ("Meta Ad Spends tab: 42 rows appended for 2026-10-20").
+
+If the Sheets connector is not available in the session, say so, leave the CSV in place, and do not fall back to editing the sheet any other way.
+
 ## Step 9: Publish the HTML and the archive
 
 After the `.md` and `.csv` are written and the project files are updated:
