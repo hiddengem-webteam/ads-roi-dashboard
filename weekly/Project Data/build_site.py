@@ -1,19 +1,20 @@
-"""Builds the static site in ../site/ from every dated .html in the three Weekly Checks folders.
+"""Builds the weekly archive into <repo>/public/weekly/ from every dated .html in the three Weekly Checks folders.
+The ROI dashboard (Next.js static export) copies public/ into out/, so these pages ship at /weekly/ on the same Netlify site.
 
   python3 "Project Data/build_site.py"
 
 Output:
-  site/index.html                     all review dates, newest first, three cards per date
-  site/<slug>/<YYYY-MM-DD>.html        each weekly page as a full HTML document with a back link
-  site/<slug>/latest.html              copy of the newest page per workflow
-  site/_redirects                      /ad-spend -> latest, etc.
-Netlify publishes site/ as-is (netlify.toml, no build command), so run this before committing.
+  public/weekly/index.html                 all review dates, newest first, three cards per date
+  public/weekly/<slug>/<YYYY-MM-DD>.html   each weekly page as a full HTML document with a back link
+  public/weekly/<slug>/latest.html         copy of the newest page per workflow
+Redirects (/weekly/ad-spend -> latest, etc.) live in the repo's netlify.toml. Commit public/weekly after running this.
 """
 import csv, collections, datetime, html, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_html import CSS, wordmark, ROOT  # noqa: E402
 
-SITE = os.path.join(ROOT, "site")
+SITE = os.path.join(os.path.dirname(ROOT), "public", "weekly")  # <repo>/public/weekly
+BASE = "/weekly"  # URL prefix on the merged site
 WORKFLOWS = [
     # slug, title, folder, filename suffix, csv suffix, one-line description
     ("ad-spend", "Ad spend check", "Ad Spends Checks/Weekly Checks", "-ad-spend-check.html", "-ad-spend-check.csv",
@@ -27,13 +28,15 @@ DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
 def esc(s): return html.escape(s, quote=False)
 
+BACK_CSS = ".back{font:500 13px/20px 'Inter',sans-serif;color:var(--text-3);display:inline-flex;align-items:center;gap:6px}.back:hover{color:var(--text);text-decoration:none}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}"
+
 def wrap(page_html, back=True):
     """Turn an artifact-style page (title/link/style then body content) into a full document."""
     m = re.search(r"</style>\s*", page_html)
     head, body = (page_html[:m.end()], page_html[m.end():]) if m else ("", page_html)
-    extra_css = ".back{font:500 13px/20px 'Inter',sans-serif;color:var(--text-3);display:inline-flex;align-items:center;gap:6px}.back:hover{color:var(--text);text-decoration:none}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}"
+    extra_css = BACK_CSS
     if back:
-        body = body.replace('<div class="eyebrow">', '<div class="right"><a class="back" href="/">&#8592; All reviews</a><div class="eyebrow">', 1)
+        body = body.replace('<div class="eyebrow">', f'<div class="right"><a class="back" href="{BASE}/">&#8592; All reviews</a><div class="eyebrow">', 1)
         body = body.replace('</div></div>\n<header class="title">', '</div></div></div>\n<header class="title">', 1)
     return ("<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">\n"
@@ -129,12 +132,11 @@ def main():
             date = m.group(1); dates.append(date)
             page = open(os.path.join(src_dir, fn), encoding="utf-8").read()
             open(os.path.join(out_dir, f"{date}.html"), "w", encoding="utf-8").write(wrap(page))
-            by_date[date][slug] = (f"/{slug}/{date}.html", headline(slug, os.path.join(src_dir, date + csv_suf)))
+            by_date[date][slug] = (f"{BASE}/{slug}/{date}.html", headline(slug, os.path.join(src_dir, date + csv_suf)))
         if dates:
             latest[slug] = dates[-1]
             shutil.copyfile(os.path.join(out_dir, f"{dates[-1]}.html"), os.path.join(out_dir, "latest.html"))
-    # redirects
-    open(os.path.join(SITE, "_redirects"), "w").write("".join(f"/{slug}  /{slug}/latest.html  302\n" for slug in latest))
+    # redirects (/weekly/<slug> -> latest) are declared in the repo's netlify.toml, not generated here
     # index
     sections = []
     for date in sorted(by_date, reverse=True):
@@ -184,7 +186,7 @@ def main():
 {"".join(side_items)}
 </ul>
 <div class="side-title" style="margin-top:20px">Latest</div>
-<ul class="months latest-list">{"".join(f'<li><a class="wk" href="/{slug}/latest.html">{esc(title)}</a></li>' for slug, title, *_ in WORKFLOWS if slug in latest)}</ul>
+<ul class="months latest-list">{"".join(f'<li><a class="wk" href="{BASE}/{slug}/latest.html">{esc(title)}</a></li>' for slug, title, *_ in WORKFLOWS if slug in latest)}</ul>
 </nav>'''
     index_css = """
 .layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
@@ -286,11 +288,11 @@ def main():
 <title>Meta Ads weekly reviews</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap">
-<style>{CSS}{index_css}</style>
+<style>{CSS}{index_css}{BACK_CSS}</style>
 </head>
 <body>
 <div class="page">
-<div class="masthead">{wordmark}<div class="eyebrow">Weekly Meta Ads review · Archive</div></div>
+<div class="masthead">{wordmark}<div class="right"><a class="back" href="/">&#8592; Monthly ROI dashboard</a><div class="eyebrow">Weekly Meta Ads review · Archive</div></div></div>
 <header class="title"><h1>Meta Ads weekly reviews</h1>
 <p class="lede">Every Monday's ad spend check, pixel domain check and client benchmark review. Pick a month on the left to see its weeks; each report compares against the previous week, so a flag that stays open shows how many weeks it has been open.</p>
 <div class="meta"><span class="chip">{n_weeks} week{"s" if n_weeks != 1 else ""} on file</span><span class="chip">Since {first}</span><span class="chip">Internal, HiddenGem Marketing</span></div>
@@ -300,7 +302,7 @@ def main():
 <main>
 <p class="month-head" id="month-head"></p>
 {"".join(sections)}
-<div class="foot"><p>Built from the dated reports in the project's Weekly Checks folders. Numbers on the cards come from each report's CSV sidecar.</p></div>
+<div class="foot"><p>Built from the dated reports in weekly/*/Weekly Checks. Served at /weekly/ by the ROI dashboard. Numbers on the cards come from each report's CSV sidecar.</p></div>
 </main>
 </div>
 </div>
@@ -309,7 +311,7 @@ def main():
 </html>
 """
     open(os.path.join(SITE, "index.html"), "w", encoding="utf-8").write(index)
-    print(f"site built: {n_weeks} week(s), {sum(len(v) for v in by_date.values())} pages")
+    print(f"public/weekly built: {n_weeks} week(s), {sum(len(v) for v in by_date.values())} pages")
 
 if __name__ == "__main__":
     main()

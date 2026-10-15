@@ -18,6 +18,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Weekly Meta Ads reviews (`/weekly`)
+
+The three Monday reviews (ad spend check, pixel domain check, client benchmark) live in
+[`weekly/`](weekly/README.md) and run as Claude Code skills from the repo root:
+`/ad-spend-check`, `/pixel-domain-check`, `/client-benchmark`. Their HTML archive is
+generated into `public/weekly/` and served at `/weekly/` by this site; the dashboard's
+top bar links to it. See `weekly/README.md` for the publish steps.
+
 ## HiddenGem AI platform data (automatic)
 
 The dashboard renders from `public/data/manifest.json` + per-period CSVs. These

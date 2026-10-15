@@ -141,6 +141,12 @@ async function main() {
   const outPath = path.join(ROOT, 'public', 'data', 'snapshots', 'august-2026-client-reporting-export.json');
   fs.writeFileSync(outPath, JSON.stringify(out, null, 2), 'utf8');
   console.log(`Wrote ${outPath} — ${exportClients.length} clients`);
+  // Weekly client-benchmark review reads this folder for monthly ROI context.
+  const weeklyDir = path.join(ROOT, 'weekly', 'Monthly ROI data');
+  fs.mkdirSync(weeklyDir, { recursive: true });
+  const weeklyPath = path.join(weeklyDir, `${out.period} - Client Reporting.json`);
+  fs.writeFileSync(weeklyPath, JSON.stringify(out, null, 2), 'utf8');
+  console.log(`Wrote ${weeklyPath} (weekly benchmark input)`);
 }
 
 main().catch((err) => {

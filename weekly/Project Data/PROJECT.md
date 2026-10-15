@@ -16,26 +16,27 @@ Long-term: automate with Supabase as the store, then move to HTML email output. 
 
 ## 2. Folder layout
 
+Since 2026-10-15 this project lives inside the ROI dashboard repo (`ads-roi-dashboard`), under `weekly/`. Skills run from the repo root; everything else stays under `weekly/`.
+
 ```
-Meta Ads Analysis - 21:09:26/
-├── Project Data/                     this file + CHANGELOG.md + build_html.py + build_site.py + assets/hg-wordmark.svg
-├── site/                             generated static archive Netlify serves (index + every dated page); rebuild, never hand-edit
-├── Weekly CSV Reports/               Ads Manager exports, one per week, dated filename
-├── Ad Spends Checks/
-│   ├── .claude/skills/ad-spend-check/SKILL.md   the runnable skill (/ad-spend-check)
-│   └── Weekly Checks/                dated reports (.md) + sidecar (.csv), one pair per run
-├── Meta Pixel Reviews/
-│   ├── .claude/skills/pixel-domain-check/SKILL.md   the runnable skill (/pixel-domain-check)
-│   ├── expected-domains.csv          source of truth for each client's expected domains (seeded 2026-09-21, all inferred)
-│   └── Weekly Checks/                dated reports (.md) + sidecar (.csv), one pair per run
-├── Monthly ROI data/                 monthly ROI JSON per month (Shawal drops these in; July + August 2026 so far)
-├── HG AI Reports/                    HG AI diagnoses Shawal drops in, client name + date in filename (moved to root 2026-09-28)
-└── Client Benchmark Reviews (advanced setups)/
-    ├── .claude/skills/client-benchmark/SKILL.md   the runnable skill (/client-benchmark) + generate_report.py
-    └── Weekly Checks/                dated reports (.md) + sidecar (.csv), one pair per run
+<repo root>/
+├── .claude/skills/
+│   ├── ad-spend-check/SKILL.md          /ad-spend-check
+│   ├── pixel-domain-check/SKILL.md      /pixel-domain-check
+│   └── client-benchmark/                /client-benchmark + generate_report.py
+├── public/weekly/                       generated archive served at /weekly/ by the dashboard; rebuild, never hand-edit
+├── netlify.toml                         one site: monthly dashboard at /, weekly archive at /weekly/ (noindex headers + latest redirects)
+└── weekly/
+    ├── Project Data/                    this file + CHANGELOG.md + build_html.py + build_site.py + serve_site.py + assets/hg-wordmark.svg
+    ├── Weekly CSV Reports/              Ads Manager exports, one per week, dated filename
+    ├── Ad Spends Checks/Weekly Checks/                       dated reports (.md) + sidecar (.csv) + built .html
+    ├── Meta Pixel Reviews/                                   expected-domains.csv + Weekly Checks/
+    ├── Client Benchmark Reviews (advanced setups)/Weekly Checks/
+    ├── Monthly ROI data/                monthly client-reporting JSON, written by the dashboard's export scripts
+    └── HG AI Reports/                   HG AI diagnoses Shawal drops in, client name + date in filename
 ```
 
-Convention: each workflow folder holds its own hidden `.claude/skills/<name>/SKILL.md` and a `Weekly Checks/` folder for outputs. Report filenames are `YYYY-MM-DD-<workflow>.md` with a matching `.csv`, plus a `.html` built from both by `Project Data/build_html.py`. CSV exports are `YYYY-MM-DD_Www_meta-ads-report.csv`.
+Report filenames are `YYYY-MM-DD-<workflow>.md` with a matching `.csv`, plus a `.html` built from both by `weekly/Project Data/build_html.py`. CSV exports are `YYYY-MM-DD_Www_meta-ads-report.csv`. Paths in the skills are relative to the repo root.
 
 ## 3. Data sources
 
@@ -122,7 +123,7 @@ Next: week-over-week diff in `generate_report.py` (currently hardcodes "First ru
 
 ### 4.4 HTML reports — built 2026-09-21
 
-`Project Data/build_html.py [YYYY-MM-DD]` reads each workflow's dated `.md` and `.csv` and writes a dated `.html` beside them, styled from the HiddenGem Media design system (`https://claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk`: Inter, neutral canvas, brand blue for accents only, semantic badges instead of emoji, sentence case, light and dark themes). Each page: masthead with wordmark, stat row, alert callouts for critical findings, filterable tables, per-client cards (benchmark), footer notes. Published as private artifacts; republish to the same URL to keep the link:
+`weekly/Project Data/build_html.py [YYYY-MM-DD]` reads each workflow's dated `.md` and `.csv` and writes a dated `.html` beside them, styled from the HiddenGem Media design system (`https://claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk`: Inter, neutral canvas, brand blue for accents only, semantic badges instead of emoji, sentence case, light and dark themes). Each page: masthead with wordmark, stat row, alert callouts for critical findings, filterable tables, per-client cards (benchmark), footer notes. Published as private artifacts; republish to the same URL to keep the link:
 
 | Workflow | Artifact URL (W39, 2026-09-21) |
 |---|---|
@@ -130,18 +131,17 @@ Next: week-over-week diff in `generate_report.py` (currently hardcodes "First ru
 | Pixel domain check | https://claude.ai/artifact/PvVhNRBCtnniJGzsehkTWf |
 | Client benchmark | https://claude.ai/artifact/HFu3dZGrVBK9zHuYBu9qJ4 |
 
-**Repo and live archive (added 2026-09-21).** The whole project folder is a private git repo: `https://github.com/hiddengem-webteam/meta-ads-weekly-reviews` (account hiddengem-webteam). `Project Data/build_site.py` rebuilds `site/` (index of every Monday, `/<slug>/<date>.html`, `/<slug>/latest.html`, redirects) and Netlify serves it at `https://hiddengem-ads-reviews.netlify.app` (site `hiddengem-ads-reviews` (id f7b6b654-f0d8-4f24-9d69-03d351daff49), team hgwebteam (Pro, HiddenGem Media login hgwebteam@gmail.com), deployed with `netlify deploy --prod --dir site`). Pages are `noindex`; the site must be put behind Netlify password or team access before the link is shared, because it names clients, account IDs, pixel IDs and budgets.
+**Repo and live archive (added 2026-09-21, merged 2026-10-15).** Until 2026-10-15 this was its own private repo (`https://github.com/hiddengem-webteam/meta-ads-weekly-reviews`) deployed as `hiddengem-ads-reviews.netlify.app` (site id f7b6b654-f0d8-4f24-9d69-03d351daff49, team hgwebteam). It is now the `weekly/` folder of the ROI dashboard repo (`https://github.com/hiddengem-webteam/ads-roi-dashboard`, history kept via subtree merge). `weekly/Project Data/build_site.py` rebuilds `public/weekly/` (index of every Monday, `/weekly/<slug>/<date>.html`, `/weekly/<slug>/latest.html`); the dashboard's Netlify build copies it into `out/weekly/`, so one site serves the monthly dashboard at `/` and this archive at `/weekly/`. Latest-page redirects and the `noindex` header for `/weekly/*` are in the repo's `netlify.toml`. The site must stay behind Netlify password or team access, because the pages name clients, account IDs, pixel IDs and budgets. The old Netlify site can be deleted once the dashboard site has that access control.
 
 Weekly publish, after the three skills have written their `.md` + `.csv`:
 
 ```
-python3 "Project Data/build_html.py" YYYY-MM-DD
-python3 "Project Data/build_site.py"
+python3 "weekly/Project Data/build_html.py" YYYY-MM-DD
+python3 "weekly/Project Data/build_site.py"
 git add -A && git commit -m "Reviews YYYY-MM-DD" && git push
-npx netlify-cli deploy --prod --no-build --dir site --site f7b6b654-f0d8-4f24-9d69-03d351daff49
 ```
 
-Open: one stable claude.ai artifact URL per workflow (overwrite weekly) or one per week; Netlify push-to-deploy from GitHub (one-time link in the Netlify UI) instead of the CLI deploy; email delivery (Mailtrap) not wired yet.
+Open: email delivery (Mailtrap) not wired yet. Resolved 2026-10-15: deploys ride the dashboard's push-to-deploy, no CLI deploy.
 
 ## 5. Client → ad account map (as of 2026-09-21)
 

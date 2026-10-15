@@ -1,5 +1,6 @@
 # Changelog
 
+- 2026-10-15: Merged into the ROI dashboard repo under `weekly/` (subtree merge, history kept). Skills moved to `.claude/skills/` at the repo root and their paths now start with `weekly/`. `build_site.py` writes `public/weekly/` instead of `site/`; links carry the `/weekly` prefix; latest-page redirects and `noindex` headers moved to the repo's `netlify.toml`. The dashboard's client-reporting export scripts write straight into `weekly/Monthly ROI data/`. The old `meta-ads-weekly-reviews` repo and `hiddengem-ads-reviews.netlify.app` site are superseded.
 Major changes to the Meta Ads Analysis project. Newest first. Small wording fixes don't go here; anything that changes what a workflow reads, how it scores, or where it writes does.
 
 ## 2026-10-13

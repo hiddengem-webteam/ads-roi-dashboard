@@ -156,6 +156,13 @@ export default function Dashboard() {
               </button>
             </div>
 
+            <div className="flex items-center gap-3">
+            <a
+              href="/weekly/"
+              className="px-3.5 py-2 text-[13px] font-semibold rounded-[10px] text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)] transition-colors duration-150"
+            >
+              Weekly reviews
+            </a>
             {/* Period selector (only if multiple periods) */}
             {manifest && manifest.periods.length > 1 && (
               <div className="relative">
@@ -171,6 +178,7 @@ export default function Dashboard() {
                 <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--muted-soft)]" />
               </div>
             )}
+            </div>
           </div>
         )}
 

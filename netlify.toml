@@ -11,3 +11,27 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Weekly Meta Ads reviews (public/weekly, built by weekly/Project Data/build_site.py).
+# They name clients, ad account IDs, pixel IDs and budgets: keep them out of search
+# engines and behind the site's access control.
+[[headers]]
+  for = "/weekly/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Referrer-Policy = "no-referrer"
+
+[[redirects]]
+  from = "/weekly/ad-spend"
+  to = "/weekly/ad-spend/latest.html"
+  status = 302
+
+[[redirects]]
+  from = "/weekly/pixel-domains"
+  to = "/weekly/pixel-domains/latest.html"
+  status = 302
+
+[[redirects]]
+  from = "/weekly/client-benchmark"
+  to = "/weekly/client-benchmark/latest.html"
+  status = 302
