@@ -10,9 +10,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variants = {
   default: 'bg-[var(--brand)] text-white hover:bg-[var(--brand-deep)]',
-  outline: 'bg-white border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--fill-cool)]',
+  outline: 'bg-[var(--surface)] border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--fill-cool)]',
   ghost: 'text-[var(--brand)] hover:bg-[var(--fill-blue)]',
-  destructive: 'bg-[var(--danger)] text-white hover:bg-[#b91c1c]',
+  destructive: 'bg-[var(--danger)] text-white hover:bg-[var(--err-text)]',
 };
 
 const sizes = {
@@ -25,7 +25,7 @@ export function Button({ variant = 'default', size = 'md', className, children, 
   return (
     <button
       className={cn(
-        'inline-flex items-center gap-1.5 rounded-[10px] font-semibold transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
+        'inline-flex items-center gap-1.5 rounded-[8px] font-semibold transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed',
         variants[variant],
         sizes[size],
         className,

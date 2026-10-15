@@ -97,17 +97,17 @@ export default function JulyClientReportingDashboard() {
       <div className="flex-1 overflow-y-auto july-scrollbar" id="main-scroll">
         {/* Top bar */}
         {!loading && !error && data && (
-          <div className="sticky top-0 z-10 bg-[var(--canvas-tint)]/85 backdrop-blur-sm border-b border-[var(--border)] px-8 py-3 flex items-center justify-between gap-4">
+          <div className="sticky top-0 z-10 bg-[var(--surface)] border-b border-[var(--border)] px-8 py-3 flex items-center justify-between gap-4">
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setActiveView('overview')}
-                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 Overview
               </button>
               <button
                 onClick={() => setActiveView('client')}
-                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[10px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 {activeView === 'client' && currentClient ? (
                   <>
@@ -123,7 +123,7 @@ export default function JulyClientReportingDashboard() {
             </div>
 
             {/* Fixed period badge — no selector; this view is locked to July 2026 */}
-            <span className="text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] px-4 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[0_2px_12px_rgba(15,23,42,.04)]">
+            <span className="text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] px-4 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] shadow-[var(--shadow-xs)]">
               {snapshot?.period.label} <span className="text-[var(--muted-soft)] font-medium">(frozen snapshot)</span>
             </span>
           </div>
@@ -149,11 +149,11 @@ export default function JulyClientReportingDashboard() {
 
           {/* Error */}
           {error && !loading && (
-            <div className="max-w-lg p-6 bg-[rgba(220,38,38,.06)] border border-[rgba(220,38,38,.18)] rounded-[16px] flex items-start gap-3">
+            <div className="max-w-lg p-6 bg-[var(--err-bg)] border border-[var(--err-border)] rounded-[12px] flex items-start gap-3">
               <AlertCircle className="w-5 h-5 text-[var(--danger)] flex-shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-[var(--danger)] text-[13px]">Failed to load July snapshot</p>
-                <p className="text-[13px] text-[var(--danger)]/80 mt-1">{error}</p>
+                <p className="text-[13px] text-[var(--err-text)] mt-1">{error}</p>
               </div>
             </div>
           )}
@@ -189,7 +189,7 @@ export default function JulyClientReportingDashboard() {
               )}
 
               {!currentClient.facebookStats && !currentClient.pmsAnalysis && (
-                <div className="rounded-[16px] border border-dashed border-[var(--border-strong)] px-8 py-16 text-center">
+                <div className="rounded-[12px] border border-dashed border-[var(--border-strong)] px-8 py-16 text-center">
                   <p className="text-[13px] text-[var(--muted-soft)]">No data available for this client.</p>
                 </div>
               )}

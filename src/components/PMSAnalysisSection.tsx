@@ -85,7 +85,7 @@ function PromoCodeTable({ codes }: { codes: PromoCodeResult[] }) {
           {guests.map((g, i) => (
             <tr
               key={i}
-              className={`bg-white hover:bg-[var(--fill-cool)] transition-colors duration-150 ${g.isZeroRevenue ? 'opacity-50' : ''}`}
+              className={`bg-[var(--surface)] hover:bg-[var(--fill-cool)] transition-colors duration-150 ${g.isZeroRevenue ? 'opacity-50' : ''}`}
             >
               <Td>
                 <ConfidenceDot level={g.confidence} reason={g.confidenceReason} />
@@ -126,12 +126,12 @@ function EmailMatchTable({ matches, showSource }: { matches: EmailMatchRow[]; sh
         </thead>
         <tbody className="divide-y divide-[var(--divider)]">
           {matches.map((m, i) => (
-            <tr key={i} className="bg-white hover:bg-[var(--fill-cool)] transition-colors duration-150">
+            <tr key={i} className="bg-[var(--surface)] hover:bg-[var(--fill-cool)] transition-colors duration-150">
               <Td>{m.guest || '—'}</Td>
               <Td muted>{m.email}</Td>
               {showSource && (
                 <Td>
-                  <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-[6px] ${m.source === 'instagram' ? 'bg-[rgba(124,77,243,.1)] text-[var(--ai-purple)]' : 'bg-[var(--fill-blue)] text-[var(--brand)]'}`}>
+                  <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-[6px] ${m.source === 'instagram' ? 'bg-[var(--brand-bg)] text-[var(--ai-purple)]' : 'bg-[var(--fill-blue)] text-[var(--brand)]'}`}>
                     {m.source === 'instagram' ? 'Instagram' : 'Facebook'}
                   </span>
                 </Td>
@@ -243,7 +243,7 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           <SectionLabel number={1} title="Promo Code Analysis" />
 
           {promoCode.netIncomeWarning && (
-            <div className="flex items-center gap-2 text-[12px] text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border border-[rgba(255,159,10,.25)] rounded-[10px] px-3 py-2 mb-4">
+            <div className="flex items-center gap-2 text-[12px] text-[var(--warning-ink)] bg-[var(--warn-bg)] border border-[var(--warn-border)] rounded-[8px] px-3 py-2 mb-4">
               <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
               Revenue shown as NET INCOME — verify totals
             </div>
@@ -261,7 +261,7 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
               {promoCode.codes.map((c) => (
                 <span
                   key={c.code}
-                  className={`text-[12px] px-3 py-1.5 rounded-[10px] font-mono font-medium border ${
+                  className={`text-[12px] px-3 py-1.5 rounded-[8px] font-mono font-medium border ${
                     c.uses > 0
                       ? 'bg-[var(--brand)] text-white border-[var(--brand)]'
                       : 'bg-[var(--fill-gray)] text-[var(--muted-soft)] border-[var(--border)]'
@@ -277,7 +277,7 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           )}
 
           {promoCode.unrecognizedCodes.length > 0 && (
-            <div className="flex items-start gap-2 text-[12px] bg-[rgba(220,38,38,.06)] border border-[rgba(220,38,38,.18)] rounded-[10px] px-3 py-2 mb-4">
+            <div className="flex items-start gap-2 text-[12px] bg-[var(--err-bg)] border border-[var(--err-border)] rounded-[8px] px-3 py-2 mb-4">
               <Info className="w-3.5 h-3.5 text-[var(--danger)] flex-shrink-0 mt-0.5" />
               <span className="text-[var(--danger)]">
                 <strong>Unrecognized codes:</strong> {promoCode.unrecognizedCodes.join(', ')}

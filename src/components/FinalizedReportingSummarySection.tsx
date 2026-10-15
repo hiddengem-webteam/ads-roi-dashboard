@@ -33,11 +33,11 @@ function SummaryCard({
   placeholder?: string;
 }) {
   return (
-    <div className="bg-[var(--surface)] rounded-[20px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] px-6 py-6">
+    <div className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] px-6 py-6">
       <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-2">{label}</p>
       {value ? (
         <>
-          <p className="text-[28px] font-extrabold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
+          <p className="text-[26px] font-semibold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
           {sub && <p className="text-[12px] text-[var(--muted-soft)] mt-1.5">{sub}</p>}
         </>
       ) : (
@@ -137,7 +137,7 @@ export default function FinalizedReportingSummarySection({
   return (
     <div className="space-y-4">
       {note && (
-        <div className="bg-[var(--fill-blue)] border border-[rgba(10,95,255,.18)] rounded-[14px] px-5 py-3.5">
+        <div className="bg-[var(--fill-blue)] border border-[var(--brand-border)] rounded-[12px] px-5 py-3.5">
           <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Note</p>
           <p className="text-[13px] text-[var(--foreground)] leading-relaxed">{note}</p>
         </div>

@@ -73,19 +73,19 @@ export default function PeriodOverviewSection({
           { label: 'With PMS', value: withPMS },
           { label: 'With GHL', value: withGHL },
         ].map(({ label, value }) => (
-          <div key={label} className="bg-[var(--surface)] rounded-[16px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] px-5 py-4">
+          <div key={label} className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] px-5 py-4">
             <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-1">{label}</p>
-            <p className="text-[24px] font-extrabold text-[var(--foreground)] tracking-[-0.01em] july-tabular">{value}</p>
+            <p className="text-[24px] font-semibold text-[var(--foreground)] tracking-[-0.01em] july-tabular">{value}</p>
           </div>
         ))}
       </div>
 
       {/* Client table */}
-      <div className="bg-[var(--surface)] rounded-[16px] border border-[var(--border)] shadow-[0_8px_22px_rgba(15,23,42,.04)] overflow-hidden">
+      <div className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] overflow-hidden">
         <div className="px-6 py-4 border-b border-[var(--border)] flex items-center justify-between">
           <p className="text-[14px] font-bold text-[var(--foreground)]">Client Data Status</p>
           {totalFlags > 0 && (
-            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border border-[rgba(255,159,10,.25)] px-2.5 py-1 rounded-full">
+            <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[var(--warning-ink)] bg-[var(--warn-bg)] border border-[var(--warn-border)] px-2.5 py-1 rounded-full">
               <AlertTriangle className="w-3.5 h-3.5" />
               {totalFlags} flag{totalFlags !== 1 ? 's' : ''} across all clients
             </span>
@@ -129,7 +129,7 @@ export default function PeriodOverviewSection({
                   <tr
                     key={name}
                     onClick={() => client && onSelectClient(name)}
-                    className={`bg-white transition-colors duration-150 ${client ? 'cursor-pointer hover:bg-[var(--fill-cool)]' : 'opacity-50'} ${hasMissing ? 'bg-[rgba(220,38,38,.03)]' : ''}`}
+                    className={`bg-[var(--surface)] transition-colors duration-150 ${client ? 'cursor-pointer hover:bg-[var(--fill-cool)]' : 'opacity-50'} ${hasMissing ? 'bg-[var(--err-bg)]' : ''}`}
                   >
                     <td className="px-6 py-3 font-semibold text-[var(--foreground)]">{name}</td>
                     <td className="px-4 py-3 text-[12px] text-[var(--muted)] capitalize whitespace-nowrap">
@@ -189,7 +189,7 @@ export default function PeriodOverviewSection({
                     </td>
                     <td className="px-4 py-3 text-center">
                       {flags.length > 0 ? (
-                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] px-2 py-0.5 rounded-[6px]">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--warning-ink)] bg-[var(--warn-bg)] px-2 py-0.5 rounded-[6px]">
                           <AlertTriangle className="w-3 h-3" />
                           {flags.length}
                         </span>

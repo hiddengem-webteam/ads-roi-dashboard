@@ -13,7 +13,7 @@ export default function ClientSelector({ clients, selected, onChange }: ClientSe
       <select
         value={selected}
         onChange={(e) => onChange(e.target.value as string | 'all')}
-        className="appearance-none bg-white border border-gray-200 rounded-lg pl-4 pr-10 py-2 text-sm font-medium text-gray-800 shadow-sm cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-1 min-w-48"
+        className="appearance-none bg-[var(--surface)] border border-gray-200 rounded-lg pl-4 pr-10 py-2 text-sm font-medium text-gray-800 shadow-sm cursor-pointer hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-1 min-w-48"
       >
         <option value="all">All Clients</option>
         {clients.map((c) => (

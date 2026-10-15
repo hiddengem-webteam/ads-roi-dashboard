@@ -95,7 +95,7 @@ export default function SyncPanel() {
       {/* Floating button */}
       <button
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[var(--brand)] text-white text-[13px] font-semibold px-4 py-2.5 rounded-[14px] shadow-lg hover:bg-[var(--brand-deep)] transition-colors"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[var(--brand)] text-white text-[13px] font-semibold px-4 py-2.5 rounded-[12px] shadow-lg hover:bg-[var(--brand-deep)] transition-colors"
         aria-label="Sync Month"
       >
         <RefreshCw className="w-4 h-4" />
@@ -104,7 +104,7 @@ export default function SyncPanel() {
 
       {/* Panel */}
       {open && (
-        <div className="fixed bottom-20 right-6 z-50 w-96 bg-[var(--surface-strong)] rounded-[16px] border border-[var(--border)] shadow-xl flex flex-col max-h-[80vh]">
+        <div className="fixed bottom-20 right-6 z-50 w-96 bg-[var(--surface-strong)] rounded-[12px] border border-[var(--border)] shadow-xl flex flex-col max-h-[80vh]">
           {/* Header */}
           <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
             <p className="font-semibold text-[var(--foreground)] text-[13px]">Sync from Google Drive</p>

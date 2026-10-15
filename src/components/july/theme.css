@@ -1,52 +1,151 @@
-/* HiddenGem AI design system.
-   Originally scoped to /july only (hence the .july-theme class name); as of
-   Aug 2026 the main dashboard adopted the branding too, so /, /july, and
-   /july-client-reporting-sheet all wrap their trees in this class. */
+/* HiddenGem Media design system, shared with the weekly Meta Ads reviews
+   (weekly/Project Data/build_html.py): Inter + Roboto Mono, neutral canvas,
+   brand blue for accents only, semantic badges, light and dark themes.
+
+   The class is still called .july-theme for history's sake: it was scoped to
+   /july first, then adopted by the main dashboard (Aug 2026), and on
+   2026-10-15 re-tokenised to match the weekly reports so / and /weekly read
+   as one product. Component code keeps the old variable names; the values
+   below map them onto the weekly palette. */
 
 .july-theme {
-  /* Canvas + surfaces */
-  --background: #f4f7fd;
-  --canvas-tint: #eef4fd;
-  --surface: rgba(255, 255, 255, 0.92);
-  --surface-strong: rgba(255, 255, 255, 0.98);
-  --border: rgba(211, 223, 244, 0.92);
-  --border-strong: rgba(193, 209, 236, 1);
-  --divider: #dbe6f3;
+  /* Canvas + surfaces (weekly: --bg / --panel / --panel-2 / --panel-3) */
+  --background: #fafafa;
+  --canvas-tint: #fafafa;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --panel-2: #fafafa;
+  --panel-3: #f5f5f5;
+  --border: #e5e5e5;
+  --border-strong: #d4d4d4;
+  --divider: #e5e5e5;
 
-  /* Ink */
-  --foreground: #0f172a;
-  --muted: #64748b;
-  --muted-soft: #94a3b8;
+  /* Ink (weekly: --text / --text-3 / --text-4) */
+  --foreground: #171717;
+  --text-2: #404040;
+  --muted: #525252;
+  --muted-soft: #737373;
 
   /* Brand + roles */
-  --brand: #2f66e5;
-  --brand-deep: #1f54cf;
-  --info: #1579d6;
-  --success: #30d158;
-  --success-ink: #16a34a;
-  --warning: #ff9f0a;
-  --warning-ink: #c98a2e;
+  --brand: #0066de;
+  --brand-deep: #004faa;
+  --brand-text: #004faa;
+  --brand-bg: #f6f9ff;
+  --brand-border: #cee0ff;
+  --info: #0066de;
+  --success: #16a34a;
+  --success-ink: #15803d;
+  --warning: #ca8a04;
+  --warning-ink: #a16207;
   --danger: #dc2626;
-  --gold: #c9a227;
-  --ai-purple: #7c4df3;
-  --ai-purple-soft: #bf5af2;
+  --gold: #ca8a04;
+  --ai-purple: #0066de;
+  --ai-purple-soft: #2b7fff;
 
-  /* Fills */
-  --fill-blue: #eef4fd;
-  --fill-gray: #f5f5f7;
-  --fill-cool: #f8fbff;
+  /* Semantic badge sets (weekly names) */
+  --ok-text: #15803d; --ok-dot: #16a34a; --ok-bg: #f0fdf4; --ok-border: #dcfce7;
+  --warn-text: #a16207; --warn-dot: #ca8a04; --warn-bg: #fefce8; --warn-border: #fef9c3;
+  --err-text: #b91c1c; --err-dot: #dc2626; --err-bg: #fef2f2; --err-border: #fee2e2;
+  --gray-text: #525252; --gray-dot: #a3a3a3; --gray-bg: #f5f5f5; --gray-border: #e5e5e5;
+
+  /* Fills used by older components */
+  --fill-blue: #f6f9ff;
+  --fill-gray: #f5f5f5;
+  --fill-cool: #fafafa;
+
+  --shadow-xs: 0 1px 2px 0 rgba(10, 13, 18, .05);
+  --focus: 0 0 0 4px rgba(0, 102, 222, .24);
 
   color: var(--foreground);
-  font-family: var(--font-inter), var(--font-geist-sans), system-ui, -apple-system, sans-serif;
-  background:
-    radial-gradient(circle at top right, rgba(47, 102, 229, 0.12), transparent 32%),
-    radial-gradient(circle at bottom left, rgba(191, 90, 242, 0.09), transparent 28%),
-    radial-gradient(circle at 72% 76%, rgba(255, 159, 10, 0.07), transparent 24%),
-    #eef4fd;
+  background: var(--background);
+  font-family: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .july-theme {
+    --background: #0a0a0a;
+    --canvas-tint: #0a0a0a;
+    --surface: #171717;
+    --surface-strong: #171717;
+    --panel-2: #1f1f1f;
+    --panel-3: #262626;
+    --border: #262626;
+    --border-strong: #404040;
+    --divider: #262626;
+    --foreground: #fafafa;
+    --text-2: #d4d4d4;
+    --muted: #a3a3a3;
+    --muted-soft: #a3a3a3;
+    --brand: #2b7fff;
+    --brand-deep: #cee0ff;
+    --brand-text: #cee0ff;
+    --brand-bg: rgba(0, 102, 222, .16);
+    --brand-border: rgba(43, 127, 255, .35);
+    --info: #2b7fff;
+    --success: #22c55e; --success-ink: #4ade80;
+    --warning: #eab308; --warning-ink: #facc15;
+    --danger: #ef4444;
+    --gold: #eab308;
+    --ai-purple: #2b7fff; --ai-purple-soft: #cee0ff;
+    --ok-text: #4ade80; --ok-dot: #22c55e; --ok-bg: rgba(34, 197, 94, .12); --ok-border: rgba(34, 197, 94, .3);
+    --warn-text: #facc15; --warn-dot: #eab308; --warn-bg: rgba(234, 179, 8, .12); --warn-border: rgba(234, 179, 8, .3);
+    --err-text: #f87171; --err-dot: #ef4444; --err-bg: rgba(239, 68, 68, .12); --err-border: rgba(239, 68, 68, .3);
+    --gray-text: #d4d4d4; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
+    --fill-blue: rgba(0, 102, 222, .16);
+    --fill-gray: #262626;
+    --fill-cool: #1f1f1f;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] .july-theme {
+  --background: #0a0a0a;
+  --canvas-tint: #0a0a0a;
+  --surface: #171717;
+  --surface-strong: #171717;
+  --panel-2: #1f1f1f;
+  --panel-3: #262626;
+  --border: #262626;
+  --border-strong: #404040;
+  --divider: #262626;
+  --foreground: #fafafa;
+  --text-2: #d4d4d4;
+  --muted: #a3a3a3;
+  --muted-soft: #a3a3a3;
+  --brand: #2b7fff;
+  --brand-deep: #cee0ff;
+  --brand-text: #cee0ff;
+  --brand-bg: rgba(0, 102, 222, .16);
+  --brand-border: rgba(43, 127, 255, .35);
+  --info: #2b7fff;
+  --success: #22c55e; --success-ink: #4ade80;
+  --warning: #eab308; --warning-ink: #facc15;
+  --danger: #ef4444;
+  --gold: #eab308;
+  --ai-purple: #2b7fff; --ai-purple-soft: #cee0ff;
+  --ok-text: #4ade80; --ok-dot: #22c55e; --ok-bg: rgba(34, 197, 94, .12); --ok-border: rgba(34, 197, 94, .3);
+  --warn-text: #facc15; --warn-dot: #eab308; --warn-bg: rgba(234, 179, 8, .12); --warn-border: rgba(234, 179, 8, .3);
+  --err-text: #f87171; --err-dot: #ef4444; --err-bg: rgba(239, 68, 68, .12); --err-border: rgba(239, 68, 68, .3);
+  --gray-text: #d4d4d4; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
+  --fill-blue: rgba(0, 102, 222, .16);
+  --fill-gray: #262626;
+  --fill-cool: #1f1f1f;
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+
+/* Wordmark scales to its container (the SVG asset has a fixed 182px width). */
+.july-theme .wordmark {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 182px;
+}
+
+/* Numbers: Roboto Mono with tabular figures, as in the weekly tables. */
 .july-theme .july-tabular {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: var(--font-roboto-mono), 'Roboto Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   font-variant-numeric: tabular-nums;
 }
 
@@ -56,4 +155,16 @@
 .july-theme .july-scrollbar::-webkit-scrollbar-thumb {
   background: var(--border-strong);
   border-radius: 999px;
+}
+
+/* Native controls inherit the panel colours. */
+.july-theme select,
+.july-theme input,
+.july-theme textarea {
+  background: var(--surface);
+  color: var(--foreground);
+}
+.july-theme :focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
 }

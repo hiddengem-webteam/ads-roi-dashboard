@@ -8,17 +8,17 @@ import { cn } from '@/lib/utils';
 const FLAG_CONFIG: Record<FlagType, { label: string; className: string; icon: React.ElementType }> = {
   'unrecognized-code': {
     label: 'Unrecognized Code',
-    className: 'text-[var(--danger)] bg-[rgba(220,38,38,.06)] border-[rgba(220,38,38,.18)]',
+    className: 'text-[var(--danger)] bg-[var(--err-bg)] border-[var(--err-border)]',
     icon: AlertCircle,
   },
   'missing-from-promo-sheet': {
     label: 'Missing from Promo Sheet',
-    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
+    className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
   'net-income-warning': {
     label: 'NET INCOME Revenue',
-    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
+    className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
   'name-only-match': {
@@ -33,12 +33,12 @@ const FLAG_CONFIG: Record<FlagType, { label: string; className: string; icon: Re
   },
   'no-pms-data': {
     label: 'Parse Error',
-    className: 'text-[var(--danger)] bg-[rgba(220,38,38,.06)] border-[rgba(220,38,38,.18)]',
+    className: 'text-[var(--danger)] bg-[var(--err-bg)] border-[var(--err-border)]',
     icon: AlertCircle,
   },
   'missing-ghl': {
     label: 'Missing GHL Data',
-    className: 'text-[var(--warning-ink)] bg-[rgba(255,159,10,.1)] border-[rgba(255,159,10,.25)]',
+    className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
 };
@@ -54,10 +54,10 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
   }
 
   return (
-    <div className="rounded-[16px] border border-[rgba(255,159,10,.25)] overflow-hidden shadow-[0_2px_12px_rgba(15,23,42,.04)]">
+    <div className="rounded-[12px] border border-[var(--warn-border)] overflow-hidden shadow-[var(--shadow-xs)]">
       <button
         onClick={() => setExpanded((v) => !v)}
-        className="w-full flex items-center justify-between px-6 py-4 bg-[rgba(255,159,10,.1)] text-[13px] font-semibold text-[var(--warning-ink)] hover:bg-[rgba(255,159,10,.16)] transition-colors duration-150"
+        className="w-full flex items-center justify-between px-6 py-4 bg-[var(--warn-bg)] text-[13px] font-semibold text-[var(--warning-ink)] hover:bg-[var(--warn-bg)] transition-colors duration-150"
       >
         <span className="flex items-center gap-2">
           <AlertTriangle className="w-4 h-4" />
@@ -81,7 +81,7 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
                     <li
                       key={f.id}
                       className={cn(
-                        'flex items-start gap-2 text-[13px] rounded-[10px] px-4 py-3 border',
+                        'flex items-start gap-2 text-[13px] rounded-[8px] px-4 py-3 border',
                         config.className,
                       )}
                     >
