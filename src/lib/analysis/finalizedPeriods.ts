@@ -1,9 +1,14 @@
-// Months whose numbers were finalized by hand (frozen snapshot + Client
-// Performance Tracking sheet figures + AM notes). The main dashboard lists
-// these ahead of the live-synced periods and renders them from the snapshot
-// instead of re-processing the synced CSVs, so the figures match what was
-// reported to clients. Add a month here once its snapshot is frozen
-// (scripts/snapshot-period.mts) and its sheet figures are pulled.
+// Months served from a frozen snapshot (public/data/snapshots, made by
+// scripts/snapshot-period.mts) instead of re-processing synced CSVs at build
+// time. Two kinds:
+//  - Final: signed off by hand, with Client Performance Tracking sheet figures
+//    (`sheet`) and AM notes. Marked "Final" in the selector; the client view
+//    shows sheet revenue and leads.
+//  - Snapshot only (no `sheet`): the platform sync's output frozen so the month
+//    stays available on Netlify, where the sync does not run. Rendered like a
+//    live month.
+// The snapshots are committed on purpose (they hold guest names from the PMS
+// exports); see .gitignore. Add a month here once its snapshot exists.
 
 import type { ClientReportingFigures } from '@/components/september/septemberReportingSheetData';
 import { SEPTEMBER_REPORTING_SHEET } from '@/components/september/septemberReportingSheetData';
@@ -16,11 +21,11 @@ export interface FinalizedPeriod {
   label: string;
   /** Frozen ProcessedData snapshot, {period, data} shape (public/data/snapshots). */
   snapshot: string;
-  /** Per-client "Direct Booking Revenue" + "New Leads" from the Client Performance Tracking sheet. */
-  sheet: Record<string, ClientReportingFigures>;
+  /** Per-client "Direct Booking Revenue" + "New Leads" from the Client Performance Tracking sheet. Present only on signed-off months. */
+  sheet?: Record<string, ClientReportingFigures>;
   /** Optional per-client AM notes shown above the summary cards. */
   notes?: Record<string, string>;
-  /** When the month was signed off, for the badge tooltip. */
+  /** When the month was signed off (Final) or frozen (snapshot only). */
   finalizedOn: string;
 }
 
@@ -47,7 +52,18 @@ export const FINALIZED_PERIODS: FinalizedPeriod[] = [
     sheet: JULY_REPORTING_SHEET,
     finalizedOn: '2026-08-10',
   },
+  // Snapshot-only months: platform sync output frozen on 2026-10-15.
+  { id: 'june-2026', label: 'June 2026', snapshot: '/data/snapshots/june-2026.json', finalizedOn: '2026-10-15' },
+  { id: 'may-2026', label: 'May 2026', snapshot: '/data/snapshots/may-2026.json', finalizedOn: '2026-10-15' },
+  { id: 'april-2026', label: 'April 2026', snapshot: '/data/snapshots/april-2026.json', finalizedOn: '2026-10-15' },
+  { id: 'march-2026', label: 'March 2026', snapshot: '/data/snapshots/march-2026.json', finalizedOn: '2026-10-15' },
+  { id: 'february-2026', label: 'February 2026', snapshot: '/data/snapshots/february-2026.json', finalizedOn: '2026-10-15' },
 ];
+
+/** True when the month carries sheet figures (signed off), not just a frozen sync. */
+export function isFinal(p: FinalizedPeriod): boolean {
+  return !!p.sheet;
+}
 
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 

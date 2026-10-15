@@ -12,7 +12,7 @@ import DataStatusPanel from './DataStatusPanel';
 import FinalizedReportingSummarySection from './FinalizedReportingSummarySection';
 import { ProcessedData, ClientData } from '@/types';
 import { loadManifest, loadPeriod, Manifest, ManifestClient, ManifestPeriod } from '@/lib/analysis/autoLoader';
-import { FINALIZED_PERIODS, FinalizedPeriod, periodSortKey } from '@/lib/analysis/finalizedPeriods';
+import { FINALIZED_PERIODS, FinalizedPeriod, isFinal, periodSortKey } from '@/lib/analysis/finalizedPeriods';
 import { computeCampaignRevenue } from '@/lib/analysis/campaignRevenue';
 import { AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { Badge } from './ui/Badge';
@@ -216,7 +216,7 @@ export default function Dashboard() {
             >
               Weekly reviews
             </a>
-            {currentPeriod?.finalized && (
+            {currentPeriod?.finalized && isFinal(currentPeriod.finalized) && (
               <span title={`Numbers signed off ${currentPeriod.finalized.finalizedOn}. Rendered from the frozen snapshot and the Client Performance Tracking sheet.`}>
                 <Badge variant="success">Final</Badge>
               </span>
@@ -230,7 +230,7 @@ export default function Dashboard() {
                   className="appearance-none text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] pl-4 pr-9 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand)] shadow-[var(--shadow-xs)]"
                 >
                   {periods.map((p) => (
-                    <option key={p.id} value={p.id}>{p.label}{p.finalized ? ' · Final' : ''}</option>
+                    <option key={p.id} value={p.id}>{p.label}{p.finalized && isFinal(p.finalized) ? ' · Final' : ''}</option>
                   ))}
                 </select>
                 <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[var(--muted-soft)]" />
@@ -278,8 +278,8 @@ export default function Dashboard() {
           {/* Client content */}
           {!loading && !error && currentClient && activeView === 'client' && (
             <>
-              {currentPeriod?.finalized ? (
-                /* Finalized month: sheet revenue + leads, AM note, no sync diagnostics */
+              {currentPeriod?.finalized && isFinal(currentPeriod.finalized) ? (
+                /* Signed-off month: sheet revenue + leads, AM note, no sync diagnostics */
                 <FinalizedReportingSummarySection
                   clientName={currentClient.name}
                   period={currentPeriod.finalized}

@@ -57,6 +57,13 @@ next-env.d.ts
 !/public/data/snapshots/july-2026.json
 !/public/data/snapshots/august-2026.json
 !/public/data/snapshots/september-2026.json
+# Snapshot-only months (platform sync output frozen 2026-10-15) so Netlify,
+# where the sync does not run, still serves them. Same PII caveat as above.
+!/public/data/snapshots/june-2026.json
+!/public/data/snapshots/may-2026.json
+!/public/data/snapshots/april-2026.json
+!/public/data/snapshots/march-2026.json
+!/public/data/snapshots/february-2026.json
 
 # Raw account-manager PMS exports (real guest PII) — never commit.
 /July 2026 PMS Data/

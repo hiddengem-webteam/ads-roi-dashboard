@@ -1,0 +1,4238 @@
+{
+  "period": {
+    "id": "june-2026",
+    "label": "June 2026",
+    "metaAds": "/data/periods/june-2026/shared/Meta Ads.csv",
+    "promoCodes": "/data/periods/june-2026/shared/Promo codes.csv",
+    "clients": [
+      {
+        "name": "Stay Southen Illinois",
+        "pms": "/data/periods/june-2026/clients/Stay Southen Illinois/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Stay Southen Illinois/GHL data.csv",
+        "pmsProvider": "ownerrez"
+      },
+      {
+        "name": "Asheville River Cabins",
+        "pms": "",
+        "ghl": "/data/periods/june-2026/clients/Asheville River Cabins/GHL data.csv",
+        "pmsProvider": ""
+      },
+      {
+        "name": "Inspired Retreats",
+        "pms": "/data/periods/june-2026/clients/Inspired Retreats/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Inspired Retreats/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Flohom",
+        "pms": "/data/periods/june-2026/clients/Flohom/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Flohom/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Stay Saluda",
+        "pms": "",
+        "ghl": "/data/periods/june-2026/clients/Stay Saluda/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Three Suns Cabins",
+        "pms": "/data/periods/june-2026/clients/Three Suns Cabins/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Three Suns Cabins/GHL data.csv",
+        "pmsProvider": "hospitable"
+      },
+      {
+        "name": "Paradise Pointe",
+        "pms": "/data/periods/june-2026/clients/Paradise Pointe/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Paradise Pointe/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Tàberg Falls",
+        "pms": "/data/periods/june-2026/clients/Tàberg Falls/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Tàberg Falls/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Selah Place",
+        "pms": "/data/periods/june-2026/clients/Selah Place/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Selah Place/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Green Springs Inn",
+        "pms": "/data/periods/june-2026/clients/Green Springs Inn/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Green Springs Inn/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "The Cohost Company",
+        "pms": "/data/periods/june-2026/clients/The Cohost Company/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/The Cohost Company/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Treetop Escapes",
+        "pms": "/data/periods/june-2026/clients/Treetop Escapes/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Treetop Escapes/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Evergreen Cabins",
+        "pms": "/data/periods/june-2026/clients/Evergreen Cabins/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Evergreen Cabins/GHL data.csv",
+        "pmsProvider": "hospitable"
+      },
+      {
+        "name": "Reflections Resorts",
+        "pms": "/data/periods/june-2026/clients/Reflections Resorts/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Reflections Resorts/GHL data.csv",
+        "pmsProvider": "hostfully"
+      },
+      {
+        "name": "Best Texas Travel",
+        "pms": "/data/periods/june-2026/clients/Best Texas Travel/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Best Texas Travel/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Red White & Blue Views",
+        "pms": "/data/periods/june-2026/clients/Red White & Blue Views/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Red White & Blue Views/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Myrinn",
+        "pms": "/data/periods/june-2026/clients/Myrinn/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Myrinn/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Awayframes",
+        "pms": "/data/periods/june-2026/clients/Awayframes/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Awayframes/GHL data.csv",
+        "pmsProvider": "hostaway"
+      },
+      {
+        "name": "Home Base",
+        "pms": "/data/periods/june-2026/clients/Home Base/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Home Base/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Away2PA",
+        "pms": "/data/periods/june-2026/clients/Away2PA/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Away2PA/GHL data.csv",
+        "pmsProvider": "ownerrez"
+      },
+      {
+        "name": "Parker Reserve",
+        "pms": "/data/periods/june-2026/clients/Parker Reserve/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Parker Reserve/GHL data.csv",
+        "pmsProvider": "uplisting"
+      },
+      {
+        "name": "Stay on 30a",
+        "pms": "/data/periods/june-2026/clients/Stay on 30a/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Stay on 30a/GHL data.csv",
+        "pmsProvider": "guesty"
+      },
+      {
+        "name": "Stay With Branch",
+        "pms": "/data/periods/june-2026/clients/Stay With Branch/PMS data.csv",
+        "ghl": "/data/periods/june-2026/clients/Stay With Branch/GHL data.csv",
+        "pmsProvider": "guesty"
+      }
+    ]
+  },
+  "data": {
+    "clients": {
+      "Stay Southen Illinois": {
+        "name": "Stay Southen Illinois",
+        "facebookStats": {
+          "clientName": "Stay Southen Illinois",
+          "accountName": "Stay Southen Illinois",
+          "followers": {
+            "type": "Followers",
+            "spend": 932.2000000000003,
+            "impressions": 99052,
+            "linkClicks": 6003,
+            "leads": 41,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Stay Southen Illinois",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "4-night minimum (excluding Oct 20-Nov 5)",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "MILITARY5",
+                "discount": "5% off",
+                "purpose": "Military and First Responder discount",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 2,
+            "totalRevenue": 1495.4299999999998,
+            "matches": [
+              {
+                "guestName": "Dathan Shelton",
+                "pmsEmail": "dathans@gmail.com",
+                "ghlFirstName": "dathans@gmail.com",
+                "ghlLastName": "",
+                "ghlEmail": "dathans@gmail.com",
+                "revenue": 649.39,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Jose Mendez",
+                "pmsEmail": "jam_toast@icloud.com",
+                "ghlFirstName": "jam_toast@icloud.com",
+                "ghlLastName": "",
+                "ghlEmail": "jam_toast@icloud.com",
+                "revenue": 846.04,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 579
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 7
+          },
+          "summary": {
+            "totalRevenue": 68939.70000000004,
+            "avgDirectBookingValue": 662.8817307692311,
+            "directBookingCount": 104,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Asheville River Cabins": {
+        "name": "Asheville River Cabins",
+        "facebookStats": {
+          "clientName": "Asheville River Cabins",
+          "accountName": "Asheville River Cabins",
+          "followers": {
+            "type": "Followers",
+            "spend": 1210.32,
+            "impressions": 155960,
+            "linkClicks": 4449,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 54.57,
+            "impressions": 2712,
+            "linkClicks": 38,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Asheville River Cabins",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME50",
+                "discount": "$50 off",
+                "purpose": "New Leads (2 night min stay)",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP50",
+                "discount": "$50 off",
+                "purpose": "meta ads",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": true,
+            "totalGHLLeads": 668
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": true,
+            "totalGHLLeads": 2
+          },
+          "summary": {
+            "totalRevenue": 0,
+            "avgDirectBookingValue": 0,
+            "directBookingCount": 0,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": false,
+        "hasGHL": true
+      },
+      "Inspired Retreats": {
+        "name": "Inspired Retreats",
+        "facebookStats": {
+          "clientName": "Inspired Retreats",
+          "accountName": "Inspired Retreats",
+          "followers": {
+            "type": "Followers",
+            "spend": 600.51,
+            "impressions": 46859,
+            "linkClicks": 2579,
+            "leads": 10,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 594.4000000000002,
+            "impressions": 55049,
+            "linkClicks": 1016,
+            "leads": 1,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 101.5,
+            "impressions": 3409,
+            "linkClicks": 92,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Inspired Retreats",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "ENJOY10",
+                "discount": "10% off",
+                "purpose": "3 night miniumum",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "",
+                "purpose": "3 night minimum",
+                "campaignType": "Past Guests",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP10",
+                "discount": "",
+                "purpose": "3 night miniumum",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 475
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 2128
+          },
+          "summary": {
+            "totalRevenue": 2328.95,
+            "avgDirectBookingValue": 776.3166666666666,
+            "directBookingCount": 3,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Flohom": {
+        "name": "Flohom",
+        "facebookStats": {
+          "clientName": "Flohom",
+          "accountName": "Flohom",
+          "followers": {
+            "type": "Followers",
+            "spend": 1515.1899999999998,
+            "impressions": 164689,
+            "linkClicks": 4398,
+            "leads": 26,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 3315.56,
+            "impressions": 179893,
+            "linkClicks": 5907,
+            "leads": 113,
+            "purchases": 46,
+            "purchasesConversionValue": 53028.71
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Flohom",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads (2-night minimum)",
+                "campaignType": "Followers",
+                "uses": 42,
+                "revenue": 60893.020000000004,
+                "guests": [
+                  {
+                    "name": "Tiffani Collier-Jackson",
+                    "email": "tiffanijackson56@gmail.com",
+                    "revenue": 708.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Eden Ogbe",
+                    "email": "adina05@msn.com",
+                    "revenue": 1512.23,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Angela Spinner",
+                    "email": "akspinner@comcast.net",
+                    "revenue": 1652.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Bridgette Little",
+                    "email": "brwall1@icloud.com",
+                    "revenue": 1210.23,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nicole Frank",
+                    "email": "nicolefrank17@yahoo.com",
+                    "revenue": 2480.36,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tina Mai",
+                    "email": "snoopyjakemoose@yahoo.com",
+                    "revenue": 433.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michael Moore",
+                    "email": "michaelmoore8693@gmail.com",
+                    "revenue": 1961.08,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ceaira Pettus",
+                    "email": "ceaira69@yahoo.com",
+                    "revenue": 1374.84,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "China Schiff",
+                    "email": "chinam.schiff@gmail.com",
+                    "revenue": 858.93,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lashunda Nolen",
+                    "email": "lashunda.williams@yahoo.com",
+                    "revenue": 702.1,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mary Brooks",
+                    "email": "jbrooks2@sc.rr.com",
+                    "revenue": 1153.73,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dorothy Ward",
+                    "email": "dward_615@yahoo.com",
+                    "revenue": 1395.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Torrey Mack",
+                    "email": "tmack2452@gmail.com",
+                    "revenue": 3908.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Carmen Ragin",
+                    "email": "carmenragin@hotmail.com",
+                    "revenue": 1494.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tina Putt",
+                    "email": "putttina@comcast.net",
+                    "revenue": 3417.12,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Glenice Daniel-Chambers",
+                    "email": "lifecoachgodsway@gmail.com",
+                    "revenue": 1011.4,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Andrea Sutherlin",
+                    "email": "sutherlin.rylee@gmail.com",
+                    "revenue": 2237.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Garry Floyd",
+                    "email": "garryf456@gmail.com",
+                    "revenue": 1989.48,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alesha Dotson",
+                    "email": "aleshad2018@gmail.com",
+                    "revenue": 914.5,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Leeann Johnson",
+                    "email": "leeannmd@yahoo.com",
+                    "revenue": 1045.75,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jason Ham",
+                    "email": "jjh@littensipe.com",
+                    "revenue": 1684.95,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tiara Jett",
+                    "email": "tiarajett30@gmail.com",
+                    "revenue": 1160.9,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Joshua Bernstein",
+                    "email": "stockboy1@gmail.com",
+                    "revenue": 725.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Roshaun Wardlaw",
+                    "email": "rowordlaw@gmail.com",
+                    "revenue": 360.24,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Anita Roane",
+                    "email": "anita.roane@yahoo.com",
+                    "revenue": 2001.56,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Richard Kelly",
+                    "email": "rkly830@gmail.com",
+                    "revenue": 654.99,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jason Steele",
+                    "email": "jdsteele22@yahoo.com",
+                    "revenue": 960.49,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Faith Afriyie",
+                    "email": "fautrey@gmail.com",
+                    "revenue": 1621.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Amrish Patel",
+                    "email": "amrish5250@gmail.com",
+                    "revenue": 1330.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Delane Casiano",
+                    "email": "familyassistant4u@gmail.com",
+                    "revenue": 1043.59,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Terresa Kilson",
+                    "email": "terresak31@gmail.com",
+                    "revenue": 750.48,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mary Wooldridge",
+                    "email": "marywoo3@gmail.com",
+                    "revenue": 667.94,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Felicia Spratley-Mills",
+                    "email": "passion2flytravel@gmail.com",
+                    "revenue": 730.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Angelita Domingo",
+                    "email": "domingoangie@ymail.com",
+                    "revenue": 1226.89,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Benita Stephens",
+                    "email": "itisbenita@yahoo.com",
+                    "revenue": 757.12,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ernesta Bernita Wagstaff",
+                    "email": "ernestawagstaff@yahoo.com",
+                    "revenue": 760.03,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Steven Colvin",
+                    "email": "stevesmcinc@gmail.com",
+                    "revenue": 4284.73,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Johnette Barham",
+                    "email": "johnetteb@gmail.com",
+                    "revenue": 749.09,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Malaija Jordan",
+                    "email": "malaija99@gmail.com",
+                    "revenue": 2971.9,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kaundra Bell",
+                    "email": "justcantstayhome2024@gmail.com",
+                    "revenue": 617.12,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Robert Jones",
+                    "email": "clive10027@gmail.com",
+                    "revenue": 2326.69,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nikia Lemaire",
+                    "email": "nikiablemaire@gmail.com",
+                    "revenue": 2046.55,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past Guests (2-night minimum)",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP100",
+                "discount": "",
+                "purpose": "",
+                "campaignType": "Retarget",
+                "uses": 12,
+                "revenue": 13590.090000000002,
+                "guests": [
+                  {
+                    "name": "Noelle Coleman",
+                    "email": "chearise.colee@gmail.com",
+                    "revenue": 647.52,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dandrell Williams",
+                    "email": "drell12186@gmail.com",
+                    "revenue": 994.15,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sylvia Kibler",
+                    "email": "kibler24@gmail.com",
+                    "revenue": 1198.85,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michael Wiggins",
+                    "email": "wigginsma@gmail.com",
+                    "revenue": 1208.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jessica Cofield",
+                    "email": "jessicacofield2011@gmail.com",
+                    "revenue": 746.7,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dawn Cottman",
+                    "email": "d_cottman@hotmail.com",
+                    "revenue": 743.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "April Mcwilliams",
+                    "email": "aprilmcwilliams9@gmail.com",
+                    "revenue": 2632.34,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Paige Borders",
+                    "email": "paigebcat@aol.com",
+                    "revenue": 836.95,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Paul Stanard",
+                    "email": "paul_stanard@yahoo.com",
+                    "revenue": 1350.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michelle Coles",
+                    "email": "michelle7157@aim.com",
+                    "revenue": 868.87,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Wanda Stansbury",
+                    "email": "wandastansbury2121@gmail.com",
+                    "revenue": 1340.1,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Wayne Davis",
+                    "email": "wdavis2277@gmail.com",
+                    "revenue": 1022.69,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 54,
+            "totalRevenue": 74483.11,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 1,
+            "totalRevenue": 531.58,
+            "matches": [
+              {
+                "guestName": "Brandi Forte",
+                "pmsEmail": "brandiforte78@yahoo.com",
+                "ghlFirstName": "brandi",
+                "ghlLastName": "forte",
+                "ghlEmail": "brandiforte78@yahoo.com",
+                "revenue": 531.58,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1563
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 910
+          },
+          "summary": {
+            "totalRevenue": 217497.99999999997,
+            "avgDirectBookingValue": 1221.8988764044943,
+            "directBookingCount": 178,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Stay Saluda": {
+        "name": "Stay Saluda",
+        "facebookStats": {
+          "clientName": "Stay Saluda",
+          "accountName": "Stay Saluda",
+          "followers": {
+            "type": "Followers",
+            "spend": 1202.37,
+            "impressions": 143473,
+            "linkClicks": 5546,
+            "leads": 41,
+            "purchases": 1,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 901.8199999999999,
+            "impressions": 76966,
+            "linkClicks": 906,
+            "leads": 1,
+            "purchases": 5,
+            "purchasesConversionValue": 644.25
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Stay Saluda",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "ENJOY10",
+                "discount": "10% off",
+                "purpose": "3 night miniumum",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "",
+                "purpose": "3 night minimum",
+                "campaignType": "Past Guests",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP10",
+                "discount": "",
+                "purpose": "3 night miniumum",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": true,
+            "totalGHLLeads": 1668
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": true,
+            "totalGHLLeads": 330
+          },
+          "summary": {
+            "totalRevenue": 0,
+            "avgDirectBookingValue": 0,
+            "directBookingCount": 0,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": false,
+        "hasGHL": true
+      },
+      "Three Suns Cabins": {
+        "name": "Three Suns Cabins",
+        "facebookStats": {
+          "clientName": "Three Suns Cabins",
+          "accountName": "Three Suns Cabins",
+          "followers": {
+            "type": "Followers",
+            "spend": 450.1800000000001,
+            "impressions": 44792,
+            "linkClicks": 1552,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Three Suns Cabins",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME50",
+                "discount": "$50 off",
+                "purpose": "New Leads (2 night miniumum)",
+                "campaignType": "Followers",
+                "uses": 21,
+                "revenue": 16419.01,
+                "guests": [
+                  {
+                    "name": "Eli Herran",
+                    "email": "eliherran444@gmail.com",
+                    "revenue": 777.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Benjamin VanDootingh",
+                    "email": "bvandootingh@gmail.com",
+                    "revenue": 1659.21,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kristen Skovira",
+                    "email": "kristen.skovira@gmail.com",
+                    "revenue": 720.85,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Hollie Webster",
+                    "email": "hwebster5@yahoo.com",
+                    "revenue": 605.47,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Blessie Sicat",
+                    "email": "blessiesicat0928@gmail.com",
+                    "revenue": 432.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Haleigh Hamilton",
+                    "email": "hah1219@gmail.com",
+                    "revenue": 808.82,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nathan Wright",
+                    "email": "wright_n@comcast.net",
+                    "revenue": 1056.72,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Thomas Burdick",
+                    "email": "burdicktom@gmail.com",
+                    "revenue": 620.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Bobbi Miller",
+                    "email": "bobbifayemiller@bellsouth.net",
+                    "revenue": 526.65,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Charles Hubbard",
+                    "email": "hubb18@hotmail.com",
+                    "revenue": 415.83,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Amanda Reuille",
+                    "email": "amandakreuille@outlook.com",
+                    "revenue": 1297.77,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Rani Hegemier",
+                    "email": "ranidrop77@gmail.com",
+                    "revenue": 717.43,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lauren Morgan",
+                    "email": "reallaurenperrin@gmail.com",
+                    "revenue": 579.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brian Mayhew",
+                    "email": "jbmayhew@gmail.com",
+                    "revenue": 518.65,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Damon Saunders Sr",
+                    "email": "dasunders@gmail.com",
+                    "revenue": 586.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Julie Moad",
+                    "email": "julieannarosing@gmail.com",
+                    "revenue": 1570.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brooke Cox",
+                    "email": "bcox1502@yahoo.com",
+                    "revenue": 394.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lori Hensley",
+                    "email": "hensley.lori@gmail.com",
+                    "revenue": 991.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Radhika Mekala",
+                    "email": "radhika.mekala@gmail.com",
+                    "revenue": 444.39,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jennifer Riopelle",
+                    "email": "j.levesseur@gmail.com",
+                    "revenue": 1011.02,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Julie Tudor",
+                    "email": "kahlejulie@yahoo.com",
+                    "revenue": 683.16,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 21,
+            "totalRevenue": 16419.01,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1208
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 6
+          },
+          "summary": {
+            "totalRevenue": 26516.380000000005,
+            "avgDirectBookingValue": 828.6368750000001,
+            "directBookingCount": 32,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Paradise Pointe": {
+        "name": "Paradise Pointe",
+        "facebookStats": {
+          "clientName": "Paradise Pointe",
+          "accountName": "Paradise Pointe",
+          "followers": {
+            "type": "Followers",
+            "spend": 901.0799999999999,
+            "impressions": 76423,
+            "linkClicks": 4071,
+            "leads": 14,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 1497.0299999999995,
+            "impressions": 124986,
+            "linkClicks": 2763,
+            "leads": 35,
+            "purchases": 112,
+            "purchasesConversionValue": 86136.38000000002
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Paradise Pointe",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads (3 night miniumum)",
+                "campaignType": "Followers",
+                "uses": 29,
+                "revenue": 28936.609999999993,
+                "guests": [
+                  {
+                    "name": "Joshua White",
+                    "email": "gwrwaamw16@gmail.com",
+                    "revenue": 741.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ashley Vogt",
+                    "email": "ashleynicolevogt@gmail.com",
+                    "revenue": 858.39,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Holly Cates",
+                    "email": "hcates8358@aol.com",
+                    "revenue": 818.5,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Holly Stull",
+                    "email": "hollystull13@yahoo.com",
+                    "revenue": 1014.09,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Elizabeth Williams",
+                    "email": "ewilliams1969@icloud.com",
+                    "revenue": 347.77,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brandy McCollum",
+                    "email": "mustangbrandy33@gmail.com",
+                    "revenue": 804.03,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "stephanie olney",
+                    "email": "stephanieolney@hotmail.com",
+                    "revenue": 796.64,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Janet Downs",
+                    "email": "janetdowns@comcast.net",
+                    "revenue": 1415.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Molly Patterson",
+                    "email": "map1117@outlook.com",
+                    "revenue": 471.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Shelby Reid-Smith",
+                    "email": "moore.shelby710@icloud.com",
+                    "revenue": 401.92,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kasey Bredekamp",
+                    "email": "kasey.bredekamp@gmail.com",
+                    "revenue": 1337.85,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Akilah Osley",
+                    "email": "akilah_osley@yahoo.com",
+                    "revenue": 961.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "katie steward",
+                    "email": "sewagepumpsolutions@gmail.com",
+                    "revenue": 493.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lindsey Alexander",
+                    "email": "lindseyalex425@gmail.com",
+                    "revenue": 975.3,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Montana Kitterman",
+                    "email": "montanaleann@gmail.com",
+                    "revenue": 481.48,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jenna Schexnaydre",
+                    "email": "jkkeating27@yahoo.com",
+                    "revenue": 473.74,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Doug Corbin",
+                    "email": "jonwpeebles@gmail.com",
+                    "revenue": 1189.78,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dale Vegter",
+                    "email": "dalevegter@yahoo.com",
+                    "revenue": 695.64,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tyler Pohle",
+                    "email": "amypohle20@gmail.com",
+                    "revenue": 2995.25,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lisa & James Maurer",
+                    "email": "maurerlisam@aol.com",
+                    "revenue": 2494.68,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Daniel Hussey",
+                    "email": "daniel.hussey@troyal.gov",
+                    "revenue": 658.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Chrystal Hatcher",
+                    "email": "chrystalking5@yahoo.com",
+                    "revenue": 666.54,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jessica Stufflebeam",
+                    "email": "jessica.roberts@eagles.usm.edu",
+                    "revenue": 554.3,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Derek Shirey",
+                    "email": "shirey06@outlook.com",
+                    "revenue": 1518.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michele Clark",
+                    "email": "mmclark9@bellsouth.net",
+                    "revenue": 2694.79,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jostlyn Bomhard",
+                    "email": "higgerson12@gmail.com",
+                    "revenue": 2057.21,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sandra Early",
+                    "email": "sandeearly@icloud.com",
+                    "revenue": 229.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Gina Rose",
+                    "email": "ginarose1414@gmail.com",
+                    "revenue": 352.19,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alicia Tuovila",
+                    "email": "aliciatuovila@gmail.com",
+                    "revenue": 437.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past Guests (3-night minimum)",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100 off",
+                "purpose": "(3 night miniumum)",
+                "campaignType": "",
+                "uses": 4,
+                "revenue": 4805.219999999999,
+                "guests": [
+                  {
+                    "name": "Deb Beckman",
+                    "email": "beckman925@gmail.com",
+                    "revenue": 1198.62,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tiffany Graves",
+                    "email": "kaz88pm@yahoo.com",
+                    "revenue": 1247.03,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brittany Romines",
+                    "email": "br13148@georgiasouthern.edu",
+                    "revenue": 1533.33,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kyle Summers",
+                    "email": "summerskyle10@gmail.com",
+                    "revenue": 826.24,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 33,
+            "totalRevenue": 33741.829999999994,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 4,
+            "totalRevenue": 3968.05,
+            "matches": [
+              {
+                "guestName": "Elizabeth Williams",
+                "pmsEmail": "ewilliams1969@icloud.com",
+                "ghlFirstName": "elizabeth",
+                "ghlLastName": "williams",
+                "ghlEmail": "ewilliams1969@icloud.com",
+                "revenue": 347.77,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Carlotta Grider",
+                "pmsEmail": "carlottagrider@aol.com",
+                "ghlFirstName": "carlotta",
+                "ghlLastName": "grider",
+                "ghlEmail": "carlottagrider@aol.com",
+                "revenue": 198.7,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Tyler Pohle",
+                "pmsEmail": "amypohle20@gmail.com",
+                "ghlFirstName": "amypohle20@gmail.com",
+                "ghlLastName": "",
+                "ghlEmail": "amypohle20@gmail.com",
+                "revenue": 2995.25,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Kisha Brown",
+                "pmsEmail": "bkisha52@yahoo.com",
+                "ghlFirstName": "bkisha52@yahoo.com",
+                "ghlLastName": "",
+                "ghlEmail": "bkisha52@yahoo.com",
+                "revenue": 426.33,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 8005
+          },
+          "facebook": {
+            "matchCount": 1,
+            "totalRevenue": 471.53,
+            "matches": [
+              {
+                "guestName": "Molly Patterson",
+                "pmsEmail": "map1117@outlook.com",
+                "ghlFirstName": "molly",
+                "ghlLastName": "patterson",
+                "ghlEmail": "map1117@outlook.com",
+                "revenue": 471.53,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 4846
+          },
+          "summary": {
+            "totalRevenue": 79081.86000000003,
+            "avgDirectBookingValue": 869.0314285714289,
+            "directBookingCount": 91,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Tàberg Falls": {
+        "name": "Tàberg Falls",
+        "facebookStats": {
+          "clientName": "Tàberg Falls",
+          "accountName": "Tàberg Falls",
+          "followers": {
+            "type": "Followers",
+            "spend": 2686.0999999999995,
+            "impressions": 263434,
+            "linkClicks": 10885,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 3439.29,
+            "impressions": 151777,
+            "linkClicks": 5704,
+            "leads": 0,
+            "purchases": 31,
+            "purchasesConversionValue": 35650.29
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 235.06,
+            "impressions": 18289,
+            "linkClicks": 1503,
+            "leads": 421,
+            "purchases": 2,
+            "purchasesConversionValue": 2479.76
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Tàberg Falls",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 146
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 670
+          },
+          "summary": {
+            "totalRevenue": 39875.34999999999,
+            "avgDirectBookingValue": 1172.8044117647057,
+            "directBookingCount": 34,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Selah Place": {
+        "name": "Selah Place",
+        "facebookStats": {
+          "clientName": "Selah Place",
+          "accountName": "Selah Place",
+          "followers": {
+            "type": "Followers",
+            "spend": 467.9,
+            "impressions": 34354,
+            "linkClicks": 1901,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Selah Place",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "",
+                "uses": 4,
+                "revenue": 1369.3000000000002,
+                "guests": [
+                  {
+                    "name": "eric dailey",
+                    "email": "ericdailey76@yahoo.com",
+                    "revenue": 421.58,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Laura Lara Laura Lara",
+                    "email": "larav777@hotmail.com",
+                    "revenue": 246.92,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jean Mari Gayangos",
+                    "email": "jean_hersheys@me.com",
+                    "revenue": 473.88,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Peter Webber",
+                    "email": "webber35@yahoo.com",
+                    "revenue": 226.92,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 4,
+            "totalRevenue": 1369.3000000000002,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 2,
+            "totalRevenue": 720.8,
+            "matches": [
+              {
+                "guestName": "Laura Lara Laura Lara",
+                "pmsEmail": "larav777@hotmail.com",
+                "ghlFirstName": "larav777@hotmail.com",
+                "ghlLastName": "",
+                "ghlEmail": "larav777@hotmail.com",
+                "revenue": 246.92,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Jean Mari Gayangos",
+                "pmsEmail": "jean_hersheys@me.com",
+                "ghlFirstName": "jean",
+                "ghlLastName": "",
+                "ghlEmail": "jean_hersheys@me.com",
+                "revenue": 473.88,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 251
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 10420.76,
+            "avgDirectBookingValue": 416.8304,
+            "directBookingCount": 25,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Green Springs Inn": {
+        "name": "Green Springs Inn",
+        "facebookStats": {
+          "clientName": "Green Springs Inn",
+          "accountName": "Green Springs Inn",
+          "followers": {
+            "type": "Followers",
+            "spend": 899.0000000000002,
+            "impressions": 99716,
+            "linkClicks": 2738,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 298.7999999999999,
+            "impressions": 22719,
+            "linkClicks": 321,
+            "leads": 0,
+            "purchases": 3,
+            "purchasesConversionValue": 889.82
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Green Springs Inn",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "NATURE10",
+                "discount": "10% off",
+                "purpose": "New Leads (2 night miniumum)",
+                "campaignType": "Followers",
+                "uses": 8,
+                "revenue": 7022.2,
+                "guests": [
+                  {
+                    "name": "Meredith Huang Meredith Huang",
+                    "email": "meredithhuang@gmail.com",
+                    "revenue": 707.79,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lauren Pritting",
+                    "email": "lauren.pritting@gmail.com",
+                    "revenue": 607.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mary Van Pelt",
+                    "email": "misspander@aol.com",
+                    "revenue": 691.98,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brittney Hettman",
+                    "email": "brittney.hettman@gmail.com",
+                    "revenue": 1268.23,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kahlil Meltz",
+                    "email": "kmeltz2011@hotmail.com",
+                    "revenue": 1545.36,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kelcie Ragsdale",
+                    "email": "kelcie_jean89@hotmail.com",
+                    "revenue": 1076.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Christine Fry Christine Fry",
+                    "email": "christinefry@gmail.com",
+                    "revenue": 754.91,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Malcolm Hecht",
+                    "email": "malcolmhecht.com@gmail.com",
+                    "revenue": 369.91,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "VIP10",
+                "discount": "",
+                "purpose": "",
+                "campaignType": "Retarget",
+                "uses": 1,
+                "revenue": 824.33,
+                "guests": [
+                  {
+                    "name": "Kayla Smith",
+                    "email": "anniahjones16@gmail.com",
+                    "revenue": 824.33,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "RECHARGE10",
+                "discount": "",
+                "purpose": "Old Manychat",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 9,
+            "totalRevenue": 7846.53,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 866
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 174
+          },
+          "summary": {
+            "totalRevenue": 46729.570000000014,
+            "avgDirectBookingValue": 458.13303921568644,
+            "directBookingCount": 102,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "The Cohost Company": {
+        "name": "The Cohost Company",
+        "facebookStats": {
+          "clientName": "The Cohost Company",
+          "accountName": "The Cohost Company",
+          "followers": {
+            "type": "Followers",
+            "spend": 3009.61,
+            "impressions": 248018,
+            "linkClicks": 11826,
+            "leads": 137,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 893.6299999999998,
+            "impressions": 48514,
+            "linkClicks": 788,
+            "leads": 20,
+            "purchases": 9,
+            "purchasesConversionValue": 11724.570000000002
+          },
+          "newLeads": {
+            "type": "New Leads",
+            "spend": 14.04,
+            "impressions": 1122,
+            "linkClicks": 51,
+            "leads": 8,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "The Cohost Company",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "New Leads (2-night minimum)",
+                "campaignType": "Followers",
+                "uses": 15,
+                "revenue": 19699.05,
+                "guests": [
+                  {
+                    "name": "Mya Wood",
+                    "email": "nrsebaex2@icloud.com",
+                    "revenue": 801.29,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "CHINCHUN MA",
+                    "email": "1030machinchun@gmail.com",
+                    "revenue": 907.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "STEVEN COPPENS",
+                    "email": "carolemeert@hotmail.com",
+                    "revenue": 878.26,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Abdou Diouf",
+                    "email": "abdoumdiouf@gmail.com",
+                    "revenue": 379.45,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Arnel Ibarra",
+                    "email": "urface6781@gmail.com",
+                    "revenue": 725.16,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "STEFAN SAKOTA",
+                    "email": "stefansakota@gmail.com",
+                    "revenue": 525.56,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sandra Floyd",
+                    "email": "sandy3floyd@gmail.com",
+                    "revenue": 870.43,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Guy Rohkin",
+                    "email": "guy.rohkin@gmail.com",
+                    "revenue": 2225.45,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Anzhelika Pikalova",
+                    "email": "anj58652@gmail.com",
+                    "revenue": 570.93,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Oender Doeger",
+                    "email": "on.do88@yahoo.de",
+                    "revenue": 688.84,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "James Anderson",
+                    "email": "js.anderson@icloud.com",
+                    "revenue": 1219.58,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "VIVIAN LEW",
+                    "email": "vivlew@gmail.com",
+                    "revenue": 4269.59,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Justyn Eddins",
+                    "email": "justyn@mraugmented.com",
+                    "revenue": 757.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Karl Smith",
+                    "email": "karlsmith999@sky.com",
+                    "revenue": 323.98,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sonia  Gamez",
+                    "email": "sonia040912@yahoo.com",
+                    "revenue": 4555.95,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "",
+                "purpose": "",
+                "campaignType": "Past Guests",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP10",
+                "discount": "",
+                "purpose": "",
+                "campaignType": "Retarget",
+                "uses": 1,
+                "revenue": 1993.06,
+                "guests": [
+                  {
+                    "name": "Alyssa Hart",
+                    "email": "alyssamayhart@gmail.com",
+                    "revenue": 1993.06,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 16,
+            "totalRevenue": 21692.11,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1134
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 317
+          },
+          "summary": {
+            "totalRevenue": 34683.23,
+            "avgDirectBookingValue": 1445.1345833333335,
+            "directBookingCount": 24,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Treetop Escapes": {
+        "name": "Treetop Escapes",
+        "facebookStats": {
+          "clientName": "Treetop Escapes",
+          "accountName": "Treetop Escapes",
+          "followers": {
+            "type": "Followers",
+            "spend": 1203.0100000000002,
+            "impressions": 137852,
+            "linkClicks": 5139,
+            "leads": 2,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 1202.9,
+            "impressions": 89015,
+            "linkClicks": 2458,
+            "leads": 22,
+            "purchases": 29,
+            "purchasesConversionValue": 26011.410000000003
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Treetop Escapes",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads (3 night miniumum)",
+                "campaignType": "Followers",
+                "uses": 38,
+                "revenue": 38519.65999999999,
+                "guests": [
+                  {
+                    "name": "Joshua White",
+                    "email": "gwrwaamw16@gmail.com",
+                    "revenue": 741.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "NEIL PRATT",
+                    "email": "prattdn@gmail.com",
+                    "revenue": 1587.5,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ashley Vogt",
+                    "email": "ashleynicolevogt@gmail.com",
+                    "revenue": 858.39,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Holly Cates",
+                    "email": "hcates8358@aol.com",
+                    "revenue": 818.5,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Holly Stull",
+                    "email": "hollystull13@yahoo.com",
+                    "revenue": 1014.09,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Judy Moua",
+                    "email": "jwimberly90@gmail.com",
+                    "revenue": 933.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brandy McCollum",
+                    "email": "mustangbrandy33@gmail.com",
+                    "revenue": 804.03,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Elizabeth Williams",
+                    "email": "ewilliams1969@icloud.com",
+                    "revenue": 347.77,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Janet Downs",
+                    "email": "janetdowns@comcast.net",
+                    "revenue": 1415.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "stephanie olney",
+                    "email": "stephanieolney@hotmail.com",
+                    "revenue": 796.64,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Molly Patterson",
+                    "email": "map1117@outlook.com",
+                    "revenue": 471.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Shelby Reid-Smith",
+                    "email": "moore.shelby710@icloud.com",
+                    "revenue": 401.92,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kasey Bredekamp",
+                    "email": "kasey.bredekamp@gmail.com",
+                    "revenue": 1337.85,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Akilah Osley",
+                    "email": "akilah_osley@yahoo.com",
+                    "revenue": 961.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lindsey Alexander",
+                    "email": "lindseyalex425@gmail.com",
+                    "revenue": 975.3,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Montana Kitterman",
+                    "email": "montanaleann@gmail.com",
+                    "revenue": 481.48,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jenna Schexnaydre",
+                    "email": "jkkeating27@yahoo.com",
+                    "revenue": 473.74,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "katie steward",
+                    "email": "sewagepumpsolutions@gmail.com",
+                    "revenue": 493.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Doug Corbin",
+                    "email": "jonwpeebles@gmail.com",
+                    "revenue": 1189.78,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dale Vegter",
+                    "email": "dalevegter@yahoo.com",
+                    "revenue": 695.64,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tyler Pohle",
+                    "email": "amypohle20@gmail.com",
+                    "revenue": 2995.25,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lisa & James Maurer",
+                    "email": "maurerlisam@aol.com",
+                    "revenue": 2494.68,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Daniel Hussey",
+                    "email": "daniel.hussey@troyal.gov",
+                    "revenue": 658.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Chrystal Hatcher",
+                    "email": "chrystalking5@yahoo.com",
+                    "revenue": 666.54,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Derek Shirey",
+                    "email": "shirey06@outlook.com",
+                    "revenue": 1518.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "William Fleming",
+                    "email": "rupedaddy@gmail.com",
+                    "revenue": 1055.43,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jessica Stufflebeam",
+                    "email": "jessica.roberts@eagles.usm.edu",
+                    "revenue": 554.3,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michele Clark",
+                    "email": "mmclark9@bellsouth.net",
+                    "revenue": 2694.79,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brent James",
+                    "email": "shannon.minderman@gmail.com",
+                    "revenue": 1702.44,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Matthew Werner",
+                    "email": "mswerner1994@yahoo.com",
+                    "revenue": 1105.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sandra Early",
+                    "email": "sandeearly@icloud.com",
+                    "revenue": 229.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jostlyn Bomhard",
+                    "email": "higgerson12@gmail.com",
+                    "revenue": 2057.21,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Daniel Hart",
+                    "email": "caseyhart78@gmail.com",
+                    "revenue": 1208.42,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Meredith Pavey",
+                    "email": "poet4him777@gmail.com",
+                    "revenue": 1152.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Bob sherman",
+                    "email": "shermanbob@hotmail.com",
+                    "revenue": 216.45,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Gina Rose",
+                    "email": "ginarose1414@gmail.com",
+                    "revenue": 352.19,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alicia Tuovila",
+                    "email": "aliciatuovila@gmail.com",
+                    "revenue": 437.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ariella  Gordon",
+                    "email": "ariellazgordon@gmail.com",
+                    "revenue": 621.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past Guests (3-night minimum)",
+                "campaignType": "Past Guests",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP100",
+                "discount": "",
+                "purpose": "(3 night miniumum)",
+                "campaignType": "Retarget",
+                "uses": 10,
+                "revenue": 12203.82,
+                "guests": [
+                  {
+                    "name": "Deb Beckman",
+                    "email": "beckman925@gmail.com",
+                    "revenue": 1198.62,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tiffany Graves",
+                    "email": "kaz88pm@yahoo.com",
+                    "revenue": 1247.03,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Megan Wells",
+                    "email": "supracharged@gmail.com",
+                    "revenue": 1811.18,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Christopher Foss",
+                    "email": "chrisfoss007@yahoo.com",
+                    "revenue": 1066.1,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michael Hamilton",
+                    "email": "michael@lelandfilms.com",
+                    "revenue": 953.52,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brittany Romines",
+                    "email": "br13148@georgiasouthern.edu",
+                    "revenue": 1533.33,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kyle Summers",
+                    "email": "summerskyle10@gmail.com",
+                    "revenue": 826.24,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kaylee Mayberry",
+                    "email": "kayleewoodall14@gmail.com",
+                    "revenue": 1940.42,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Heather Willoughby",
+                    "email": "hwilloughby926@gmail.com",
+                    "revenue": 945.23,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Elena Martin",
+                    "email": "elenajoy85@gmail.com",
+                    "revenue": 682.15,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 48,
+            "totalRevenue": 50723.47999999999,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 486
+          },
+          "facebook": {
+            "matchCount": 1,
+            "totalRevenue": 490.84,
+            "matches": [
+              {
+                "guestName": "Cassandra Hornby",
+                "pmsEmail": "casbrooke@gmail.com",
+                "ghlFirstName": "casbrooke@gmail.com",
+                "ghlLastName": "",
+                "ghlEmail": "casbrooke@gmail.com",
+                "revenue": 490.84,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1526
+          },
+          "summary": {
+            "totalRevenue": 229546.8100000001,
+            "avgDirectBookingValue": 940.7656147540988,
+            "directBookingCount": 244,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Evergreen Cabins": {
+        "name": "Evergreen Cabins",
+        "facebookStats": {
+          "clientName": "Evergreen Cabins",
+          "accountName": "Evergreen Cabins",
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 693.7499999999999,
+            "impressions": 38107,
+            "linkClicks": 1910,
+            "leads": 0,
+            "purchases": 4,
+            "purchasesConversionValue": 4972.54
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Evergreen Cabins",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads (2-night minimum)",
+                "campaignType": "Followers",
+                "uses": 11,
+                "revenue": 14507.089999999997,
+                "guests": [
+                  {
+                    "name": "Gregory Bianchi",
+                    "email": "gbianchi12666@gmail.com",
+                    "revenue": 1665.73,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Keith DeBlasio",
+                    "email": "keithdeblasio74@gmail.com",
+                    "revenue": 1118.94,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "kulkanya sansudjai",
+                    "email": "golffy_frezz@hotmail.com",
+                    "revenue": 1149.99,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Chad Keller",
+                    "email": "kellerenterprise369@gmail.com",
+                    "revenue": 1144.1,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dianna Ciccotto",
+                    "email": "dciccotto@me.com",
+                    "revenue": 2326.31,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sharon Lee",
+                    "email": "lee.sharonlan@gmail.com",
+                    "revenue": 1164.12,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Julie D’Alessandro",
+                    "email": "juliedalessandro15@gmail.com",
+                    "revenue": 1342.66,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jennifer Harris",
+                    "email": "wolf.jen@gmail.com",
+                    "revenue": 1268.92,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Hardip Sahota",
+                    "email": "ravneetk99@gmail.com",
+                    "revenue": 1148.81,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jeffrey Saylor",
+                    "email": "jeffyjr@gmail.com",
+                    "revenue": 1157.05,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "KEVIN PALACIOS",
+                    "email": "palacios.kevin.a@gmail.com",
+                    "revenue": 1020.46,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past Guests (2-night minimum)",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100 off",
+                "purpose": "",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 11,
+            "totalRevenue": 14507.089999999997,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 2,
+            "totalRevenue": 3476.3,
+            "matches": [
+              {
+                "guestName": "kulkanya sansudjai",
+                "pmsEmail": "golffy_frezz@hotmail.com",
+                "ghlFirstName": "kulkanya",
+                "ghlLastName": "sansudjai",
+                "ghlEmail": "golffy_frezz@hotmail.com",
+                "revenue": 1149.99,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Dianna Ciccotto",
+                "pmsEmail": "dciccotto@me.com",
+                "ghlFirstName": "dianna",
+                "ghlLastName": "ciccotto",
+                "ghlEmail": "dciccotto@me.com",
+                "revenue": 2326.31,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 3951
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 105
+          },
+          "summary": {
+            "totalRevenue": 43486.78,
+            "avgDirectBookingValue": 1499.5441379310344,
+            "directBookingCount": 29,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Reflections Resorts": {
+        "name": "Reflections Resorts",
+        "facebookStats": {
+          "clientName": "Reflections Resorts",
+          "accountName": "Reflections Resorts",
+          "followers": {
+            "type": "Followers",
+            "spend": 994.31,
+            "impressions": 72349,
+            "linkClicks": 2566,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          },
+          "retargeting": {
+            "type": "Retargeting",
+            "spend": 43203.439999999995,
+            "impressions": 470285,
+            "linkClicks": 10416,
+            "leads": 0,
+            "purchases": 205,
+            "purchasesConversionValue": 10910.42
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Reflections Resorts",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 OFF",
+                "purpose": "",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 874
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 165
+          },
+          "summary": {
+            "totalRevenue": 10775.439999999999,
+            "avgDirectBookingValue": 1077.5439999999999,
+            "directBookingCount": 10,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Best Texas Travel": {
+        "name": "Best Texas Travel",
+        "facebookStats": {
+          "clientName": "Best Texas Travel",
+          "accountName": "Best Texas Travel",
+          "followers": {
+            "type": "Followers",
+            "spend": 404.65,
+            "impressions": 22333,
+            "linkClicks": 1396,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Best Texas Travel",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "2 night min",
+                "campaignType": "Followers",
+                "uses": 1,
+                "revenue": 577.37,
+                "guests": [
+                  {
+                    "name": "Andres Reyes",
+                    "email": "reyes2013andres@gmail.com",
+                    "revenue": 577.37,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "Past Guest",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "GETAWAY100",
+                "discount": "$100",
+                "purpose": "",
+                "campaignType": "Refer a Friend",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "RIVER10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 1,
+            "totalRevenue": 577.37,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 130
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 100629.68000000002,
+            "avgDirectBookingValue": 684.5556462585035,
+            "directBookingCount": 147,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Red White & Blue Views": {
+        "name": "Red White & Blue Views",
+        "facebookStats": {
+          "clientName": "Red White & Blue Views",
+          "accountName": "Red White & Blue Views",
+          "followers": {
+            "type": "Followers",
+            "spend": 898.71,
+            "impressions": 92454,
+            "linkClicks": 3693,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Red White & Blue Views",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New leads - 3 night minimum",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Past guests - 10% off",
+                "campaignType": "Past Guest",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "GETAWAY100",
+                "discount": "$100",
+                "purpose": "Past guests - $100 off (friend)",
+                "campaignType": "Refer a Friend",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100",
+                "purpose": "2 night min",
+                "campaignType": "Retarget",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 706
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 21
+          },
+          "summary": {
+            "totalRevenue": 6280.3099999999995,
+            "avgDirectBookingValue": 3140.1549999999997,
+            "directBookingCount": 2,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Myrinn": {
+        "name": "Myrinn",
+        "facebookStats": {
+          "clientName": "Myrinn",
+          "accountName": "Myrinn",
+          "followers": {
+            "type": "Followers",
+            "spend": 895.4499999999998,
+            "impressions": 60983,
+            "linkClicks": 3410,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Myrinn",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "Followers",
+                "uses": 4,
+                "revenue": 4711.849999999999,
+                "guests": [
+                  {
+                    "name": "Zachary Bender",
+                    "email": "zbender23@gmail.com",
+                    "revenue": 525.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "grace Ricablanca",
+                    "email": "gracericablanca007@gmail.com",
+                    "revenue": 2106.23,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Anthony Hernandez",
+                    "email": "kirby350z@yahoo.com",
+                    "revenue": 733.96,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Raul Osorio",
+                    "email": "raulosorio994@gmail.com",
+                    "revenue": 1345.86,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 4,
+            "totalRevenue": 4711.849999999999,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1755
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 5
+          },
+          "summary": {
+            "totalRevenue": 8751.77,
+            "avgDirectBookingValue": 972.4188888888889,
+            "directBookingCount": 9,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Awayframes": {
+        "name": "Awayframes",
+        "facebookStats": {
+          "clientName": "Awayframes",
+          "accountName": "Awayframes",
+          "followers": {
+            "type": "Followers",
+            "spend": 901.5200000000001,
+            "impressions": 82346,
+            "linkClicks": 3429,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Awayframes",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 OFF",
+                "purpose": "",
+                "campaignType": "Followers",
+                "uses": 10,
+                "revenue": 18916.810000000005,
+                "guests": [
+                  {
+                    "name": "Ashley Keating",
+                    "email": "ashleyjayne6@gmail.com",
+                    "revenue": 1273.68,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Chiahsin Wu",
+                    "email": "simonwu1976@gmail.com",
+                    "revenue": 3188.04,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Tara Akins",
+                    "email": "akinstr@yahoo.com",
+                    "revenue": 2269.57,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Zhiyu Chong",
+                    "email": "czhiyu97@gmail.com",
+                    "revenue": 2118.04,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Dayna Semchenko",
+                    "email": "dgsemchenko@gmail.com",
+                    "revenue": 1073.76,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Balu Harish Reddy Maddireddy",
+                    "email": "baluharishreddy@gmail.com",
+                    "revenue": 1697.51,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sebastian Harms",
+                    "email": "wibkemartina@gmail.com",
+                    "revenue": 1914.91,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Cassie Geyser",
+                    "email": "cassiegeyser@gmail.com",
+                    "revenue": 1279.17,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mary Saur",
+                    "email": "mary2saur@gmail.com",
+                    "revenue": 2432.07,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Joy Newton",
+                    "email": "joyatkin@mac.com",
+                    "revenue": 1670.06,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100 OFF",
+                "purpose": "",
+                "campaignType": "Retargetting",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 10,
+            "totalRevenue": 18916.810000000005,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 625
+          },
+          "facebook": {
+            "matchCount": 1,
+            "totalRevenue": 494.1,
+            "matches": [
+              {
+                "guestName": "Nic Morris",
+                "pmsEmail": "nicmorris7@hotmail.com",
+                "ghlFirstName": "nic",
+                "ghlLastName": "morris",
+                "ghlEmail": "nicmorris7@hotmail.com",
+                "revenue": 494.1,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 2
+          },
+          "summary": {
+            "totalRevenue": 41202.38,
+            "avgDirectBookingValue": 2060.1189999999997,
+            "directBookingCount": 20,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Home Base": {
+        "name": "Home Base",
+        "facebookStats": {
+          "clientName": "Home Base",
+          "accountName": "Home Base",
+          "followers": {
+            "type": "Followers",
+            "spend": 898.0099999999998,
+            "impressions": 66051,
+            "linkClicks": 3320,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Home Base",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME250",
+                "discount": "$250 off",
+                "purpose": "3 night minimum",
+                "campaignType": "Followers",
+                "uses": 5,
+                "revenue": 6132.5599999999995,
+                "guests": [
+                  {
+                    "name": "Catherine Foster",
+                    "email": "cathykfoster@gmail.com",
+                    "revenue": 1984.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Marwan Hassan",
+                    "email": "marwan2822@hotmail.com",
+                    "revenue": 1003.86,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Derek Blunier",
+                    "email": "dblunier@hotmail.com",
+                    "revenue": 2199.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Umesh Subramanyam",
+                    "email": "rati@umeshs.com",
+                    "revenue": 594.95,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Michelle Hughes",
+                    "email": "shellhughes1004@gmail.com",
+                    "revenue": 349.83,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              }
+            ],
+            "totalUses": 5,
+            "totalRevenue": 6132.5599999999995,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 411
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 73135.89,
+            "avgDirectBookingValue": 4875.726,
+            "directBookingCount": 15,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Away2PA": {
+        "name": "Away2PA",
+        "facebookStats": {
+          "clientName": "Away2PA",
+          "accountName": "Away2PA",
+          "followers": {
+            "type": "Followers",
+            "spend": 1036.0400000000002,
+            "impressions": 89254,
+            "linkClicks": 3343,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Away2PA",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% Off",
+                "purpose": "Past Guests",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1284
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 5
+          },
+          "summary": {
+            "totalRevenue": 25525.260000000002,
+            "avgDirectBookingValue": 4254.21,
+            "directBookingCount": 6,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Parker Reserve": {
+        "name": "Parker Reserve",
+        "facebookStats": {
+          "clientName": "Parker Reserve",
+          "accountName": "Parker Reserve",
+          "followers": {
+            "type": "Followers",
+            "spend": 301.11999999999995,
+            "impressions": 25181,
+            "linkClicks": 1222,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Parker Reserve",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100 off",
+                "purpose": "New Leads",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOMEBACK10",
+                "discount": "10% off",
+                "purpose": "Loyalty Offer",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "GETAWAY50",
+                "discount": "$50 off",
+                "purpose": "Refer a friend",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              },
+              {
+                "code": "WELCOME10",
+                "discount": "10% off",
+                "purpose": "",
+                "campaignType": "Followers",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 0,
+            "totalRevenue": 0,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 605
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 11185.42,
+            "avgDirectBookingValue": 3728.4733333333334,
+            "directBookingCount": 3,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Stay on 30a": {
+        "name": "Stay on 30a",
+        "facebookStats": {
+          "clientName": "Stay on 30a",
+          "accountName": "Stay on 30a",
+          "followers": {
+            "type": "Followers",
+            "spend": 897.51,
+            "impressions": 94804,
+            "linkClicks": 4715,
+            "leads": 0,
+            "purchases": 0,
+            "purchasesConversionValue": 0
+          }
+        },
+        "pmsAnalysis": {
+          "clientName": "Stay on 30a",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME100",
+                "discount": "$100",
+                "purpose": "2 night min",
+                "campaignType": "Followers",
+                "uses": 39,
+                "revenue": 146449.63,
+                "guests": [
+                  {
+                    "name": "Joshua Reider",
+                    "email": "jreider@nettworth.us",
+                    "revenue": 3163.08,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Isabella McNeal",
+                    "email": "isimcox94@gmail.com",
+                    "revenue": 1594.78,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Ashley Weaver",
+                    "email": "ashleyweaverpollack@gmail.com",
+                    "revenue": 5749.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jacqueline Suarez",
+                    "email": "jacqueline.suarez1@icloud.com",
+                    "revenue": 2352.17,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jason Terrents",
+                    "email": "jterrents@gmail.com",
+                    "revenue": 5652.76,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kait Osterman",
+                    "email": "kaitlin.osterman@gmail.com",
+                    "revenue": 1834.62,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Deborah Wise",
+                    "email": "wise269@att.net",
+                    "revenue": 5966.66,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lisa Nieman",
+                    "email": "lkr2388@gmail.com",
+                    "revenue": 3076.6,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Meghan Bearley",
+                    "email": "mbearley22@yahoo.com",
+                    "revenue": 4060.9,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jessica Emanuels",
+                    "email": "jessica.m.emanuels@gmail.com",
+                    "revenue": 3858.18,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mary Spillers",
+                    "email": "maryspillers@gmail.com",
+                    "revenue": 8312.98,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Teri Malecha",
+                    "email": "terimalecha@gmail.com",
+                    "revenue": 2255.46,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Whitney Vanderstel",
+                    "email": "whitney1128@gmail.com",
+                    "revenue": 5374.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Richard Mills",
+                    "email": "rjbmills83@gmail.com",
+                    "revenue": 3635.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Robin Dillard",
+                    "email": "rhdillard@gmail.com",
+                    "revenue": 5793.93,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Cristina Becker",
+                    "email": "cristicocoa11@gmail.com",
+                    "revenue": 2728.65,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "LIZETH ZUBIATE",
+                    "email": "lmzubiate09@gmail.com",
+                    "revenue": 4107.64,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Emily Yost",
+                    "email": "em.yost@yahoo.com",
+                    "revenue": 2440.1,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Troy Hammon",
+                    "email": "hammontroy@gmail.com",
+                    "revenue": 5024.16,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "THERESA MCMULLIN",
+                    "email": "tmcmullin1016@gmail.com",
+                    "revenue": 2240.11,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Andrew Johnson",
+                    "email": "ajohnson11397@gmail.com",
+                    "revenue": 2955.85,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nicole Philips",
+                    "email": "nicoleremly@hotmail.com",
+                    "revenue": 2430.97,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kim Rogers",
+                    "email": "kimrogers417@gmail.com",
+                    "revenue": 2859.93,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Andrea Brown",
+                    "email": "andreahbrown@gmail.com",
+                    "revenue": 3838.07,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Zach Martin",
+                    "email": "dartzach@gmail.com",
+                    "revenue": 3219.9,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Rob Richards",
+                    "email": "janinemrichards@gmail.com",
+                    "revenue": 3568.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Scott Riese",
+                    "email": "ssjriese@gmail.com",
+                    "revenue": 6360.89,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Taylor James",
+                    "email": "ryankjames25@gmail.com",
+                    "revenue": 5533.37,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Amanda Paulson",
+                    "email": "mandyyyhalll@gmail.com",
+                    "revenue": 1123.29,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lauren McGowan",
+                    "email": "laurenmcgowan1001@gmail.com",
+                    "revenue": 2786.11,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Donny Churchman",
+                    "email": "donny@nackdevelopment.com",
+                    "revenue": 11067.35,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lindsey Pennington",
+                    "email": "lcella33@yahoo.com",
+                    "revenue": 3279.17,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jaylen Blankenship",
+                    "email": "jaylenraineblankenship@gmail.com",
+                    "revenue": 2069.16,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Darren Hancock",
+                    "email": "dhancock94@gmail.com",
+                    "revenue": 2161.33,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Mark Vear",
+                    "email": "markavear@gmail.com",
+                    "revenue": 2467.36,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Katelyn Darrigo",
+                    "email": "katelyn.clermont@yahoo.com",
+                    "revenue": 3209.21,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kelly Vallone",
+                    "email": "kvallone716@gmail.com",
+                    "revenue": 1992.53,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Morgan Luther",
+                    "email": "mkay622@gmail.com",
+                    "revenue": 2009.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alyssa Greene",
+                    "email": "alyssagreene28@gmail.com",
+                    "revenue": 4295.26,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100",
+                "purpose": "meta ads",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 39,
+            "totalRevenue": 146449.63,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 11,
+            "totalRevenue": 38993.88999999999,
+            "matches": [
+              {
+                "guestName": "Jacqueline Suarez",
+                "pmsEmail": "jacqueline.suarez1@icloud.com",
+                "ghlFirstName": "jacqueline",
+                "ghlLastName": "suarez",
+                "ghlEmail": "jacqueline.suarez1@icloud.com",
+                "revenue": 2352.17,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Whitney Vanderstel",
+                "pmsEmail": "whitney1128@gmail.com",
+                "ghlFirstName": "whitney",
+                "ghlLastName": "vanderstel",
+                "ghlEmail": "whitney1128@gmail.com",
+                "revenue": 5374.32,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "JENNIFER ALLEN",
+                "pmsEmail": "jenallen7775@gmail.com",
+                "ghlFirstName": "jennifer",
+                "ghlLastName": "allen",
+                "ghlEmail": "jenallen7775@gmail.com",
+                "revenue": 3215.19,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "LIZETH ZUBIATE",
+                "pmsEmail": "lmzubiate09@gmail.com",
+                "ghlFirstName": "lizeth",
+                "ghlLastName": "zubiate",
+                "ghlEmail": "lmzubiate09@gmail.com",
+                "revenue": 4107.64,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Andrew Johnson",
+                "pmsEmail": "ajohnson11397@gmail.com",
+                "ghlFirstName": "andrew",
+                "ghlLastName": "johnson",
+                "ghlEmail": "ajohnson11397@gmail.com",
+                "revenue": 2955.85,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Taylor James",
+                "pmsEmail": "ryankjames25@gmail.com",
+                "ghlFirstName": "taylor",
+                "ghlLastName": "james",
+                "ghlEmail": "ryankjames25@gmail.com",
+                "revenue": 5533.37,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Lauren McGowan",
+                "pmsEmail": "laurenmcgowan1001@gmail.com",
+                "ghlFirstName": "lauren",
+                "ghlLastName": "mcgowan",
+                "ghlEmail": "laurenmcgowan1001@gmail.com",
+                "revenue": 2786.11,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Mark Vear",
+                "pmsEmail": "markavear@gmail.com",
+                "ghlFirstName": "mark",
+                "ghlLastName": "vear",
+                "ghlEmail": "markavear@gmail.com",
+                "revenue": 2467.36,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Katelyn Darrigo",
+                "pmsEmail": "katelyn.clermont@yahoo.com",
+                "ghlFirstName": "katelyn",
+                "ghlLastName": "darrigo",
+                "ghlEmail": "katelyn.clermont@yahoo.com",
+                "revenue": 3209.21,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Oliver Olsen",
+                "pmsEmail": "olseno@gmail.com",
+                "ghlFirstName": "oliver",
+                "ghlLastName": "olsen",
+                "ghlEmail": "olseno@gmail.com",
+                "revenue": 4983.04,
+                "nameOnlyMatch": false
+              },
+              {
+                "guestName": "Morgan Luther",
+                "pmsEmail": "mkay622@gmail.com",
+                "ghlFirstName": "morgan",
+                "ghlLastName": "luther",
+                "ghlEmail": "mkay622@gmail.com",
+                "revenue": 2009.63,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 340
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1
+          },
+          "summary": {
+            "totalRevenue": 560899.69,
+            "avgDirectBookingValue": 3978.0119858156027,
+            "directBookingCount": 141,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      },
+      "Stay With Branch": {
+        "name": "Stay With Branch",
+        "facebookStats": null,
+        "pmsAnalysis": {
+          "clientName": "Stay With Branch",
+          "promoCode": {
+            "codes": [
+              {
+                "code": "WELCOME50",
+                "discount": "$50 off",
+                "purpose": "New Leads",
+                "campaignType": "Followers",
+                "uses": 1,
+                "revenue": 861.28,
+                "guests": [
+                  {
+                    "name": "Tarun Raj Vutukuru",
+                    "email": "vtarunraj23@gmail.com",
+                    "revenue": 861.28,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "RETURN10",
+                "discount": "10%",
+                "purpose": "Past guest",
+                "campaignType": "",
+                "uses": 0,
+                "revenue": 0,
+                "guests": []
+              }
+            ],
+            "totalUses": 1,
+            "totalRevenue": 861.28,
+            "unrecognizedCodes": [],
+            "missingFromPromoSheet": false,
+            "netIncomeWarning": false
+          },
+          "instagram": {
+            "matchCount": 1,
+            "totalRevenue": 861.28,
+            "matches": [
+              {
+                "guestName": "Tarun Raj Vutukuru",
+                "pmsEmail": "vtarunraj23@gmail.com",
+                "ghlFirstName": "vtarunraj23@gmail.com",
+                "ghlLastName": "",
+                "ghlEmail": "vtarunraj23@gmail.com",
+                "revenue": 861.28,
+                "nameOnlyMatch": false
+              }
+            ],
+            "hasNoEmail": false,
+            "totalGHLLeads": 1456
+          },
+          "facebook": {
+            "matchCount": 0,
+            "totalRevenue": 0,
+            "matches": [],
+            "hasNoEmail": false,
+            "totalGHLLeads": 0
+          },
+          "summary": {
+            "totalRevenue": 6267.18,
+            "avgDirectBookingValue": 1566.795,
+            "directBookingCount": 4,
+            "zeroRevenueCount": 0,
+            "hasSourceColumn": false
+          }
+        },
+        "hasPMS": true,
+        "hasGHL": true
+      }
+    },
+    "flags": [],
+    "lastProcessed": "2026-10-15T17:59:03.770Z"
+  }
+}

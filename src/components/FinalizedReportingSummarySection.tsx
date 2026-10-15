@@ -63,7 +63,8 @@ export default function FinalizedReportingSummarySection({
   campaignRevenue,
   facebookLeads,
 }: FinalizedReportingSummarySectionProps) {
-  const sheetFigures = period.sheet[clientName];
+  // Only signed-off months carry sheet figures; snapshot-only months never reach this component.
+  const sheetFigures = period.sheet?.[clientName];
 
   const totalSpend =
     (facebookStats?.followers?.spend ?? 0) +
