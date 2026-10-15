@@ -121,6 +121,8 @@ Output: `Client Benchmark Reviews (advanced setups)/Weekly Checks/YYYY-MM-DD-cli
 
 Next: week-over-week diff in `generate_report.py` (currently hardcodes "First run").
 
+**This month strip (2026-10-15, Shawal).** Every client card starts with direct revenue month to date (booking date, platform direct/OTA rules, shared-PMS tenants narrowed to their own properties), the change against the same day span of the previous month, and promo-code uses for the month. Source: HiddenGem AI platform via `pms_mtd.sql` in the skill folder, run through the Supabase connector and saved as `pms_mtd.json`. Guesty exposes code names, Hostaway only a count, Hospitable and Cloudbeds nothing; clients without a PMS connection show "not tracked".
+
 ### 4.4 HTML reports — built 2026-09-21
 
 `weekly/Project Data/build_html.py [YYYY-MM-DD]` reads each workflow's dated `.md` and `.csv` and writes a dated `.html` beside them, styled from the HiddenGem Media design system (`https://claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk`: Inter, neutral canvas, brand blue for accents only, semantic badges instead of emoji, sentence case, light and dark themes). Each page: masthead with wordmark, stat row, alert callouts for critical findings, filterable tables, per-client cards (benchmark), footer notes. Published as private artifacts; republish to the same URL to keep the link:

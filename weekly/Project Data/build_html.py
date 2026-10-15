@@ -121,6 +121,14 @@ td.nowrap{white-space:nowrap}
 .kv dt{color:var(--text-4);font-weight:500}.kv dd{margin:0;color:var(--text-2)}
 @media (max-width:640px){.kv{grid-template-columns:1fr;gap:2px 0}.kv dt{margin-top:8px}.kv dt:first-child{margin-top:0}}
 .tof{padding:12px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-3)}
+.month{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-bottom:1px solid var(--border);background:var(--panel-2)}
+.month .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 20px}
+.month .stat+.stat{border-left:1px solid var(--border)}
+.month .stat .value{font-size:20px;line-height:28px}
+.month .stat .value .delta{font-size:14px;font-weight:500;margin-left:6px}
+.month .stat .value .delta.ok{color:var(--ok-text)}.month .stat .value .delta.err{color:var(--err-text)}.month .stat .value .delta.gray{color:var(--text-4)}
+.month .none{padding:12px 20px;font-size:14px;color:var(--text-4);grid-column:1/-1}
+@media (max-width:640px){.month .stat+.stat{border-left:0;border-top:1px solid var(--border)}}
 .meeting{padding:0}
 .meeting + .meeting{border-top:1px solid var(--border)}
 .meeting summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}
@@ -393,6 +401,32 @@ def build_pixel():
 # =====================================================================
 # 3. CLIENT BENCHMARK
 # =====================================================================
+MONTH_RE=re.compile(r"^This month \((booked [^)]+)\): direct revenue (\$[\d,]+) from (\d+) bookings, (.+?) · promo codes: (.+?)\.?$")
+def month_strip(p):
+    """Three tiles from the generator's 'This month' line: revenue MTD, trend vs the previous month's same span, promo codes."""
+    m=MONTH_RE.match(p.strip())
+    if not m:
+        return f'<div class="month"><div class="none">{inline(p)}</div></div>'
+    span,rev,bk,trend,promo=m.groups()
+    t=re.match(r"^([+−-])(\d+)% vs (.+?) \((\$[\d,]+) from (\d+) bookings\)$",trend)
+    if t:
+        sign,n,pspan,prev,pbk=t.groups(); kind="ok" if sign=="+" else "err"
+        if int(n)==0: kind="gray"
+        trend_val=f'<span class="delta {kind}">{esc(sign+n)}%</span>'; trend_hint=f"{esc(prev)} from {esc(pbk)} bookings, {esc(pspan)}"
+        trend_label="vs previous month, same days"
+    else:
+        trend_val='<span class="delta gray">—</span>'; trend_hint=esc(trend); trend_label="vs previous month"
+    pm=re.match(r"^(\d+) uses(?: \((.*)\))?$",promo)
+    if pm:
+        promo_val=f"{pm.group(1)} use{'s' if pm.group(1)!='1' else ''}"; promo_hint=pm.group(2) or "no codes applied"
+    else:
+        promo_val="—"; promo_hint=promo
+    return ('<div class="month">'
+        f'<div class="stat"><div class="label">Direct revenue this month</div><div class="value">{esc(rev)}</div><div class="hint">{esc(bk)} bookings, {esc(span)}</div></div>'
+        f'<div class="stat"><div class="label">{trend_label}</div><div class="value">{trend_val}</div><div class="hint">{trend_hint}</div></div>'
+        f'<div class="stat"><div class="label">Promo codes this month</div><div class="value">{esc(promo_val)}</div><div class="hint">{esc(promo_hint)}</div></div>'
+        '</div>')
+
 def build_bench():
     md=open(f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.md",encoding="utf-8").read()
     S=sections(md)
@@ -464,6 +498,7 @@ def build_bench():
         src_badge=badge("ok","Live read") if src.startswith("live") else badge("warn","CSV export, provisional")
         ps=paras(c["lines"]); tbls=tables(c["lines"])
         tof=[p for p in ps if p.startswith("ToF")]; roi=[p for p in ps if p.startswith("Monthly ROI")]
+        month=[p for p in ps if p.startswith("This month")]
         notes=[p for p in ps if p.startswith("Meeting notes")]; hg=[p for p in ps if p.startswith("HG AI notes")]
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
         pausedl=[p for p in ps if p.startswith("Paused in window")]
@@ -487,6 +522,7 @@ def build_bench():
 </dl>"""
         chtml.append(f"""<div class="card" id="client-{i}">
 <div class="card-head"><div><h3>{esc(name)}</h3><div class="sub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></div></div>{src_badge}</div>
+{month_strip(month[0]) if month else ""}
 <div class="tof">{inline(tof[0]) if tof else ""}</div>
 {tbl}
 {kv}

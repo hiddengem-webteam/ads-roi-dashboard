@@ -75,6 +75,8 @@ Sales, Retargeting and MoF-lookalike campaigns whose 14-day frequency is above 5
 
 ToF (Discovery / Keyword) spend, not scored: $2,991 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $98,816 from 41 bookings, −50% vs 1 Sep–13 Sep ($197,328 from 61 bookings) · promo codes: 11 uses (VIP100 ×5, EARLY BIRD DIRECT ×2, WELCOME100 ×2, CINDYSWANSON10 ×1, ESCAPE30A ×1, WELCOMEBACK15 ×1).
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | 30d | $1,506 | 1129 leads | CPL $1.33 | — | Review w/ HG AI | CPC $0.39 > $0.30; CPM $34.56 > $14.84 | 14d CPL $1.32 | Still open, week 4 |
@@ -90,6 +92,8 @@ HG AI notes: none dropped in since the previous run.
 ### Tàberg Falls — AM Alicia — account Táberg Falls (827872700004659) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $2,823 over 30 days.
+
+This month (booked 1 Oct–13 Oct): direct revenue $31,844 from 20 bookings, −3% vs 1 Sep–13 Sep ($32,736 from 19 bookings) · promo codes: 2 uses (Hostaway does not store code names).
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -108,6 +112,8 @@ HG AI notes: none dropped in since the previous run. Budgets were cut during the
 
 ToF (Discovery / Keyword) spend, not scored: $641 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $51,208 from 59 bookings, −5% vs 1 Sep–13 Sep ($53,651 from 58 bookings) · promo codes: 10 uses (Hostaway does not store code names).
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,256 | 11 purchases | ROAS 6.0x | 2.47 | Monitor | CPC $0.71 > $0.62; CPM $19.95 > $16.50; cost/booking $114.16 > $90 | 30d ROAS 8.1x, 27 purchases | Unchanged |
@@ -125,6 +131,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $753 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $67,428 from 68 bookings, +4% vs 1 Sep–13 Sep ($64,708 from 54 bookings) · promo codes: 0 uses.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $719 | 13 purchases | ROAS 3.6x | 5.92 ⚠️ > 5 | Review w/ HG AI | CPC $0.96 > $0.62; freq 5.9 > 3.0 | 30d ROAS 4.5x, 33 purchases | Still open, week 2 (was Flag to Shawal) |
@@ -141,6 +149,8 @@ HG AI notes: none dropped in since the previous run. Read live this week (API sy
 
 ToF (Discovery / Keyword) spend, not scored: $1,909 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $14,560 from 10 bookings, +535% vs 1 Sep–13 Sep ($2,292 from 9 bookings) · promo codes: not tracked by hospitable.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,068 | 2 purchases | ROAS 3.0x | 2.50 | Review w/ HG AI | CPM $18.48 > $16.50; cost/booking $534.24 > $90 | 30d ROAS 3.1x, 3 purchases | Still open, week 2 (was Flag to Shawal) |
@@ -155,6 +165,8 @@ HG AI notes: none dropped in since the previous run.
 ### Treetop Escapes — AM Makenna — account Treetop Escapes Ads (967636478877602) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $903 over 30 days.
+
+This month (booked 1 Oct–13 Oct): direct revenue $24,852 from 28 bookings, +33% vs 1 Sep–13 Sep ($18,675 from 20 bookings) · promo codes: 1 uses (WELCOME10 ×1).
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -171,6 +183,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $23 over 30 days.
 
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | New Leads Campaign - 03/03/26 | Lead Gen (MoF) | 30d | $755 | 765 leads | CPL $0.99 | — | Monitor | CPC $0.32 > $0.30 | 14d CPL $0.97 | Unchanged |
@@ -185,6 +199,8 @@ HG AI notes: none dropped in since the previous run.
 ### Starlight Haven Hot Springs — AM Charlotte — account Starlight Haven Hot Springs (901138032027913) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $731 over 30 days.
+
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -201,6 +217,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $1,295 over 30 days.
 
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Leads Campaign - 07/16/26 | Lead Gen (MoF) | 30d | $599 | 761 leads | CPL $0.79 | — | Monitor | within lines | 14d CPL $0.80 | Unchanged |
@@ -215,6 +233,8 @@ HG AI notes: none dropped in since the previous run.
 ### Stay Saluda NC — AM Makenna — account Stay Saluda Ads (1863632561215857) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $900 over 30 days.
+
+This month (booked 1 Oct–13 Oct): direct revenue $7,947 from 14 bookings, +41% vs 1 Sep–13 Sep ($5,636 from 10 bookings) · promo codes: 4 uses (WELCOME10 ×3, VIP10 ×1).
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -231,6 +251,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $901 over 30 days.
 
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $603 | 480 leads | CPL $1.26 | — | Review w/ HG AI | CPM $16.04 > $14.84 | 14d CPL $1.26 | Still open, week 4 |
@@ -244,6 +266,8 @@ HG AI notes: none dropped in since the previous run.
 ### Asheville River Cabins — AM Charlotte — account Asheville River Cabins Ads (615836588009747) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $1,026 over 30 days.
+
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -260,6 +284,8 @@ HG AI notes: none dropped in since the previous run. Read live again (account AC
 
 ToF (Discovery / Keyword) spend, not scored: $606 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $16,933 from 36 bookings, −8% vs 1 Sep–13 Sep ($18,345 from 52 bookings) · promo codes: 13 uses (Hostaway does not store code names).
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $304 | 195 leads | CPL $1.56 | — | Review w/ HG AI | within lines | 14d CPL $1.48 | Still open, week 4 |
@@ -275,6 +301,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $906 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $18,199 from 32 bookings, +21% vs 1 Sep–13 Sep ($15,020 from 26 bookings) · promo codes: not tracked by ownerrez.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $303 | 194 leads | CPL $1.56 | — | Review w/ HG AI | CPM $15.60 > $14.84 | 14d CPL $1.48 | Still open, week 3 |
@@ -289,6 +317,8 @@ HG AI notes: none dropped in since the previous run.
 ### Selah Place — AM Alicia — account Selah.place (1275283434220508) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $670 over 30 days.
+
+This month (booked 1 Oct–13 Oct): direct revenue $13,731 from 25 bookings, +37% vs 1 Sep–13 Sep ($10,009 from 22 bookings) · promo codes: 12 uses (Hostaway does not store code names).
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -307,6 +337,8 @@ HG AI notes: none dropped in since the previous run. Actions log: the BoF retarg
 
 ToF (Discovery / Keyword) spend, not scored: $1,410 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $1,450 from 4 bookings, +157% vs 1 Sep–13 Sep ($564 from 1 bookings) · promo codes: 0 uses.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $188 | 35 leads | CPL $5.38 | — | Flag to Shawal | CPC $0.33 > $0.30; CPM $17.63 > $14.84 | 14d CPL $3.02 | Still open, week 3 |
@@ -321,6 +353,8 @@ HG AI notes: none dropped in since the previous run. Actions log: the lead-campa
 ### Bison Ridge Retreat — AM Chiara — account Bison Ridge Retreat Ad Account (950241787963535) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $599 over 30 days.
+
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -337,6 +371,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $599 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $8,456 from 9 bookings, −29% vs 1 Sep–13 Sep ($11,842 from 8 bookings) · promo codes: 5 uses (Hostaway does not store code names).
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers 07/31/2026 | Lead Gen (MoF) | 30d | $151 | 112 leads | CPL $1.35 | — | Review w/ HG AI | within lines | 14d CPL $1.03 | Still open, week 4 |
@@ -351,6 +387,8 @@ HG AI notes: none dropped in since the previous run.
 ### Walden Retreats — AM Anna — account Walden Retreats (973261794434226) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $81 over 30 days.
+
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -369,6 +407,8 @@ HG AI notes: none dropped in since the previous run. New in scope: ad account 97
 
 ToF (Discovery / Keyword) spend, not scored: $1,433 over 30 days.
 
+This month (booked 1 Oct–13 Oct): direct revenue $2,577 from 11 bookings, +19% vs 1 Sep–13 Sep ($2,169 from 13 bookings) · promo codes: 0 uses.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers - 09/16/2026 | Lead Gen (MoF) | 30d | $146 | 101 leads | CPL $1.45 | — | Review w/ HG AI | CPC $0.37 > $0.30; CPM $18.92 > $14.84 | 14d CPL $1.22 | Still open, week 2 |
@@ -384,6 +424,8 @@ HG AI notes: none dropped in since the previous run.
 
 ToF (Discovery / Keyword) spend, not scored: $902 over 30 days.
 
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
+
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | BoF - Sales Campaign - Retargeting Website Visitors - 08/29/2026 | Retargeting (BoF) | 14d | $97 | 0 purchases | ROAS — | 2.00 | Under gate | CPC $0.66 > $0.62 | spend $96.69 < $200 gate | Unchanged |
@@ -398,6 +440,8 @@ HG AI notes: none dropped in since the previous run. A second BoF campaign (date
 ### North Star Lodge & Resort — AM Charlotte — account North Star Lodge & Resort Ads (2003562593933799) — live read
 
 ToF (Discovery / Keyword) spend, not scored: $787 over 30 days.
+
+This month (booked 1 Oct–13 Oct): direct revenue $38,619 from 76 bookings, +3% vs 1 Sep–13 Sep ($37,524 from 63 bookings) · promo codes: not tracked by cloudbeds.
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -426,4 +470,5 @@ HG AI notes: none dropped in since the previous run. 7 Oct meeting: North Star i
 - HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: none.
 - Selah Place's prospecting campaign (paused this week) is named with pipes in Meta ("SP | Prospecting Test | LAL + Interests x Creative | 09-2026"); shown here with slashes.
 - Meeting notes: every "Meta Ads Strategy", "Meta Ads Sync" or "Meta Ads x HiddenGem AI Sync" calendar event since the previous run that has a "Notes by Gemini" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).
+- This month line: direct booking revenue by booking date from the HiddenGem AI platform (pms_bookings, platform direct/OTA rules, tenants on a shared PMS account narrowed to their own properties), month to date at the run date, against the same day span of the previous month. Promo codes come from the booking payload: Guesty stores the code, Hostaway only a coupon id (counted, no names), Hospitable and Cloudbeds nothing. Pulled with pms_mtd.sql through the Supabase connector. Clients without a PMS connection on the platform show no figures.
 - Monthly ROI context from `Monthly ROI data/` (July 2026, August 2026, September 2026). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.

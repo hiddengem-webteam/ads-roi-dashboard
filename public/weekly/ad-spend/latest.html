@@ -112,6 +112,14 @@ td.nowrap{white-space:nowrap}
 .kv dt{color:var(--text-4);font-weight:500}.kv dd{margin:0;color:var(--text-2)}
 @media (max-width:640px){.kv{grid-template-columns:1fr;gap:2px 0}.kv dt{margin-top:8px}.kv dt:first-child{margin-top:0}}
 .tof{padding:12px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-3)}
+.month{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-bottom:1px solid var(--border);background:var(--panel-2)}
+.month .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 20px}
+.month .stat+.stat{border-left:1px solid var(--border)}
+.month .stat .value{font-size:20px;line-height:28px}
+.month .stat .value .delta{font-size:14px;font-weight:500;margin-left:6px}
+.month .stat .value .delta.ok{color:var(--ok-text)}.month .stat .value .delta.err{color:var(--err-text)}.month .stat .value .delta.gray{color:var(--text-4)}
+.month .none{padding:12px 20px;font-size:14px;color:var(--text-4);grid-column:1/-1}
+@media (max-width:640px){.month .stat+.stat{border-left:0;border-top:1px solid var(--border)}}
 .meeting{padding:0}
 .meeting + .meeting{border-top:1px solid var(--border)}
 .meeting summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}

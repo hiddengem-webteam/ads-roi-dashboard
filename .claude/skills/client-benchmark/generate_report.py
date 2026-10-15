@@ -136,6 +136,46 @@ def roi_line(client):
     return out
 
 
+# ---------- This month: direct revenue and promo codes from the HiddenGem AI platform ----------
+# pms_mtd.json is the saved result of pms_mtd.sql (run through the Supabase
+# connector against the HiddenGem AI project for this run date). One row per
+# tenant: month-to-date direct revenue by booking date, the same day span of
+# the previous month, and promo-code use where the PMS stores codes.
+MTD_FILE=f"{SP}/pms_mtd.json"
+MTD={}
+if os.path.exists(MTD_FILE):
+    for row in json.load(open(MTD_FILE,encoding="utf-8")):
+        MTD[norm(row["name"])]=row
+MTD_ALIAS={"flohom":"flohom","stayon30a":"stayon30a","staysaludanc":"staysaluda","awayframes":"awayframes",
+           "northstarlodgeresort":"northstarlodgeresort","tbergfalls":"tbergfalls","staysouthenillinois":"staysouthernillinois"}
+def mtd_for(client):
+    n=MTD_ALIAS.get(norm(client),norm(client))
+    if n in MTD: return MTD[n]
+    for k,v in MTD.items():
+        if k.startswith(n) or n.startswith(k): return v
+    return None
+def _d(iso): 
+    d=datetime.date.fromisoformat(iso); return f"{d.day} {d.strftime('%b')}"
+def month_line(client):
+    m=mtd_for(client)
+    if not m: return "This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here."
+    span=f"booked {_d(m['month_start'])}–{_d(m['run_date'])}"; pspan=f"{_d(m['prev_start'])}–{_d(m['prev_end'])}"
+    rev=float(m["mtd_rev"] or 0); prev=float(m["prev_rev"] or 0)
+    pct=m.get("vs_prev_pct")
+    trend=(f"{'+' if float(pct)>=0 else '−'}{abs(float(pct)):.0f}% vs {pspan} ({money(prev,0)} from {m['prev_bk']} bookings)" if pct not in (None,"") 
+           else f"no direct revenue in {pspan} to compare against")
+    if m["promo_source"]=="codes":
+        promo=f"{m['promo_uses']} uses ({m['promo_codes']})" if m["promo_uses"] else "0 uses"
+    elif m["promo_source"]=="count only":
+        promo=f"{m['promo_uses']} uses (Hostaway does not store code names)"
+    else:
+        promo=f"not tracked by {m['provider']}"
+    return f"This month ({span}): direct revenue {money(rev,0)} from {m['mtd_bk']} bookings, {trend} · promo codes: {promo}."
+def mtd_csv(client):
+    m=mtd_for(client)
+    if not m: return ["","","","",""]
+    return [f"{float(m['mtd_rev'] or 0):.0f}", str(m["mtd_bk"]), "" if m.get("vs_prev_pct") in (None,"") else str(m["vs_prev_pct"]), str(m["promo_uses"]), m.get("promo_codes") or ""]
+
 # ---------- Weekly Meta Ads meeting notes (Gemini) ----------
 # One entry per meeting doc found on the calendar since the previous run. Oldest first.
 MEETINGS=[
@@ -382,6 +422,7 @@ for c in order:
     am,acct,acctname,src,tof=ADV[c]
     L.append(f"### {c} — AM {am} — account {acctname} ({acct}) — {'live read' if src=='live' else 'CSV export, provisional'}\n")
     L.append(f"ToF (Discovery / Keyword) spend, not scored: {money(tof,0)} over {'30 days' if src=='live' else f'{csv_days} days (export)'}.\n")
+    L.append(month_line(c)+"\n")
     rs_=by_client.get(c,[])
     if not rs_:
         L.append("No live Lead Gen or Sales campaigns with spend in the window.\n")
@@ -416,11 +457,12 @@ L.append("- Scope changes vs 5 Oct: "+("; ".join(f"{c} dropped ({why})" for c,wh
 L.append("- HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: "+(", ".join(HGAI) if HGAI else "none")+".")
 L.append("- Selah Place's prospecting campaign (paused this week) is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with slashes.")
 L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).")
+L.append("- This month line: direct booking revenue by booking date from the HiddenGem AI platform (pms_bookings, platform direct/OTA rules, tenants on a shared PMS account narrowed to their own properties), month to date at the run date, against the same day span of the previous month. Promo codes come from the booking payload: Guesty stores the code, Hostaway only a coupon id (counted, no names), Hospitable and Cloudbeds nothing. Pulled with pms_mtd.sql through the Supabase connector." + (" Clients without a PMS connection on the platform show no figures." if any(mtd_for(c) is None for c in ADV) else ""))
 L.append(f"- Monthly ROI context from `Monthly ROI data/` ({', '.join(sorted({p for v in roi.values() for p in v}, key=lambda p:(p.split()[-1], p[:3] in ('Oct','Nov','Dec'), p[:3]=='Sep', p[:3]=='Aug')))}). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.")
 open(f"{OUT}/{TODAY}-client-benchmark.md","w",encoding="utf-8").write("\n".join(L)+"\n")
 with open(f"{OUT}/{TODAY}-client-benchmark.csv","w",newline="",encoding="utf-8") as fh:
-    w=csv.writer(fh); w.writerow("run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes,frequency,freq_flag".split(","))
+    w=csv.writer(fh); w.writerow("run_date,client,am,ad_account_id,campaign_id,campaign,type,window_days,source,spend,results,governing_metric,governing_value,state,diagnostics,diff_status,weeks_open,notes,frequency,freq_flag,mtd_direct_revenue,mtd_direct_bookings,mtd_vs_prev_month_pct,mtd_promo_uses,mtd_promo_codes".split(","))
     for r in records:
         gm="cpl" if r["type"]==LEAD else "roas"
-        w.writerow([TODAY,r["client"],r["am"],r["acct"],r["cid"],r["name"],r["type"],r["win"],r["src"],f"{r['spend']:.2f}",r["results"],gm,"" if r["govval"] is None else f"{r['govval']:.2f}",r["state"],r["diag"],r["diff"],r["weeks"],r["notes"],"" if r.get("freq") is None else f"{r['freq']:.2f}","yes" if r["freq_flag"] else ""])
+        w.writerow([TODAY,r["client"],r["am"],r["acct"],r["cid"],r["name"],r["type"],r["win"],r["src"],f"{r['spend']:.2f}",r["results"],gm,"" if r["govval"] is None else f"{r['govval']:.2f}",r["state"],r["diag"],r["diff"],r["weeks"],r["notes"],"" if r.get("freq") is None else f"{r['freq']:.2f}","yes" if r["freq_flag"] else ""]+mtd_csv(r["client"]))
 print("records",len(records),"counts",dict(counts)); print("unclassified",unclassified)
