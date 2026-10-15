@@ -158,7 +158,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Best Texas Travel | Nicole | Best Texas Travel Ad Account | 1982551189319458 | ok |
 | Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | **Offboarded 2026-09-28** (Shawal). Still on the Master sheet on 2026-10-05 (⚠️). Not in the connector list or the export any more. Not a blocker: if the row is still on the Master sheet, the spend check marks it ⚠️ "offboarded, remove from sheet or set Status to Not Live" and stops once the row is gone |
 | Bison Ridge Retreat | Chiara | Bison Ridge Retreat Ad Account | 950241787963535 | MCP disabled → CSV |
-| Canopy at Moody Moon Ridge | Kristal | The Canopy At Moody Moon Ridge | 1293707265980102 | ok via the connector; NOT visible to the HiddenGem-Claude system user (decision 31). Second account "Moody Moon Ridge" (Sue Hough) 1061646495537777 is MCP disabled |
+| Canopy at Moody Moon Ridge | Kristal | The Canopy At Moody Moon Ridge | 1293707265980102 | **Offboarded 2026-10-15** (Shawal). Left out of all three weekly reports and the Meta Ad Spends tab from 2026-10-15, even while the row is still on the Master sheet. History: ok via the connector; NOT visible to the HiddenGem-Claude system user (decision 31). Second account "Moody Moon Ridge" (Sue Hough) 1061646495537777 is MCP disabled |
 | Columbia Gorge Getaways | Chiara | CGG | 490940113157881 | ok |
 | Endless Stays | Nicole | Endless Stays | 896372356081479 | MCP disabled → CSV |
 | Evergreen Cabins | Nicole | Evergreen Cabins Ads | 453808647114273 | ok |
@@ -210,7 +210,7 @@ Primary pixel per client, plus live secondaries. Full domain expectations live i
 | Best Texas Travel | Best Texas - Meta Pixel → 4108409325970216 | HG BM | |
 | Big Moon Ranch | Big Moon Ranch - Meta Pixel → 1208874174466414 | HG BM | client offboarded 2026-09-28; pixel stays in the HG BM listing, expect it to go silent |
 | Bison Ridge Retreat | Bison Ridge - Meta Pixel → 1241959234316508 | HG BM | account MCP-disabled, pixel readable |
-| Canopy at Moody Moon Ridge | Moody Moon Pixel Main → 861460105842405 | client BM 1798221880199326 | |
+| Canopy at Moody Moon Ridge | Moody Moon Pixel Main → 861460105842405 | client BM 1798221880199326 | client offboarded 2026-10-15; not checked any more |
 | Columbia Gorge Getaways | Columbia Gorge Getaways Pixel → 700947282709400 (primary); CGG Pixel → 595257656540749 (Wix embed only) | client BMs | two live pixels |
 | Endless Stays | Endless Stays Meta Pixel → 876508505381758 | HG BM | account MCP-disabled, pixel readable |
 | Evergreen Cabins | Evergreen Cabins Meta Pixel → 1474685406530880 | client BM 182684855965772 | |
@@ -339,7 +339,7 @@ Things that were not obvious and change how the workflows are built or run.
 | 28 | Stay on 30a raised to $500/day (LoL $200, BoF $150) against a $400 sheet; one more increase makes it ❌ | Charlotte confirms the ceiling / sheet | Open, raised 2026-10-13 |
 | 29 | Tàberg Falls cut to $300/day during the week (Giveaway $50, BoF $75, Leads $50, Lookalike $75, Broad $50) against a $400 sheet | Alicia confirms / sheet | Open, raised 2026-10-13 |
 | 30 | The Outpost: a second BoF retargeting campaign (10/..) runs beside the 08/29 one, $50/day vs $40 sheet | Anna pauses the old one | Open, raised 2026-10-13 |
-| 31 | Grant the HiddenGem-Claude system user access to Canopy's ad account 1293707265980102 so it is not CSV-only on the API path | Shawal, Business Manager | Open, raised 2026-10-13 |
+| 31 | Grant the HiddenGem-Claude system user access to Canopy's ad account 1293707265980102 so it is not CSV-only on the API path | Shawal, Business Manager | Closed 2026-10-15: client offboarded, no access needed |
 | 32 | CAPI effectively silent on five clients the sheet marks 'CAPI Setup (HG Ai)': FLOHOM, Paradise Pointe, Sunapee Stays, Stay With Branch, Ridge & Falls (under 0.2% of events server-side) | AMs check the HG AI CAPI connections; Shawal decides whether the sheet's tracking column should reflect it | Open, raised 2026-10-13 |
 | 33 | Ponderosa Pines Resort has two live pixels on www.ponderosapinesresort.com (HG pixel 1293211539656211 with CAPI + purchases, and 'Ponderosa Pines Resort's Pixel' 1743173753375733, browser only) | Anna confirms which one the ads use, remove the other | Open, raised 2026-10-13 |
 

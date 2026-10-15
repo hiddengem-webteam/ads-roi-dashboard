@@ -186,7 +186,6 @@ ALIASES={
  "FLOHOM":["flohom","flow home","flo home"],
  "Tàberg Falls":["taberg","tabber","taber falls","tàberg","táberg","tipik falls","debug falls"],
  "Stay On 30A":["30a","stay on 38"],
- "Canopy at Moody Moon":["canopy","moody moon"],
  "Starlight Haven Hot Springs":["starlight","hot springs","starlight haven"],
  "Starlight Haven Weiss Lake":["starlight","weiss"],
  "Stay Saluda NC":["saluda"],
