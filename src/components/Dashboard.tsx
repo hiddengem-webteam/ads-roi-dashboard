@@ -7,7 +7,6 @@ import { ClientEmailMatches } from './PMSAnalysisSection';
 import FacebookStatsSection from './FacebookStatsSection';
 import PMSAnalysisSection from './PMSAnalysisSection';
 import FlagPanel from './FlagPanel';
-import SyncPanel from './SyncPanel';
 import PeriodOverviewSection from './PeriodOverviewSection';
 import DataStatusPanel from './DataStatusPanel';
 import FinalizedReportingSummarySection from './FinalizedReportingSummarySection';
@@ -341,7 +340,6 @@ export default function Dashboard() {
             </>
           )}
 
-          <SyncPanel />
         </div>
       </div>
     </div>

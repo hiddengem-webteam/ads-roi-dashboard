@@ -100,9 +100,6 @@ promo-attribution section stays empty unless you provide a `Promo codes.csv`
 manually. Everything else (ad stats, lead matching, revenue summary) fills
 automatically.
 
-> The Google Drive **Sync Month** panel (bottom-right, localhost only) still
-> exists as an alternative source and writes the same files.
-
 ### Keeping production current (scheduled rebuilds)
 
 The deployed dashboard is a static snapshot from its last build. To refresh it on
