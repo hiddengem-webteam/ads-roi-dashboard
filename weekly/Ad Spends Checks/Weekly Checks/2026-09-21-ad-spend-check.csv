@@ -1,0 +1,43 @@
+run_date,client,am,ad_account_id,sheet_status,sheet_daily_budget,actual_daily_budget,spend_7d,source,flag,diff_status,weeks_open,notes
+2026-09-21,American River Resort,Nicole,953162737054331,Live,50,50,314.75,live,match,first_run,0,"2 campaigns (Giveaway $30, Leads $20)"
+2026-09-21,Asheville River Cabins,Charlotte,615836588009747,Live,80,80,418.63,live,match,first_run,0,
+2026-09-21,Away2PA,Alicia,603977626130795,Live,40,40,239.85,live,warning,first_run,1,"Live matches the $40 budget, but sheet comment says ""Its on $60/day"""
+2026-09-21,Awayframes,Alicia,2471256056603833,Live,30,30,175.97,live,match,first_run,0,
+2026-09-21,Best Texas Travel,Nicole,1982551189319458,Live,30,30,176.98,live,match,first_run,0,
+2026-09-21,Big Moon Ranch,Charlotte,758851247064974,Live,50,110,,csv,critical,first_run,1,"source: CSV export 2026-09-01 to 2026-09-21, not live. HG campaigns total $25/day. ""Prospecting-Booking-Fall2026Show"" adds $85/day in ad set budgets and is not HG naming. MTD spend averages $57/day. Provisional: export has no status column"
+2026-09-21,Bison Ridge Retreat,Chiara,950241787963535,Live,30,40,,csv,warning,first_run,1,"source: CSV export 2026-09-01 to 2026-09-21, not live. Four campaigns on paper ($40), MTD spend averages $29/day so one is probably paused. Provisional"
+2026-09-21,Canopy at Moody Moon Ridge,Alicia,1293707265980102,Live,,0,0.00,live,warning,first_run,1,"No active campaigns today, but CSV shows ~$1,509 spent 1–21 Sep across 3 campaigns (two $150/day Sales, one $50/day ABO test), so everything was paused within the last few days. No documented budget. Second account ""Moody Moon Ridge"" (Sue Hough) is MCP-disabled and not in the CSV"
+2026-09-21,Columbia Gorge Getaways,Chiara,490940113157881,Live,30,40,239.62,live,critical,first_run,1,"Giveaway $20, BoF $15, MoF $5 = $40. $10 over sheet (33%)"
+2026-09-21,Endless Stays,Nicole,896372356081479,Live,50,65,,csv,warning,first_run,1,"source: CSV export 2026-09-01 to 2026-09-21, not live. MoF Lead campaign appears 3 times (original, 09/03, 09/09), treated as recreated not stacked. Likely live: Giveaway $30 + Keyword $15 + MoF $10 + BoF $10 = $65. MTD spend averages $46/day. Provisional"
+2026-09-21,Evergreen Cabins,Nicole,453808647114273,Live,40,40,243.64,live,match,first_run,0,
+2026-09-21,FLOHOM,Makenna,2100710320122219,Live,250,310,1868.67,live,warning,first_run,1,6 active campaigns. Myrtle Beach MoF ($30) and Keyword ($30) added since the sheet was set. 24% over sheet
+2026-09-21,Green Springs Inn,Alicia,1390516335151357,Live,40,40,247.03,live,match,first_run,0,"One boosted post still ACTIVE but ended 2025-05-11, not spending"
+2026-09-21,Hiawassee Glamping,Alicia,4219624811692502,Live,30,30,174.60,live,match,first_run,0,
+2026-09-21,Home Base,Charlotte,3224125791099903,Live,50,50,307.78,live,match,first_run,0,
+2026-09-21,Inspired Retreats,Makenna,1494841894957652,Live,60,60,381.19,live,match,first_run,0,"Queried ""Inspired Retreats Ads 2.0"" under HG BM. Original client account 2807065489488604 is CLOSED"
+2026-09-21,Little River Landing,Makenna,884285717873613,Live,65,65,275.28,live,match,first_run,0,
+2026-09-21,Myrinn,Charlotte,1668286333836716,Live,30,30,169.01,live,match,first_run,0,Account sits under HG Marketing BM
+2026-09-21,Nature Nooks,Kristal,1796752774213285,Live,30,30,212.43,live,match,first_run,0,
+2026-09-21,North Star Resort & Lodge,—,2003562593933799,Live,30,30,212.60,live,match,first_run,0,No AM found in CRM
+2026-09-21,Oak & Ember,Chiara,831762063342909,Live,30,30,175.55,live,match,first_run,0,
+2026-09-21,Paradise Pointe,Makenna,1585826092078255,Live,100,115,,csv,warning,first_run,1,"source: CSV export 2026-09-01 to 2026-09-21, not live. MoF $25 + BoF $50 + Giveaway $25 + Keyword $15 = $115. MTD spend averages $97/day. Provisional"
+2026-09-21,Parker Reserve,Nicole,1002927148609804,Live,10,10,69.21,live,match,first_run,0,"4-Campaign Structure column says Not Live, Status says Live"
+2026-09-21,Ponderosa Pines Resort,Anna,1058846326445255,Live,100,130,,csv,warning,first_run,1,"source: CSV export 2026-09-01 to 2026-09-21, not live. Giveaway $40 + Retarget $40 + Engagement $30 + Leads $20 = $130. MTD spend averages $95/day so one campaign is probably paused. Provisional"
+2026-09-21,Raven Rock Mountain,Anna,1065186195582056,Not Live,,0,0.00,live,match,first_run,0,"No active campaigns, correct for Not Live"
+2026-09-21,Red White & Blue Views,Nicole,1419930382946246,Live,45,45,262.91,live,match,first_run,0,
+2026-09-21,Ridge & Falls,Makenna,1313401330776046,Live,60,60,386.59,live,match,first_run,0,
+2026-09-21,Selah Place,Alicia,1275283434220508,Live,50,50,293.93,live,match,first_run,0,"70+ old boosted-post campaigns still ACTIVE but past end date, not spending. Archive pass recommended"
+2026-09-21,Starlight Haven - Hot Springs,Charlotte,901138032027913,Live,75,75,474.22,live,match,first_run,0,Budgets at ad set level (6 ad sets)
+2026-09-21,Starlight Haven - Weiss Lake,Charlotte,74756899,Live,65,70,485.59,live,match,first_run,0,"Budgets at ad set level (5 ad sets). $5 over sheet, within tolerance"
+2026-09-21,Stay on 30a,Charlotte,25640434272252212,Live,400,450,2710.20,live,warning,first_run,1,"MoF LoL $180 + BoF $120 + Giveaway $100 + MoF Leads $50 = $450. 12.5% over sheet. Legacy ""[NOT IN USE] Stay on 30A"" account under HG BM is MCP-disabled"
+2026-09-21,Stay Saluda NC,Makenna,1863632561215857,Live,100,80,482.67,live,warning,first_run,1,Giveaway $30 + BoF $30 + MoF $20 = $80. Sheet lists a $20 Keyword line that is not running. 20% under
+2026-09-21,Stay Southern Illinois,Chiara,1661949078036229,Live,30,30,175.20,live,match,first_run,0,"First read errored, retry succeeded"
+2026-09-21,Stay With Branch,Charlotte,1269399754049770,Live,20,20,122.66,live,match,first_run,0,"Separate ""Branch Berkeley Springs"" account (1517541906010284) has spend in the CSV and is not on the sheet"
+2026-09-21,StayLuxe,Nicole,25033578722931437,Live,20,20,119.97,live,match,first_run,0,
+2026-09-21,Sunapee Stays,Charlotte,651114096215889,Live,50,50,290.67,live,match,first_run,0,
+2026-09-21,Taberg Falls,Alicia,827872700004659,Live,400,360,2367.05,live,match,first_run,0,"10% under sheet, at the match threshold"
+2026-09-21,The Cohost Company,Makenna,9141035462679902,Live,130,130,802.81,live,match,first_run,0,
+2026-09-21,The Outpost,Ananya,1530849534802936,Live,40,40,275.62,live,match,first_run,0,"4 old boosted posts still ACTIVE but ended May 2026, not spending"
+2026-09-21,Three Suns Cabins,Anna,1210218584137342,Live,15,15,105.01,live,warning,first_run,1,"Matches, but sheet note says ""Running at $15 until Sept"" and it is 21 Sept"
+2026-09-21,Treetop Escapes,Makenna,967636478877602,Live,100,100,659.99,live,match,first_run,0,
+2026-09-21,Tuxedo Falls,Chiara,2077151009889326,Live,30,30,177.98,live,match,first_run,0,
