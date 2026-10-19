@@ -66,10 +66,12 @@ h1{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wra
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border:1px solid var(--border);border-radius:9999px;background:var(--panel);font:500 12px/18px 'Inter',sans-serif;color:var(--text-3)}
 .chip .mono{font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:32px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));grid-auto-rows:1fr;gap:12px;margin-bottom:32px}
+.stats.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:640px){.stats,.stats.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow-xs);display:flex;flex-direction:column;gap:4px;min-width:0}
 .stat .label{font:500 13px/18px 'Inter',sans-serif;color:var(--text-3);display:flex;align-items:center;gap:6px}
-.stat .value{font:600 26px/32px 'Inter',sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .value{font:600 26px/32px 'Inter',sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat .hint{font:400 12px/18px 'Inter',sans-serif;color:var(--text-4)}
 .dot{width:8px;height:8px;border-radius:9999px;display:inline-block;flex:none}
 .dot.ok{background:var(--ok-dot)}.dot.warn{background:var(--warn-dot)}.dot.err{background:var(--err-dot)}.dot.gray{background:var(--gray-dot)}.dot.brand{background:var(--brand)}
@@ -497,7 +499,9 @@ def build_bench():
     clients={r["client"] for r in rows}
     scored=sum(1 for r in rows if r["state"]!="Under gate")
     ct0=tables(S["_pre"]); hdrv=dict(zip(ct0[0][0],ct0[0][1])) if ct0 and len(ct0[0])>1 else {}
-    stats=(stat("Advanced clients",hdrv.get("Advanced clients","—"),f"{hdrv.get('Live reads','—')} live reads, {hdrv.get('From CSV','—')} from the CSV export")
+    adv_raw=hdrv.get("Advanced clients","—"); m_adv=re.match(r"(\d+)\s*\(\+(\d+) unmapped\)",adv_raw)
+    adv_val=m_adv.group(1) if m_adv else adv_raw; adv_extra=f", {m_adv.group(2)} Advanced without an ad account" if m_adv else ""
+    stats=(stat("Advanced clients",adv_val,f"{hdrv.get('Live reads','—')} live reads, {hdrv.get('From CSV','—')} from the CSV export{adv_extra}")
         +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} more listed under the spend gate")
         +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"CPL $2.50+ or no leads; ROAS under 2x or no purchases",dot="err")
         +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00 to 2.50; ROAS 2 to 5x",dot="warn")
@@ -591,7 +595,7 @@ def build_bench():
 </div>""")
     states_para=[p for p in paras(S["_pre"]) if p.startswith("States come from")]
     body=f"""
-<div class="stats">{stats}</div>
+<div class="stats cols-4">{stats}</div>
 <div class="alert info"><div class="t">How states are assigned</div><p>{inline(states_para[0]) if states_para else ""}</p></div>
 <section>
   <div class="sec-head"><div><h2>Weekly Meta Ads meetings since last run</h2><p class="sec-desc">Notes by Gemini attached to the calendar events, read via Drive. Summary, decisions and next steps as Gemini wrote them; client-specific sentences are pulled into each client's card below. Transcript not used.</p></div></div>
