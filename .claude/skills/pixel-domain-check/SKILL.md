@@ -16,13 +16,10 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 | Master Meta Ads sheet | Google Drive file `1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM` | Tab "Meta Ad Links": every client row regardless of Status. Capture Client Business, Status, Attribution Tracking Setup (e.g. "(6/10) CAPI Setup (HG Ai)", "(3/10) Browser Events Only"). PMS tab (columns Client, Done, Integration Doable?, PMS): the client's PMS, used to recognise booking-engine hosts. Do not copy the API keys column anywhere. |
 | Expected domains | `weekly/Meta Pixel Reviews/expected-domains.csv` | One row per client (and per pixel where a client has several): expected primary domains, accepted extra hosts, source (`sheet`, `confirmed`, `inferred`). This file is the source of truth for what "the client's own domain" means. The Master sheet has no website column. |
 | Client → ad account map | `weekly/Project Data/PROJECT.md` section 5 | Ad account IDs per client. |
-| Datasets (pixels) | `ads_get_datasets` with `business_id: 158693423705448` (HiddenGem BM, `limit: 100`), then `ads_get_datasets` with `ad_account_id` for every client account that is MCP-enabled | Pixel name, ID, owning business, `last_fired_time`, `server_last_fired_time`. |
-| Domains per pixel | `ads_get_dataset_stats`, `aggregation: host`, default 7-day window | Hourly buckets of `{host, count}`. This is the core of the audit. |
-| Events per pixel | `ads_get_dataset_stats`, `aggregation: event_total_counts` | Compact total per event type for 7 days. |
-| Match quality | `ads_get_dataset_quality`, `query_type: ["web"]` | Event names seen and EMQ composite per event. Optional colour; skip if it times out. |
+| Pixel inventory, domains, events, browser/server split | `npx tsx scripts/pull-pixel-stats.mts YYYY-MM-DD` from the repo root (Meta Marketing API, system-user token `META_ACCESS_TOKEN` in the repo-root `.env`), which writes `pixel_pull.json` next to this file | One entry per pixel: name, id, owning business, `last_fired_time`, which listings returned it (`hg_owned_pixels`, `hg_client_pixels`, `act_<id>`, `direct`), which client accounts it is attached to, `hosts` (count, first and last hour, per-day counts for the 7-day window), `events` (total per event name), `sources` (browser vs server), `total_events`, `server_events`, `error`. This file is the whole Meta read for the run. |
 | Previous report | Newest `weekly/Meta Pixel Reviews/Weekly Checks/*-pixel-domain-check.csv` dated before today | Prior flag and notes per pixel ID for the week-over-week diff. |
 
-Use one `client_conversation_id` for every Meta call in the run.
+The claude.ai Meta connector is not used for this report any more (Shawal, 2026-10-19); the script is the only Meta read. If `META_ACCESS_TOKEN` is missing, stop and say so.
 
 ## Step 1: Read the sheet and the expected-domains file
 
@@ -30,30 +27,32 @@ Read the Master sheet with `read_file_content`. It is large and gets saved to di
 
 Read `expected-domains.csv`. If a client on the sheet has no row, add one at the end of the run with `source=inferred` and flag the row ⚠️ "expected domain inferred, confirm".
 
-## Step 2: Build the pixel inventory
+## Step 2: Pull everything with the script
 
-1. Call `ads_get_datasets` for the HiddenGem business (`business_id 158693423705448`, `limit 100`). This returns pixels owned by HG *and* pixels client businesses have shared with HG, so it covers most clients in one call, including clients whose ad accounts are MCP-disabled.
-2. For every client ad account with `is_ads_mcp_enabled: true`, call `ads_get_datasets` with `ad_account_id`. This shows which pixels are actually attached to the account. An account with zero datasets is a finding (pixel exists but is not shared to the account).
-3. Dedupe: the listing returns each dataset twice (a pixel row and a wrapper row with `last_fired_time` at the 1970 epoch). Keep one row per `dataset_id`, taking the latest `last_fired_time` and `server_last_fired_time`.
-4. Match pixels to clients by name and by owning business, using the map in PROJECT.md section 5.1. Every pixel that fired in the last 28 days gets its own row. Pixels that never fired or last fired more than 28 days ago are listed in the Notes of the client's primary row ("also present, dead since …"), not as rows, unless the client has no other pixel.
-5. Pixels in the HG BM that belong to no sheet client (test pixels, "Do Not Use", prospects) are listed once in a footer line, not in the table.
+From the repo root:
+
+```
+npx tsx scripts/pull-pixel-stats.mts YYYY-MM-DD
+```
+
+The script reads the client map (section 5, Offboarded rows skipped) and the pixel map (section 5.1) from PROJECT.md, lists the HiddenGem BM's `owned_pixels` and `client_pixels` (business `158693423705448`), lists `act_<id>/adspixels` for every client account (what is attached where), reads directly any mapped pixel that no listing returned, and then pulls three `stats` aggregations for the last 7 days for every pixel that fired in the last 28 days or is in the pixel map: `host` (hourly buckets, folded into per-host totals with first/last hour and per-day counts), `event_total_counts` and `event_source`. It prints one line per pixel and writes `pixel_pull.json` in this folder. It takes a few minutes; run it in the background and carry on with step 1.
 
 Access rules, do not retry:
-- `ads_get_datasets` on an MCP-disabled account errors. Fall back to the HG BM listing for that client. If the pixel is there, read it normally and note "account MCP-disabled, pixel read via HG BM".
+- A listing error on an account (`account_errors` in the JSON) means the system user cannot see that account. The pixel may still be in the HG BM listing or readable directly; note "account not visible to the system user, pixel read via HG BM / directly".
 - Pixel visible nowhere → 🔴 Blocker, note "No pixel found, confirm one exists or create one".
-- Attached pixel silent (zero events) → before flagging, look in the HG BM listing for another dataset with the same `business_id` that did fire (Tuxedo Falls' "Website" pixel, 2026-09-28). If one exists, read it, give it its own ⚠️ row ("live but not shared to the ad account") and write the next action as share-or-swap.
-- Stats call fails on a pixel → 🔴 Blocker, note "Claude doesn't have access, please check the pixel manually".
+- Attached pixel silent (zero events) → before flagging, look for another pixel with the same `owner_business` that did fire (Tuxedo Falls' "Website" pixel, 2026-09-28). If one exists, give it its own ⚠️ row ("live but not shared to the ad account") and write the next action as share-or-swap.
+- A pixel whose `error` field is set could not be read → 🔴 Blocker, note "Claude doesn't have access, please check the pixel manually".
+- `is_unavailable` or `(not readable)` as the name: the pixel sits in a client business that has not shared it with HG and is not attached to any account the system user sees.
 
-## Step 3: Pull domains and volume for every active pixel
+## Step 3: Read the pull
 
-For each pixel row:
+Work from `pixel_pull.json` with Python in the scratchpad, never by eye:
 
-1. `ads_get_dataset_stats` with `aggregation: host` (7-day default). Read the full host list. Note the dominant host(s), every minor host, and any host that appears only from a certain day onwards (new install).
-2. `ads_get_dataset_stats` with `aggregation: event_total_counts`. The result lists each event name several times, split by a hidden dimension. **Sum every `count` in the list to get total events for 7 days.** Do not use `event` or `host` hourly buckets for totals; they are far too long to sum reliably. Do the sums in a Python one-liner in the scratchpad, never in your head.
-3. `ads_get_dataset_quality` with `query_type: ["web"]`. Record the event names and the PageView EMQ composite. If it times out, write "EMQ n/a".
-4. A pixel with an empty `stats` array has zero events.
-
-Batch 12 to 16 stats calls per turn. Save per-pixel notes to a scratch file after each batch so nothing is lost if the context is compacted.
+1. Dedupe is already done (one entry per pixel id). Match pixels to clients by the pixel map first, then by name and owning business for anything new. Every pixel that fired in the last 28 days gets its own row; pixels that never fired or last fired more than 28 days ago are listed in the Notes of the client's primary row ("also present, dead since …"), not as rows, unless the client has no other pixel.
+2. Pixels in the HG BM that belong to no sheet client (test pixels, "Do Not Use", prospects) are listed once in a footer line, not in the table.
+3. `total_events` is the 7-day total (the API returns one bucket per event name for the window; the script sums them). `hosts[*].daily` gives the per-day shape of each host, which is what settles "did the block work" questions.
+4. `sources` splits events into browser and server (CAPI). A client whose sheet says CAPI but whose `server_events` is zero or under about 1% of the total gets the "CAPI effectively silent" warning.
+5. EMQ is not pulled on this path; write "EMQ n/a" where the table needs it.
 
 ## Step 4: Classify each host
 
@@ -130,15 +129,12 @@ Give the header line, the Critical section and the Warnings table. Point to the 
 2. `weekly/Meta Pixel Reviews/expected-domains.csv`: add rows for new clients (`source=inferred`), and flip `inferred` to `confirmed` only when Shawal says so.
 3. If the skill itself changed, add a dated bullet to `weekly/Project Data/CHANGELOG.md`.
 
-## Connector quirks (learned 2026-09-21)
+## API quirks (learned 2026-10-13 and 2026-10-19)
 
-- `ads_get_datasets` returns every dataset twice; dedupe on `dataset_id`.
-- The business-level listing includes pixels shared into the HG BM by client businesses, so it covers MCP-disabled accounts too.
-- `host` and `event` aggregations return hourly buckets for the full window; no daily option. Use them for the host set, not for totals.
-- `event_total_counts` repeats each event name several times; the rows for one event sum to that event's total.
-- `ads_pixel_event_read` returns no rules for these pixels; skip it.
-- `ads_get_dataset_details` adds nothing beyond the listing except an `openbridge` block; skip it.
-- Quality calls occasionally time out; move on.
+- Every `stats` response carries `paging.next`, even when a single bucket already covers the window. Following it on `event_total_counts` or `event_source` repeats the bucket and inflates totals about 60x. The script only pages when a response is full (500 buckets); do not "fix" that.
+- `host` returns hourly buckets (about 168 for 7 days); `event_total_counts` and `event_source` return one bucket for the window.
+- The HG BM `client_pixels` edge returns pixels client businesses have shared with HiddenGem; `owned_pixels` the ones HG owns. Pixels in a client business that are neither shared nor attached to a visible account can only be read if the system user has been granted access.
+- Older notes on the claude.ai connector (`ads_get_datasets` duplicates, hidden-dimension repeats in `event_total_counts`, quality time-outs) no longer apply.
 
 ## Step 10: Publish the HTML and the archive
 

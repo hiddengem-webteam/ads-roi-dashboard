@@ -1,6 +1,6 @@
 client,pixel_id,expected_domains,accepted_extra_hosts,source,notes
 American River Resort,2862601447415133,americanriverresort.com,,inferred,seeded 2026-09-21 from brand name + observed traffic
-Asheville River Cabins,1634367080775220,ashevillerivercabins.com,hotels.cloudbeds.com|us1.cloudbeds.com,inferred,Cloudbeds PMS
+Asheville River Cabins,1634367080775220,ashevillerivercabins.com,hotels.cloudbeds.com|us1.cloudbeds.com|wordpress-1016560-5306423.cloudwaysapps.com,inferred,Cloudbeds PMS; Cloudways host is the site's WordPress staging (seen 2026-10-19)
 Away2PA,772693422494226,away2pa.com|awaytopa.com,booking.ownerrez.com|app.ownerrez.com,inferred,second brand domain awaytopa.com used for bio/links
 Awayframes,773898245792839,awayframes.com,,inferred,
 Best Texas Travel,4108409325970216,besttexastravel.com,besttexastravel.holidayfuture.com,inferred,book. subdomain is the booking engine; Holiday Future booking engine seen 1 Oct 2026
@@ -28,7 +28,7 @@ Ponderosa Pines Resort,1293211539656211,ponderosapinesresort.com,bookingsus.newb
 Raven Rock Mountain,1359649962298380,ravenrockmountain.com|stayravenrockmountain.com,,inferred,Hospitable PMS
 Red White & Blue Views,1625871301864243,redwhiteandblueviews.com,,inferred,book. subdomain is the booking engine
 Ridge & Falls,1332286819018269,ridgeandfalls.com,ridge-and-falls.netlify.app,inferred,Boom/Guesty PMS
-Selah Place,1235173718368839,selah.place,selahplace.holidayfuture.com|www-selah-place.filesusr.com,inferred,Hostaway/holidayfuture booking; Wix site
+Selah Place,1235173718368839,selah.place,selahplace.holidayfuture.com|www-selah-place.filesusr.com|reserve.selah.place,inferred,Hostaway/holidayfuture booking; Wix site; reserve. subdomain seen 2026-10-19
 Selah Place,3327546500757583,selah.place,linktr.ee,inferred,LinkTree pixel (secondary)
 Starlight Haven - Hot Springs,766226461367996,visitstarlight.com,resnexus.com,inferred,ResNexus PMS; pixel shared with Weiss Lake
 Starlight Haven - Weiss Lake,766226461367996,visitstarlight.com,resnexus.com,inferred,same pixel as Hot Springs
@@ -43,8 +43,9 @@ The Cohost Company,638998632168952,thecohostcompany.com|gocohostcompany.com,the-
 The Outpost,1691591692267740,outpostgrandcanyon.com,,inferred,HG Event Data pixel (bio only)
 The Outpost,734783866381382,outpostgrandcanyon.com,bookingsus.newbook.cloud,inferred,client BM pixel (site + Newbook)
 Three Suns Cabins,691977289952800,threesunscabins.com,,inferred,only bio subdomain seen; CONFIRM main site domain
-Treetop Escapes,1178838797064774,staytreetopescapes.com,uniquestays.guestybookings.com,inferred,"Guesty account ""uniquestays""; HomeRunner"
+Treetop Escapes,1178838797064774,staytreetopescapes.com,uniquestays.guestybookings.com|michigan.guestybookings.com,inferred,"Guesty account ""uniquestays""; HomeRunner; michigan.guestybookings.com seen 2026-10-19"
 Tuxedo Falls,1561325308991270,tuxedofalls.com,,inferred,no events seen; ResNexus PMS; CONFIRM domain
 Tuxedo Falls,1839806973541001,tuxedofalls.com,resnexus.com|sites.leadconnectorhq.com,inferred,"'Website' pixel in Tuxedo's own business, carries the site + ResNexus + GHL; not attached to the ad account (found 2026-09-28)"
-Walden Retreats,505477285266646,waldenretreats.com,resnexus.com,inferred,client-business pixel; ResNexus PMS; added 2026-10-13 when the client joined the sheet
+Walden Retreats,505477285266646,waldenretreats.com,resnexus.com|spacecrafted.com,inferred,client-business pixel; ResNexus PMS; added 2026-10-13 when the client joined the sheet; spacecrafted.com is the site builder host (2026-10-19)
 Ponderosa Pines Resort,1743173753375733,ponderosapinesresort.com,,inferred,"second pixel on the main site, attached to the ad account, found 2026-10-13; double-counts page views with 1293211539656211"
+Glasscombe,1369498611461163,glasscombe.com,us2.cloudbeds.com|reserve.glasscombe.com,inferred,"pixel is named 'Aero Camp Pixel' in business 'Glasscombe' (806512758639975), shared into the HG BM; Cloudbeds PMS; added 2026-10-19 when the client joined the sheet; no ad account mapping yet"

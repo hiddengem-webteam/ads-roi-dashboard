@@ -1,10 +1,10 @@
 import csv, json, glob, os, re, collections, datetime
 ROOT=os.path.join(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","..")),"weekly")  # <repo>/weekly
 SP=os.path.dirname(os.path.abspath(__file__))
-TODAY="2026-10-13"
-PREV_DATE="2026-10-05"
+TODAY="2026-10-19"
+PREV_DATE="2026-10-13"
 OUT=f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks"
-ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-13: name -> (AM, account id, account name, connector)
+ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-19: name -> (AM, account id, account name, connector)
  "FLOHOM":("Makenna","2100710320122219","FLOHOM Ads","live"),
  "Treetop Escapes":("Makenna","967636478877602","Treetop Escapes Ads","live"),
  "Paradise Pointe":("Makenna","1585826092078255","Paradise Pointe Ads","live"),
@@ -22,7 +22,6 @@ ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-13: na
  "Ponderosa Pines Resort":("Anna","1058846326445255","Ponderosa Pines Resort","live"),
  "The Outpost":("Anna","1530849534802936","The Outpost Grand Canyon","live"),
  "Selah Place":("Alicia","1275283434220508","Selah.place","live"),
- "Sunapee Stays":("Charlotte","651114096215889","Sunapee Stays Ads Account","live"),
  "Ridge & Falls":("Makenna","1313401330776046","Ridge & Falls ad account","live"),
  "Little River Landing":("Makenna","884285717873613","Little River Landing","live"),
  "North Star Lodge & Resort":("Charlotte","2003562593933799","North Star Lodge & Resort Ads","live"),
@@ -31,7 +30,7 @@ ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-13: na
 # Advanced in the CRM but with no ad account in PROJECT.md section 5 (footer only)
 ADV_UNMAPPED={"Treetop Hideaways":"Kristal","Glasscombe":"Charlotte","Cabin Collective":"Chiara","Casey Key Resort":"Alicia","Arca Roatan":"Anna"}
 # Was Advanced on 2026-09-21, now Basic in the CRM: dropped from scope this run
-ADV_DROPPED={}  # no scope changes vs 2026-09-28; three new Advanced clients in the CRM (Cabin Collective, Casey Key Resort, Arca Roatan) have no ad account yet
+ADV_DROPPED={"Sunapee Stays":"CRM Meta Ads column now Basic, was Advanced on 13 Oct; account 651114096215889 still runs $50/day and stays in the spend and pixel checks"}
 def f(x):
     try: return float(x)
     except: return None
@@ -179,7 +178,7 @@ def mtd_csv(client):
 # ---------- Weekly Meta Ads meeting notes (Gemini) ----------
 # One entry per meeting doc found on the calendar since the previous run. Oldest first.
 MEETINGS=[
- dict(title="Meta Ads Strategy", date="2026-10-07", doc_id="1IDTNY2oBzIjvFxP9T_oKb_YLJzAJ7n-gnFtNqjMxljg", file=f"{SP}/meeting1.json"),
+ dict(title="Meta Ads Strategy", date="2026-10-14", doc_id="14s5-eW49GhSjyoeunooM1-kBX7O_Rr4X8pE_rS9WmhE", file=f"{SP}/meeting1.json"),
 ]
 # How Gemini spells clients in the notes. Lower-case substrings.
 ALIASES={
@@ -251,7 +250,7 @@ FLAGGED=("Flag to Shawal","Review w/ HG AI")
 def diff_for(rec):
     key=rec["cid"] or (rec["client"]+"||"+rec["name"])
     p=prev.get(key) or prev.get(rec["client"]+"||"+rec["name"])  # CSV rows last week, live rows this week: fall back to client + campaign name
-    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 5 Oct run")
+    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 13 Oct run")
     ps=p["state"]; pw=int(p.get("weeks_open") or 0)
     if ps in FLAGGED and rec["state"] in FLAGGED: return ("still_open",pw+1,f"Still open, week {pw+1}"+("" if ps==rec["state"] else f" (was {ps})"))
     if ps in FLAGGED and rec["state"] not in FLAGGED: return ("fixed",0,f"Fixed, was {ps}")
@@ -266,14 +265,20 @@ for fn in sorted(glob.glob(f"{ROOT}/HG AI Reports/*.md")):
     HGAI[b]=fn
 HGAI_LINES={}
 EXTRA_NOTES={
- "Selah Place":"Actions log: the BoF retargeting budget was raised from $15 to $35 this week (the planned move of the paused test's budget, now Done); the 14-day window still mostly reflects the $15 level.",
- "Ridge & Falls":"Actions log: the lead-campaign relaunch with a fixed conversion event (planned 28 Sep) has still not happened; the 09/01 campaign is the live one.",
- "Tàberg Falls":"Budgets were cut during the week (BoF $100 to $75, Giveaway $100 to $50, Leads $60 to $50, Lookalike up to $75); Broad stays at $50. The 14-day window straddles the change.",
- "Paradise Pointe":"Read live this week (API system user). September ROI file: Meta recorded no revenue for 12 retargeting purchases in late September; live purchase_roas now carries value again. Dustin's 1 Oct next step (disable low-performing ads, new variations into retargeting) is not yet checkable here.",
- "Asheville River Cabins":"Read live again (account ACTIVE, balance cleared). Delivery resumed about 6 Oct, so the 14-day window includes the dark week. 7 Oct meeting: Asheville is one of the Cloudbeds properties for the new attribution script test.",
- "The Outpost":"A second BoF campaign (dated 10/..) runs beside the 08/29 one this week; both are scored if over the gate.",
- "Walden Retreats":"New in scope: ad account 973261794434226 appeared on the Master sheet this week. Campaigns launched 6 to 9 Oct, so every row is on a few days of data.",
- "North Star Lodge & Resort":"7 Oct meeting: North Star is one of the Cloudbeds properties for the new attribution script test (Leshan).",
+ "Selah Place":"Actions log: the BoF retargeting budget was raised on 13 Oct (planned move of the paused test's budget, Done; the spend check reads $30/day today), so this 14-day window is the first mostly on the higher budget. BoF 11.7x on 8 purchases sits below the 15x Scale line; the paused prospecting test's trailing spend (1.1x) is listed, not scored.",
+ "Ridge & Falls":"Actions log: the lead-campaign relaunch with a fixed conversion event (planned 28 Sep) has still not happened; the 09/01 campaign is the live one and is in its fourth week at Flag ($3.51 CPL on 30 days, $2.76 on 14). October direct revenue is up on a very small base.",
+ "Tàberg Falls":"Budgets were cut on 13 Oct (today $250/day: Giveaway $50, Leads $50, Lookalike $50, Broad $50, BoF $50), so this 14-day window is mostly on the cut budgets. The Broad prospecting campaign (3.9x on 2 purchases, $698) moves to Review; it is scored on the Retargeting bands (see footer).",
+ "Paradise Pointe":"BoF 3.7x, third week at Review, frequency 5.7 and still the only Frequency-watch row. September ROI file: Meta recorded no revenue for 12 retargeting purchases; the purchase-value check (decision 26) is still open, so the live ROAS may understate.",
+ "Asheville River Cabins":"14 Oct Strategy: Leshan's custom script in the Cloudbeds account recorded Facebook click IDs on reservations; sending them to Meta through CAPI needs host API access, which Shawal is requesting. The leads campaign slips from Scale to Healthy at $0.30 (band edge); BoF 43.1x holds.",
+ "The Outpost":"The second BoF campaign (10/08, $10/day) runs beside the 08/29 one; both are under the $200 gate with 0 purchases in 14 days. Decision 30 (pause the old one) is still open.",
+ "Walden Retreats":"The wedding-lead test (TOF Wedding Leads 10.8.26, $24/day) crosses the $100 gate for the first time at $10.07 CPL on 20 leads. Wedding enquiries are a different lead type from the email-list leads the CPL bands were set for, so read the Flag as a prompt to agree a wedding CPL target with Anna, not as a failure. The alt-audience variant (10.9.26) is paused. BoF 56.9x on $118, under the gate.",
+ "North Star Lodge & Resort":"14 Oct Strategy: the full plugin, script and API set is installed (Leshan); BoF spend is low ($70 in 14 days) and no BoF reservation has come through yet, though clicks are visible in the platform.",
+ "FLOHOM":"BoF 4.0x on 14 days (6 purchases) against 7.1x on 30 days: the last two weeks are the soft patch, and October direct revenue is 25% below September's same span. The [Myrtle Beach] lookalike slips to Monitor at 6.0x on 1 purchase.",
+ "Treetop Escapes":"BoF 2.5x on 3 purchases in 14 days (7.1x on 30), first Review since the 28 Sep run (4.7x then). October direct revenue is up 25% on September's span, so bookings are arriving that the pixel does not credit to the campaign.",
+ "Stay Saluda NC":"BoF 4.3x on 3 purchases with frequency 4.7 and climbing. The Saluda GHL hosts still fire the Inspired Retreats pixel (pixel check, week 5).",
+ "Ponderosa Pines Resort":"BoF 7.6x on 14 days (15.2x on 30): a 14-day dip takes it from Scale to Monitor; frequency 3.1.",
+ "American River Resort":"Both campaigns stopped between 15 and 19 Oct (spend check: $0/day live today). The lead campaign spent $551 in the window and is paused now, so nothing is scored. Confirm with Nicole whether this is a pause or an offboarding.",
+ "Endless Stays":"BoF 3.1x, third week at Review. October direct revenue is $26k against $5.4k in September's same span (+381%), so direct bookings are landing outside the pixel's view; check the purchase event on the Hospitable booking flow.",
 }
 def hgai_line(client):
     n=norm(client); hits=[b for b in HGAI if norm(b).find(n[:8])>=0 or n.find(norm(b.split(" - ")[0][11:]))>=0]
@@ -371,7 +376,7 @@ def srow(r,first=True):
     return f"| {r['client']} | {r['am']} | {r['name']} | {r['type']} | {money(r['spend'],0)} / {r['win']}d | {r['gov']} | {r['state']} | {r['difftxt']} |"
 L=[]
 L.append(f"# Client Benchmark Review (advanced setups) — {TODAY}\n")
-L.append(f"Run: 13 October 2026 (Tuesday), fourth run, compared against {PREVFILE}. Live reads through the Meta Marketing API with the HiddenGem-Claude system user (11:20 to 11:35 PT), which also reads the four accounts the connector had MCP-disabled, so every account is live this week; the CSV export {rs} to {re_} was not needed for scoring. Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Walden Retreats enters scope (ad account on the Master sheet from this week). Five Advanced clients in the CRM have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
+L.append(f"Run: 19 October 2026 (Monday), fifth run, compared against {PREVFILE}. Live reads through the Meta Marketing API with the HiddenGem-Claude system user, now the standing data path (`scripts/pull-campaign-insights.mts`, 09:37 to 09:38 PT); every account is live and the CSV export {rs} to {re_} was not needed for scoring. Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Sunapee Stays leaves scope (CRM now says Basic). Five Advanced clients in the CRM have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
 L.append("| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI | Frequency over 5 |")
 L.append("|---|---|---|---|---|---|---|---|---|---|---|")
 L.append(f"| {len(ADV)} (+{len(ADV_UNMAPPED)} unmapped) | {sum(1 for v in ADV.values() if v[3]=='live')} | {sum(1 for v in ADV.values() if v[3]=='csv')} | {len(scored)} | {counts['Under gate']} | {counts['Flag to Shawal']} | {counts['Review w/ HG AI']} | {counts['Monitor']} | {counts['Healthy']} | {counts['Scale w/ HG AI']} | {len(freq_watch)} |\n")
@@ -400,7 +405,7 @@ def act_key(r): return (0 if r["type"]!=LEAD else 1, ORDER[r["state"]], -r["spen
 for r in sorted(act,key=act_key): L.append(srow(r))
 if removed:
     L.append("")
-    L.append("Removed since last week (flagged on 5 Oct, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
+    L.append("Removed since last week (flagged on 13 Oct, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
 L.append("")
 L.append("## Scale candidates\n")
 L.append("| Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |")
@@ -446,13 +451,13 @@ L.append(f"- Windows: Lead Gen last 30 days, Sales/Retargeting last 14 days (liv
 L.append("- Gates: $100 Lead Gen, $200 Sales/Retargeting. Campaigns under the gate are listed but not judged.")
 L.append("- Classification: by campaign objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Sales, split into Retargeting (BoF) or MoF lookalike by name; OUTCOME_TRAFFIC / OUTCOME_ENGAGEMENT → ToF, not scored). CSV accounts have no objective column, so classification there is by name.")
 L.append("- Sales campaigns with an MoF or lookalike prefix are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting sales campaigns; confirm or add one.")
-L.append("- Data path this week: Marketing API v21.0 insights at campaign level (purchases = omni_purchase, leads = lead, ROAS = purchase_roas, link clicks = inline_link_clicks), same fields the connector exposes.")
+L.append("- Data path: Marketing API v21.0 insights at campaign level through `scripts/pull-campaign-insights.mts` (purchases = omni_purchase, leads = lead, ROAS = purchase_roas, link clicks = inline_link_clicks), the same fields the claude.ai connector exposed. The connector is no longer used for this report (Shawal, 2026-10-19).")
 L.append("- CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.")
 L.append("- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.")
 L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as \"Paused in window\" and never enter Action needed or the counts (decision 2026-09-23).")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append(f"- Previous report: {PREVFILE}. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: {sum(1 for r in records if r['diff']=='new')} new, {sum(1 for r in records if r['diff']=='still_open')} still open, {sum(1 for r in records if r['diff']=='fixed')} fixed, {sum(1 for r in records if r['diff']=='unchanged')} unchanged, {len(removed)} removed.")
-L.append("- Scope changes vs 5 Oct: "+("; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "Walden Retreats added (account 973261794434226 now on the Master sheet); Bison Ridge, Endless Stays, Paradise Pointe, Ponderosa and Asheville move from CSV to live reads")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
+L.append("- Scope changes vs 13 Oct: "+("; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "none")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
 L.append("- HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: "+(", ".join(HGAI) if HGAI else "none")+".")
 L.append("- Selah Place's prospecting campaign (paused this week) is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with slashes.")
 L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).")

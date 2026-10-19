@@ -413,7 +413,9 @@ def build_pixel():
     for r in rows:
         if r["pixel_id"] in seen: continue
         seen.add(r["pixel_id"]); tot+=int(r["events_7d"] or 0)
-    stats=(stat("Clients on sheet","42","all matched to at least one pixel")
+    m_cs=re.search(r"\*\*Clients on sheet:\*\*\s*(\d+)(?:\s*\((\d+) checked\))?",md)
+    cs_n=m_cs.group(1) if m_cs else "42"; cs_sub=(f"{m_cs.group(2)} checked, offboarded excluded" if (m_cs and m_cs.group(2)) else "all matched to at least one pixel")
+    stats=(stat("Clients on sheet",cs_n,cs_sub)
         +stat("Pixel rows reviewed",str(len(rows)),f"{len(distinct)} distinct pixels; Starlight Haven's serves two accounts")
         +stat("Events, last 7 days",f"{tot:,}","shared pixel counted once")
         +stat("Critical",str(cnt["critical"]),"another client's domain firing into the pixel",dot="err")

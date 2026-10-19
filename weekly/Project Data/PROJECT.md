@@ -44,15 +44,15 @@ Report filenames are `YYYY-MM-DD-<workflow>.md` with a matching `.csv`, plus a `
 |---|---|---|
 | HiddenGem Master Meta Ads sheet | Google Sheet `1B6lWqp_0linzf-3n4iqjJbavidZvyLO5yTY3MDhzYaM`, tab "Meta Ad Links" | Client list, Status (Live / Not Live / Paused), Total Budget ($/day), Comments |
 | CRM - HiddenGem Media | Google Sheet `1oEUngQE3ZXc6U4ciRkkg55UrlR-M065kTmCzG8HFhM4` | Account manager per client. Tab priority: Management Clients, then the "#, Account Manager, Client, Priority" tab, then the Content tab (Client, MA, AM), then Mastermind |
-| Meta Ads connector (claude.ai) | `ads_get_ad_accounts`, `ads_get_ad_entities`, `ads_get_field_context` | Live budgets and 7-day spend. 112 ad accounts visible across 3 pages |
-| Weekly Ads Manager export | `Weekly CSV Reports/` | Fallback for accounts the connector cannot read |
-| Meta datasets (pixels) | `ads_get_datasets` (business `158693423705448` + per account), `ads_get_dataset_stats` (host, event_total_counts), `ads_get_dataset_quality` | Pixel inventory, sending domains, 7-day event totals, EMQ. 73 datasets visible in the HG BM |
+| Meta Marketing API (HiddenGem-Claude system user) | `META_ACCESS_TOKEN` in the repo-root `.env` (gitignored); `scripts/ad-spend-check.mts`, `scripts/pull-pixel-stats.mts`, `scripts/pull-campaign-insights.mts` | The standing data path for all three reviews from 2026-10-19 (Shawal). The system user sees every account in the HiddenGem BM, including the four the claude.ai connector had MCP-disabled. The connector (`ads_get_*`) is no longer used |
+| Weekly Ads Manager export | `Weekly CSV Reports/` | Fallback only for an account the API cannot read; not needed since 2026-10-13 |
+| Meta datasets (pixels) | `scripts/pull-pixel-stats.mts`: `158693423705448/owned_pixels` + `client_pixels`, `act_<id>/adspixels`, `<pixel>/stats` (host, event_total_counts, event_source) → `.claude/skills/pixel-domain-check/pixel_pull.json` | Pixel inventory, what is attached where, sending domains per hour, 7-day event totals, browser/server split. EMQ is not pulled on this path |
 | Expected domains | `Meta Pixel Reviews/expected-domains.csv` | Per client/pixel: expected domains, accepted extra hosts, source (sheet / confirmed / inferred) |
 | Benchmarks doc | Google Doc `1KVMRJcmw6cVhHy7sj48vHRPJWNLid4tUiHTWOnkCFSE` | Decision Making table (states per CPL / ROAS band), per-type Investigate lines, windows and gates for workflow 3 |
 | CRM "Meta Ads" column | CRM sheet, tab "Clients - Onboarding" (header says "Management Clients"), column R | Basic / Advanced. Advanced = in scope for workflow 3 (16 clients on 2026-09-21) |
 | Monthly ROI data | `Monthly ROI data/*.json` | Per client per month: Meta spend, Meta-attributed bookings, blended ROAS, retargeting ROAS, new-leads CPL. Revenue is from the Client Performance Tracking sheet, not the pixel |
 | Weekly Meta Ads meeting notes | Google Calendar events "Meta Ads Strategy" (Dustin, Wed 1–2pm ET) and "Meta Ads Sync" (Dustin, Thu 11–11:30am ET), each with a "Notes by Gemini" attachment → Google Doc, read via Drive. Latest: `1Hoq1JUk1tFxSCUeYexeEELfVSZwTq7eJ2Pi_NvVDF4A` (Strategy 2026-09-16), `1oMlKzZdFQxYCXKMiFnaG-2ews_EkudXgG0zivvI2l1c` (Sync 2026-09-17) | Workflow 3 "Weekly meetings" section (Summary, Decisions, Next steps per meeting) and per-client mentions from the Details sections. Alias map in the generator handles Gemini misspellings |
-| Campaign insights | `ads_get_ad_entities` level campaign, `last_30d` and `last_14d`, fields `lead`, `cost_per_lead`, `omni_purchase`, `cost_per_omni_purchase`, `purchase_roas`, `cpm`, `ctr`, `cost_per_link_click`, `frequency` | Workflow 3 governing metrics and diagnostics |
+| Campaign insights | `scripts/pull-campaign-insights.mts`: `act_<id>/insights?level=campaign` for `last_30d` and `last_14d` (`actions.lead`, `cost_per_action_type`, `omni_purchase`, `purchase_roas`, `cpm`, `ctr`, `inline_link_clicks`, `frequency`) → `.claude/skills/client-benchmark/live.psv` | Workflow 3 governing metrics and diagnostics |
 | Local scratch | Claude's session scratchpad | Sheet parsing, never the project folders |
 
 Not connected: Mailtrap (email sending), Fireflies (meeting summaries), Instagram Graph API (organic data).
@@ -84,7 +84,7 @@ Flags:
 | ❌ Critical | Any host belonging to another sheet client, or a meaningful share from a domain that clearly isn't the client's. Offending domain named |
 | 🔴 Blocker | No pixel found anywhere, or pixel unreadable |
 
-Reading: HG BM dataset listing first (covers MCP-disabled accounts too), then per-account listings to see what is attached. Domains from `host` aggregation; totals from `event_total_counts` (sum every row). Expected domains from `expected-domains.csv`.
+Reading (from 2026-10-19 through `scripts/pull-pixel-stats.mts`): HG BM owned + client pixel listings first (covers pixels in client businesses that are shared with HG), then `act_<id>/adspixels` per client account to see what is attached, then a direct read of any mapped pixel neither listing returned. Domains from the `host` aggregation (hourly buckets, kept per day), totals from `event_total_counts`, browser/server split from `event_source`. Expected domains from `expected-domains.csv`. The report itself is written by Claude from `pixel_pull.json` plus the previous CSV.
 
 Week-over-week: joins on pixel ID against the previous `.csv` sidecar.
 
@@ -110,7 +110,7 @@ Classification is by objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Re
 
 Output: `Client Benchmark Reviews (advanced setups)/Weekly Checks/YYYY-MM-DD-client-benchmark.md` and `.csv` (one row per campaign, keyed on campaign ID). Report order: header counts, last Meta Ads Strategy meeting (Gemini notes: summary, decisions, next steps), Action needed (Flag then Review), Scale candidates, per-client sections ordered by scored spend (each with a Monthly ROI line, a Meeting notes line and an HG AI notes line), footer.
 
-Next: week-over-week diff in `generate_report.py` (currently hardcodes "First run").
+Data path from 2026-10-19: `scripts/pull-campaign-insights.mts` reads the ADV map out of `generate_report.py`, pulls every account live and writes `live.psv`; the generator is unchanged. Week-over-week diff has been in `generate_report.py` since 2026-09-28.
 
 **This month strip (2026-10-15, Shawal).** Every client card starts with direct revenue month to date (booking date, platform direct/OTA rules, shared-PMS tenants narrowed to their own properties), the change against the same day span of the previous month, and promo-code uses for the month. Source: HiddenGem AI platform via `pms_mtd.sql` in the skill folder, run through the Supabase connector and saved as `pms_mtd.json`. Guesty exposes code names, Hostaway only a count, Hospitable and Cloudbeds nothing; clients without a PMS connection show "not tracked".
 
@@ -142,16 +142,16 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 
 | Client (sheet) | AM | Ad account | ID | Connector |
 |---|---|---|---|---|
-| American River Resort | Nicole | American River Resort | 953162737054331 | ok |
+| American River Resort | Nicole | American River Resort | 953162737054331 | ok. Both campaigns stopped between 15 and 19 Oct 2026 ($0/day live); confirm pause or offboarding (decision 35) |
 | Asheville River Cabins | Charlotte | Asheville River Cabins Ads | 615836588009747 | ok. Was UNSETTLED 2026-10-05, ACTIVE again by 2026-10-13 |
 | Away2PA | Alicia | Away2Pa | 603977626130795 | ok |
 | Awayframes | Alicia | Awayframes Ad Account | 2471256056603833 | ok |
 | Best Texas Travel | Nicole | Best Texas Travel Ad Account | 1982551189319458 | ok |
 | Big Moon Ranch | Charlotte | Big Moon Ranch | 758851247064974 | **Offboarded 2026-09-28** (Shawal). Still on the Master sheet on 2026-10-05 (⚠️). Not in the connector list or the export any more. Not a blocker: if the row is still on the Master sheet, the spend check marks it ⚠️ "offboarded, remove from sheet or set Status to Not Live" and stops once the row is gone |
-| Bison Ridge Retreat | Chiara | Bison Ridge Retreat Ad Account | 950241787963535 | MCP disabled → CSV |
+| Bison Ridge Retreat | Chiara | Bison Ridge Retreat Ad Account | 950241787963535 | ok via the API system user (the connector had it MCP-disabled) |
 | Canopy at Moody Moon Ridge | Kristal | The Canopy At Moody Moon Ridge | 1293707265980102 | **Offboarded 2026-10-15** (Shawal). Left out of all three weekly reports and the Meta Ad Spends tab from 2026-10-15, even while the row is still on the Master sheet. History: ok via the connector; NOT visible to the HiddenGem-Claude system user (decision 31). Second account "Moody Moon Ridge" (Sue Hough) 1061646495537777 is MCP disabled |
 | Columbia Gorge Getaways | Chiara | CGG | 490940113157881 | ok |
-| Endless Stays | Nicole | Endless Stays | 896372356081479 | MCP disabled → CSV |
+| Endless Stays | Nicole | Endless Stays | 896372356081479 | ok via the API system user (the connector had it MCP-disabled) |
 | Evergreen Cabins | Nicole | Evergreen Cabins Ads | 453808647114273 | ok |
 | FLOHOM | Makenna | FLOHOM Ads | 2100710320122219 | ok |
 | Green Springs Inn | Alicia | Green Springs Inn | 1390516335151357 | ok |
@@ -163,9 +163,9 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Nature Nooks | Kristal | Nature Nooks Ad Account | 1796752774213285 | ok |
 | North Star Resort & Lodge | — | North Star Lodge & Resort Ads | 2003562593933799 | ok. No AM in CRM |
 | Oak & Ember | Chiara | Oak & Ember Ad Account | 831762063342909 | ok |
-| Paradise Pointe | Makenna | Paradise Pointe Ads | 1585826092078255 | MCP disabled → CSV |
+| Paradise Pointe | Makenna | Paradise Pointe Ads | 1585826092078255 | ok via the API system user (the connector had it MCP-disabled) |
 | Parker Reserve | Nicole | Parker Reserve | 1002927148609804 | ok |
-| Ponderosa Pines Resort | Anna | Ponderosa Pines Resort | 1058846326445255 | MCP disabled → CSV |
+| Ponderosa Pines Resort | Anna | Ponderosa Pines Resort | 1058846326445255 | ok via the API system user (the connector had it MCP-disabled) |
 | Raven Rock Mountain | Anna | Raven Rock Mountain Ad Account | 1065186195582056 | ok |
 | Red White & Blue Views | Nicole | Red White & Blue Views | 1419930382946246 | ok |
 | Ridge & Falls | Makenna | Ridge & Falls ad account | 1313401330776046 | ok |
@@ -177,7 +177,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Stay Southern Illinois | Chiara | Southern Illinois Cabins Ads | 1661949078036229 | ok |
 | Stay With Branch | Kristal | @staywithbranch | 1269399754049770 | ok (delivery stalled from about 1 Oct 2026, see decision 24). Separate "Branch Berkeley Springs" 1517541906010284 exists, not on sheet |
 | StayLuxe | Nicole | Stay Luxe Ads | 25033578722931437 | ok |
-| Sunapee Stays | Charlotte | Sunapee Stays Ads Account | 651114096215889 | ok |
+| Sunapee Stays | Charlotte | Sunapee Stays Ads Account | 651114096215889 | ok. CRM Meta Ads column reads Basic from 2026-10-19 (Advanced until 13 Oct), so out of the benchmark; still in the spend and pixel checks |
 | Taberg Falls | Alicia | Táberg Falls | 827872700004659 | ok |
 | The Cohost Company | Makenna | The Cohost Company Ads | 9141035462679902 | ok |
 | The Outpost | Ananya | The Outpost Grand Canyon | 1530849534802936 | ok |
@@ -235,6 +235,7 @@ Primary pixel per client, plus live secondaries. Full domain expectations live i
 | Three Suns Cabins | Three Suns Cabins - Pixel → 691977289952800 | HG BM | bio subdomain only |
 | Treetop Escapes | Treetop Escapes - Pixel → 1178838797064774 | client BM 1190724359426537 | |
 | Walden Retreats | Walden Retreat's Data → 505477285266646 | client BM | attached to 973261794434226; waldenretreats.com + ResNexus; clean on 2026-10-13 |
+| Glasscombe | Aero Camp Pixel → 1369498611461163 | client BM 806512758639975 (shared into HG BM) | site + bio + Cloudbeds (us2) + reserve. subdomain, CAPI live; first row 2026-10-19; no ad account in section 5 yet |
 | Tuxedo Falls | Tuxedo Falls - Ad Account's Pixel → 1561325308991270 (attached, silent since 1 Sep 2026); Website → 1839806973541001 (same business, carries site + ResNexus + GHL, ~26k events/week, NOT attached to the ad account) | client BM 1400770510587476 | found 2026-09-28: the site tracks on the unattached pixel |
 
 ## 6. Learnings
@@ -298,6 +299,9 @@ Things that were not obvious and change how the workflows are built or run.
 - **Headless Chrome is enough for a visual check** (`"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --screenshot=... --window-size=1440,900 <url>`, add `--force-dark-mode` for the dark theme). Fragment anchors do not scroll in headless mode; extract the card into a standalone file to screenshot a section further down the page.
 - **The weekly archive ships inside the dashboard's static export.** Next copies `public/` into `out/`, so `public/weekly/` is the deploy artefact; Netlify resolves `/weekly/` to its index and `netlify.toml` carries the latest-page redirects. `next dev` serves `public/` files only by exact path, hence the dev-only rewrites in `next.config.ts`.
 
+- **The Marketing API is the standing data path (2026-10-19, Shawal).** All three reviews read through the HiddenGem-Claude system user token: `scripts/ad-spend-check.mts`, `scripts/pull-pixel-stats.mts` (→ `pixel_pull.json` in the pixel skill folder) and `scripts/pull-campaign-insights.mts` (→ `live.psv` in the benchmark skill folder, accounts taken from the generator's `ADV` map). The claude.ai Meta connector is not used any more; do not ask for it to be re-authorised. The pull scripts live in `scripts/` so they survive between sessions (the 2026-10-13 ones were in a scratchpad and were lost).
+- **Pixel `stats` responses always carry `paging.next`, even when one bucket covers the whole window (2026-10-19).** `event_total_counts` and `event_source` return a single bucket for the requested window; following `next` repeats it and inflated totals about 60x on the first pull of the day (American River 883k instead of 11.5k). `pull-pixel-stats.mts` only follows `next` when a page is full (500 buckets). The 2026-10-13 learning about following `next` for the hourly `host` aggregation still holds for windows longer than 500 hours.
+
 ## 7. Open decisions
 
 | # | Question | Options | Status |
@@ -326,7 +330,7 @@ Things that were not obvious and change how the workflows are built or run.
 | 22 | Paradise Pointe runs $150/day (new $50 LoL campaign, Shawal 28 Sep) against a $100 sheet budget | Makenna updates the sheet | Open, raised 2026-10-05 |
 | 23 | Asheville River Cabins ad account UNSETTLED; all campaigns not delivering since about 29 Sep | Charlotte clears the balance | Resolved 2026-10-13: account ACTIVE, delivering $92/day |
 | 24 | Stay With Branch delivery stalled (spending 40% of its $20/day budgets since 1 Oct) | Kristal checks payment / ad review / audiences | Resolved 2026-10-13: $185 spent in the 6–12 Oct week, delivery back |
-| 25 | Big Moon Ranch offboarded but the HG BM pixel is still installed on bigmoonranch.com (about 1.6k events a day) | Remove the pixel from the site or transfer it | Open, raised 2026-10-05 |
+| 25 | Big Moon Ranch offboarded but the HG BM pixel is still installed on bigmoonranch.com (about 1.6k events a day) | Remove the pixel from the site or transfer it | Open, raised 2026-10-05; 2026-10-19 still firing (10,280 events, 51% server, so the CAPI connection is live too) |
 | 26 | Paradise Pointe BoF: 5 purchases with no conversion value in the export (ROAS 0.0x); the 23 Sep HG AI note already asked for a purchase-tracking check | Verify Purchase value parameter (pixel + CAPI) | Open, raised 2026-10-05. Confirmed 2026-10-07 by the September ROI file: Meta recorded no revenue for 12 retargeting purchases (15–21 Sep and 29–30 Sep); their value was added manually at the average booking value |
 | 27 | Walden Retreats runs $48/day (two wedding-lead test campaigns from 8 and 9 Oct on top of the three-campaign structure) against a $30 sheet budget | Anna confirms the test / sheet | Open, raised 2026-10-13 |
 | 28 | Stay on 30a raised to $500/day (LoL $200, BoF $150) against a $400 sheet; one more increase makes it ❌ | Charlotte confirms the ceiling / sheet | Open, raised 2026-10-13 |
@@ -335,11 +339,17 @@ Things that were not obvious and change how the workflows are built or run.
 | 31 | Grant the HiddenGem-Claude system user access to Canopy's ad account 1293707265980102 so it is not CSV-only on the API path | Shawal, Business Manager | Closed 2026-10-15: client offboarded, no access needed |
 | 32 | CAPI effectively silent on five clients the sheet marks 'CAPI Setup (HG Ai)': FLOHOM, Paradise Pointe, Sunapee Stays, Stay With Branch, Ridge & Falls (under 0.2% of events server-side) | AMs check the HG AI CAPI connections; Shawal decides whether the sheet's tracking column should reflect it | Open, raised 2026-10-13 |
 | 33 | Ponderosa Pines Resort has two live pixels on www.ponderosapinesresort.com (HG pixel 1293211539656211 with CAPI + purchases, and 'Ponderosa Pines Resort's Pixel' 1743173753375733, browser only) | Anna confirms which one the ads use, remove the other | Open, raised 2026-10-13 |
+| 34 | Walden Retreats' wedding-lead test (TOF Wedding Leads 10.8.26, $24/day) scores Flag at $10.07 CPL on the email-lead bands; wedding enquiries are a different lead type | Agree a wedding CPL target with Anna, or exclude wedding campaigns from the CPL bands | Open, raised 2026-10-19 |
+| 35 | American River Resort: both campaigns stopped between 15 and 19 Oct ($0/day live, $827 ToF + $551 leads spent in the last 30 days) | Nicole confirms pause vs offboarding; if offboarded, mark the row in section 5 | Open, raised 2026-10-19 |
+| 36 | Sunapee Stays reads Basic in the CRM Meta Ads column from 2026-10-19 (was Advanced); the account still runs $50/day with a BoF campaign | Confirm the downgrade is intended; the benchmark drops it until the CRM says Advanced again | Open, raised 2026-10-19 |
 
 ## 8. Run log
 
 | Date | Workflow | Mode | Result | Saved? |
 |---|---|---|---|---|
+| 2026-10-19 | Pixel Domain Check | Fifth run, saved, Marketing API path (`pull-pixel-stats.mts`, now the default) | 44 clients on sheet, 43 checked (Canopy offboarded, dropped), 50 pixel rows (49 pixels; Glasscombe's 'Aero Camp Pixel' new, Canopy's gone), 903,542 events in 7d. 1 ❌ (Inspired Retreats ← Saluda, week 5: 1,029 events, 20%, every day, same rate as before both fixes; next suspect is the CAPI config on the Saluda side), 0 🔴, 22 ⚠️ (21 carried + Glasscombe: pixel name does not match the client, no ad account mapping), 27 ✅, 0 fixed. CAPI still silent on Asheville, Stay With Branch, Ridge & Falls, Sunapee, FLOHOM, Paradise Pointe. Notable moves: Oak & Ember +169% (GHL funnel live), Red White & Blue −44%, Selah −41%, Awayframes 28% dev traffic on the live pixel. First pull of the day inflated totals by following stats paging; fixed and re-pulled before anything was written | Yes: `.md`, `.csv`, `.html` |
+| 2026-10-19 | Client Benchmark Review | Fifth run, saved, Marketing API path (`pull-campaign-insights.mts`, now the default) | 26 Advanced in CRM, 21 with an account (Sunapee Stays dropped: CRM now Basic), all 21 read live. 47 rows, 37 scored, 10 under gate. 2 Flag (Walden wedding-leads test $10.07 CPL new, over the gate for the first time; Ridge & Falls leads $3.51 week 4), 12 Review (new: FLOHOM BoF 4.0x, Treetop BoF 2.5x, Saluda BoF 4.3x, Tàberg Broad 3.9x, Walden leads $1.30; carried: Endless BoF 3.1x and Paradise Pointe BoF 3.7x week 3, 30A / Green Springs / AwayFrames leads week 5, Little River week 3, Bison week 2), 11 Monitor, 8 Healthy, 4 Scale (30A BoF 22.0x, Weiss Lake 25.3x, Asheville BoF 43.1x, Hot Springs 22.3x; Ponderosa 7.6x, Selah BoF 11.7x and Asheville leads $0.30 dropped out). 0 fixed, 2 removed (American River lead campaign paused, Sunapee out of scope). Frequency watch: Paradise Pointe 5.7. 14 Oct Strategy notes in (four-campaign structure for clients with elevated tracking; Cloudbeds click-ID script live on Asheville, host API access requested) | Yes: `.md`, `.csv`, `.html` |
+| 2026-10-19 | Ad Spend Check | Fifth run, saved, Marketing API path | 41 clients, 41 live reads, 0 blocked. Total live $2,914/day (ToF $1,085, Leads $549, LoL $420, BoF $860), vs $2,954 on 2026-10-15: American River Resort −$50 (both campaigns removed, now $0/day), Little River Landing +$5 and Ridge & Falls +$5 (BoF $5 to $10 each). Spent 7d $20,875. Rows pushed to the Meta Ad Spends tab (41 rows, 43 to 83). Glasscombe still on the Master sheet without an entry in the client map | Yes: .md, .csv, .html |
 | 2026-10-15 | Ad Spend Check | Rebuilt as a live spend ledger (no sheet comparison), saved, Marketing API path | 41 clients, 41 live reads, 0 blocked. Total live $2,954/day (ToF $1,115, Leads $569, LoL $420, BoF $850), vs $3,063 for the same accounts on 2026-10-13: FLOHOM −$80, Taberg Falls −$50, Selah Place +$15, Walden Retreats +$6; Canopy removed (offboarded). Spent 7d $21,430. Rows pushed to the Meta Ad Spends tab (41 rows, sorted by $/day). Glasscombe is on the Master sheet but not in the client map | Yes: .md, .csv, .html |
 | 2026-10-13 | Pixel Domain Check | Fourth run, saved, Marketing API path | 43 clients, 50 pixel rows (49 pixels; Walden Retreats and a second Ponderosa pixel new), 994,294 events in 7d counted once per event (not comparable with the connector's totals). 1 ❌ (Inspired Retreats ← Saluda, week 4: the 7 Oct pixel-events fix had no effect, every day 6–13 Oct, 61% of the pixel's events are server-side so the leak is a CAPI path), 1 🔴 (Canopy pixel and account not visible to the system user), 21 ⚠️ (15 carried + 6 new: CAPI effectively silent on FLOHOM, Paradise Pointe, Sunapee, Stay With Branch, Ridge & Falls per the API's browser/server split; Ponderosa's second live pixel double-counting the site), 27 ✅, 0 fixed. North Star's attached pixel now carries site + GHL + first server events | Yes: `Meta Pixel Reviews/Weekly Checks/2026-10-13-pixel-domain-check.md` + `.csv` |
 | 2026-10-13 | Ad Spend Check | Fourth run (Tuesday), saved, Marketing API path | 43 clients (Walden Retreats new on the sheet), 41 live reads through the HiddenGem-Claude system user token (the claude.ai Meta connector was unreachable all session; the token also reads the four MCP-disabled accounts), 1 from CSV (Canopy, no system-user access), 0 🔴. 3 ❌ (Walden $48 vs $30 new, Paradise Pointe $150 vs $100 week 2, Columbia Gorge $40 vs $30 week 4), 10 ⚠️ (Stay on 30a up to $500 vs $400, Tàberg cut to $300 vs $400, The Outpost second BoF $50 vs $40, plus FLOHOM, Away2PA, Three Suns, Canopy, Big Moon Ranch, Ridge & Falls and Little River Landing #REF!), 30 ✅. Fixed: Asheville (balance cleared, delivering), Selah (BoF raised to $35, $55 vs $50), Stay With Branch (delivery back). $3,063/day confirmed live vs $2,870 documented | Yes: `Ad Spends Checks/Weekly Checks/2026-10-13-ad-spend-check.md` + `.csv` |

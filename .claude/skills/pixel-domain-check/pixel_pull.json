@@ -1,0 +1,6432 @@
+{
+ "run_date": "2026-10-19",
+ "pulled_at": "2026-10-19T16:43:32.288Z",
+ "window": {
+  "start": "2026-10-12T16:42:09.000Z",
+  "end": "2026-10-19T16:42:09.000Z"
+ },
+ "hg_bm": "158693423705448",
+ "clients": [
+  {
+   "client": "American River Resort",
+   "am": "Nicole",
+   "id": "953162737054331",
+   "offboarded": false
+  },
+  {
+   "client": "Asheville River Cabins",
+   "am": "Charlotte",
+   "id": "615836588009747",
+   "offboarded": false
+  },
+  {
+   "client": "Away2PA",
+   "am": "Alicia",
+   "id": "603977626130795",
+   "offboarded": false
+  },
+  {
+   "client": "Awayframes",
+   "am": "Alicia",
+   "id": "2471256056603833",
+   "offboarded": false
+  },
+  {
+   "client": "Best Texas Travel",
+   "am": "Nicole",
+   "id": "1982551189319458",
+   "offboarded": false
+  },
+  {
+   "client": "Bison Ridge Retreat",
+   "am": "Chiara",
+   "id": "950241787963535",
+   "offboarded": false
+  },
+  {
+   "client": "Columbia Gorge Getaways",
+   "am": "Chiara",
+   "id": "490940113157881",
+   "offboarded": false
+  },
+  {
+   "client": "Endless Stays",
+   "am": "Nicole",
+   "id": "896372356081479",
+   "offboarded": false
+  },
+  {
+   "client": "Evergreen Cabins",
+   "am": "Nicole",
+   "id": "453808647114273",
+   "offboarded": false
+  },
+  {
+   "client": "FLOHOM",
+   "am": "Makenna",
+   "id": "2100710320122219",
+   "offboarded": false
+  },
+  {
+   "client": "Green Springs Inn",
+   "am": "Alicia",
+   "id": "1390516335151357",
+   "offboarded": false
+  },
+  {
+   "client": "Hiawassee Glamping",
+   "am": "Alicia",
+   "id": "4219624811692502",
+   "offboarded": false
+  },
+  {
+   "client": "Home Base",
+   "am": "Charlotte",
+   "id": "3224125791099903",
+   "offboarded": false
+  },
+  {
+   "client": "Inspired Retreats",
+   "am": "Makenna",
+   "id": "1494841894957652",
+   "offboarded": false
+  },
+  {
+   "client": "Little River Landing",
+   "am": "Makenna",
+   "id": "884285717873613",
+   "offboarded": false
+  },
+  {
+   "client": "Myrinn",
+   "am": "Charlotte",
+   "id": "1668286333836716",
+   "offboarded": false
+  },
+  {
+   "client": "Nature Nooks",
+   "am": "Kristal",
+   "id": "1796752774213285",
+   "offboarded": false
+  },
+  {
+   "client": "North Star Resort & Lodge",
+   "am": "",
+   "id": "2003562593933799",
+   "offboarded": false
+  },
+  {
+   "client": "Oak & Ember",
+   "am": "Chiara",
+   "id": "831762063342909",
+   "offboarded": false
+  },
+  {
+   "client": "Paradise Pointe",
+   "am": "Makenna",
+   "id": "1585826092078255",
+   "offboarded": false
+  },
+  {
+   "client": "Parker Reserve",
+   "am": "Nicole",
+   "id": "1002927148609804",
+   "offboarded": false
+  },
+  {
+   "client": "Ponderosa Pines Resort",
+   "am": "Anna",
+   "id": "1058846326445255",
+   "offboarded": false
+  },
+  {
+   "client": "Raven Rock Mountain",
+   "am": "Anna",
+   "id": "1065186195582056",
+   "offboarded": false
+  },
+  {
+   "client": "Red White & Blue Views",
+   "am": "Nicole",
+   "id": "1419930382946246",
+   "offboarded": false
+  },
+  {
+   "client": "Ridge & Falls",
+   "am": "Makenna",
+   "id": "1313401330776046",
+   "offboarded": false
+  },
+  {
+   "client": "Selah Place",
+   "am": "Alicia",
+   "id": "1275283434220508",
+   "offboarded": false
+  },
+  {
+   "client": "Starlight Haven - Hot Springs",
+   "am": "Charlotte",
+   "id": "901138032027913",
+   "offboarded": false
+  },
+  {
+   "client": "Starlight Haven - Weiss Lake",
+   "am": "Charlotte",
+   "id": "74756899",
+   "offboarded": false
+  },
+  {
+   "client": "Stay on 30a",
+   "am": "Charlotte",
+   "id": "25640434272252212",
+   "offboarded": false
+  },
+  {
+   "client": "Stay Saluda NC",
+   "am": "Makenna",
+   "id": "1863632561215857",
+   "offboarded": false
+  },
+  {
+   "client": "Stay Southern Illinois",
+   "am": "Chiara",
+   "id": "1661949078036229",
+   "offboarded": false
+  },
+  {
+   "client": "Stay With Branch",
+   "am": "Kristal",
+   "id": "1269399754049770",
+   "offboarded": false
+  },
+  {
+   "client": "StayLuxe",
+   "am": "Nicole",
+   "id": "25033578722931437",
+   "offboarded": false
+  },
+  {
+   "client": "Sunapee Stays",
+   "am": "Charlotte",
+   "id": "651114096215889",
+   "offboarded": false
+  },
+  {
+   "client": "Taberg Falls",
+   "am": "Alicia",
+   "id": "827872700004659",
+   "offboarded": false
+  },
+  {
+   "client": "The Cohost Company",
+   "am": "Makenna",
+   "id": "9141035462679902",
+   "offboarded": false
+  },
+  {
+   "client": "The Outpost",
+   "am": "Ananya",
+   "id": "1530849534802936",
+   "offboarded": false
+  },
+  {
+   "client": "Three Suns Cabins",
+   "am": "Anna",
+   "id": "1210218584137342",
+   "offboarded": false
+  },
+  {
+   "client": "Treetop Escapes",
+   "am": "Makenna",
+   "id": "967636478877602",
+   "offboarded": false
+  },
+  {
+   "client": "Tuxedo Falls",
+   "am": "Chiara",
+   "id": "2077151009889326",
+   "offboarded": false
+  },
+  {
+   "client": "Walden Retreats",
+   "am": "Anna",
+   "id": "973261794434226",
+   "offboarded": false
+  }
+ ],
+ "offboarded": [
+  "Big Moon Ranch",
+  "Canopy at Moody Moon Ridge"
+ ],
+ "pixel_map": {
+  "American River Resort": [
+   "2862601447415133"
+  ],
+  "Asheville River Cabins": [
+   "1634367080775220"
+  ],
+  "Away2PA": [
+   "772693422494226"
+  ],
+  "Awayframes": [
+   "773898245792839"
+  ],
+  "Best Texas Travel": [
+   "4108409325970216"
+  ],
+  "Big Moon Ranch": [
+   "1208874174466414"
+  ],
+  "Bison Ridge Retreat": [
+   "1241959234316508"
+  ],
+  "Canopy at Moody Moon Ridge": [
+   "861460105842405"
+  ],
+  "Columbia Gorge Getaways": [
+   "700947282709400",
+   "595257656540749"
+  ],
+  "Endless Stays": [
+   "876508505381758"
+  ],
+  "Evergreen Cabins": [
+   "1474685406530880"
+  ],
+  "FLOHOM": [
+   "139231105894533"
+  ],
+  "Green Springs Inn": [
+   "1098954801239133",
+   "1602971745164199"
+  ],
+  "Hiawassee Glamping": [
+   "1149628220675980"
+  ],
+  "Home Base": [
+   "1467511861488785"
+  ],
+  "Inspired Retreats": [
+   "1547510566197386"
+  ],
+  "Little River Landing": [
+   "1816709606431185"
+  ],
+  "Myrinn": [
+   "1943632852972363"
+  ],
+  "Nature Nooks": [
+   "844302611320158"
+  ],
+  "North Star Resort & Lodge": [
+   "3440147309499983",
+   "1904436107168032"
+  ],
+  "Oak & Ember": [
+   "1729106025177871"
+  ],
+  "Paradise Pointe": [
+   "707016175006193"
+  ],
+  "Parker Reserve": [
+   "1188475652520634"
+  ],
+  "Ponderosa Pines Resort": [
+   "1293211539656211",
+   "1743173753375733"
+  ],
+  "Raven Rock Mountain": [
+   "1359649962298380"
+  ],
+  "Red White & Blue Views": [
+   "1625871301864243"
+  ],
+  "Ridge & Falls": [
+   "1332286819018269"
+  ],
+  "Selah Place": [
+   "1235173718368839",
+   "3327546500757583"
+  ],
+  "Starlight Haven (Hot Springs + Weiss Lake)": [
+   "766226461367996"
+  ],
+  "Stay on 30a": [
+   "1464927198465632"
+  ],
+  "Stay Saluda NC": [
+   "4250460185185664"
+  ],
+  "Stay Southern Illinois": [
+   "1328561309169535"
+  ],
+  "Stay With Branch": [
+   "1107997340818783"
+  ],
+  "StayLuxe": [
+   "4293491110916917"
+  ],
+  "Sunapee Stays": [
+   "471248637966769"
+  ],
+  "Taberg Falls": [
+   "964214909847907"
+  ],
+  "The Cohost Company": [
+   "638998632168952"
+  ],
+  "The Outpost": [
+   "1691591692267740",
+   "734783866381382"
+  ],
+  "Three Suns Cabins": [
+   "691977289952800"
+  ],
+  "Treetop Escapes": [
+   "1178838797064774"
+  ],
+  "Walden Retreats": [
+   "505477285266646"
+  ],
+  "Tuxedo Falls": [
+   "1561325308991270",
+   "1839806973541001"
+  ]
+ },
+ "listing_errors": {},
+ "account_errors": {
+  "pixel_861460105842405": "100 (#100) Missing perms"
+ },
+ "pixels": [
+  {
+   "id": "861460105842405",
+   "name": "(not readable)",
+   "listed_in": [
+    "direct"
+   ],
+   "attached_to": [],
+   "in_map": true,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "host: 100 (#100) Missing perms; event_total_counts: 100 (#100) Missing perms; event_source: 100 (#100) Missing perms"
+  },
+  {
+   "id": "2038158056680515",
+   "name": "1474685406530880",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1515200130141246",
+   "name": "734783866381382",
+   "owner_business": {
+    "id": "1208311637844219",
+    "name": "Clear Summit Hospitality"
+   },
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1530849534802936"
+   ],
+   "attached_to": [
+    "1530849534802936"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1369498611461163",
+   "name": "Aero Camp Pixel",
+   "owner_business": {
+    "id": "806512758639975",
+    "name": "Glasscombe"
+   },
+   "last_fired_time": "2026-10-18T23:23:48+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "www.glasscombe.com": {
+     "count": 5429,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 155,
+      "2026-10-13": 511,
+      "2026-10-14": 882,
+      "2026-10-15": 801,
+      "2026-10-16": 920,
+      "2026-10-17": 599,
+      "2026-10-18": 1142,
+      "2026-10-19": 419
+     }
+    },
+    "us2.cloudbeds.com": {
+     "count": 2107,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 40,
+      "2026-10-13": 172,
+      "2026-10-14": 243,
+      "2026-10-15": 406,
+      "2026-10-16": 393,
+      "2026-10-17": 222,
+      "2026-10-18": 451,
+      "2026-10-19": 180
+     }
+    },
+    "reserve.glasscombe.com": {
+     "count": 45,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-18T16:00:00+0000",
+     "daily": {
+      "2026-10-12": 5,
+      "2026-10-13": 16,
+      "2026-10-14": 4,
+      "2026-10-15": 4,
+      "2026-10-16": 3,
+      "2026-10-17": 6,
+      "2026-10-18": 7
+     }
+    },
+    "bio.glasscombe.com": {
+     "count": 2247,
+     "first": "2026-10-13T13:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-13": 170,
+      "2026-10-14": 420,
+      "2026-10-15": 350,
+      "2026-10-16": 267,
+      "2026-10-17": 305,
+      "2026-10-18": 557,
+      "2026-10-19": 178
+     }
+    }
+   },
+   "events": {
+    "PageView": 9741,
+    "Search": 1461,
+    "BookingEngineLoad": 1373,
+    "Lead": 433,
+    "AddToCart": 60,
+    "ViewContent": 47,
+    "InitiateCheckout": 34,
+    "Purchase": 5,
+    "AddPaymentInfo": 4,
+    "RemoveFromCart": 2
+   },
+   "sources": {
+    "SERVER": 5106,
+    "BROWSER": 4726
+   },
+   "total_events": 13160,
+   "server_events": 5106,
+   "error": ""
+  },
+  {
+   "id": "2862601447415133",
+   "name": "American River Resort - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:45+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_953162737054331"
+   ],
+   "attached_to": [
+    "953162737054331"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.americanriverresort.com": {
+     "count": 10345,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 893,
+      "2026-10-13": 1636,
+      "2026-10-14": 1471,
+      "2026-10-15": 1381,
+      "2026-10-16": 1532,
+      "2026-10-17": 1328,
+      "2026-10-18": 1344,
+      "2026-10-19": 760
+     }
+    },
+    "bio.americanriverresort.com": {
+     "count": 1010,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T10:00:00+0000",
+     "daily": {
+      "2026-10-12": 103,
+      "2026-10-13": 181,
+      "2026-10-14": 272,
+      "2026-10-15": 230,
+      "2026-10-16": 179,
+      "2026-10-17": 24,
+      "2026-10-18": 16,
+      "2026-10-19": 5
+     }
+    },
+    "go.americanriverresort.com": {
+     "count": 76,
+     "first": "2026-10-12T23:00:00+0000",
+     "last": "2026-10-18T22:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 11,
+      "2026-10-14": 18,
+      "2026-10-15": 17,
+      "2026-10-16": 14,
+      "2026-10-17": 6,
+      "2026-10-18": 8
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 9,
+     "first": "2026-10-13T19:00:00+0000",
+     "last": "2026-10-16T00:00:00+0000",
+     "daily": {
+      "2026-10-13": 1,
+      "2026-10-14": 4,
+      "2026-10-16": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 11366,
+    "Lead": 129,
+    "SubmitApplication": 54
+   },
+   "sources": {
+    "SERVER": 5815,
+    "BROWSER": 5628
+   },
+   "total_events": 11549,
+   "server_events": 5815,
+   "error": ""
+  },
+  {
+   "id": "1638757330705393",
+   "name": "Apple Mountain Resort - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:39:52+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "applemountainresort.com": {
+     "count": 484,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 12,
+      "2026-10-13": 69,
+      "2026-10-14": 65,
+      "2026-10-15": 99,
+      "2026-10-16": 142,
+      "2026-10-17": 34,
+      "2026-10-18": 34,
+      "2026-10-19": 29
+     }
+    },
+    "visionary-cajeta-74ff11.netlify.app": {
+     "count": 1,
+     "first": "2026-10-13T10:00:00+0000",
+     "last": "2026-10-13T10:00:00+0000",
+     "daily": {
+      "2026-10-13": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 461,
+    "SubmitApplication": 22,
+    "ViewContent": 6,
+    "Contact": 1
+   },
+   "sources": {
+    "BROWSER": 485
+   },
+   "total_events": 490,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1634367080775220",
+   "name": "Asheville River Cabins Meta Pixel",
+   "owner_business": {
+    "id": "3440656856064841",
+    "name": "Asheville River Cabins"
+   },
+   "last_fired_time": "2026-10-18T23:59:44+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_615836588009747"
+   ],
+   "attached_to": [
+    "615836588009747"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "hotels.cloudbeds.com": {
+     "count": 14335,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 858,
+      "2026-10-13": 2256,
+      "2026-10-14": 2031,
+      "2026-10-15": 2234,
+      "2026-10-16": 1743,
+      "2026-10-17": 1847,
+      "2026-10-18": 2285,
+      "2026-10-19": 1081
+     }
+    },
+    "www.ashevillerivercabins.com": {
+     "count": 7743,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 497,
+      "2026-10-13": 992,
+      "2026-10-14": 1130,
+      "2026-10-15": 1052,
+      "2026-10-16": 962,
+      "2026-10-17": 1112,
+      "2026-10-18": 1331,
+      "2026-10-19": 667
+     }
+    },
+    "go.ashevillerivercabins.com": {
+     "count": 739,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T13:00:00+0000",
+     "daily": {
+      "2026-10-12": 36,
+      "2026-10-13": 112,
+      "2026-10-14": 144,
+      "2026-10-15": 120,
+      "2026-10-16": 107,
+      "2026-10-17": 74,
+      "2026-10-18": 118,
+      "2026-10-19": 28
+     }
+    },
+    "bio.ashevillerivercabins.com": {
+     "count": 233,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 12,
+      "2026-10-13": 32,
+      "2026-10-14": 28,
+      "2026-10-15": 32,
+      "2026-10-16": 17,
+      "2026-10-17": 33,
+      "2026-10-18": 60,
+      "2026-10-19": 19
+     }
+    },
+    "wordpress-1016560-5306423.cloudwaysapps.com": {
+     "count": 12,
+     "first": "2026-10-13T19:00:00+0000",
+     "last": "2026-10-13T19:00:00+0000",
+     "daily": {
+      "2026-10-13": 12
+     }
+    }
+   },
+   "events": {
+    "PageView": 19182,
+    "Search": 3097,
+    "AddToCart": 380,
+    "Lead": 248,
+    "InitiateCheckout": 139,
+    "Contact": 59,
+    "Purchase": 45,
+    "SubmitApplication": 26,
+    "RemoveFromCart": 12
+   },
+   "sources": {
+    "BROWSER": 23062
+   },
+   "total_events": 23188,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "772693422494226",
+   "name": "Away 2PA Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:47+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_603977626130795"
+   ],
+   "attached_to": [
+    "603977626130795"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "away2pa.com": {
+     "count": 22757,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1824,
+      "2026-10-13": 2757,
+      "2026-10-14": 1956,
+      "2026-10-15": 2325,
+      "2026-10-16": 2598,
+      "2026-10-17": 4622,
+      "2026-10-18": 4064,
+      "2026-10-19": 2611
+     }
+    },
+    "bio.awaytopa.com": {
+     "count": 3139,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 236,
+      "2026-10-13": 347,
+      "2026-10-14": 305,
+      "2026-10-15": 372,
+      "2026-10-16": 437,
+      "2026-10-17": 655,
+      "2026-10-18": 515,
+      "2026-10-19": 272
+     }
+    },
+    "booking.ownerrez.com": {
+     "count": 552,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T13:00:00+0000",
+     "daily": {
+      "2026-10-12": 94,
+      "2026-10-13": 134,
+      "2026-10-14": 78,
+      "2026-10-15": 61,
+      "2026-10-16": 40,
+      "2026-10-17": 35,
+      "2026-10-18": 54,
+      "2026-10-19": 56
+     }
+    },
+    "links.awaytopa.com": {
+     "count": 36,
+     "first": "2026-10-13T00:00:00+0000",
+     "last": "2026-10-19T09:00:00+0000",
+     "daily": {
+      "2026-10-13": 2,
+      "2026-10-14": 16,
+      "2026-10-15": 2,
+      "2026-10-16": 4,
+      "2026-10-17": 8,
+      "2026-10-18": 2,
+      "2026-10-19": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 26112,
+    "Lead": 341,
+    "InitiateCheckout": 145,
+    "Purchase": 14
+   },
+   "sources": {
+    "SERVER": 13296,
+    "BROWSER": 13193
+   },
+   "total_events": 26612,
+   "server_events": 13296,
+   "error": ""
+  },
+  {
+   "id": "773898245792839",
+   "name": "Awayframes - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:56:57+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_2471256056603833"
+   ],
+   "attached_to": [
+    "2471256056603833"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "awayframes.com": {
+     "count": 4508,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 259,
+      "2026-10-13": 1082,
+      "2026-10-14": 554,
+      "2026-10-15": 558,
+      "2026-10-16": 540,
+      "2026-10-17": 444,
+      "2026-10-18": 651,
+      "2026-10-19": 420
+     }
+    },
+    "bio.awayframes.com": {
+     "count": 798,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 68,
+      "2026-10-13": 114,
+      "2026-10-14": 111,
+      "2026-10-15": 82,
+      "2026-10-16": 94,
+      "2026-10-17": 107,
+      "2026-10-18": 170,
+      "2026-10-19": 52
+     }
+    },
+    "book.awayframes.com": {
+     "count": 89,
+     "first": "2026-10-12T21:00:00+0000",
+     "last": "2026-10-18T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 4,
+      "2026-10-13": 37,
+      "2026-10-15": 32,
+      "2026-10-18": 16
+     }
+    },
+    "localhost": {
+     "count": 2531,
+     "first": "2026-10-13T17:00:00+0000",
+     "last": "2026-10-13T20:00:00+0000",
+     "daily": {
+      "2026-10-13": 2531
+     }
+    },
+    "127.0.0.1": {
+     "count": 348,
+     "first": "2026-10-13T18:00:00+0000",
+     "last": "2026-10-13T20:00:00+0000",
+     "daily": {
+      "2026-10-13": 348
+     }
+    },
+    "awayframes.netlify.app": {
+     "count": 25,
+     "first": "2026-10-13T21:00:00+0000",
+     "last": "2026-10-16T13:00:00+0000",
+     "daily": {
+      "2026-10-13": 17,
+      "2026-10-14": 5,
+      "2026-10-16": 3
+     }
+    },
+    "blobs-check--awayframes.netlify.app": {
+     "count": 7,
+     "first": "2026-10-13T21:00:00+0000",
+     "last": "2026-10-13T21:00:00+0000",
+     "daily": {
+      "2026-10-13": 7
+     }
+    },
+    "links.awayframes.com": {
+     "count": 84,
+     "first": "2026-10-13T23:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-13": 2,
+      "2026-10-14": 10,
+      "2026-10-15": 28,
+      "2026-10-16": 6,
+      "2026-10-18": 12,
+      "2026-10-19": 26
+     }
+    }
+   },
+   "events": {
+    "PageView": 10273,
+    "Lead": 90,
+    "original_language_en": 10,
+    "original_language": 10,
+    "Purchase": 6,
+    "visit_home_page": 6,
+    "calendar_interaction": 4,
+    "search_landing": 2,
+    "purchase": 2,
+    "close_popup": 2,
+    "search_result": 2,
+    "property_details_all_click": 2,
+    "property_details_serp_click": 2,
+    "click_nav_item": 2
+   },
+   "sources": {
+    "BROWSER": 4997,
+    "SERVER": 3398
+   },
+   "total_events": 10413,
+   "server_events": 3398,
+   "error": ""
+  },
+  {
+   "id": "4108409325970216",
+   "name": "Best Texas - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:58:34+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1982551189319458"
+   ],
+   "attached_to": [
+    "1982551189319458"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "book.besttexastravel.com": {
+     "count": 18997,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 450,
+      "2026-10-13": 1844,
+      "2026-10-14": 2048,
+      "2026-10-15": 5097,
+      "2026-10-16": 5376,
+      "2026-10-17": 1766,
+      "2026-10-18": 1928,
+      "2026-10-19": 488
+     }
+    },
+    "besttexastravel.com": {
+     "count": 889,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 24,
+      "2026-10-13": 214,
+      "2026-10-14": 98,
+      "2026-10-15": 161,
+      "2026-10-16": 127,
+      "2026-10-17": 68,
+      "2026-10-18": 125,
+      "2026-10-19": 72
+     }
+    },
+    "bio.besttexastravel.com": {
+     "count": 723,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 48,
+      "2026-10-13": 75,
+      "2026-10-14": 136,
+      "2026-10-15": 126,
+      "2026-10-16": 97,
+      "2026-10-17": 93,
+      "2026-10-18": 92,
+      "2026-10-19": 56
+     }
+    }
+   },
+   "events": {
+    "gallery_interaction": 11942,
+    "PageView": 3898,
+    "map_interaction": 1112,
+    "original_language_en": 543,
+    "original_language": 543,
+    "property_details_all_click": 574,
+    "calendar_interaction": 382,
+    "close_popup": 346,
+    "property_details_home_click": 159,
+    "visit_home_page": 149,
+    "property_details_serp_click": 129,
+    "Lead": 116,
+    "click_nav_item": 104,
+    "book_now": 122,
+    "content_touch_point": 104,
+    "category_filter": 96,
+    "search_landing": 77,
+    "visit_search_results_no_listings_found": 52,
+    "search_result": 32,
+    "Purchase": 10,
+    "click_map": 16,
+    "property_details_map_click": 18,
+    "send_inquiry": 10,
+    "generate_lead": 4,
+    "purchase": 2
+   },
+   "sources": {
+    "SERVER": 10457,
+    "BROWSER": 10159
+   },
+   "total_events": 20540,
+   "server_events": 10457,
+   "error": ""
+  },
+  {
+   "id": "1208874174466414",
+   "name": "Big Moon Ranch - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:56:56+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "bigmoonranch.com": {
+     "count": 10126,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 490,
+      "2026-10-13": 1287,
+      "2026-10-14": 1374,
+      "2026-10-15": 1770,
+      "2026-10-16": 1531,
+      "2026-10-17": 1553,
+      "2026-10-18": 1368,
+      "2026-10-19": 753
+     }
+    },
+    "info.staybigmoonranch.com": {
+     "count": 119,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T01:00:00+0000",
+     "daily": {
+      "2026-10-12": 30,
+      "2026-10-13": 11,
+      "2026-10-14": 14,
+      "2026-10-15": 24,
+      "2026-10-16": 14,
+      "2026-10-17": 16,
+      "2026-10-18": 8,
+      "2026-10-19": 2
+     }
+    },
+    "bio.staybigmoonranch.com": {
+     "count": 12,
+     "first": "2026-10-14T00:00:00+0000",
+     "last": "2026-10-18T15:00:00+0000",
+     "daily": {
+      "2026-10-14": 2,
+      "2026-10-15": 4,
+      "2026-10-16": 2,
+      "2026-10-18": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 8427,
+    "Search": 1845,
+    "Lead": 8
+   },
+   "sources": {
+    "BROWSER": 4976,
+    "SERVER": 5281
+   },
+   "total_events": 10280,
+   "server_events": 5281,
+   "error": ""
+  },
+  {
+   "id": "1241959234316508",
+   "name": "Bison Ridge - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:15+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_950241787963535"
+   ],
+   "attached_to": [
+    "950241787963535"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "bisonridgeretreat.com": {
+     "count": 5880,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 442,
+      "2026-10-13": 962,
+      "2026-10-14": 978,
+      "2026-10-15": 682,
+      "2026-10-16": 747,
+      "2026-10-17": 674,
+      "2026-10-18": 939,
+      "2026-10-19": 456
+     }
+    },
+    "bio.bisonridgeretreat.com": {
+     "count": 550,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 32,
+      "2026-10-13": 154,
+      "2026-10-14": 77,
+      "2026-10-15": 40,
+      "2026-10-16": 44,
+      "2026-10-17": 86,
+      "2026-10-18": 74,
+      "2026-10-19": 43
+     }
+    },
+    "link.bisonridgeretreat.com": {
+     "count": 229,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 6,
+      "2026-10-13": 36,
+      "2026-10-14": 40,
+      "2026-10-15": 27,
+      "2026-10-16": 26,
+      "2026-10-17": 22,
+      "2026-10-18": 38,
+      "2026-10-19": 34
+     }
+    }
+   },
+   "events": {
+    "PageView": 6654,
+    "Lead": 95
+   },
+   "sources": {
+    "SERVER": 3370,
+    "BROWSER": 3289
+   },
+   "total_events": 6749,
+   "server_events": 3370,
+   "error": ""
+  },
+  {
+   "id": "1617239586052069",
+   "name": "Bison Ridge Retreat Event Data",
+   "owner_business": {
+    "id": "4258725531120052",
+    "name": "Bison Ridge Retreat"
+   },
+   "last_fired_time": "2026-10-17T14:20:14+0000",
+   "listed_in": [
+    "act_950241787963535"
+   ],
+   "attached_to": [
+    "950241787963535"
+   ],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1107997340818783",
+   "name": "Branch",
+   "owner_business": {
+    "id": "2066827277052066",
+    "name": "@staywithbranch"
+   },
+   "last_fired_time": "2026-10-18T23:25:49+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1269399754049770"
+   ],
+   "attached_to": [
+    "1269399754049770"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "staywithbranch.com": {
+     "count": 1025,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 50,
+      "2026-10-13": 133,
+      "2026-10-14": 167,
+      "2026-10-15": 123,
+      "2026-10-16": 129,
+      "2026-10-17": 141,
+      "2026-10-18": 150,
+      "2026-10-19": 132
+     }
+    },
+    "bio.gostaywithbranch.com": {
+     "count": 346,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 20,
+      "2026-10-13": 52,
+      "2026-10-14": 50,
+      "2026-10-15": 32,
+      "2026-10-16": 42,
+      "2026-10-17": 54,
+      "2026-10-18": 44,
+      "2026-10-19": 52
+     }
+    },
+    "go.gostaywithbranch.com": {
+     "count": 264,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 8,
+      "2026-10-13": 38,
+      "2026-10-14": 40,
+      "2026-10-15": 40,
+      "2026-10-16": 33,
+      "2026-10-17": 25,
+      "2026-10-18": 49,
+      "2026-10-19": 31
+     }
+    },
+    "staywithbranch.guestybookings.com": {
+     "count": 904,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 76,
+      "2026-10-13": 155,
+      "2026-10-14": 179,
+      "2026-10-15": 73,
+      "2026-10-16": 77,
+      "2026-10-17": 145,
+      "2026-10-18": 96,
+      "2026-10-19": 103
+     }
+    }
+   },
+   "events": {
+    "PageView": 2282,
+    "ViewContent": 201,
+    "SubmitApplication": 77,
+    "InitiateCheckout": 7
+   },
+   "sources": {
+    "BROWSER": 2539
+   },
+   "total_events": 2567,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "2668162430043215",
+   "name": "Business Meta Pixel",
+   "owner_business": {
+    "id": "2066827277052066",
+    "name": "@staywithbranch"
+   },
+   "last_fired_time": "2026-05-16T11:22:08+0000",
+   "listed_in": [
+    "act_1269399754049770"
+   ],
+   "attached_to": [
+    "1269399754049770"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1654110122884436",
+   "name": "Cabin Collective BB Meta Pixel (New)",
+   "owner_business": {
+    "id": "8017490211666149",
+    "name": "Cabin Collective Broken Bow"
+   },
+   "last_fired_time": "2026-10-18T23:59:27+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bc488a1d-19df-48ed-b1f4-27e8a7d12634.filesusr.com": {
+     "count": 577,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-15T18:00:00+0000",
+     "daily": {
+      "2026-10-12": 155,
+      "2026-10-13": 198,
+      "2026-10-14": 130,
+      "2026-10-15": 94
+     }
+    },
+    "www-cabincollectivebb-com.filesusr.com": {
+     "count": 74,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-15T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 9,
+      "2026-10-13": 25,
+      "2026-10-14": 23,
+      "2026-10-15": 17
+     }
+    },
+    "app.ownerrez.com": {
+     "count": 147,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T06:00:00+0000",
+     "daily": {
+      "2026-10-12": 7,
+      "2026-10-13": 48,
+      "2026-10-14": 58,
+      "2026-10-15": 21,
+      "2026-10-17": 4,
+      "2026-10-18": 5,
+      "2026-10-19": 4
+     }
+    },
+    "booking.ownerrez.com": {
+     "count": 173,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 10,
+      "2026-10-13": 37,
+      "2026-10-14": 25,
+      "2026-10-15": 20,
+      "2026-10-16": 15,
+      "2026-10-17": 10,
+      "2026-10-18": 33,
+      "2026-10-19": 23
+     }
+    },
+    "zdg.bfk.mybluehost.me": {
+     "count": 66,
+     "first": "2026-10-13T16:00:00+0000",
+     "last": "2026-10-15T22:00:00+0000",
+     "daily": {
+      "2026-10-13": 16,
+      "2026-10-14": 12,
+      "2026-10-15": 38
+     }
+    },
+    "127.0.0.1": {
+     "count": 95,
+     "first": "2026-10-15T18:00:00+0000",
+     "last": "2026-10-15T19:00:00+0000",
+     "daily": {
+      "2026-10-15": 95
+     }
+    },
+    "localhost": {
+     "count": 73,
+     "first": "2026-10-15T18:00:00+0000",
+     "last": "2026-10-15T19:00:00+0000",
+     "daily": {
+      "2026-10-15": 73
+     }
+    },
+    "cabin-collective-landing-page.netlify.app": {
+     "count": 75,
+     "first": "2026-10-15T18:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-15": 62,
+      "2026-10-16": 11,
+      "2026-10-19": 2
+     }
+    },
+    "cabincollectivebb.com": {
+     "count": 1185,
+     "first": "2026-10-15T19:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-15": 54,
+      "2026-10-16": 419,
+      "2026-10-17": 158,
+      "2026-10-18": 340,
+      "2026-10-19": 214
+     }
+    },
+    "mail.cabincollectivebb.com": {
+     "count": 1,
+     "first": "2026-10-15T20:00:00+0000",
+     "last": "2026-10-15T20:00:00+0000",
+     "daily": {
+      "2026-10-15": 1
+     }
+    },
+    "bio.cabincollectivebb.com": {
+     "count": 25,
+     "first": "2026-10-16T14:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-16": 24,
+      "2026-10-19": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 2458,
+    "InitiateCheckout": 35,
+    "Lead": 7,
+    "Purchase": 6,
+    "AddToCart": 5
+   },
+   "sources": {
+    "BROWSER": 2504
+   },
+   "total_events": 2511,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1338006181525466",
+   "name": "Cabin Collective BB Pixel",
+   "owner_business": {
+    "id": "8017490211666149",
+    "name": "Cabin Collective Broken Bow"
+   },
+   "last_fired_time": "2026-10-15T18:54:16+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "www.cabincollectivebb.com": {
+     "count": 7491,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-15T18:00:00+0000",
+     "daily": {
+      "2026-10-12": 2709,
+      "2026-10-13": 1613,
+      "2026-10-14": 2397,
+      "2026-10-15": 772
+     }
+    }
+   },
+   "events": {
+    "PageView": 7265
+   },
+   "sources": {
+    "SERVER": 3867,
+    "BROWSER": 3624
+   },
+   "total_events": 7265,
+   "server_events": 3867,
+   "error": ""
+  },
+  {
+   "id": "595257656540749",
+   "name": "CGG Pixel",
+   "owner_business": {
+    "id": "233841572395749",
+    "name": "Columbia Gorge Getaways"
+   },
+   "last_fired_time": "2026-10-18T23:50:52+0000",
+   "listed_in": [
+    "act_490940113157881"
+   ],
+   "attached_to": [
+    "490940113157881"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www-columbiagorgegetaways-com.filesusr.com": {
+     "count": 604,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 32,
+      "2026-10-13": 88,
+      "2026-10-14": 78,
+      "2026-10-15": 93,
+      "2026-10-16": 65,
+      "2026-10-17": 105,
+      "2026-10-18": 72,
+      "2026-10-19": 71
+     }
+    },
+    "go.columbiagorgeglamping.com": {
+     "count": 401,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 20,
+      "2026-10-13": 56,
+      "2026-10-14": 53,
+      "2026-10-15": 69,
+      "2026-10-16": 43,
+      "2026-10-17": 73,
+      "2026-10-18": 45,
+      "2026-10-19": 42
+     }
+    },
+    "563d492b-f728-4c41-b63a-895331495b6c.filesusr.com": {
+     "count": 1,
+     "first": "2026-10-14T15:00:00+0000",
+     "last": "2026-10-14T15:00:00+0000",
+     "daily": {
+      "2026-10-14": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 982,
+    "SubmitApplication": 22,
+    "Lead": 16
+   },
+   "sources": {
+    "BROWSER": 1006
+   },
+   "total_events": 1020,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "700947282709400",
+   "name": "Columbia Gorge Getaways Pixel",
+   "owner_business": {
+    "id": "921763321190739",
+    "name": "Xcite Media Group"
+   },
+   "last_fired_time": "2026-10-18T23:50:57+0000",
+   "listed_in": [
+    "act_490940113157881"
+   ],
+   "attached_to": [
+    "490940113157881"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.columbiagorgegetaways.com": {
+     "count": 6016,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 597,
+      "2026-10-13": 1035,
+      "2026-10-14": 547,
+      "2026-10-15": 940,
+      "2026-10-16": 697,
+      "2026-10-17": 963,
+      "2026-10-18": 592,
+      "2026-10-19": 645
+     }
+    },
+    "resnexus.com": {
+     "count": 2647,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 85,
+      "2026-10-13": 392,
+      "2026-10-14": 381,
+      "2026-10-15": 367,
+      "2026-10-16": 306,
+      "2026-10-17": 392,
+      "2026-10-18": 510,
+      "2026-10-19": 214
+     }
+    }
+   },
+   "events": {
+    "PageView": 8809,
+    "CALL": 6,
+    "Purchase": 4
+   },
+   "sources": {
+    "SERVER": 4373,
+    "BROWSER": 4291
+   },
+   "total_events": 8819,
+   "server_events": 4373,
+   "error": ""
+  },
+  {
+   "id": "937921995837578",
+   "name": "Cowan Creek - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-17T20:35:34+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bio.cowancreeklodges.com": {
+     "count": 5,
+     "first": "2026-10-14T01:00:00+0000",
+     "last": "2026-10-17T20:00:00+0000",
+     "daily": {
+      "2026-10-14": 1,
+      "2026-10-16": 2,
+      "2026-10-17": 2
+     }
+    },
+    "go.cowancreeklodges.com": {
+     "count": 6,
+     "first": "2026-10-14T03:00:00+0000",
+     "last": "2026-10-15T20:00:00+0000",
+     "daily": {
+      "2026-10-14": 4,
+      "2026-10-15": 2
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 2,
+     "first": "2026-10-14T03:00:00+0000",
+     "last": "2026-10-14T03:00:00+0000",
+     "daily": {
+      "2026-10-14": 2
+     }
+    },
+    "link.cowancreeklodges.com": {
+     "count": 1,
+     "first": "2026-10-14T21:00:00+0000",
+     "last": "2026-10-14T21:00:00+0000",
+     "daily": {
+      "2026-10-14": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 12,
+    "SubmitApplication": 2
+   },
+   "sources": {
+    "SERVER": 7,
+    "BROWSER": 7
+   },
+   "total_events": 14,
+   "server_events": 7,
+   "error": ""
+  },
+  {
+   "id": "1524930098540982",
+   "name": "Creekside Hideaway Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-15T01:07:23+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "creeksidehideaway.com": {
+     "count": 4,
+     "first": "2026-10-14T09:00:00+0000",
+     "last": "2026-10-15T01:00:00+0000",
+     "daily": {
+      "2026-10-14": 2,
+      "2026-10-15": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 4
+   },
+   "sources": {
+    "SERVER": 2,
+    "BROWSER": 2
+   },
+   "total_events": 4,
+   "server_events": 2,
+   "error": ""
+  },
+  {
+   "id": "1195775445001823",
+   "name": "Do Not Use",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1101119855591616",
+   "name": "Do not use blank",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "898538959691785",
+   "name": "Dwell Luxury Rentals Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T22:03:31+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bio.dwelluxuryrentals.com": {
+     "count": 64,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 17,
+      "2026-10-14": 9,
+      "2026-10-15": 7,
+      "2026-10-16": 8,
+      "2026-10-17": 8,
+      "2026-10-18": 9,
+      "2026-10-19": 4
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 8,
+     "first": "2026-10-13T01:00:00+0000",
+     "last": "2026-10-18T17:00:00+0000",
+     "daily": {
+      "2026-10-13": 3,
+      "2026-10-15": 3,
+      "2026-10-18": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 70,
+    "SubmitApplication": 3
+   },
+   "sources": {
+    "BROWSER": 72
+   },
+   "total_events": 73,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "4373245046297848",
+   "name": "Edenwood - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:58:22+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bio.edenwoodnc.com": {
+     "count": 370,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 16,
+      "2026-10-13": 103,
+      "2026-10-14": 56,
+      "2026-10-15": 39,
+      "2026-10-16": 48,
+      "2026-10-17": 28,
+      "2026-10-18": 40,
+      "2026-10-19": 40
+     }
+    }
+   },
+   "events": {
+    "PageView": 352,
+    "SubmitApplication": 28
+   },
+   "sources": {
+    "BROWSER": 370
+   },
+   "total_events": 380,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "876508505381758",
+   "name": "Endless Stays Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:55:32+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_896372356081479"
+   ],
+   "attached_to": [
+    "896372356081479"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "stayendless.com": {
+     "count": 34452,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 2717,
+      "2026-10-13": 5265,
+      "2026-10-14": 6192,
+      "2026-10-15": 6307,
+      "2026-10-16": 3730,
+      "2026-10-17": 3717,
+      "2026-10-18": 4332,
+      "2026-10-19": 2192
+     }
+    },
+    "join.stayendless.com": {
+     "count": 4780,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 412,
+      "2026-10-13": 658,
+      "2026-10-14": 803,
+      "2026-10-15": 565,
+      "2026-10-16": 641,
+      "2026-10-17": 522,
+      "2026-10-18": 769,
+      "2026-10-19": 410
+     }
+    },
+    "bio.stayendless.com": {
+     "count": 2449,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 145,
+      "2026-10-13": 369,
+      "2026-10-14": 421,
+      "2026-10-15": 570,
+      "2026-10-16": 197,
+      "2026-10-17": 290,
+      "2026-10-18": 299,
+      "2026-10-19": 158
+     }
+    },
+    "booking.hospitable.com": {
+     "count": 161,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T03:00:00+0000",
+     "daily": {
+      "2026-10-12": 16,
+      "2026-10-13": 18,
+      "2026-10-14": 20,
+      "2026-10-15": 16,
+      "2026-10-16": 34,
+      "2026-10-17": 31,
+      "2026-10-18": 18,
+      "2026-10-19": 8
+     }
+    },
+    "stayendless.hospitable.rentals": {
+     "count": 569,
+     "first": "2026-10-12T20:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 10,
+      "2026-10-13": 19,
+      "2026-10-14": 286,
+      "2026-10-15": 150,
+      "2026-10-16": 79,
+      "2026-10-17": 9,
+      "2026-10-18": 6,
+      "2026-10-19": 10
+     }
+    }
+   },
+   "events": {
+    "PageView": 41709,
+    "Lead": 934,
+    "SubmitApplication": 201,
+    "Purchase": 4
+   },
+   "sources": {
+    "SERVER": 21488,
+    "BROWSER": 20929
+   },
+   "total_events": 42848,
+   "server_events": 21488,
+   "error": ""
+  },
+  {
+   "id": "1474685406530880",
+   "name": "Evergreen Cabins Meta Pixel",
+   "owner_business": {
+    "id": "182684855965772",
+    "name": "Evergreen Cabins, LLC"
+   },
+   "last_fired_time": "2026-10-18T23:59:58+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_453808647114273"
+   ],
+   "attached_to": [
+    "453808647114273"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "evergreencabins.co": {
+     "count": 38485,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 2626,
+      "2026-10-13": 5424,
+      "2026-10-14": 4210,
+      "2026-10-15": 4936,
+      "2026-10-16": 4908,
+      "2026-10-17": 5734,
+      "2026-10-18": 6688,
+      "2026-10-19": 3959
+     }
+    },
+    "bio.evergreencabins.co": {
+     "count": 2649,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 180,
+      "2026-10-13": 432,
+      "2026-10-14": 282,
+      "2026-10-15": 325,
+      "2026-10-16": 321,
+      "2026-10-17": 386,
+      "2026-10-18": 470,
+      "2026-10-19": 253
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 39,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 4,
+      "2026-10-13": 2,
+      "2026-10-14": 3,
+      "2026-10-15": 5,
+      "2026-10-16": 3,
+      "2026-10-17": 3,
+      "2026-10-18": 8,
+      "2026-10-19": 11
+     }
+    },
+    "links.evergreencabins.co": {
+     "count": 249,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 18,
+      "2026-10-13": 26,
+      "2026-10-14": 35,
+      "2026-10-15": 38,
+      "2026-10-16": 40,
+      "2026-10-17": 28,
+      "2026-10-18": 42,
+      "2026-10-19": 22
+     }
+    },
+    "booking.hospitable.com": {
+     "count": 339,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 18,
+      "2026-10-13": 24,
+      "2026-10-14": 39,
+      "2026-10-15": 29,
+      "2026-10-16": 63,
+      "2026-10-17": 67,
+      "2026-10-18": 60,
+      "2026-10-19": 39
+     }
+    }
+   },
+   "events": {
+    "PageView": 40919,
+    "SubmitApplication": 344,
+    "InitiateCheckout": 163,
+    "Lead": 111,
+    "Purchase": 7
+   },
+   "sources": {
+    "BROWSER": 29641,
+    "SERVER": 12127
+   },
+   "total_events": 41544,
+   "server_events": 12127,
+   "error": ""
+  },
+  {
+   "id": "1282082805561576",
+   "name": "Facebook Pixel",
+   "owner_business": {
+    "id": "735291970494853",
+    "name": "starlight.haven"
+   },
+   "last_fired_time": "2022-07-08T13:49:56+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_74756899"
+   ],
+   "attached_to": [
+    "74756899"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "263355999889258",
+   "name": "FLO1 Conversion",
+   "owner_business": {
+    "id": "873976399912644",
+    "name": "FLOHOM"
+   },
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1527204188048807",
+   "name": "FLO2",
+   "owner_business": {
+    "id": "873976399912644",
+    "name": "FLOHOM"
+   },
+   "listed_in": [
+    "hg_client_pixels",
+    "act_2100710320122219"
+   ],
+   "attached_to": [
+    "2100710320122219"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "139231105894533",
+   "name": "FLO2 Conversion",
+   "owner_business": {
+    "id": "873976399912644",
+    "name": "FLOHOM"
+   },
+   "last_fired_time": "2026-10-18T23:59:56+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_2100710320122219",
+    "act_827872700004659"
+   ],
+   "attached_to": [
+    "2100710320122219",
+    "827872700004659"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "flohom.com": {
+     "count": 18763,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1463,
+      "2026-10-13": 3192,
+      "2026-10-14": 2583,
+      "2026-10-15": 3017,
+      "2026-10-16": 2478,
+      "2026-10-17": 2176,
+      "2026-10-18": 2211,
+      "2026-10-19": 1643
+     }
+    },
+    "bio.goflohom.com": {
+     "count": 1346,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 140,
+      "2026-10-13": 269,
+      "2026-10-14": 273,
+      "2026-10-15": 255,
+      "2026-10-16": 107,
+      "2026-10-17": 89,
+      "2026-10-18": 130,
+      "2026-10-19": 83
+     }
+    },
+    "book.flohom.com": {
+     "count": 6139,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1183,
+      "2026-10-13": 1987,
+      "2026-10-14": 681,
+      "2026-10-15": 668,
+      "2026-10-16": 678,
+      "2026-10-17": 253,
+      "2026-10-18": 498,
+      "2026-10-19": 191
+     }
+    },
+    "links.goflohom.com": {
+     "count": 150,
+     "first": "2026-10-12T21:00:00+0000",
+     "last": "2026-10-19T05:00:00+0000",
+     "daily": {
+      "2026-10-12": 5,
+      "2026-10-13": 21,
+      "2026-10-14": 28,
+      "2026-10-15": 32,
+      "2026-10-16": 31,
+      "2026-10-17": 21,
+      "2026-10-18": 3,
+      "2026-10-19": 9
+     }
+    },
+    "flohom-ai-hgm.netlify.app": {
+     "count": 3,
+     "first": "2026-10-14T10:00:00+0000",
+     "last": "2026-10-17T03:00:00+0000",
+     "daily": {
+      "2026-10-14": 1,
+      "2026-10-16": 1,
+      "2026-10-17": 1
+     }
+    },
+    "go.goflohom.com": {
+     "count": 4,
+     "first": "2026-10-14T12:00:00+0000",
+     "last": "2026-10-19T13:00:00+0000",
+     "daily": {
+      "2026-10-14": 1,
+      "2026-10-17": 1,
+      "2026-10-18": 1,
+      "2026-10-19": 1
+     }
+    },
+    "localhost": {
+     "count": 4,
+     "first": "2026-10-14T14:00:00+0000",
+     "last": "2026-10-14T15:00:00+0000",
+     "daily": {
+      "2026-10-14": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 21210,
+    "gallery_interaction": 3298,
+    "original_language": 378,
+    "original_language_en": 377,
+    "map_interaction": 345,
+    "Lead": 257,
+    "calendar_interaction": 199,
+    "property_details_all_click": 158,
+    "close_popup": 99,
+    "content_touch_point": 95,
+    "book_now": 45,
+    "click_nav_item": 39,
+    "Purchase": 21,
+    "visit_home_page": 20,
+    "property_details_serp_click": 15,
+    "search_result": 7,
+    "search_landing": 7,
+    "property_details_home_click": 6,
+    "visit_search_results_no_listings_found": 5,
+    "__missing_event": 6,
+    "generate_lead": 1,
+    "send_inquiry": 1
+   },
+   "sources": {
+    "BROWSER": 26397,
+    "SERVER": 20
+   },
+   "total_events": 26589,
+   "server_events": 20,
+   "error": ""
+  },
+  {
+   "id": "1602971745164199",
+   "name": "Green Springs Inn Event Data",
+   "owner_business": {
+    "id": "168139003880292",
+    "name": "Green Springs Inn"
+   },
+   "last_fired_time": "2026-10-18T23:59:54+0000",
+   "listed_in": [
+    "act_1390516335151357"
+   ],
+   "attached_to": [
+    "1390516335151357"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "book.greenspringsinn.com": {
+     "count": 23668,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 3414,
+      "2026-10-13": 5974,
+      "2026-10-14": 2574,
+      "2026-10-15": 2732,
+      "2026-10-16": 3478,
+      "2026-10-17": 2252,
+      "2026-10-18": 1535,
+      "2026-10-19": 1709
+     }
+    }
+   },
+   "events": {
+    "gallery_interaction": 13156,
+    "PageView": 3456,
+    "property_details_serp_click": 2720,
+    "map_interaction": 924,
+    "original_language_en": 835,
+    "original_language": 836,
+    "search_result": 473,
+    "close_popup": 350,
+    "content_touch_point": 328,
+    "calendar_interaction": 218,
+    "visit_search_results_no_listings_found": 163,
+    "book_now": 128,
+    "Purchase": 38,
+    "purchase": 34,
+    "visit_home_page": 36,
+    "click_nav_item_custom": 4,
+    "property_details_home_click": 6,
+    "search_landing": 4,
+    "click_nav_item": 2
+   },
+   "sources": {
+    "SERVER": 11693,
+    "BROWSER": 11975
+   },
+   "total_events": 23711,
+   "server_events": 11693,
+   "error": ""
+  },
+  {
+   "id": "1098954801239133",
+   "name": "GSI - Wix Pixel",
+   "owner_business": {
+    "id": "168139003880292",
+    "name": "Green Springs Inn"
+   },
+   "last_fired_time": "2026-10-18T23:59:54+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1390516335151357"
+   ],
+   "attached_to": [
+    "1390516335151357"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "greenspringsinn.com": {
+     "count": 11126,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 693,
+      "2026-10-13": 1706,
+      "2026-10-14": 1321,
+      "2026-10-15": 1184,
+      "2026-10-16": 1450,
+      "2026-10-17": 1486,
+      "2026-10-18": 1621,
+      "2026-10-19": 1665
+     }
+    },
+    "book.greenspringsinn.com": {
+     "count": 23597,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 3424,
+      "2026-10-13": 5940,
+      "2026-10-14": 2554,
+      "2026-10-15": 2724,
+      "2026-10-16": 3464,
+      "2026-10-17": 2211,
+      "2026-10-18": 1557,
+      "2026-10-19": 1723
+     }
+    },
+    "bio.staygreenspringsinn.com": {
+     "count": 556,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 31,
+      "2026-10-13": 84,
+      "2026-10-14": 94,
+      "2026-10-15": 85,
+      "2026-10-16": 75,
+      "2026-10-17": 65,
+      "2026-10-18": 69,
+      "2026-10-19": 53
+     }
+    },
+    "go.staygreenspringsinn.com": {
+     "count": 251,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 16,
+      "2026-10-13": 48,
+      "2026-10-14": 20,
+      "2026-10-15": 14,
+      "2026-10-16": 22,
+      "2026-10-17": 23,
+      "2026-10-18": 72,
+      "2026-10-19": 36
+     }
+    },
+    "www.greenspringsinn.com": {
+     "count": 1,
+     "first": "2026-10-13T20:00:00+0000",
+     "last": "2026-10-13T20:00:00+0000",
+     "daily": {
+      "2026-10-13": 1
+     }
+    },
+    "invalid.invalid": {
+     "count": 7,
+     "first": "2026-10-14T04:00:00+0000",
+     "last": "2026-10-14T04:00:00+0000",
+     "daily": {
+      "2026-10-14": 7
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 9,
+     "first": "2026-10-14T20:00:00+0000",
+     "last": "2026-10-19T04:00:00+0000",
+     "daily": {
+      "2026-10-14": 1,
+      "2026-10-17": 4,
+      "2026-10-18": 3,
+      "2026-10-19": 1
+     }
+    },
+    "link.staygreenspringsinn.com": {
+     "count": 4,
+     "first": "2026-10-15T02:00:00+0000",
+     "last": "2026-10-19T05:00:00+0000",
+     "daily": {
+      "2026-10-15": 1,
+      "2026-10-16": 2,
+      "2026-10-19": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 15561,
+    "gallery_interaction": 12877,
+    "property_details_serp_click": 2720,
+    "map_interaction": 925,
+    "original_language": 841,
+    "original_language_en": 840,
+    "search_result": 470,
+    "close_popup": 350,
+    "content_touch_point": 328,
+    "InitiateCheckout": 304,
+    "Lead": 218,
+    "calendar_interaction": 217,
+    "visit_search_results_no_listings_found": 163,
+    "book_now": 125,
+    "Purchase": 20,
+    "purchase": 34,
+    "visit_home_page": 39,
+    "search_landing": 4,
+    "property_details_home_click": 6,
+    "click_nav_item_custom": 4,
+    "click_nav_item": 2,
+    "SubmitApplication": 2,
+    "__missing_event": 1
+   },
+   "sources": {
+    "SERVER": 18281,
+    "BROWSER": 17286
+   },
+   "total_events": 36051,
+   "server_events": 18281,
+   "error": ""
+  },
+  {
+   "id": "1691591692267740",
+   "name": "HG - The Outpost Grand Canyon Event Data",
+   "owner_business": {
+    "id": "1208311637844219",
+    "name": "Clear Summit Hospitality"
+   },
+   "last_fired_time": "2026-10-18T23:24:24+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1530849534802936"
+   ],
+   "attached_to": [
+    "1530849534802936"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "bio.outpostgrandcanyon.com": {
+     "count": 880,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 43,
+      "2026-10-13": 118,
+      "2026-10-14": 156,
+      "2026-10-15": 197,
+      "2026-10-16": 122,
+      "2026-10-17": 57,
+      "2026-10-18": 128,
+      "2026-10-19": 59
+     }
+    }
+   },
+   "events": {
+    "PageView": 722,
+    "SubmitApplication": 88,
+    "Lead": 85
+   },
+   "sources": {
+    "SERVER": 454,
+    "BROWSER": 426
+   },
+   "total_events": 895,
+   "server_events": 454,
+   "error": ""
+  },
+  {
+   "id": "972704005768417",
+   "name": "HG- Austin Surf Lodge Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "26999968849610588",
+   "name": "Hiawassee Glamping Event Data",
+   "owner_business": {
+    "id": "448834100699861",
+    "name": "Hiawassee Glamping"
+   },
+   "last_fired_time": "2026-10-18T23:37:36+0000",
+   "listed_in": [
+    "act_4219624811692502"
+   ],
+   "attached_to": [
+    "4219624811692502"
+   ],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1149628220675980",
+   "name": "Hiawassee Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:30+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_4219624811692502"
+   ],
+   "attached_to": [
+    "4219624811692502"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "hiawasseeglamping.com": {
+     "count": 16038,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1013,
+      "2026-10-13": 2936,
+      "2026-10-14": 2255,
+      "2026-10-15": 2037,
+      "2026-10-16": 2000,
+      "2026-10-17": 1892,
+      "2026-10-18": 2160,
+      "2026-10-19": 1745
+     }
+    },
+    "bio.hiawasseeglamping.com": {
+     "count": 1304,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 71,
+      "2026-10-13": 188,
+      "2026-10-14": 216,
+      "2026-10-15": 179,
+      "2026-10-16": 157,
+      "2026-10-17": 191,
+      "2026-10-18": 178,
+      "2026-10-19": 124
+     }
+    },
+    "links.hiawasseeglamping.com": {
+     "count": 81,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-12": 6,
+      "2026-10-13": 8,
+      "2026-10-14": 4,
+      "2026-10-15": 18,
+      "2026-10-16": 16,
+      "2026-10-17": 8,
+      "2026-10-18": 16,
+      "2026-10-19": 5
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 4,
+     "first": "2026-10-16T15:00:00+0000",
+     "last": "2026-10-16T15:00:00+0000",
+     "daily": {
+      "2026-10-16": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 17276,
+    "Lead": 215,
+    "Purchase": 3
+   },
+   "sources": {
+    "SERVER": 8757,
+    "BROWSER": 8675
+   },
+   "total_events": 17494,
+   "server_events": 8757,
+   "error": ""
+  },
+  {
+   "id": "3974998432746513",
+   "name": "Hillside Amble Meta Pixel",
+   "owner_business": {
+    "id": "1391028845193147",
+    "name": "Hillside Amble"
+   },
+   "last_fired_time": "2026-10-18T23:58:58+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "hillsideamble.com": {
+     "count": 1121,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 122,
+      "2026-10-13": 144,
+      "2026-10-14": 129,
+      "2026-10-15": 103,
+      "2026-10-16": 192,
+      "2026-10-17": 89,
+      "2026-10-18": 190,
+      "2026-10-19": 152
+     }
+    },
+    "booking.ownerrez.com": {
+     "count": 6,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-12T18:00:00+0000",
+     "daily": {
+      "2026-10-12": 6
+     }
+    },
+    "app.ownerrez.com": {
+     "count": 19,
+     "first": "2026-10-13T00:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-13": 2,
+      "2026-10-14": 3,
+      "2026-10-15": 5,
+      "2026-10-16": 1,
+      "2026-10-17": 1,
+      "2026-10-18": 3,
+      "2026-10-19": 4
+     }
+    },
+    "go.stayhillsideamble.com": {
+     "count": 1,
+     "first": "2026-10-13T03:00:00+0000",
+     "last": "2026-10-13T03:00:00+0000",
+     "daily": {
+      "2026-10-13": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 1145,
+    "InitiateCheckout": 3,
+    "AddToCart": 3
+   },
+   "sources": {
+    "BROWSER": 901,
+    "SERVER": 246
+   },
+   "total_events": 1151,
+   "server_events": 246,
+   "error": ""
+  },
+  {
+   "id": "1467511861488785",
+   "name": "Home Base Bnb - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:52:37+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_3224125791099903"
+   ],
+   "attached_to": [
+    "3224125791099903"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "homebasebnbs.com": {
+     "count": 7588,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 830,
+      "2026-10-13": 1071,
+      "2026-10-14": 866,
+      "2026-10-15": 1143,
+      "2026-10-16": 1238,
+      "2026-10-17": 1001,
+      "2026-10-18": 935,
+      "2026-10-19": 504
+     }
+    },
+    "bio.stayhomebase.com": {
+     "count": 790,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 75,
+      "2026-10-13": 130,
+      "2026-10-14": 95,
+      "2026-10-15": 176,
+      "2026-10-16": 76,
+      "2026-10-17": 114,
+      "2026-10-18": 94,
+      "2026-10-19": 30
+     }
+    },
+    "go.stayhomebase.com": {
+     "count": 201,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 21,
+      "2026-10-13": 23,
+      "2026-10-14": 49,
+      "2026-10-15": 15,
+      "2026-10-16": 24,
+      "2026-10-17": 15,
+      "2026-10-18": 39,
+      "2026-10-19": 15
+     }
+    },
+    "127.0.0.1": {
+     "count": 50,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-12T17:00:00+0000",
+     "daily": {
+      "2026-10-12": 50
+     }
+    },
+    "host.homebasebnbs.com": {
+     "count": 18,
+     "first": "2026-10-13T01:00:00+0000",
+     "last": "2026-10-18T23:00:00+0000",
+     "daily": {
+      "2026-10-13": 4,
+      "2026-10-14": 4,
+      "2026-10-15": 7,
+      "2026-10-18": 3
+     }
+    },
+    "www.facebook.com": {
+     "count": 5,
+     "first": "2026-10-13T22:00:00+0000",
+     "last": "2026-10-19T00:00:00+0000",
+     "daily": {
+      "2026-10-13": 1,
+      "2026-10-14": 1,
+      "2026-10-17": 1,
+      "2026-10-18": 1,
+      "2026-10-19": 1
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 12,
+     "first": "2026-10-15T20:00:00+0000",
+     "last": "2026-10-15T20:00:00+0000",
+     "daily": {
+      "2026-10-15": 12
+     }
+    },
+    "homebasebnbs.guestybookings.com": {
+     "count": 28,
+     "first": "2026-10-16T02:00:00+0000",
+     "last": "2026-10-18T22:00:00+0000",
+     "daily": {
+      "2026-10-16": 22,
+      "2026-10-17": 4,
+      "2026-10-18": 2
+     }
+    },
+    "host-staging.homebasebnbs.com": {
+     "count": 4,
+     "first": "2026-10-16T05:00:00+0000",
+     "last": "2026-10-16T05:00:00+0000",
+     "daily": {
+      "2026-10-16": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 8678,
+    "Purchase": 118,
+    "Lead": 52,
+    "__missing_event": 5
+   },
+   "sources": {
+    "SERVER": 4503,
+    "BROWSER": 4290
+   },
+   "total_events": 8853,
+   "server_events": 4503,
+   "error": ""
+  },
+  {
+   "id": "1547510566197386",
+   "name": "Inspired Retreats Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:57:37+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1494841894957652"
+   ],
+   "attached_to": [
+    "1494841894957652"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "go.stayinspiredretreats.com": {
+     "count": 2045,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 171,
+      "2026-10-13": 318,
+      "2026-10-14": 303,
+      "2026-10-15": 210,
+      "2026-10-16": 201,
+      "2026-10-17": 284,
+      "2026-10-18": 390,
+      "2026-10-19": 168
+     }
+    },
+    "stayinspiredretreats.com": {
+     "count": 698,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 38,
+      "2026-10-13": 98,
+      "2026-10-14": 101,
+      "2026-10-15": 119,
+      "2026-10-16": 64,
+      "2026-10-17": 116,
+      "2026-10-18": 118,
+      "2026-10-19": 44
+     }
+    },
+    "bio.stayinspiredretreats.com": {
+     "count": 341,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T12:00:00+0000",
+     "daily": {
+      "2026-10-12": 28,
+      "2026-10-13": 66,
+      "2026-10-14": 48,
+      "2026-10-15": 16,
+      "2026-10-16": 8,
+      "2026-10-17": 61,
+      "2026-10-18": 86,
+      "2026-10-19": 28
+     }
+    },
+    "go.staysaluda.com": {
+     "count": 521,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 43,
+      "2026-10-13": 60,
+      "2026-10-14": 81,
+      "2026-10-15": 89,
+      "2026-10-16": 62,
+      "2026-10-17": 62,
+      "2026-10-18": 90,
+      "2026-10-19": 34
+     }
+    },
+    "bio.staysaluda.com": {
+     "count": 180,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 10,
+      "2026-10-13": 33,
+      "2026-10-14": 29,
+      "2026-10-15": 26,
+      "2026-10-16": 19,
+      "2026-10-17": 18,
+      "2026-10-18": 21,
+      "2026-10-19": 24
+     }
+    },
+    "links.staysaluda.com": {
+     "count": 328,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 26,
+      "2026-10-13": 35,
+      "2026-10-14": 52,
+      "2026-10-15": 48,
+      "2026-10-16": 35,
+      "2026-10-17": 47,
+      "2026-10-18": 54,
+      "2026-10-19": 31
+     }
+    },
+    "links.stayinspiredretreats.com": {
+     "count": 61,
+     "first": "2026-10-13T04:00:00+0000",
+     "last": "2026-10-18T20:00:00+0000",
+     "daily": {
+      "2026-10-13": 16,
+      "2026-10-14": 16,
+      "2026-10-15": 4,
+      "2026-10-16": 5,
+      "2026-10-18": 20
+     }
+    }
+   },
+   "events": {
+    "PageView": 4966,
+    "Lead": 247
+   },
+   "sources": {
+    "SERVER": 2625,
+    "BROWSER": 1549
+   },
+   "total_events": 5213,
+   "server_events": 2625,
+   "error": ""
+  },
+  {
+   "id": "939259312355569",
+   "name": "Leshan - Tracking Test Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-09-05T23:26:25+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_967636478877602"
+   ],
+   "attached_to": [
+    "967636478877602"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "3327546500757583",
+   "name": "LinkTree",
+   "owner_business": {
+    "id": "1662038040809917",
+    "name": "Se·lah"
+   },
+   "last_fired_time": "2026-10-18T23:52:27+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1275283434220508"
+   ],
+   "attached_to": [
+    "1275283434220508"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.selah.place": {
+     "count": 1809,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 76,
+      "2026-10-13": 233,
+      "2026-10-14": 384,
+      "2026-10-15": 210,
+      "2026-10-16": 252,
+      "2026-10-17": 181,
+      "2026-10-18": 395,
+      "2026-10-19": 78
+     }
+    },
+    "linktr.ee": {
+     "count": 20,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-19T04:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 14,
+      "2026-10-17": 2,
+      "2026-10-19": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 1683,
+    "linkClick": 6
+   },
+   "sources": {
+    "BROWSER": 1002,
+    "SERVER": 827
+   },
+   "total_events": 1689,
+   "server_events": 827,
+   "error": ""
+  },
+  {
+   "id": "1336126535258724",
+   "name": "Little River Landing Event Data",
+   "owner_business": {
+    "id": "1764967091370111",
+    "name": "Little River Landing "
+   },
+   "last_fired_time": "2026-10-16T14:10:29+0000",
+   "listed_in": [
+    "act_884285717873613"
+   ],
+   "attached_to": [
+    "884285717873613"
+   ],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1816709606431185",
+   "name": "Little River Landing Meta Pixel",
+   "owner_business": {
+    "id": "1764967091370111",
+    "name": "Little River Landing "
+   },
+   "last_fired_time": "2026-10-18T23:43:22+0000",
+   "listed_in": [
+    "act_884285717873613"
+   ],
+   "attached_to": [
+    "884285717873613"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "go.staylittleriver.com": {
+     "count": 666,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 55,
+      "2026-10-13": 106,
+      "2026-10-14": 100,
+      "2026-10-15": 116,
+      "2026-10-16": 82,
+      "2026-10-17": 67,
+      "2026-10-18": 113,
+      "2026-10-19": 27
+     }
+    },
+    "staylittleriver.com": {
+     "count": 1838,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 76,
+      "2026-10-13": 331,
+      "2026-10-14": 276,
+      "2026-10-15": 239,
+      "2026-10-16": 209,
+      "2026-10-17": 304,
+      "2026-10-18": 195,
+      "2026-10-19": 208
+     }
+    }
+   },
+   "events": {
+    "PageView": 2436,
+    "Lead": 74,
+    "__missing_event": 1
+   },
+   "sources": {
+    "SERVER": 1211,
+    "BROWSER": 1295
+   },
+   "total_events": 2511,
+   "server_events": 1211,
+   "error": ""
+  },
+  {
+   "id": "2149400298882075",
+   "name": "Lush Hollow Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T20:08:08+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "lushhollow.com": {
+     "count": 109,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 8,
+      "2026-10-13": 12,
+      "2026-10-14": 47,
+      "2026-10-15": 28,
+      "2026-10-16": 2,
+      "2026-10-17": 2,
+      "2026-10-18": 7,
+      "2026-10-19": 3
+     }
+    },
+    "bio.golushhollow.com": {
+     "count": 7,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-15T11:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 1,
+      "2026-10-14": 1,
+      "2026-10-15": 3
+     }
+    },
+    "www.facebook.com": {
+     "count": 1,
+     "first": "2026-10-17T06:00:00+0000",
+     "last": "2026-10-17T06:00:00+0000",
+     "daily": {
+      "2026-10-17": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 116,
+    "__missing_event": 1
+   },
+   "sources": {
+    "BROWSER": 117
+   },
+   "total_events": 117,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1943632852972363",
+   "name": "Myrinn - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:58:58+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1668286333836716"
+   ],
+   "attached_to": [
+    "1668286333836716"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "staywithmyrinn.com": {
+     "count": 6676,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 326,
+      "2026-10-13": 545,
+      "2026-10-14": 1250,
+      "2026-10-15": 907,
+      "2026-10-16": 753,
+      "2026-10-17": 587,
+      "2026-10-18": 1183,
+      "2026-10-19": 1125
+     }
+    },
+    "links.staywithmyrinn.com": {
+     "count": 301,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 26,
+      "2026-10-13": 38,
+      "2026-10-14": 39,
+      "2026-10-15": 41,
+      "2026-10-16": 39,
+      "2026-10-17": 31,
+      "2026-10-18": 42,
+      "2026-10-19": 45
+     }
+    },
+    "--sanitized-too-long--": {
+     "count": 1,
+     "first": "2026-10-15T16:00:00+0000",
+     "last": "2026-10-15T16:00:00+0000",
+     "daily": {
+      "2026-10-15": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 6935,
+    "Lead": 70
+   },
+   "sources": {
+    "BROWSER": 3454,
+    "SERVER": 3524
+   },
+   "total_events": 7005,
+   "server_events": 3524,
+   "error": ""
+  },
+  {
+   "id": "844302611320158",
+   "name": "Nature Nooks - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:14+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1796752774213285"
+   ],
+   "attached_to": [
+    "1796752774213285"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "naturenooksacadia.com": {
+     "count": 2155,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 218,
+      "2026-10-13": 290,
+      "2026-10-14": 361,
+      "2026-10-15": 214,
+      "2026-10-16": 327,
+      "2026-10-17": 207,
+      "2026-10-18": 290,
+      "2026-10-19": 248
+     }
+    },
+    "bio.naturenooksacadia.com": {
+     "count": 901,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 75,
+      "2026-10-13": 124,
+      "2026-10-14": 138,
+      "2026-10-15": 104,
+      "2026-10-16": 149,
+      "2026-10-17": 91,
+      "2026-10-18": 118,
+      "2026-10-19": 102
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 26,
+     "first": "2026-10-17T10:00:00+0000",
+     "last": "2026-10-18T21:00:00+0000",
+     "daily": {
+      "2026-10-17": 18,
+      "2026-10-18": 8
+     }
+    }
+   },
+   "events": {
+    "PageView": 2913,
+    "Lead": 174
+   },
+   "sources": {
+    "BROWSER": 1516,
+    "SERVER": 1568
+   },
+   "total_events": 3087,
+   "server_events": 1568,
+   "error": ""
+  },
+  {
+   "id": "966429545842948",
+   "name": "Nature Nooks Event Data",
+   "owner_business": {
+    "id": "2051346592018157",
+    "name": "Nature Nooks"
+   },
+   "last_fired_time": "2026-09-21T21:31:31+0000",
+   "listed_in": [
+    "act_1796752774213285"
+   ],
+   "attached_to": [
+    "1796752774213285"
+   ],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1452843596520101",
+   "name": "Nevaeh Resorts - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "3440147309499983",
+   "name": "North Star Lodge Killington - Meta Pixel",
+   "owner_business": {
+    "id": "799517862594892",
+    "name": "North Star Lodge Killington"
+   },
+   "last_fired_time": "2026-10-18T23:59:07+0000",
+   "listed_in": [
+    "act_2003562593933799"
+   ],
+   "attached_to": [
+    "2003562593933799"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "northstarkillington.com": {
+     "count": 624,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 61,
+      "2026-10-13": 76,
+      "2026-10-14": 63,
+      "2026-10-15": 62,
+      "2026-10-16": 89,
+      "2026-10-17": 112,
+      "2026-10-18": 76,
+      "2026-10-19": 85
+     }
+    },
+    "go.northstarkillington.com": {
+     "count": 174,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 11,
+      "2026-10-13": 28,
+      "2026-10-14": 20,
+      "2026-10-15": 14,
+      "2026-10-16": 21,
+      "2026-10-17": 35,
+      "2026-10-18": 21,
+      "2026-10-19": 24
+     }
+    },
+    "hotels.cloudbeds.com": {
+     "count": 12,
+     "first": "2026-10-13T14:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-13": 1,
+      "2026-10-14": 3,
+      "2026-10-16": 3,
+      "2026-10-17": 3,
+      "2026-10-18": 1,
+      "2026-10-19": 1
+     }
+    },
+    "northstarlodgelandingpage.netlify.app": {
+     "count": 1,
+     "first": "2026-10-18T22:00:00+0000",
+     "last": "2026-10-18T22:00:00+0000",
+     "daily": {
+      "2026-10-18": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 810,
+    "Purchase": 12
+   },
+   "sources": {
+    "BROWSER": 799,
+    "SERVER": 12
+   },
+   "total_events": 822,
+   "server_events": 12,
+   "error": ""
+  },
+  {
+   "id": "1904436107168032",
+   "name": "Northstar Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:42+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "hotels.cloudbeds.com": {
+     "count": 1201,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 107,
+      "2026-10-13": 180,
+      "2026-10-14": 194,
+      "2026-10-15": 124,
+      "2026-10-16": 162,
+      "2026-10-17": 186,
+      "2026-10-18": 126,
+      "2026-10-19": 122
+     }
+    },
+    "go.northstarkillington.com": {
+     "count": 193,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 12,
+      "2026-10-13": 33,
+      "2026-10-14": 24,
+      "2026-10-15": 15,
+      "2026-10-16": 24,
+      "2026-10-17": 38,
+      "2026-10-18": 22,
+      "2026-10-19": 25
+     }
+    },
+    "northstarlodgelandingpage.netlify.app": {
+     "count": 1,
+     "first": "2026-10-18T22:00:00+0000",
+     "last": "2026-10-18T22:00:00+0000",
+     "daily": {
+      "2026-10-18": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 758,
+    "BookingEngineLoad": 263,
+    "Search": 236,
+    "AddToCart": 89,
+    "InitiateCheckout": 29,
+    "Lead": 19,
+    "Purchase": 10,
+    "RemoveFromCart": 6
+   },
+   "sources": {
+    "BROWSER": 1395
+   },
+   "total_events": 1410,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1729106025177871",
+   "name": "Oak & Ember - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:49+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_831762063342909"
+   ],
+   "attached_to": [
+    "831762063342909"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "stayoakandember.com": {
+     "count": 18337,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 412,
+      "2026-10-13": 1342,
+      "2026-10-14": 1318,
+      "2026-10-15": 2766,
+      "2026-10-16": 4504,
+      "2026-10-17": 3829,
+      "2026-10-18": 2679,
+      "2026-10-19": 1487
+     }
+    },
+    "go.stayoakandember.com": {
+     "count": 5398,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 80,
+      "2026-10-13": 265,
+      "2026-10-14": 426,
+      "2026-10-15": 980,
+      "2026-10-16": 1468,
+      "2026-10-17": 1068,
+      "2026-10-18": 697,
+      "2026-10-19": 414
+     }
+    },
+    "booking.hospitable.com": {
+     "count": 133,
+     "first": "2026-10-13T04:00:00+0000",
+     "last": "2026-10-19T11:00:00+0000",
+     "daily": {
+      "2026-10-13": 26,
+      "2026-10-14": 20,
+      "2026-10-15": 2,
+      "2026-10-16": 24,
+      "2026-10-17": 33,
+      "2026-10-18": 16,
+      "2026-10-19": 12
+     }
+    }
+   },
+   "events": {
+    "PageView": 23434,
+    "SubmitApplication": 443,
+    "Lead": 100
+   },
+   "sources": {
+    "BROWSER": 11870,
+    "SERVER": 11998
+   },
+   "total_events": 23977,
+   "server_events": 11998,
+   "error": ""
+  },
+  {
+   "id": "1319855227028025",
+   "name": "Oak & Ember Event Data",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1000686739097083",
+   "name": "Out of Bounds Retreats - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:58:12+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bio.outofboundsretreats.com": {
+     "count": 440,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 29,
+      "2026-10-13": 48,
+      "2026-10-14": 50,
+      "2026-10-15": 74,
+      "2026-10-16": 76,
+      "2026-10-17": 49,
+      "2026-10-18": 65,
+      "2026-10-19": 49
+     }
+    }
+   },
+   "events": {
+    "PageView": 411,
+    "SubmitApplication": 31
+   },
+   "sources": {
+    "BROWSER": 440
+   },
+   "total_events": 442,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "734783866381382",
+   "name": "Outpost Grand Canyon",
+   "owner_business": {
+    "id": "1046147617033747",
+    "name": "Easy Storage Solutions"
+   },
+   "last_fired_time": "2026-10-18T23:53:28+0000",
+   "listed_in": [
+    "act_1530849534802936"
+   ],
+   "attached_to": [
+    "1530849534802936"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.outpostgrandcanyon.com": {
+     "count": 793,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 87,
+      "2026-10-13": 136,
+      "2026-10-14": 116,
+      "2026-10-15": 87,
+      "2026-10-16": 116,
+      "2026-10-17": 70,
+      "2026-10-18": 109,
+      "2026-10-19": 72
+     }
+    },
+    "bookingsus.newbook.cloud": {
+     "count": 2820,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 262,
+      "2026-10-13": 357,
+      "2026-10-14": 412,
+      "2026-10-15": 355,
+      "2026-10-16": 404,
+      "2026-10-17": 335,
+      "2026-10-18": 503,
+      "2026-10-19": 192
+     }
+    }
+   },
+   "events": {
+    "custom_ecom_events": 1944,
+    "PageView": 1476,
+    "more_details_click": 179,
+    "add_booking": 72,
+    "booking_confirmation": 6
+   },
+   "sources": {
+    "BROWSER": 3615
+   },
+   "total_events": 3677,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "707016175006193",
+   "name": "Paradise Pointe - Pixel",
+   "owner_business": {
+    "id": "1087116839728915",
+    "name": "Paradise Pointe"
+   },
+   "last_fired_time": "2026-10-18T23:59:59+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1585826092078255",
+    "act_827872700004659"
+   ],
+   "attached_to": [
+    "1585826092078255",
+    "827872700004659"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "stayparadisepointe.com": {
+     "count": 40317,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 3621,
+      "2026-10-13": 7214,
+      "2026-10-14": 5348,
+      "2026-10-15": 4495,
+      "2026-10-16": 4378,
+      "2026-10-17": 5192,
+      "2026-10-18": 6236,
+      "2026-10-19": 3833
+     }
+    },
+    "bio.stayparadisepointe.com": {
+     "count": 896,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 96,
+      "2026-10-13": 186,
+      "2026-10-14": 85,
+      "2026-10-15": 120,
+      "2026-10-16": 94,
+      "2026-10-17": 120,
+      "2026-10-18": 126,
+      "2026-10-19": 69
+     }
+    },
+    "go.stayparadisepointe.com": {
+     "count": 915,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 62,
+      "2026-10-13": 174,
+      "2026-10-14": 155,
+      "2026-10-15": 118,
+      "2026-10-16": 106,
+      "2026-10-17": 117,
+      "2026-10-18": 130,
+      "2026-10-19": 53
+     }
+    },
+    "links.stayparadisepointe.com": {
+     "count": 16,
+     "first": "2026-10-13T13:00:00+0000",
+     "last": "2026-10-19T11:00:00+0000",
+     "daily": {
+      "2026-10-13": 4,
+      "2026-10-14": 5,
+      "2026-10-15": 2,
+      "2026-10-16": 1,
+      "2026-10-19": 4
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 2,
+     "first": "2026-10-15T13:00:00+0000",
+     "last": "2026-10-15T13:00:00+0000",
+     "daily": {
+      "2026-10-15": 2
+     }
+    },
+    "paradise-pointe-hgm-ai.netlify.app": {
+     "count": 3,
+     "first": "2026-10-19T01:00:00+0000",
+     "last": "2026-10-19T01:00:00+0000",
+     "daily": {
+      "2026-10-19": 3
+     }
+    }
+   },
+   "events": {
+    "PageView": 38446,
+    "InitiateCheckout": 3521,
+    "Lead": 305,
+    "Purchase": 71
+   },
+   "sources": {
+    "BROWSER": 42130,
+    "SERVER": 22
+   },
+   "total_events": 42343,
+   "server_events": 22,
+   "error": ""
+  },
+  {
+   "id": "1188475652520634",
+   "name": "Parker Reserve - Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:57:48+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1002927148609804"
+   ],
+   "attached_to": [
+    "1002927148609804"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "parkerreserve.com": {
+     "count": 3388,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 180,
+      "2026-10-13": 711,
+      "2026-10-14": 624,
+      "2026-10-15": 480,
+      "2026-10-16": 541,
+      "2026-10-17": 332,
+      "2026-10-18": 259,
+      "2026-10-19": 261
+     }
+    },
+    "bio.parkerreserve.com": {
+     "count": 339,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 29,
+      "2026-10-13": 70,
+      "2026-10-14": 57,
+      "2026-10-15": 44,
+      "2026-10-16": 41,
+      "2026-10-17": 38,
+      "2026-10-18": 36,
+      "2026-10-19": 24
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 4,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-19T04:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-19": 2
+     }
+    },
+    "parkerhouseohio.com": {
+     "count": 20,
+     "first": "2026-10-13T17:00:00+0000",
+     "last": "2026-10-16T17:00:00+0000",
+     "daily": {
+      "2026-10-13": 6,
+      "2026-10-14": 4,
+      "2026-10-15": 4,
+      "2026-10-16": 6
+     }
+    },
+    "links.parkerreserve.com": {
+     "count": 4,
+     "first": "2026-10-15T15:00:00+0000",
+     "last": "2026-10-15T15:00:00+0000",
+     "daily": {
+      "2026-10-15": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 3738,
+    "SubmitApplication": 18
+   },
+   "sources": {
+    "BROWSER": 1860,
+    "SERVER": 1895
+   },
+   "total_events": 3756,
+   "server_events": 1895,
+   "error": ""
+  },
+  {
+   "id": "1464549019042596",
+   "name": "Pine Valley - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-06-26T13:07:49+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1293211539656211",
+   "name": "Ponderosa Pines Resort - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:54+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1058846326445255"
+   ],
+   "attached_to": [
+    "1058846326445255"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.ponderosapinesresort.com": {
+     "count": 23971,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1668,
+      "2026-10-13": 4198,
+      "2026-10-14": 2910,
+      "2026-10-15": 3363,
+      "2026-10-16": 3378,
+      "2026-10-17": 3050,
+      "2026-10-18": 3193,
+      "2026-10-19": 2211
+     }
+    },
+    "bio.ponderosapinesresort.com": {
+     "count": 4342,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 329,
+      "2026-10-13": 866,
+      "2026-10-14": 546,
+      "2026-10-15": 562,
+      "2026-10-16": 577,
+      "2026-10-17": 539,
+      "2026-10-18": 515,
+      "2026-10-19": 408
+     }
+    },
+    "www-ponderosapinesresort-com.filesusr.com": {
+     "count": 785,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 46,
+      "2026-10-13": 116,
+      "2026-10-14": 98,
+      "2026-10-15": 126,
+      "2026-10-16": 98,
+      "2026-10-17": 117,
+      "2026-10-18": 104,
+      "2026-10-19": 80
+     }
+    },
+    "bookingsus.newbook.cloud": {
+     "count": 40,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 18,
+      "2026-10-14": 2,
+      "2026-10-15": 4,
+      "2026-10-16": 6,
+      "2026-10-17": 2,
+      "2026-10-18": 4,
+      "2026-10-19": 2
+     }
+    },
+    "bb661b1c-2dce-4845-b7c1-50fe9d55261e.filesusr.com": {
+     "count": 2,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-12T19:00:00+0000",
+     "daily": {
+      "2026-10-12": 2
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 5,
+     "first": "2026-10-15T05:00:00+0000",
+     "last": "2026-10-16T03:00:00+0000",
+     "daily": {
+      "2026-10-15": 1,
+      "2026-10-16": 4
+     }
+    }
+   },
+   "events": {
+    "PageView": 28785,
+    "Lead": 585,
+    "Purchase": 64
+   },
+   "sources": {
+    "SERVER": 15084,
+    "BROWSER": 14087
+   },
+   "total_events": 29434,
+   "server_events": 15084,
+   "error": ""
+  },
+  {
+   "id": "1743173753375733",
+   "name": "Ponderosa Pines Resort's Pixel",
+   "owner_business": {
+    "id": "1735423774098220",
+    "name": "Clear Summit Hospitality 2"
+   },
+   "last_fired_time": "2026-10-18T23:57:30+0000",
+   "listed_in": [
+    "act_1058846326445255"
+   ],
+   "attached_to": [
+    "1058846326445255"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.ponderosapinesresort.com": {
+     "count": 6431,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 483,
+      "2026-10-13": 1123,
+      "2026-10-14": 771,
+      "2026-10-15": 893,
+      "2026-10-16": 939,
+      "2026-10-17": 830,
+      "2026-10-18": 841,
+      "2026-10-19": 551
+     }
+    }
+   },
+   "events": {
+    "PageView": 6500
+   },
+   "sources": {
+    "BROWSER": 6433
+   },
+   "total_events": 6500,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1359649962298380",
+   "name": "Raven Rock Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:31+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "ravenrockmountain.com": {
+     "count": 2547,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 175,
+      "2026-10-13": 258,
+      "2026-10-14": 365,
+      "2026-10-15": 351,
+      "2026-10-16": 222,
+      "2026-10-17": 378,
+      "2026-10-18": 488,
+      "2026-10-19": 310
+     }
+    },
+    "info.stayravenrockmountain.com": {
+     "count": 176,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 4,
+      "2026-10-13": 15,
+      "2026-10-14": 25,
+      "2026-10-15": 25,
+      "2026-10-16": 7,
+      "2026-10-17": 26,
+      "2026-10-18": 37,
+      "2026-10-19": 37
+     }
+    },
+    "links.stayravenrockmountain.com": {
+     "count": 319,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 5,
+      "2026-10-13": 21,
+      "2026-10-14": 69,
+      "2026-10-15": 34,
+      "2026-10-16": 23,
+      "2026-10-17": 44,
+      "2026-10-18": 68,
+      "2026-10-19": 55
+     }
+    }
+   },
+   "events": {
+    "PageView": 3037,
+    "SubmitApplication": 23,
+    "Purchase": 7
+   },
+   "sources": {
+    "BROWSER": 3042,
+    "SERVER": 7
+   },
+   "total_events": 3067,
+   "server_events": 7,
+   "error": ""
+  },
+  {
+   "id": "1625871301864243",
+   "name": "Red White & Blue - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:54:45+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1419930382946246"
+   ],
+   "attached_to": [
+    "1419930382946246"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "book.redwhiteandblueviews.com": {
+     "count": 36719,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 3754,
+      "2026-10-13": 3057,
+      "2026-10-14": 2977,
+      "2026-10-15": 5517,
+      "2026-10-16": 3113,
+      "2026-10-17": 4780,
+      "2026-10-18": 12923,
+      "2026-10-19": 598
+     }
+    },
+    "bio.redwhiteandblueviews.com": {
+     "count": 1252,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 80,
+      "2026-10-13": 163,
+      "2026-10-14": 188,
+      "2026-10-15": 193,
+      "2026-10-16": 178,
+      "2026-10-17": 184,
+      "2026-10-18": 172,
+      "2026-10-19": 94
+     }
+    },
+    "www.redwhiteandblueviews.com": {
+     "count": 470,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 35,
+      "2026-10-13": 72,
+      "2026-10-14": 40,
+      "2026-10-15": 65,
+      "2026-10-16": 48,
+      "2026-10-17": 46,
+      "2026-10-18": 143,
+      "2026-10-19": 21
+     }
+    },
+    "go.redwhiteandblueviews.com": {
+     "count": 256,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T13:00:00+0000",
+     "daily": {
+      "2026-10-12": 10,
+      "2026-10-13": 35,
+      "2026-10-14": 22,
+      "2026-10-15": 30,
+      "2026-10-16": 41,
+      "2026-10-17": 60,
+      "2026-10-18": 44,
+      "2026-10-19": 14
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 146,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 8,
+      "2026-10-13": 22,
+      "2026-10-14": 18,
+      "2026-10-15": 12,
+      "2026-10-16": 24,
+      "2026-10-17": 24,
+      "2026-10-18": 30,
+      "2026-10-19": 8
+     }
+    }
+   },
+   "events": {
+    "gallery_interaction": 24634,
+    "PageView": 5539,
+    "map_interaction": 3445,
+    "original_language_en": 1072,
+    "original_language": 1075,
+    "content_touch_point": 540,
+    "calendar_interaction": 450,
+    "property_details_all_click": 351,
+    "close_popup": 329,
+    "visit_home_page": 270,
+    "property_details_serp_click": 258,
+    "click_nav_item": 212,
+    "Lead": 116,
+    "search_result": 104,
+    "search_landing": 106,
+    "visit_search_results_no_listings_found": 92,
+    "category_filter": 83,
+    "book_now": 98,
+    "property_details_home_click": 34,
+    "click_map": 16,
+    "property_details_map_click": 14,
+    "send_inquiry": 10,
+    "Purchase": 4,
+    "purchase": 2,
+    "generate_lead": 2
+   },
+   "sources": {
+    "SERVER": 19431,
+    "BROWSER": 19414
+   },
+   "total_events": 38856,
+   "server_events": 19431,
+   "error": ""
+  },
+  {
+   "id": "1220146203419012",
+   "name": "Reflection Resort Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:55:35+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "reflections-resorts.com": {
+     "count": 5680,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 93,
+      "2026-10-13": 515,
+      "2026-10-14": 930,
+      "2026-10-15": 1178,
+      "2026-10-16": 819,
+      "2026-10-17": 1217,
+      "2026-10-18": 712,
+      "2026-10-19": 216
+     }
+    },
+    "bio.reflections-resorts.com": {
+     "count": 460,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-12": 12,
+      "2026-10-13": 32,
+      "2026-10-14": 56,
+      "2026-10-15": 127,
+      "2026-10-16": 38,
+      "2026-10-17": 108,
+      "2026-10-18": 77,
+      "2026-10-19": 10
+     }
+    },
+    "bio.mirrorhotel.com": {
+     "count": 2,
+     "first": "2026-10-14T00:00:00+0000",
+     "last": "2026-10-14T00:00:00+0000",
+     "daily": {
+      "2026-10-14": 2
+     }
+    },
+    "go.reflections-resorts.com": {
+     "count": 86,
+     "first": "2026-10-14T03:00:00+0000",
+     "last": "2026-10-18T20:00:00+0000",
+     "daily": {
+      "2026-10-14": 16,
+      "2026-10-15": 36,
+      "2026-10-16": 2,
+      "2026-10-17": 22,
+      "2026-10-18": 10
+     }
+    }
+   },
+   "events": {
+    "PageView": 6270,
+    "SubmitApplication": 62,
+    "InitiateCheckout": 2
+   },
+   "sources": {
+    "SERVER": 3116,
+    "BROWSER": 3112
+   },
+   "total_events": 6334,
+   "server_events": 3116,
+   "error": ""
+  },
+  {
+   "id": "2059709192087667",
+   "name": "Ridge & Falls - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1332286819018269",
+   "name": "Ridge & Falls - Meta Pixel",
+   "owner_business": {
+    "id": "1887518261927124",
+    "name": "Ridge & Falls"
+   },
+   "last_fired_time": "2026-10-18T23:59:51+0000",
+   "listed_in": [
+    "act_1313401330776046"
+   ],
+   "attached_to": [
+    "1313401330776046"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "ridgeandfalls.com": {
+     "count": 1927,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 121,
+      "2026-10-13": 314,
+      "2026-10-14": 146,
+      "2026-10-15": 262,
+      "2026-10-16": 232,
+      "2026-10-17": 267,
+      "2026-10-18": 331,
+      "2026-10-19": 254
+     }
+    },
+    "go.ridgeandfalls.com": {
+     "count": 1277,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 84,
+      "2026-10-13": 173,
+      "2026-10-14": 243,
+      "2026-10-15": 232,
+      "2026-10-16": 133,
+      "2026-10-17": 149,
+      "2026-10-18": 179,
+      "2026-10-19": 84
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 123,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-19T13:00:00+0000",
+     "daily": {
+      "2026-10-12": 4,
+      "2026-10-13": 18,
+      "2026-10-14": 25,
+      "2026-10-15": 22,
+      "2026-10-16": 12,
+      "2026-10-17": 12,
+      "2026-10-18": 23,
+      "2026-10-19": 7
+     }
+    }
+   },
+   "events": {
+    "PageView": 3264,
+    "Lead": 71,
+    "Purchase": 6,
+    "__missing_event": 1
+   },
+   "sources": {
+    "BROWSER": 3325,
+    "SERVER": 6
+   },
+   "total_events": 3342,
+   "server_events": 6,
+   "error": ""
+  },
+  {
+   "id": "1914117125960509",
+   "name": "Rock Ridge Resort - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:40:10+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "www.rockridgeresortatroyalblue.com": {
+     "count": 903,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 73,
+      "2026-10-13": 134,
+      "2026-10-14": 143,
+      "2026-10-15": 91,
+      "2026-10-16": 161,
+      "2026-10-17": 84,
+      "2026-10-18": 166,
+      "2026-10-19": 51
+     }
+    },
+    "rockridgeresortatroyalblue.com": {
+     "count": 51,
+     "first": "2026-10-13T17:00:00+0000",
+     "last": "2026-10-19T10:00:00+0000",
+     "daily": {
+      "2026-10-13": 9,
+      "2026-10-14": 2,
+      "2026-10-15": 10,
+      "2026-10-16": 14,
+      "2026-10-17": 2,
+      "2026-10-18": 12,
+      "2026-10-19": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 960
+   },
+   "sources": {
+    "BROWSER": 956
+   },
+   "total_events": 960,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1736712810637085",
+   "name": "Roundhouse Resort & Spa - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-14T09:36:49+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "bio.roundhouseresortandspa.com": {
+     "count": 1,
+     "first": "2026-10-14T03:00:00+0000",
+     "last": "2026-10-14T03:00:00+0000",
+     "daily": {
+      "2026-10-14": 1
+     }
+    },
+    "links.roundhouseresortandspa.com": {
+     "count": 1,
+     "first": "2026-10-14T09:00:00+0000",
+     "last": "2026-10-14T09:00:00+0000",
+     "daily": {
+      "2026-10-14": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 2
+   },
+   "sources": {
+    "BROWSER": 2
+   },
+   "total_events": 2,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "26069116936068947",
+   "name": "Seaglass Getaways Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "4384739281769218",
+   "name": "Selah 2026 Pixel",
+   "owner_business": {
+    "id": "1662038040809917",
+    "name": "Se·lah"
+   },
+   "listed_in": [
+    "act_1275283434220508"
+   ],
+   "attached_to": [
+    "1275283434220508"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1235173718368839",
+   "name": "Selah.Place Event Data",
+   "owner_business": {
+    "id": "1662038040809917",
+    "name": "Se·lah"
+   },
+   "last_fired_time": "2026-10-18T23:52:27+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_1275283434220508"
+   ],
+   "attached_to": [
+    "1275283434220508"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "selahplace.holidayfuture.com": {
+     "count": 60393,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 6646,
+      "2026-10-13": 10384,
+      "2026-10-14": 9021,
+      "2026-10-15": 10824,
+      "2026-10-16": 2982,
+      "2026-10-17": 9654,
+      "2026-10-18": 8994,
+      "2026-10-19": 1888
+     }
+    },
+    "www.selah.place": {
+     "count": 5638,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 246,
+      "2026-10-13": 669,
+      "2026-10-14": 944,
+      "2026-10-15": 643,
+      "2026-10-16": 758,
+      "2026-10-17": 765,
+      "2026-10-18": 1170,
+      "2026-10-19": 443
+     }
+    },
+    "www-selah-place.filesusr.com": {
+     "count": 1601,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 104,
+      "2026-10-13": 166,
+      "2026-10-14": 275,
+      "2026-10-15": 172,
+      "2026-10-16": 214,
+      "2026-10-17": 219,
+      "2026-10-18": 325,
+      "2026-10-19": 126
+     }
+    },
+    "bio.selah.place": {
+     "count": 2050,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 93,
+      "2026-10-13": 199,
+      "2026-10-14": 371,
+      "2026-10-15": 296,
+      "2026-10-16": 302,
+      "2026-10-17": 292,
+      "2026-10-18": 316,
+      "2026-10-19": 181
+     }
+    },
+    "reserve.selah.place": {
+     "count": 578,
+     "first": "2026-10-13T18:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-13": 15,
+      "2026-10-14": 268,
+      "2026-10-15": 93,
+      "2026-10-16": 153,
+      "2026-10-17": 20,
+      "2026-10-18": 17,
+      "2026-10-19": 12
+     }
+    },
+    "fc9ae0e6-756b-4e42-8259-7e9296dc209a.filesusr.com": {
+     "count": 2,
+     "first": "2026-10-16T15:00:00+0000",
+     "last": "2026-10-16T15:00:00+0000",
+     "daily": {
+      "2026-10-16": 2
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 4,
+     "first": "2026-10-16T18:00:00+0000",
+     "last": "2026-10-19T07:00:00+0000",
+     "daily": {
+      "2026-10-16": 2,
+      "2026-10-19": 2
+     }
+    }
+   },
+   "events": {
+    "gallery_interaction": 39462,
+    "PageView": 16464,
+    "visit_home_page": 2424,
+    "property_details_serp_click": 1928,
+    "map_interaction": 1757,
+    "original_language_en": 1687,
+    "original_language": 1680,
+    "search_landing": 1521,
+    "Lead": 449,
+    "close_popup": 404,
+    "calendar_interaction": 378,
+    "content_touch_point": 381,
+    "search_result": 368,
+    "click_nav_item": 232,
+    "book_now": 195,
+    "property_details_home_click": 182,
+    "visit_search_results_no_listings_found": 124,
+    "property_details_all_click": 65,
+    "OfferView": 52,
+    "RatesView": 46,
+    "send_inquiry": 28,
+    "Purchase": 12,
+    "purchase": 11,
+    "category_filter": 10,
+    "InitiateCheckout": 6,
+    "generate_lead": 6
+   },
+   "sources": {
+    "BROWSER": 36688,
+    "SERVER": 33585
+   },
+   "total_events": 69872,
+   "server_events": 33585,
+   "error": ""
+  },
+  {
+   "id": "1352792502110980",
+   "name": "Shawnee Forest Cabins Main Ad Account Pixel",
+   "owner_business": {
+    "id": "287642895280982",
+    "name": "Shawnee Forest Properties"
+   },
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "571748624413209",
+   "name": "Shawnee Forest Cabins's Pixel Checkfront",
+   "owner_business": {
+    "id": "287642895280982",
+    "name": "Shawnee Forest Properties"
+   },
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1328561309169535",
+   "name": "Southern Illinois Cabins - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:55:01+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1661949078036229"
+   ],
+   "attached_to": [
+    "1661949078036229"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "southernilcabins.com": {
+     "count": 21859,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1272,
+      "2026-10-13": 3122,
+      "2026-10-14": 3911,
+      "2026-10-15": 3039,
+      "2026-10-16": 2923,
+      "2026-10-17": 2849,
+      "2026-10-18": 2699,
+      "2026-10-19": 2044
+     }
+    },
+    "app.ownerrez.com": {
+     "count": 5097,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 439,
+      "2026-10-13": 860,
+      "2026-10-14": 924,
+      "2026-10-15": 633,
+      "2026-10-16": 547,
+      "2026-10-17": 584,
+      "2026-10-18": 673,
+      "2026-10-19": 437
+     }
+    },
+    "woodlandcabins.net": {
+     "count": 1945,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 223,
+      "2026-10-13": 302,
+      "2026-10-14": 332,
+      "2026-10-15": 287,
+      "2026-10-16": 225,
+      "2026-10-17": 164,
+      "2026-10-18": 274,
+      "2026-10-19": 138
+     }
+    },
+    "shawneeforestcabins.com": {
+     "count": 4725,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 532,
+      "2026-10-13": 1022,
+      "2026-10-14": 802,
+      "2026-10-15": 609,
+      "2026-10-16": 452,
+      "2026-10-17": 483,
+      "2026-10-18": 474,
+      "2026-10-19": 351
+     }
+    },
+    "booking.ownerrez.com": {
+     "count": 504,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 56,
+      "2026-10-13": 127,
+      "2026-10-14": 60,
+      "2026-10-15": 58,
+      "2026-10-16": 81,
+      "2026-10-17": 48,
+      "2026-10-18": 32,
+      "2026-10-19": 42
+     }
+    },
+    "go.staysouthernillinois.com": {
+     "count": 1531,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 100,
+      "2026-10-13": 291,
+      "2026-10-14": 225,
+      "2026-10-15": 191,
+      "2026-10-16": 255,
+      "2026-10-17": 154,
+      "2026-10-18": 201,
+      "2026-10-19": 114
+     }
+    },
+    "newvillagevacationhomes.com": {
+     "count": 56,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 2,
+      "2026-10-14": 8,
+      "2026-10-15": 7,
+      "2026-10-16": 5,
+      "2026-10-17": 2,
+      "2026-10-18": 24,
+      "2026-10-19": 6
+     }
+    }
+   },
+   "events": {
+    "PageView": 42372,
+    "Lead": 153,
+    "InitiateCheckout": 100,
+    "AddToCart": 61,
+    "Purchase": 35
+   },
+   "sources": {
+    "SERVER": 21554,
+    "BROWSER": 14171
+   },
+   "total_events": 42721,
+   "server_events": 21554,
+   "error": ""
+  },
+  {
+   "id": "5720485834642420",
+   "name": "Starlight Haven Hot Springs Traffic",
+   "owner_business": {
+    "id": "735291970494853",
+    "name": "starlight.haven"
+   },
+   "last_fired_time": "2022-10-16T03:05:07+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_74756899"
+   ],
+   "attached_to": [
+    "74756899"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "766226461367996",
+   "name": "Starlight Haven Pixel - ResNexus",
+   "owner_business": {
+    "id": "735291970494853",
+    "name": "starlight.haven"
+   },
+   "last_fired_time": "2026-10-18T23:59:59+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_901138032027913",
+    "act_74756899",
+    "act_827872700004659"
+   ],
+   "attached_to": [
+    "901138032027913",
+    "74756899",
+    "827872700004659"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "resnexus.com": {
+     "count": 24997,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1791,
+      "2026-10-13": 3445,
+      "2026-10-14": 3297,
+      "2026-10-15": 3734,
+      "2026-10-16": 2861,
+      "2026-10-17": 3235,
+      "2026-10-18": 4409,
+      "2026-10-19": 2225
+     }
+    },
+    "visitstarlight.com": {
+     "count": 8745,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 622,
+      "2026-10-13": 1218,
+      "2026-10-14": 1290,
+      "2026-10-15": 1424,
+      "2026-10-16": 1239,
+      "2026-10-17": 1011,
+      "2026-10-18": 1143,
+      "2026-10-19": 798
+     }
+    },
+    "book.visitstarlight.com": {
+     "count": 2497,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 177,
+      "2026-10-13": 274,
+      "2026-10-14": 460,
+      "2026-10-15": 360,
+      "2026-10-16": 302,
+      "2026-10-17": 295,
+      "2026-10-18": 397,
+      "2026-10-19": 232
+     }
+    },
+    "go.visitstarlight.com": {
+     "count": 665,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 44,
+      "2026-10-13": 41,
+      "2026-10-14": 118,
+      "2026-10-15": 104,
+      "2026-10-16": 90,
+      "2026-10-17": 82,
+      "2026-10-18": 148,
+      "2026-10-19": 38
+     }
+    }
+   },
+   "events": {
+    "PageView": 35680,
+    "Lead": 1221,
+    "Purchase": 83,
+    "__missing_event": 1
+   },
+   "sources": {
+    "BROWSER": 36905
+   },
+   "total_events": 36985,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1312012156788175",
+   "name": "Stay Different Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:57:38+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "staydifferent.co": {
+     "count": 953,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 55,
+      "2026-10-13": 82,
+      "2026-10-14": 150,
+      "2026-10-15": 199,
+      "2026-10-16": 152,
+      "2026-10-17": 69,
+      "2026-10-18": 176,
+      "2026-10-19": 70
+     }
+    },
+    "bio.staydifferent.co": {
+     "count": 9,
+     "first": "2026-10-14T15:00:00+0000",
+     "last": "2026-10-16T16:00:00+0000",
+     "daily": {
+      "2026-10-14": 2,
+      "2026-10-15": 2,
+      "2026-10-16": 5
+     }
+    },
+    "link.staydifferent.co": {
+     "count": 4,
+     "first": "2026-10-15T03:00:00+0000",
+     "last": "2026-10-15T06:00:00+0000",
+     "daily": {
+      "2026-10-15": 4
+     }
+    },
+    "go.staydifferent.co": {
+     "count": 2,
+     "first": "2026-10-15T06:00:00+0000",
+     "last": "2026-10-15T06:00:00+0000",
+     "daily": {
+      "2026-10-15": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 984
+   },
+   "sources": {
+    "SERVER": 489,
+    "BROWSER": 479
+   },
+   "total_events": 984,
+   "server_events": 489,
+   "error": ""
+  },
+  {
+   "id": "1464927198465632",
+   "name": "Stay on 30a - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:59+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_25640434272252212"
+   ],
+   "attached_to": [
+    "25640434272252212"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "stayon30a.com": {
+     "count": 52829,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 4448,
+      "2026-10-13": 8365,
+      "2026-10-14": 7495,
+      "2026-10-15": 7621,
+      "2026-10-16": 5957,
+      "2026-10-17": 7848,
+      "2026-10-18": 7563,
+      "2026-10-19": 3532
+     }
+    },
+    "links.stayson30a.com": {
+     "count": 2771,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 177,
+      "2026-10-13": 438,
+      "2026-10-14": 461,
+      "2026-10-15": 493,
+      "2026-10-16": 237,
+      "2026-10-17": 306,
+      "2026-10-18": 487,
+      "2026-10-19": 172
+     }
+    }
+   },
+   "events": {
+    "PageView": 55467,
+    "Lead": 515,
+    "__missing_event": 23,
+    "Purchase": 19
+   },
+   "sources": {
+    "BROWSER": 27712,
+    "SERVER": 27931
+   },
+   "total_events": 56024,
+   "server_events": 27931,
+   "error": ""
+  },
+  {
+   "id": "4250460185185664",
+   "name": "Stay Saluda - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:58:51+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1863632561215857"
+   ],
+   "attached_to": [
+    "1863632561215857"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "staysaluda.com": {
+     "count": 18447,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1361,
+      "2026-10-13": 2943,
+      "2026-10-14": 2894,
+      "2026-10-15": 2509,
+      "2026-10-16": 1832,
+      "2026-10-17": 2194,
+      "2026-10-18": 2242,
+      "2026-10-19": 2472
+     }
+    },
+    "bio.staysaluda.com": {
+     "count": 440,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 26,
+      "2026-10-13": 82,
+      "2026-10-14": 69,
+      "2026-10-15": 64,
+      "2026-10-16": 44,
+      "2026-10-17": 40,
+      "2026-10-18": 42,
+      "2026-10-19": 73
+     }
+    },
+    "go.staysaluda.com": {
+     "count": 1648,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 141,
+      "2026-10-13": 194,
+      "2026-10-14": 267,
+      "2026-10-15": 245,
+      "2026-10-16": 182,
+      "2026-10-17": 204,
+      "2026-10-18": 298,
+      "2026-10-19": 117
+     }
+    },
+    "links.staysaluda.com": {
+     "count": 819,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 52,
+      "2026-10-13": 81,
+      "2026-10-14": 125,
+      "2026-10-15": 113,
+      "2026-10-16": 101,
+      "2026-10-17": 127,
+      "2026-10-18": 143,
+      "2026-10-19": 77
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 1,
+     "first": "2026-10-15T09:00:00+0000",
+     "last": "2026-10-15T09:00:00+0000",
+     "daily": {
+      "2026-10-15": 1
+     }
+    },
+    "stay-saluda-hgm-ai.netlify.app": {
+     "count": 3,
+     "first": "2026-10-18T23:00:00+0000",
+     "last": "2026-10-18T23:00:00+0000",
+     "daily": {
+      "2026-10-18": 3
+     }
+    }
+   },
+   "events": {
+    "PageView": 20095,
+    "Lead": 489,
+    "Purchase": 1
+   },
+   "sources": {
+    "SERVER": 10363,
+    "BROWSER": 10996
+   },
+   "total_events": 20585,
+   "server_events": 10363,
+   "error": ""
+  },
+  {
+   "id": "4293491110916917",
+   "name": "StayLuxe Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:57:40+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_25033578722931437"
+   ],
+   "attached_to": [
+    "25033578722931437"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "stayluxe.vacations": {
+     "count": 925,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 38,
+      "2026-10-13": 107,
+      "2026-10-14": 58,
+      "2026-10-15": 58,
+      "2026-10-16": 41,
+      "2026-10-17": 150,
+      "2026-10-18": 296,
+      "2026-10-19": 177
+     }
+    },
+    "bio.gostayluxevacations.com": {
+     "count": 185,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 4,
+      "2026-10-13": 29,
+      "2026-10-14": 22,
+      "2026-10-15": 22,
+      "2026-10-16": 17,
+      "2026-10-17": 9,
+      "2026-10-18": 47,
+      "2026-10-19": 35
+     }
+    },
+    "stayluxe.bookeddirectly.host": {
+     "count": 62,
+     "first": "2026-10-13T01:00:00+0000",
+     "last": "2026-10-18T20:00:00+0000",
+     "daily": {
+      "2026-10-13": 10,
+      "2026-10-17": 6,
+      "2026-10-18": 46
+     }
+    },
+    "book.gostayluxevacations.com": {
+     "count": 18,
+     "first": "2026-10-13T16:00:00+0000",
+     "last": "2026-10-18T19:00:00+0000",
+     "daily": {
+      "2026-10-13": 2,
+      "2026-10-15": 2,
+      "2026-10-17": 2,
+      "2026-10-18": 12
+     }
+    }
+   },
+   "events": {
+    "PageView": 1171,
+    "Lead": 19,
+    "SubmitApplication": 6
+   },
+   "sources": {
+    "SERVER": 626,
+    "BROWSER": 564
+   },
+   "total_events": 1196,
+   "server_events": 626,
+   "error": ""
+  },
+  {
+   "id": "471248637966769",
+   "name": "sunapeestays's Pixel",
+   "owner_business": {
+    "id": "1296150947517054",
+    "name": "sunapeestays"
+   },
+   "last_fired_time": "2026-10-18T23:58:13+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_651114096215889"
+   ],
+   "attached_to": [
+    "651114096215889"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "sunapeestays.com": {
+     "count": 7599,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 938,
+      "2026-10-13": 1192,
+      "2026-10-14": 1216,
+      "2026-10-15": 689,
+      "2026-10-16": 1043,
+      "2026-10-17": 921,
+      "2026-10-18": 992,
+      "2026-10-19": 608
+     }
+    },
+    "go.sunapeestays.com": {
+     "count": 224,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 8,
+      "2026-10-13": 29,
+      "2026-10-14": 37,
+      "2026-10-15": 25,
+      "2026-10-16": 39,
+      "2026-10-17": 18,
+      "2026-10-18": 45,
+      "2026-10-19": 23
+     }
+    }
+   },
+   "events": {
+    "PageView": 7745,
+    "CompleteRegistration": 70,
+    "Schedule": 34,
+    "Lead": 29,
+    "AddToCart": 14,
+    "Purchase": 10,
+    "ViewContent": 2,
+    "Contact": 1
+   },
+   "sources": {
+    "BROWSER": 7823,
+    "SERVER": 10
+   },
+   "total_events": 7905,
+   "server_events": 10,
+   "error": ""
+  },
+  {
+   "id": "964214909847907",
+   "name": "Taberg Falls - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:59:57+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_827872700004659"
+   ],
+   "attached_to": [
+    "827872700004659"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "tabergfalls.com": {
+     "count": 47373,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 3964,
+      "2026-10-13": 8223,
+      "2026-10-14": 7039,
+      "2026-10-15": 6097,
+      "2026-10-16": 5673,
+      "2026-10-17": 6549,
+      "2026-10-18": 5893,
+      "2026-10-19": 3935
+     }
+    },
+    "bio.tabergfalls.com": {
+     "count": 16081,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1021,
+      "2026-10-13": 2442,
+      "2026-10-14": 2398,
+      "2026-10-15": 2157,
+      "2026-10-16": 2106,
+      "2026-10-17": 2332,
+      "2026-10-18": 2399,
+      "2026-10-19": 1226
+     }
+    },
+    "localhost": {
+     "count": 9,
+     "first": "2026-10-16T15:00:00+0000",
+     "last": "2026-10-16T15:00:00+0000",
+     "daily": {
+      "2026-10-16": 9
+     }
+    }
+   },
+   "events": {
+    "PageView": 61247,
+    "Lead": 2446,
+    "Purchase": 9,
+    "__missing_event": 5
+   },
+   "sources": {
+    "BROWSER": 37671,
+    "SERVER": 25797
+   },
+   "total_events": 63707,
+   "server_events": 25797,
+   "error": ""
+  },
+  {
+   "id": "1673302147247147",
+   "name": "Test - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_2100710320122219"
+   ],
+   "attached_to": [
+    "2100710320122219"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1026590243236604",
+   "name": "Test - Meta Pixel",
+   "owner_business": {
+    "id": "1208311637844219",
+    "name": "Clear Summit Hospitality"
+   },
+   "listed_in": [
+    "act_1530849534802936"
+   ],
+   "attached_to": [
+    "1530849534802936"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "1696549455050132",
+   "name": "Test Client - HG",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_453808647114273"
+   ],
+   "attached_to": [
+    "453808647114273"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "638998632168952",
+   "name": "The Cohost Company Meta Pixel",
+   "owner_business": {
+    "id": "500895838996853",
+    "name": "thecohostcompany"
+   },
+   "last_fired_time": "2026-10-18T23:54:31+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_827872700004659",
+    "act_9141035462679902"
+   ],
+   "attached_to": [
+    "827872700004659",
+    "9141035462679902"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "thecohostcompany.com": {
+     "count": 8144,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 497,
+      "2026-10-13": 1081,
+      "2026-10-14": 1085,
+      "2026-10-15": 1304,
+      "2026-10-16": 1036,
+      "2026-10-17": 1164,
+      "2026-10-18": 1042,
+      "2026-10-19": 935
+     }
+    },
+    "go.gocohostcompany.com": {
+     "count": 746,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 43,
+      "2026-10-13": 70,
+      "2026-10-14": 149,
+      "2026-10-15": 90,
+      "2026-10-16": 123,
+      "2026-10-17": 110,
+      "2026-10-18": 126,
+      "2026-10-19": 35
+     }
+    },
+    "bio.gocohostcompany.com": {
+     "count": 359,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 9,
+      "2026-10-13": 30,
+      "2026-10-14": 40,
+      "2026-10-15": 44,
+      "2026-10-16": 60,
+      "2026-10-17": 57,
+      "2026-10-18": 83,
+      "2026-10-19": 36
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 1,
+     "first": "2026-10-14T22:00:00+0000",
+     "last": "2026-10-14T22:00:00+0000",
+     "daily": {
+      "2026-10-14": 1
+     }
+    },
+    "localhost": {
+     "count": 2,
+     "first": "2026-10-15T20:00:00+0000",
+     "last": "2026-10-15T21:00:00+0000",
+     "daily": {
+      "2026-10-15": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 9238,
+    "Lead": 214,
+    "Purchase": 7,
+    "__missing_event": 4
+   },
+   "sources": {
+    "BROWSER": 9252,
+    "SERVER": 7
+   },
+   "total_events": 9463,
+   "server_events": 7,
+   "error": ""
+  },
+  {
+   "id": "506733597390649",
+   "name": "The Lifedom - Wix Pixel",
+   "owner_business": {
+    "id": "168139003880292",
+    "name": "Green Springs Inn"
+   },
+   "last_fired_time": "2025-01-17T18:56:49+0000",
+   "listed_in": [
+    "act_1390516335151357"
+   ],
+   "attached_to": [
+    "1390516335151357"
+   ],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": "",
+   "skipped": "not fired in 28d and not mapped"
+  },
+  {
+   "id": "691977289952800",
+   "name": "Three Suns Cabins - Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:32:40+0000",
+   "listed_in": [
+    "hg_owned_pixels",
+    "act_1210218584137342"
+   ],
+   "attached_to": [
+    "1210218584137342"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "bio.threesunscabins.com": {
+     "count": 258,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T02:00:00+0000",
+     "daily": {
+      "2026-10-12": 21,
+      "2026-10-13": 43,
+      "2026-10-14": 30,
+      "2026-10-15": 60,
+      "2026-10-16": 31,
+      "2026-10-17": 26,
+      "2026-10-18": 38,
+      "2026-10-19": 9
+     }
+    }
+   },
+   "events": {
+    "PageView": 240,
+    "Purchase": 10,
+    "SubmitApplication": 19
+   },
+   "sources": {
+    "SERVER": 142,
+    "BROWSER": 126
+   },
+   "total_events": 269,
+   "server_events": 142,
+   "error": ""
+  },
+  {
+   "id": "1178838797064774",
+   "name": "Treetop Escapes - Pixel",
+   "owner_business": {
+    "id": "1190724359426537",
+    "name": "Treetop Escapes"
+   },
+   "last_fired_time": "2026-10-18T23:59:46+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_827872700004659",
+    "act_967636478877602"
+   ],
+   "attached_to": [
+    "827872700004659",
+    "967636478877602"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "staytreetopescapes.com": {
+     "count": 41893,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 1770,
+      "2026-10-13": 6431,
+      "2026-10-14": 5699,
+      "2026-10-15": 5560,
+      "2026-10-16": 5520,
+      "2026-10-17": 5960,
+      "2026-10-18": 6924,
+      "2026-10-19": 4029
+     }
+    },
+    "go.staytreetopescapes.com": {
+     "count": 6154,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 344,
+      "2026-10-13": 886,
+      "2026-10-14": 810,
+      "2026-10-15": 831,
+      "2026-10-16": 818,
+      "2026-10-17": 830,
+      "2026-10-18": 1051,
+      "2026-10-19": 584
+     }
+    },
+    "bio.staytreetopescapes.com": {
+     "count": 912,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 66,
+      "2026-10-13": 173,
+      "2026-10-14": 134,
+      "2026-10-15": 137,
+      "2026-10-16": 90,
+      "2026-10-17": 90,
+      "2026-10-18": 139,
+      "2026-10-19": 83
+     }
+    },
+    "links.staytreetopescapes.com": {
+     "count": 81,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 6,
+      "2026-10-13": 16,
+      "2026-10-14": 12,
+      "2026-10-15": 8,
+      "2026-10-16": 18,
+      "2026-10-17": 4,
+      "2026-10-18": 1,
+      "2026-10-19": 16
+     }
+    },
+    "michigan.guestybookings.com": {
+     "count": 14,
+     "first": "2026-10-13T19:00:00+0000",
+     "last": "2026-10-13T19:00:00+0000",
+     "daily": {
+      "2026-10-13": 14
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 1,
+     "first": "2026-10-16T12:00:00+0000",
+     "last": "2026-10-16T12:00:00+0000",
+     "daily": {
+      "2026-10-16": 1
+     }
+    },
+    "treetop-escapes-hgm-ai.netlify.app": {
+     "count": 3,
+     "first": "2026-10-17T23:00:00+0000",
+     "last": "2026-10-17T23:00:00+0000",
+     "daily": {
+      "2026-10-17": 3
+     }
+    }
+   },
+   "events": {
+    "PageView": 47965,
+    "Lead": 1168,
+    "Purchase": 11,
+    "SubmitApplication": 12,
+    "InitiateCheckout": 4
+   },
+   "sources": {
+    "BROWSER": 26645,
+    "SERVER": 22424
+   },
+   "total_events": 49160,
+   "server_events": 22424,
+   "error": ""
+  },
+  {
+   "id": "1561325308991270",
+   "name": "Tuxedo Falls - Ad Account's Pixel",
+   "owner_business": {
+    "id": "1400770510587476",
+    "name": "Tuxedo Falls"
+   },
+   "last_fired_time": "2026-09-01T15:30:39+0000",
+   "listed_in": [
+    "act_2077151009889326"
+   ],
+   "attached_to": [
+    "2077151009889326"
+   ],
+   "in_map": true,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1283601743971891",
+   "name": "Villa Destino Italy - Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T18:33:29+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "villadestinoitaly.com": {
+     "count": 180,
+     "first": "2026-10-12T17:00:00+0000",
+     "last": "2026-10-19T10:00:00+0000",
+     "daily": {
+      "2026-10-12": 9,
+      "2026-10-13": 92,
+      "2026-10-14": 10,
+      "2026-10-15": 7,
+      "2026-10-16": 24,
+      "2026-10-17": 12,
+      "2026-10-18": 13,
+      "2026-10-19": 13
+     }
+    },
+    "villadestino.lodgify.com": {
+     "count": 9,
+     "first": "2026-10-13T00:00:00+0000",
+     "last": "2026-10-14T23:00:00+0000",
+     "daily": {
+      "2026-10-13": 4,
+      "2026-10-14": 5
+     }
+    }
+   },
+   "events": {
+    "PageView": 192
+   },
+   "sources": {
+    "BROWSER": 190
+   },
+   "total_events": 192,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "505477285266646",
+   "name": "Walden Retreat's Data",
+   "owner_business": {
+    "id": "480646861309314",
+    "name": "Walden Retreats"
+   },
+   "last_fired_time": "2026-10-18T23:57:55+0000",
+   "listed_in": [
+    "act_973261794434226"
+   ],
+   "attached_to": [
+    "973261794434226"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "waldenretreats.com": {
+     "count": 13424,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 832,
+      "2026-10-13": 2164,
+      "2026-10-14": 2018,
+      "2026-10-15": 2133,
+      "2026-10-16": 1812,
+      "2026-10-17": 1666,
+      "2026-10-18": 1811,
+      "2026-10-19": 988
+     }
+    },
+    "resnexus.com": {
+     "count": 5484,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 391,
+      "2026-10-13": 817,
+      "2026-10-14": 656,
+      "2026-10-15": 1037,
+      "2026-10-16": 831,
+      "2026-10-17": 596,
+      "2026-10-18": 566,
+      "2026-10-19": 590
+     }
+    },
+    "bio.waldenretreats.com": {
+     "count": 1044,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 56,
+      "2026-10-13": 210,
+      "2026-10-14": 168,
+      "2026-10-15": 181,
+      "2026-10-16": 111,
+      "2026-10-17": 114,
+      "2026-10-18": 119,
+      "2026-10-19": 85
+     }
+    },
+    "spacecrafted.com": {
+     "count": 18,
+     "first": "2026-10-14T18:00:00+0000",
+     "last": "2026-10-15T18:00:00+0000",
+     "daily": {
+      "2026-10-14": 2,
+      "2026-10-15": 16
+     }
+    },
+    "walden-retreats-landing-page.netlify.app": {
+     "count": 1,
+     "first": "2026-10-17T05:00:00+0000",
+     "last": "2026-10-17T05:00:00+0000",
+     "daily": {
+      "2026-10-17": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 12947,
+    "ViewContent": 3594,
+    "InitiateCheckout": 1656,
+    "Wedding page view": 1490,
+    "Lead": 171,
+    "AddToCart": 122,
+    "Purchase": 99,
+    "Wedding Inquiry Form (click)": 52,
+    "Private Event Inquiry Form (click)": 8
+   },
+   "sources": {
+    "SERVER": 10147,
+    "BROWSER": 9824
+   },
+   "total_events": 20139,
+   "server_events": 10147,
+   "error": ""
+  },
+  {
+   "id": "1568864930700577",
+   "name": "Wanderin Star Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:54:08+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "wanderinstarfarms.com": {
+     "count": 1214,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 100,
+      "2026-10-13": 205,
+      "2026-10-14": 160,
+      "2026-10-15": 160,
+      "2026-10-16": 126,
+      "2026-10-17": 209,
+      "2026-10-18": 149,
+      "2026-10-19": 105
+     }
+    },
+    "bio.staywanderinstarfarms.com": {
+     "count": 51,
+     "first": "2026-10-12T19:00:00+0000",
+     "last": "2026-10-17T20:00:00+0000",
+     "daily": {
+      "2026-10-12": 6,
+      "2026-10-13": 2,
+      "2026-10-14": 14,
+      "2026-10-15": 4,
+      "2026-10-16": 19,
+      "2026-10-17": 6
+     }
+    }
+   },
+   "events": {
+    "PageView": 1273,
+    "SubmitApplication": 4
+   },
+   "sources": {
+    "SERVER": 645,
+    "BROWSER": 620
+   },
+   "total_events": 1277,
+   "server_events": 645,
+   "error": ""
+  },
+  {
+   "id": "1839806973541001",
+   "name": "Website",
+   "owner_business": {
+    "id": "1400770510587476",
+    "name": "Tuxedo Falls"
+   },
+   "last_fired_time": "2026-10-18T23:59:59+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "tuxedofalls.com": {
+     "count": 9603,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 692,
+      "2026-10-13": 1255,
+      "2026-10-14": 1095,
+      "2026-10-15": 1174,
+      "2026-10-16": 1362,
+      "2026-10-17": 1418,
+      "2026-10-18": 1675,
+      "2026-10-19": 932
+     }
+    },
+    "go.tuxedofalls.com": {
+     "count": 1990,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 82,
+      "2026-10-13": 264,
+      "2026-10-14": 254,
+      "2026-10-15": 257,
+      "2026-10-16": 250,
+      "2026-10-17": 264,
+      "2026-10-18": 432,
+      "2026-10-19": 187
+     }
+    },
+    "resnexus.com": {
+     "count": 4144,
+     "first": "2026-10-12T16:00:00+0000",
+     "last": "2026-10-19T15:00:00+0000",
+     "daily": {
+      "2026-10-12": 281,
+      "2026-10-13": 549,
+      "2026-10-14": 402,
+      "2026-10-15": 453,
+      "2026-10-16": 538,
+      "2026-10-17": 573,
+      "2026-10-18": 754,
+      "2026-10-19": 594
+     }
+    },
+    "sites.leadconnectorhq.com": {
+     "count": 82,
+     "first": "2026-10-12T21:00:00+0000",
+     "last": "2026-10-19T14:00:00+0000",
+     "daily": {
+      "2026-10-12": 3,
+      "2026-10-13": 18,
+      "2026-10-14": 12,
+      "2026-10-15": 10,
+      "2026-10-16": 2,
+      "2026-10-17": 12,
+      "2026-10-18": 21,
+      "2026-10-19": 4
+     }
+    },
+    "api.leadconnectorhq.com": {
+     "count": 1,
+     "first": "2026-10-17T21:00:00+0000",
+     "last": "2026-10-17T21:00:00+0000",
+     "daily": {
+      "2026-10-17": 1
+     }
+    }
+   },
+   "events": {
+    "PageView": 15887,
+    "SubmitApplication": 50,
+    "Purchase": 8
+   },
+   "sources": {
+    "BROWSER": 15820
+   },
+   "total_events": 15945,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "375795251002998",
+   "name": "Wix Pixel for fc9ae0e6-756b-4e42-8259-7e9296dc209a",
+   "owner_business": {
+    "id": "1662038040809917",
+    "name": "Se·lah"
+   },
+   "last_fired_time": "2026-10-12T00:32:03+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "error": ""
+  },
+  {
+   "id": "1532120041244769",
+   "name": "Yosemite Meta Pixel",
+   "owner_business": {
+    "id": "158693423705448",
+    "name": "HiddenGem Marketing"
+   },
+   "last_fired_time": "2026-10-18T23:10:23+0000",
+   "listed_in": [
+    "hg_owned_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": true,
+   "hosts": {
+    "yosemitedreamstays.com": {
+     "count": 200,
+     "first": "2026-10-12T18:00:00+0000",
+     "last": "2026-10-19T08:00:00+0000",
+     "daily": {
+      "2026-10-12": 2,
+      "2026-10-13": 56,
+      "2026-10-14": 8,
+      "2026-10-15": 36,
+      "2026-10-16": 46,
+      "2026-10-18": 10,
+      "2026-10-19": 42
+     }
+    },
+    "bio.yosemitedreamstays.com": {
+     "count": 14,
+     "first": "2026-10-15T05:00:00+0000",
+     "last": "2026-10-19T00:00:00+0000",
+     "daily": {
+      "2026-10-15": 8,
+      "2026-10-16": 2,
+      "2026-10-18": 2,
+      "2026-10-19": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 212,
+    "SubmitApplication": 2
+   },
+   "sources": {
+    "SERVER": 107,
+    "BROWSER": 107
+   },
+   "total_events": 214,
+   "server_events": 107,
+   "error": ""
+  }
+ ]
+}
