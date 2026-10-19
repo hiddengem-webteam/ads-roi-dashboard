@@ -307,15 +307,16 @@ for client,(am,acct,acctname,src) in ADV.items():
             r30=wins.get(30); r14=wins.get(14)
             base=r30 or r14
             t=ctype(base["obj"],base["name"])
-            if t=="ToF": tof_spend+=(r30 or {}).get("spend") or 0; continue
-            if t=="UNCLASSIFIED": unclassified.append((client,base["name"])); continue
             cr=CREATORS.get(str(cid))
-            if cr and not is_hg(cr.get("name")):
+            if cr and not is_hg(cr.get("name")) and t!="ToF":
+                if t=="UNCLASSIFIED": t="Other"
                 rr=r30 if t==LEAD else (r14 or r30)
                 client_run[client].append(dict(name=base["name"],type=t,status=base["status"],creator=cr["name"],created=cr["created"],win=30 if t==LEAD else 14,spend=rr["spend"] or 0,
                     results=f"{int(rr['leads'] or 0)} leads" if t==LEAD else f"{int(rr['purch'] or 0)} purchases",
                     gov=f"CPL {money(rr['cpl'])}" if t==LEAD else f"ROAS {x(rr['roas'])}"))
                 continue
+            if t=="ToF": tof_spend+=(r30 or {}).get("spend") or 0; continue
+            if t=="UNCLASSIFIED": unclassified.append((client,base["name"])); continue
             if base["status"]!="ACTIVE":
                 # decision 2026-09-23: only live campaigns are scored; paused ones are listed, not judged
                 rr=r30 if t==LEAD else (r14 or r30)

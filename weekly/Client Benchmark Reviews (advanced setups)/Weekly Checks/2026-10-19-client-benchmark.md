@@ -288,6 +288,8 @@ This month (booked 1 Oct–19 Oct): direct revenue $16,622 from 31 bookings, −
 
 Client-run, not scored: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Sales, paused), created by Nathan Jay Herrington on 2026-09-21, $422 / 14d, 1 purchases, ROAS 1.1x. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).
 
+Client-run, not scored: Instagram post: 🔥 𝐒𝐀𝐂𝐑𝐈𝐅𝐈𝐂𝐄 𝐈𝐒 𝐑𝐄𝐐𝐔𝐈𝐑𝐄𝐃 🔥... (Other, active), created by Live Intentionally Today LIT on 2026-10-15, $32 / 14d, 0 purchases, ROAS —. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).
+
 Monthly ROI: July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads · August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · September: spend $1,304, 27 Meta-attributed bookings, blended ROAS 10.4x, retargeting ROAS 38.2x, CPL $0.63 on 232 leads.
 
 Meeting notes: not mentioned in this week's meetings.
@@ -460,8 +462,8 @@ HG AI notes: none dropped in since the previous run. Both campaigns stopped betw
 - CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.
 - Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.
 - Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as "Paused in window" and never enter Action needed or the counts (decision 2026-09-23).
-- Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): Selah Place: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Nathan Jay Herrington); Walden Retreats: TOF Wedding Leads 10.8.26 (Lindsey Cooke). Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.
-- Unclassified campaigns: Selah Place: Instagram post: 🔥 𝐒𝐀𝐂𝐑𝐈𝐅𝐈𝐂𝐄 𝐈𝐒 𝐑𝐄𝐐𝐔𝐈𝐑𝐄𝐃 🔥....
+- Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): Selah Place: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Nathan Jay Herrington), Instagram post: 🔥 𝐒𝐀𝐂𝐑𝐈𝐅𝐈𝐂𝐄 𝐈𝐒 𝐑𝐄𝐐𝐔𝐈𝐑𝐄𝐃 🔥... (Live Intentionally Today LIT); Walden Retreats: TOF Wedding Leads 10.8.26 (Lindsey Cooke). Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.
+- Unclassified campaigns: none.
 - Previous report: 2026-10-13-client-benchmark.csv. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: 4 new, 8 still open, 0 fixed, 33 unchanged, 2 removed.
 - Scope changes vs 13 Oct: Sunapee Stays dropped (CRM Meta Ads column now Basic, was Advanced on 13 Oct; account 651114096215889 still runs $50/day and stays in the spend and pixel checks). Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: Treetop Hideaways (AM Kristal), Glasscombe (AM Charlotte), Cabin Collective (AM Chiara), Casey Key Resort (AM Alicia), Arca Roatan (AM Anna).
 - HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: none.
