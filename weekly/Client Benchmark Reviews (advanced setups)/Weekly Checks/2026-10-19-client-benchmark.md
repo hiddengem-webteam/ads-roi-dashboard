@@ -4,7 +4,7 @@ Run: 19 October 2026 (Monday), fifth run, compared against 2026-10-13-client-ben
 
 | Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI | Frequency over 5 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 21 (+5 unmapped) | 21 | 0 | 37 | 10 | 2 | 12 | 11 | 8 | 4 | 1 |
+| 21 (+5 unmapped) | 21 | 0 | 35 | 10 | 1 | 11 | 11 | 8 | 4 | 1 |
 
 States come from the Decision Making table in the Benchmarks doc. Lead Gen: CPL under $0.30 Scale, $0.30–0.50 Healthy, $0.50–1.00 Monitor, $1.00–2.50 Review, $2.50+ Flag, 30-day window, $100 gate. Sales/Retargeting: ROAS above 15x Scale, 8–15x Healthy, 5–8x Monitor, 2–5x Review, under 2x Flag, 14-day window, $200 gate. Band edges are inclusive on the lower bound.
 
@@ -49,11 +49,9 @@ Sales and Retargeting campaigns first, then Lead Gen. Within each, Flag to Shawa
 |---|---|---|---|---|---|---|---|
 | FLOHOM | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $1,123 / 14d | ROAS 4.0x | Review w/ HG AI | New flag, was Monitor |
 | Endless Stays | Nicole | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $1,030 / 14d | ROAS 3.1x | Review w/ HG AI | Still open, week 3 |
-| Tàberg Falls | Alicia | MoF - Broad (Acquire new customers) - 09/28/2026 | Sales (MoF lookalike) | $698 / 14d | ROAS 3.9x | Review w/ HG AI | New flag, was Monitor |
 | Paradise Pointe | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $693 / 14d | ROAS 3.7x | Review w/ HG AI | Still open, week 3 |
 | Treetop Escapes | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $571 / 14d | ROAS 2.5x | Review w/ HG AI | New flag, was Healthy |
 | Stay Saluda NC | Makenna | BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | $416 / 14d | ROAS 4.3x | Review w/ HG AI | New flag, was Monitor |
-| Walden Retreats | Anna | TOF Wedding Leads 10.8.26 | Lead Gen (MoF) | $201 / 30d | CPL $10.07 | Flag to Shawal | New flag, was Under gate |
 | Ridge & Falls | Makenna | MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | $147 / 30d | CPL $3.51 | Flag to Shawal | Still open, week 4 |
 | Stay On 30A | Charlotte | MoF - Lead Campaign - RT Engagers - 07/16/26 | Lead Gen (MoF) | $1,501 / 30d | CPL $1.37 | Review w/ HG AI | Still open, week 5 |
 | Green Springs Inn | Alicia | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | $300 / 30d | CPL $1.35 | Review w/ HG AI | Still open, week 5 |
@@ -109,10 +107,11 @@ This month (booked 1 Oct–19 Oct): direct revenue $40,472 from 28 bookings, −
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
-| MoF - Broad (Acquire new customers) - 09/28/2026 | Sales (MoF lookalike) | 14d | $698 | 2 purchases | ROAS 3.9x | 1.60 | Review w/ HG AI | CPM $23.75 > $16.50; cost/booking $348.98 > $90 | 30d ROAS 4.3x, 3 purchases | New flag, was Monitor |
 | MoF - Leads Campaign - 06/19/26 | Lead Gen (MoF) | 30d | $1,707 | 3008 leads | CPL $0.57 | — | Monitor | within lines | 14d CPL $0.56 | Unchanged |
 | BoF - Website Retargeting Campaign - 08/21/2026 | Retargeting (BoF) | 14d | $1,031 | 7 purchases | ROAS 12.9x | 2.89 | Healthy | CPC $0.70 > $0.62; CPM $24.29 > $16.50; cost/booking $147.31 > $90 | 30d ROAS 8.8x, 14 purchases | Unchanged |
-| MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | 14d | $826 | 5 purchases | ROAS 9.8x | 1.45 | Healthy | CPM $21.19 > $16.50; cost/booking $165.11 > $90 | 30d ROAS 9.3x, 12 purchases | Unchanged |
+| MoF - Lookalike Sales Campaign - 08/21/2026 | Sales (MoF lookalike) | 14d | $826 | 5 purchases | ROAS 9.8x | 1.45 | Healthy | CPM $21.19 > $16.50; cost/booking $165.12 > $90 | 30d ROAS 9.3x, 12 purchases | Unchanged |
+
+Paused in window, not scored: MoF - Broad (Acquire new customers) - 09/28/2026 (Sales (MoF lookalike)), $698 / 14d, 2 purchases, ROAS 3.9x. Live campaigns only are scored (decision 2026-09-23).
 
 Monthly ROI: July: spend $11,739, 80 Meta-attributed bookings, blended ROAS 9.5x, retargeting ROAS 15.8x, CPL $0.67 on 2320 leads · August: spend $11,259, 31 Meta-attributed bookings, blended ROAS 4.5x, retargeting ROAS 8.0x, CPL $0.46 on 4015 leads · September: spend $10,800, 27 Meta-attributed bookings, blended ROAS 4.0x, retargeting ROAS 7.1x, CPL $0.55 on 3261 leads.
 
@@ -128,9 +127,9 @@ This month (booked 1 Oct–19 Oct): direct revenue $70,350 from 78 bookings, −
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,123 | 6 purchases | ROAS 4.0x | 2.43 | Review w/ HG AI | CPC $0.73 > $0.62; CPM $20.44 > $16.50; cost/booking $187.16 > $90 | 30d ROAS 7.1x, 22 purchases | New flag, was Monitor |
+| BoF - Sales Campaign - Retargeting Website Visitors | Retargeting (BoF) | 14d | $1,123 | 6 purchases | ROAS 4.0x | 2.43 | Review w/ HG AI | CPC $0.73 > $0.62; CPM $20.44 > $16.50; cost/booking $187.17 > $90 | 30d ROAS 7.1x, 22 purchases | New flag, was Monitor |
 | MoF - Lead Campaign - Retargeting Engagers – 08/17/26 | Lead Gen (MoF) | 30d | $662 | 1179 leads | CPL $0.56 | — | Monitor | within lines | 14d CPL $0.59 | Unchanged |
-| [Myrtle Beach] MoF - Lookalike Sales Campaign - 09/17/26 | Sales (MoF lookalike) | 14d | $282 | 1 purchases | ROAS 6.0x | 2.41 | Monitor | CPC $0.93 > $0.62; CPM $20.14 > $16.50; cost/booking $282.19 > $90 | 30d ROAS 9.7x, 5 purchases | Was Healthy |
+| [Myrtle Beach] MoF - Lookalike Sales Campaign - 09/17/26 | Sales (MoF lookalike) | 14d | $282 | 1 purchases | ROAS 6.0x | 2.41 | Monitor | CPC $0.93 > $0.62; CPM $20.14 > $16.50; cost/booking $282.22 > $90 | 30d ROAS 9.7x, 5 purchases | Was Healthy |
 | MoF - Lookalike Sales Campaign - 07/29/26 | Sales (MoF lookalike) | 14d | $1,012 | 10 purchases | ROAS 9.7x | 2.34 | Healthy | CPC $0.84 > $0.62; CPM $22.94 > $16.50; cost/booking $101.19 > $90 | 30d ROAS 9.3x, 23 purchases | Unchanged |
 
 Monthly ROI: July: spend $5,555, 103 Meta-attributed bookings, blended ROAS 17.2x, retargeting ROAS 19.1x, CPL $7.66 on 66 leads · August: spend $9,331, 57 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 8.2x, CPL $2.24 on 708 leads · September: spend $8,855, 66 Meta-attributed bookings, blended ROAS 6.7x, retargeting ROAS 8.9x, CPL $0.50 on 2192 leads.
@@ -285,35 +284,15 @@ This month (booked 1 Oct–19 Oct): direct revenue $16,622 from 31 bookings, −
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign - Retargeting Engagers | Lead Gen (MoF) | 30d | $179 | 307 leads | CPL $0.58 | — | Monitor | within lines | 14d CPL $0.53 | Unchanged |
-| BoF-Website Retarget Campaign - 07/24/2026 | Retargeting (BoF) | 14d | $344 | 8 purchases | ROAS 11.7x | 4.10 | Healthy | CPM $17.83 > $16.50; freq 4.1 > 3.0 | 30d ROAS 14.5x, 16 purchases | Was Scale w/ HG AI |
+| BoF-Website Retarget Campaign - 07/24/2026 | Retargeting (BoF) | 14d | $344 | 8 purchases | ROAS 11.7x | 4.11 | Healthy | CPM $17.84 > $16.50; freq 4.1 > 3.0 | 30d ROAS 14.5x, 16 purchases | Was Scale w/ HG AI |
 
-Paused in window, not scored: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Sales), $422 / 14d, 1 purchases, ROAS 1.1x. Live campaigns only are scored (decision 2026-09-23).
+Client-run, not scored: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Sales, paused), created by Nathan Jay Herrington on 2026-09-21, $422 / 14d, 1 purchases, ROAS 1.1x. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).
 
 Monthly ROI: July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads · August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · September: spend $1,304, 27 Meta-attributed bookings, blended ROAS 10.4x, retargeting ROAS 38.2x, CPL $0.63 on 232 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 
 HG AI notes: none dropped in since the previous run. Actions log: the BoF retargeting budget was raised on 13 Oct (planned move of the paused test's budget, Done; the spend check reads $30/day today), so this 14-day window is the first mostly on the higher budget. BoF 11.7x on 8 purchases sits below the 15x Scale line; the paused prospecting test's trailing spend (1.1x) is listed, not scored.
-
-### Walden Retreats — AM Anna — account Walden Retreats (973261794434226) — live read
-
-ToF (Discovery / Keyword) spend, not scored: $137 over 30 days.
-
-This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
-
-| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
-|---|---|---|---|---|---|---|---|---|---|---|
-| TOF Wedding Leads 10.8.26 | Lead Gen (MoF) | 30d | $201 | 20 leads | CPL $10.07 | — | Flag to Shawal | CPM $24.27 > $14.84 | 14d CPL $10.07 | New flag, was Under gate |
-| MoF - Lead Campaign - Retargeting Engagers - 10/06/2026 | Lead Gen (MoF) | 30d | $127 | 98 leads | CPL $1.30 | — | Review w/ HG AI | CPC $0.40 > $0.30; CPM $18.25 > $14.84 | 14d CPL $1.30 | New flag, was Under gate |
-| BoF - Sales Campaign - Retargeting Website Visitors - 06/10/2026 | Retargeting (BoF) | 14d | $118 | 9 purchases | ROAS 56.9x | 1.79 | Under gate | CPC $0.63 > $0.62; CPM $19.51 > $16.50 | spend $118.31 < $200 gate; 30d ROAS 56.9x, 9 purchases | Unchanged |
-
-Paused in window, not scored: TOF Wedding Leads (alt aud) 10.9.26 (Lead Gen (MoF)), $31 / 30d, 0 leads, CPL —. Live campaigns only are scored (decision 2026-09-23).
-
-Monthly ROI: no record in the Monthly ROI data files.
-
-Meeting notes: not mentioned in this week's meetings.
-
-HG AI notes: none dropped in since the previous run. The wedding-lead test (TOF Wedding Leads 10.8.26, $24/day) crosses the $100 gate for the first time at $10.07 CPL on 20 leads. Wedding enquiries are a different lead type from the email-list leads the CPL bands were set for, so read the Flag as a prompt to agree a wedding CPL target with Anna, not as a failure. The alt-audience variant (10.9.26) is paused. BoF 56.9x on $118, under the gate.
 
 ### Green Springs Inn — AM Alicia — account Green Springs Inn (1390516335151357) — live read
 
@@ -324,13 +303,34 @@ This month (booked 1 Oct–19 Oct): direct revenue $23,196 from 52 bookings, +1%
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
 | MoF - Lead Campaign/08/28/2026 | Lead Gen (MoF) | 30d | $300 | 222 leads | CPL $1.35 | — | Review w/ HG AI | within lines | 14d CPL $1.18 | Still open, week 5 |
-| BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $137 | 3 purchases | ROAS 10.4x | 3.14 | Under gate | CPC $0.68 > $0.62; freq 3.1 > 3.0 | spend $137.19 < $200 gate; 30d ROAS 9.8x, 8 purchases | Unchanged |
+| BoF - Sales Campaign - Retargeting Website Visitors - 08/28/26 | Retargeting (BoF) | 14d | $137 | 3 purchases | ROAS 10.4x | 3.14 | Under gate | CPC $0.68 > $0.62; freq 3.1 > 3.0 | spend $137.20 < $200 gate; 30d ROAS 9.8x, 8 purchases | Unchanged |
 
 Monthly ROI: July: spend $1,222, 17 Meta-attributed bookings, blended ROAS 7.8x, retargeting ROAS 14.6x, CPL $5.65 on 8 leads · August: spend $1,247, 23 Meta-attributed bookings, blended ROAS 8.2x, retargeting ROAS 17.1x, CPL $9.09 on 34 leads · September: spend $1,199, 24 Meta-attributed bookings, blended ROAS 8.5x, retargeting ROAS 9.0x, CPL $1.84 on 166 leads.
 
 Meeting notes (Meta Ads Strategy 2026-10-14): Event Match Quality Limitations and Proposed Four-Campaign Strategy: Dustin Baker addressed tracking challenges with bottom-funnel purchase campaigns, noting that Event Match Quality is low at approximately five out of ten for clients without custom-coded websites, such as Asheville River Cabins or Green Springs Inn.
 
 HG AI notes: none dropped in since the previous run.
+
+### Walden Retreats — AM Anna — account Walden Retreats (973261794434226) — live read
+
+ToF (Discovery / Keyword) spend, not scored: $137 over 30 days.
+
+This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.
+
+| Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
+|---|---|---|---|---|---|---|---|---|---|---|
+| MoF - Lead Campaign - Retargeting Engagers - 10/06/2026 | Lead Gen (MoF) | 30d | $127 | 98 leads | CPL $1.30 | — | Review w/ HG AI | CPC $0.40 > $0.30; CPM $18.25 > $14.84 | 14d CPL $1.30 | New flag, was Under gate |
+| BoF - Sales Campaign - Retargeting Website Visitors - 06/10/2026 | Retargeting (BoF) | 14d | $118 | 9 purchases | ROAS 56.9x | 1.79 | Under gate | CPC $0.63 > $0.62; CPM $19.51 > $16.50 | spend $118.32 < $200 gate; 30d ROAS 56.9x, 9 purchases | Unchanged |
+
+Paused in window, not scored: TOF Wedding Leads (alt aud) 10.9.26 (Lead Gen (MoF)), $31 / 30d, 0 leads, CPL —. Live campaigns only are scored (decision 2026-09-23).
+
+Client-run, not scored: TOF Wedding Leads 10.8.26 (Lead Gen (MoF), active), created by Lindsey Cooke on 2026-10-08, $201 / 30d, 20 leads, CPL $10.07. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).
+
+Monthly ROI: no record in the Monthly ROI data files.
+
+Meeting notes: not mentioned in this week's meetings.
+
+HG AI notes: none dropped in since the previous run. The two 'TOF Wedding Leads' campaigns are the client's own (created by Lindsey Cooke on 8 and 9 Oct per the account activity log; the account has run wedding-lead campaigns since December 2025), so they are listed below and not scored. HiddenGem's three campaigns launched 5 to 7 Oct: leads $1.30 CPL on 98 leads (Review, first week over the gate), BoF 56.9x on $118 (under the gate).
 
 ### Little River Landing — AM Makenna — account Little River Landing (884285717873613) — live read
 
@@ -357,8 +357,8 @@ This month (booked 1 Oct–19 Oct): direct revenue $2,782 from 7 bookings, +219%
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
-| MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $147 | 42 leads | CPL $3.51 | — | Flag to Shawal | CPC $0.32 > $0.30; CPM $15.12 > $14.84 | 14d CPL $2.76 | Still open, week 4 |
-| BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26 | Retargeting (BoF) | 14d | $84 | 1 purchases | ROAS 4.8x | 3.84 | Under gate | freq 3.8 > 3.0 | spend $84.15 < $200 gate; 30d ROAS 9.1x, 4 purchases | Unchanged |
+| MoF - Lead Campaign - Retargeting Engagers - 09/01/26 | Lead Gen (MoF) | 30d | $147 | 42 leads | CPL $3.51 | — | Flag to Shawal | CPC $0.32 > $0.30; CPM $15.11 > $14.84 | 14d CPL $2.76 | Still open, week 4 |
+| BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26 | Retargeting (BoF) | 14d | $84 | 1 purchases | ROAS 4.8x | 3.84 | Under gate | freq 3.8 > 3.0 | spend $84.16 < $200 gate; 30d ROAS 9.1x, 4 purchases | Unchanged |
 
 Monthly ROI: September: spend $1,036, 0 Meta-attributed bookings, blended ROAS —, retargeting ROAS —, CPL $8.16 on 16 leads. Note in the September file: Newly launched campaigns — $1,036.47 spent, no revenue from ads yet (spend exceeds the $871.49 September direct revenue, as expected for a launch month).
 
@@ -425,7 +425,7 @@ This month: no PMS connection on the HiddenGem AI platform, so direct revenue an
 
 | Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week |
 |---|---|---|---|---|---|---|---|---|---|---|
-| BoF - Sales Campaign - Retargeting Website Visitors - 10/08/2026 | Retargeting (BoF) | 14d | $102 | 0 purchases | ROAS — | 1.85 | Under gate | within lines | spend $102.42 < $200 gate | Unchanged |
+| BoF - Sales Campaign - Retargeting Website Visitors - 10/08/2026 | Retargeting (BoF) | 14d | $102 | 0 purchases | ROAS — | 1.85 | Under gate | within lines | spend $102.43 < $200 gate | Unchanged |
 | BoF - Sales Campaign - Retargeting Website Visitors - 08/29/2026 | Retargeting (BoF) | 14d | $35 | 0 purchases | ROAS — | 1.63 | Under gate | CPC $0.67 > $0.62 | spend $34.63 < $200 gate | Unchanged |
 
 Monthly ROI: July: spend $2,182, 1 Meta-attributed bookings, blended ROAS 0.2x, CPL $1.61 on 202 leads · August: spend $1,876, 7 Meta-attributed bookings, blended ROAS 2.1x, CPL $1.71 on 181 leads · September: spend $2,081, 18 Meta-attributed bookings, blended ROAS 3.8x, retargeting ROAS —, CPL $1.80 on 167 leads.
@@ -460,8 +460,9 @@ HG AI notes: none dropped in since the previous run. Both campaigns stopped betw
 - CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.
 - Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.
 - Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as "Paused in window" and never enter Action needed or the counts (decision 2026-09-23).
+- Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): Selah Place: SP / Prospecting Test / LAL + Interests x Creative / 09-2026 (Nathan Jay Herrington); Walden Retreats: TOF Wedding Leads 10.8.26 (Lindsey Cooke). Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.
 - Unclassified campaigns: Selah Place: Instagram post: 🔥 𝐒𝐀𝐂𝐑𝐈𝐅𝐈𝐂𝐄 𝐈𝐒 𝐑𝐄𝐐𝐔𝐈𝐑𝐄𝐃 🔥....
-- Previous report: 2026-10-13-client-benchmark.csv. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: 6 new, 8 still open, 0 fixed, 33 unchanged, 2 removed.
+- Previous report: 2026-10-13-client-benchmark.csv. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: 4 new, 8 still open, 0 fixed, 33 unchanged, 2 removed.
 - Scope changes vs 13 Oct: Sunapee Stays dropped (CRM Meta Ads column now Basic, was Advanced on 13 Oct; account 651114096215889 still runs $50/day and stays in the spend and pixel checks). Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: Treetop Hideaways (AM Kristal), Glasscombe (AM Charlotte), Cabin Collective (AM Chiara), Casey Key Resort (AM Alicia), Arca Roatan (AM Anna).
 - HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: none.
 - Selah Place's prospecting campaign (paused this week) is named with pipes in Meta ("SP | Prospecting Test | LAL + Interests x Creative | 09-2026"); shown here with slashes.

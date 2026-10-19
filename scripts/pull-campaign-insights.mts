@@ -11,6 +11,9 @@
  * For each account: every campaign (any status) with its objective and
  * effective_status, plus campaign-level insights for date_preset last_30d and
  * last_14d. Campaigns with no spend in a window are left out of that window.
+ * Also reads each account's activity log (last 180 days) and writes creators.json:
+ *   { campaign_id: { name, actor_id, created } } for every "create_campaign_group"
+ *   event, so the generator can tell HiddenGem campaigns from client-run ones.
  * Writes .claude/skills/client-benchmark/live.psv, pipe-separated:
  *   client|acct|am|win|id|name|objective|status|spend|impr|cpm|ctr|clicks|cpc|freq|leads|cpl|purch|cpp|roas
  * (clicks = inline link clicks, cpc = cost per inline link click, leads = the
@@ -69,6 +72,8 @@ async function main() {
   const lines: string[] = [];
   const t0 = new Date();
   const errors: string[] = [];
+  const creators: Record<string, { name: string; actor_id: string; created: string; account: string; campaign: string }> = {};
+  const since = new Date(new Date(RUN_DATE + 'T00:00:00Z').getTime() - 180 * 86400 * 1000).toISOString().slice(0, 10);
   for (const a of adv) {
     let camps: any[] = [];
     try {
@@ -96,9 +101,19 @@ async function main() {
         count++;
       }
     }
+    try {
+      const acts = await getAll(`${API}/act_${a.id}/activities?fields=event_time,event_type,actor_name,actor_id,object_type,object_id,object_name&since=${since}&limit=500&access_token=${TOKEN}`);
+      for (const ev of acts) {
+        if (ev.event_type !== 'create_campaign_group' || !ev.object_id) continue;
+        creators[String(ev.object_id)] = { name: ev.actor_name ?? '', actor_id: String(ev.actor_id ?? ''), created: String(ev.event_time ?? '').slice(0, 10), account: a.id, campaign: ev.object_name ?? '' };
+      }
+    } catch (e: any) { errors.push(`${a.client} (${a.id}) activities: ${e.message}`); }
     console.log(`${a.client.padEnd(30)} ${a.id.padEnd(18)} ${camps.length} campaigns, ${count} window rows`);
   }
   fs.writeFileSync(path.join(SKILL, 'live.psv'), lines.join('\n') + '\n');
+  fs.writeFileSync(path.join(SKILL, 'creators.json'), JSON.stringify(creators, null, 1));
+  const names = [...new Set(Object.values(creators).map((c) => c.name))].sort();
+  console.log(`campaign creators seen in the last 180 days: ${names.join(', ')}`);
   fs.writeFileSync(path.join(SKILL, 'live.meta.json'), JSON.stringify({ run_date: RUN_DATE, pulled_from: t0.toISOString(), pulled_to: new Date().toISOString(), accounts: adv.length, rows: lines.length, errors }, null, 1));
   console.log(`\n${adv.length} accounts, ${lines.length} rows, ${errors.length} errors. Wrote .claude/skills/client-benchmark/live.psv`);
   if (errors.length) console.log(errors.join('\n'));

@@ -78,6 +78,18 @@ def diags(t,cpc,cpm,ctr,cpp,freq):
         if freq is not None and freq>3.0: d.append(f"freq {freq:.1f} > 3.0")
     return "; ".join(d) if d else "within lines"
 
+# ---------- campaign creators (client-run campaigns are listed, never scored; Shawal 2026-10-19) ----------
+# creators.json comes from pull-campaign-insights.mts (activity log, last 180 days).
+# A campaign whose creator is not on the HiddenGem team is client-run. Unknown creator = scored as usual.
+HG_TEAM={"hiddengem-claude","shawal nazir","dustin baker","gillian conley","leshan patterson","ananya arora","makenna moran","nicole","alicia","charlotte","chiara","kristal","anna","vicky","lily","lucca","pooja","aidan","brandon","kyle","anhtuan","henry"}
+def is_hg(name):
+    n=(name or "").lower().strip()
+    return any(n==h or n.split(" ")[0]==h.split(" ")[0] for h in HG_TEAM)
+CREATORS={}
+if os.path.exists(f"{SP}/creators.json"):
+    CREATORS=json.load(open(f"{SP}/creators.json",encoding="utf-8"))
+client_run=collections.defaultdict(list)
+
 # ---------- live data ----------
 live=collections.defaultdict(lambda: collections.defaultdict(dict))  # client -> id -> win -> row
 for line in open(f"{SP}/live.psv",encoding="utf-8"):
@@ -271,7 +283,7 @@ EXTRA_NOTES={
  "Paradise Pointe":"BoF 3.7x, third week at Review, frequency 5.7 and still the only Frequency-watch row. September ROI file: Meta recorded no revenue for 12 retargeting purchases; the purchase-value check (decision 26) is still open, so the live ROAS may understate.",
  "Asheville River Cabins":"14 Oct Strategy: Leshan's custom script in the Cloudbeds account recorded Facebook click IDs on reservations; sending them to Meta through CAPI needs host API access, which Shawal is requesting. The leads campaign slips from Scale to Healthy at $0.30 (band edge); BoF 43.1x holds.",
  "The Outpost":"The second BoF campaign (10/08, $10/day) runs beside the 08/29 one; both are under the $200 gate with 0 purchases in 14 days. Decision 30 (pause the old one) is still open.",
- "Walden Retreats":"The wedding-lead test (TOF Wedding Leads 10.8.26, $24/day) crosses the $100 gate for the first time at $10.07 CPL on 20 leads. Wedding enquiries are a different lead type from the email-list leads the CPL bands were set for, so read the Flag as a prompt to agree a wedding CPL target with Anna, not as a failure. The alt-audience variant (10.9.26) is paused. BoF 56.9x on $118, under the gate.",
+ "Walden Retreats":"The two 'TOF Wedding Leads' campaigns are the client's own (created by Lindsey Cooke on 8 and 9 Oct per the account activity log; the account has run wedding-lead campaigns since December 2025), so they are listed below and not scored. HiddenGem's three campaigns launched 5 to 7 Oct: leads $1.30 CPL on 98 leads (Review, first week over the gate), BoF 56.9x on $118 (under the gate).",
  "North Star Lodge & Resort":"14 Oct Strategy: the full plugin, script and API set is installed (Leshan); BoF spend is low ($70 in 14 days) and no BoF reservation has come through yet, though clicks are visible in the platform.",
  "FLOHOM":"BoF 4.0x on 14 days (6 purchases) against 7.1x on 30 days: the last two weeks are the soft patch, and October direct revenue is 25% below September's same span. The [Myrtle Beach] lookalike slips to Monitor at 6.0x on 1 purchase.",
  "Treetop Escapes":"BoF 2.5x on 3 purchases in 14 days (7.1x on 30), first Review since the 28 Sep run (4.7x then). October direct revenue is up 25% on September's span, so bookings are arriving that the pixel does not credit to the campaign.",
@@ -297,6 +309,13 @@ for client,(am,acct,acctname,src) in ADV.items():
             t=ctype(base["obj"],base["name"])
             if t=="ToF": tof_spend+=(r30 or {}).get("spend") or 0; continue
             if t=="UNCLASSIFIED": unclassified.append((client,base["name"])); continue
+            cr=CREATORS.get(str(cid))
+            if cr and not is_hg(cr.get("name")):
+                rr=r30 if t==LEAD else (r14 or r30)
+                client_run[client].append(dict(name=base["name"],type=t,status=base["status"],creator=cr["name"],created=cr["created"],win=30 if t==LEAD else 14,spend=rr["spend"] or 0,
+                    results=f"{int(rr['leads'] or 0)} leads" if t==LEAD else f"{int(rr['purch'] or 0)} purchases",
+                    gov=f"CPL {money(rr['cpl'])}" if t==LEAD else f"ROAS {x(rr['roas'])}"))
+                continue
             if base["status"]!="ACTIVE":
                 # decision 2026-09-23: only live campaigns are scored; paused ones are listed, not judged
                 rr=r30 if t==LEAD else (r14 or r30)
@@ -438,6 +457,8 @@ for c in order:
         L.append("")
     for pz in paused_by_client.get(c,[]):
         L.append(f"Paused in window, not scored: {pz['name']} ({pz['type']}), {money(pz['spend'],0)} / {pz['win']}d, {pz['results']}, {pz['gov']}. Live campaigns only are scored (decision 2026-09-23).\n")
+    for cz in client_run.get(c,[]):
+        L.append(f"Client-run, not scored: {cz['name']} ({cz['type']}, {cz['status'].lower()}), created by {cz['creator']} on {cz['created']}, {money(cz['spend'],0)} / {cz['win']}d, {cz['results']}, {cz['gov']}. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).\n")
     L.append(roi_line(c)+"\n")
     ms=mentions(c)
     if ms:
@@ -455,6 +476,7 @@ L.append("- Data path: Marketing API v21.0 insights at campaign level through `s
 L.append("- CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.")
 L.append("- Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked ⚠️ in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.")
 L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as \"Paused in window\" and never enter Action needed or the counts (decision 2026-09-23).")
+L.append("- Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): "+("; ".join(f"{c}: {', '.join(z['name']+' ('+z['creator']+')' for z in zs)}" for c,zs in client_run.items()) if client_run else "none")+". Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append(f"- Previous report: {PREVFILE}. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: {sum(1 for r in records if r['diff']=='new')} new, {sum(1 for r in records if r['diff']=='still_open')} still open, {sum(1 for r in records if r['diff']=='fixed')} fixed, {sum(1 for r in records if r['diff']=='unchanged')} unchanged, {len(removed)} removed.")
 L.append("- Scope changes vs 13 Oct: "+("; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "none")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
