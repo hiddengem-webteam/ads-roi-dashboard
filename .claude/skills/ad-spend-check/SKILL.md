@@ -1,13 +1,13 @@
 ---
 name: ad-spend-check
-description: Weekly HiddenGem Meta Ads spend ledger. Reads the live daily budget of every client's ad account through the Meta Marketing API, splits it by campaign type (ToF Giveaway, MoF Leads, MoF Sales LoL, BoF Sales), diffs against the previous run, saves a dated report to "weekly/Ad Spends Checks/Weekly Checks" and appends the rows to the Master Meta Ads sheet's "Meta Ad Spends" tab. Use when the user says "run the ad spend check", "weekly spend audit", "ad spend report", or invokes /ad-spend-check.
+description: Weekly HiddenGem Meta Ads spend ledger. Reads the live daily budget of every client's ad account through the Meta Marketing API, splits it by campaign type (ToF Giveaway, MoF Leads, MoF Sales LoL, BoF Sales), diffs against the previous run, saves a dated report to "weekly/Ad Spends Checks/Weekly Checks" and rewrites the Master Meta Ads sheet's "Meta Ad Spends" tab with the current ledger. Use when the user says "run the ad spend check", "weekly spend audit", "ad spend report", or invokes /ad-spend-check.
 ---
 
 # Ad Spend Check
 
 You are running the HiddenGem Marketing weekly Meta Ads spend check. It reports what each client's ad account is set to spend per day, by campaign type, and how that moved since the previous run. It does **not** compare against the documented budget on the Master sheet (that comparison was dropped on 2026-10-15 at Shawal's request; reports up to 2026-10-13 still carry it).
 
-Output: `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-check.{md,csv,html}`, plus one block of rows appended to the **Meta Ad Spends** tab of the Master Meta Ads sheet. No email.
+Output: `weekly/Ad Spends Checks/Weekly Checks/YYYY-MM-DD-ad-spend-check.{md,csv,html}`, plus the **Meta Ad Spends** tab of the Master Meta Ads sheet rewritten with the current ledger (one row per client, previous run replaced; history lives in the dated CSVs). No email.
 
 Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 
@@ -35,21 +35,21 @@ The script reads every non-offboarded client in the map, pulls each account's AC
 
 If the script reports an account as blocked, do not retry. Note it in the chat summary; the row stays in the report with `n/a` figures. If `META_ACCESS_TOKEN` is missing, stop and say so; there is no connector fallback for this report.
 
-## Step 2: Push the rows to the Meta Ad Spends tab
+## Step 2: Replace the Meta Ad Spends tab with this run's rows
 
 With the Google Sheets connector:
 
 1. `get_values` on `'Meta Ad Spends'!A1:K1`. The layout (Shawal, 2026-10-15) is
    `Last Update Data | Client | AM | Update source | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Campaign details`.
    If the tab is ever empty, write that header at `A1` first.
-2. `get_values` on `'Meta Ad Spends'!B:B` to find the first empty row (column A is blank on most rows, so do not use it).
-3. `update_values` from that row with one row per client from the CSV, sorted by `total_live` descending (ties by client name):
-   - `Last Update Data`: the run date as text on the first row of the run only, blank on the rest, so each run reads as one dated block.
+2. `get_values` on `'Meta Ad Spends'!B:B` to find the last used row of the previous run.
+3. `update_values` on `'Meta Ad Spends'!A2:K<last>` with one row per client from the CSV, sorted by `total_live` descending (ties by client name), followed by rows of empty strings down to the previous last row so nothing from the old run is left behind (Shawal, 2026-10-19: the tab shows the current ledger, it does not accumulate runs; `batch_clear_values` is not permitted, so blank cells are written instead):
+   - `Last Update Data`: the run date as text on the first row only, blank on the rest.
    - `Update source`: `Live API` (the normal case); `Live API (blocked, no data)` for a blocked account.
    - Budgets as numbers; `Campaign details` is the CSV's `campaigns` cell.
-   Never overwrite earlier runs; never touch any other tab.
-4. Read the written range back once and check the row count equals the CSV's client count.
-5. Replace the `Meta Ad Spends tab: not pushed yet.` line in the `.md` with `Meta Ad Spends tab: pushed YYYY-MM-DD HH:MM PT, N rows (rows A to B).` using the time of the write. The HTML shows this line as a chip.
+   Never touch any other tab.
+4. Read `'Meta Ad Spends'!B:B` back once and check the non-empty count equals the CSV's client count plus the header.
+5. Replace the `Meta Ad Spends tab: not pushed yet.` line in the `.md` with `Meta Ad Spends tab: replaced YYYY-MM-DD HH:MM PT, N rows (rows 2 to B).` using the time of the write. The HTML shows this line as a chip.
 
 If the Sheets connector is not available, leave the line as `not pushed yet`, say so in chat, and do not edit the sheet any other way.
 

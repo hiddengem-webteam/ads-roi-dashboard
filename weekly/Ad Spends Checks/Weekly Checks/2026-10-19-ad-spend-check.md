@@ -2,7 +2,7 @@
 
 Run: 19 October 2026 (Monday; live reads 09:32–09:32 PT through the Meta Marketing API with the HiddenGem-Claude system user). Compared against 2026-10-15-ad-spend-check.csv.
 
-Meta Ad Spends tab: pushed 2026-10-19 09:34 PT, 41 rows (rows 43 to 83).
+Meta Ad Spends tab: replaced 2026-10-19 10:00 PT, 41 rows (rows 2 to 42; the tab now holds only the current ledger).
 
 | Clients | Live reads | Blocked | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Spent last 7 days |
 |---|---|---|---|---|---|---|---|---|---|
