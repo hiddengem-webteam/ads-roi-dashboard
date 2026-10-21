@@ -2,6 +2,15 @@
 
 Dashboard-level changes. The weekly reviews keep their own log in `weekly/Project Data/CHANGELOG.md`.
 
+## 2026-10-21
+
+- **Creative pipeline (paused, resume early November 2026).** Full write-up and diagrams in `weekly/Creative Reviews/CREATIVE-PIPELINE.md`. New this week:
+  - `scripts/pull-ig-reels.mts`: ranks a client's organic reels against the account median, downloads the winners with yt-dlp (the API withholds `media_url` on licensed-audio reels), extracts audio and contact sheets, writes a manifest under `weekly/IG Reel Reviews/pulls/`. Needs the system-user token regenerated on 21 Oct with `instagram_basic` + `instagram_manage_insights`; Instagram ids resolve through each Page's own token. First run: `weekly/IG Reel Reviews/2026-10-21-flohom-reels-review.md`.
+  - `scripts/add-music.sh`: loops, fades and loudness-normalises a track onto a silent reel master. `scripts/ig-export.sh`: Instagram delivery pass (1080x1920, 30 fps, H.264 High, 15 Mbps CBR, unsharp + grain) per the Content Drive docs.
+  - `weekly/IG Reel Reviews/music-ledger.md`: one row per track with licence class and Ads Manager outcome. All six FLOHOM tracks are licensed commercial releases; decision was to upload and let Ads Manager review be the gate.
+  - Remotion reels in `video/src/flohom/NationalHarborGirlsTrip.tsx`: v1 (11 shots, fades, rejected), v2 (6 shots, hard cuts, static captions, approved), v3 (v2 with the share-CTA hook). HyperFrames twin of v1 in `video/flohom-girls-trip-reel/`. Source clips, renders and the HyperFrames assets are gitignored; Drive folder IDs are in the pipeline doc.
+  - Open when resuming: Ads Manager verdict on the Feel good track (v2/v3), the FLOHOM music-file set AnhTuan knows about, the textless reel masters under FLOHOM Shared Content/Completed Reels/2026, next clients (Stay on 30a, Tàberg Falls, Paradise Pointe, The Cohost Company).
+
 ## 2026-10-15
 
 - Ad spend check is now a live spend ledger: `scripts/ad-spend-check.mts` writes the report (budget per client and campaign type, 7-day spend, change vs last run) with no comparison against the Master sheet, and the HTML shows when the rows were pushed to the Meta Ad Spends tab. Older reports keep their sheet-comparison layout.

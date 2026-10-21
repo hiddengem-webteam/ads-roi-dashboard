@@ -5,3 +5,15 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Source clips and renders are re-pullable from Drive / re-renderable; Drive IDs are in
+# weekly/Creative Reviews/CREATIVE-PIPELINE.md
+public/flohom-nh/
+flohom-girls-trip-reel/assets/
+flohom-girls-trip-reel/renders/
+flohom-girls-trip-reel/node_modules/
+# HyperFrames working caches
+flohom-girls-trip-reel/.hyperframes/
+flohom-girls-trip-reel/.thumbnails/
+flohom-girls-trip-reel/.transcode-cache/
+flohom-girls-trip-reel/.capture-owner.json

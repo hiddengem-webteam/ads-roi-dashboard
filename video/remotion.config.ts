@@ -8,3 +8,5 @@ import { Config } from "@remotion/cli/config";
 Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
+// The headless shell crashes under a sandboxed shell on this Mac; full Chrome renders fine.
+Config.setChromeMode("chrome-for-testing");

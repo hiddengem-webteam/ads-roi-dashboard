@@ -96,3 +96,6 @@ scripts/.july-xlsx-conversion-report.json
 
 # creative pulls (media files, re-pullable from the API)
 weekly/Creative Reviews/pulls/
+
+# IG reel pulls (video + audio, re-pullable)
+weekly/IG Reel Reviews/pulls/

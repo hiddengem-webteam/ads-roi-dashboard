@@ -1,56 +1,50 @@
-import { Composition, Folder } from "remotion";
-import { HelloWorld } from "./HelloWorld";
-import { Logo } from "./HelloWorld/Logo";
-import { Title } from "./HelloWorld/Title";
+import { Composition } from "remotion";
+import {
+  FPS,
+  NationalHarborGirlsTrip,
+  SCENES_V1,
+  SCENES_V2,
+  SCENES_V3,
+  totalFrames,
+} from "./flohom/NationalHarborGirlsTrip";
 
-// Each <Composition> is an entry in the sidebar!
+const v1 = { scenes: SCENES_V1, transitionFrames: 8 };
+const v2 = { scenes: SCENES_V2, transitionFrames: 0 };
+const v3 = { scenes: SCENES_V3, transitionFrames: 0 };
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Folder name="Elements">
-        <Composition
-          id="Logo"
-          component={Logo}
-          durationInFrames={150}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={{
-            logoColor1: "#91EAE4",
-            logoColor2: "#86A8E7",
-          }}
-        />
-        <Composition
-          id="Title"
-          component={Title}
-          durationInFrames={115}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={{
-            titleText: "Welcome to Remotion",
-            titleColor: "#000000",
-          }}
-        />
-      </Folder>
+      {/* npx remotion render FLOHOM-NH-GirlsTrip out/flohom-nh-girls-trip.mp4 */}
       <Composition
-        // You can take the "id" to render a video:
-        // bunx remotion render HelloWorld
-        id="HelloWorld"
-        component={HelloWorld}
-        durationInFrames={150}
-        fps={30}
-        width={1920}
-        height={1080}
-        // You can override these props for each render:
-        // https://www.remotion.dev/docs/parametrized-rendering
-        defaultProps={{
-          titleText: "Welcome to Remotion",
-          titleColor: "#000000",
-        }}
+        id="FLOHOM-NH-GirlsTrip"
+        component={NationalHarborGirlsTrip}
+        durationInFrames={totalFrames(v1)}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={v1}
       />
-
+      {/* npx remotion render FLOHOM-NH-GirlsTrip-v2 out/flohom-nh-girls-trip-v2.mp4 */}
+      <Composition
+        id="FLOHOM-NH-GirlsTrip-v2"
+        component={NationalHarborGirlsTrip}
+        durationInFrames={totalFrames(v2)}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={v2}
+      />
+      {/* npx remotion render FLOHOM-NH-GirlsTrip-v3 out/flohom-nh-girls-trip-v3.mp4 */}
+      <Composition
+        id="FLOHOM-NH-GirlsTrip-v3"
+        component={NationalHarborGirlsTrip}
+        durationInFrames={totalFrames(v3)}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={v3}
+      />
     </>
   );
 };
