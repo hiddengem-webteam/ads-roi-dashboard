@@ -1,0 +1,58 @@
+{
+ "slug": "the-outpost",
+ "client": "The Outpost",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/The_Outpost_Grand_Canyon/01_Dbd9yhIh7Fd_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "01_TheOutpost_AI_General_Twilight_Clip1",
+   "seconds": 3.5,
+   "lines": [
+    "your Grand Canyon",
+    "basecamp \ud83c\udfdc\ufe0f"
+   ],
+   "sub": "Valle, AZ \u00b7 25 min from the Canyon",
+   "size": 66
+  },
+  {
+   "file": "03_The_Outpost_General_AI_Clip2",
+   "seconds": 3.0,
+   "lines": [
+    "dinner under the",
+    "desert sky \ud83c\udf05"
+   ]
+  },
+  {
+   "file": "05_The_Outpost_General_AI_Clip7",
+   "seconds": 3.0,
+   "lines": [
+    "an Airstream that's",
+    "all yours \ud83d\ude90"
+   ]
+  },
+  {
+   "file": "07_TheOutpost_General_LightWinter_CF_Clip39",
+   "seconds": 3.0,
+   "lines": [
+    "sauna, then stars \ud83e\uddd6\u200d\u2640\ufe0f"
+   ]
+  },
+  {
+   "file": "09_TheOutpost_General_LightWinter_CF_Clip17",
+   "seconds": 3.0,
+   "lines": [
+    "the quiet you came for"
+   ]
+  },
+  {
+   "file": "02_TheOutpost_AI_General_Twilight_Clip2",
+   "seconds": 3.5,
+   "lines": [
+    "Use code WELCOME10",
+    "& save on your stay \ud83d\udc47"
+   ],
+   "size": 62
+  }
+ ]
+}

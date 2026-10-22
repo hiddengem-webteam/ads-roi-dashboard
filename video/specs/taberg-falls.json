@@ -1,0 +1,60 @@
+{
+ "slug": "taberg-falls",
+ "client": "Taberg Falls",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/T_berg_Falls/01_DcJvV3IhroU_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "10_TabergFalls_SpringSummer73",
+   "seconds": 3.5,
+   "lines": [
+    "you. me. date weekend.",
+    "this mirror getaway? \ud83e\ude9e"
+   ],
+   "sub": "Taberg, NY",
+   "size": 66
+  },
+  {
+   "file": "05_TabergFalls_SpringSummer55",
+   "seconds": 3.0,
+   "lines": [
+    "a river, a creek and",
+    "waterfalls outside your door \ud83c\udf0a"
+   ]
+  },
+  {
+   "file": "08_TabergFalls_SpringSummer33",
+   "seconds": 3.0,
+   "lines": [
+    "wake up in a",
+    "glass-walled villa \u2600\ufe0f"
+   ]
+  },
+  {
+   "file": "04_TabergFalls_SpringSummer68",
+   "seconds": 3.0,
+   "lines": [
+    "your own hot tub,",
+    "nobody around \ud83e\udee7"
+   ]
+  },
+  {
+   "file": "02_Ta_berg_Falls_General_Property_Twilight_",
+   "seconds": 3.0,
+   "lines": [
+    "and the night sky",
+    "from your deck \u2728"
+   ]
+  },
+  {
+   "file": "01_Ta_berg_Falls_General_Property_Twilight_",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP100",
+    "to Save $100! \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

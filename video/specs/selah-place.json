@@ -1,0 +1,60 @@
+{
+ "slug": "selah-place",
+ "client": "Selah Place",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Selah.Place/01_DcO46DxBW2M_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "03_Clip27",
+   "seconds": 3.5,
+   "lines": [
+    "Nature Escape",
+    "for Two \u2764\ufe0f"
+   ],
+   "sub": "Athens, TX \u00b7 1 hr from Dallas",
+   "size": 66
+  },
+  {
+   "file": "08_Clip28",
+   "seconds": 3.0,
+   "lines": [
+    "a villa on the water,",
+    "all yours"
+   ]
+  },
+  {
+   "file": "01_SunnyMorning_CF_Clip5",
+   "seconds": 3.0,
+   "lines": [
+    "hot tub under",
+    "the trees \ud83e\udee7"
+   ]
+  },
+  {
+   "file": "06_Clip19",
+   "seconds": 3.0,
+   "lines": [
+    "a fire that makes",
+    "you slow down \ud83d\udd25"
+   ]
+  },
+  {
+   "file": "10_Clip6",
+   "seconds": 3.0,
+   "lines": [
+    "and nowhere",
+    "you need to be"
+   ]
+  },
+  {
+   "file": "07_Clip32",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP10",
+    "for 10% off \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

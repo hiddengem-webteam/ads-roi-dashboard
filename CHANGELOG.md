@@ -2,6 +2,10 @@
 
 Dashboard-level changes. The weekly reviews keep their own log in `weekly/Project Data/CHANGELOG.md`.
 
+## 2026-10-22
+
+- **One reel per advanced-setup client.** 18 Remotion reels (one per account in the 2026-10-19 benchmark, Starlight Haven's two accounts separately) built from each client's own Drive clips, with the hook and the music taken from that client's best organic reel of the last 90 days. Specs in `video/specs/*.json` drive `video/src/flohom/ClientReel.tsx` through `scripts/build-reel-specs.mjs`; `scripts/render-reels.sh` renders, adds music and exports the Instagram file into `video/out/clients/`. Per-client write-up, Drive IDs and blockers in `weekly/IG Reel Reviews/2026-10-22-advanced-clients-reels.md`; 18 new rows in the music ledger (all licensed, Ads Manager outcome pending). Ridge & Falls and American River Resort are not built: their Drive folders are not link-shared, so the clips cannot be downloaded. North Star Lodge is a 3-clip cut for the same reason. Pipeline doc section 12.
+
 ## 2026-10-21
 
 - **Creative pipeline (paused, resume early November 2026).** Full write-up and diagrams in `weekly/Creative Reviews/CREATIVE-PIPELINE.md`. New this week:

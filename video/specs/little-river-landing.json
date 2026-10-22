@@ -1,0 +1,61 @@
+{
+ "slug": "little-river-landing",
+ "client": "Little River Landing",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Little_River_Landing/01_DeH6QGTh_6f_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "06_LRL_12",
+   "seconds": 4.0,
+   "lines": [
+    "we should be at this",
+    "lakefront resort instead of",
+    "whatever adult thing",
+    "we have to do today"
+   ],
+   "sub": "Cedar Bluff, AL",
+   "size": 52
+  },
+  {
+   "file": "07_LRL_3",
+   "seconds": 3.0,
+   "lines": [
+    "lake days with",
+    "your crew \ud83c\udf0a"
+   ]
+  },
+  {
+   "file": "08_LRL_38",
+   "seconds": 3.0,
+   "lines": [
+    "kayaks right off",
+    "the dock \ud83d\udef6"
+   ]
+  },
+  {
+   "file": "01_LRL_31",
+   "seconds": 3.0,
+   "lines": [
+    "dinner with this view"
+   ]
+  },
+  {
+   "file": "09_LRL_32",
+   "seconds": 3.0,
+   "lines": [
+    "rooms steps from",
+    "the water"
+   ]
+  },
+  {
+   "file": "03_LRL_1",
+   "seconds": 3.5,
+   "lines": [
+    "Use code STAY10",
+    "& save 10% \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

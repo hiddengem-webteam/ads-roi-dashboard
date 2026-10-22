@@ -1,0 +1,57 @@
+{
+ "slug": "green-springs-inn",
+ "client": "Green Springs Inn",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Green_Springs_Inn/01_Ddj3L1MSfCd_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "01_DJI_0096",
+   "seconds": 3.2,
+   "playbackRate": 0.8,
+   "lines": [
+    "not to flirt or anything,",
+    "but..."
+   ],
+   "sub": "Ashland, Oregon",
+   "size": 66
+  },
+  {
+   "file": "04_DJI_0072",
+   "seconds": 4.0,
+   "playbackRate": 0.8,
+   "lines": [
+    "i'd totally stay in a cozy",
+    "cabin in the woods with you 🌲"
+   ]
+  },
+  {
+   "file": "02_DJI_0073",
+   "seconds": 3.4,
+   "playbackRate": 0.8,
+   "lines": [
+    "& talk all night",
+    "on the porch ✨"
+   ]
+  },
+  {
+   "file": "03_DJI_0094",
+   "seconds": 3.1,
+   "playbackRate": 0.8,
+   "lines": [
+    "no neighbors,",
+    "just trees & quiet"
+   ]
+  },
+  {
+   "file": "05_DJI_0075",
+   "seconds": 5.0,
+   "playbackRate": 0.8,
+   "lines": [
+    "book direct & save 10%",
+    "code VIP10 🌲"
+   ],
+   "sub": "link in bio"
+  }
+ ]
+}

@@ -1,0 +1,52 @@
+{
+ "slug": "awayframes",
+ "client": "AwayFrames",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Awayframes/01_DbL8SY8hAvI_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "08_AwayFramesGeneral_Clip3",
+   "seconds": 3.5,
+   "lines": [
+    "idaho date idea:",
+    "an A-frame in the woods 🌲"
+   ],
+   "sub": "Island Park, 30 min from Yellowstone",
+   "size": 66
+  },
+  {
+   "file": "09_AwayFramesGeneral_Clip1",
+   "seconds": 3.5,
+   "lines": [
+    "private hot tub",
+    "under the pines ♨️"
+   ]
+  },
+  {
+   "file": "07_AwayFramesGeneralClip10",
+   "seconds": 3.5,
+   "lines": [
+    "wake up to",
+    "this view 🌅"
+   ]
+  },
+  {
+   "file": "03_AwayFramesGeneral_Clip19",
+   "seconds": 3.5,
+   "lines": [
+    "cozy nights in,",
+    "just the two of you"
+   ]
+  },
+  {
+   "file": "10_AwayFramesGeneral_Clip32",
+   "seconds": 4.0,
+   "lines": [
+    "book direct & save $100",
+    "on your stay 🌲"
+   ],
+   "sub": "link in bio"
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "slug": "stay-on-30a",
+ "client": "Stay on 30a",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stays_on_30a/01_DdcIyKehDeE_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "05_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.5,
+   "lines": [
+    "insane group",
+    "getaway \ud83c\udf0a"
+   ],
+   "sub": "30A, Florida",
+   "size": 66
+  },
+  {
+   "file": "04_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "a private pool,",
+    "steps from the sand"
+   ]
+  },
+  {
+   "file": "08_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "your own boardwalk",
+    "to the beach \ud83c\udfd6\ufe0f"
+   ]
+  },
+  {
+   "file": "02_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "sunset dinners",
+    "on the porch"
+   ]
+  },
+  {
+   "file": "09_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "and sunsets like this",
+    "every night"
+   ]
+  },
+  {
+   "file": "06_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP100",
+    "to Save $100! \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

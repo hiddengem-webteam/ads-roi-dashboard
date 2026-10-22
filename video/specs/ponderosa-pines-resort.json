@@ -1,0 +1,58 @@
+{
+ "slug": "ponderosa-pines-resort",
+ "client": "Ponderosa Pines Resort",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Ponderosa_Pines_Resort/01_Dbd_wYuyj9S_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "07_PRC_24",
+   "seconds": 3.5,
+   "lines": [
+    "as low as $57",
+    "per person per night"
+   ],
+   "sub": "Parks, AZ \u00b7 en route to the Grand Canyon",
+   "size": 62
+  },
+  {
+   "file": "02_PRC_6",
+   "seconds": 3.0,
+   "lines": [
+    "hot tub in the pines \ud83e\udee7"
+   ]
+  },
+  {
+   "file": "04_PRC_3",
+   "seconds": 3.0,
+   "lines": [
+    "cold plunge,",
+    "then warm back up \u2744\ufe0f"
+   ]
+  },
+  {
+   "file": "01_PRC_16",
+   "seconds": 3.0,
+   "lines": [
+    "wake up to this view"
+   ]
+  },
+  {
+   "file": "06_PRC_14",
+   "seconds": 3.0,
+   "lines": [
+    "nights that end",
+    "like this \u2728"
+   ]
+  },
+  {
+   "file": "08_PRC_13",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP10",
+    "& save 10% \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

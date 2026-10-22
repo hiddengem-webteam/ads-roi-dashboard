@@ -1,0 +1,59 @@
+{
+ "slug": "bison-ridge-retreat",
+ "client": "Bison Ridge Retreat",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Bison_Ridge_Retreat/01_DbL8SPshn8e_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "19_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+   "seconds": 3.5,
+   "lines": [
+    "cozy cabin getaway \ud83c\udfd4\ufe0f"
+   ],
+   "sub": "Whitefish, Montana",
+   "size": 66
+  },
+  {
+   "file": "15_Cabins_SpringSummer35",
+   "seconds": 3.0,
+   "lines": [
+    "fire pit nights under",
+    "the mountains \ud83d\udd25"
+   ]
+  },
+  {
+   "file": "05_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+   "seconds": 3.0,
+   "lines": [
+    "a kitchen worth",
+    "cooking in"
+   ]
+  },
+  {
+   "file": "07_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+   "seconds": 3.0,
+   "lines": [
+    "and a bed you won't",
+    "want to leave"
+   ]
+  },
+  {
+   "file": "16_Fall_8_1_mp4_general",
+   "seconds": 3.0,
+   "lines": [
+    "fall in Montana",
+    "looks like this \ud83c\udf42"
+   ]
+  },
+  {
+   "file": "11_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+   "seconds": 3.5,
+   "lines": [
+    "Book direct &",
+    "save $100 \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

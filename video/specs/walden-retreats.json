@@ -1,0 +1,59 @@
+{
+ "slug": "walden-retreats",
+ "client": "Walden Retreats",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Walden_Retreats/01_DeR8R-Rp4YQ_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "07_Exterior_CF_Clip31",
+   "seconds": 3.5,
+   "lines": [
+    "you could book a hotel,",
+    "or you could just\u2026"
+   ],
+   "sub": "Johnson City, TX \u00b7 Hill Country",
+   "size": 58
+  },
+  {
+   "file": "02_Exterior_Twilight_CF_Clip3",
+   "seconds": 3.0,
+   "lines": [
+    "a tent with a fire pit",
+    "and a view \u26fa"
+   ]
+  },
+  {
+   "file": "01_Interior_Twilight_CF_Clip1",
+   "seconds": 3.0,
+   "lines": [
+    "soak under",
+    "the stars \u2728"
+   ]
+  },
+  {
+   "file": "09_Interior_CF_Clip17",
+   "seconds": 3.0,
+   "lines": [
+    "breakfast in bed \ud83e\udd50"
+   ]
+  },
+  {
+   "file": "04_Exterior_CF_Clip14",
+   "seconds": 3.0,
+   "lines": [
+    "and the Hill Country",
+    "at your door"
+   ]
+  },
+  {
+   "file": "05_Exterior_CF_Clip19",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP10",
+    "& save 10% \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

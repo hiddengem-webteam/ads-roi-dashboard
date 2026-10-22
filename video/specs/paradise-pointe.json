@@ -1,0 +1,60 @@
+{
+ "slug": "paradise-pointe",
+ "client": "Paradise Pointe",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Paradise_Pointe/01_DbL8Tnrp4wF_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "09_General_20",
+   "seconds": 3.5,
+   "lines": [
+    "I'm not saying you should",
+    "take your kids here, but\u2026 \ud83d\ude0f"
+   ],
+   "sub": "Bryant, AL",
+   "size": 56
+  },
+  {
+   "file": "02_General_25",
+   "seconds": 3.0,
+   "lines": [
+    "an indoor pool",
+    "that stays open \ud83c\udfca"
+   ]
+  },
+  {
+   "file": "04_General_26",
+   "seconds": 3.0,
+   "lines": [
+    "farm friends to",
+    "feed in the morning \ud83d\udc10"
+   ]
+  },
+  {
+   "file": "10_General_36",
+   "seconds": 3.0,
+   "lines": [
+    "kayaks on the lake",
+    "all afternoon \ud83d\udef6"
+   ]
+  },
+  {
+   "file": "07_General_5",
+   "seconds": 3.0,
+   "lines": [
+    "and a lodge to",
+    "come home to \ud83d\udd25"
+   ]
+  },
+  {
+   "file": "06_General_35",
+   "seconds": 3.5,
+   "lines": [
+    "Book direct &",
+    "save $100 \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

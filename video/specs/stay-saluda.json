@@ -1,0 +1,60 @@
+{
+ "slug": "stay-saluda",
+ "client": "Stay Saluda",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Saluda/01_DbmA14zBnwb_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "08_SunnyMorning_3",
+   "seconds": 3.5,
+   "lines": [
+    "a cozy cabin escape",
+    "in the Blue Ridge \ud83c\udfd4\ufe0f"
+   ],
+   "sub": "Saluda, NC",
+   "size": 62
+  },
+  {
+   "file": "04_SunnyMorning_5",
+   "seconds": 3.0,
+   "lines": [
+    "morning coffee by",
+    "the fire pit \u2615"
+   ]
+  },
+  {
+   "file": "01_Twilight_19",
+   "seconds": 3.0,
+   "lines": [
+    "mountain views from",
+    "the bed \ud83c\udf04"
+   ]
+  },
+  {
+   "file": "07_SunnyMorning_11",
+   "seconds": 3.0,
+   "lines": [
+    "dinner for everyone",
+    "at one table"
+   ]
+  },
+  {
+   "file": "09_SunnyMorning_6",
+   "seconds": 3.0,
+   "lines": [
+    "and a deck made",
+    "for doing nothing"
+   ]
+  },
+  {
+   "file": "02_Twilight_18",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP10",
+    "for 10% off \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

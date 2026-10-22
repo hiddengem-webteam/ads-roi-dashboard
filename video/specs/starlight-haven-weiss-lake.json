@@ -1,0 +1,60 @@
+{
+ "slug": "starlight-haven-weiss-lake",
+ "client": "Starlight Haven Weiss Lake",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Starlight_Haven/01_Db3t0buBRv7_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "02_General8",
+   "seconds": 3.5,
+   "lines": [
+    "a lakeside escape",
+    "for two \ud83c\udf05"
+   ],
+   "sub": "Weiss Lake, Alabama",
+   "size": 66
+  },
+  {
+   "file": "01_General11",
+   "seconds": 3.0,
+   "lines": [
+    "sunset from your",
+    "own hot tub \ud83e\udee7"
+   ]
+  },
+  {
+   "file": "04_General7",
+   "seconds": 3.0,
+   "lines": [
+    "an A-frame built",
+    "for date nights \ud83c\udf39"
+   ]
+  },
+  {
+   "file": "09_General16",
+   "seconds": 3.0,
+   "lines": [
+    "mornings out",
+    "on the water \ud83d\udef6"
+   ]
+  },
+  {
+   "file": "05_General6",
+   "seconds": 3.0,
+   "lines": [
+    "soak. slow down.",
+    "stay a while."
+   ]
+  },
+  {
+   "file": "10_General12",
+   "seconds": 3.5,
+   "lines": [
+    "Use code STAR23",
+    "for 10% off \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

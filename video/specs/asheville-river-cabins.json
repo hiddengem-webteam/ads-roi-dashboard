@@ -1,0 +1,60 @@
+{
+ "slug": "asheville-river-cabins",
+ "client": "Asheville River Cabins",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Asheville_River_Cabins/01_Db83Vu7hEEt_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "02_Twilight_6",
+   "seconds": 3.5,
+   "lines": [
+    "Girls Trip in",
+    "North Carolina \ud83e\udd42"
+   ],
+   "sub": "Asheville, NC \u00b7 2 hrs from Charlotte",
+   "size": 66
+  },
+  {
+   "file": "04_Kyle_LGC_8",
+   "seconds": 3.0,
+   "lines": [
+    "a cabin for you and",
+    "your best friends"
+   ]
+  },
+  {
+   "file": "10_Amenities_9",
+   "seconds": 3.0,
+   "lines": [
+    "afternoons on the",
+    "French Broad River \ud83d\udef6"
+   ]
+  },
+  {
+   "file": "01_Twilight_8",
+   "seconds": 3.0,
+   "lines": [
+    "end the day in",
+    "the sauna \ud83e\uddd6\u200d\u2640\ufe0f"
+   ]
+  },
+  {
+   "file": "03_Twilight_4",
+   "seconds": 3.0,
+   "lines": [
+    "and mornings",
+    "like this \u2600\ufe0f"
+   ]
+  },
+  {
+   "file": "06_Enhanced_1",
+   "seconds": 3.5,
+   "lines": [
+    "Use code VIP50",
+    "for $50 off \ud83d\udc47"
+   ],
+   "size": 66
+  }
+ ]
+}

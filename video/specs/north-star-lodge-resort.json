@@ -1,0 +1,68 @@
+{
+ "slug": "north-star-lodge-resort",
+ "client": "North Star Lodge & Resort",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/North_Star_Lodge/02_Ddoh3EDhO9r_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "03_Twilight_CF_Clip4V2",
+   "seconds": 3.0,
+   "playbackRate": 0.85,
+   "lines": [
+    "$50/person per night",
+    "2 mins from the slopes ⛷️"
+   ],
+   "sub": "Killington, Vermont",
+   "size": 66
+  },
+  {
+   "file": "01_Twilight_CF_Clip6",
+   "seconds": 3.0,
+   "playbackRate": 0.85,
+   "lines": [
+    "heated outdoor pool",
+    "open all winter ♨️"
+   ]
+  },
+  {
+   "file": "02_Twilight_CF_Clip3",
+   "seconds": 3.0,
+   "playbackRate": 0.85,
+   "lines": [
+    "après-ski",
+    "done right 🍷"
+   ]
+  },
+  {
+   "file": "03_Twilight_CF_Clip4V2",
+   "seconds": 2.8,
+   "playbackRate": 0.85,
+   "trimBefore": 78,
+   "lines": [
+    "sleeps 4,",
+    "walk to the lifts"
+   ]
+  },
+  {
+   "file": "01_Twilight_CF_Clip6",
+   "seconds": 2.8,
+   "playbackRate": 0.85,
+   "trimBefore": 78,
+   "lines": [
+    "ski in the morning,",
+    "swim at sunset"
+   ]
+  },
+  {
+   "file": "02_Twilight_CF_Clip3",
+   "seconds": 1.6,
+   "playbackRate": 0.85,
+   "trimBefore": 78,
+   "lines": [
+    "book direct & save 10%",
+    "on 2+ nights 🎿"
+   ]
+  }
+ ]
+}

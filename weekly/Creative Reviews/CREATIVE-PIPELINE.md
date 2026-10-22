@@ -232,6 +232,7 @@ Machine notes: no Homebrew; ffmpeg 7.0, ffprobe and git-lfs live in `~/.local/bi
 | Date | Client | Pull | Review | Build |
 |---|---|---|---|---|
 | 2026-10-19 | FLOHOM | 9 ads ranked, 14 under $100; 6 downloaded (2 images, 2 videos, 2 carousels) | `2026-10-19-flohom-creative-review.md`, Drive doc "Creative review - FLOHOM - 2026-10-19" | Girls-trip reel for National Harbor, HyperFrames v1/v2 (17.7 s) and Remotion (18.2 s) |
+| 2026-10-22 | 18 advanced-setup accounts | 90-day organic reels pull for all 19 Pages (top 4 each, Shazam on #1/#2); Drive clip libraries inventoried and 10 clips staged per client | `weekly/IG Reel Reviews/2026-10-22-advanced-clients-reels.md` | One spec-driven Remotion reel per account (`video/specs/<slug>.json`, 5-6 beats, 16-19.5 s) with the client's own hook and track; Ridge & Falls and American River blocked on Drive sharing |
 
 Next clients named in the review: Stay on 30a, Tàberg Falls, Paradise Pointe (after its purchase-value fix), The Cohost Company.
 
@@ -260,3 +261,15 @@ When resuming:
 4. Learnings from the Content Drive to carry into every build (details in memory and section 10): share-CTA hooks, establishing shot inside 3 s, people in at most 10 to 20% of shots except group stays, music style by audience, 15 Mbps CBR export with unsharp and grain.
 5. Source clips are not in git. Re-pull with the folder IDs in section 4, or run the normalise command on the clips in `video/flohom-girls-trip-reel/assets/` if that folder still exists locally.
 
+
+## 12. Added 22 October 2026: one reel per advanced-setup client
+
+Scaled the FLOHOM build to every advanced-setup account in one pass. Write-up with per-client hooks, clips, Drive IDs and tracks: `weekly/IG Reel Reviews/2026-10-22-advanced-clients-reels.md`.
+
+**Spec-driven compositions.** A reel is now a JSON file in `video/specs/<slug>.json` (`client`, `beats[]` of `{file, seconds, lines, sub?, size?, trimBefore?, playbackRate?}`, `music`, `music_start`). `scripts/build-reel-specs.mjs` writes them into `video/src/flohom/specs.generated.ts`, and `video/src/Root.tsx` registers a `Reel-<slug>` composition for each one on `video/src/flohom/ClientReel.tsx` (approved v2 style: hard cuts, static Poppins captions, hook card, offer close). Staged clips live in `video/public/<slug>/NN_<name>.mp4` (gitignored).
+
+**One-command delivery.** `scripts/render-reels.sh [slug …]` renders the silent master, lays the spec's track with `add-music.sh`, and runs `ig-export.sh`; outputs land in `video/out/clients/<slug>{,-music,-IG}.mp4`. Run renders sequentially: two concurrent Remotion renders fight over the bundle server and one fails with "Visited localhost:3000 but got no response".
+
+**Footage sourcing at scale.** The Drive connector lists any client folder, but files download anonymously only when their folder is shared by link (`drive.usercontent.google.com/download?id=<id>&export=download&confirm=t`; an HTML or HTTP 400 reply means not shared). Staging script picks up to 3 twilight clips plus the rest from the library, normalises to 1080x1920/30 fps, and writes a 6-frame strip per clip into one contact sheet for the shot selection. Clips in client folders that are not link-shared cannot be fetched this way; ask the AM to share the folder or hand over the files.
+
+**Music at scale.** Shazam over the #1 and #2 reel audio of every account; the spec points at the source reel's `_audio.m4a`, so the track in the ad is the one that already performed organically for that client. All 18 tracks are commercial releases (class `licensed`) and sit in the ledger with outcome pending.

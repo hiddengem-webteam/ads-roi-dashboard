@@ -1,4 +1,6 @@
 import { Composition } from "remotion";
+import { ClientReel, specFrames } from "./flohom/ClientReel";
+import { SPECS } from "./flohom/specs.generated";
 import {
   FPS,
   NationalHarborGirlsTrip,
@@ -11,6 +13,9 @@ import {
 const v1 = { scenes: SCENES_V1, transitionFrames: 8 };
 const v2 = { scenes: SCENES_V2, transitionFrames: 0 };
 const v3 = { scenes: SCENES_V3, transitionFrames: 0 };
+
+// One composition per client spec in video/specs/*.json (run scripts/build-reel-specs.mjs after editing).
+const specs = SPECS;
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -45,6 +50,18 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         defaultProps={v3}
       />
+      {specs.map((spec) => (
+        <Composition
+          key={spec.slug}
+          id={`Reel-${spec.slug}`}
+          component={ClientReel}
+          durationInFrames={specFrames(spec)}
+          fps={spec.fps ?? 30}
+          width={1080}
+          height={1920}
+          defaultProps={spec}
+        />
+      ))}
     </>
   );
 };
