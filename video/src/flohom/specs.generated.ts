@@ -273,8 +273,8 @@ export const SPECS: ReelSpec[] = [
         "seconds": 3.1,
         "playbackRate": 0.8,
         "lines": [
-          "no neighbors,",
-          "just trees & quiet"
+          "just trees, quiet",
+          "& the two of us 🌲"
         ]
       },
       {
@@ -373,8 +373,8 @@ export const SPECS: ReelSpec[] = [
         "seconds": 3,
         "playbackRate": 0.85,
         "lines": [
-          "heated outdoor pool",
-          "open all winter ♨️"
+          "outdoor pool",
+          "for après-ski ♨️"
         ]
       },
       {
@@ -382,8 +382,8 @@ export const SPECS: ReelSpec[] = [
         "seconds": 3,
         "playbackRate": 0.85,
         "lines": [
-          "après-ski",
-          "done right 🍷"
+          "wine by the pool",
+          "at sunset 🍷"
         ]
       },
       {
@@ -393,7 +393,7 @@ export const SPECS: ReelSpec[] = [
         "trimBefore": 78,
         "lines": [
           "sleeps 4,",
-          "walk to the lifts"
+          "ski-trip ready 🎿"
         ]
       },
       {

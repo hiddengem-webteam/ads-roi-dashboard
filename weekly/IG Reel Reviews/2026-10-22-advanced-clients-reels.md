@@ -131,7 +131,7 @@ Once shared, re-stage with the scratch `stage_clips.py` (or re-pull by ID) and r
   1. `01_DJI_0096` (3.2 s, 0.8x): "not to flirt or anything, / but..." sub: Ashland, Oregon
   2. `04_DJI_0072` (4.0 s, 0.8x): "i'd totally stay in a cozy / cabin in the woods with you 🌲"
   3. `02_DJI_0073` (3.4 s, 0.8x): "& talk all night / on the porch ✨"
-  4. `03_DJI_0094` (3.1 s, 0.8x): "no neighbors, / just trees & quiet"
+  4. `03_DJI_0094` (3.1 s, 0.8x): "just trees, quiet / & the two of us 🌲"
   5. `05_DJI_0075` (5.0 s, 0.8x): "book direct & save 10% / code VIP10 🌲" sub: link in bio
 - Clips:
   - `01_DJI_0096` ← NEW Drone Edited / DJI_0096.mov (Drive `1XMqckrRj70vKgZGE_bpzVtUmRx5g8Fdg`)
@@ -167,9 +167,9 @@ Once shared, re-stage with the scratch `stage_clips.py` (or re-pull by ID) and r
 - Music: Fade into You (Mazzy Star), from the same reel. Licensed; Ads Manager outcome pending.
 - 6 beats, 16.2 s:
   1. `03_Twilight_CF_Clip4V2` (3.0 s, 0.85x): "$50/person per night / 2 mins from the slopes ⛷️" sub: Killington, Vermont
-  2. `01_Twilight_CF_Clip6` (3.0 s, 0.85x): "heated outdoor pool / open all winter ♨️"
-  3. `02_Twilight_CF_Clip3` (3.0 s, 0.85x): "après-ski / done right 🍷"
-  4. `03_Twilight_CF_Clip4V2` (2.8 s, 0.85x): "sleeps 4, / walk to the lifts"
+  2. `01_Twilight_CF_Clip6` (3.0 s, 0.85x): "outdoor pool / for après-ski ♨️"
+  3. `02_Twilight_CF_Clip3` (3.0 s, 0.85x): "wine by the pool / at sunset 🍷"
+  4. `03_Twilight_CF_Clip4V2` (2.8 s, 0.85x): "sleeps 4, / ski-trip ready 🎿"
   5. `01_Twilight_CF_Clip6` (2.8 s, 0.85x): "ski in the morning, / swim at sunset"
   6. `02_Twilight_CF_Clip3` (1.6 s, 0.85x): "book direct & save 10% / on 2+ nights 🎿"
 - Clips:

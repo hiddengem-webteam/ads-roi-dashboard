@@ -17,7 +17,7 @@ FOUT_AT=$(python3 -c "print(max(0.0, $VLEN - $FOUT))")
 INPUTS=(); F=""
 for i in $(seq 0 $((LOOPS-1))); do INPUTS+=(-i "$AUDIO"); F="$F[$i:a]atrim=start=$START,asetpts=PTS-STARTPTS[s$i];"; done
 PREV="[s0]"
-for i in $(seq 1 $((LOOPS-1))); do F="$F$PREV[s$i]acrossfade=d=1:c1=tri:c2=tri[x$i];"; PREV="[x$i]"; done
+if [ "$LOOPS" -gt 1 ]; then for i in $(seq 1 $((LOOPS-1))); do F="$F$PREV[s$i]acrossfade=d=1:c1=tri:c2=tri[x$i];"; PREV="[x$i]"; done; fi  # BSD seq counts down for "seq 1 0"
 F="$F${PREV}atrim=0:$VLEN,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=$FIN,afade=t=out:st=$FOUT_AT:d=$FOUT,loudnorm=I=$LUFS:TP=-1.5:LRA=11[out]"
 ffmpeg -v error -y "${INPUTS[@]}" -i "$VIDEO" -filter_complex "$F" -map "$LOOPS:v" -map "[out]" -c:v copy -c:a aac -b:a 192k -ar 48000 -movflags +faststart "$OUT"
 OLEN=$(ffprobe -v error -select_streams a -show_entries stream=duration -of csv=p=0 "$OUT")
