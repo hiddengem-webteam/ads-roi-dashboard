@@ -1,0 +1,60 @@
+{
+ "slug": "taberg-falls-b",
+ "client": "Taberg Falls",
+ "dir": "taberg-falls",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/T_berg_Falls/02_Db83XS8hHn7_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "03_Ta_berg_Falls_General_Property_Twilight_",
+   "seconds": 3.5,
+   "lines": [
+    "the mirror cabin",
+    "from your feed, irl 🪞"
+   ],
+   "sub": "Taberg, NY",
+   "size": 66
+  },
+  {
+   "file": "07_TabergFalls_SpringSummer41",
+   "seconds": 3.0,
+   "lines": [
+    "waterfalls right",
+    "outside your door 🌊"
+   ]
+  },
+  {
+   "file": "06_TabergFalls_SpringSummer67",
+   "seconds": 3.0,
+   "lines": [
+    "a hot tub",
+    "for two"
+   ]
+  },
+  {
+   "file": "09_TabergFalls_SpringSummer76",
+   "seconds": 3.0,
+   "lines": [
+    "and nowhere",
+    "to be"
+   ]
+  },
+  {
+   "file": "05_TabergFalls_SpringSummer55",
+   "seconds": 3.0,
+   "lines": [
+    "sunrise walks",
+    "by the river"
+   ]
+  },
+  {
+   "file": "01_Ta_berg_Falls_General_Property_Twilight_",
+   "seconds": 3.5,
+   "lines": [
+    "code VIP100",
+    "$100 off 👇"
+   ]
+  }
+ ]
+}

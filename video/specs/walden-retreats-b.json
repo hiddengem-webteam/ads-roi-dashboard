@@ -1,0 +1,60 @@
+{
+ "slug": "walden-retreats-b",
+ "client": "Walden Retreats",
+ "dir": "walden-retreats",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Walden_Retreats/02_DdHmdLRJ7v7_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "08_Exterior_CF_Clip15",
+   "seconds": 3.5,
+   "lines": [
+    "96 acres of Hill Country",
+    "& one tent 🏕️"
+   ],
+   "sub": "Johnson City, TX",
+   "size": 66
+  },
+  {
+   "file": "03_Interior_Twilight_CF_Clip3",
+   "seconds": 3.0,
+   "lines": [
+    "a tent that feels",
+    "like a suite"
+   ]
+  },
+  {
+   "file": "10_Interior_CF_Clip1",
+   "seconds": 3.0,
+   "lines": [
+    "hot showers,",
+    "real bathroom"
+   ]
+  },
+  {
+   "file": "02_Exterior_Twilight_CF_Clip3",
+   "seconds": 3.0,
+   "lines": [
+    "fire pit",
+    "nights 🔥"
+   ]
+  },
+  {
+   "file": "01_Interior_Twilight_CF_Clip1",
+   "seconds": 3.0,
+   "lines": [
+    "& a soak",
+    "under the stars"
+   ]
+  },
+  {
+   "file": "05_Exterior_CF_Clip19",
+   "seconds": 3.5,
+   "lines": [
+    "code VIP10",
+    "10% off 👇"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "slug": "the-outpost-b",
+ "client": "The Outpost",
+ "dir": "the-outpost",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/The_Outpost_Grand_Canyon/02_Db83ULrBM_F_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "04_TheOutpost_AI_Flagstaff_Destination_Clip",
+   "seconds": 3.5,
+   "lines": [
+    "Grand Canyon road trip?",
+    "skip the hotel 🚐"
+   ],
+   "sub": "Valle, AZ · 25 min away",
+   "size": 66
+  },
+  {
+   "file": "08_TheOutpost_General_LightWinter_CF_Clip8",
+   "seconds": 3.0,
+   "lines": [
+    "sleep in",
+    "an Airstream"
+   ]
+  },
+  {
+   "file": "10_TheOutpost_General_LightWinter_CF_Clip35",
+   "seconds": 3.0,
+   "lines": [
+    "sauna under",
+    "the desert sky"
+   ]
+  },
+  {
+   "file": "06_TheOutpost_General_LightWinter_CF_Clip6",
+   "seconds": 3.0,
+   "lines": [
+    "stars like you've",
+    "never seen ✨"
+   ]
+  },
+  {
+   "file": "05_The_Outpost_General_AI_Clip7",
+   "seconds": 3.0,
+   "lines": [
+    "& a bed",
+    "worth the drive"
+   ]
+  },
+  {
+   "file": "03_The_Outpost_General_AI_Clip2",
+   "seconds": 3.5,
+   "lines": [
+    "code WELCOME10",
+    "& save 👇"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,60 @@
+{
+ "slug": "starlight-haven-b",
+ "client": "Starlight Haven Hot Springs",
+ "dir": "starlight-haven",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Starlight_Haven/02_Ddj3Mi9ha_F_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "05_Starlight_Haven_Hot_Springs_General_Augu",
+   "seconds": 3.5,
+   "lines": [
+    "POV: you finally booked",
+    "the cabin weekend"
+   ],
+   "sub": "Hot Springs, Arkansas",
+   "size": 66
+  },
+  {
+   "file": "02_Starlight_Haven_Hot_Springs_General_Augu",
+   "seconds": 3.0,
+   "lines": [
+    "your private cabin",
+    "in the pines"
+   ]
+  },
+  {
+   "file": "01_Starlight_Haven_Hot_Springs_AI_Clip2",
+   "seconds": 3.0,
+   "lines": [
+    "movie nights",
+    "by the fire 🔥"
+   ]
+  },
+  {
+   "file": "08_General10",
+   "seconds": 3.0,
+   "lines": [
+    "and a soak",
+    "at sunset"
+   ]
+  },
+  {
+   "file": "07_Starlight_Haven_Hot_Springs_General_Augu",
+   "seconds": 3.0,
+   "lines": [
+    "walk it off",
+    "in the morning"
+   ]
+  },
+  {
+   "file": "04_Starlight_Haven_Hot_Springs_AI_Clip3",
+   "seconds": 3.5,
+   "lines": [
+    "code STAR23",
+    "10% off, book direct"
+   ]
+  }
+ ]
+}

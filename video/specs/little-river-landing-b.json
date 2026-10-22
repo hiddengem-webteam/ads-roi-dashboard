@@ -1,0 +1,60 @@
+{
+ "slug": "little-river-landing-b",
+ "client": "Little River Landing",
+ "dir": "little-river-landing",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Little_River_Landing/02_DduKX66Bm0W_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "04_LRL_10",
+   "seconds": 3.5,
+   "lines": [
+    "POV: your weekend",
+    "on Weiss Lake 🎣"
+   ],
+   "sub": "Cedar Bluff, AL",
+   "size": 66
+  },
+  {
+   "file": "10_LRL_39",
+   "seconds": 3.0,
+   "lines": [
+    "paddle out",
+    "before breakfast"
+   ]
+  },
+  {
+   "file": "02_LRL_29",
+   "seconds": 3.0,
+   "lines": [
+    "rooms right",
+    "on the water"
+   ]
+  },
+  {
+   "file": "05_LRL_20",
+   "seconds": 3.0,
+   "lines": [
+    "Little River Canyon",
+    "for the day 🥾"
+   ]
+  },
+  {
+   "file": "07_LRL_3",
+   "seconds": 3.0,
+   "lines": [
+    "sunset chairs",
+    "on the dock"
+   ]
+  },
+  {
+   "file": "03_LRL_1",
+   "seconds": 3.5,
+   "lines": [
+    "book direct & save 10%",
+    "code STAY10 👇"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+ "slug": "paradise-pointe-b",
+ "client": "Paradise Pointe",
+ "dir": "paradise-pointe",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Paradise_Pointe/02_DdpVYU9pAS0_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "01_General_1",
+   "seconds": 3.5,
+   "lines": [
+    "the kids' review:",
+    "\"can we live here?\" 🙃"
+   ],
+   "sub": "Bryant, AL",
+   "size": 66
+  },
+  {
+   "file": "05_General_15",
+   "seconds": 2.9,
+   "lines": [
+    "sand volleyball 🏐"
+   ]
+  },
+  {
+   "file": "03_General_28",
+   "seconds": 3.0,
+   "lines": [
+    "farm animals",
+    "to meet 🐄"
+   ]
+  },
+  {
+   "file": "08_General_33",
+   "seconds": 3.0,
+   "lines": [
+    "a lake",
+    "to swim"
+   ]
+  },
+  {
+   "file": "06_General_35",
+   "seconds": 3.0,
+   "lines": [
+    "& a swimming hole 🏞️"
+   ]
+  },
+  {
+   "file": "07_General_5",
+   "seconds": 3.5,
+   "lines": [
+    "book direct &",
+    "save $100 👇"
+   ]
+  }
+ ]
+}

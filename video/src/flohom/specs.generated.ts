@@ -2,6 +2,66 @@
 import type { ReelSpec } from "./ClientReel";
 export const SPECS: ReelSpec[] = [
   {
+    "slug": "asheville-river-cabins-b",
+    "client": "Asheville River Cabins",
+    "dir": "asheville-river-cabins",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Asheville_River_Cabins/02_DcJvV6QBjM3_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "05_Kyle_LGC_5",
+        "seconds": 3.5,
+        "lines": [
+          "the weekend plan:",
+          "cabins on the French Broad 🍂"
+        ],
+        "sub": "Asheville, NC · 2 hrs from Charlotte",
+        "size": 66
+      },
+      {
+        "file": "09_Kyle_LGC_1",
+        "seconds": 3,
+        "lines": [
+          "your own tiny cabin",
+          "steps from the river"
+        ]
+      },
+      {
+        "file": "08_Kyle_LGC_12",
+        "seconds": 3,
+        "lines": [
+          "slow mornings",
+          "with a river view"
+        ]
+      },
+      {
+        "file": "01_Twilight_8",
+        "seconds": 2.5,
+        "lines": [
+          "sauna sessions",
+          "at sunset 🧖‍♀️"
+        ]
+      },
+      {
+        "file": "06_Enhanced_1",
+        "seconds": 2.7,
+        "lines": [
+          "fall in Asheville",
+          "looks like this 🍁"
+        ]
+      },
+      {
+        "file": "07_Kyle_LGC_6",
+        "seconds": 4,
+        "lines": [
+          "book direct & save $50",
+          "code VIP50 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "asheville-river-cabins",
     "client": "Asheville River Cabins",
     "fps": 30,
@@ -62,6 +122,58 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "awayframes-b",
+    "client": "AwayFrames",
+    "dir": "awayframes",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Awayframes/02_Dd7CVojxb57_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "07_AwayFramesGeneralClip10",
+        "seconds": 3.5,
+        "lines": [
+          "send this to the person",
+          "you'd bring here 💌"
+        ],
+        "sub": "Island Park, Idaho",
+        "size": 66
+      },
+      {
+        "file": "09_AwayFramesGeneral_Clip1",
+        "seconds": 3.5,
+        "lines": [
+          "a hot tub",
+          "under the pines ♨️"
+        ]
+      },
+      {
+        "file": "08_AwayFramesGeneral_Clip3",
+        "seconds": 3.5,
+        "lines": [
+          "an A-frame 30 min",
+          "from Yellowstone 🏞️"
+        ]
+      },
+      {
+        "file": "10_AwayFramesGeneral_Clip32",
+        "seconds": 3.5,
+        "lines": [
+          "cook, cozy up,",
+          "repeat"
+        ]
+      },
+      {
+        "file": "03_AwayFramesGeneral_Clip19",
+        "seconds": 4,
+        "lines": [
+          "book direct & save $100",
+          "tag who's coming 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "awayframes",
     "client": "AwayFrames",
     "fps": 30,
@@ -110,6 +222,66 @@ export const SPECS: ReelSpec[] = [
           "on your stay 🌲"
         ],
         "sub": "link in bio"
+      }
+    ]
+  },
+  {
+    "slug": "bison-ridge-retreat-b",
+    "client": "Bison Ridge Retreat",
+    "dir": "bison-ridge-retreat",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Bison_Ridge_Retreat/02_DbGytwPBK5z_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "04_Bigmountain_ski_9_3_",
+        "seconds": 3.5,
+        "lines": [
+          "ski trip,",
+          "but make it a cabin 🎿"
+        ],
+        "sub": "Whitefish, Montana",
+        "size": 66
+      },
+      {
+        "file": "06_Winter_Glacier_1_L",
+        "seconds": 3.5,
+        "lines": [
+          "Glacier Country",
+          "in winter ❄️"
+        ]
+      },
+      {
+        "file": "18_Cabins_SpringSummer8",
+        "seconds": 3,
+        "lines": [
+          "cabins in the trees,",
+          "warm inside"
+        ]
+      },
+      {
+        "file": "14_Bison_Ridge_Retreat_Winter2026_CF_Clip10",
+        "seconds": 3,
+        "lines": [
+          "a living room",
+          "built for après"
+        ]
+      },
+      {
+        "file": "08_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+        "seconds": 2.5,
+        "lines": [
+          "and absolutely",
+          "nothing to do"
+        ]
+      },
+      {
+        "file": "02_Cabins_SpringSummer17",
+        "seconds": 3.5,
+        "lines": [
+          "book direct &",
+          "save $100 👇"
+        ]
       }
     ]
   },
@@ -169,6 +341,65 @@ export const SPECS: ReelSpec[] = [
           "save $100 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "endless-stays-b",
+    "client": "Endless Stays",
+    "dir": "endless-stays",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Endless_Stays/02_DbL8OY5B4bW_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "06_ES_AI_BeachDreamHouse_Clip31",
+        "seconds": 3.5,
+        "lines": [
+          "tag the group chat 👇",
+          "this is the house"
+        ],
+        "sub": "Seminole, FL",
+        "size": 66
+      },
+      {
+        "file": "09_ES_AI_BeachDreamHouse_Clip19",
+        "seconds": 3,
+        "lines": [
+          "room for",
+          "everyone"
+        ]
+      },
+      {
+        "file": "03_ES_AI_BeachDreamHouse_Clip15",
+        "seconds": 2.9,
+        "lines": [
+          "game nights 🎱"
+        ]
+      },
+      {
+        "file": "01_ES_AI_BeachDreamHouse_Clip4",
+        "seconds": 3.5,
+        "lines": [
+          "cannonball",
+          "contests 💦"
+        ]
+      },
+      {
+        "file": "05_ES_AI_BeachDreamHouse_Clip33",
+        "seconds": 3,
+        "lines": [
+          "and a pool",
+          "you never leave"
+        ]
+      },
+      {
+        "file": "10_ES_AI_BeachDreamHouse_Clip17",
+        "seconds": 3.5,
+        "lines": [
+          "code ESTAYS10",
+          "10% off, book direct"
+        ]
       }
     ]
   },
@@ -233,6 +464,63 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "green-springs-inn-b",
+    "client": "Green Springs Inn",
+    "dir": "green-springs-inn",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Green_Springs_Inn/02_DcUCdw_Bhdx_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "04_DJI_0072",
+        "seconds": 4,
+        "lines": [
+          "weekend plan:",
+          "drive to Ashland 🚗"
+        ],
+        "sub": "Green Springs Inn, Oregon",
+        "size": 66,
+        "playbackRate": 0.8
+      },
+      {
+        "file": "01_DJI_0096",
+        "seconds": 3.2,
+        "lines": [
+          "a cabin",
+          "in the pines 🌲"
+        ],
+        "playbackRate": 0.8
+      },
+      {
+        "file": "05_DJI_0075",
+        "seconds": 5,
+        "lines": [
+          "no plans",
+          "needed"
+        ],
+        "playbackRate": 0.8
+      },
+      {
+        "file": "03_DJI_0094",
+        "seconds": 3.1,
+        "lines": [
+          "just the trees",
+          "& the two of you"
+        ],
+        "playbackRate": 0.8
+      },
+      {
+        "file": "02_DJI_0073",
+        "seconds": 3.4,
+        "lines": [
+          "book direct & save 10%",
+          "code VIP10 👇"
+        ],
+        "playbackRate": 0.8
+      }
+    ]
+  },
+  {
     "slug": "green-springs-inn",
     "client": "Green Springs Inn",
     "fps": 30,
@@ -286,6 +574,66 @@ export const SPECS: ReelSpec[] = [
           "code VIP10 🌲"
         ],
         "sub": "link in bio"
+      }
+    ]
+  },
+  {
+    "slug": "little-river-landing-b",
+    "client": "Little River Landing",
+    "dir": "little-river-landing",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Little_River_Landing/02_DduKX66Bm0W_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "04_LRL_10",
+        "seconds": 3.5,
+        "lines": [
+          "POV: your weekend",
+          "on Weiss Lake 🎣"
+        ],
+        "sub": "Cedar Bluff, AL",
+        "size": 66
+      },
+      {
+        "file": "10_LRL_39",
+        "seconds": 3,
+        "lines": [
+          "paddle out",
+          "before breakfast"
+        ]
+      },
+      {
+        "file": "02_LRL_29",
+        "seconds": 3,
+        "lines": [
+          "rooms right",
+          "on the water"
+        ]
+      },
+      {
+        "file": "05_LRL_20",
+        "seconds": 3,
+        "lines": [
+          "Little River Canyon",
+          "for the day 🥾"
+        ]
+      },
+      {
+        "file": "07_LRL_3",
+        "seconds": 3,
+        "lines": [
+          "sunset chairs",
+          "on the dock"
+        ]
+      },
+      {
+        "file": "03_LRL_1",
+        "seconds": 3.5,
+        "lines": [
+          "book direct & save 10%",
+          "code STAY10 👇"
+        ]
       }
     ]
   },
@@ -347,6 +695,75 @@ export const SPECS: ReelSpec[] = [
           "& save 10% 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "north-star-lodge-resort-b",
+    "client": "North Star Lodge & Resort",
+    "dir": "north-star-lodge-resort",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/North_Star_Lodge/02_Ddoh3EDhO9r_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "01_Twilight_CF_Clip6",
+        "seconds": 3,
+        "lines": [
+          "ski weekend,",
+          "sorted 🎿"
+        ],
+        "sub": "Killington, Vermont",
+        "size": 66,
+        "playbackRate": 0.85
+      },
+      {
+        "file": "02_Twilight_CF_Clip3",
+        "seconds": 3,
+        "lines": [
+          "$50/person per night,",
+          "sleeps 4"
+        ],
+        "playbackRate": 0.85
+      },
+      {
+        "file": "03_Twilight_CF_Clip4V2",
+        "seconds": 3,
+        "lines": [
+          "outdoor pool",
+          "after the slopes"
+        ],
+        "playbackRate": 0.85
+      },
+      {
+        "file": "02_Twilight_CF_Clip3",
+        "seconds": 2.8,
+        "lines": [
+          "wine, pool,",
+          "repeat 🍷"
+        ],
+        "trimBefore": 78,
+        "playbackRate": 0.85
+      },
+      {
+        "file": "03_Twilight_CF_Clip4V2",
+        "seconds": 2.8,
+        "lines": [
+          "2 mins from",
+          "the slopes"
+        ],
+        "trimBefore": 78,
+        "playbackRate": 0.85
+      },
+      {
+        "file": "01_Twilight_CF_Clip6",
+        "seconds": 1.6,
+        "lines": [
+          "book direct & save 10%",
+          "on 2+ nights"
+        ],
+        "trimBefore": 78,
+        "playbackRate": 0.85
       }
     ]
   },
@@ -419,6 +836,64 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "paradise-pointe-b",
+    "client": "Paradise Pointe",
+    "dir": "paradise-pointe",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Paradise_Pointe/02_DdpVYU9pAS0_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "01_General_1",
+        "seconds": 3.5,
+        "lines": [
+          "the kids' review:",
+          "\"can we live here?\" 🙃"
+        ],
+        "sub": "Bryant, AL",
+        "size": 66
+      },
+      {
+        "file": "05_General_15",
+        "seconds": 2.9,
+        "lines": [
+          "sand volleyball 🏐"
+        ]
+      },
+      {
+        "file": "03_General_28",
+        "seconds": 3,
+        "lines": [
+          "farm animals",
+          "to meet 🐄"
+        ]
+      },
+      {
+        "file": "08_General_33",
+        "seconds": 3,
+        "lines": [
+          "a lake",
+          "to swim"
+        ]
+      },
+      {
+        "file": "06_General_35",
+        "seconds": 3,
+        "lines": [
+          "& a swimming hole 🏞️"
+        ]
+      },
+      {
+        "file": "07_General_5",
+        "seconds": 3.5,
+        "lines": [
+          "book direct &",
+          "save $100 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "paradise-pointe",
     "client": "Paradise Pointe",
     "fps": 30,
@@ -475,6 +950,66 @@ export const SPECS: ReelSpec[] = [
           "save $100 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "ponderosa-pines-resort-b",
+    "client": "Ponderosa Pines Resort",
+    "dir": "ponderosa-pines-resort",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Ponderosa_Pines_Resort/02_DcJ03XwSdMg_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "09_PRC_0",
+        "seconds": 3.5,
+        "lines": [
+          "road-tripping to",
+          "the Grand Canyon? 🚗"
+        ],
+        "sub": "Parks, AZ · stop here",
+        "size": 66
+      },
+      {
+        "file": "03_PRC_4",
+        "seconds": 3,
+        "lines": [
+          "a hot tub stop",
+          "in the pines"
+        ]
+      },
+      {
+        "file": "05_PRC_12",
+        "seconds": 3,
+        "lines": [
+          "a real bed,",
+          "not a motel"
+        ]
+      },
+      {
+        "file": "07_PRC_24",
+        "seconds": 3,
+        "lines": [
+          "stargazing",
+          "included ✨"
+        ]
+      },
+      {
+        "file": "02_PRC_6",
+        "seconds": 3,
+        "lines": [
+          "& a morning soak",
+          "before the drive"
+        ]
+      },
+      {
+        "file": "10_PRC_15b",
+        "seconds": 3.5,
+        "lines": [
+          "code VIP10",
+          "for 10% off 👇"
+        ]
       }
     ]
   },
@@ -537,6 +1072,66 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "selah-place-b",
+    "client": "Selah Place",
+    "dir": "selah-place",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Selah.Place/02_DbY0M21hzT6_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "04_Clip22",
+        "seconds": 3.5,
+        "lines": [
+          "send this to",
+          "your person 💌"
+        ],
+        "sub": "Selah Place, Athens TX",
+        "size": 66
+      },
+      {
+        "file": "09_Clip31",
+        "seconds": 3,
+        "lines": [
+          "a private villa",
+          "on the lake"
+        ]
+      },
+      {
+        "file": "02_SunnyMorning_CF_Clip2",
+        "seconds": 3,
+        "lines": [
+          "slow mornings",
+          "inside"
+        ]
+      },
+      {
+        "file": "05_Clip20",
+        "seconds": 3,
+        "lines": [
+          "dinner",
+          "on the deck"
+        ]
+      },
+      {
+        "file": "06_Clip19",
+        "seconds": 3,
+        "lines": [
+          "then the hot tub",
+          "& the fire 🔥"
+        ]
+      },
+      {
+        "file": "07_Clip32",
+        "seconds": 3.5,
+        "lines": [
+          "1 hr from Dallas",
+          "code VIP10 for 10% off"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "selah-place",
     "client": "Selah Place",
     "fps": 30,
@@ -547,10 +1142,10 @@ export const SPECS: ReelSpec[] = [
         "file": "03_Clip27",
         "seconds": 3.5,
         "lines": [
-          "Nature Escape",
-          "for Two ❤️"
+          "quiet weekend,",
+          "just us 🌿"
         ],
-        "sub": "Athens, TX · 1 hr from Dallas",
+        "sub": "Athens, TX",
         "size": 66
       },
       {
@@ -597,6 +1192,126 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "starlight-haven-b",
+    "client": "Starlight Haven Hot Springs",
+    "dir": "starlight-haven",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Starlight_Haven/02_Ddj3Mi9ha_F_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "05_Starlight_Haven_Hot_Springs_General_Augu",
+        "seconds": 3.5,
+        "lines": [
+          "POV: you finally booked",
+          "the cabin weekend"
+        ],
+        "sub": "Hot Springs, Arkansas",
+        "size": 66
+      },
+      {
+        "file": "02_Starlight_Haven_Hot_Springs_General_Augu",
+        "seconds": 3,
+        "lines": [
+          "your private cabin",
+          "in the pines"
+        ]
+      },
+      {
+        "file": "01_Starlight_Haven_Hot_Springs_AI_Clip2",
+        "seconds": 3,
+        "lines": [
+          "movie nights",
+          "by the fire 🔥"
+        ]
+      },
+      {
+        "file": "08_General10",
+        "seconds": 3,
+        "lines": [
+          "and a soak",
+          "at sunset"
+        ]
+      },
+      {
+        "file": "07_Starlight_Haven_Hot_Springs_General_Augu",
+        "seconds": 3,
+        "lines": [
+          "walk it off",
+          "in the morning"
+        ]
+      },
+      {
+        "file": "04_Starlight_Haven_Hot_Springs_AI_Clip3",
+        "seconds": 3.5,
+        "lines": [
+          "code STAR23",
+          "10% off, book direct"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "starlight-haven-weiss-lake-b",
+    "client": "Starlight Haven Weiss Lake",
+    "dir": "starlight-haven-weiss-lake",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Starlight_Haven/02_Ddj3Mi9ha_F_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "07_General5",
+        "seconds": 3.5,
+        "lines": [
+          "glamping,",
+          "but make it luxury ✨"
+        ],
+        "sub": "Weiss Lake, Alabama",
+        "size": 66
+      },
+      {
+        "file": "03_General13",
+        "seconds": 3.5,
+        "lines": [
+          "a safari tent",
+          "with a real bed"
+        ]
+      },
+      {
+        "file": "01_General11",
+        "seconds": 3,
+        "lines": [
+          "hot tub",
+          "sunsets 🌅"
+        ]
+      },
+      {
+        "file": "09_General16",
+        "seconds": 3,
+        "lines": [
+          "kayaks",
+          "on the lake"
+        ]
+      },
+      {
+        "file": "05_General6",
+        "seconds": 3,
+        "lines": [
+          "& a bath",
+          "with a view"
+        ]
+      },
+      {
+        "file": "10_General12",
+        "seconds": 3.5,
+        "lines": [
+          "code STAR23",
+          "10% off 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "starlight-haven-weiss-lake",
     "client": "Starlight Haven Weiss Lake",
     "fps": 30,
@@ -607,8 +1322,8 @@ export const SPECS: ReelSpec[] = [
         "file": "02_General8",
         "seconds": 3.5,
         "lines": [
-          "a lakeside escape",
-          "for two 🌅"
+          "date night,",
+          "but make it an A-frame 🌅"
         ],
         "sub": "Weiss Lake, Alabama",
         "size": 66
@@ -667,8 +1382,8 @@ export const SPECS: ReelSpec[] = [
         "file": "04_Starlight_Haven_Hot_Springs_AI_Clip3",
         "seconds": 3.5,
         "lines": [
-          "a cabin weekend",
-          "for two 🌲❤️"
+          "cabin > hotel.",
+          "every time 🌲"
         ],
         "sub": "Hot Springs, Arkansas",
         "size": 66
@@ -712,6 +1427,66 @@ export const SPECS: ReelSpec[] = [
           "for 10% off 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "stay-on-30a-b",
+    "client": "Stay on 30a",
+    "dir": "stay-on-30a",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stays_on_30a/02_Dbv_XLohsid_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "01_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3.5,
+        "lines": [
+          "beach house, golf cart,",
+          "& the whole crew 🛺"
+        ],
+        "sub": "30A, Florida",
+        "size": 66
+      },
+      {
+        "file": "03_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3,
+        "lines": [
+          "steps from",
+          "the sand"
+        ]
+      },
+      {
+        "file": "07_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3,
+        "lines": [
+          "a pool for",
+          "the slow days"
+        ]
+      },
+      {
+        "file": "10_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3,
+        "lines": [
+          "palm-lined streets",
+          "to explore"
+        ]
+      },
+      {
+        "file": "09_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3,
+        "lines": [
+          "& sunsets",
+          "on the dunes"
+        ]
+      },
+      {
+        "file": "05_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+        "seconds": 3.5,
+        "lines": [
+          "code VIP100",
+          "$100 off 👇"
+        ]
       }
     ]
   },
@@ -776,6 +1551,66 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "stay-saluda-b",
+    "client": "Stay Saluda",
+    "dir": "stay-saluda",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Saluda/02_Dbd92Q8Bzq1_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "03_Twilight_15",
+        "seconds": 3.5,
+        "lines": [
+          "there's a Danish word",
+          "for this: hygge 🍂"
+        ],
+        "sub": "Saluda, NC",
+        "size": 66
+      },
+      {
+        "file": "09_SunnyMorning_6",
+        "seconds": 3,
+        "lines": [
+          "a deck, a fire,",
+          "& the Blue Ridge"
+        ]
+      },
+      {
+        "file": "06_SunnyMorning_8",
+        "seconds": 3,
+        "lines": [
+          "slow",
+          "mornings"
+        ]
+      },
+      {
+        "file": "10_SunnyMorning_9",
+        "seconds": 3,
+        "lines": [
+          "game nights",
+          "in"
+        ]
+      },
+      {
+        "file": "05_SunnyMorning_10",
+        "seconds": 3,
+        "lines": [
+          "and nobody",
+          "checking the time"
+        ]
+      },
+      {
+        "file": "08_SunnyMorning_3",
+        "seconds": 3.5,
+        "lines": [
+          "code VIP10",
+          "10% off, book direct"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "stay-saluda",
     "client": "Stay Saluda",
     "fps": 30,
@@ -832,6 +1667,66 @@ export const SPECS: ReelSpec[] = [
           "for 10% off 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "taberg-falls-b",
+    "client": "Taberg Falls",
+    "dir": "taberg-falls",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/T_berg_Falls/02_Db83XS8hHn7_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "03_Ta_berg_Falls_General_Property_Twilight_",
+        "seconds": 3.5,
+        "lines": [
+          "the mirror cabin",
+          "from your feed, irl 🪞"
+        ],
+        "sub": "Taberg, NY",
+        "size": 66
+      },
+      {
+        "file": "07_TabergFalls_SpringSummer41",
+        "seconds": 3,
+        "lines": [
+          "waterfalls right",
+          "outside your door 🌊"
+        ]
+      },
+      {
+        "file": "06_TabergFalls_SpringSummer67",
+        "seconds": 3,
+        "lines": [
+          "a hot tub",
+          "for two"
+        ]
+      },
+      {
+        "file": "09_TabergFalls_SpringSummer76",
+        "seconds": 3,
+        "lines": [
+          "and nowhere",
+          "to be"
+        ]
+      },
+      {
+        "file": "05_TabergFalls_SpringSummer55",
+        "seconds": 3,
+        "lines": [
+          "sunrise walks",
+          "by the river"
+        ]
+      },
+      {
+        "file": "01_Ta_berg_Falls_General_Property_Twilight_",
+        "seconds": 3.5,
+        "lines": [
+          "code VIP100",
+          "$100 off 👇"
+        ]
       }
     ]
   },
@@ -896,6 +1791,66 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "the-outpost-b",
+    "client": "The Outpost",
+    "dir": "the-outpost",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/The_Outpost_Grand_Canyon/02_Db83ULrBM_F_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "04_TheOutpost_AI_Flagstaff_Destination_Clip",
+        "seconds": 3.5,
+        "lines": [
+          "Grand Canyon road trip?",
+          "skip the hotel 🚐"
+        ],
+        "sub": "Valle, AZ · 25 min away",
+        "size": 66
+      },
+      {
+        "file": "08_TheOutpost_General_LightWinter_CF_Clip8",
+        "seconds": 3,
+        "lines": [
+          "sleep in",
+          "an Airstream"
+        ]
+      },
+      {
+        "file": "10_TheOutpost_General_LightWinter_CF_Clip35",
+        "seconds": 3,
+        "lines": [
+          "sauna under",
+          "the desert sky"
+        ]
+      },
+      {
+        "file": "06_TheOutpost_General_LightWinter_CF_Clip6",
+        "seconds": 3,
+        "lines": [
+          "stars like you've",
+          "never seen ✨"
+        ]
+      },
+      {
+        "file": "05_The_Outpost_General_AI_Clip7",
+        "seconds": 3,
+        "lines": [
+          "& a bed",
+          "worth the drive"
+        ]
+      },
+      {
+        "file": "03_The_Outpost_General_AI_Clip2",
+        "seconds": 3.5,
+        "lines": [
+          "code WELCOME10",
+          "& save 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "the-outpost",
     "client": "The Outpost",
     "fps": 30,
@@ -906,10 +1861,10 @@ export const SPECS: ReelSpec[] = [
         "file": "01_TheOutpost_AI_General_Twilight_Clip1",
         "seconds": 3.5,
         "lines": [
-          "your Grand Canyon",
-          "basecamp 🏜️"
+          "25 min from the Grand Canyon",
+          "& it looks like this 🌅"
         ],
-        "sub": "Valle, AZ · 25 min from the Canyon",
+        "sub": "Valle, Arizona",
         "size": 66
       },
       {
@@ -954,6 +1909,66 @@ export const SPECS: ReelSpec[] = [
     ]
   },
   {
+    "slug": "treetop-escapes-b",
+    "client": "Treetop Escapes",
+    "dir": "treetop-escapes",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Staytreetopescapes/02_Dbv_WQQB5wv_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "06_SunnyMorning_9",
+        "seconds": 3.5,
+        "lines": [
+          "a sauna",
+          "up in the trees 🧖‍♀️"
+        ],
+        "sub": "Lookout Mountain, GA",
+        "size": 66
+      },
+      {
+        "file": "07_SunnyMorning_4",
+        "seconds": 3,
+        "lines": [
+          "13 treehouses",
+          "on the mountain"
+        ]
+      },
+      {
+        "file": "08_SunnyMorning_3",
+        "seconds": 3,
+        "lines": [
+          "each with",
+          "its own walkway"
+        ]
+      },
+      {
+        "file": "03_Twilight_3",
+        "seconds": 3,
+        "lines": [
+          "evenings",
+          "by the fire 🔥"
+        ]
+      },
+      {
+        "file": "05_SunnyMorning_6",
+        "seconds": 3,
+        "lines": [
+          "& a view",
+          "from every window"
+        ]
+      },
+      {
+        "file": "01_Twilight_7",
+        "seconds": 3.5,
+        "lines": [
+          "book direct &",
+          "save $100 👇"
+        ]
+      }
+    ]
+  },
+  {
     "slug": "treetop-escapes",
     "client": "Treetop Escapes",
     "fps": 30,
@@ -964,8 +1979,8 @@ export const SPECS: ReelSpec[] = [
         "file": "01_Twilight_7",
         "seconds": 3.5,
         "lines": [
-          "you + me, a treehouse",
-          "in the mountains 🌲"
+          "the treehouse weekend",
+          "you keep saving 📌"
         ],
         "sub": "Lookout Mountain, GA",
         "size": 60
@@ -1009,6 +2024,66 @@ export const SPECS: ReelSpec[] = [
           "save $100 👇"
         ],
         "size": 66
+      }
+    ]
+  },
+  {
+    "slug": "walden-retreats-b",
+    "client": "Walden Retreats",
+    "dir": "walden-retreats",
+    "fps": 30,
+    "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Walden_Retreats/02_DdHmdLRJ7v7_audio.m4a",
+    "music_start": 0,
+    "beats": [
+      {
+        "file": "08_Exterior_CF_Clip15",
+        "seconds": 3.5,
+        "lines": [
+          "96 acres of Hill Country",
+          "& one tent 🏕️"
+        ],
+        "sub": "Johnson City, TX",
+        "size": 66
+      },
+      {
+        "file": "03_Interior_Twilight_CF_Clip3",
+        "seconds": 3,
+        "lines": [
+          "a tent that feels",
+          "like a suite"
+        ]
+      },
+      {
+        "file": "10_Interior_CF_Clip1",
+        "seconds": 3,
+        "lines": [
+          "hot showers,",
+          "real bathroom"
+        ]
+      },
+      {
+        "file": "02_Exterior_Twilight_CF_Clip3",
+        "seconds": 3,
+        "lines": [
+          "fire pit",
+          "nights 🔥"
+        ]
+      },
+      {
+        "file": "01_Interior_Twilight_CF_Clip1",
+        "seconds": 3,
+        "lines": [
+          "& a soak",
+          "under the stars"
+        ]
+      },
+      {
+        "file": "05_Exterior_CF_Clip19",
+        "seconds": 3.5,
+        "lines": [
+          "code VIP10",
+          "10% off 👇"
+        ]
       }
     ]
   },

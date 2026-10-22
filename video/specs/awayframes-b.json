@@ -1,0 +1,52 @@
+{
+ "slug": "awayframes-b",
+ "client": "AwayFrames",
+ "dir": "awayframes",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Awayframes/02_Dd7CVojxb57_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "07_AwayFramesGeneralClip10",
+   "seconds": 3.5,
+   "lines": [
+    "send this to the person",
+    "you'd bring here 💌"
+   ],
+   "sub": "Island Park, Idaho",
+   "size": 66
+  },
+  {
+   "file": "09_AwayFramesGeneral_Clip1",
+   "seconds": 3.5,
+   "lines": [
+    "a hot tub",
+    "under the pines ♨️"
+   ]
+  },
+  {
+   "file": "08_AwayFramesGeneral_Clip3",
+   "seconds": 3.5,
+   "lines": [
+    "an A-frame 30 min",
+    "from Yellowstone 🏞️"
+   ]
+  },
+  {
+   "file": "10_AwayFramesGeneral_Clip32",
+   "seconds": 3.5,
+   "lines": [
+    "cook, cozy up,",
+    "repeat"
+   ]
+  },
+  {
+   "file": "03_AwayFramesGeneral_Clip19",
+   "seconds": 4.0,
+   "lines": [
+    "book direct & save $100",
+    "tag who's coming 👇"
+   ]
+  }
+ ]
+}

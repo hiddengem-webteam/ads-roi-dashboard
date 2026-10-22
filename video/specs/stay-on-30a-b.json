@@ -1,0 +1,60 @@
+{
+ "slug": "stay-on-30a-b",
+ "client": "Stay on 30a",
+ "dir": "stay-on-30a",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stays_on_30a/02_Dbv_XLohsid_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "01_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.5,
+   "lines": [
+    "beach house, golf cart,",
+    "& the whole crew 🛺"
+   ],
+   "sub": "30A, Florida",
+   "size": 66
+  },
+  {
+   "file": "03_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "steps from",
+    "the sand"
+   ]
+  },
+  {
+   "file": "07_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "a pool for",
+    "the slow days"
+   ]
+  },
+  {
+   "file": "10_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "palm-lined streets",
+    "to explore"
+   ]
+  },
+  {
+   "file": "09_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.0,
+   "lines": [
+    "& sunsets",
+    "on the dunes"
+   ]
+  },
+  {
+   "file": "05_StayOn30a_AI_will_zimm_BarefootBliss_Cli",
+   "seconds": 3.5,
+   "lines": [
+    "code VIP100",
+    "$100 off 👇"
+   ]
+  }
+ ]
+}

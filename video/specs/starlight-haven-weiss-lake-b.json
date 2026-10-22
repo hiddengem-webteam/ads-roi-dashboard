@@ -1,0 +1,60 @@
+{
+ "slug": "starlight-haven-weiss-lake-b",
+ "client": "Starlight Haven Weiss Lake",
+ "dir": "starlight-haven-weiss-lake",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Starlight_Haven/02_Ddj3Mi9ha_F_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "07_General5",
+   "seconds": 3.5,
+   "lines": [
+    "glamping,",
+    "but make it luxury ✨"
+   ],
+   "sub": "Weiss Lake, Alabama",
+   "size": 66
+  },
+  {
+   "file": "03_General13",
+   "seconds": 3.5,
+   "lines": [
+    "a safari tent",
+    "with a real bed"
+   ]
+  },
+  {
+   "file": "01_General11",
+   "seconds": 3.0,
+   "lines": [
+    "hot tub",
+    "sunsets 🌅"
+   ]
+  },
+  {
+   "file": "09_General16",
+   "seconds": 3.0,
+   "lines": [
+    "kayaks",
+    "on the lake"
+   ]
+  },
+  {
+   "file": "05_General6",
+   "seconds": 3.0,
+   "lines": [
+    "& a bath",
+    "with a view"
+   ]
+  },
+  {
+   "file": "10_General12",
+   "seconds": 3.5,
+   "lines": [
+    "code STAR23",
+    "10% off 👇"
+   ]
+  }
+ ]
+}

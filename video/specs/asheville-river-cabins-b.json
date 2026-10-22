@@ -1,0 +1,60 @@
+{
+ "slug": "asheville-river-cabins-b",
+ "client": "Asheville River Cabins",
+ "dir": "asheville-river-cabins",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Asheville_River_Cabins/02_DcJvV6QBjM3_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "05_Kyle_LGC_5",
+   "seconds": 3.5,
+   "lines": [
+    "the weekend plan:",
+    "cabins on the French Broad 🍂"
+   ],
+   "sub": "Asheville, NC · 2 hrs from Charlotte",
+   "size": 66
+  },
+  {
+   "file": "09_Kyle_LGC_1",
+   "seconds": 3.0,
+   "lines": [
+    "your own tiny cabin",
+    "steps from the river"
+   ]
+  },
+  {
+   "file": "08_Kyle_LGC_12",
+   "seconds": 3.0,
+   "lines": [
+    "slow mornings",
+    "with a river view"
+   ]
+  },
+  {
+   "file": "01_Twilight_8",
+   "seconds": 2.5,
+   "lines": [
+    "sauna sessions",
+    "at sunset 🧖‍♀️"
+   ]
+  },
+  {
+   "file": "06_Enhanced_1",
+   "seconds": 2.7,
+   "lines": [
+    "fall in Asheville",
+    "looks like this 🍁"
+   ]
+  },
+  {
+   "file": "07_Kyle_LGC_6",
+   "seconds": 4.0,
+   "lines": [
+    "book direct & save $50",
+    "code VIP50 👇"
+   ]
+  }
+ ]
+}

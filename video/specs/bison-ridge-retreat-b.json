@@ -1,0 +1,60 @@
+{
+ "slug": "bison-ridge-retreat-b",
+ "client": "Bison Ridge Retreat",
+ "dir": "bison-ridge-retreat",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Bison_Ridge_Retreat/02_DbGytwPBK5z_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "04_Bigmountain_ski_9_3_",
+   "seconds": 3.5,
+   "lines": [
+    "ski trip,",
+    "but make it a cabin 🎿"
+   ],
+   "sub": "Whitefish, Montana",
+   "size": 66
+  },
+  {
+   "file": "06_Winter_Glacier_1_L",
+   "seconds": 3.5,
+   "lines": [
+    "Glacier Country",
+    "in winter ❄️"
+   ]
+  },
+  {
+   "file": "18_Cabins_SpringSummer8",
+   "seconds": 3.0,
+   "lines": [
+    "cabins in the trees,",
+    "warm inside"
+   ]
+  },
+  {
+   "file": "14_Bison_Ridge_Retreat_Winter2026_CF_Clip10",
+   "seconds": 3.0,
+   "lines": [
+    "a living room",
+    "built for après"
+   ]
+  },
+  {
+   "file": "08_Bison_Ridge_Retreat_General_Aug2026_CF_C",
+   "seconds": 2.5,
+   "lines": [
+    "and absolutely",
+    "nothing to do"
+   ]
+  },
+  {
+   "file": "02_Cabins_SpringSummer17",
+   "seconds": 3.5,
+   "lines": [
+    "book direct &",
+    "save $100 👇"
+   ]
+  }
+ ]
+}

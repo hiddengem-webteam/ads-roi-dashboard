@@ -1,0 +1,59 @@
+{
+ "slug": "endless-stays-b",
+ "client": "Endless Stays",
+ "dir": "endless-stays",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Endless_Stays/02_DbL8OY5B4bW_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "06_ES_AI_BeachDreamHouse_Clip31",
+   "seconds": 3.5,
+   "lines": [
+    "tag the group chat 👇",
+    "this is the house"
+   ],
+   "sub": "Seminole, FL",
+   "size": 66
+  },
+  {
+   "file": "09_ES_AI_BeachDreamHouse_Clip19",
+   "seconds": 3.0,
+   "lines": [
+    "room for",
+    "everyone"
+   ]
+  },
+  {
+   "file": "03_ES_AI_BeachDreamHouse_Clip15",
+   "seconds": 2.9,
+   "lines": [
+    "game nights 🎱"
+   ]
+  },
+  {
+   "file": "01_ES_AI_BeachDreamHouse_Clip4",
+   "seconds": 3.5,
+   "lines": [
+    "cannonball",
+    "contests 💦"
+   ]
+  },
+  {
+   "file": "05_ES_AI_BeachDreamHouse_Clip33",
+   "seconds": 3.0,
+   "lines": [
+    "and a pool",
+    "you never leave"
+   ]
+  },
+  {
+   "file": "10_ES_AI_BeachDreamHouse_Clip17",
+   "seconds": 3.5,
+   "lines": [
+    "code ESTAYS10",
+    "10% off, book direct"
+   ]
+  }
+ ]
+}

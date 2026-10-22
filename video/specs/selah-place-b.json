@@ -1,0 +1,60 @@
+{
+ "slug": "selah-place-b",
+ "client": "Selah Place",
+ "dir": "selah-place",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Selah.Place/02_DbY0M21hzT6_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "04_Clip22",
+   "seconds": 3.5,
+   "lines": [
+    "send this to",
+    "your person 💌"
+   ],
+   "sub": "Selah Place, Athens TX",
+   "size": 66
+  },
+  {
+   "file": "09_Clip31",
+   "seconds": 3.0,
+   "lines": [
+    "a private villa",
+    "on the lake"
+   ]
+  },
+  {
+   "file": "02_SunnyMorning_CF_Clip2",
+   "seconds": 3.0,
+   "lines": [
+    "slow mornings",
+    "inside"
+   ]
+  },
+  {
+   "file": "05_Clip20",
+   "seconds": 3.0,
+   "lines": [
+    "dinner",
+    "on the deck"
+   ]
+  },
+  {
+   "file": "06_Clip19",
+   "seconds": 3.0,
+   "lines": [
+    "then the hot tub",
+    "& the fire 🔥"
+   ]
+  },
+  {
+   "file": "07_Clip32",
+   "seconds": 3.5,
+   "lines": [
+    "1 hr from Dallas",
+    "code VIP10 for 10% off"
+   ]
+  }
+ ]
+}

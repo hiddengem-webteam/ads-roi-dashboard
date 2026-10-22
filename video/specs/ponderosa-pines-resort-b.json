@@ -1,0 +1,60 @@
+{
+ "slug": "ponderosa-pines-resort-b",
+ "client": "Ponderosa Pines Resort",
+ "dir": "ponderosa-pines-resort",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Ponderosa_Pines_Resort/02_DcJ03XwSdMg_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "09_PRC_0",
+   "seconds": 3.5,
+   "lines": [
+    "road-tripping to",
+    "the Grand Canyon? 🚗"
+   ],
+   "sub": "Parks, AZ · stop here",
+   "size": 66
+  },
+  {
+   "file": "03_PRC_4",
+   "seconds": 3.0,
+   "lines": [
+    "a hot tub stop",
+    "in the pines"
+   ]
+  },
+  {
+   "file": "05_PRC_12",
+   "seconds": 3.0,
+   "lines": [
+    "a real bed,",
+    "not a motel"
+   ]
+  },
+  {
+   "file": "07_PRC_24",
+   "seconds": 3.0,
+   "lines": [
+    "stargazing",
+    "included ✨"
+   ]
+  },
+  {
+   "file": "02_PRC_6",
+   "seconds": 3.0,
+   "lines": [
+    "& a morning soak",
+    "before the drive"
+   ]
+  },
+  {
+   "file": "10_PRC_15b",
+   "seconds": 3.5,
+   "lines": [
+    "code VIP10",
+    "for 10% off 👇"
+   ]
+  }
+ ]
+}

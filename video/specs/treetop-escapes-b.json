@@ -1,0 +1,60 @@
+{
+ "slug": "treetop-escapes-b",
+ "client": "Treetop Escapes",
+ "dir": "treetop-escapes",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Staytreetopescapes/02_Dbv_WQQB5wv_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "06_SunnyMorning_9",
+   "seconds": 3.5,
+   "lines": [
+    "a sauna",
+    "up in the trees 🧖‍♀️"
+   ],
+   "sub": "Lookout Mountain, GA",
+   "size": 66
+  },
+  {
+   "file": "07_SunnyMorning_4",
+   "seconds": 3.0,
+   "lines": [
+    "13 treehouses",
+    "on the mountain"
+   ]
+  },
+  {
+   "file": "08_SunnyMorning_3",
+   "seconds": 3.0,
+   "lines": [
+    "each with",
+    "its own walkway"
+   ]
+  },
+  {
+   "file": "03_Twilight_3",
+   "seconds": 3.0,
+   "lines": [
+    "evenings",
+    "by the fire 🔥"
+   ]
+  },
+  {
+   "file": "05_SunnyMorning_6",
+   "seconds": 3.0,
+   "lines": [
+    "& a view",
+    "from every window"
+   ]
+  },
+  {
+   "file": "01_Twilight_7",
+   "seconds": 3.5,
+   "lines": [
+    "book direct &",
+    "save $100 👇"
+   ]
+  }
+ ]
+}

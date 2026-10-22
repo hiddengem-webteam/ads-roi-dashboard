@@ -17,7 +17,7 @@ export type Beat = {
   size?: number;
   zoom?: number;
 };
-export type ReelSpec = { slug: string; client: string; fps?: number; beats: Beat[]; music?: string; music_start?: number };
+export type ReelSpec = { slug: string; client: string; dir?: string; fps?: number; beats: Beat[]; music?: string; music_start?: number }; // dir: clip folder under video/public (defaults to slug)
 
 export const specFrames = (spec: ReelSpec) =>
   spec.beats.reduce((n, b) => n + Math.round(b.seconds * (spec.fps ?? 30)), 0);
@@ -77,7 +77,7 @@ export const ClientReel: React.FC<ReelSpec> = (spec) => {
         at += frames;
         return (
           <Sequence key={i} from={from} durationInFrames={frames}>
-            <Shot beat={b} slug={spec.slug} frames={frames} />
+            <Shot beat={b} slug={spec.dir ?? spec.slug} frames={frames} />
           </Sequence>
         );
       })}

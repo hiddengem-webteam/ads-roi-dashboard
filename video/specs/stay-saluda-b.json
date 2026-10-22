@@ -1,0 +1,60 @@
+{
+ "slug": "stay-saluda-b",
+ "client": "Stay Saluda",
+ "dir": "stay-saluda",
+ "fps": 30,
+ "music": "weekly/IG Reel Reviews/pulls/2026-10-22/Stay_Saluda/02_Dbd92Q8Bzq1_audio.m4a",
+ "music_start": 0,
+ "beats": [
+  {
+   "file": "03_Twilight_15",
+   "seconds": 3.5,
+   "lines": [
+    "there's a Danish word",
+    "for this: hygge 🍂"
+   ],
+   "sub": "Saluda, NC",
+   "size": 66
+  },
+  {
+   "file": "09_SunnyMorning_6",
+   "seconds": 3.0,
+   "lines": [
+    "a deck, a fire,",
+    "& the Blue Ridge"
+   ]
+  },
+  {
+   "file": "06_SunnyMorning_8",
+   "seconds": 3.0,
+   "lines": [
+    "slow",
+    "mornings"
+   ]
+  },
+  {
+   "file": "10_SunnyMorning_9",
+   "seconds": 3.0,
+   "lines": [
+    "game nights",
+    "in"
+   ]
+  },
+  {
+   "file": "05_SunnyMorning_10",
+   "seconds": 3.0,
+   "lines": [
+    "and nobody",
+    "checking the time"
+   ]
+  },
+  {
+   "file": "08_SunnyMorning_3",
+   "seconds": 3.5,
+   "lines": [
+    "code VIP10",
+    "10% off, book direct"
+   ]
+  }
+ ]
+}
