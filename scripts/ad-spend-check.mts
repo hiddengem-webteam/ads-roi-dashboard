@@ -271,7 +271,7 @@ async function main() {
   else {
     L.push('| Client | AM | Last week $/day | This week $/day | Change | Status | What changed |');
     L.push('|---|---|---|---|---|---|---|');
-    for (const r of changed) L.push(`| ${r.c.client} | ${r.c.am || '—'} | ${r.prevTotal === null ? '—' : money(r.prevTotal)} | ${money(r.total)} | ${r.change === null ? '—' : signed(r.change)} | ${statusWord[r.status]} | ${r.whatChanged || (r.status === 'new' ? 'not in the previous run' : '')} |`);
+    for (const r of changed) L.push(`| ${r.c.client} | ${r.c.am || '—'} | ${r.prevTotal === null ? '—' : money(r.prevTotal)} | ${money(r.total)} | ${r.change === null ? '—' : signed(r.change)} | ${statusWord[r.status]} | ${(r.whatChanged || (r.status === 'new' ? 'not in the previous run' : '')).replace(/\|/g, '/')} |`);
     for (const id of removed) L.push(`| ${prev.names.get(id) ?? id} | — | ${money(prev.totals.get(id)!)} | — | — | Removed | no longer in the client map (offboarded or remapped) |`);
     L.push('');
   }

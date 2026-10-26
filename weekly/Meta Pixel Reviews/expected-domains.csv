@@ -3,7 +3,7 @@ American River Resort,2862601447415133,americanriverresort.com,,inferred,seeded 
 Asheville River Cabins,1634367080775220,ashevillerivercabins.com,hotels.cloudbeds.com|us1.cloudbeds.com|wordpress-1016560-5306423.cloudwaysapps.com,inferred,Cloudbeds PMS; Cloudways host is the site's WordPress staging (seen 2026-10-19)
 Away2PA,772693422494226,away2pa.com|awaytopa.com,booking.ownerrez.com|app.ownerrez.com,inferred,second brand domain awaytopa.com used for bio/links
 Awayframes,773898245792839,awayframes.com,,inferred,
-Best Texas Travel,4108409325970216,besttexastravel.com,besttexastravel.holidayfuture.com,inferred,book. subdomain is the booking engine; Holiday Future booking engine seen 1 Oct 2026
+Best Texas Travel,4108409325970216,besttexastravel.com,besttexastravel.holidayfuture.com,inferred,book. subdomain is the booking engine; Holiday Future booking; riverroadcabins.com + bookings.riverroadcabins.com seen from 2026-10-21 (37% of events), CONFIRM sister property (decision 37) before adding engine seen 1 Oct 2026
 Big Moon Ranch,1208874174466414,bigmoonranch.com|staybigmoonranch.com,,inferred,client offboarded 2026-09-28; drop the row when the client leaves the Master sheet
 Bison Ridge Retreat,1241959234316508,bisonridgeretreat.com,,inferred,
 Columbia Gorge Getaways,595257656540749,columbiagorgegetaways.com|columbiagorgeglamping.com,www-columbiagorgegetaways-com.filesusr.com,inferred,CGG Pixel (secondary)
@@ -49,3 +49,4 @@ Tuxedo Falls,1839806973541001,tuxedofalls.com,resnexus.com|sites.leadconnectorhq
 Walden Retreats,505477285266646,waldenretreats.com,resnexus.com|spacecrafted.com,inferred,client-business pixel; ResNexus PMS; added 2026-10-13 when the client joined the sheet; spacecrafted.com is the site builder host (2026-10-19)
 Ponderosa Pines Resort,1743173753375733,ponderosapinesresort.com,,inferred,"second pixel on the main site, attached to the ad account, found 2026-10-13; double-counts page views with 1293211539656211"
 Glasscombe,1369498611461163,glasscombe.com,us2.cloudbeds.com|reserve.glasscombe.com,inferred,"pixel is named 'Aero Camp Pixel' in business 'Glasscombe' (806512758639975), shared into the HG BM; Cloudbeds PMS; added 2026-10-19 when the client joined the sheet; no ad account mapping yet"
+Cabin Collective,1654110122884436,cabincollectivebb.com,booking.ownerrez.com|app.ownerrez.com|cabin-collective-landing-page.netlify.app|zdg.bfk.mybluehost.me,inferred,"client-BM pixel shared into HG BM, attached to 2194562394139883; OwnerRez PMS; netlify = HG landing page, mybluehost = site staging; added 2026-10-26 when the client joined the sheet. Second pixel 1338006181525466 attached but dead since 15 Oct"

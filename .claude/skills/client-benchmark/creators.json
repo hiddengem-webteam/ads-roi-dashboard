@@ -132,13 +132,6 @@
   "account": "1585826092078255",
   "campaign": "ToF - Keyword Engagement Campaign - Southeastern US – 08/05/26"
  },
- "120250466119210481": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-07-28",
-  "account": "1585826092078255",
-  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors"
- },
  "120250465540440481": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
@@ -146,12 +139,12 @@
   "account": "1585826092078255",
   "campaign": "ToF - Keyword Engagement Campaign - Southeastern US"
  },
- "120250465906750481": {
+ "120250466119210481": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
   "created": "2026-07-28",
   "account": "1585826092078255",
-  "campaign": "MoF - Lead Campaign - Retargeting Engagers"
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors"
  },
  "120250466223840481": {
   "name": "Makenna Moran",
@@ -159,6 +152,13 @@
   "created": "2026-07-28",
   "account": "1585826092078255",
   "campaign": "ToF - Giveaway Traffic Campaign"
+ },
+ "120250465906750481": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-07-28",
+  "account": "1585826092078255",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers"
  },
  "120248092037470710": {
   "name": "Charlotte Pickering",
@@ -187,13 +187,6 @@
   "created": "2026-07-08",
   "account": "615836588009747",
   "campaign": "BoF - Website Retargeting Campaign - 06/08/26"
- },
- "120241814481430710": {
-  "name": "Charlotte Pickering",
-  "actor_id": "3729121537242651",
-  "created": "2026-04-24",
-  "account": "615836588009747",
-  "campaign": "Discovery Campaign (FB) - Giveaway - 04/24/26"
  },
  "120251447865310048": {
   "name": "Shawal Nazir",
@@ -482,13 +475,6 @@
   "account": "953162737054331",
   "campaign": "ToF - Giveaway Traffic Campaign - SAC/SJ/SF"
  },
- "120242695749960585": {
-  "name": "Nicole Araya",
-  "actor_id": "29266007376330746",
-  "created": "2026-04-28",
-  "account": "953162737054331",
-  "campaign": "FB Discovery Campaign - April 28"
- },
  "52532468316295": {
   "name": "Shawal Nazir",
   "actor_id": "4507896559350480",
@@ -538,19 +524,19 @@
   "account": "827872700004659",
   "campaign": "FB Discovery Campaign - Giveaway - 06/19/26"
  },
- "6984978941691": {
-  "name": "Shawal Nazir",
-  "actor_id": "4507896559350480",
-  "created": "2026-06-12",
-  "account": "827872700004659",
-  "campaign": "MoF - Lookalike Sales Campaign - 06/12/26"
- },
  "6984965187091": {
   "name": "Shawal Nazir",
   "actor_id": "4507896559350480",
   "created": "2026-06-12",
   "account": "827872700004659",
   "campaign": "BoF - Website Retargeting Campaign - 06/12/26"
+ },
+ "6984978941691": {
+  "name": "Shawal Nazir",
+  "actor_id": "4507896559350480",
+  "created": "2026-06-12",
+  "account": "827872700004659",
+  "campaign": "MoF - Lookalike Sales Campaign - 06/12/26"
  },
  "6961572862891": {
   "name": "Makenna Moran",
@@ -657,12 +643,19 @@
   "account": "1530849534802936",
   "campaign": "Post: \"The Outpost Grand Canyon 🏜️\""
  },
+ "120250453376450069": {
+  "name": "Nathan Jay Herrington",
+  "actor_id": "10163273613807724",
+  "created": "2026-10-20",
+  "account": "1275283434220508",
+  "campaign": "SP | Willow | Lead Gen | VIP List | 10-2026"
+ },
  "120250384435990069": {
   "name": "Nathan Jay Herrington",
   "actor_id": "10163273613807724",
   "created": "2026-10-19",
   "account": "1275283434220508",
-  "campaign": "SP | Willow | Leads | VIP List | 10-2026"
+  "campaign": "SP | Willow | Pre-Sales | VIP List | 10-2026"
  },
  "120250386430380069": {
   "name": "Live Intentionally Today LIT",
@@ -762,33 +755,12 @@
   "account": "1275283434220508",
   "campaign": "Instagram post: If you’ve been restless lately…..."
  },
- "120243688505080069": {
-  "name": "Selah",
-  "actor_id": "1129950399522805",
-  "created": "2026-04-28",
-  "account": "1275283434220508",
-  "campaign": "Instagram post: Something new is quietly arriving..."
- },
- "120243476754550069": {
-  "name": "Selah",
-  "actor_id": "1129950399522805",
-  "created": "2026-04-24",
-  "account": "1275283434220508",
-  "campaign": "Instagram post: Have you heard…\nor have you felt..."
- },
- "120243417139220069": {
-  "name": "Selah",
-  "actor_id": "1129950399522805",
-  "created": "2026-04-23",
-  "account": "1275283434220508",
-  "campaign": "Instagram post: Feeling drained or disconnected?..."
- },
- "120243353617560069": {
-  "name": "Selah",
-  "actor_id": "1129950399522805",
-  "created": "2026-04-22",
-  "account": "1275283434220508",
-  "campaign": "Instagram post: She gave her whole heart this..."
+ "120252323123880787": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-09-01",
+  "account": "1313401330776046",
+  "campaign": "ToF - Keyword Engagement Campaign - 09/01/26"
  },
  "120252322871520787": {
   "name": "Makenna Moran",
@@ -804,19 +776,26 @@
   "account": "1313401330776046",
   "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/01/26"
  },
- "120252323123880787": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-09-01",
-  "account": "1313401330776046",
-  "campaign": "ToF - Keyword Engagement Campaign - 09/01/26"
- },
  "120252336117870787": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
   "created": "2026-09-01",
   "account": "1313401330776046",
   "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26"
+ },
+ "120247568184840476": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-09-16",
+  "account": "884285717873613",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/16/2026"
+ },
+ "120247567775860476": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-09-16",
+  "account": "884285717873613",
+  "campaign": "ToF - Keyword Engagement Campaign - 09/16/2026"
  },
  "120247567662420476": {
   "name": "Makenna Moran",
@@ -831,20 +810,6 @@
   "created": "2026-09-16",
   "account": "884285717873613",
   "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026"
- },
- "120247567775860476": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-09-16",
-  "account": "884285717873613",
-  "campaign": "ToF - Keyword Engagement Campaign - 09/16/2026"
- },
- "120247568184840476": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-09-16",
-  "account": "884285717873613",
-  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/16/2026"
  },
  "120248826756910177": {
   "name": "Charlotte Pickering",
@@ -874,6 +839,13 @@
   "account": "2003562593933799",
   "campaign": "ToF - Giveaway Traffic Campaign - 09/09/2002"
  },
+ "120248749353500574": {
+  "name": "Lindsey Cooke",
+  "actor_id": "10115031877903083",
+  "created": "2026-10-09",
+  "account": "973261794434226",
+  "campaign": "TOF Wedding Leads (alt aud) 10.9.26"
+ },
  "120248732396120574": {
   "name": "Lindsey Cooke",
   "actor_id": "10115031877903083",
@@ -901,5 +873,110 @@
   "created": "2026-10-05",
   "account": "973261794434226",
   "campaign": "ToF - Giveaway Traffic Campaign - ATX, HTX, DAL, SATX, FTW - 10/05/2026"
+ },
+ "120250332454800621": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-10-14",
+  "account": "2030318804465316",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 10/09/26."
+ },
+ "120250332311250621": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-10-14",
+  "account": "2030318804465316",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers -  10/09/26"
+ },
+ "120250319595040621": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-10-13",
+  "account": "2030318804465316",
+  "campaign": "ToF - Giveaway Traffic Campaign - UK"
+ },
+ "120249567343350621": {
+  "name": "Justin Vrvkvki",
+  "actor_id": "10163348826552187",
+  "created": "2026-08-18",
+  "account": "2030318804465316",
+  "campaign": "[LBOS] 08/19/26 - Creative Test - Sales"
+ },
+ "120249466341170621": {
+  "name": "Justin Vrvkvki",
+  "actor_id": "10163348826552187",
+  "created": "2026-08-13",
+  "account": "2030318804465316",
+  "campaign": "[LBOS] 08/17/26 - Creative Test - Sales"
+ },
+ "120247185035790621": {
+  "name": "Talha Mukhtar",
+  "actor_id": "3756296811195888",
+  "created": "2026-06-12",
+  "account": "2030318804465316",
+  "campaign": "LB | LC01 | GC | ABO | 13062026"
+ },
+ "120256420993340670": {
+  "name": "Chiara Henry",
+  "actor_id": "2278168359696773",
+  "created": "2026-10-21",
+  "account": "2194562394139883",
+  "campaign": "ToF - Giveaway Traffic Campaign - [TX, OK, AR] - 10/20/26"
+ },
+ "120256422789610670": {
+  "name": "Chiara Henry",
+  "actor_id": "2278168359696773",
+  "created": "2026-10-21",
+  "account": "2194562394139883",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 10/20/26"
+ },
+ "120256422024000670": {
+  "name": "Chiara Henry",
+  "actor_id": "2278168359696773",
+  "created": "2026-10-21",
+  "account": "2194562394139883",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 10/20/26"
+ },
+ "120250948689890670": {
+  "name": "Jennifer Inumerable-Garcia",
+  "actor_id": "10166907563959893",
+  "created": "2026-05-27",
+  "account": "2194562394139883",
+  "campaign": "Summer 2026 Promo"
+ },
+ "120250428429790670": {
+  "name": "Jennifer Inumerable-Garcia",
+  "actor_id": "10166907563959893",
+  "created": "2026-05-20",
+  "account": "2194562394139883",
+  "campaign": "Retargeting - Warm Audience 10% Off"
+ },
+ "120254585223360322": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-08-06",
+  "account": "651114096215889",
+  "campaign": "ToF - Keyword Engagement Campaign - Broad - 08/05/26"
+ },
+ "120254552425000322": {
+  "name": "Kristal Mae Puguan",
+  "actor_id": "28772301795745799",
+  "created": "2026-08-06",
+  "account": "651114096215889",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors"
+ },
+ "120254118495950322": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-07-30",
+  "account": "651114096215889",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers"
+ },
+ "120251652165750322": {
+  "name": "Charlotte Pickering",
+  "actor_id": "3729121537242651",
+  "created": "2026-06-09",
+  "account": "651114096215889",
+  "campaign": "ToF Discovery Campaign - Giveaway - 06/10/26"
  }
 }

@@ -1,10 +1,10 @@
 import csv, json, glob, os, re, collections, datetime
 ROOT=os.path.join(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)),"..","..","..")),"weekly")  # <repo>/weekly
 SP=os.path.dirname(os.path.abspath(__file__))
-TODAY="2026-10-19"
-PREV_DATE="2026-10-13"
+TODAY="2026-10-26"
+PREV_DATE="2026-10-19"
 OUT=f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks"
-ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-19: name -> (AM, account id, account name, connector)
+ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-26: name -> (AM, account id, account name, connector)
  "FLOHOM":("Makenna","2100710320122219","FLOHOM Ads","live"),
  "Treetop Escapes":("Makenna","967636478877602","Treetop Escapes Ads","live"),
  "Paradise Pointe":("Makenna","1585826092078255","Paradise Pointe Ads","live"),
@@ -26,11 +26,16 @@ ADV={ # CRM "Clients - Onboarding" tab, Meta Ads = Advanced, read 2026-10-19: na
  "Little River Landing":("Makenna","884285717873613","Little River Landing","live"),
  "North Star Lodge & Resort":("Charlotte","2003562593933799","North Star Lodge & Resort Ads","live"),
  "Walden Retreats":("Anna","973261794434226","Walden Retreats","live"),
+ "Glasscombe":("Charlotte","2030318804465316","Glasscombe","live"),
+ "Cabin Collective":("Chiara","2194562394139883","Cabin Collective","live"),
+ "Sunapee Stays":("Charlotte","651114096215889","Sunapee Stays Ads Account","live"),
 }
 # Advanced in the CRM but with no ad account in PROJECT.md section 5 (footer only)
-ADV_UNMAPPED={"Treetop Hideaways":"Kristal","Glasscombe":"Charlotte","Cabin Collective":"Chiara","Casey Key Resort":"Alicia","Arca Roatan":"Anna"}
+ADV_UNMAPPED={"Treetop Hideaways":"Kristal","Casey Key Resort":"Alicia","Arca Roatan":"Anna","Gooseberry Lodges":"Alicia","Dunya Camp":"Chiara","Nine Pines Retreat":"Nicole","Lundy Farm":"Charlotte"}
 # Was Advanced on 2026-09-21, now Basic in the CRM: dropped from scope this run
-ADV_DROPPED={"Sunapee Stays":"CRM Meta Ads column now Basic, was Advanced on 13 Oct; account 651114096215889 still runs $50/day and stays in the spend and pixel checks"}
+ADV_DROPPED={}
+# Sunapee Stays reads Basic in the CRM since 19 Oct but Shawal (2026-10-26) keeps it in the advanced reporting, so it is in ADV above
+ADV_OVERRIDE={"Sunapee Stays":"CRM Meta Ads column reads Basic since 19 Oct; kept as Advanced at Shawal's request (2026-10-26)"}
 def f(x):
     try: return float(x)
     except: return None
@@ -190,7 +195,7 @@ def mtd_csv(client):
 # ---------- Weekly Meta Ads meeting notes (Gemini) ----------
 # One entry per meeting doc found on the calendar since the previous run. Oldest first.
 MEETINGS=[
- dict(title="Meta Ads Strategy", date="2026-10-14", doc_id="14s5-eW49GhSjyoeunooM1-kBX7O_Rr4X8pE_rS9WmhE", file=f"{SP}/meeting1.json"),
+ dict(title="Meta Ads Strategy", date="2026-10-21", doc_id="1WuGjeZnHtMEibfhpZ2wky-XTdW6MVJYFvTMKfNkY0eE", file=f"{SP}/meeting1.json"),
 ]
 # How Gemini spells clients in the notes. Lower-case substrings.
 ALIASES={
@@ -262,7 +267,7 @@ FLAGGED=("Flag to Shawal","Review w/ HG AI")
 def diff_for(rec):
     key=rec["cid"] or (rec["client"]+"||"+rec["name"])
     p=prev.get(key) or prev.get(rec["client"]+"||"+rec["name"])  # CSV rows last week, live rows this week: fall back to client + campaign name
-    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 13 Oct run")
+    if p is None: return ("new",1 if rec["state"] in FLAGGED else 0,"New, not in the 19 Oct run")
     ps=p["state"]; pw=int(p.get("weeks_open") or 0)
     if ps in FLAGGED and rec["state"] in FLAGGED: return ("still_open",pw+1,f"Still open, week {pw+1}"+("" if ps==rec["state"] else f" (was {ps})"))
     if ps in FLAGGED and rec["state"] not in FLAGGED: return ("fixed",0,f"Fixed, was {ps}")
@@ -277,26 +282,36 @@ for fn in sorted(glob.glob(f"{ROOT}/HG AI Reports/*.md")):
     HGAI[b]=fn
 HGAI_LINES={}
 EXTRA_NOTES={
- "Selah Place":"Actions log: the BoF retargeting budget was raised on 13 Oct (planned move of the paused test's budget, Done; the spend check reads $30/day today), so this 14-day window is the first mostly on the higher budget. BoF 11.7x on 8 purchases sits below the 15x Scale line; the paused prospecting test's trailing spend (1.1x) is listed, not scored.",
- "Ridge & Falls":"Actions log: the lead-campaign relaunch with a fixed conversion event (planned 28 Sep) has still not happened; the 09/01 campaign is the live one and is in its fourth week at Flag ($3.51 CPL on 30 days, $2.76 on 14). October direct revenue is up on a very small base.",
- "Tàberg Falls":"Budgets were cut on 13 Oct (today $250/day: Giveaway $50, Leads $50, Lookalike $50, Broad $50, BoF $50), so this 14-day window is mostly on the cut budgets. The Broad prospecting campaign (3.9x on 2 purchases, $698) moves to Review; it is scored on the Retargeting bands (see footer).",
- "Paradise Pointe":"BoF 3.7x, third week at Review, frequency 5.7 and still the only Frequency-watch row. September ROI file: Meta recorded no revenue for 12 retargeting purchases; the purchase-value check (decision 26) is still open, so the live ROAS may understate.",
- "Asheville River Cabins":"14 Oct Strategy: Leshan's custom script in the Cloudbeds account recorded Facebook click IDs on reservations; sending them to Meta through CAPI needs host API access, which Shawal is requesting. The leads campaign slips from Scale to Healthy at $0.30 (band edge); BoF 43.1x holds.",
- "The Outpost":"The second BoF campaign (10/08, $10/day) runs beside the 08/29 one; both are under the $200 gate with 0 purchases in 14 days. Decision 30 (pause the old one) is still open.",
- "Walden Retreats":"The two 'TOF Wedding Leads' campaigns are the client's own (created by Lindsey Cooke on 8 and 9 Oct per the account activity log; the account has run wedding-lead campaigns since December 2025), so they are listed below and not scored. HiddenGem's three campaigns launched 5 to 7 Oct: leads $1.30 CPL on 98 leads (Review, first week over the gate), BoF 56.9x on $118 (under the gate).",
- "North Star Lodge & Resort":"14 Oct Strategy: the full plugin, script and API set is installed (Leshan); BoF spend is low ($70 in 14 days) and no BoF reservation has come through yet, though clicks are visible in the platform.",
- "FLOHOM":"BoF 4.0x on 14 days (6 purchases) against 7.1x on 30 days: the last two weeks are the soft patch, and October direct revenue is 25% below September's same span. The [Myrtle Beach] lookalike slips to Monitor at 6.0x on 1 purchase.",
- "Treetop Escapes":"BoF 2.5x on 3 purchases in 14 days (7.1x on 30), first Review since the 28 Sep run (4.7x then). October direct revenue is up 25% on September's span, so bookings are arriving that the pixel does not credit to the campaign.",
- "Stay Saluda NC":"BoF 4.3x on 3 purchases with frequency 4.7 and climbing. The Saluda GHL hosts still fire the Inspired Retreats pixel (pixel check, week 5).",
- "Ponderosa Pines Resort":"BoF 7.6x on 14 days (15.2x on 30): a 14-day dip takes it from Scale to Monitor; frequency 3.1.",
- "American River Resort":"Both campaigns stopped between 15 and 19 Oct (spend check: $0/day live today). The lead campaign spent $551 in the window and is paused now, so nothing is scored. Confirm with Nicole whether this is a pause or an offboarding.",
- "Endless Stays":"BoF 3.1x, third week at Review. October direct revenue is $26k against $5.4k in September's same span (+381%), so direct bookings are landing outside the pixel's view; check the purchase event on the Hospitable booking flow.",
+ "Stay Saluda NC":"BoF drops from Review (4.3x) to Flag at 1.7x on 2 purchases ($422 in 14 days; 4.0x on 7 purchases over 30), frequency 4.7 and still climbing, so the retargeting pool is saturated. Leads hold at $0.92 (Monitor). October direct revenue is 21% below September's same span. The Saluda GHL hosts still fire the Inspired Retreats pixel (pixel check, week 6).",
+ "Endless Stays":"BoF 4.4x on a single purchase ($1,055 in 14 days; 3.6x on 3 purchases over 30), fourth week at Review and the biggest Review spend on the list. The platform shows October direct revenue at $42.7k against $8.1k in September's same span (+429%) while the pixel recorded 5 Purchase events all week, so bookings are landing outside the pixel's view; the Hospitable booking flow's purchase event is the thing to check.",
+ "Ridge & Falls":"Flag, week 5: $2.63 CPL on 30 days ($2.05 on 14) on the 09/01 lead campaign; the relaunch with a fixed conversion event (planned 28 Sep) has still not happened. BoF 24.7x on 5 purchases but under the $200 gate ($118). October direct revenue $4.0k from 9 bookings against $871 in September's span.",
+ "North Star Lodge & Resort":"New Flag: the 10/02 lead campaign crossed the $100 gate at $104 with 0 leads (CPC $0.90, CPM $24.53), so it is scored for the first time and has nothing to show. BoF $70 in 14 days, 1 purchase, under the gate. Pixel check this week: the Cloudbeds booking engine stopped firing either North Star pixel after the morning of 19 Oct, so booking-engine purchases are no longer reaching Meta; Charlotte and Leshan to confirm what changed in Cloudbeds (14 Oct plugin and script install) and reinstall the canonical pixel. October direct revenue is 64% below September's span (shoulder season in Killington).",
+ "Stay On 30A":"The HiddenGem Pixel lookalike campaign moves up to Scale at 18.6x ($2,811 in 14 days, 9 purchases; 14.4x on 30 days), joining the BoF at 15.9x. Leads $1.41, sixth week at Review on 1,069 leads. October direct revenue $249k from 94 bookings, 27% below September's same span, with 40 promo-code uses (EARLY BIRD DIRECT ×17, VIP100 ×13).",
+ "Starlight Haven Weiss Lake":"Leads slip from Monitor to Review at $1.06 (band edge; $1.26 on 14 days), 707 leads on $752. BoF holds at Scale, 21.2x on 19 purchases.",
+ "Starlight Haven Hot Springs":"Both campaigns in good shape: leads $0.32 Healthy on 2,859 leads, BoF 21.0x Scale on 9 purchases.",
+ "Paradise Pointe":"BoF Fixed: 15.1x on 17 purchases ($710 in 14 days) takes it from Review to Scale, although 30 days read 8.8x and frequency is 6.3, the only Frequency-watch row, so the audience is being hit hard. Leads tip into Review at $1.01 (band edge). 21 Oct Strategy used this account as the double-counting example: a $730.55 booking on 21 Oct with WELCOME100 was credited by both the BoF pixel and the promo code; the attribution matching algorithm agreed at that meeting is the fix. CAPI still silent (pixel check, week 3).",
+ "Sunapee Stays":"Back in the advanced reporting at Shawal's request (the CRM reads Basic since 19 Oct). Leads $1.70 on 30 days ($2.17 on 14) enters at Review; BoF 11.1x on 3 purchases is under the $200 gate ($138; 15.4x on 7 purchases over 30 days). October direct revenue $25.4k, 37% below September's span.",
+ "Green Springs Inn":"Leads $1.37, sixth week at Review ($1.22 on 14 days, improving). BoF 7.4x on 3 purchases, under the gate at $143.",
+ "Walden Retreats":"HiddenGem's leads campaign $1.28 on 155 leads, second week at Review; BoF 46.6x on 9 purchases but under the gate at $139. The client's own 'TOF Wedding Leads' campaign (Lindsey Cooke) is listed below and not scored: $14.22 CPL on 26 leads over 30 days.",
+ "Bison Ridge Retreat":"Leads $1.98 on 76 leads, third week at Review ($2.20 on 14 days, worsening). BoF 0 purchases on $69, under the gate.",
+ "Little River Landing":"Leads $1.53, fourth week at Review. BoF 3.4x on 1 purchase, under the gate ($116).",
+ "AwayFrames":"Leads $1.35, sixth week at Review on $5/day. BoF 50.4x on 2 purchases, under the gate.",
+ "FLOHOM":"BoF Fixed: 5.2x on 6 purchases ($837 in 14 days; 5.7x on 19 purchases over 30) lifts it from Review to Monitor. Lookalike 12.3x Healthy, Myrtle Beach lookalike 6.1x Monitor, leads $0.53 Monitor. October direct revenue is 25% below September's same span.",
+ "Treetop Escapes":"BoF Fixed: 12.4x on 6 purchases ($559 in 14 days) takes it from Review to Healthy. Leads $0.79 Monitor on 1,142 leads. October direct revenue up 18% on September's span.",
+ "Tàberg Falls":"The Broad prospecting campaign (09/28) was paused this week after $359 in the window with no purchases, so the account is back to four campaigns at $200/day. BoF 14.8x Healthy on 6 purchases, Lookalike 8.0x Monitor, leads $0.59 Monitor on 2,794 leads.",
+ "Selah Place":"The new $55/day 'SP / Willow / Lead Gen / VIP List' campaign (spend check: account up from $70 to $125/day) was created by Nathan Jay Herrington on the client side, so it is listed below and not scored: $356 in 30 days, 173 leads at $2.06. HiddenGem's BoF 7.5x on 6 purchases (Monitor, frequency 4.1) and leads $0.58 (Monitor) are unchanged.",
+ "Asheville River Cabins":"BoF 11.6x Healthy on 7 purchases (35.3x on 30 days), leads $0.31 Healthy. 21 Oct Strategy: Leshan is contacting Cloudbeds to confirm the API exposes coupon and reservation data, which is also what the CAPI send through HG AI needs; the pixel is still browser-only.",
+ "Ponderosa Pines Resort":"BoF 9.4x Healthy on 14 purchases (13.3x on 30), leads $0.97 Monitor, frequency 2.9. October direct revenue 11% below September's span.",
+ "The Outpost":"Only the 10/08 BoF campaign spent in the window ($136, 1 purchase, 2.8x), under the gate; the 08/29 one is no longer spending. Decision 30 (pause the old one) can close if it stays that way.",
+ "American River Resort":"Ads off since 15 Oct: paused, not offboarded (Shawal, 26 Oct). The lead campaign's trailing spend ($414, 329 leads at $1.26) is listed as paused and nothing is scored. The row stays until the campaigns come back.",
+ "Glasscombe":"First live read (account 2030318804465316 added to the client map today; the three campaigns were created by Charlotte on 13 and 14 Oct). Both scored campaigns are under the gate: leads $0.31 on 190 leads ($58), which would be Healthy at the gate, and BoF 0 purchases on $59. October direct revenue is 56% below September's span (UK shoulder season).",
+ "Cabin Collective":"First live read: the three-campaign structure launched 20 Oct (created by Chiara on 21 Oct), account added to the client map today. Under the gate on both: leads $1.30 on 36 leads ($47), BoF 2 purchases on $48 (119.9x). The platform shows October direct revenue $52.8k from 28 bookings, +64% on September's span.",
 }
 def hgai_line(client):
     n=norm(client); hits=[b for b in HGAI if norm(b).find(n[:8])>=0 or n.find(norm(b.split(" - ")[0][11:]))>=0]
     if client in HGAI_LINES: return HGAI_LINES[client]+(f" (file: {hits[0]})" if hits else "")
     if hits: return f"HG AI notes: report on file ({', '.join(hits)}), not summarised."
-    return "HG AI notes: none dropped in since the previous run."
+    return "HG AI notes: no HG AI reports this week (not run, Shawal 26 Oct)."
 
 # ---------- score ----------
 records=[]; unclassified=[]; paused_by_client=collections.defaultdict(list)
@@ -396,7 +411,7 @@ def srow(r,first=True):
     return f"| {r['client']} | {r['am']} | {r['name']} | {r['type']} | {money(r['spend'],0)} / {r['win']}d | {r['gov']} | {r['state']} | {r['difftxt']} |"
 L=[]
 L.append(f"# Client Benchmark Review (advanced setups) — {TODAY}\n")
-L.append(f"Run: 19 October 2026 (Monday), fifth run, compared against {PREVFILE}. Live reads through the Meta Marketing API with the HiddenGem-Claude system user, now the standing data path (`scripts/pull-campaign-insights.mts`, 09:37 to 09:38 PT); every account is live and the CSV export {rs} to {re_} was not needed for scoring. Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Sunapee Stays leaves scope (CRM now says Basic). Five Advanced clients in the CRM have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
+L.append(f"Run: 26 October 2026 (Monday), sixth run, compared against {PREVFILE}. Live reads through the Meta Marketing API with the HiddenGem-Claude system user, the standing data path (`scripts/pull-campaign-insights.mts`, 06:57 to 06:59 PT); every account is live and the CSV export {rs} to {re_} was not needed for scoring. Scope: clients marked **Advanced** in the CRM \"Meta Ads\" column (Clients - Onboarding tab), re-read today: {len(ADV)+len(ADV_UNMAPPED)} clients, {len(ADV)} with an ad account. Sunapee Stays is back in scope at Shawal's request although the CRM reads Basic; Glasscombe and Cabin Collective get their first live reads now that their accounts are in the client map. Seven Advanced clients in the CRM have no ad account yet. Only Lead Gen (MoF) and Sales/Retargeting (BoF) campaigns are scored; IG Discovery and Keyword (ToF) spend is shown for context only.\n")
 L.append("| Advanced clients | Live reads | From CSV | Campaigns scored | Under spend gate | Flag to Shawal | Review w/ HG AI | Monitor | Healthy | Scale w/ HG AI | Frequency over 5 |")
 L.append("|---|---|---|---|---|---|---|---|---|---|---|")
 L.append(f"| {len(ADV)} (+{len(ADV_UNMAPPED)} unmapped) | {sum(1 for v in ADV.values() if v[3]=='live')} | {sum(1 for v in ADV.values() if v[3]=='csv')} | {len(scored)} | {counts['Under gate']} | {counts['Flag to Shawal']} | {counts['Review w/ HG AI']} | {counts['Monitor']} | {counts['Healthy']} | {counts['Scale w/ HG AI']} | {len(freq_watch)} |\n")
@@ -425,7 +440,7 @@ def act_key(r): return (0 if r["type"]!=LEAD else 1, ORDER[r["state"]], -r["spen
 for r in sorted(act,key=act_key): L.append(srow(r))
 if removed:
     L.append("")
-    L.append("Removed since last week (flagged on 13 Oct, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
+    L.append("Removed since last week (flagged on 19 Oct, not scored today): "+"; ".join(f"{p['client']}: {p['campaign']} ({p['state']})" for p in removed)+".")
 L.append("")
 L.append("## Scale candidates\n")
 L.append("| Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week |")
@@ -480,7 +495,7 @@ L.append("- Only campaigns live (ACTIVE) at run time are scored. Paused campaign
 L.append("- Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): "+("; ".join(f"{c}: {', '.join(z['name']+' ('+z['creator']+')' for z in zs)}" for c,zs in client_run.items()) if client_run else "none")+". Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.")
 L.append(f"- Unclassified campaigns: {', '.join(f'{c}: {n}' for c,n in unclassified) if unclassified else 'none'}.")
 L.append(f"- Previous report: {PREVFILE}. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: {sum(1 for r in records if r['diff']=='new')} new, {sum(1 for r in records if r['diff']=='still_open')} still open, {sum(1 for r in records if r['diff']=='fixed')} fixed, {sum(1 for r in records if r['diff']=='unchanged')} unchanged, {len(removed)} removed.")
-L.append("- Scope changes vs 13 Oct: "+("; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "none")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
+L.append("- Scope changes vs 19 Oct: Glasscombe (2030318804465316) and Cabin Collective (2194562394139883) added with their first live reads; "+("; ".join(f"{c} kept in scope ({why})" for c,why in ADV_OVERRIDE.items()))+("; "+"; ".join(f"{c} dropped ({why})" for c,why in ADV_DROPPED.items()) if ADV_DROPPED else "")+". Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: "+", ".join(f"{c} (AM {am})" for c,am in ADV_UNMAPPED.items())+".")
 L.append("- HG AI reports read from `HG AI Reports/` at the project root, dated since the previous run: "+(", ".join(HGAI) if HGAI else "none")+".")
 L.append("- Selah Place's prospecting campaign (paused this week) is named with pipes in Meta (\"SP | Prospecting Test | LAL + Interests x Creative | 09-2026\"); shown here with slashes.")
 L.append("- Meeting notes: every \"Meta Ads Strategy\", \"Meta Ads Sync\" or \"Meta Ads x HiddenGem AI Sync\" calendar event since the previous run that has a \"Notes by Gemini\" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).")
