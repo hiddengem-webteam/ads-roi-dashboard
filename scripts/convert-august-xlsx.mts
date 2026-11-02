@@ -93,6 +93,14 @@ function detectCols(hdr: string[]): ColMap | null {
   // guest column.
   let lo = revenue, hi = revenue;
   while (lo - 1 >= 1 && H[lo - 1]) lo--;
+  // Tolerate ONE blank spacer column on the left of the block (Columbia Gorge
+  // Getaways' August tab, re-exported 2 Nov 2026: "First Name, Last Name,
+  // <blank>, Company, Reserved On, Revenue, Discount Code"). Side tables sit
+  // to the right, so extending leftward cannot pick one up.
+  if (lo - 2 >= 1 && !H[lo - 1] && H[lo - 2]) {
+    lo -= 2;
+    while (lo - 1 >= 1 && H[lo - 1]) lo--;
+  }
   while (hi + 1 < H.length && H[hi + 1]) hi++;
   const inBlock = (i: number) => i >= lo && i <= hi;
   const find = (...names: string[]) => {
@@ -158,6 +166,13 @@ async function main() {
       for (let r = hdrRowIdx + 1; r <= ws.rowCount; r++) {
         const vals = (ws.getRow(r).values as unknown[]).map(cellVal);
         const guest = cols.guest.map((i) => String(vals[i] ?? '').trim()).filter(Boolean).join(' ');
+        // A second header row below the bookings marks a scratch table pasted
+        // under the real one (Columbia Gorge Getaways, Aug re-export 2 Nov
+        // 2026: a "First Name / Last Name / Full name / Email / Reservation
+        // Total" lookup whose total column lines up with Revenue). Stop there.
+        // Scoped to that tab: American River Resort repeats its header per
+        // property block and must keep reading.
+        if (client === 'Columbia Gorge Getaways' && /^first name( last name)?$/i.test(guest)) break;
         const revenue = Number(vals[cols.revenue] ?? NaN);
         let code = cols.code >= 0 ? String(vals[cols.code] ?? '').trim() : '';
         // "WELCOME50 (-$50)" style (Nature Nooks): code with inline discount

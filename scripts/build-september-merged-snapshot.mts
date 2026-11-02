@@ -99,6 +99,14 @@ function csvCell(v: unknown): string {
 /** FLOHOM PMS csv from the saved roi-export halves (live HG AI PMS data). */
 function generateFlohomPms(): void {
   const dir = path.join(XLSX_SOURCE, 'Flohom');
+  // Since 2 Nov 2026 Makenna's September workbook carries a FLOHOM tab (a
+  // Hostaway export with the site coupon names); the converter writes it to
+  // xlsx-source/Flohom. Keep that AM tab and only fall back to the roi-export
+  // halves when no AM tab was converted.
+  if (fs.existsSync(path.join(dir, 'PMS data.csv'))) {
+    console.log('Flohom: using the converted AM tab (xlsx-source/Flohom), roi-export fallback skipped.');
+    return;
+  }
   const halves = ['roi-export-sept-a.json', 'roi-export-sept-b.json']
     .map((f) => path.join(ROOT, 'September 2026 PMS Data', f));
   if (!halves.every((f) => fs.existsSync(f))) {
