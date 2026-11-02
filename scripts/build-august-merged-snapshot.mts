@@ -44,7 +44,7 @@ async function main() {
   const files: UploadedFilesMap = { metaAds: null, promoCodes: null, pmsFiles: {}, ghlFiles: {} };
 
   // Meta ads come EXCLUSIVELY from the manually exported Ads Manager Monthly
-  // Report (August 2026/Meta ads - August 26.csv) — it covers every agency ad
+  // Report (Monthly Data/2026-08 August/Meta ads - August 26.csv) — it covers every agency ad
   // account including the ones not connected to the platform (ARR, Tuxedo,
   // CGG, Oak & Ember, both Starlights). Account names are rewritten to exact
   // dashboard client names via this explicit map; unmapped accounts (Canopy,
@@ -92,7 +92,7 @@ async function main() {
     'TÃ¡berg Falls': 'Tàberg Falls', // mojibake variant in the export
   };
 
-  const reportPath = path.join(ROOT, 'August 2026', 'Meta ads - August 26.csv');
+  const reportPath = path.join(ROOT, 'Monthly Data', '2026-08 August', 'Meta ads - August 26.csv');
   if (fs.existsSync(reportPath)) {
     const parsed = Papa.parse<Record<string, string>>(fs.readFileSync(reportPath, 'utf8'), {
       header: true,

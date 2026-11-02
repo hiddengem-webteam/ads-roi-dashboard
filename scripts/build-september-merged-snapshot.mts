@@ -6,8 +6,8 @@
 //                (from scripts/convert-september-xlsx.mts over the seven AM
 //                workbooks). FLOHOM has no AM tab this month: its PMS csv is
 //                generated here from the saved HG AI roi-export halves
-//                (September 2026 PMS Data/roi-export-sept-{a,b}.json).
-//   • Meta Ads — Sept Data/Monthly-Report (7).csv (Ads Manager export,
+//                (Monthly Data/2026-09 September/roi-export-sept-{a,b}.json).
+//   • Meta Ads — Monthly Data/2026-09 September/Monthly-Report (7).csv (Ads Manager export,
 //                Sep 1–30, AD SET level → aggregated to campaign level here;
 //                the blank-account grand-total row is used as a checksum).
 //   • GHL      — the platform sync's september-2026 per-client GHL CSVs
@@ -42,7 +42,7 @@ const ROOT = path.resolve(import.meta.dirname, '..');
 const PERIOD_ID = 'september-2026';
 const XLSX_SOURCE = path.join(ROOT, 'public', 'data', 'periods', PERIOD_ID, 'xlsx-source');
 const PLATFORM_CLIENTS = path.join(ROOT, 'public', 'data', 'periods', PERIOD_ID, 'clients');
-const REPORT_PATH = path.join(ROOT, 'Sept Data', 'Monthly-Report (7).csv');
+const REPORT_PATH = path.join(ROOT, 'Monthly Data', '2026-09 September', 'Monthly-Report (7).csv');
 const FLOHOM_TENANT = '2a5a7022-03cb-4f9b-b4fd-2d650dbb2a1d';
 
 // Account names exactly as they appear in the September export. Unmapped
@@ -108,7 +108,7 @@ function generateFlohomPms(): void {
     return;
   }
   const halves = ['roi-export-sept-a.json', 'roi-export-sept-b.json']
-    .map((f) => path.join(ROOT, 'September 2026 PMS Data', f));
+    .map((f) => path.join(ROOT, 'Monthly Data', '2026-09 September', f));
   if (!halves.every((f) => fs.existsSync(f))) {
     console.warn('FLOHOM roi-export halves missing — Flohom will be ads-only.');
     return;

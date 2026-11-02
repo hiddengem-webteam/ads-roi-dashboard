@@ -56,6 +56,8 @@ next-env.d.ts
 /public/data/snapshots/*
 !/public/data/snapshots/july-2026.json
 !/public/data/snapshots/august-2026.json
+!/public/data/snapshots/october-2026.json
+!/public/data/snapshots/october-2026-client-reporting-export.json
 !/public/data/snapshots/september-2026.json
 # Snapshot-only months (platform sync output frozen 2026-10-15) so Netlify,
 # where the sync does not run, still serves them. Same PII caveat as above.
@@ -65,8 +67,8 @@ next-env.d.ts
 !/public/data/snapshots/march-2026.json
 !/public/data/snapshots/february-2026.json
 
-# Raw account-manager PMS exports (real guest PII) — never commit.
-/July 2026 PMS Data/
+# Raw account-manager PMS exports and Ads Manager reports (real guest PII) — never commit.
+/Monthly Data/
 
 # Google service account credentials
 service-account.json
@@ -86,11 +88,6 @@ scripts/.july-xlsx-conversion-report.json
 
 # Sentinel tool artifacts
 /sentinel-ultra/
-/August 2026 PMS Data/
-/August 2026/
-/September 2026 PMS Data/
-/September 2026/
-/Sept Data/
 
 # Written by the ad spend check each Monday from the Master sheet; regenerated every run
 

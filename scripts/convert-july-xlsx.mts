@@ -1,4 +1,4 @@
-// One-off converter: turns the manually-compiled "July 2026 PMS Data/*.xlsx"
+// One-off converter: turns the manually-compiled "Monthly Data/2026-07 July/*.xlsx"
 // workbooks (one sheet per client, wildly different export formats per
 // account manager) into clean canonical "PMS data.csv" files per client,
 // filtered to July 2026 check-in dates, written into
@@ -31,7 +31,7 @@ class NodeFileReader {
 globalThis.FileReader = NodeFileReader;
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const SRC_DIR = path.join(ROOT, 'July 2026 PMS Data');
+const SRC_DIR = path.join(ROOT, 'Monthly Data', '2026-07 July');
 // Deliberately NOT public/data/periods/july-2026/clients/ — that's where the
 // platform sync writes its own PMS data.csv per client, and macOS's default
 // case-insensitive filesystem means "FLOHOM" and "Flohom" collide into the

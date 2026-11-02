@@ -15,7 +15,7 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const SRC = path.join(ROOT, 'September 2026 PMS Data');
+const SRC = path.join(ROOT, 'Monthly Data', '2026-09 September');
 const OUT = path.join(ROOT, 'public', 'data', 'periods', 'september-2026', 'xlsx-source');
 
 const FILES = ['Chiara September.xlsx', 'Nicole September.xlsx', 'Makenna September.xlsx', 'Kristal September.xlsx', 'Charlotte September.xlsx', 'Anna September.xlsx', 'Alicia September.xlsx'];

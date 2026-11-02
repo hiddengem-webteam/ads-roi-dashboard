@@ -13,6 +13,8 @@
 import type { ClientReportingFigures } from '@/components/september/septemberReportingSheetData';
 import { SEPTEMBER_REPORTING_SHEET } from '@/components/september/septemberReportingSheetData';
 import { SEPTEMBER_CLIENT_NOTES } from '@/components/september/septemberClientNotes';
+import { OCTOBER_REPORTING_SHEET } from '@/components/october/octoberReportingSheetData';
+import { OCTOBER_CLIENT_NOTES } from '@/components/october/octoberClientNotes';
 import { AUGUST_REPORTING_SHEET } from '@/components/august/augustReportingSheetData';
 import { CLIENT_REPORTING_SHEET as JULY_REPORTING_SHEET } from '@/components/july/clientReportingSheetData';
 
@@ -30,6 +32,16 @@ export interface FinalizedPeriod {
 }
 
 export const FINALIZED_PERIODS: FinalizedPeriod[] = [
+  // DRAFT (built 2026-11-02, not yet signed off): AM sheets + Oct Ads Manager
+  // report; tracking-sheet figures partial (see octoberReportingSheetData).
+  {
+    id: 'october-2026',
+    label: 'October 2026',
+    snapshot: '/data/snapshots/october-2026.json',
+    sheet: OCTOBER_REPORTING_SHEET,
+    notes: OCTOBER_CLIENT_NOTES,
+    finalizedOn: '2026-11-02',
+  },
   {
     id: 'september-2026',
     label: 'September 2026',

@@ -49,6 +49,7 @@ Three Suns Cabins,$50 off,WELCOME50,New Leads (2 night miniumum),,Followers
 Green Springs Inn,10% off,NATURE10,New Leads (2 night miniumum),,Followers
 ,,VIP10,,,Retarget
 ,,RECHARGE10,Old Manychat,,
+,,WELCOMETEXT,Welcome text/SMS flow (HG code; per Oct 2026 AM sheet),,Followers
 ,,,,,
 Treetop Escapes,$100 off,WELCOME100,New Leads (3 night miniumum),,Followers
 ,10% off,WELCOMEBACK10,Past Guests (3-night minimum),,Past Guests
@@ -56,7 +57,7 @@ Treetop Escapes,$100 off,WELCOME100,New Leads (3 night miniumum),,Followers
 ,,,,,
 Paradise Pointe,$100 off,WELCOME100,New Leads (3 night miniumum),,Followers
 ,10% off,WELCOMEBACK10,Past Guests (3-night minimum),,
-,$100 off,VIP100,(3 night miniumum),,
+,$100 off,VIP100,(3 night miniumum),,Retarget
 ,,,,,
 Raven Rock Mountain,10% off,WELCOME10,New Leads,,Followers
 ,,,,,
@@ -83,6 +84,7 @@ Inspired Retreats,10% off,ENJOY10,3 night miniumum,,Followers
 Stay Saluda,10% off,ENJOY10,3 night miniumum,,Followers
 ,,WELCOMEBACK10,3 night minimum,,Past Guests
 ,,VIP10,3 night miniumum,,Retarget
+,10% off,WELCOME10,New leads (HG code; per Oct 2026 AM sheet),,Followers
 ,,,,,
 Hiawassee,$50 off,WELCOME50,New Leads- 2 night miniumum,,Followers
 ,10% Off,WELCOMEBACK10,Past Guests,,Followers
@@ -107,7 +109,7 @@ StayLuxe,$250 off,WELCOME250,New leads - 2 night minimum,,Followers
 Endless Stays,10% off,WELCOME10,New leads - 2 night minimum,,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,
 ,$100,GETAWAY100,Past guests - $100 off (friend),,
-,10%,ESTAYS,Retarget,,Retarget
+,10%,ESTAYS10,Retarget (code as used in PMS),,Retarget
 ,,,,,
 Red White & Blue Views,$100 off,WELCOME100,New leads - 3 night minimum,,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,Past Guest
@@ -124,7 +126,7 @@ Edenwood NC,10%,WELCOME10,,,Followers
 Dwell,10%,WELCOME10,,,Followers
 ,,,,,
 Stay on 30a,$100,WELCOME100,2 night min,,Followers
-,$100,VIP100,meta ads,,
+,$100,VIP100,meta ads,,Retarget
 ,,,,,
 American River Resort,20% off,WELCOME20,"20% off all bookings (min 2-night, + WWRafting)",,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,Past Guest
@@ -161,6 +163,7 @@ Best Texas Travel,10% off,WELCOME10,2 night min,,Followers
 ,$100,GETAWAY100,,,Refer a Friend
 ,10% off,RIVER10,,,Engagement
 ,10% off,VIP10,,,Retarget
+,10% off,10OFF,HG code (per Oct 2026 AM sheet),,Followers
 ,,,,,
 Columbia Gorge Getaways,10% off,WELCOME10,2 night min,,Followers
 ,10% off,WELCOMEBACK10,2 night min,,
@@ -176,6 +179,8 @@ Tàberg Falls,10% off,WELCOME100,,,Followers
 The Outpost,10% OFF,WELCOME10,2 night min,,Followers
 ,,,,,
 Ponderosa Pines Resort,20% OFF,EARLYBIRD20,2 night min,,Followers
+,10% off,WELCOME10,New leads (HG code; per Oct 2026 AM sheet),,Followers
+,10% off,VIP10,Retargeting (HG code; per Oct 2026 AM sheet),,Retarget
 ,,,,,
 Reflections Resorts,$100 OFF,WELCOME100,,,Followers
 ,,,,,
@@ -198,7 +203,14 @@ Little River Landing,10% OFF,HELLO10,2-night min,,Followers
 ,10% OFF,THANKYOU10,2-night min,,Return Guests
 ,10% OFF,STAY10,2-night min,,
 ,,,,,
-North Star Lodge & Resort,10% Off,WELCOME10,,,
+North Star Lodge & Resort,10% Off,WELCOME10,,,Followers
 ,,,,,
-Glasscombe,10% off,WELCOME10,2 night min,,
+Glasscombe,10% off,WELCOME10,2 night min,,Followers
 ,,,,,
+,,,,,
+Walden Retreats,10% OFF,WELCOME10,New leads (CRM),,Followers
+,,VIP10,Retargeting (CRM),,Retarget
+,,,,,
+Cabin Collective,10% off,WELCOME10,Welcome Offer (CRM; sheet has "WELCOME 10"),,Followers
+,10% Off,WELCOMEBACK10,Return Guest (CRM),,
+,10% OFF,VIP10,Retargeting (CRM),,Retarget

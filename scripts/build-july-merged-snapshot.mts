@@ -136,7 +136,7 @@ async function main() {
   };
 
   function monthlyReportRows(): unknown[][] {
-    const reportPath = path.join(ROOT, 'July 2026 PMS Data', 'Meta Monthly Report - July 2026.csv');
+    const reportPath = path.join(ROOT, 'Monthly Data', '2026-07 July', 'Meta Monthly Report - July 2026.csv');
     if (!fs.existsSync(reportPath)) {
       console.warn('Meta Monthly Report CSV not found — skipping xlsx-only clients’ ad data');
       return [];
@@ -175,7 +175,7 @@ async function main() {
   }
 
   // Promo codes: prefer the CRM-provided sheet dropped into July's xlsx data folder.
-  const promoCodesSrc = path.join(ROOT, 'July 2026 PMS Data', 'CRM - HiddenGem Media - Client Promo Codes.csv');
+  const promoCodesSrc = path.join(ROOT, 'Monthly Data', '2026-07 July', 'CRM - HiddenGem Media - Client Promo Codes.csv');
   if (fs.existsSync(promoCodesSrc)) {
     const buf = fs.readFileSync(promoCodesSrc);
     files.promoCodes = new File([buf], 'Promo codes.csv', { type: 'text/csv' });
