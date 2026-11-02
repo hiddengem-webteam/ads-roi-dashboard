@@ -1,0 +1,1326 @@
+[
+ {
+  "client": "FLOHOM",
+  "pid": "139231105894533",
+  "name": "FLO2 Conversion",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "FLOHOM",
+   "pixel_id": "139231105894533",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-07-28 20:31",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 29823,
+  "browser7": 29645,
+  "server7": 23,
+  "events28": 116447,
+  "p28": 103,
+  "p28b": 8,
+  "p28s": 95,
+  "lead28": 1070,
+  "purchase_keys": {
+   "email": 97,
+   "fn": 97,
+   "ln": 97,
+   "pdid": 96,
+   "phone": 96,
+   "c_user_cookie": 1,
+   "fr_cookie": 1,
+   "raw_fr_cookie": 1,
+   "true_fr_cookie": 1
+  },
+  "purchase_pii": {
+   "has_pii": 96,
+   "not_has_pii": 9
+  },
+  "all_keys7": {
+   "pdid": 29971,
+   "raw_fr_cookie": 3741,
+   "c_user_cookie": 2070,
+   "true_fr_cookie": 2095,
+   "fr_cookie": 2534,
+   "phone": 39,
+   "fn": 26,
+   "email": 562,
+   "zip": 3,
+   "ln": 38,
+   "ct": 4,
+   "st": 4
+  }
+ },
+ {
+  "client": "Treetop Escapes",
+  "pid": "1178838797064774",
+  "name": "Treetop Escapes - Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Treetop Escapes",
+   "pixel_id": "1178838797064774",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-17 20:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 37323,
+  "browser7": 20137,
+  "server7": 17028,
+  "events28": 182889,
+  "p28": 47,
+  "p28b": 4,
+  "p28s": 43,
+  "lead28": 4137,
+  "purchase_keys": {
+   "email": 39,
+   "fn": 39,
+   "ln": 39,
+   "pdid": 42,
+   "phone": 39
+  },
+  "purchase_pii": {
+   "has_pii": 39,
+   "not_has_pii": 8
+  },
+  "all_keys7": {
+   "pdid": 35089,
+   "c_user_cookie": 3044,
+   "fr_cookie": 3192,
+   "true_fr_cookie": 2675,
+   "raw_fr_cookie": 379,
+   "email": 5,
+   "fn": 5,
+   "ln": 5,
+   "phone": 5
+  }
+ },
+ {
+  "client": "Paradise Pointe",
+  "pid": "707016175006193",
+  "name": "Paradise Pointe - Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Paradise Pointe",
+   "pixel_id": "707016175006193",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-21 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 31064,
+  "browser7": 30608,
+  "server7": 19,
+  "events28": 197490,
+  "p28": 266,
+  "p28b": 163,
+  "p28s": 103,
+  "lead28": 1305,
+  "purchase_keys": {
+   "pdid": 259,
+   "email": 195,
+   "fn": 195,
+   "ln": 195,
+   "phone": 195,
+   "c_user_cookie": 22,
+   "fr_cookie": 24,
+   "raw_fr_cookie": 18,
+   "true_fr_cookie": 22
+  },
+  "purchase_pii": {
+   "has_pii": 195,
+   "not_has_pii": 71
+  },
+  "all_keys7": {
+   "pdid": 28097,
+   "fr_cookie": 5246,
+   "raw_fr_cookie": 6126,
+   "true_fr_cookie": 4605,
+   "c_user_cookie": 4244,
+   "email": 80,
+   "fn": 80,
+   "ln": 80,
+   "phone": 80
+  }
+ },
+ {
+  "client": "Asheville River Cabins",
+  "pid": "1634367080775220",
+  "name": "Asheville River Cabins Meta Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Asheville River Cabins",
+   "pixel_id": "1634367080775220",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 40912,
+  "browser7": 40664,
+  "server7": 0,
+  "events28": 109148,
+  "p28": 201,
+  "p28b": 201,
+  "p28s": 0,
+  "lead28": 831,
+  "purchase_keys": {
+   "email": 203,
+   "fn": 203,
+   "ln": 203,
+   "pdid": 203,
+   "phone": 203,
+   "raw_fr_cookie": 75,
+   "c_user_cookie": 31,
+   "fr_cookie": 35,
+   "true_fr_cookie": 31
+  },
+  "purchase_pii": {
+   "has_pii": 201,
+   "not_has_pii": 2
+  },
+  "all_keys7": {
+   "pdid": 40771,
+   "raw_fr_cookie": 8201,
+   "c_user_cookie": 3017,
+   "fr_cookie": 3626,
+   "true_fr_cookie": 3046,
+   "email": 694,
+   "fn": 360,
+   "ln": 360,
+   "phone": 352,
+   "ct": 6,
+   "zip": 7
+  }
+ },
+ {
+  "client": "Green Springs Inn",
+  "pid": "1602971745164199",
+  "name": "Green Springs Inn Event Data",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Green Springs Inn",
+   "pixel_id": "1098954801239133",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 08:31",
+   "capi_sent_28d": 88,
+   "capi_sent_7d": 24,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 96
+  },
+  "events7": 21934,
+  "browser7": 11040,
+  "server7": 10869,
+  "events28": 101131,
+  "p28": 182,
+  "p28b": 90,
+  "p28s": 92,
+  "lead28": 0,
+  "purchase_keys": {
+   "pdid": 184,
+   "c_user_cookie": 8,
+   "fr_cookie": 12,
+   "true_fr_cookie": 11
+  },
+  "purchase_pii": {
+   "not_has_pii": 184
+  },
+  "all_keys7": {
+   "pdid": 21780,
+   "c_user_cookie": 2069,
+   "fr_cookie": 2176,
+   "true_fr_cookie": 1695,
+   "raw_fr_cookie": 2
+  }
+ },
+ {
+  "client": "Green Springs Inn",
+  "pid": "1098954801239133",
+  "name": "GSI - Wix Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Green Springs Inn",
+   "pixel_id": "1098954801239133",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 08:31",
+   "capi_sent_28d": 88,
+   "capi_sent_7d": 24,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 96
+  },
+  "events7": 34759,
+  "browser7": 16608,
+  "server7": 17344,
+  "events28": 151175,
+  "p28": 76,
+  "p28b": 0,
+  "p28s": 76,
+  "lead28": 720,
+  "purchase_keys": {
+   "email": 88,
+   "fn": 88,
+   "ln": 88,
+   "phone": 88
+  },
+  "purchase_pii": {
+   "not_has_pii": 12,
+   "has_pii": 76
+  },
+  "all_keys7": {
+   "pdid": 33851,
+   "zip": 21720,
+   "ln": 71,
+   "email": 302,
+   "fr_cookie": 3642,
+   "true_fr_cookie": 2992,
+   "c_user_cookie": 3383,
+   "raw_fr_cookie": 562,
+   "phone": 24,
+   "fn": 24
+  }
+ },
+ {
+  "client": "Starlight Haven - Hot Springs",
+  "pid": "766226461367996",
+  "name": "Starlight Haven Pixel - ResNexus",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "Starlight Haven - Hot Springs",
+   "pixel_id": "766226461367996",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 33797,
+  "browser7": 33665,
+  "server7": 0,
+  "events28": 143772,
+  "p28": 352,
+  "p28b": 352,
+  "p28s": 0,
+  "lead28": 5387,
+  "purchase_keys": {
+   "pdid": 352,
+   "raw_fr_cookie": 134,
+   "ct": 59,
+   "email": 58,
+   "fn": 59,
+   "ln": 59,
+   "phone": 59,
+   "zip": 56,
+   "c_user_cookie": 40,
+   "fr_cookie": 46,
+   "true_fr_cookie": 40
+  },
+  "purchase_pii": {
+   "not_has_pii": 294,
+   "has_pii": 58
+  },
+  "all_keys7": {
+   "pdid": 33900,
+   "raw_fr_cookie": 9837,
+   "fr_cookie": 4793,
+   "true_fr_cookie": 4027,
+   "c_user_cookie": 4287,
+   "email": 927,
+   "fn": 29,
+   "phone": 29,
+   "ln": 29,
+   "zip": 31,
+   "ct": 28
+  }
+ },
+ {
+  "client": "Starlight Haven - Weiss Lake",
+  "pid": "766226461367996",
+  "name": "Starlight Haven Pixel - ResNexus",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "Starlight Haven - Weiss Lake",
+   "pixel_id": "766226461367996",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 33797,
+  "browser7": 33665,
+  "server7": 0,
+  "events28": 143772,
+  "p28": 352,
+  "p28b": 352,
+  "p28s": 0,
+  "lead28": 5387,
+  "purchase_keys": {
+   "pdid": 352,
+   "raw_fr_cookie": 134,
+   "ct": 59,
+   "email": 58,
+   "fn": 59,
+   "ln": 59,
+   "phone": 59,
+   "zip": 56,
+   "c_user_cookie": 40,
+   "fr_cookie": 46,
+   "true_fr_cookie": 40
+  },
+  "purchase_pii": {
+   "not_has_pii": 294,
+   "has_pii": 58
+  },
+  "all_keys7": {
+   "pdid": 33900,
+   "raw_fr_cookie": 9837,
+   "fr_cookie": 4793,
+   "true_fr_cookie": 4027,
+   "c_user_cookie": 4287,
+   "email": 927,
+   "fn": 29,
+   "phone": 29,
+   "ln": 29,
+   "zip": 31,
+   "ct": 28
+  }
+ },
+ {
+  "client": "Stay Saluda NC",
+  "pid": "4250460185185664",
+  "name": "Stay Saluda - Meta Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Stay Saluda NC",
+   "pixel_id": "4250460185185664",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-13 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 17757,
+  "browser7": 9518,
+  "server7": 8172,
+  "events28": 81626,
+  "p28": 15,
+  "p28b": 0,
+  "p28s": 15,
+  "lead28": 1918,
+  "purchase_keys": {
+   "email": 15,
+   "fn": 15,
+   "ln": 15,
+   "pdid": 11,
+   "phone": 15
+  },
+  "purchase_pii": {
+   "has_pii": 15
+  },
+  "all_keys7": {
+   "pdid": 16934,
+   "c_user_cookie": 2016,
+   "fr_cookie": 2102,
+   "true_fr_cookie": 1895,
+   "email": 965,
+   "ln": 269,
+   "raw_fr_cookie": 167,
+   "phone": 14,
+   "fn": 5,
+   "zip": 6
+  }
+ },
+ {
+  "client": "Endless Stays",
+  "pid": "876508505381758",
+  "name": "Endless Stays Meta Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Endless Stays",
+   "pixel_id": "876508505381758",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-29 20:30",
+   "capi_sent_28d": 17,
+   "capi_sent_7d": 4,
+   "capi_first_sent": "2026-09-30",
+   "capi_sent_total": 19
+  },
+  "events7": 31043,
+  "browser7": 14964,
+  "server7": 15379,
+  "events28": 145290,
+  "p28": 16,
+  "p28b": 0,
+  "p28s": 16,
+  "lead28": 3542,
+  "purchase_keys": {
+   "email": 17,
+   "external_id": 17,
+   "fn": 17,
+   "ln": 17,
+   "phone": 17,
+   "pdid": 13
+  },
+  "purchase_pii": {
+   "has_pii": 16,
+   "not_has_pii": 1
+  },
+  "all_keys7": {
+   "pdid": 31141,
+   "fr_cookie": 2521,
+   "true_fr_cookie": 2243,
+   "c_user_cookie": 2147,
+   "raw_fr_cookie": 112,
+   "email": 4,
+   "external_id": 4,
+   "fn": 4,
+   "ln": 4,
+   "phone": 4
+  }
+ },
+ {
+  "client": "Stay on 30a",
+  "pid": "1464927198465632",
+  "name": "Stay on 30a - Meta Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Stay on 30a",
+   "pixel_id": "1464927198465632",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-26 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 57988,
+  "browser7": 28803,
+  "server7": 28975,
+  "events28": 224432,
+  "p28": 68,
+  "p28b": 0,
+  "p28s": 68,
+  "lead28": 2148,
+  "purchase_keys": {
+   "email": 69,
+   "fn": 69,
+   "ln": 69,
+   "pdid": 66,
+   "phone": 69
+  },
+  "purchase_pii": {
+   "has_pii": 69
+  },
+  "all_keys7": {
+   "pdid": 58186,
+   "fr_cookie": 3667,
+   "c_user_cookie": 3313,
+   "true_fr_cookie": 3081,
+   "raw_fr_cookie": 89,
+   "email": 20,
+   "fn": 20,
+   "ln": 20,
+   "phone": 20
+  }
+ },
+ {
+  "client": "Awayframes",
+  "pid": "773898245792839",
+  "name": "Awayframes - Meta Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Awayframes",
+   "pixel_id": "773898245792839",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-10-28 08:31",
+   "capi_sent_28d": 17,
+   "capi_sent_7d": 6,
+   "capi_first_sent": "2026-10-01",
+   "capi_sent_total": 19
+  },
+  "events7": 11874,
+  "browser7": 6872,
+  "server7": 4809,
+  "events28": 34786,
+  "p28": 23,
+  "p28b": 0,
+  "p28s": 23,
+  "lead28": 733,
+  "purchase_keys": {
+   "email": 25,
+   "fn": 25,
+   "ln": 25,
+   "phone": 25,
+   "pdid": 8
+  },
+  "purchase_pii": {
+   "has_pii": 23,
+   "not_has_pii": 2
+  },
+  "all_keys7": {
+   "pdid": 10510,
+   "c_user_cookie": 657,
+   "fr_cookie": 828,
+   "true_fr_cookie": 692,
+   "raw_fr_cookie": 230,
+   "email": 14,
+   "fn": 14,
+   "ln": 14,
+   "phone": 14,
+   "zip": 334
+  }
+ },
+ {
+  "client": "Bison Ridge Retreat",
+  "pid": "1241959234316508",
+  "name": "Bison Ridge - Meta Pixel",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "Bison Ridge Retreat",
+   "pixel_id": "1241959234316508",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 5032,
+  "browser7": 2421,
+  "server7": 2531,
+  "events28": 24179,
+  "p28": 0,
+  "p28b": 0,
+  "p28s": 0,
+  "lead28": 338,
+  "purchase_keys": {},
+  "purchase_pii": {},
+  "all_keys7": {
+   "pdid": 4983,
+   "c_user_cookie": 318,
+   "fr_cookie": 342,
+   "true_fr_cookie": 302,
+   "raw_fr_cookie": 7
+  }
+ },
+ {
+  "client": "American River Resort",
+  "pid": "2862601447415133",
+  "name": "American River Resort - Meta Pixel",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "American River Resort",
+   "pixel_id": "2862601447415133",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 6830,
+  "browser7": 3333,
+  "server7": 3470,
+  "events28": 47108,
+  "p28": 0,
+  "p28b": 0,
+  "p28s": 0,
+  "lead28": 447,
+  "purchase_keys": {},
+  "purchase_pii": {},
+  "all_keys7": {
+   "pdid": 6710,
+   "c_user_cookie": 319,
+   "fr_cookie": 400,
+   "true_fr_cookie": 317
+  }
+ },
+ {
+  "client": "Taberg Falls",
+  "pid": "964214909847907",
+  "name": "Taberg Falls - Meta Pixel",
+  "attribution": "(9/10) Full Tracking (AI Site)",
+  "hgai": {
+   "name": "Taberg Falls",
+   "pixel_id": "964214909847907",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-07-07 12:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 46038,
+  "browser7": 27055,
+  "server7": 18639,
+  "events28": 257287,
+  "p28": 29,
+  "p28b": 0,
+  "p28s": 29,
+  "lead28": 10742,
+  "purchase_keys": {
+   "email": 29,
+   "fn": 29,
+   "ln": 29,
+   "pdid": 29,
+   "phone": 28
+  },
+  "purchase_pii": {
+   "has_pii": 29
+  },
+  "all_keys7": {
+   "pdid": 39915,
+   "c_user_cookie": 1880,
+   "fr_cookie": 2134,
+   "true_fr_cookie": 1779,
+   "raw_fr_cookie": 729,
+   "email": 4,
+   "fn": 4,
+   "ln": 4,
+   "phone": 3
+  }
+ },
+ {
+  "client": "Ponderosa Pines Resort",
+  "pid": "1293211539656211",
+  "name": "Ponderosa Pines Resort - Meta Pixel",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "Ponderosa Pines Resort",
+   "pixel_id": "1293211539656211",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-28 20:31",
+   "capi_sent_28d": 6,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-10-23",
+   "capi_sent_total": 6
+  },
+  "events7": 21800,
+  "browser7": 10485,
+  "server7": 11157,
+  "events28": 119215,
+  "p28": 322,
+  "p28b": 215,
+  "p28s": 107,
+  "lead28": 2572,
+  "purchase_keys": {
+   "pdid": 303,
+   "fr_cookie": 16,
+   "true_fr_cookie": 12,
+   "c_user_cookie": 12,
+   "email": 6,
+   "external_id": 6,
+   "fn": 6,
+   "ln": 6,
+   "phone": 5
+  },
+  "purchase_pii": {
+   "not_has_pii": 318,
+   "has_pii": 3
+  },
+  "all_keys7": {
+   "pdid": 21808,
+   "fr_cookie": 1168,
+   "true_fr_cookie": 983,
+   "c_user_cookie": 912,
+   "raw_fr_cookie": 49,
+   "email": 3,
+   "external_id": 3,
+   "fn": 3,
+   "ln": 3,
+   "phone": 3
+  }
+ },
+ {
+  "client": "The Outpost",
+  "pid": "734783866381382",
+  "name": "Outpost Grand Canyon",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "The Outpost",
+   "pixel_id": "734783866381382",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-28 16:31",
+   "capi_sent_28d": 14,
+   "capi_sent_7d": 7,
+   "capi_first_sent": "2026-10-23",
+   "capi_sent_total": 14
+  },
+  "events7": 3155,
+  "browser7": 3030,
+  "server7": 6,
+  "events28": 13608,
+  "p28": 13,
+  "p28b": 0,
+  "p28s": 13,
+  "lead28": 0,
+  "purchase_keys": {
+   "email": 14,
+   "external_id": 14,
+   "fn": 14,
+   "ln": 14,
+   "pdid": 14,
+   "phone": 14
+  },
+  "purchase_pii": {
+   "has_pii": 13,
+   "not_has_pii": 1
+  },
+  "all_keys7": {
+   "pdid": 3232,
+   "c_user_cookie": 538,
+   "fr_cookie": 605,
+   "true_fr_cookie": 470,
+   "email": 7,
+   "external_id": 7,
+   "fn": 7,
+   "ln": 7,
+   "phone": 7,
+   "raw_fr_cookie": 46
+  }
+ },
+ {
+  "client": "The Outpost",
+  "pid": "1691591692267740",
+  "name": "HG - The Outpost Grand Canyon Event Data",
+  "attribution": "(3/10) Browser Events Only",
+  "hgai": {
+   "name": "The Outpost",
+   "pixel_id": "734783866381382",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-28 16:31",
+   "capi_sent_28d": 14,
+   "capi_sent_7d": 7,
+   "capi_first_sent": "2026-10-23",
+   "capi_sent_total": 14
+  },
+  "events7": 1054,
+  "browser7": 502,
+  "server7": 545,
+  "events28": 3847,
+  "p28": 0,
+  "p28b": 0,
+  "p28s": 0,
+  "lead28": 416,
+  "purchase_keys": {},
+  "purchase_pii": {},
+  "all_keys7": {
+   "pdid": 1050,
+   "c_user_cookie": 127,
+   "fr_cookie": 131,
+   "true_fr_cookie": 122,
+   "email": 178,
+   "raw_fr_cookie": 20
+  }
+ },
+ {
+  "client": "Selah Place",
+  "pid": "1235173718368839",
+  "name": "Selah.Place Event Data",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Selah Place",
+   "pixel_id": "1235173718368839",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 08:31",
+   "capi_sent_28d": 44,
+   "capi_sent_7d": 8,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 50
+  },
+  "events7": 151801,
+  "browser7": 78039,
+  "server7": 73447,
+  "events28": 457759,
+  "p28": 75,
+  "p28b": 11,
+  "p28s": 64,
+  "lead28": 2221,
+  "purchase_keys": {
+   "email": 68,
+   "fn": 54,
+   "ln": 53,
+   "phone": 54,
+   "pdid": 34,
+   "c_user_cookie": 3,
+   "fr_cookie": 3,
+   "true_fr_cookie": 3,
+   "external_id": 10
+  },
+  "purchase_pii": {
+   "has_pii": 65,
+   "not_has_pii": 13
+  },
+  "all_keys7": {
+   "pdid": 150881,
+   "zip": 131129,
+   "c_user_cookie": 4691,
+   "true_fr_cookie": 4250,
+   "fr_cookie": 5003,
+   "email": 1850,
+   "raw_fr_cookie": 158,
+   "phone": 16,
+   "ln": 16,
+   "fn": 16,
+   "external_id": 8
+  }
+ },
+ {
+  "client": "Ridge & Falls",
+  "pid": "1332286819018269",
+  "name": "Ridge & Falls - Meta Pixel",
+  "attribution": "",
+  "hgai": {
+   "name": "Ridge & Falls",
+   "pixel_id": "1332286819018269",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-29 04:30",
+   "capi_sent_28d": 9,
+   "capi_sent_7d": 1,
+   "capi_first_sent": "2026-10-02",
+   "capi_sent_total": 10
+  },
+  "events7": 2986,
+  "browser7": 2952,
+  "server7": 2,
+  "events28": 12964,
+  "p28": 15,
+  "p28b": 0,
+  "p28s": 15,
+  "lead28": 187,
+  "purchase_keys": {
+   "email": 15,
+   "external_id": 9,
+   "fn": 15,
+   "ln": 15,
+   "phone": 15,
+   "pdid": 13
+  },
+  "purchase_pii": {
+   "has_pii": 15
+  },
+  "all_keys7": {
+   "pdid": 2983,
+   "raw_fr_cookie": 523,
+   "c_user_cookie": 444,
+   "fr_cookie": 484,
+   "true_fr_cookie": 413,
+   "email": 107,
+   "zip": 29,
+   "fn": 2,
+   "ln": 2,
+   "phone": 2,
+   "external_id": 1
+  }
+ },
+ {
+  "client": "Little River Landing",
+  "pid": "1816709606431185",
+  "name": "Little River Landing Meta Pixel",
+  "attribution": "",
+  "hgai": {
+   "name": "Little River Landing",
+   "pixel_id": "1816709606431185",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-09-30 16:31",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": "2026-09-30",
+   "capi_sent_total": 1
+  },
+  "events7": 2335,
+  "browser7": 1205,
+  "server7": 1119,
+  "events28": 9785,
+  "p28": 3,
+  "p28b": 0,
+  "p28s": 3,
+  "lead28": 318,
+  "purchase_keys": {
+   "email": 3,
+   "fn": 3,
+   "ln": 3,
+   "pdid": 3,
+   "phone": 3
+  },
+  "purchase_pii": {
+   "has_pii": 3
+  },
+  "all_keys7": {
+   "pdid": 2324,
+   "c_user_cookie": 274,
+   "fr_cookie": 305,
+   "true_fr_cookie": 252,
+   "raw_fr_cookie": 13,
+   "email": 2,
+   "fn": 2,
+   "ln": 2,
+   "phone": 2
+  }
+ },
+ {
+  "client": "North Star Resort & Lodge",
+  "pid": "3440147309499983",
+  "name": "North Star Lodge Killington - Meta Pixel",
+  "attribution": "",
+  "hgai": {
+   "name": "North Star Resort & Lodge",
+   "pixel_id": "3440147309499983",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-03 04:31",
+   "capi_sent_28d": 45,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 69
+  },
+  "events7": 805,
+  "browser7": 778,
+  "server7": 3,
+  "events28": 3828,
+  "p28": 45,
+  "p28b": 0,
+  "p28s": 45,
+  "lead28": 23,
+  "purchase_keys": {
+   "country": 45,
+   "email": 45,
+   "external_id": 45,
+   "fn": 45,
+   "ln": 45,
+   "pdid": 41,
+   "phone": 45
+  },
+  "purchase_pii": {
+   "has_pii": 45
+  },
+  "all_keys7": {
+   "pdid": 814,
+   "raw_fr_cookie": 98,
+   "country": 3,
+   "email": 3,
+   "external_id": 3,
+   "fn": 3,
+   "ln": 3,
+   "phone": 3,
+   "c_user_cookie": 72,
+   "fr_cookie": 90,
+   "true_fr_cookie": 84
+  }
+ },
+ {
+  "client": "North Star Resort & Lodge",
+  "pid": "1904436107168032",
+  "name": "Northstar Meta Pixel",
+  "attribution": "",
+  "hgai": {
+   "name": "North Star Resort & Lodge",
+   "pixel_id": "3440147309499983",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-03 04:31",
+   "capi_sent_28d": 45,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 69
+  },
+  "events7": 84,
+  "browser7": 81,
+  "server7": 0,
+  "events28": 4369,
+  "p28": 33,
+  "p28b": 33,
+  "p28s": 0,
+  "lead28": 85,
+  "purchase_keys": {
+   "pdid": 33,
+   "raw_fr_cookie": 18,
+   "c_user_cookie": 5,
+   "fr_cookie": 5,
+   "true_fr_cookie": 5
+  },
+  "purchase_pii": {
+   "not_has_pii": 33
+  },
+  "all_keys7": {
+   "pdid": 81,
+   "c_user_cookie": 17,
+   "fr_cookie": 17,
+   "raw_fr_cookie": 17,
+   "true_fr_cookie": 17
+  }
+ },
+ {
+  "client": "Walden Retreats",
+  "pid": "505477285266646",
+  "name": "Walden Retreat's Data",
+  "attribution": "",
+  "hgai": {
+   "name": "Walden Retreats",
+   "pixel_id": null,
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 18852,
+  "browser7": 10562,
+  "server7": 8087,
+  "events28": 67638,
+  "p28": 258,
+  "p28b": 180,
+  "p28s": 78,
+  "lead28": 603,
+  "purchase_keys": {
+   "pdid": 258,
+   "raw_fr_cookie": 16,
+   "c_user_cookie": 21,
+   "fr_cookie": 25,
+   "true_fr_cookie": 23
+  },
+  "purchase_pii": {
+   "not_has_pii": 258
+  },
+  "all_keys7": {
+   "pdid": 18876,
+   "c_user_cookie": 1013,
+   "fr_cookie": 1224,
+   "true_fr_cookie": 1070,
+   "raw_fr_cookie": 28
+  }
+ },
+ {
+  "client": "Glasscombe",
+  "pid": "1369498611461163",
+  "name": "Aero Camp Pixel",
+  "attribution": "",
+  "hgai": {
+   "name": "Glasscombe",
+   "pixel_id": "1369498611461163",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-28 00:30",
+   "capi_sent_28d": 7,
+   "capi_sent_7d": 2,
+   "capi_first_sent": "2026-10-16",
+   "capi_sent_total": 7
+  },
+  "events7": 14407,
+  "browser7": 5249,
+  "server7": 5727,
+  "events28": 44893,
+  "p28": 13,
+  "p28b": 4,
+  "p28s": 9,
+  "lead28": 1376,
+  "purchase_keys": {
+   "pdid": 20,
+   "country": 7,
+   "email": 13,
+   "external_id": 7,
+   "fn": 13,
+   "ln": 13,
+   "phone": 13
+  },
+  "purchase_pii": {
+   "not_has_pii": 11,
+   "has_pii": 9
+  },
+  "all_keys7": {
+   "pdid": 14845,
+   "c_user_cookie": 758,
+   "fr_cookie": 770,
+   "email": 82,
+   "external_id": 45,
+   "true_fr_cookie": 106,
+   "raw_fr_cookie": 4,
+   "fn": 6,
+   "ln": 6,
+   "phone": 6,
+   "country": 2
+  }
+ },
+ {
+  "client": "Cabin Collective",
+  "pid": "1654110122884436",
+  "name": "Cabin Collective BB Meta Pixel (New)",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Cabin Collective",
+   "pixel_id": null,
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  "events7": 11570,
+  "browser7": 5740,
+  "server7": 5808,
+  "events28": 17477,
+  "p28": 33,
+  "p28b": 24,
+  "p28s": 9,
+  "lead28": 214,
+  "purchase_keys": {
+   "pdid": 34,
+   "raw_fr_cookie": 6,
+   "fr_cookie": 2,
+   "true_fr_cookie": 2,
+   "c_user_cookie": 1
+  },
+  "purchase_pii": {
+   "not_has_pii": 34
+  },
+  "all_keys7": {
+   "pdid": 11535,
+   "fr_cookie": 782,
+   "true_fr_cookie": 680,
+   "c_user_cookie": 720,
+   "raw_fr_cookie": 15
+  }
+ },
+ {
+  "client": "Sunapee Stays",
+  "pid": "471248637966769",
+  "name": "sunapeestays's Pixel",
+  "attribution": "(6/10) CAPI Setup (HG Ai)",
+  "hgai": {
+   "name": "Sunapee Stays",
+   "pixel_id": "471248637966769",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 04:30",
+   "capi_sent_28d": 49,
+   "capi_sent_7d": 6,
+   "capi_first_sent": "2026-09-29",
+   "capi_sent_total": 58
+  },
+  "events7": 8198,
+  "browser7": 8101,
+  "server7": 5,
+  "events28": 34876,
+  "p28": 44,
+  "p28b": 0,
+  "p28s": 44,
+  "lead28": 146,
+  "purchase_keys": {
+   "email": 49,
+   "external_id": 49,
+   "fn": 49,
+   "ln": 49,
+   "phone": 49,
+   "pdid": 27
+  },
+  "purchase_pii": {
+   "not_has_pii": 5,
+   "has_pii": 44
+  },
+  "all_keys7": {
+   "pdid": 8186,
+   "c_user_cookie": 951,
+   "fr_cookie": 1048,
+   "raw_fr_cookie": 454,
+   "true_fr_cookie": 911,
+   "email": 110,
+   "fn": 96,
+   "external_id": 6,
+   "ln": 6,
+   "phone": 6
+  }
+ },
+ {
+  "client": "Dunya Camp",
+  "pid": "229378313100169",
+  "name": "Dunya Camp Pixel",
+  "attribution": "",
+  "hgai": {},
+  "events7": 53707,
+  "browser7": 26105,
+  "server7": 27250,
+  "events28": 238896,
+  "p28": 22,
+  "p28b": 11,
+  "p28s": 11,
+  "lead28": 0,
+  "purchase_keys": {
+   "pdid": 22,
+   "c_user_cookie": 2,
+   "fr_cookie": 2,
+   "true_fr_cookie": 2
+  },
+  "purchase_pii": {
+   "not_has_pii": 22
+  },
+  "all_keys7": {
+   "pdid": 53744,
+   "c_user_cookie": 4449,
+   "true_fr_cookie": 4172,
+   "fr_cookie": 4662,
+   "raw_fr_cookie": 15
+  },
+  "note": "owner Dunya Camp, last fired 2026-10-29"
+ },
+ {
+  "client": "Gooseberry Lodges",
+  "pid": "3431371590511492",
+  "name": "Gooseberry's Pixel",
+  "attribution": "",
+  "hgai": {},
+  "events7": 2920,
+  "browser7": 2850,
+  "server7": 0,
+  "events28": 11372,
+  "p28": 46,
+  "p28b": 46,
+  "p28s": 0,
+  "lead28": 18,
+  "purchase_keys": {
+   "pdid": 46,
+   "raw_fr_cookie": 20,
+   "c_user_cookie": 9,
+   "fr_cookie": 9,
+   "true_fr_cookie": 7
+  },
+  "purchase_pii": {
+   "not_has_pii": 46
+  },
+  "all_keys7": {
+   "pdid": 2920,
+   "raw_fr_cookie": 962,
+   "fr_cookie": 349,
+   "c_user_cookie": 254,
+   "true_fr_cookie": 293,
+   "email": 17
+  },
+  "note": "owner Gooseberry Lodges, last fired 2026-10-29"
+ },
+ {
+  "client": "Arca Roatan",
+  "pid": "",
+  "name": "(no pixel attached to the ad account)",
+  "attribution": "",
+  "hgai": {},
+  "events7": 0,
+  "browser7": 0,
+  "server7": 0,
+  "events28": 0,
+  "p28": 0,
+  "p28b": 0,
+  "p28s": 0,
+  "lead28": 0,
+  "purchase_keys": {},
+  "purchase_pii": {},
+  "all_keys7": {},
+  "note": "act_1003623765640520 lists no pixel"
+ }
+]

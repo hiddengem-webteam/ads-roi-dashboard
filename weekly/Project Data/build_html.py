@@ -170,8 +170,8 @@ document.querySelectorAll('[data-filter-for]').forEach(seg=>{
 """
 
 FLAG = {"✅":("ok","Match"),"⚠️":("warn","Warning"),"❌":("err","Critical"),"🔴":("gray","Blocked")}
-STATE = {"Scale w/ HG AI":"brand","Healthy":"ok","Monitor":"gray","Review w/ HG AI":"warn","Flag to Shawal":"err","Under gate":"gray"}
-STATE_KEY = {"Scale w/ HG AI":"scale","Healthy":"healthy","Monitor":"monitor","Review w/ HG AI":"review","Flag to Shawal":"flag","Under gate":"gate"}
+STATE = {"Scale w/ HG AI":"brand","Healthy":"ok","Monitor":"gray","Review w/ HG AI":"warn","Flag to Shawal":"err","Under gate":"gray","Tracked in Discovery":"gray","No promo data":"gray"}
+STATE_KEY = {"Scale w/ HG AI":"scale","Healthy":"healthy","Monitor":"monitor","Review w/ HG AI":"review","Flag to Shawal":"flag","Under gate":"gate","Tracked in Discovery":"discovery","No promo data":"nodata"}
 
 def esc(s): return html.escape(s, quote=False)
 def inline(s):
@@ -431,12 +431,33 @@ def build_pixel():
     NUM=re.compile(r"^\d\. ")
     items_html="".join(f"<li>{inline(NUM.sub('',p))}</li>" for p in items)
     crit_alert=f'<div class="alert err"><div class="t">{inline(intro).replace("<strong>","").replace("</strong>","")}</div><ol>{items_html}</ol>{"".join(f"<p>{inline(p)}</p>" for p in effect)}</div>'
-    hdr=["Client","Pixel name","Pixel ID","Events (7d)","Domains seen","Expected domain(s)","Match","Notes and issues"]
-    kinds=["first","text","mono","num","domains","domains","badge","notes"]
-    ct=render_table("crit",hdr,tables(crit_lines)[0][1:],kinds,flag_col=6,flag_map=flag_sym)
-    wt=render_table("warn",hdr,tables(S["Warnings (⚠️)"])[0][1:],kinds,flag_col=6,flag_map=flag_sym)
-    at=render_table("all",hdr,tables(S["All pixels (alphabetical by client)"])[0][1:],kinds,flag_col=6,flag_map=flag_sym)
-    fixed_block=fixed_html(S)
+    # Reports up to 2026-10-26 have 8 columns; from 2026-10-30 a "Purchase (28d, browser / server)" column sits after Events (7d).
+    hdr8=["Client","Pixel name","Pixel ID","Events (7d)","Domains seen","Expected domain(s)","Match","Notes and issues"]
+    kinds8=["first","text","mono","num","domains","domains","badge","notes"]
+    hdr9=hdr8[:4]+["Purchase (28d, b / s)"]+hdr8[4:]; kinds9=kinds8[:4]+["nowrap"]+kinds8[4:]
+    def px_table(tid, lines):
+        t=tables(lines)
+        if not t: return '<div class="empty">None.</div>'
+        nine=len(t[0][0])>=9
+        return render_table(tid,hdr9 if nine else hdr8,t[0][1:],kinds9 if nine else kinds8,flag_col=7 if nine else 6,flag_map=flag_sym)
+    ct=px_table("crit",crit_lines)
+    wt=px_table("warn",S["Warnings (⚠️)"])
+    at=px_table("all",S["All pixels (alphabetical by client)"])
+    fixed_block=fixed_html(S, kinds=kinds9 if any(len(t[0])>=9 for t in tables(S.get("Fixed since last week",[]))) else None)
+    purchase_block=""
+    if "Purchase check (last 28 days)" in S:
+        pl=S["Purchase check (last 28 days)"]; pt=tables(pl)
+        pdesc=" ".join(paras(pl)[:1])
+        if pt:
+            phdr=["Client","Pixel ID","Purchase 28d (b / s)","Purchase 7d","Last Purchase","PMS online bookings 28d","Capture","Sales $/day","HG AI CAPI","Flag","Why"]
+            pkinds=["first","mono","nowrap","num","nowrap","num","nowrap","num","nowrap","badge","notes"]
+            ptab=render_table("purchase",phdr,pt[0][1:],pkinds,flag_col=9,flag_map=flag_sym)
+        else: ptab='<div class="empty">No client flagged on Purchase this week.</div>'
+        purchase_block=f"""
+<section>
+  <div class="sec-head"><div><h2>Purchase check, last 28 days</h2><p class="sec-desc">{inline(pdesc)}</p></div></div>
+  <div class="card">{ptab}</div>
+</section>"""
     body=f"""
 <div class="stats">{stats}</div>
 <section>
@@ -452,6 +473,7 @@ def build_pixel():
   <div class="sec-head"><div><h2>Fixed since last week</h2></div></div>
   <div class="card">{fixed_block}</div>
 </section>
+{purchase_block}
 <section>
   <div class="sec-head"><div><h2>All pixels</h2><p class="sec-desc">Alphabetical by client. Domains come from the pixel's own 7-day host breakdown in Meta; expected domains are from the expected-domains file, inferred from the brand name unless marked otherwise.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
   <div class="card">{at}</div>
@@ -459,7 +481,7 @@ def build_pixel():
 {footer(bullets(S["Footer"]))}
 """
     lede="Verifies each client's Meta Pixel receives events only from that client's own site, link pages, GoHighLevel funnel and booking engine, and flags cross-contamination, silent pixels and split or duplicate setups."
-    chips=[f"Run {RUN}","Rolling 7-day window","Sources: HiddenGem BM dataset listing, per-account listings, host and event totals",compare_chip(S)]
+    chips=[f"Run {RUN}","Rolling 7-day window" + (", Purchase over 28 days" if purchase_block else ""),"Sources: HiddenGem BM dataset listing, per-account listings, host and event totals"+(", PMS bookings and CAPI state from the HiddenGem AI platform" if purchase_block else ""),compare_chip(S)]
     return page(f"Pixel domain check {WEEK}","Weekly Meta Ads review · Pixel domain check","Pixel domain check",lede,[esc(c) for c in chips],body)
 
 # =====================================================================
@@ -497,17 +519,17 @@ def build_bench():
     rows=list(csv.DictReader(open(f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.csv",encoding="utf-8")))
     cnt=collections.Counter(r["state"] for r in rows)
     clients={r["client"] for r in rows}
-    scored=sum(1 for r in rows if r["state"]!="Under gate")
+    scored=sum(1 for r in rows if r["state"] not in ("Under gate","Tracked in Discovery","No promo data"))
     ct0=tables(S["_pre"]); hdrv=dict(zip(ct0[0][0],ct0[0][1])) if ct0 and len(ct0[0])>1 else {}
     adv_raw=hdrv.get("Advanced clients","—"); m_adv=re.match(r"(\d+)\s*\(\+(\d+) unmapped\)",adv_raw)
     adv_val=m_adv.group(1) if m_adv else adv_raw; adv_extra=f", {m_adv.group(2)} Advanced without an ad account" if m_adv else ""
     stats=(stat("Advanced clients",adv_val,f"{hdrv.get('Live reads','—')} live reads, {hdrv.get('From CSV','—')} from the CSV export{adv_extra}")
-        +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} more listed under the spend gate")
-        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"CPL $2.50+ or no leads; ROAS under 2x or no purchases",dot="err")
-        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00 to 2.50; ROAS 2 to 5x",dot="warn")
-        +stat("Monitor",str(cnt["Monitor"]),"CPL $0.50 to 1.00; ROAS 5 to 8x",dot="gray")
-        +stat("Healthy",str(cnt["Healthy"]),"CPL $0.30 to 0.50; ROAS 8 to 15x",dot="ok")
-        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"CPL under $0.30; ROAS above 15x",dot="brand")
+        +stat("Rows scored",str(scored),f"{cnt['Under gate']} more under the spend gate"+(f", {cnt['Tracked in Discovery']} lead rows tracked in Discovery, {cnt['No promo data']} Discovery rows without promo data" if cnt.get("Tracked in Discovery") or cnt.get("No promo data") else ""))
+        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"ROAS under 2x or no purchases / sign-up bookings; Lead Gen tracking check (zero leads over the gate)",dot="err")
+        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"ROAS 2 to 5x",dot="warn")
+        +stat("Monitor",str(cnt["Monitor"]),"ROAS 5 to 8x",dot="gray")
+        +stat("Healthy",str(cnt["Healthy"]),"ROAS 8 to 15x",dot="ok")
+        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"ROAS above 15x",dot="brand")
         +stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Sales/Retargeting campaigns to refresh creative on; state unchanged",dot="warn"))
     # meetings
     mkey=[k for k in S if k.startswith("Weekly Meta Ads meetings")][0]
@@ -564,6 +586,7 @@ def build_bench():
         src_badge=badge("ok","Live read") if src.startswith("live") else badge("warn","CSV export, provisional")
         ps=paras(c["lines"]); tbls=tables(c["lines"])
         tof=[p for p in ps if p.startswith("ToF")]; roi=[p for p in ps if p.startswith("Monthly ROI")]
+        blend=[p for p in ps if p.startswith("Blended 30d")]
         month=[p for p in ps if p.startswith("This month")]
         notes=[p for p in ps if p.startswith("Meeting notes")]; hg=[p for p in ps if p.startswith("HG AI notes")]
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
@@ -590,6 +613,7 @@ def build_bench():
 <div class="card-head"><div><h3>{esc(name)}</h3><div class="sub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></div></div>{src_badge}</div>
 {month_strip(month[0]) if month else ""}
 <div class="tof">{inline(tof[0]) if tof else ""}</div>
+{f'<div class="tof">{inline(blend[0])}</div>' if blend else ""}
 {tbl}
 {kv}
 </div>""")
@@ -602,7 +626,7 @@ def build_bench():
   <div class="card">{"".join(mhtml)}</div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Action needed</h2><p class="sec-desc">Sales and Retargeting campaigns first, then Lead Gen. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.</p></div></div>
+  <div class="sec-head"><div><h2>Action needed</h2><p class="sec-desc">Sales, Retargeting and Prospecting campaigns first, then Discovery buckets, then Lead Gen tracking checks. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.</p></div></div>
   <div class="card">{act}</div>
 </section>
 <section>
@@ -610,18 +634,18 @@ def build_bench():
   <div class="card">{sc}</div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Frequency watch</h2><p class="sec-desc">Sales, Retargeting and MoF-lookalike campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.</p></div></div>
+  <div class="sec-head"><div><h2>Frequency watch</h2><p class="sec-desc">Sales, Retargeting and Prospecting campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.</p></div></div>
   <div class="card">{fw}</div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is shown for context and not scored.</p></div></div>
+  <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is judged inside the client's Discovery bucket row; the Blended 30d line is the all-campaign view, not de-duplicated.</p></div></div>
   {"".join(chtml)}
 </section>
 {footer(bullets(S["Footer"]))}
 """
-    lede="Scores every Lead Gen (MoF) and Sales or Retargeting (BoF) campaign of each CRM-Advanced client against the Benchmarks doc decision table, with monthly ROI context and this week's meeting notes."
+    lede="Scores each CRM-Advanced client's three buckets on ROAS against the Benchmarks doc decision table: Discovery (giveaway + lead campaigns, sign-up promo-code revenue), Prospecting (lookalike sales, pixel) and Retargeting (pixel), with monthly ROI context and this week's meeting notes."
     rl=run_line(S); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for the (\d+) accounts",rl)
-    chips=[f"Run {RUN}","Lead Gen: 30-day window, $100 gate","Sales/Retargeting: 14-day window, $200 gate"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
+    chips=[f"Run {RUN}","Discovery: 30-day window, promo-code ROAS, $200 gate","Sales/Retargeting/Prospecting: 14-day window, pixel ROAS, $200 gate","Lead Gen: CPL diagnostic, $100 tracking gate"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
     return page(f"Client benchmark {WEEK}","Weekly Meta Ads review · Client benchmark, advanced setups","Client benchmark review",lede,[esc(c) for c in chips],body)
 
 if __name__ == "__main__":

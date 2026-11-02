@@ -11,10 +11,13 @@
  *        for every client account (what is attached where).
  * Pulls, for every pixel that fired in the last 28 days or is in the pixel map:
  *        /<pixel>/stats aggregation=host (7-day window ending now, paginated),
- *        event_total_counts, event_source (browser vs server).
+ *        event_total_counts, event_source (browser vs server), and since
+ *        2026-10-30 two 28-day reads: event_total_counts (events_28d) and
+ *        event_source filtered to event=Purchase (purchase_28d: total, browser,
+ *        server, per-day counts, first/last day) for the low-Purchase check.
  * Writes: .claude/skills/pixel-domain-check/pixel_pull.json (overwritten weekly)
  *         with per-pixel hosts (count, first/last hour, per-day counts), events,
- *         sources, attached accounts, and any error.
+ *         sources, attached accounts, 28-day events and Purchase, and any error.
  */
 import fs from 'fs';
 import path from 'path';
@@ -125,20 +128,24 @@ async function main() {
 
   const end = Math.floor(Date.now() / 1000);
   const start = end - 7 * 86400;
+  const start28 = end - 28 * 86400;
   const cutoff = new Date(Date.now() - 28 * 86400 * 1000).toISOString();
   const results: any[] = [];
   let n = 0;
   for (const p of [...pixels.values()].sort((a, b) => a.name.localeCompare(b.name))) {
     const recent = p.last_fired_time ? p.last_fired_time >= cutoff : false;
     const inMap = mapped.has(p.id);
-    const r: any = { ...p, in_map: inMap, fired_28d: recent, hosts: {}, events: {}, sources: {}, total_events: 0, server_events: 0, error: '' };
+    const r: any = { ...p, in_map: inMap, fired_28d: recent, hosts: {}, events: {}, sources: {}, total_events: 0, server_events: 0,
+      events_28d: {}, total_events_28d: 0,
+      purchase_28d: { total: 0, browser: 0, server: 0, other: 0, daily: {}, first: '', last: '' },
+      purchase_7d: { total: 0, browser: 0, server: 0 }, error: '' };
     if (!recent && !inMap) { r.skipped = 'not fired in 28d and not mapped'; results.push(r); continue; }
     // Stats quirk (seen 2026-10-19): every stats response carries paging.next even when
     // the single bucket already covers the whole window; following it repeats the data
     // and inflates totals ~60x. Only page when a response is actually full (limit reached).
-    const statsPages = async (agg: string): Promise<any[]> => {
+    const statsPages = async (agg: string, from = start, extra = ''): Promise<any[]> => {
       const out: any[] = [];
-      let next = `${API}/${p.id}/stats?aggregation=${agg}&start_time=${start}&end_time=${end}&limit=500&access_token=${TOKEN}`;
+      let next = `${API}/${p.id}/stats?aggregation=${agg}${extra}&start_time=${from}&end_time=${end}&limit=500&access_token=${TOKEN}`;
       while (next) {
         const body = await get(next);
         const data = body.data ?? [];
@@ -177,13 +184,41 @@ async function main() {
       }
       r.server_events = Object.entries(r.sources).filter(([k]) => /server|capi|conversions/i.test(k)).reduce((s, [, v]) => s + Number(v), 0);
     } catch (e: any) { errs.push(`event_source: ${e.message}`); }
+    // 28-day reads (2026-10-30): all-event totals, and Purchase by source per hour,
+    // folded into per-day counts so a stopped or browser-silent Purchase shows up.
+    try {
+      for (const b of await statsPages('event_total_counts', start28)) for (const v of b.data ?? []) {
+        const e = String(v.value ?? '');
+        r.events_28d[e] = (r.events_28d[e] ?? 0) + Number(v.count ?? 0);
+        r.total_events_28d += Number(v.count ?? 0);
+      }
+    } catch (e: any) { errs.push(`event_total_counts_28d: ${e.message}`); }
+    try {
+      const sevenDaysAgo = new Date(start * 1000).toISOString();
+      for (const b of await statsPages('event_source', start28, '&event=Purchase')) {
+        const hour = String(b.start_time ?? '');
+        const day = hour.slice(0, 10);
+        for (const v of b.data ?? []) {
+          const n = Number(v.count ?? 0);
+          const src = String(v.value ?? '').toUpperCase();
+          const key = src === 'BROWSER' ? 'browser' : /SERVER|CAPI|CONVERSIONS/.test(src) ? 'server' : 'other';
+          const q = r.purchase_28d;
+          q.total += n; q[key] += n;
+          q.daily[day] = (q.daily[day] ?? 0) + n;
+          if (!q.first || hour < q.first) q.first = hour;
+          if (!q.last || hour > q.last) q.last = hour;
+          if (hour >= sevenDaysAgo) { r.purchase_7d.total += n; if (key !== 'other') r.purchase_7d[key] += n; }
+        }
+      }
+    } catch (e: any) { errs.push(`purchase_28d: ${e.message}`); }
     r.error = errs.join('; ');
     results.push(r);
     n++;
-    console.log(`${String(n).padStart(3)} ${p.name.padEnd(45).slice(0, 45)} ${p.id} events ${r.total_events} hosts ${Object.keys(r.hosts).length}${r.error ? ' ERROR ' + r.error : ''}`);
+    console.log(`${String(n).padStart(3)} ${p.name.padEnd(45).slice(0, 45)} ${p.id} events ${r.total_events} hosts ${Object.keys(r.hosts).length} purchase28 ${r.purchase_28d.total} (b${r.purchase_28d.browser}/s${r.purchase_28d.server})${r.error ? ' ERROR ' + r.error : ''}`);
   }
   const out = {
     run_date: RUN_DATE, pulled_at: new Date().toISOString(), window: { start: new Date(start * 1000).toISOString(), end: new Date(end * 1000).toISOString() },
+    window_28d: { start: new Date(start28 * 1000).toISOString(), end: new Date(end * 1000).toISOString() },
     hg_bm: HG_BM, clients: active, offboarded: clients.filter((c) => c.offboarded).map((c) => c.client),
     pixel_map: Object.fromEntries(pixelMap), listing_errors: listingErrors, account_errors: accountErrors, pixels: results,
   };

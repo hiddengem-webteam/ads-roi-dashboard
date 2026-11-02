@@ -1,0 +1,436 @@
+{
+ "run_date": "2026-11-02",
+ "source": "HiddenGem AI Supabase (ahpzvyhrnvzetpygujws): tenants join meta_client_assignments; counts from meta_capi_ledger.sent_at",
+ "rows": [
+  {
+   "name": "American River Resort",
+   "pixel_id": "2862601447415133",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Asheville River Cabins",
+   "pixel_id": "1634367080775220",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Away2PA",
+   "pixel_id": "772693422494226",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 08:30",
+   "capi_sent_28d": 34,
+   "capi_sent_7d": 6,
+   "capi_first_sent": "2026-09-29 20:30",
+   "capi_sent_total": 42
+  },
+  {
+   "name": "Awayframes",
+   "pixel_id": "773898245792839",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-10-28 08:31",
+   "capi_sent_28d": 15,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-10-01 04:30",
+   "capi_sent_total": 19
+  },
+  {
+   "name": "Best Texas Travel",
+   "pixel_id": "4108409325970216",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 16:31",
+   "capi_sent_28d": 27,
+   "capi_sent_7d": 5,
+   "capi_first_sent": "2026-09-30 00:31",
+   "capi_sent_total": 32
+  },
+  {
+   "name": "Bison Ridge Retreat",
+   "pixel_id": "1241959234316508",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Cabin Collective",
+   "pixel_id": null,
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Columbia Gorge Getaways",
+   "pixel_id": "700947282709400",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Endless Stays",
+   "pixel_id": "876508505381758",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-29 20:30",
+   "capi_sent_28d": 14,
+   "capi_sent_7d": 1,
+   "capi_first_sent": "2026-09-30 08:30",
+   "capi_sent_total": 19
+  },
+  {
+   "name": "Evergreen Cabins",
+   "pixel_id": "1474685406530880",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 00:30",
+   "capi_sent_28d": 40,
+   "capi_sent_7d": 9,
+   "capi_first_sent": "2026-09-30 00:31",
+   "capi_sent_total": 45
+  },
+  {
+   "name": "FLOHOM",
+   "pixel_id": "139231105894533",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-07-28 20:31",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Glasscombe",
+   "pixel_id": "1369498611461163",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-28 00:30",
+   "capi_sent_28d": 7,
+   "capi_sent_7d": 2,
+   "capi_first_sent": "2026-10-16 00:30",
+   "capi_sent_total": 7
+  },
+  {
+   "name": "Green Springs Inn",
+   "pixel_id": "1098954801239133",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 08:30",
+   "capi_sent_28d": 82,
+   "capi_sent_7d": 20,
+   "capi_first_sent": "2026-09-29 04:31",
+   "capi_sent_total": 101
+  },
+  {
+   "name": "Hiawassee Glamping",
+   "pixel_id": "1149628220675980",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-31 20:31",
+   "capi_sent_28d": 21,
+   "capi_sent_7d": 6,
+   "capi_first_sent": "2026-09-30 20:31",
+   "capi_sent_total": 32
+  },
+  {
+   "name": "Home Base",
+   "pixel_id": "1467511861488785",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-31 20:31",
+   "capi_sent_28d": 121,
+   "capi_sent_7d": 27,
+   "capi_first_sent": "2026-09-30 20:31",
+   "capi_sent_total": 129
+  },
+  {
+   "name": "Inspired Retreats",
+   "pixel_id": "1547510566197386",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-09-29 16:32",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": "2026-09-29 16:32",
+   "capi_sent_total": 1
+  },
+  {
+   "name": "Little River Landing",
+   "pixel_id": "1816709606431185",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-09-30 16:31",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": "2026-09-30 16:31",
+   "capi_sent_total": 1
+  },
+  {
+   "name": "Myrinn",
+   "pixel_id": "1943632852972363",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 00:30",
+   "capi_sent_28d": 5,
+   "capi_sent_7d": 2,
+   "capi_first_sent": "2026-09-30 00:31",
+   "capi_sent_total": 8
+  },
+  {
+   "name": "Nature Nooks",
+   "pixel_id": "844302611320158",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "North Star Resort & Lodge",
+   "pixel_id": "3440147309499983",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-03 04:31",
+   "capi_sent_28d": 35,
+   "capi_sent_7d": 1,
+   "capi_first_sent": "2026-09-29 04:31",
+   "capi_sent_total": 69
+  },
+  {
+   "name": "Oak & Ember",
+   "pixel_id": "1729106025177871",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Paradise Pointe",
+   "pixel_id": "707016175006193",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-21 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Parker Reserve",
+   "pixel_id": "1188475652520634",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-01 20:30",
+   "capi_sent_28d": 6,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-10-04 00:30",
+   "capi_sent_total": 7
+  },
+  {
+   "name": "Ponderosa Pines Resort",
+   "pixel_id": "1293211539656211",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-01 00:30",
+   "capi_sent_28d": 7,
+   "capi_sent_7d": 3,
+   "capi_first_sent": "2026-10-23 04:30",
+   "capi_sent_total": 7
+  },
+  {
+   "name": "Raven Rock Mountain",
+   "pixel_id": "1359649962298380",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 00:30",
+   "capi_sent_28d": 20,
+   "capi_sent_7d": 6,
+   "capi_first_sent": "2026-10-02 20:31",
+   "capi_sent_total": 28
+  },
+  {
+   "name": "Red White & Blue Views",
+   "pixel_id": "1625871301864243",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-30 20:31",
+   "capi_sent_28d": 8,
+   "capi_sent_7d": 1,
+   "capi_first_sent": "2026-10-02 20:31",
+   "capi_sent_total": 9
+  },
+  {
+   "name": "Ridge & Falls",
+   "pixel_id": "1332286819018269",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 12:31",
+   "capi_sent_28d": 11,
+   "capi_sent_7d": 4,
+   "capi_first_sent": "2026-10-02 04:30",
+   "capi_sent_total": 13
+  },
+  {
+   "name": "Selah Place",
+   "pixel_id": "1235173718368839",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-01 20:31",
+   "capi_sent_28d": 44,
+   "capi_sent_7d": 12,
+   "capi_first_sent": "2026-09-29 04:30",
+   "capi_sent_total": 56
+  },
+  {
+   "name": "Starlight Haven - Hot Springs",
+   "pixel_id": "766226461367996",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Starlight Haven - Weiss Lake",
+   "pixel_id": "766226461367996",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Stay on 30a",
+   "pixel_id": "1464927198465632",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-26 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Stay Saluda NC",
+   "pixel_id": "4250460185185664",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-13 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Stay Southern Illinois",
+   "pixel_id": "1328561309169535",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 04:31",
+   "capi_sent_28d": 23,
+   "capi_sent_7d": 7,
+   "capi_first_sent": "2026-09-29 08:30",
+   "capi_sent_total": 29
+  },
+  {
+   "name": "Stay With Branch",
+   "pixel_id": "1107997340818783",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-10-22 20:31",
+   "capi_sent_28d": 3,
+   "capi_sent_7d": 0,
+   "capi_first_sent": "2026-10-04 04:30",
+   "capi_sent_total": 4
+  },
+  {
+   "name": "StayLuxe",
+   "pixel_id": "4293491110916917",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-08-09 00:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Sunapee Stays",
+   "pixel_id": "471248637966769",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-02 04:30",
+   "capi_sent_28d": 45,
+   "capi_sent_7d": 8,
+   "capi_first_sent": "2026-09-29 20:31",
+   "capi_sent_total": 60
+  },
+  {
+   "name": "Taberg Falls",
+   "pixel_id": "964214909847907",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-07-07 12:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "The Cohost Company",
+   "pixel_id": "638998632168952",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-07-14 08:34",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "The Outpost",
+   "pixel_id": "734783866381382",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-01 20:31",
+   "capi_sent_28d": 19,
+   "capi_sent_7d": 8,
+   "capi_first_sent": "2026-10-23 04:30",
+   "capi_sent_total": 19
+  },
+  {
+   "name": "Three Suns Cabins",
+   "pixel_id": "691977289952800",
+   "capi_enabled": true,
+   "capi_last_sent_at": "2026-11-01 20:30",
+   "capi_sent_28d": 29,
+   "capi_sent_7d": 4,
+   "capi_first_sent": "2026-09-29 20:30",
+   "capi_sent_total": 33
+  },
+  {
+   "name": "Treetop Escapes",
+   "pixel_id": "1178838797064774",
+   "capi_enabled": false,
+   "capi_last_sent_at": "2026-08-17 20:30",
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Tuxedo Falls",
+   "pixel_id": "1561325308991270",
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  },
+  {
+   "name": "Walden Retreats",
+   "pixel_id": null,
+   "capi_enabled": true,
+   "capi_last_sent_at": null,
+   "capi_sent_28d": 0,
+   "capi_sent_7d": 0,
+   "capi_first_sent": null,
+   "capi_sent_total": 0
+  }
+ ]
+}
