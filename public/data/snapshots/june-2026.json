@@ -1697,14 +1697,257 @@
                 "code": "WELCOME100",
                 "discount": "10% off",
                 "purpose": "",
-                "campaignType": "",
-                "uses": 0,
-                "revenue": 0,
-                "guests": []
+                "campaignType": "Followers",
+                "uses": 24,
+                "revenue": 27675.070000000007,
+                "guests": [
+                  {
+                    "name": "Jessica Asquith",
+                    "email": "jessicameckel@gmail.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Allison Leckinger",
+                    "email": "aleck1@outlook.com",
+                    "revenue": 890,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alison Brett",
+                    "email": "alisonhb25@gmail.com",
+                    "revenue": 890,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Chelsea Bolmer",
+                    "email": "chelsea.bolmer@gmail.com",
+                    "revenue": 890,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kevin Robinson",
+                    "email": "dirtmod60@gmail.com",
+                    "revenue": 890,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Christelle Nesbitt",
+                    "email": "nesbittc123@gmail.com",
+                    "revenue": 1575.44,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Laurie Hoth",
+                    "email": "lhoth@wlgore.com",
+                    "revenue": 1746.06,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Lisa Nuzzi",
+                    "email": "lisa_nuzzi@yahoo.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Joe Ciliberti",
+                    "email": "stickcrusher70@gmail.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Gary Zastawny",
+                    "email": "glfnzman@msn.com",
+                    "revenue": 1239.88,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Sheena Cummings",
+                    "email": "mammasheena@gmail.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Christopher Velazquez",
+                    "email": "infuse.velazquez22@gmail.com",
+                    "revenue": 983.94,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Andrew Ritter",
+                    "email": "andreworitter@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "THOMAS APPLIN",
+                    "email": "jewettjo@gmail.com",
+                    "revenue": 1916.69,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jonathan Dimas",
+                    "email": "housedimas@gmail.com",
+                    "revenue": 1404.81,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Alvaro Vieira Figueiro",
+                    "email": "alv.moto@gmail.com",
+                    "revenue": 898.63,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Patricia Chiu",
+                    "email": "patricia.h.chiu@gmail.com",
+                    "revenue": 1746.06,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Christine Jonkoski",
+                    "email": "cjonkoski@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "john furlong",
+                    "email": "2furlongs@gmail.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Esterina Spena",
+                    "email": "ester.spena@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Katie Devlin",
+                    "email": "kathleenshotwell@yahoo.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Jisung Im",
+                    "email": "chloeim1210@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Yiming Liu",
+                    "email": "yimingliu532@gmail.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Daniel Frisina",
+                    "email": "dfrisina16@yahoo.com",
+                    "revenue": 1012.38,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
+              },
+              {
+                "code": "VIP100",
+                "discount": "$100 off",
+                "purpose": "",
+                "campaignType": "Retargeting",
+                "uses": 5,
+                "revenue": 5822.02,
+                "guests": [
+                  {
+                    "name": "Donna Harris",
+                    "email": "mrsdaharris13@gmail.com",
+                    "revenue": 1090,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brianna Groth",
+                    "email": "ackley.brianna@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Katsiaryna Bolikava",
+                    "email": "katsiarynabolikava@gmail.com",
+                    "revenue": 1126.13,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Allyson Diaz",
+                    "email": "allyd53@gmail.com",
+                    "revenue": 1239.88,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Fred Friedman",
+                    "email": "fredfriedman@mac.com",
+                    "revenue": 1239.88,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
               }
             ],
-            "totalUses": 0,
-            "totalRevenue": 0,
+            "totalUses": 29,
+            "totalRevenue": 33497.09000000001,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false

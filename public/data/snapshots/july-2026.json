@@ -230,7 +230,7 @@
                 "code": "WELCOME100",
                 "discount": "$100 off",
                 "purpose": "",
-                "campaignType": "",
+                "campaignType": "Followers",
                 "uses": 40,
                 "revenue": 61527.52999999999,
                 "guests": [
@@ -560,7 +560,7 @@
                 "code": "VIP100",
                 "discount": "$100 off",
                 "purpose": "",
-                "campaignType": "",
+                "campaignType": "Retargeting",
                 "uses": 31,
                 "revenue": 43494.79,
                 "guests": [
