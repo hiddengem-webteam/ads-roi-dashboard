@@ -7111,9 +7111,26 @@
                 "discount": "20% off",
                 "purpose": "20% off all bookings (min 2-night, + WWRafting)",
                 "campaignType": "Followers",
-                "uses": 0,
-                "revenue": 0,
-                "guests": []
+                "uses": 2,
+                "revenue": 11704.779999999999,
+                "guests": [
+                  {
+                    "name": "P67058",
+                    "email": "heather@yfcnow.org",
+                    "revenue": 7330.33,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "P67159",
+                    "email": "mckayturnbull@me.com",
+                    "revenue": 4374.45,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
               },
               {
                 "code": "WELCOMEBACK10",
@@ -7134,8 +7151,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 0,
-            "totalRevenue": 0,
+            "totalUses": 2,
+            "totalRevenue": 11704.779999999999,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -8754,6 +8771,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-11-03T19:45:24.500Z"
+    "lastProcessed": "2026-11-03T20:00:21.663Z"
   }
 }
