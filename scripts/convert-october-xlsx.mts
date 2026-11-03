@@ -35,7 +35,10 @@ const TAB_TO_CLIENT: Record<string, string> = {
   'Hiawassee': 'Hiawassee Glamping',
   'FLOHOM': 'Flohom',
 };
-const SKIP_TABS = new Set<string>([]);
+// Charlotte's "Redo Starlight Haven ..." tabs are all-source exports (OTA rows
+// included, no Source column) and Kristal's "reservations (7).csv" is the raw
+// Nature Nooks export behind the filtered Nature Nooks tab — neither is a client.
+const SKIP_TABS = new Set<string>(['Redo Starlight Haven HS', 'Redo Starlight Haven WL', 'reservations (7).csv']);
 const DAY_FIRST_CLIENTS = new Set<string>(['Glasscombe']);
 
 // Registry codes (data/promo-codes.csv column 3), for recognising codes

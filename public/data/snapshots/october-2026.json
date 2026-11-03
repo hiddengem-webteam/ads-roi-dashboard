@@ -4203,9 +4203,105 @@
                 "discount": "$100 OFF",
                 "purpose": "",
                 "campaignType": "Followers",
-                "uses": 4,
-                "revenue": 4844.8099999999995,
+                "uses": 16,
+                "revenue": 14242.430000000002,
                 "guests": [
+                  {
+                    "name": "Lindsay Wright",
+                    "email": "lindsayflesch@gmail.com",
+                    "revenue": 1693.44,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Trinity Gamez",
+                    "email": "trinitygamez1@yahoo.com",
+                    "revenue": 793.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Antonio Ochoa González",
+                    "email": "ao9735786@gmail.com",
+                    "revenue": 495.72,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nosly Rincon",
+                    "email": "noslyrin15@hotmail.com",
+                    "revenue": 739.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kirstey Smith",
+                    "email": "kirstey@gmail.com",
+                    "revenue": 1038.42,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Danylo Davydov",
+                    "email": "daniel.davydov1992@gmail.com",
+                    "revenue": 345.06,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "courtney tucker",
+                    "email": "courtetucker@gmail.com",
+                    "revenue": 873.18,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "tamara manchik",
+                    "email": "riversideservjt@gmail.com",
+                    "revenue": 601.56,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Koleman Morton",
+                    "email": "kolemanm3@gmail.com",
+                    "revenue": 919.08,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Andrew Grandemange",
+                    "email": "grandemange@gmail.com",
+                    "revenue": 712.8,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Brianna Schutzius",
+                    "email": "briannaschutzius@gmail.com",
+                    "revenue": 559.44,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Nima Daneshvar",
+                    "email": "nimadan92@gmail.com",
+                    "revenue": 625.32,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
                   {
                     "name": "Cris Caceres",
                     "email": "cacercri13@gmail.com",
@@ -4245,9 +4341,26 @@
                 "discount": "$100 OFF",
                 "purpose": "",
                 "campaignType": "Retargetting",
-                "uses": 0,
-                "revenue": 0,
-                "guests": []
+                "uses": 2,
+                "revenue": 1534.68,
+                "guests": [
+                  {
+                    "name": "Melanie Dedic",
+                    "email": "melaniededic@gmail.com",
+                    "revenue": 502.2,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Torrey Gardner",
+                    "email": "torreygardner65@gmail.com",
+                    "revenue": 1032.48,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
               },
               {
                 "code": "WELCOMEBACK10",
@@ -4259,8 +4372,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 4,
-            "totalRevenue": 4844.8099999999995,
+            "totalUses": 18,
+            "totalRevenue": 15777.110000000002,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -8277,9 +8390,42 @@
                 "discount": "$50 off",
                 "purpose": "New Leads - 2 night minimum",
                 "campaignType": "Followers",
-                "uses": 0,
-                "revenue": 0,
-                "guests": []
+                "uses": 4,
+                "revenue": 2273.26,
+                "guests": [
+                  {
+                    "name": "Osvaldo Ledesma Hernandez",
+                    "email": "osvaldo_ledher@hotmail.com",
+                    "revenue": 610.75,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Radmilo Samardzic",
+                    "email": "radmilo.samardzic69@gmail.com",
+                    "revenue": 586.51,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Morgan Coleman",
+                    "email": "colemanmo.98@gmail.com",
+                    "revenue": 500.41,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  },
+                  {
+                    "name": "Kristi Packard",
+                    "email": "numbaa8jrfan@yahoo.com",
+                    "revenue": 575.59,
+                    "confidence": "high",
+                    "confidenceReason": "Explicit code in PMS",
+                    "isZeroRevenue": false
+                  }
+                ]
               },
               {
                 "code": "WELCOMEBACK10",
@@ -8300,8 +8446,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 0,
-            "totalRevenue": 0,
+            "totalUses": 4,
+            "totalRevenue": 2273.26,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -8310,22 +8456,22 @@
             "matchCount": 0,
             "totalRevenue": 0,
             "matches": [],
-            "hasNoEmail": true,
+            "hasNoEmail": false,
             "totalGHLLeads": 0
           },
           "facebook": {
             "matchCount": 0,
             "totalRevenue": 0,
             "matches": [],
-            "hasNoEmail": true,
+            "hasNoEmail": false,
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 0,
-            "avgDirectBookingValue": 0,
-            "directBookingCount": 0,
+            "totalRevenue": 2273.26,
+            "avgDirectBookingValue": 568.315,
+            "directBookingCount": 4,
             "zeroRevenueCount": 0,
-            "hasSourceColumn": false
+            "hasSourceColumn": true
           }
         },
         "hasPMS": true,
@@ -8602,13 +8748,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       },
       {
-        "id": "name-only-match-Nature-Nooks-no-email",
-        "type": "name-only-match",
-        "clientName": "Nature Nooks",
-        "message": "Nature Nooks: PMS has no email column — GHL matching uses name only",
-        "details": "Matches flagged for manual verification"
-      },
-      {
         "id": "missing-ghl-Nature-Nooks-",
         "type": "missing-ghl",
         "clientName": "Nature Nooks",
@@ -8791,6 +8930,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-11-02T20:41:32.158Z"
+    "lastProcessed": "2026-11-03T19:36:09.706Z"
   }
 }
