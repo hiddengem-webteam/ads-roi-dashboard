@@ -203,6 +203,20 @@ export default function FinalizedReportingSummarySection({
         />
       </div>
 
+      {/* Cap note: Meta-attributed revenue cannot exceed the month's direct
+          booking revenue. When the three buckets add up to more than that
+          (a promo-code guest is often also counted by Meta as a retargeting
+          purchase), the attributed figure equals the total and this explains
+          why the two cards above match. */}
+      {hasMetaAttributedRevenue && metaAttributedRevenueRaw > metaAttributedRevenue && (
+        <div className="bg-[var(--fill-blue)] border border-[var(--brand-border)] rounded-[12px] px-5 py-3.5">
+          <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Why attributed revenue equals total direct revenue</p>
+          <p className="text-[13px] text-[var(--foreground)] leading-relaxed">
+            Promo-code bookings ({formatCurrency(followersRan ? campaignRevenue.followers : 0)}), Meta-reported retargeting purchases ({formatCurrency(retargetingRan ? campaignRevenue.retargeting : 0)}) and lead-form bookings ({formatCurrency(newLeadsRan ? campaignRevenue.newLeads : 0)}) add up to {formatCurrency(metaAttributedRevenueRaw)}, more than the {formatCurrency(capRevenue)} of direct booking revenue in {period.label}. The buckets overlap (a guest who used a promo code can also be counted by Meta as a retargeting purchase), so Meta-attributed revenue is capped at 100% of direct revenue and the ROAS uses the capped figure.
+          </p>
+        </div>
+      )}
+
       {/* Row 4: combined leads from the client reporting sheet */}
       <div className="grid grid-cols-1 gap-4">
         <SummaryCard

@@ -330,7 +330,7 @@
     },
     {
       "clientName": "Cabin Collective",
-      "note": null,
+      "note": "No booking-level export from the client this month; the direct booking revenue is the client reporting sheet figure and the booking count is unavailable. Attributed revenue comes from Meta-reported retargeting purchases only.",
       "revenueSource": "client-reporting-sheet",
       "totalDirectBookings": null,
       "totalDirectBookingRevenue": 14628,
@@ -1288,7 +1288,7 @@
     },
     {
       "clientName": "Red White & Blue Views",
-      "note": null,
+      "note": "No promo-code bookings and no retargeting purchases were recorded in October, so no revenue is attributed to Meta this month.",
       "revenueSource": "client-reporting-sheet",
       "totalDirectBookings": 8,
       "totalDirectBookingRevenue": 15951,
@@ -1717,7 +1717,7 @@
     },
     {
       "clientName": "Stay with Branch",
-      "note": null,
+      "note": "Lead counts are not tracked for this client in the client reporting sheet (no New Leads column), so only revenue is shown.",
       "revenueSource": "client-reporting-sheet",
       "totalDirectBookings": 4,
       "totalDirectBookingRevenue": 5169,
@@ -1762,7 +1762,7 @@
     },
     {
       "clientName": "StayLuxe",
-      "note": null,
+      "note": "No direct bookings in October (confirmed by Kristal), so there is no revenue to attribute; the ad spend ran without a booking.",
       "revenueSource": "dashboard-snapshot (sheet revenue not filled)",
       "totalDirectBookings": 0,
       "totalDirectBookingRevenue": 0,
