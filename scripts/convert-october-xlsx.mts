@@ -88,7 +88,7 @@ function csvCell(v: unknown): string {
   return s;
 }
 
-interface ColMap { guest: number[]; email: number; revenue: number; date: number; code: number; discount: number }
+interface ColMap { guest: number[]; email: number; revenue: number; date: number; code: number; discount: number; source: number; status: number }
 
 function detectCols(hdr: string[]): ColMap | null {
   const H = hdr.map((h) => h.trim().toLowerCase());
@@ -131,10 +131,19 @@ function detectCols(hdr: string[]): ColMap | null {
   );
   const code = find('discount code', 'coupon name', 'promo code');
   const discount = find('coupon discount', 'guest_discount', 'guest discount', 'discounts', 'promotionstotal', 'discount');
-  return { guest, email, revenue, date, code, discount };
+  const source = find('source', 'platform', 'listing site', 'channel', 'booking source', 'listing source');
+  const status = find('status');
+  return { guest, email, revenue, date, code, discount, source, status };
 }
 
 const NOT_A_CODE = /^(no coupon|no promo|none|n\/a|na|-+|0|-?\d+(?:\.\d+)?)$/i;
+// The AM tabs are meant to list direct bookings only, but some October tabs
+// are full PMS exports: Sunapee Stays and Stay Southern Illinois carry Airbnb /
+// Vrbo / Booking.com rows, Asheville River Cabins and Tàberg carry cancelled
+// bookings. Neither is direct revenue, so they are dropped here (counted in
+// the summary line).
+const OTA_SOURCE = /airbnb|vrbo|booking\.com|bookingcom|expedia|homeaway|tripadvisor|hotels\.com|agoda|google vacation/i;
+const CANCELLED = /cancel/i;
 
 async function main() {
   fs.rmSync(OUT, { recursive: true, force: true });
@@ -162,6 +171,7 @@ async function main() {
 
       const outRows: unknown[][] = [];
       let total = 0, count = 0, coded = 0, discounted = 0;
+      let otaRows = 0, otaRev = 0, cancelledRows = 0, cancelledRev = 0;
       const codes: Record<string, number> = {};
 
       // Tuxedo Falls appends a promo-use list below the booking table (per
@@ -212,6 +222,10 @@ async function main() {
         // skip pivot/summary/empty/totals rows: a real guest contains letters
         if (!guest || !/[a-z]/i.test(guest) || (!Number.isFinite(revenue) && !code)) continue;
         if (!Number.isFinite(revenue)) continue;
+        const source = cols.source >= 0 ? String(vals[cols.source] ?? '').trim() : '';
+        if (source && OTA_SOURCE.test(source)) { otaRows++; otaRev += revenue; continue; }
+        const status = cols.status >= 0 ? String(vals[cols.status] ?? '').trim() : '';
+        if (status && CANCELLED.test(status)) { cancelledRows++; cancelledRev += revenue; continue; }
         const email = cols.email >= 0 ? String(vals[cols.email] ?? '').trim() : '';
         let rawDate = cols.date >= 0 ? vals[cols.date] : '';
         if (DAY_FIRST_CLIENTS.has(client) && typeof rawDate === 'string') {
@@ -226,7 +240,7 @@ async function main() {
           const parsed = codeFromDiscountText(vals[cols.discount]);
           if (parsed) { code = parsed.code; discount = parsed.discount; }
         }
-        outRows.push([guest, email, revenue, date, code, discount || '', '']);
+        outRows.push([guest, email, revenue, date, code, discount || '', source]);
         total += revenue; count++;
         if (code) { coded++; codes[code] = (codes[code] ?? 0) + 1; }
         if (discount > 0) discounted++;
@@ -249,6 +263,8 @@ async function main() {
         : 'Guest,Email,Revenue,Check-in date,Coupon name,Coupon discount,Source';
       const lines = [header, ...outRows.map((r) => (dropCodeCol ? [...r.slice(0, 4), ...r.slice(5)] : r).map(csvCell).join(','))];
       if (dropCodeCol) console.log(`${client}: no codes but ${discounted} discounted rows — using amount-based attribution`);
+      if (otaRows) console.log(`${client}: dropped ${otaRows} OTA-sourced rows ($${otaRev.toFixed(2)})`);
+      if (cancelledRows) console.log(`${client}: dropped ${cancelledRows} cancelled rows ($${cancelledRev.toFixed(2)})`);
 
       const dir = path.join(OUT, client);
       fs.mkdirSync(dir, { recursive: true });

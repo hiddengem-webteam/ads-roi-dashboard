@@ -913,9 +913,9 @@
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 44045.25,
-            "avgDirectBookingValue": 1258.4357142857143,
-            "directBookingCount": 35,
+            "totalRevenue": 44044.11,
+            "avgDirectBookingValue": 1295.415,
+            "directBookingCount": 34,
             "zeroRevenueCount": 7,
             "hasSourceColumn": true
           }
@@ -2927,8 +2927,8 @@
                 "discount": "$50 off",
                 "purpose": "New Leads (2 night min stay)",
                 "campaignType": "Followers",
-                "uses": 51,
-                "revenue": 34569.63999999999,
+                "uses": 43,
+                "revenue": 28642.099999999995,
                 "guests": [
                   {
                     "name": "Cynthia Furnanski",
@@ -3035,22 +3035,6 @@
                     "isZeroRevenue": false
                   },
                   {
-                    "name": "Jessica Overturf",
-                    "email": "joverturf2@radford.edu",
-                    "revenue": 336.74,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Maria Carmel Galicia",
-                    "email": "mariacarmelg@gmail.com",
-                    "revenue": 292.67,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
                     "name": "Maria Carmel Galicia",
                     "email": "mariacarmelg@gmail.com",
                     "revenue": 292.67,
@@ -3070,22 +3054,6 @@
                     "name": "Charles Searls",
                     "email": "sonowthen82@yahoo.com",
                     "revenue": 783.09,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Kimberly Tate",
-                    "email": "ms.kimtate@gmail.com",
-                    "revenue": 585.34,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Kimberly Tate",
-                    "email": "ms.kimtate@gmail.com",
-                    "revenue": 585.34,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -3163,14 +3131,6 @@
                     "isZeroRevenue": false
                   },
                   {
-                    "name": "Hanish Gudipudi",
-                    "email": "hanish.sk459@gmail.com",
-                    "revenue": 671.22,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
                     "name": "Rajee Suri",
                     "email": "rajeesuri@gmail.com",
                     "revenue": 641.84,
@@ -3190,14 +3150,6 @@
                     "name": "Chrystal May",
                     "email": "ckofke21@gmail.com",
                     "revenue": 647.49,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Hanish Gudipudi",
-                    "email": "hanish.sk459@gmail.com",
-                    "revenue": 708.51,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -3259,14 +3211,6 @@
                     "isZeroRevenue": false
                   },
                   {
-                    "name": "Anne Coffee",
-                    "email": "annescoffee11@gmail.com",
-                    "revenue": 1466.59,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
                     "name": "Shontel Westbrook",
                     "email": "shontelwestbrook22@gmail.com",
                     "revenue": 221.48,
@@ -3278,14 +3222,6 @@
                     "name": "William Griffiths",
                     "email": "wogriffiths@gmail.com",
                     "revenue": 2870.2,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Anne Coffee",
-                    "email": "annescoffee11@gmail.com",
-                    "revenue": 1281.13,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -3350,8 +3286,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 51,
-            "totalRevenue": 34569.63999999999,
+            "totalUses": 43,
+            "totalRevenue": 28642.099999999995,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -3371,9 +3307,9 @@
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 130941.93000000001,
-            "avgDirectBookingValue": 844.7866451612904,
-            "directBookingCount": 155,
+            "totalRevenue": 119242.56,
+            "avgDirectBookingValue": 851.7325714285714,
+            "directBookingCount": 140,
             "zeroRevenueCount": 15,
             "hasSourceColumn": true
           }
@@ -3423,53 +3359,13 @@
                 "discount": "10%",
                 "purpose": "2 night min",
                 "campaignType": "Followers",
-                "uses": 19,
-                "revenue": 8317.980000000001,
+                "uses": 5,
+                "revenue": 1878.67,
                 "guests": [
-                  {
-                    "name": "Erin Parker",
-                    "email": "",
-                    "revenue": 391.58,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Bryan Short",
-                    "email": "",
-                    "revenue": 821.24,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Alison Farr",
-                    "email": "",
-                    "revenue": 475.17,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Amberly Brewer",
-                    "email": "",
-                    "revenue": 329.08,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
                   {
                     "name": "Jennifer Shea",
                     "email": "",
                     "revenue": 692.18,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Matthew Morgan",
-                    "email": "",
-                    "revenue": 588.5,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -3483,49 +3379,9 @@
                     "isZeroRevenue": false
                   },
                   {
-                    "name": "Jonathan Pounds",
-                    "email": "",
-                    "revenue": 232.41,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Raquel Rench",
-                    "email": "",
-                    "revenue": 625.26,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
                     "name": "Holly Lefevre LaRock",
                     "email": "",
                     "revenue": 414.06,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Wyatt LaCombe",
-                    "email": "",
-                    "revenue": 374.98,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Madeline Kaiser",
-                    "email": "",
-                    "revenue": 323.22,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Timothée Raymond",
-                    "email": "",
-                    "revenue": 837.6,
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
@@ -3545,38 +3401,6 @@
                     "confidence": "high",
                     "confidenceReason": "Explicit code in PMS",
                     "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Isaac Durham",
-                    "email": "",
-                    "revenue": 202.14,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Victoria Cran",
-                    "email": "",
-                    "revenue": 219.71,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Alexandra Shor",
-                    "email": "",
-                    "revenue": 583.71,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
-                  },
-                  {
-                    "name": "Christopher Daniel Aubin",
-                    "email": "",
-                    "revenue": 434.71,
-                    "confidence": "high",
-                    "confidenceReason": "Explicit code in PMS",
-                    "isZeroRevenue": false
                   }
                 ]
               },
@@ -3590,8 +3414,8 @@
                 "guests": []
               }
             ],
-            "totalUses": 19,
-            "totalRevenue": 8317.980000000001,
+            "totalUses": 5,
+            "totalRevenue": 1878.67,
             "unrecognizedCodes": [],
             "missingFromPromoSheet": false,
             "netIncomeWarning": false
@@ -3611,9 +3435,9 @@
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 55653.45999999996,
-            "avgDirectBookingValue": 551.0243564356432,
-            "directBookingCount": 101,
+            "totalRevenue": 25135.540000000005,
+            "avgDirectBookingValue": 512.9702040816328,
+            "directBookingCount": 49,
             "zeroRevenueCount": 2,
             "hasSourceColumn": true
           }
@@ -6448,9 +6272,9 @@
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 56664.160000000025,
-            "avgDirectBookingValue": 615.9147826086959,
-            "directBookingCount": 92,
+            "totalRevenue": 39831.29000000001,
+            "avgDirectBookingValue": 497.8911250000001,
+            "directBookingCount": 80,
             "zeroRevenueCount": 0,
             "hasSourceColumn": true
           }
@@ -7334,7 +7158,7 @@
             "totalRevenue": 78572.62000000002,
             "avgDirectBookingValue": 734.3235514018694,
             "directBookingCount": 107,
-            "zeroRevenueCount": 23,
+            "zeroRevenueCount": 1,
             "hasSourceColumn": true
           }
         },
@@ -8930,6 +8754,6 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       }
     ],
-    "lastProcessed": "2026-11-03T19:36:09.706Z"
+    "lastProcessed": "2026-11-03T19:45:24.500Z"
   }
 }
