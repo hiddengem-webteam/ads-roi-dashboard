@@ -74,7 +74,7 @@ const REPORT_ACCOUNT_TO_CLIENT: Record<string, string> = {
   'Red White & Blue Views': 'Red White & Blue Views',
   'Ridge & Falls ad account': 'Ridge & Falls',
   'Selah.place': 'Selah Place',
-  'Southern Illinois Cabins Ads': 'Stay Southen Illinois',
+  'Southern Illinois Cabins Ads': 'Stay Southern Illinois',
   'Starlight Haven Hot Springs': 'Starlight Haven Hot Springs',
   'Starlight Haven Weiss Lake - 74756899': 'Starlight Haven Weiss Lake',
   'Stay Luxe Ads': 'StayLuxe',

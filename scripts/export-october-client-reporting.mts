@@ -110,9 +110,7 @@ async function main() {
     const roas = totalSpend > 0 && metaAttributedRevenue > 0 ? round2(metaAttributedRevenue / totalSpend) : null;
 
     return {
-      // canonical internal name is 'Stay Southen Illinois' (July legacy);
-      // correct the spelling in the client-facing export
-      clientName: client.name === 'Stay Southen Illinois' ? 'Stay Southern Illinois' : client.name,
+      clientName: client.name,
       note: OCTOBER_CLIENT_NOTES[client.name] ?? null,
       revenueSource,
       // null (not 0) when the client has no booking-level data at all

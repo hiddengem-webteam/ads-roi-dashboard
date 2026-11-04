@@ -75,7 +75,7 @@ async function main() {
     'Ponderosa Pines Resort': 'Ponderosa Pines Resort',
     'Red White & Blue Views': 'Red White & Blue Views',
     'Selah.place': 'Selah Place',
-    'Southern Illinois Cabins Ads': 'Stay Southen Illinois',
+    'Southern Illinois Cabins Ads': 'Stay Southern Illinois',
     'Starlight Haven Hot Springs': 'Starlight Haven Hot Springs',
     'Starlight Haven Weiss Lake - 74756899': 'Starlight Haven Weiss Lake',
     // 'Stay Different Ads' removed — client offboarded (per Shawal, Sep 3 2026)

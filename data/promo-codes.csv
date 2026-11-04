@@ -32,6 +32,7 @@ Riveria Stays,$100 off,WELCOME100,New Leads (2-night minimum),,Followers
 ,,,,,
 Asheville River Cabins,$50 off,WELCOME50,New Leads (2 night min stay),,Followers
 ,$50 off,VIP50,meta ads,,Retarget
+,10%,WELCOMEBACK10,repeat guest,,
 ,,,,,
 Parker Reserve,$100 off,WELCOME100,New Leads,,Followers
 ,10% off,WELCOMEBACK10,Loyalty Offer,,Followers
@@ -50,6 +51,7 @@ Green Springs Inn,10% off,NATURE10,New Leads (2 night miniumum),,Followers
 ,,VIP10,,,Retarget
 ,,RECHARGE10,Old Manychat,,
 ,,WELCOMETEXT,Welcome text/SMS flow (HG code; per Oct 2026 AM sheet),,Followers
+,,WELCOMEBACK10,Repeat Booking,,
 ,,,,,
 Treetop Escapes,$100 off,WELCOME100,New Leads (3 night miniumum),,Followers
 ,10% off,WELCOMEBACK10,Past Guests (3-night minimum),,Past Guests
@@ -96,6 +98,7 @@ Big Moon Ranch,10% off,WELCOME10,New Leads- 2 night miniumum,,Followers
 ,10% off,RETURN10,repeat guest,,
 ,,,,,
 Home Base,$250 off,WELCOME250,3 night minimum,,Followers
+,$250 off,HOMEBASE250,retargeting,,
 ,,,,,
 Away2PA,$100 off,WELCOME100,New Leads,,Followers
 ,10% Off,WELCOMEBACK10,Past Guests,,Followers
@@ -110,6 +113,7 @@ Endless Stays,10% off,WELCOME10,New leads - 2 night minimum,,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,
 ,$100,GETAWAY100,Past guests - $100 off (friend),,
 ,10%,ESTAYS10,Retarget (code as used in PMS),,Retarget
+,10%,ESTAYS,Retarget,,
 ,,,,,
 Red White & Blue Views,$100 off,WELCOME100,New leads - 3 night minimum,,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,Past Guest
@@ -127,6 +131,7 @@ Dwell,10%,WELCOME10,,,Followers
 ,,,,,
 Stay on 30a,$100,WELCOME100,2 night min,,Followers
 ,$100,VIP100,meta ads,,Retarget
+,10%,RETURNINGGUEST,repeat flow,,
 ,,,,,
 American River Resort,20% off,WELCOME20,"20% off all bookings (min 2-night, + WWRafting)",,Followers
 ,10% off,WELCOMEBACK10,Past guests - 10% off,,Past Guest
@@ -141,7 +146,7 @@ Bison Ridge Retreat,$100 off,WELCOME100,2-night min,,Followers
 ,,,,,
 Villa Destino,10% off,WELCOME100,4-night minimum,,Followers
 ,,,,,
-Stay Southen Illinois,10% off,WELCOME10,4-night minimum (excluding Oct 20-Nov 5),,Followers
+Stay Southern Illinois,10% off,WELCOME10,4-night minimum (excluding Oct 20-Nov 5),,Followers
 ,5% off,MILITARY5,Military and First Responder discount,,Followers
 ,,,,,
 Apple Mountain Resort,$100 Off,WELCOME100,New Leads - 3 night miniumum,,Followers
@@ -157,6 +162,7 @@ Rock Ridge Retreat,10% off,WELCOME10,2 night min,,Followers
 ,,,,,
 Sunapee Stays,10%,WELCOME10,2 night min,,Followers
 ,10%,RETURN10,Repeat flow,,
+,10%,WELCOMEBACK10,Repeat flow,,
 ,,,,,
 Best Texas Travel,10% off,WELCOME10,2 night min,,Followers
 ,10% off,WELCOMEBACK10,,,Past Guest
@@ -168,13 +174,15 @@ Best Texas Travel,10% off,WELCOME10,2 night min,,Followers
 Columbia Gorge Getaways,10% off,WELCOME10,2 night min,,Followers
 ,10% off,WELCOMEBACK10,2 night min,,
 ,10% off,SAFARI10,2 night min,,Retarget
+,10% off,VIP10,2 night min,,
 ,,,,,
 Selah Place,10% off,WELCOME10,,,Followers
 ,10% off,WELCOMEBACK10,,,
 ,10% off,VIP10,,,Retarget
 ,,,,,
-Tàberg Falls,10% off,WELCOME100,,,Followers
+Tàberg Falls,$100 off,WELCOME100,,,Followers
 ,$100 off,VIP100,,,Retargeting
+,10% off,WELCOMEBACK10,,,
 ,,,,,
 The Outpost,10% OFF,WELCOME10,2 night min,,Followers
 ,,,,,
@@ -204,13 +212,23 @@ Little River Landing,10% OFF,HELLO10,2-night min,,Followers
 ,10% OFF,STAY10,2-night min,,
 ,,,,,
 North Star Lodge & Resort,10% Off,WELCOME10,,,Followers
+,10% Off,RETURN10,,,
 ,,,,,
 Glasscombe,10% off,WELCOME10,2 night min,,Followers
-,,,,,
+,10% off,GLASS10,2 night min,,
+,10 % off,RETURN10,repeat,,
 ,,,,,
 Walden Retreats,10% OFF,WELCOME10,New leads (CRM),,Followers
 ,,VIP10,Retargeting (CRM),,Retarget
 ,,,,,
-Cabin Collective,10% off,WELCOME10,Welcome Offer (CRM; sheet has "WELCOME 10"),,Followers
+Cabin Collective,10% off,WELCOME10,Welcome Offer (CRM; sheet has WELCOME 10),,Followers
 ,10% Off,WELCOMEBACK10,Return Guest (CRM),,
 ,10% OFF,VIP10,Retargeting (CRM),,Retarget
+,10% off,WELCOME 10,,,
+,,,,,
+Gooseberry Lodges,10% off,WELCOME10,,,
+,,VIP10,,,
+,,,,,
+Dunya Camp,$100 Off (add-on voucher),WELCOME100,,,
+,,INSIDER100,,,
+,,,,,

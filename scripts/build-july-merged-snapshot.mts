@@ -55,7 +55,7 @@ const MANIFEST_TO_XLSX_SOURCE: Record<string, string> = {
   'Best Texas Travel': 'Best Texas Travel',
   'Stay on 30a': 'Stay on 30a',
   'Selah Place': 'Selah Place',
-  'Stay Southen Illinois': 'Stay Southern Illinois',
+  'Stay Southern Illinois': 'Stay Southern Illinois',
   'Three Suns Cabins': 'Three Suns Cabins',
   'Green Springs Inn': 'Green Springs Inn',
   'Flohom': 'FLOHOM',
@@ -191,7 +191,7 @@ async function main() {
   // them would double-count. For these, the xlsx export is used exclusively —
   // platform PMS data is ignored entirely. Evergreen Cabins: platform's 34
   // rows ($51,885.29) vs xlsx's 49 rows ($62,289.95, confirmed correct).
-  // Stay Southen Illinois: platform's 121 rows ($79,360.01) are stays
+  // Stay Southern Illinois: platform's 121 rows ($79,360.01) are stays
   // checking in during July across this client's ~34 cabins; the account
   // manager's sheet (11 rows, $6,600.23) scopes to reservations booked
   // during July instead — user chose the booked-in-July scope explicitly.
@@ -210,7 +210,7 @@ async function main() {
   // 43 rows total $138,923.48 — user confirmed ~138K correct.
   const USE_XLSX_EXCLUSIVELY = new Set([
     'Evergreen Cabins',
-    'Stay Southen Illinois',
+    'Stay Southern Illinois',
     'Away2PA',
     'Awayframes',
     'Best Texas Travel',

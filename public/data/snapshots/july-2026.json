@@ -66,9 +66,9 @@
         "ghl": "/data/periods/july-2026/clients/Selah Place/GHL data.csv"
       },
       {
-        "name": "Stay Southen Illinois",
-        "pms": "/data/periods/july-2026/clients/Stay Southen Illinois/PMS data.csv",
-        "ghl": "/data/periods/july-2026/clients/Stay Southen Illinois/GHL data.csv"
+        "name": "Stay Southern Illinois",
+        "pms": "/data/periods/july-2026/clients/Stay Southern Illinois/PMS data.csv",
+        "ghl": "/data/periods/july-2026/clients/Stay Southern Illinois/GHL data.csv"
       },
       {
         "name": "Three Suns Cabins",
@@ -3209,11 +3209,11 @@
         "hasPMS": true,
         "hasGHL": true
       },
-      "Stay Southen Illinois": {
-        "name": "Stay Southen Illinois",
+      "Stay Southern Illinois": {
+        "name": "Stay Southern Illinois",
         "facebookStats": {
-          "clientName": "Stay Southen Illinois",
-          "accountName": "Stay Southen Illinois",
+          "clientName": "Stay Southern Illinois",
+          "accountName": "Stay Southern Illinois",
           "followers": {
             "type": "Followers",
             "spend": 780.36,
@@ -3243,7 +3243,7 @@
           }
         },
         "pmsAnalysis": {
-          "clientName": "Stay Southen Illinois",
+          "clientName": "Stay Southern Illinois",
           "promoCode": {
             "codes": [
               {

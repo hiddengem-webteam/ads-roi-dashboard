@@ -44,7 +44,7 @@ export const OCTOBER_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
   'Starlight Haven Weiss Lake': { directBookingRevenue: 48161, newLeads: 659 },
   'Stay on 30a': { directBookingRevenue: 325979.29, newLeads: 1160 },
   'Stay Saluda': { directBookingRevenue: 18656, newLeads: 920 },
-  'Stay Southen Illinois': { directBookingRevenue: 15890, newLeads: 376 },
+  'Stay Southern Illinois': { directBookingRevenue: 15890, newLeads: 376 },
   'Stay with Branch': { directBookingRevenue: 5169, newLeads: 296 },
   'StayLuxe': { directBookingRevenue: 0, newLeads: 85 },
   'Sunapee Stays': { directBookingRevenue: 35204, newLeads: 304 },

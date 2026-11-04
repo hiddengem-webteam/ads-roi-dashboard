@@ -33,7 +33,6 @@ const CONCURRENCY = 6;
 
 const NAME_ALIASES: Record<string, string> = {
   'Stay Saluda NC': 'Stay Saluda',
-  'Stay Southern Illinois': 'Stay Southen Illinois',
   "Wanderin' Star Farms": 'Wanderin Star Farms',
 };
 const SKIP_CLIENTS = new Set(['HiddenGem Test']);

@@ -54,7 +54,7 @@ const ACCOUNT_MANAGERS: Record<string, string> = {
   'Selah Place': 'Alicia',
   'Casey Key Resort': 'Alicia',
   'Bison Ridge Retreat': 'Chiara',
-  'Stay Southen Illinois': 'Chiara',
+  'Stay Southern Illinois': 'Chiara',
   'Oak & Ember': 'Chiara',
   'Columbia Gorge Getaways': 'Chiara',
   'Tuxedo Falls': 'Chiara',

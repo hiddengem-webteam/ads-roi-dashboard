@@ -35,7 +35,6 @@ const TAGS = ['meta ads lead', 'instagram lead', 'facebook lead'] as const;
 // don't match by loose normalization.
 const NAME_ALIASES: Record<string, string> = {
   'Stay Saluda NC': 'Stay Saluda',
-  'Stay Southern Illinois': 'Stay Southen Illinois',
   "Wanderin' Star Farms": 'Wanderin Star Farms',
 };
 const SKIP_CLIENTS = new Set(['HiddenGem Test']);

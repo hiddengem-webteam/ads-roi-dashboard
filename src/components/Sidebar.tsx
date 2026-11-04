@@ -22,7 +22,7 @@ const ACCOUNT_MANAGERS: Record<string, string> = {
   'The Outpost': 'Anna',
   'Ponderosa Pines Resort': 'Anna',
   'Bison Ridge Retreat': 'Chiara',
-  'Stay Southen Illinois': 'Chiara',
+  'Stay Southern Illinois': 'Chiara',
   'Hillside Amble': 'Chiara',
   'Paradise Pointe': 'Makenna',
   'Treetop Escapes': 'Makenna',

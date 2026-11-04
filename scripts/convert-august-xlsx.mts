@@ -24,7 +24,6 @@ const FILES = ['Chiara August.xlsx', 'Makenna August.xlsx', 'Nicole August.xlsx'
 
 // Tab name → canonical dashboard client name (identity when omitted).
 const TAB_TO_CLIENT: Record<string, string> = {
-  'Stay Southern Illinois': 'Stay Southen Illinois',
   'Stayon30a': 'Stay on 30a',
   'StaywithBranch': 'Stay with Branch',
   'HomeBase': 'Home Base',

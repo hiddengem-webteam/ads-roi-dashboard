@@ -26,7 +26,6 @@ const FILES = ['Chiara October.xlsx', 'Nicole October.xlsx', 'Makenna October.xl
 // Tab name → canonical dashboard client name, applied AFTER stripping the
 // "- Updated"/"-Update" suffixes the AMs append.
 const TAB_TO_CLIENT: Record<string, string> = {
-  'Stay Southern Illinois': 'Stay Southen Illinois',
   'Stayon30a': 'Stay on 30a',
   'HomeBase': 'Home Base',
   'Taberg Falls': 'Tàberg Falls',

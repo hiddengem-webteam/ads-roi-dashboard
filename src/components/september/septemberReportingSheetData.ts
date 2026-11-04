@@ -35,7 +35,7 @@ export const SEPTEMBER_REPORTING_SHEET: Record<string, ClientReportingFigures> =
   'Starlight Haven Hot Springs': { directBookingRevenue: 121636.87, newLeads: 1841 },
   'Starlight Haven Weiss Lake': { directBookingRevenue: 49377.94, newLeads: 783 },
   'Stay Saluda': { directBookingRevenue: 20881.71, newLeads: 917 },
-  'Stay Southen Illinois': { directBookingRevenue: 16714.29, newLeads: 463 },
+  'Stay Southern Illinois': { directBookingRevenue: 16714.29, newLeads: 463 },
   'Stay on 30a': { directBookingRevenue: 429436.69, newLeads: 1380 },
   'Stay with Branch': { directBookingRevenue: 1169, newLeads: 293 },
   'StayLuxe': { directBookingRevenue: 0, newLeads: 56 },

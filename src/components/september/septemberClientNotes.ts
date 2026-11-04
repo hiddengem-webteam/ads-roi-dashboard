@@ -11,5 +11,5 @@ export const SEPTEMBER_CLIENT_NOTES: Record<string, string> = {
   'Ridge & Falls': 'Newly launched campaigns — $1,036.47 spent, no revenue from ads yet (spend exceeds the $871.49 September direct revenue, as expected for a launch month).',
   'Red White & Blue Views': 'No revenue from ads this month.',
   'StayLuxe': 'No revenue from ads this month. Booking tab is empty — confirming with the AM that no data is missing.',
-  'Stay Southen Illinois': 'Meta pixel reported more retargeting purchases (27) than the month’s total bookings (22), so ad-attributed revenue is capped at the booking total. AM to confirm whether bookings are missing from the sheet or the pixel is double-counting.',
+  'Stay Southern Illinois': 'Meta pixel reported more retargeting purchases (27) than the month’s total bookings (22), so ad-attributed revenue is capped at the booking total. AM to confirm whether bookings are missing from the sheet or the pixel is double-counting.',
 };

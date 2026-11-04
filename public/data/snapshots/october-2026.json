@@ -151,8 +151,8 @@
         "ghl": ""
       },
       {
-        "name": "Stay Southen Illinois",
-        "pms": "/data/periods/october-2026/xlsx-source/Stay Southen Illinois/PMS data.csv",
+        "name": "Stay Southern Illinois",
+        "pms": "/data/periods/october-2026/xlsx-source/Stay Southern Illinois/PMS data.csv",
         "ghl": ""
       },
       {
@@ -6170,11 +6170,11 @@
         "hasPMS": true,
         "hasGHL": false
       },
-      "Stay Southen Illinois": {
-        "name": "Stay Southen Illinois",
+      "Stay Southern Illinois": {
+        "name": "Stay Southern Illinois",
         "facebookStats": {
-          "clientName": "Stay Southen Illinois",
-          "accountName": "Stay Southen Illinois",
+          "clientName": "Stay Southern Illinois",
+          "accountName": "Stay Southern Illinois",
           "followers": {
             "type": "Followers",
             "spend": 616.06,
@@ -6204,7 +6204,7 @@
           }
         },
         "pmsAnalysis": {
-          "clientName": "Stay Southen Illinois",
+          "clientName": "Stay Southern Illinois",
           "promoCode": {
             "codes": [
               {
@@ -8680,10 +8680,10 @@
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       },
       {
-        "id": "missing-ghl-Stay-Southen-Illinois-",
+        "id": "missing-ghl-Stay-Southern-Illinois-",
         "type": "missing-ghl",
-        "clientName": "Stay Southen Illinois",
-        "message": "Stay Southen Illinois: No GHL data file — lead matching unavailable",
+        "clientName": "Stay Southern Illinois",
+        "message": "Stay Southern Illinois: No GHL data file — lead matching unavailable",
         "details": "Upload a GHL export for this client to enable Instagram and Facebook lead analysis."
       },
       {

@@ -4,7 +4,7 @@
 // from the frozen snapshot. Keys are dashboard client names (snapshot keys),
 // which differ from some sheet tab names (FLOHOM → Flohom, Stay With Branch →
 // Stay with Branch, Dwell Luxury Rentals → Dwell, Stay Southern Illinois →
-// Stay Southen Illinois).
+// Stay Southern Illinois).
 // Source sheet: 1VnojM0GKQV7RpAvqmrU3WsEFCkA9bMqU5uOtNu4NZaY (verified with
 // Shawal, Aug 11 2026).
 
@@ -43,7 +43,7 @@ export const CLIENT_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
   'Stay Different': { directBookingRevenue: 2159.18, newLeads: 81 },
   'Stay on 30a': { directBookingRevenue: 478699.05, newLeads: 1129 },
   'Stay Saluda': { directBookingRevenue: 17371, newLeads: 346 },
-  'Stay Southen Illinois': { directBookingRevenue: 6600.23, newLeads: 1116 },
+  'Stay Southern Illinois': { directBookingRevenue: 6600.23, newLeads: 1116 },
   'Stay with Branch': { directBookingRevenue: 74512.66, newLeads: 181 },
   'StayLuxe': { directBookingRevenue: 12937.18, newLeads: 57 },
   'Sunapee Stays': { directBookingRevenue: 47958.84, newLeads: 603 },
