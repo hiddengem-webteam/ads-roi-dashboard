@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Sidebar from './Sidebar';
 import ClientSummarySection, { GhlTagLeadCounts } from './ClientSummarySection';
 import { ClientEmailMatches } from './PMSAnalysisSection';
@@ -10,6 +10,7 @@ import FlagPanel from './FlagPanel';
 import PeriodOverviewSection from './PeriodOverviewSection';
 import DataStatusPanel from './DataStatusPanel';
 import FinalizedReportingSummarySection from './FinalizedReportingSummarySection';
+import ClientMonthlyComparisonSection from './ClientMonthlyComparisonSection';
 import { ProcessedData, ClientData } from '@/types';
 import { loadManifest, loadPeriod, Manifest, ManifestClient, ManifestPeriod } from '@/lib/analysis/autoLoader';
 import { FINALIZED_PERIODS, FinalizedPeriod, isFinal, periodSortKey } from '@/lib/analysis/finalizedPeriods';
@@ -45,6 +46,36 @@ function mergePeriods(manifest: Manifest | null): DashboardPeriod[] {
   return [...byId.values()].sort((a, b) => periodSortKey(b.id) - periodSortKey(a.id));
 }
 
+type View = 'overview' | 'client' | 'compare';
+
+// The selected month, client and view live in the URL (?period=&client=&view=)
+// so a refresh, a shared link or a month switch keeps the page you were on
+// (Nicole, Nov 2026). Read once on load, written on every change.
+function readUrlState(): { period: string | null; client: string | null; view: View | null } {
+  if (typeof window === 'undefined') return { period: null, client: null, view: null };
+  const params = new URLSearchParams(window.location.search);
+  const view = params.get('view');
+  return {
+    period: params.get('period'),
+    client: params.get('client'),
+    view: view === 'client' || view === 'compare' || view === 'overview' ? view : null,
+  };
+}
+
+function writeUrlState(period: string, client: string, view: View) {
+  if (typeof window === 'undefined') return;
+  const params = new URLSearchParams();
+  params.set('period', period);
+  if (view !== 'overview' && client) {
+    params.set('client', client);
+    params.set('view', view);
+  }
+  const next = `${window.location.pathname}?${params.toString()}`;
+  if (`${window.location.pathname}${window.location.search}` !== next) {
+    window.history.replaceState(null, '', next);
+  }
+}
+
 export default function Dashboard() {
   const [manifest, setManifest] = useState<Manifest | null>(null);
   const [manifestReady, setManifestReady] = useState(false);
@@ -53,7 +84,18 @@ export default function Dashboard() {
   const [loadedClients, setLoadedClients] = useState<ManifestClient[] | null>(null);
   const [selectedPeriodId, setSelectedPeriodId] = useState<string>('');
   const [selectedClient, setSelectedClient] = useState<string>('');
-  const [activeView, setActiveView] = useState<'overview' | 'client'>('overview');
+  const [activeView, setActiveView] = useState<View>('overview');
+  // Client/view the URL asked for on first load, applied once the period's data is in.
+  const pendingUrlState = useRef<{ client: string | null; view: View | null } | null>(null);
+  // Current selection, readable from the period-load effect without re-running it.
+  const selectionRef = useRef<{ client: string; view: View }>({ client: '', view: 'overview' });
+  useEffect(() => {
+    selectionRef.current = { client: selectedClient, view: activeView };
+  }, [selectedClient, activeView]);
+  // Every finalized snapshot loaded so far, for the month-by-month view;
+  // ids whose fetch failed are remembered so they are not retried every render.
+  const [snapshotCache, setSnapshotCache] = useState<Record<string, ProcessedData>>({});
+  const [snapshotFailed, setSnapshotFailed] = useState<Record<string, true>>({});
 
   function scrollToTop() {
     document.getElementById('main-scroll')?.scrollTo({ top: 0, behavior: 'instant' });
@@ -92,7 +134,11 @@ export default function Dashboard() {
       .catch((): Manifest => ({ periods: [] }))
       .then((m) => {
         setManifest(m);
-        const first = mergePeriods(m)[0];
+        const merged = mergePeriods(m);
+        const url = readUrlState();
+        pendingUrlState.current = { client: url.client, view: url.view };
+        const fromUrl = url.period ? merged.find((p) => p.id === url.period) : undefined;
+        const first = fromUrl ?? merged[0];
         if (first) setSelectedPeriodId(first.id);
       })
       .finally(() => setManifestReady(true));
@@ -109,10 +155,6 @@ export default function Dashboard() {
     setError(null);
     setData(null);
     setLoadedClients(null);
-    // Landing view for every period load (first load AND month switches) is
-    // the Overview — switching months while inside a client would otherwise
-    // dump you on the manifest's first client (currently Tàberg Falls).
-    setActiveView('overview');
     scrollToTop();
 
     const load: Promise<{ data: ProcessedData; clients: ManifestClient[] }> = period.finalized
@@ -130,7 +172,22 @@ export default function Dashboard() {
       .then(({ data: result, clients }) => {
         setData(result);
         setLoadedClients(clients);
-        // Default to first client in period order
+        if (period.finalized) {
+          setSnapshotCache((cache) => (cache[period.id] ? cache : { ...cache, [period.id]: result }));
+        }
+        // Keep the client you were looking at (or the one the URL named) when
+        // it exists in this month; otherwise land on the Overview rather than
+        // the manifest's first client.
+        const pending = pendingUrlState.current;
+        pendingUrlState.current = null;
+        const wantedClient = pending?.client ?? selectionRef.current.client;
+        const wantedView = pending?.view ?? selectionRef.current.view;
+        if (wantedClient && result.clients[wantedClient] && wantedView !== 'overview') {
+          setSelectedClient(wantedClient);
+          setActiveView(wantedView);
+          return;
+        }
+        setActiveView('overview');
         const firstClient = clients[0]?.name;
         if (firstClient && result.clients[firstClient]) {
           setSelectedClient(firstClient);
@@ -145,6 +202,49 @@ export default function Dashboard() {
 
   const currentPeriod = periods.find((p) => p.id === selectedPeriodId);
   const isFinalized = !!currentPeriod?.finalized;
+
+  // Mirror the selection into the URL once the month has loaded.
+  useEffect(() => {
+    if (loading || !selectedPeriodId) return;
+    writeUrlState(selectedPeriodId, selectedClient, activeView);
+  }, [loading, selectedPeriodId, selectedClient, activeView]);
+
+  // The month-by-month view needs every finalized snapshot; fetch the missing
+  // ones the first time it opens and keep them for the session.
+  useEffect(() => {
+    if (activeView !== 'compare') return;
+    const missing = FINALIZED_PERIODS.filter((p) => !snapshotCache[p.id] && !snapshotFailed[p.id]);
+    if (missing.length === 0) return;
+    let cancelled = false;
+    Promise.all(
+      missing.map((p) =>
+        fetch(p.snapshot)
+          .then((res) => (res.ok ? (res.json() as Promise<Snapshot>) : null))
+          .then((snap) => [p.id, snap?.data ?? null] as const)
+          .catch(() => [p.id, null] as const),
+      ),
+    ).then((entries) => {
+      if (cancelled) return;
+      setSnapshotCache((cache) => {
+        const next = { ...cache };
+        for (const [id, d] of entries) if (d) next[id] = d;
+        return next;
+      });
+      setSnapshotFailed((failed) => {
+        const next = { ...failed };
+        for (const [id, d] of entries) if (!d) next[id] = true;
+        return next;
+      });
+    });
+    return () => {
+      cancelled = true;
+    };
+    // The caches are read, not triggers: re-running on every cache update would refetch nothing but churn.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeView]);
+
+  const loadingAllSnapshots =
+    activeView === 'compare' && FINALIZED_PERIODS.some((p) => !snapshotCache[p.id] && !snapshotFailed[p.id]);
 
   // Ordered client list: alphabetical. Live months list clients with ad data;
   // finalized months also list PMS-only clients, as their month pages did.
@@ -171,7 +271,7 @@ export default function Dashboard() {
         <div className="bg-[var(--surface-strong)] border-r border-[var(--border)] flex flex-col overflow-hidden flex-shrink-0 w-[220px]">
           <Sidebar
             clients={orderedClients}
-            selectedClient={activeView === 'client' ? selectedClient : ''}
+            selectedClient={activeView !== 'overview' ? selectedClient : ''}
             onSelectClient={(name) => goToClient(name)}
             periodLabel={currentPeriod?.label}
           />
@@ -207,6 +307,15 @@ export default function Dashboard() {
                   </>
                 ) : 'Client View'}
               </button>
+              {currentClient && (
+                <button
+                  onClick={() => { setActiveView('compare'); scrollToTop(); }}
+                  title={`${selectedClient}: key metrics for every month, with the change against the month before`}
+                  className={`px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'compare' ? 'bg-[var(--brand-bg)] text-[var(--brand-text)]' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+                >
+                  Month by month
+                </button>
+              )}
             </div>
 
             <div className="flex items-center gap-3">
@@ -273,6 +382,22 @@ export default function Dashboard() {
                 <p className="text-[13px] text-[var(--err-text)] mt-1">{error}</p>
               </div>
             </div>
+          )}
+
+          {/* Month-by-month comparison for the selected client */}
+          {!loading && !error && currentClient && activeView === 'compare' && (
+            <ClientMonthlyComparisonSection
+              clientName={selectedClient}
+              periods={FINALIZED_PERIODS}
+              snapshots={snapshotCache}
+              loading={loadingAllSnapshots}
+              currentPeriodId={selectedPeriodId}
+              onSelectPeriod={(id) => {
+                setActiveView('client');
+                if (id !== selectedPeriodId) setSelectedPeriodId(id);
+                scrollToTop();
+              }}
+            />
           )}
 
           {/* Client content */}
