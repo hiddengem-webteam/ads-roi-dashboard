@@ -21,6 +21,8 @@ Usage:
   python3 scripts/push-dashboard-meta-ads.py --month 2026-10 --write        # update changed rows in place by id, insert missing
   python3 scripts/push-dashboard-meta-ads.py --month 2026-07 --write --skip-new-clients   # don't add clients the DB has never seen
   python3 scripts/push-dashboard-meta-ads.py --month 2026-07 --write --prune  # also delete rows only in the DB (never automatic)
+  python3 scripts/push-dashboard-meta-ads.py --restore "Monthly Data/pooja-dashboard-backups/before-2026-10-<ts>.json"
+      # revert a month: rows in the snapshot are restored by id, rows added since are deleted
 Every --write first saves a backup of the month's DB rows and a change log under "Monthly Data/pooja-dashboard-backups/".
 Reads POOJA_SUPABASE_URL / POOJA_SUPABASE_SECRET_KEY from .env.local.
 """
@@ -125,12 +127,34 @@ def close(a, b, col):
     tol = 0.02 if col in ('pct_avg_booking_value',) else 0.011 * max(1, abs(float(a)) if col in ('spend','revenue') else 1)
     return abs(float(a) - float(b)) <= max(tol, 0.0105)
 
+def restore(path):
+    snap = json.load(open(path))
+    import re as _re
+    m = _re.search(r'before-(\d{4})-(\d{2})-', os.path.basename(path))
+    if not m: sys.exit('snapshot file name must look like before-YYYY-MM-<ts>.json')
+    year, mon = int(m.group(1)), int(m.group(2))
+    current = api('GET', f'dashboard_meta_ads?select=*&year=eq.{year}&month=eq.{mon}&limit=1000')
+    snap_ids = {r['id'] for r in snap}
+    cols = [c for c in (snap[0].keys() if snap else []) if c not in ('id', 'created_at')]
+    restored = 0
+    for r in snap:
+        api('PATCH', f'dashboard_meta_ads?id=eq.{r["id"]}', body={c: r[c] for c in cols}, prefer='return=minimal'); restored += 1
+    deleted = 0
+    for r in current:
+        if r['id'] not in snap_ids:
+            api('DELETE', f'dashboard_meta_ads?id=eq.{r["id"]}', prefer='return=minimal'); deleted += 1
+    after = api('GET', f'dashboard_meta_ads?select=*&year=eq.{year}&month=eq.{mon}&limit=1000')
+    ok = {r['id']: {c: r[c] for c in cols} for r in after} == {r['id']: {c: r[c] for c in cols} for r in snap}
+    print(f'restored {restored} rows, deleted {deleted} rows added after the snapshot; month now matches snapshot: {ok}')
+
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--month', required=True)
+    ap = argparse.ArgumentParser(); ap.add_argument('--month')
     ap.add_argument('--preview', action='store_true'); ap.add_argument('--verify', action='store_true')
     ap.add_argument('--write', action='store_true'); ap.add_argument('--prune', action='store_true')
-    ap.add_argument('--skip-new-clients', action='store_true')
+    ap.add_argument('--skip-new-clients', action='store_true'); ap.add_argument('--restore')
     a = ap.parse_args()
+    if a.restore:
+        return restore(a.restore)
     rows = build_rows(a.month)
     out = os.path.join(ROOT, 'scratchpad', 'pooja'); os.makedirs(out, exist_ok=True)
     csvp = os.path.join(out, f'dashboard_meta_ads-{a.month}.csv')
