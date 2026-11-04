@@ -12,7 +12,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 ## Decisions baked in (2026-09-21, Shawal)
 
 - **State source of truth** is the Decision Making table in the Benchmarks doc (Google Doc `1KVMRJcmw6cVhHy7sj48vHRPJWNLid4tUiHTWOnkCFSE`). Per-type Investigate / Target / Strong values are diagnostics only and never change the state.
-- **Scope**: only Lead Gen (MoF) and Sales / Retargeting (BoF) campaigns are scored. IG Discovery / Keyword (ToF) spend is shown as one line per client, unscored. Cost per follower is parked.
+- **Scope (Shawal, 2026-11-04): only Sales-objective campaigns are scored** (Retargeting (BoF), Prospecting (MoF lookalike), Sales), on 14-day pixel ROAS. Lead Gen (MoF) rows and the Discovery bucket row are listed under each client for context (leads, CPL, promo ROAS) with the state `Not scored (lead gen)` / `Not scored (discovery)`; they never enter Action needed, Scale candidates or the state counts. IG Discovery / Keyword (ToF) spend is shown as one line per client, unscored. Cost per follower is parked. Reason: the Discovery promo ROAS misreads Hostaway clients (coupon id only, no code name) and launch-month accounts, and CPL was already retired as a state on 28 Oct.
 - **Retargeting gate** is $200 in the 14-day window. Lead Gen gate is $100 in the 30-day window.
 - **ROAS alone** sets the Retargeting state. Cost per booking and frequency are diagnostics only.
 - **Frequency watch (2026-10-06, Shawal).** Every Sales / Retargeting / MoF-lookalike row shows its 14-day frequency. Above 5.0 it is marked ⚠️ in the Frequency column and listed in a "Frequency watch" section after Scale candidates. The state is still set by ROAS alone; the watch list is the creative-refresh queue.
@@ -20,7 +20,7 @@ Today's date comes from the environment. Use it as `YYYY-MM-DD` in filenames.
 - **Advanced-setup list** is the CRM sheet, tab "Clients - Onboarding" (header row reads "Management Clients"), column "Meta Ads" = `Advanced`. Nothing outside the CRM is scored, even if it spends.
 - **No HG AI hand-off block** is generated. Shawal does the analysis. Any HG AI report Shawal drops into the `weekly/HG AI Reports/` folder (not inside this workflow folder) is summarised in one line under the client.
 - **HiddenGem campaigns only (2026-10-19, Shawal).** `pull-campaign-insights.mts` reads each account's activity log and writes `creators.json`; a campaign created by a login outside the HiddenGem team (`HG_TEAM` in the generator; add new staff there) is client-run. It is listed under the client as "Client-run, not scored" with its creator and date and never enters Action needed, Scale candidates or the counts. Trigger: Walden Retreats' 'TOF Wedding Leads 10.8.26' (Lindsey Cooke) scored Flag on 19 Oct. Campaigns older than the 180-day activity window have no known creator and are scored as usual.
-- **Bucket ROAS flagging (Meta Ads Strategy 2026-10-28, built 2026-10-30, Shawal).** Dustin and Shawal agreed the internal view is three buckets, each judged on ROAS: Discovery (giveaway + lead campaigns, revenue = sign-up promo codes in the PMS), Prospecting (lookalike sales campaigns, pixel ROAS) and Retargeting (pixel ROAS). The report now adds one **Discovery bucket row per client** (30-day spend of every HiddenGem ToF + Lead Gen campaign that spent in the window, paused ones included, against 30-day direct revenue of bookings carrying a sign-up code: `WELCOME*`, `ENJOY*`, `SIGNUP*`, `GIVEAWAY*`; `DISC_CODE` in the generator). It is scored on the Sales ROAS bands with a $200 gate until the Benchmarks doc gets a Discovery band, and it enters Action needed, Scale candidates and the counts. Other codes (VIP, WELCOMEBACK, RETURNING, EARLY BIRD, agent codes) are listed in the row but not counted. Hostaway stores only a coupon id, so every coupon booking counts there (caveat printed in the row). Clients on a PMS that stores no code (Hospitable, Cloudbeds, OwnerRez, Newbook, Lodgify, Uplisting) get **No promo data** and are not scored. **Cost per lead no longer sets a state**: Lead Gen rows show CPL as a diagnostic and read **Tracked in Discovery**; the one direct Lead Gen flag left is the tracking check (spend over the $100 gate with zero leads). Rows that were Flag/Review on CPL the week before read "CPL state retired" in the diff, not Fixed. "Sales (MoF lookalike)" is renamed **Prospecting (MoF lookalike)**, bands unchanged. A **Blended 30d** line per client (all HiddenGem spend vs pixel purchase value + sign-up promo revenue, not de-duplicated) sits under the ToF line, because Dustin wants the blend watched alongside the buckets.
+- **Bucket ROAS flagging (Meta Ads Strategy 2026-10-28, built 2026-10-30, Shawal; scoring withdrawn 2026-11-04, rows kept for context, see Scope).** Dustin and Shawal agreed the internal view is three buckets, each judged on ROAS: Discovery (giveaway + lead campaigns, revenue = sign-up promo codes in the PMS), Prospecting (lookalike sales campaigns, pixel ROAS) and Retargeting (pixel ROAS). The report now adds one **Discovery bucket row per client** (30-day spend of every HiddenGem ToF + Lead Gen campaign that spent in the window, paused ones included, against 30-day direct revenue of bookings carrying a sign-up code: `WELCOME*`, `ENJOY*`, `SIGNUP*`, `GIVEAWAY*`; `DISC_CODE` in the generator). It is scored on the Sales ROAS bands with a $200 gate until the Benchmarks doc gets a Discovery band, and it enters Action needed, Scale candidates and the counts. Other codes (VIP, WELCOMEBACK, RETURNING, EARLY BIRD, agent codes) are listed in the row but not counted. Hostaway stores only a coupon id, so every coupon booking counts there (caveat printed in the row). Clients on a PMS that stores no code (Hospitable, Cloudbeds, OwnerRez, Newbook, Lodgify, Uplisting) get **No promo data** and are not scored. **Cost per lead no longer sets a state**: Lead Gen rows show CPL as a diagnostic and read **Tracked in Discovery**; the one direct Lead Gen flag left is the tracking check (spend over the $100 gate with zero leads). Rows that were Flag/Review on CPL the week before read "CPL state retired" in the diff, not Fixed. "Sales (MoF lookalike)" is renamed **Prospecting (MoF lookalike)**, bands unchanged. A **Blended 30d** line per client (all HiddenGem spend vs pixel purchase value + sign-up promo revenue, not de-duplicated) sits under the ToF line, because Dustin wants the blend watched alongside the buckets.
 - **Live campaigns only (2026-09-23).** Only campaigns with `effective_status` ACTIVE at run time are scored. A paused campaign that spent inside the window is listed in one line under its client ("Paused in window, not scored") so the spend is visible, and never enters Action needed, Scale candidates or the counts. Reason: paused means the team already acted on it.
 
 ## Inputs
@@ -64,7 +64,7 @@ By objective first, name second:
 | `OUTCOME_SALES`, name contains MoF or Lookalike | Prospecting (MoF lookalike) | 14d | $200 | ROAS. Scored on the Retargeting bands, footer says so |
 | `OUTCOME_SALES`, other | Sales | 14d | $200 | ROAS |
 | `OUTCOME_TRAFFIC`, `OUTCOME_ENGAGEMENT` | ToF | — | — | Not scored on its own. 30d spend goes into the client's ToF line and into the Discovery bucket row |
-| (derived) ToF + Lead Gen of one client | Discovery (ToF + MoF leads) | 30d | $200 | promo ROAS = sign-up promo-code revenue (PMS, 30d) / combined spend. One row per client |
+| (derived) ToF + Lead Gen of one client | Discovery (ToF + MoF leads) | 30d | — | promo ROAS = sign-up promo-code revenue (PMS, 30d) / combined spend, printed for context. One row per client, state `Not scored (discovery)` (2026-11-04) |
 | anything else | UNCLASSIFIED | — | — | List in footer, do not score |
 
 CSV accounts have no objective column. Classify by name: lead → Lead Gen; bof / retarget / sales → Sales; discovery / giveaway / keyword / tof → ToF.
@@ -75,15 +75,15 @@ Paused campaigns (any `effective_status` other than ACTIVE) are not scored. Reco
 
 Spend under the gate → **Under gate**, listed but not judged. Otherwise:
 
-| State | Sales / Retargeting / Prospecting ROAS (14d pixel) | Discovery promo ROAS (30d PMS) |
-|---|---|---|
-| Scale w/ HG AI | > 15x | > 15x |
-| Healthy | 8 – 15x | 8 – 15x |
-| Monitor | 5 – 8x | 5 – 8x |
-| Review w/ HG AI | 2 – 5x | 2 – 5x |
-| Flag to Shawal | < 2x, or zero purchases | < 2x, or zero sign-up promo bookings |
+| State | Sales / Retargeting / Prospecting ROAS (14d pixel) |
+|---|---|
+| Scale w/ HG AI | > 15x |
+| Healthy | 8 – 15x |
+| Monitor | 5 – 8x |
+| Review w/ HG AI | 2 – 5x |
+| Flag to Shawal | < 2x, or zero purchases |
 
-Band edges are inclusive on the lower bound. Lead Gen campaigns are **Tracked in Discovery** (CPL shown as a diagnostic, not a state); the only direct Lead Gen flag is **Flag to Shawal** on zero leads with spend over the gate (tracking check). A Discovery row whose client's PMS stores no promo code is **No promo data**. The retired CPL bands ($0.30 / 0.50 / 1.00 / 2.50) stay in `cpl_state()` for reference only.
+Band edges are inclusive on the lower bound. Lead Gen campaigns are **Not scored (lead gen)** and the Discovery row is **Not scored (discovery)** (2026-11-04; before that, Lead Gen read Tracked in Discovery with a zero-leads tracking check, and Discovery was scored on the same bands). A Discovery row whose client's PMS stores no promo code says so in its notes. The retired CPL bands ($0.30 / 0.50 / 1.00 / 2.50) stay in `cpl_state()` for reference only.
 
 ## Step 5: Diagnostics (notes only)
 
@@ -101,7 +101,7 @@ Also add the other window's governing value to Notes (14d CPL for Lead Gen, 30d 
 
 `generate_report.py` does this: it loads the newest sidecar older than today and joins on `campaign_id` (live) or `client + campaign` (CSV). For rows that were Flag or Review last week: now Healthy / Monitor / Scale → **Fixed**; still Flag or Review → **Still open (N weeks)**; gone → **Removed**. New Flag or Review rows → **New**. First run → "First run" everywhere.
 
-Lead Gen rows that were Flag or Review on CPL in the previous run and are now Tracked in Discovery get `diff_status` = `retired` ("CPL state retired (28 Oct decision)"), not Fixed. Discovery rows join on `discovery::<account id>`.
+Lead Gen and Discovery rows that were Flag or Review in the previous run get `diff_status` = `retired` ("No longer scored (4 Nov decision)"), not Fixed. Discovery rows join on `discovery::<account id>`.
 
 Also read `weekly/Project Data/PROJECT.md` section 9 (Actions log) and add the relevant entry to the client's notes (`EXTRA_NOTES` in the generator) when a campaign was relaunched, rebudgeted or paused since the previous run, so a Fixed / Paused-in-window row says why.
 
@@ -113,9 +113,9 @@ Open `pms_mtd.sql` (next to this file), replace `{RUN_DATE}` with today's date, 
 
 `Weekly Checks/YYYY-MM-DD-client-benchmark.md`, sections in this order:
 
-1. Header line and counts table: Advanced clients, live reads, from CSV, rows scored, under gate, count per state, Tracked in Discovery, No promo data.
+1. Header line and counts table: Advanced clients, live reads, from CSV, rows scored, under gate, count per state, Not scored (lead gen), Not scored (discovery).
 1b. **Weekly Meta Ads meetings since last run**: one sub-heading per meeting (title, date, doc ID) with Gemini's Summary, Decisions, Next steps.
-2. **Action needed**: Sales, Retargeting and Prospecting campaigns first, then Discovery bucket rows, then Lead Gen tracking checks; within each, Flag before Review, highest spend first (Shawal, 2026-09-23 and 2026-10-30). Columns: `Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week`.
+2. **Action needed**: Sales, Retargeting and Prospecting campaigns only (Shawal, 2026-11-04); Flag before Review, highest spend first. Columns: `Client | AM | Campaign | Type | Spend / window | Governing metric | State | Status vs last week`.
 3. **Scale candidates**: same columns, same order.
 3b. **Frequency watch (Sales / Retargeting above 5)**: columns `Client | AM | Campaign | Type | Frequency | Spend / window | Governing metric | State`, highest frequency first; a single `—` row when empty.
 4. **Per client**, ordered by scored MoF + BoF spend, highest first. Heading with AM, account name and ID, live or CSV. One ToF spend line, one Blended 30d line. Table (the Discovery bucket row sits in it like a campaign): `Campaign | Type | Window | Spend | Results | Governing metric | Frequency | State | Diagnostics vs investigate lines | Notes | Change vs last week`. Frequency is `—` on Lead Gen rows, the 14-day value on Sales rows, with ` ⚠️ > 5` appended when flagged. Then one "Monthly ROI:" line, one "Meeting notes (meeting date):" line per meeting that names the client (up to three Details sentences, timestamps stripped), or "not mentioned in this week's meetings", and one "HG AI notes:" line.
@@ -154,7 +154,7 @@ This regenerates this workflow's dated `.html` beside its `.md`, rebuilds `publi
 
 ## Do not
 
-- Do not score IG Discovery, Keyword or any ToF campaign on its own; its spend is judged only inside the client's Discovery bucket row.
+- Do not score IG Discovery, Keyword or any ToF campaign, any Lead Gen campaign, or the Discovery bucket row (Shawal, 2026-11-04). They are context lines only.
 - Do not let cost per lead set a state (28 Oct decision). It is a diagnostic; the lead campaign's ROAS lives on the Discovery row.
 - Do not let frequency, cost per booking or the per-type Investigate lines change a state. Frequency above 5 is raised in its own section and column, never as a state.
 - Do not include clients that are not marked Advanced in the CRM, whatever they spend.
