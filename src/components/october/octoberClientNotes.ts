@@ -6,7 +6,6 @@
 export const OCTOBER_CLIENT_NOTES: Record<string, string> = {
   'Glasscombe': 'LaunchBoom pre-bookings led to high occupancy at low revenue this month (AM note from the tracking sheet).',
   'Red White & Blue Views': 'No promo-code bookings and no retargeting purchases were recorded in October, so no revenue is attributed to Meta this month.',
-  'Stay with Branch': 'Lead counts are not tracked for this client in the client reporting sheet (no New Leads column), so only revenue is shown.',
   'StayLuxe': 'No direct bookings in October (confirmed by Kristal), so there is no revenue to attribute; the ad spend ran without a booking.',
   'Cabin Collective': 'No booking-level export from the client this month; the direct booking revenue is the client reporting sheet figure and the booking count is unavailable. Attributed revenue comes from Meta-reported retargeting purchases only.',
 };
