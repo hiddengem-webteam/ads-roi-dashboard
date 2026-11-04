@@ -92,8 +92,8 @@ export default function Dashboard() {
   useEffect(() => {
     selectionRef.current = { client: selectedClient, view: activeView };
   }, [selectedClient, activeView]);
-  // Finalized snapshots loaded so far (the current month plus the two before
-  // it, for the trend on each summary card); ids whose fetch failed are
+  // Finalized snapshots loaded so far (the current month plus the one before
+  // it, for the change line on each summary card); ids whose fetch failed are
   // remembered so they are not retried every render.
   const [snapshotCache, setSnapshotCache] = useState<Record<string, ProcessedData>>({});
   const [snapshotFailed, setSnapshotFailed] = useState<Record<string, true>>({});
@@ -210,14 +210,14 @@ export default function Dashboard() {
     writeUrlState(selectedPeriodId, selectedClient, activeView);
   }, [loading, selectedPeriodId, selectedClient, activeView]);
 
-  // The two signed-off or snapshot months before the selected one feed the
-  // three-month trend on each summary card. Fetch the ones not cached yet.
+  // The signed-off or snapshot month before the selected one feeds the
+  // change-vs-last-month line on each summary card. Fetch it if not cached.
   const trendPeriods = useMemo(() => {
     if (!currentPeriod?.finalized) return [] as FinalizedPeriod[];
     const sorted = [...FINALIZED_PERIODS].sort((a, b) => periodSortKey(b.id) - periodSortKey(a.id));
     const i = sorted.findIndex((p) => p.id === currentPeriod.id);
     if (i < 0) return [] as FinalizedPeriod[];
-    return [sorted[i + 2], sorted[i + 1], sorted[i]].filter((p): p is FinalizedPeriod => !!p);
+    return [sorted[i + 1], sorted[i]].filter((p): p is FinalizedPeriod => !!p);
   }, [currentPeriod]);
 
   useEffect(() => {
@@ -252,9 +252,9 @@ export default function Dashboard() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeView, trendPeriods]);
 
-  // Oldest -> newest; the last entry is the selected month. Months whose
-  // snapshot is not loaded (or that have no data for this client) are null so
-  // the cards can still show a shorter trend.
+  // Oldest -> newest; the last entry is the selected month. A month whose
+  // snapshot is not loaded (or that has no data for this client) is null and
+  // the cards say there is no prior figure.
   const monthHistory = useMemo((): { period: FinalizedPeriod; metrics: ClientMonthMetrics | null }[] => {
     if (!selectedClient) return [];
     return trendPeriods.map((p) => {

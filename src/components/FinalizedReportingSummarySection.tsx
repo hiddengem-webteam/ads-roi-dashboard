@@ -20,7 +20,7 @@ interface FinalizedReportingSummarySectionProps {
   campaignRevenue: CampaignRevenue;
   instagramLeads: LeadAnalysis | null;
   facebookLeads: LeadAnalysis | null;
-  /** Oldest -> newest, last = this month; feeds the trend on each card. */
+  /** Oldest -> newest, last = this month; feeds the change-vs-last-month line on each card. */
   history?: { period: FinalizedPeriod; metrics: ClientMonthMetrics | null }[];
 }
 
@@ -57,42 +57,6 @@ function buildTrend(
   return { points, deltaPct, prevLabel: prev.label, lowerIsBetter };
 }
 
-// Three-month sparkline: past months in the de-emphasis ink, this month's
-// point in the brand accent. Months without a figure leave a gap.
-function Sparkline({ points }: { points: Trend['points'] }) {
-  const w = 72, h = 28, pad = 4;
-  const values = points.map((p) => p.value).filter((v): v is number => v !== null);
-  if (values.length < 2) return null;
-  const min = Math.min(...values), max = Math.max(...values);
-  const range = max - min || Math.abs(max) || 1;
-  const step = (w - pad * 2) / (points.length - 1);
-  const xy = points.map((p, i) => ({
-    x: pad + i * step,
-    y: p.value === null ? null : pad + (h - pad * 2) * (1 - (p.value - min) / range),
-    label: p.label,
-    value: p.value,
-  }));
-  const segments: string[] = [];
-  for (let i = 1; i < xy.length; i++) {
-    const a = xy[i - 1], b = xy[i];
-    if (a.y !== null && b.y !== null) segments.push(`M${a.x},${a.y} L${b.x},${b.y}`);
-  }
-  return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} aria-hidden="true" className="flex-shrink-0">
-      {segments.map((d, i) => (
-        <path key={i} d={d} fill="none" stroke="var(--muted-soft)" strokeWidth="2" strokeLinecap="round" />
-      ))}
-      {xy.map((p, i) =>
-        p.y === null ? null : (
-          <circle key={i} cx={p.x} cy={p.y} r={i === xy.length - 1 ? 3.5 : 2.5} fill={i === xy.length - 1 ? 'var(--brand)' : 'var(--surface)'} stroke={i === xy.length - 1 ? 'var(--brand)' : 'var(--muted-soft)'} strokeWidth="2">
-            <title>{`${p.label}: ${p.value}`}</title>
-          </circle>
-        ),
-      )}
-    </svg>
-  );
-}
-
 function DeltaLine({ trend }: { trend: Trend }) {
   if (trend.deltaPct === null) {
     return <p className="text-[11px] text-[var(--muted-soft)] mt-1.5">No prior-month figure to compare</p>;
@@ -122,20 +86,12 @@ function SummaryCard({
   placeholder?: string;
   trend?: Trend;
 }) {
-  const months = trend ? trend.points.map((p) => `${p.label}: ${p.value === null ? '—' : p.value}`).join(' · ') : '';
   return (
     <div className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] px-6 py-6">
       <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-2">{label}</p>
       {value ? (
         <>
-          <div className="flex items-end justify-between gap-3">
-            <p className="text-[26px] font-semibold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
-            {trend && (
-              <span title={`Last ${trend.points.length} months · ${months}`}>
-                <Sparkline points={trend.points} />
-              </span>
-            )}
-          </div>
+          <p className="text-[26px] font-semibold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
           {sub && <p className="text-[12px] text-[var(--muted-soft)] mt-1.5">{sub}</p>}
           {trend && <DeltaLine trend={trend} />}
         </>
