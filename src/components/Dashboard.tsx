@@ -10,7 +10,7 @@ import FlagPanel from './FlagPanel';
 import PeriodOverviewSection from './PeriodOverviewSection';
 import DataStatusPanel from './DataStatusPanel';
 import FinalizedReportingSummarySection from './FinalizedReportingSummarySection';
-import ClientMonthlyComparisonSection from './ClientMonthlyComparisonSection';
+import { computeClientMonthMetrics, type ClientMonthMetrics } from '@/lib/analysis/clientMonthMetrics';
 import { ProcessedData, ClientData } from '@/types';
 import { loadManifest, loadPeriod, Manifest, ManifestClient, ManifestPeriod } from '@/lib/analysis/autoLoader';
 import { FINALIZED_PERIODS, FinalizedPeriod, isFinal, periodSortKey } from '@/lib/analysis/finalizedPeriods';
@@ -46,7 +46,7 @@ function mergePeriods(manifest: Manifest | null): DashboardPeriod[] {
   return [...byId.values()].sort((a, b) => periodSortKey(b.id) - periodSortKey(a.id));
 }
 
-type View = 'overview' | 'client' | 'compare';
+type View = 'overview' | 'client';
 
 // The selected month, client and view live in the URL (?period=&client=&view=)
 // so a refresh, a shared link or a month switch keeps the page you were on
@@ -58,7 +58,7 @@ function readUrlState(): { period: string | null; client: string | null; view: V
   return {
     period: params.get('period'),
     client: params.get('client'),
-    view: view === 'client' || view === 'compare' || view === 'overview' ? view : null,
+    view: view === 'client' || view === 'overview' ? view : null,
   };
 }
 
@@ -92,8 +92,9 @@ export default function Dashboard() {
   useEffect(() => {
     selectionRef.current = { client: selectedClient, view: activeView };
   }, [selectedClient, activeView]);
-  // Every finalized snapshot loaded so far, for the month-by-month view;
-  // ids whose fetch failed are remembered so they are not retried every render.
+  // Finalized snapshots loaded so far (the current month plus the two before
+  // it, for the trend on each summary card); ids whose fetch failed are
+  // remembered so they are not retried every render.
   const [snapshotCache, setSnapshotCache] = useState<Record<string, ProcessedData>>({});
   const [snapshotFailed, setSnapshotFailed] = useState<Record<string, true>>({});
 
@@ -209,11 +210,19 @@ export default function Dashboard() {
     writeUrlState(selectedPeriodId, selectedClient, activeView);
   }, [loading, selectedPeriodId, selectedClient, activeView]);
 
-  // The month-by-month view needs every finalized snapshot; fetch the missing
-  // ones the first time it opens and keep them for the session.
+  // The two signed-off or snapshot months before the selected one feed the
+  // three-month trend on each summary card. Fetch the ones not cached yet.
+  const trendPeriods = useMemo(() => {
+    if (!currentPeriod?.finalized) return [] as FinalizedPeriod[];
+    const sorted = [...FINALIZED_PERIODS].sort((a, b) => periodSortKey(b.id) - periodSortKey(a.id));
+    const i = sorted.findIndex((p) => p.id === currentPeriod.id);
+    if (i < 0) return [] as FinalizedPeriod[];
+    return [sorted[i + 2], sorted[i + 1], sorted[i]].filter((p): p is FinalizedPeriod => !!p);
+  }, [currentPeriod]);
+
   useEffect(() => {
-    if (activeView !== 'compare') return;
-    const missing = FINALIZED_PERIODS.filter((p) => !snapshotCache[p.id] && !snapshotFailed[p.id]);
+    if (activeView !== 'client') return;
+    const missing = trendPeriods.filter((p) => !snapshotCache[p.id] && !snapshotFailed[p.id]);
     if (missing.length === 0) return;
     let cancelled = false;
     Promise.all(
@@ -241,10 +250,18 @@ export default function Dashboard() {
     };
     // The caches are read, not triggers: re-running on every cache update would refetch nothing but churn.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeView]);
+  }, [activeView, trendPeriods]);
 
-  const loadingAllSnapshots =
-    activeView === 'compare' && FINALIZED_PERIODS.some((p) => !snapshotCache[p.id] && !snapshotFailed[p.id]);
+  // Oldest -> newest; the last entry is the selected month. Months whose
+  // snapshot is not loaded (or that have no data for this client) are null so
+  // the cards can still show a shorter trend.
+  const monthHistory = useMemo((): { period: FinalizedPeriod; metrics: ClientMonthMetrics | null }[] => {
+    if (!selectedClient) return [];
+    return trendPeriods.map((p) => {
+      const snap = p.id === selectedPeriodId ? data : snapshotCache[p.id];
+      return { period: p, metrics: snap ? computeClientMonthMetrics(snap.clients[selectedClient], p) : null };
+    });
+  }, [trendPeriods, selectedPeriodId, data, snapshotCache, selectedClient]);
 
   // Ordered client list: alphabetical. Live months list clients with ad data;
   // finalized months also list PMS-only clients, as their month pages did.
@@ -307,15 +324,6 @@ export default function Dashboard() {
                   </>
                 ) : 'Client View'}
               </button>
-              {currentClient && (
-                <button
-                  onClick={() => { setActiveView('compare'); scrollToTop(); }}
-                  title={`${selectedClient}: key metrics for every month, with the change against the month before`}
-                  className={`px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'compare' ? 'bg-[var(--brand-bg)] text-[var(--brand-text)]' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
-                >
-                  Month by month
-                </button>
-              )}
             </div>
 
             <div className="flex items-center gap-3">
@@ -384,22 +392,6 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* Month-by-month comparison for the selected client */}
-          {!loading && !error && currentClient && activeView === 'compare' && (
-            <ClientMonthlyComparisonSection
-              clientName={selectedClient}
-              periods={FINALIZED_PERIODS}
-              snapshots={snapshotCache}
-              loading={loadingAllSnapshots}
-              currentPeriodId={selectedPeriodId}
-              onSelectPeriod={(id) => {
-                setActiveView('client');
-                if (id !== selectedPeriodId) setSelectedPeriodId(id);
-                scrollToTop();
-              }}
-            />
-          )}
-
           {/* Client content */}
           {!loading && !error && currentClient && activeView === 'client' && (
             <>
@@ -413,6 +405,7 @@ export default function Dashboard() {
                   campaignRevenue={campaignRevenue}
                   instagramLeads={currentClient.pmsAnalysis?.instagram ?? null}
                   facebookLeads={currentClient.pmsAnalysis?.facebook ?? null}
+                  history={monthHistory}
                 />
               ) : (
                 <>
