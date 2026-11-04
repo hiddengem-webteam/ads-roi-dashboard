@@ -18,8 +18,10 @@ Mapping (derived from the September 2026 rows Pooja loaded, verified with --veri
 Usage:
   python3 scripts/push-dashboard-meta-ads.py --month 2026-10 --preview      # print rows, write CSV
   python3 scripts/push-dashboard-meta-ads.py --month 2026-09 --verify       # diff export vs DB
-  python3 scripts/push-dashboard-meta-ads.py --month 2026-10 --write        # insert (refuses if month exists)
-  python3 scripts/push-dashboard-meta-ads.py --month 2026-09 --write --replace   # delete month rows, re-insert
+  python3 scripts/push-dashboard-meta-ads.py --month 2026-10 --write        # update changed rows in place by id, insert missing
+  python3 scripts/push-dashboard-meta-ads.py --month 2026-07 --write --skip-new-clients   # don't add clients the DB has never seen
+  python3 scripts/push-dashboard-meta-ads.py --month 2026-07 --write --prune  # also delete rows only in the DB (never automatic)
+Every --write first saves a backup of the month's DB rows and a change log under "Monthly Data/pooja-dashboard-backups/".
 Reads POOJA_SUPABASE_URL / POOJA_SUPABASE_SECRET_KEY from .env.local.
 """
 import argparse, csv, json, os, re, sys, urllib.request, urllib.parse
@@ -39,6 +41,7 @@ SLUG_OVERRIDES = {
     'Oak & Ember': 'oak-ember',
     'Ridge & Falls': 'ridge-falls',
     'Stay Southern Illinois': 'southern-illinois-cabins',
+    'Stay Southen Illinois': 'southern-illinois-cabins',   # typo in the July/August exports
     'Tàberg Falls': 't-berg-falls',
     'Stay on 30a': 'stay-on-30a',
 }
@@ -125,7 +128,8 @@ def close(a, b, col):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--month', required=True)
     ap.add_argument('--preview', action='store_true'); ap.add_argument('--verify', action='store_true')
-    ap.add_argument('--write', action='store_true'); ap.add_argument('--replace', action='store_true')
+    ap.add_argument('--write', action='store_true'); ap.add_argument('--prune', action='store_true')
+    ap.add_argument('--skip-new-clients', action='store_true')
     a = ap.parse_args()
     rows = build_rows(a.month)
     out = os.path.join(ROOT, 'scratchpad', 'pooja'); os.makedirs(out, exist_ok=True)
@@ -150,15 +154,48 @@ def main():
             else: same += 1
         print(f'{same} rows identical; {len(db)} in DB, {len(ours)} in export')
     if a.write:
+        import datetime
+        ts = datetime.datetime.now().strftime('%Y-%m-%d-%H%M')
+        bdir = os.path.join(ROOT, 'Monthly Data', 'pooja-dashboard-backups'); os.makedirs(bdir, exist_ok=True)
         existing = fetch_month(a.month)
-        if existing and not a.replace:
-            sys.exit(f'{len(existing)} rows already exist for {a.month}; use --replace to overwrite')
-        if existing:
-            year, mon = a.month.split('-')
-            api('DELETE', f'dashboard_meta_ads?year=eq.{int(year)}&month=eq.{int(mon)}', prefer='return=minimal')
-            print(f'deleted {len(existing)} existing rows for {a.month}')
-        res = api('POST', 'dashboard_meta_ads', body=rows, prefer='return=representation')
-        print(f'inserted {len(res)} rows for {a.month} (ids {min(r["id"] for r in res)}-{max(r["id"] for r in res)})')
+        json.dump(existing, open(os.path.join(bdir, f'before-{a.month}-{ts}.json'), 'w'), indent=1)
+        db = {(r['client_slug'], r['campaign_type']): r for r in existing}
+        known_slugs = {r['client_slug'] for r in api('GET', 'dashboard_meta_ads?select=client_slug&limit=10000')}
+        log = [f'# dashboard_meta_ads changes for {a.month} ({ts})', '']
+        updated = inserted = skipped = 0
+        for r in rows:
+            k = (r['client_slug'], r['campaign_type'])
+            if k in db:
+                cur = db[k]
+                diffs = [(c, cur[c], r[c]) for c in COMPARE if not close(cur[c], r[c], c)]
+                if not diffs: continue
+                api('PATCH', f'dashboard_meta_ads?id=eq.{cur["id"]}', body={c: r[c] for c in COMPARE}, prefer='return=minimal')
+                updated += 1
+                log.append(f'UPDATED {k[0]} {k[1]} (id {cur["id"]})')
+                log += [f'    {c}: {d!r} -> {o!r}' for c, d, o in diffs]
+            else:
+                if r['client_slug'] not in known_slugs and a.skip_new_clients:
+                    skipped += 1; log.append(f'SKIPPED new client {k[0]} {k[1]} (not in DB, --skip-new-clients)'); continue
+                res = api('POST', 'dashboard_meta_ads', body=r, prefer='return=representation')
+                inserted += 1
+                log.append(f'INSERTED {k[0]} {k[1]} (id {res[0]["id"]}) spend {r["spend"]} revenue {r["revenue"]}')
+        ours = {(r['client_slug'], r['campaign_type']) for r in rows}
+        for k, cur in db.items():
+            if k not in ours:
+                if a.prune:
+                    api('DELETE', f'dashboard_meta_ads?id=eq.{cur["id"]}', prefer='return=minimal')
+                    log.append(f'DELETED {k[0]} {k[1]} (id {cur["id"]}) spend {cur["spend"]}')
+                else:
+                    log.append(f'LEFT AS IS (only in DB, no --prune) {k[0]} {k[1]} (id {cur["id"]}) spend {cur["spend"]}')
+        log.append(''); log.append(f'{updated} updated, {inserted} inserted, {skipped} skipped')
+        lp = os.path.join(bdir, f'changes-{a.month}-{ts}.md')
+        open(lp, 'w').write('\n'.join(log) + '\n')
+        print('\n'.join(log)); print(f'change log -> {lp}')
+        # post-write verification
+        db2 = {(r['client_slug'], r['campaign_type']): r for r in fetch_month(a.month)}
+        bad = [k for k, r in zip([(r['client_slug'], r['campaign_type']) for r in rows], rows)
+               if k in db2 and any(not close(db2[k][c], r[c], c) for c in COMPARE)]
+        print('post-write check:', 'all rows match export' if not bad else f'MISMATCH {bad}')
 
 if __name__ == '__main__':
     main()
