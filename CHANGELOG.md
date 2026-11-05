@@ -2,6 +2,10 @@
 
 Dashboard-level changes. The weekly reviews keep their own log in `weekly/Project Data/CHANGELOG.md`.
 
+## 2026-11-05
+
+- **October: Walden Retreats refreshed from Anna's re-exported tab.** Anna's earlier export had filtered out bookings without a guest email, so the tab and the tracking sheet under-stated October direct revenue ($80,000 placeholder). Her new tab has 101 rows / $85,481 (99 bookings after the $0 and OTA rows) and the tracking sheet now reads $86,139.12, which the October view shows. Promo uses are unchanged (16 WELCOME10, 1 VIP10); Meta-attributed revenue moved from $21,877 to $21,528 (blended ROAS 16.90x to 16.63x) because a few coded bookings re-exported with different prices. Converter: Anna's new Hospitable export names the column "Guest discount + code" and puts the code last ("Walden Subscriber Discount -$94.20 (WELCOME10)"); both forms are parsed now. Stay on 30a picked up one zero-attribution RETURNINGGUEST row from the current registry; nothing else moved.
+
 ## 2026-11-04
 
 - **Client view survives refresh and month switches.** The selected month, client and view now live in the URL (`?period=october-2026&client=Flohom&view=client`), so a refresh or a shared link reopens the same page, and switching months inside a client keeps that client when it has data in the new month (otherwise it lands on the Overview, as before). Requested by Nicole.

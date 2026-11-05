@@ -54,5 +54,5 @@ export const OCTOBER_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
   'Treetop Escapes': { directBookingRevenue: 42401, newLeads: 2425 },
   'Tuxedo Falls': { directBookingRevenue: 48086, newLeads: 958 },
   'Tàberg Falls': { directBookingRevenue: 48795, newLeads: 4335 },
-  'Walden Retreats': { directBookingRevenue: 80000, newLeads: 339 },
+  'Walden Retreats': { directBookingRevenue: 86139.12, newLeads: 339 },
 };

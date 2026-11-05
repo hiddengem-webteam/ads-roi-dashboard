@@ -4,7 +4,7 @@
   "generatedFrom": "October 2026 (revenue + leads from the Client Performance Tracking sheet; Meta metrics from the October snapshot)",
   "totalClients": 42,
   "totals": {
-    "totalDirectBookingRevenue": 2134533.56,
+    "totalDirectBookingRevenue": 2140672.68,
     "totalLeads": 32805
   },
   "clients": [
@@ -2182,18 +2182,18 @@
       "clientName": "Walden Retreats",
       "note": null,
       "revenueSource": "client-reporting-sheet",
-      "totalDirectBookings": 84,
-      "totalDirectBookingRevenue": 80000,
+      "totalDirectBookings": 99,
+      "totalDirectBookingRevenue": 86139.12,
       "totalLeads": 339,
       "leadsSource": "client-reporting-sheet",
       "overallMetaAdSpend": 1294.58,
       "totalBookingsAttributedToMeta": 26,
       "costPerMetaAttributedBooking": 49.79,
-      "avgDirectBookingValue": 952.38,
-      "pctOfBookingValue": 5.92,
-      "directBookingRevenueAttributedToMeta": 21876.55,
+      "avgDirectBookingValue": 870.09,
+      "pctOfBookingValue": 6.01,
+      "directBookingRevenueAttributedToMeta": 21528.26,
       "metaAttributedRevenueCappedAtTotal": false,
-      "blendedRoas": 16.9,
+      "blendedRoas": 16.63,
       "campaigns": {
         "followers": {
           "spend": 263.52,
@@ -2202,10 +2202,10 @@
           "instagramTagLeads": 0,
           "totalBookings": 16,
           "costPerBooking": 16.47,
-          "campaignAvgBookingValue": 896.16,
-          "pctOfBookingValue": 1.84,
-          "bookingRevenue": 14338.55,
-          "roas": 54.41
+          "campaignAvgBookingValue": 874.39,
+          "pctOfBookingValue": 1.88,
+          "bookingRevenue": 13990.26,
+          "roas": 53.09
         },
         "retargeting": {
           "spend": 244.61,

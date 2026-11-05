@@ -51,6 +51,16 @@ function codeFromDiscountText(v: unknown): { code: string; discount: number } | 
   if (typeof v !== 'string') return null;
   const t = v.trim();
   if (!t || /^[\d.,$\-\s]+$/.test(t)) return null;
+  // Anna's re-export (Nov 2026) puts the code last: "Walden Subscriber
+  // Discount -$94.20 (WELCOME10)". Prefer a trailing "(CODE)" token.
+  const trailing = t.match(/\(\s*([A-Za-z][A-Za-z0-9]*)\s*\)\s*$/);
+  if (trailing) {
+    const code = trailing[1].toUpperCase();
+    if (!NOT_A_CODE.test(code) && (/\d/.test(code) || REGISTRY_CODES.has(code))) {
+      const am = t.match(/-?\s*\$\s*([\d,]+(?:\.\d+)?)/);
+      return { code, discount: am ? Number(am[1].replace(/,/g, '')) || 0 : 0 };
+    }
+  }
   const token = t.split(/[\s(/]/)[0].toUpperCase();
   if (!token || NOT_A_CODE.test(token)) return null;
   if (!/\d/.test(token) && !REGISTRY_CODES.has(token)) return null;
@@ -129,7 +139,7 @@ function detectCols(hdr: string[]): ColMap | null {
     'reserved on', 'reservation date', 'creation date', 'datecreated',
   );
   const code = find('discount code', 'coupon name', 'promo code');
-  const discount = find('coupon discount', 'guest_discount', 'guest discount', 'discounts', 'promotionstotal', 'discount');
+  const discount = find('coupon discount', 'guest_discount', 'guest discount', 'guest discount + code', 'discounts', 'promotionstotal', 'discount');
   const source = find('source', 'platform', 'listing site', 'channel', 'booking source', 'listing source');
   const status = find('status');
   return { guest, email, revenue, date, code, discount, source, status };
