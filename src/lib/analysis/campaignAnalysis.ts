@@ -9,6 +9,23 @@ function isExcludedCampaign(lower: string): boolean {
   return lower.startsWith('lb ') || lower.startsWith('lb-') || /\blaunch\b/.test(lower);
 }
 
+// Client-run campaigns inside accounts the agency otherwise manages, matched by
+// the client's own naming convention (raw ad-account name, lowercased → regex on
+// the lowercased campaign name). Per Shawal (2026-11-09): Selah Place's client
+// runs its own "SP | <property> | …" campaigns (Willow, Black Walnut; probably
+// Launch Boom, unconfirmed) and they stay out of Selah's ROI. Account-scoped so
+// another client's "SP |" name is not swept up.
+const CLIENT_RUN_CAMPAIGN_PATTERNS: Record<string, RegExp[]> = {
+  'selah place': [/^sp\s*\|/],
+};
+
+export function isClientRunCampaign(accountName: string, campaignName: string): boolean {
+  const patterns = CLIENT_RUN_CAMPAIGN_PATTERNS[accountName.trim().toLowerCase()];
+  if (!patterns) return false;
+  const lower = campaignName.trim().toLowerCase();
+  return patterns.some((re) => re.test(lower));
+}
+
 // Bucket a Meta campaign by name, or null to leave it out of ROI.
 // Keyword rules confirmed with Shawal (Jul 2026): the agency names campaigns by
 // objective/funnel stage, so we key off those words.
@@ -66,6 +83,7 @@ export function aggregateFacebookStats(rows: FacebookAdsRow[]): Record<string, C
 
   for (const row of rows) {
     if (isExcludedAccount(row.accountName)) continue; // account removed from reporting
+    if (isClientRunCampaign(row.accountName, row.campaignName)) continue; // client's own campaigns
     const clientName = resolveClientName(row.accountName);
     const campaignType = classifyCampaign(row.campaignName);
     if (!campaignType) continue;
