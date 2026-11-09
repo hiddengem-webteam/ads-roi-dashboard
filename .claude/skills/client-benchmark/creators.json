@@ -69,19 +69,26 @@
   "account": "2100710320122219",
   "campaign": "05/21/26 - Video Views"
  },
- "120247131788290359": {
-  "name": "Shawal Nazir",
-  "actor_id": "4507896559350480",
-  "created": "2026-05-11",
-  "account": "2100710320122219",
-  "campaign": "Video Views - Myrtle Beach & Jersey City - 05/11/26"
- },
  "120249363440900419": {
   "name": "Shawal Nazir",
   "actor_id": "4507896559350480",
   "created": "2026-08-05",
   "account": "967636478877602",
   "campaign": "ToF - Keyword Engagement Campaign - Southeast US - 08/05/26"
+ },
+ "120249233527040419": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-07-31",
+  "account": "967636478877602",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors"
+ },
+ "120249233857270419": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-07-31",
+  "account": "967636478877602",
+  "campaign": "ToF - Giveaway Traffic Campaign"
  },
  "120249232782520419": {
   "name": "Makenna Moran",
@@ -96,20 +103,6 @@
   "created": "2026-07-31",
   "account": "967636478877602",
   "campaign": "MoF - Lead Campaign - Retargeting Engagers"
- },
- "120249233857270419": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-07-31",
-  "account": "967636478877602",
-  "campaign": "ToF - Giveaway Traffic Campaign"
- },
- "120249233527040419": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-07-31",
-  "account": "967636478877602",
-  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors"
  },
  "120251699124950481": {
   "name": "Shawal Nazir",
@@ -643,6 +636,20 @@
   "account": "1530849534802936",
   "campaign": "Post: \"The Outpost Grand Canyon 🏜️\""
  },
+ "120250722576320069": {
+  "name": "Nathan Jay Herrington",
+  "actor_id": "10163273613807724",
+  "created": "2026-11-07",
+  "account": "1275283434220508",
+  "campaign": "SP | Black Walnut | Leads | Early Access | 11-2026"
+ },
+ "120250688231150069": {
+  "name": "Nathan Jay Herrington",
+  "actor_id": "10163273613807724",
+  "created": "2026-11-05",
+  "account": "1275283434220508",
+  "campaign": "SP | Black Walnut | Sales | Pre-Sale | 11-2026"
+ },
  "120250565195990069": {
   "name": "Nathan Jay Herrington",
   "actor_id": "10163273613807724",
@@ -748,6 +755,20 @@
   "account": "1275283434220508",
   "campaign": "Instagram post: Girls never really need a reason..."
  },
+ "120252336117870787": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-09-01",
+  "account": "1313401330776046",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26"
+ },
+ "120252335052710787": {
+  "name": "Makenna Moran",
+  "actor_id": "2334144394070594",
+  "created": "2026-09-01",
+  "account": "1313401330776046",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/01/26"
+ },
  "120252323123880787": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
@@ -762,19 +783,19 @@
   "account": "1313401330776046",
   "campaign": "ToF - Giveaway Traffic Campaign - GA, AL - 09/01/26"
  },
- "120252335052710787": {
+ "120247568184840476": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
-  "created": "2026-09-01",
-  "account": "1313401330776046",
-  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/01/26"
+  "created": "2026-09-16",
+  "account": "884285717873613",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/16/2026"
  },
- "120252336117870787": {
+ "120247567775860476": {
   "name": "Makenna Moran",
   "actor_id": "2334144394070594",
-  "created": "2026-09-01",
-  "account": "1313401330776046",
-  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26"
+  "created": "2026-09-16",
+  "account": "884285717873613",
+  "campaign": "ToF - Keyword Engagement Campaign - 09/16/2026"
  },
  "120247567662420476": {
   "name": "Makenna Moran",
@@ -789,20 +810,6 @@
   "created": "2026-09-16",
   "account": "884285717873613",
   "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026"
- },
- "120247567775860476": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-09-16",
-  "account": "884285717873613",
-  "campaign": "ToF - Keyword Engagement Campaign - 09/16/2026"
- },
- "120247568184840476": {
-  "name": "Makenna Moran",
-  "actor_id": "2334144394070594",
-  "created": "2026-09-16",
-  "account": "884285717873613",
-  "campaign": "MoF - Lead Campaign - Retargeting Engagers - 09/16/2026"
  },
  "120249188519090177": {
   "name": "Shawal Nazir",
@@ -923,19 +930,19 @@
   "account": "2030318804465316",
   "campaign": "LB | LC01 | GC | ABO | 13062026"
  },
- "120256422789610670": {
-  "name": "Chiara Henry",
-  "actor_id": "2278168359696773",
-  "created": "2026-10-21",
-  "account": "2194562394139883",
-  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 10/20/26"
- },
  "120256422024000670": {
   "name": "Chiara Henry",
   "actor_id": "2278168359696773",
   "created": "2026-10-21",
   "account": "2194562394139883",
   "campaign": "MoF - Lead Campaign - Retargeting Engagers - 10/20/26"
+ },
+ "120256422789610670": {
+  "name": "Chiara Henry",
+  "actor_id": "2278168359696773",
+  "created": "2026-10-21",
+  "account": "2194562394139883",
+  "campaign": "BoF - Sales Campaign - Retargeting Website Visitors - 10/20/26"
  },
  "120256420993340670": {
   "name": "Chiara Henry",

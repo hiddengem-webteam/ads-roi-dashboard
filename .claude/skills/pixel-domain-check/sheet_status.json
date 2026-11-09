@@ -1,5 +1,5 @@
 {
- "run_date": "2026-11-02",
+ "run_date": "2026-11-09",
  "source": "Master Meta Ads sheet, tab Meta Ad Links (Client Business, Attribution Tracking Setup, Status)",
  "rows": [
   [
@@ -231,6 +231,11 @@
    "Gooseberry Lodges",
    "",
    "Live"
+  ],
+  [
+   "Nine Pines Retreats",
+   "",
+   "Not Live"
   ]
  ]
 }
