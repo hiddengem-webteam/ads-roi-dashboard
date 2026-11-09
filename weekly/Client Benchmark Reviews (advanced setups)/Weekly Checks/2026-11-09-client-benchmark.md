@@ -394,7 +394,7 @@ Client-run, not scored: SP / Willow / Sales / Top-5 Audiences / 11-2026 (Sales, 
 
 Client-run, not scored: SP / Black Walnut / Leads / Early Access / 11-2026 (Lead Gen (MoF), active), created by Nathan Jay Herrington on 2026-11-07, $178 / 30d, 15 leads, CPL $11.89. Campaigns created by someone outside HiddenGem are listed for visibility only (Shawal, 2026-10-19).
 
-Monthly ROI: July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads · August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · September: spend $1,304, 27 Meta-attributed bookings, blended ROAS 10.4x, retargeting ROAS 38.2x, CPL $0.63 on 232 leads · October: spend $3,776, 31 Meta-attributed bookings, blended ROAS 3.1x, retargeting ROAS 4.1x, CPL $1.15 on 740 leads.
+Monthly ROI: July: spend $1,054, 4 Meta-attributed bookings, blended ROAS 3.2x, retargeting ROAS 86.3x, CPL $0.80 on 49 leads · August: spend $1,545, 15 Meta-attributed bookings, blended ROAS 4.8x, retargeting ROAS 25.1x, CPL $1.08 on 144 leads · September: spend $1,304, 27 Meta-attributed bookings, blended ROAS 10.4x, retargeting ROAS 38.2x, CPL $0.63 on 232 leads · October: spend $1,842, 23 Meta-attributed bookings, blended ROAS 5.8x, retargeting ROAS 9.7x, CPL $0.61 on 405 leads.
 
 Meeting notes: not mentioned in this week's meetings.
 

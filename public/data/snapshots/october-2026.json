@@ -4306,21 +4306,21 @@
           },
           "retargeting": {
             "type": "Retargeting",
-            "spend": 2128.79,
-            "impressions": 86878,
-            "linkClicks": 2394,
-            "leads": 121,
-            "purchases": 26,
-            "purchasesConversionValue": 8673.13
+            "spend": 802.44,
+            "impressions": 39244,
+            "linkClicks": 1252,
+            "leads": 27,
+            "purchases": 18,
+            "purchasesConversionValue": 7780.7
           },
           "newLeads": {
             "type": "New Leads",
-            "spend": 853.2199999999999,
-            "impressions": 63309,
-            "linkClicks": 3136,
-            "leads": 740,
-            "purchases": 4,
-            "purchasesConversionValue": 1822.3400000000001
+            "spend": 245.67,
+            "impressions": 25822,
+            "linkClicks": 1213,
+            "leads": 405,
+            "purchases": 1,
+            "purchasesConversionValue": 956.49
           }
         },
         "pmsAnalysis": {

@@ -2,6 +2,10 @@
 
 Dashboard-level changes. The weekly reviews keep their own log in `weekly/Project Data/CHANGELOG.md`.
 
+## 2026-11-09
+
+- **October: Selah Place restated without the client's own campaigns.** Selah's client runs "SP | Willow" and "SP | Black Walnut" campaigns in the same ad account (probably Launch Boom, not confirmed), and Shawal decided they stay out of Selah's ROI. `campaignAnalysis.ts` now drops campaigns matching an account-scoped pattern (`CLIENT_RUN_CAMPAIGN_PATTERNS`, Selah Place: names starting "SP |"); no other month's export has such rows. October's frozen snapshot had only Selah's Meta stats recomputed (the other 41 clients were checked against a fresh build from the October CSV and match), then the export was regenerated: spend $3,776.35 to $1,842.45, Meta-attributed bookings 31 to 23, blended ROAS 3.09x to 5.84x, retargeting ROAS 4.07x to 9.70x, Meta leads 740 to 405. No other client or total moved. `roi.monthly_client_metrics` updated. Pooja's `dashboard_meta_ads` still holds the old two Selah rows until `push-dashboard-meta-ads.py --month 2026-10 --write --skip-new-clients` runs. Selah's boosted Instagram posts stay in (Shawal).
+
 ## 2026-11-05
 
 - **October: Walden Retreats refreshed from Anna's re-exported tab.** Anna's earlier export had filtered out bookings without a guest email, so the tab and the tracking sheet under-stated October direct revenue ($80,000 placeholder). Her new tab has 101 rows / $85,481 (99 bookings after the $0 and OTA rows) and the tracking sheet now reads $86,139.12, which the October view shows. Promo uses are unchanged (16 WELCOME10, 1 VIP10); Meta-attributed revenue moved from $21,877 to $21,528 (blended ROAS 16.90x to 16.63x) because a few coded bookings re-exported with different prices. Converter: Anna's new Hospitable export names the column "Guest discount + code" and puts the code last ("Walden Subscriber Discount -$94.20 (WELCOME10)"); both forms are parsed now. Stay on 30a picked up one zero-attribution RETURNINGGUEST row from the current registry; nothing else moved.
