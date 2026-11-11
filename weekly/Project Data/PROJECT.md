@@ -177,7 +177,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Stay on 30a | Charlotte | Stay on 30a Ads | 25640434272252212 | ok. Legacy "[NOT IN USE] Stay on 30A" 908452332132644 under HG BM, MCP disabled |
 | Stay Saluda NC | Makenna | Stay Saluda Ads | 1863632561215857 | ok |
 | Stay Southern Illinois | Chiara | Southern Illinois Cabins Ads | 1661949078036229 | ok |
-| Stay With Branch | Kristal | @staywithbranch | 1269399754049770 | ok (delivery stalled from about 1 Oct 2026, see decision 24). Separate "Branch Berkeley Springs" 1517541906010284 exists, not on sheet |
+| Stay With Branch | Kristal | @staywithbranch | 1269399754049770 | ok (delivery stalled from about 1 Oct 2026, see decision 24). Separate "Branch Berkeley Springs" 1517541906010284 exists, not on sheet; out of scope (Shawal, 2026-11-11), and the system user has no ads_read on it |
 | StayLuxe | Nicole | Stay Luxe Ads | 25033578722931437 | ok |
 | Sunapee Stays | Charlotte | Sunapee Stays Ads Account | 651114096215889 | ok. CRM Meta Ads column reads Basic from 2026-10-19, but Shawal (2026-10-26) keeps it in the advanced reporting: treated as Advanced in the benchmark (override noted in the report footer) |
 | Taberg Falls | Alicia | Táberg Falls | 827872700004659 | ok |
@@ -188,7 +188,7 @@ All 42 sheet clients matched by name. The sheet's "Ads Account Link" column expo
 | Tuxedo Falls | Chiara | Tuxedo Falls - Ad Account | 2077151009889326 | ok |
 | Walden Retreats | Anna | (account named by its ID in the export) | 973261794434226 | ok via the API system user; on the Master sheet from 2026-10-13 at $30/day. CRM Advanced |
 
-Active accounts with spend but no sheet row: Hillside Amble (Anna), Cowan Creek Lodges (Anna), Edenwood NC (Charlotte), Stay Different (Anna), Branch Berkeley Springs. Decision pending on whether to add them. Walden Retreats is now on the sheet (row above). Glasscombe and Cabin Collective were added to the map on 2026-10-26; Treetop Hideaways, Casey Key Resort and Arca Roatan have no ad account yet. Gooseberry Lodges appeared on the Master sheet (Live) on 2026-11-02 with no ad account ID known; it gets a blocker row in the pixel check until Shawal supplies the ID.
+Active accounts with spend but no sheet row: Hillside Amble (Anna), Cowan Creek Lodges (Anna), Edenwood NC (Charlotte), Stay Different (Anna). Decision pending on whether to add them. Branch Berkeley Springs is out of scope (Shawal, 2026-11-11): not added, not checked. Walden Retreats is now on the sheet (row above). Glasscombe and Cabin Collective were added to the map on 2026-10-26; Treetop Hideaways, Casey Key Resort and Arca Roatan have no ad account yet. Gooseberry Lodges appeared on the Master sheet (Live) on 2026-11-02 with no ad account ID known; it gets a blocker row in the pixel check until Shawal supplies the ID.
 
 ### 5.1 Client → pixel map (as of 2026-09-21)
 

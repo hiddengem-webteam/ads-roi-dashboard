@@ -4,7 +4,7 @@
   "generatedFrom": "/july-client-reporting-sheet (revenue + leads from the Client Performance Tracking sheet; Meta metrics from the July snapshot)",
   "totalClients": 39,
   "totals": {
-    "totalDirectBookingRevenue": 2570965.27,
+    "totalDirectBookingRevenue": 2498971.61,
     "totalLeads": 30329
   },
   "clients": [
@@ -1290,14 +1290,14 @@
     {
       "clientName": "Stay with Branch",
       "revenueSource": "client-reporting-sheet",
-      "totalDirectBookings": 49,
-      "totalDirectBookingRevenue": 74512.66,
+      "totalDirectBookings": 3,
+      "totalDirectBookingRevenue": 2519,
       "totalLeads": 181,
       "overallMetaAdSpend": 617.83,
       "totalBookingsAttributedToMeta": 2,
       "costPerMetaAttributedBooking": 308.92,
-      "avgDirectBookingValue": 1520.67,
-      "pctOfBookingValue": 20.31,
+      "avgDirectBookingValue": 839.67,
+      "pctOfBookingValue": 36.79,
       "directBookingRevenueAttributedToMeta": 2124,
       "metaAttributedRevenueCappedAtTotal": false,
       "blendedRoas": 3.44,

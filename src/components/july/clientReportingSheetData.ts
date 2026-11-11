@@ -44,7 +44,9 @@ export const CLIENT_REPORTING_SHEET: Record<string, ClientReportingFigures> = {
   'Stay on 30a': { directBookingRevenue: 478699.05, newLeads: 1129 },
   'Stay Saluda': { directBookingRevenue: 17371, newLeads: 346 },
   'Stay Southern Illinois': { directBookingRevenue: 6600.23, newLeads: 1116 },
-  'Stay with Branch': { directBookingRevenue: 74512.66, newLeads: 181 },
+  // Corrected 2026-11-11: the sheet's July row reads $2,519 (3 website bookings);
+  // $74,512.66 was the AM tab total incl. ~45 manual Guesty entries from 12–15 July.
+  'Stay with Branch': { directBookingRevenue: 2519, newLeads: 181 },
   'StayLuxe': { directBookingRevenue: 12937.18, newLeads: 57 },
   'Sunapee Stays': { directBookingRevenue: 47958.84, newLeads: 603 },
   'The Cohost Company': { directBookingRevenue: 72305, newLeads: 496 },

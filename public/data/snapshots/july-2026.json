@@ -7842,10 +7842,10 @@
             "totalGHLLeads": 0
           },
           "summary": {
-            "totalRevenue": 74512.66,
-            "avgDirectBookingValue": 1520.666530612245,
-            "directBookingCount": 49,
-            "zeroRevenueCount": 1,
+            "totalRevenue": 2519,
+            "avgDirectBookingValue": 839.6666666666666,
+            "directBookingCount": 3,
+            "zeroRevenueCount": 0,
             "hasSourceColumn": true
           }
         },
