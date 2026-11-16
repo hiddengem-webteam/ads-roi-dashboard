@@ -28,7 +28,7 @@ DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
 def esc(s): return html.escape(s, quote=False)
 
-BACK_CSS = ".back{font:500 13px/20px 'Inter',sans-serif;color:var(--text-3);display:inline-flex;align-items:center;gap:6px}.back:hover{color:var(--text);text-decoration:none}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}"
+BACK_CSS = ".back{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:600 14px/20px 'Inter',sans-serif;box-shadow:var(--shadow-xs);white-space:nowrap;text-decoration:none;transition:background .1s linear,color .1s linear}.back:hover{background:var(--panel-2);color:var(--text);text-decoration:none}.back:focus-visible{outline:none;box-shadow:var(--focus)}.back .arr{font-weight:500}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.masthead .eyebrow:empty{display:none}"  # 2026-11-16 (Shawal): the back links are buttons, so people can find their way between the reports, the archive and the monthly dashboard
 
 def wrap(page_html, back=True):
     """Turn an artifact-style page (title/link/style then body content) into a full document."""
@@ -36,7 +36,7 @@ def wrap(page_html, back=True):
     head, body = (page_html[:m.end()], page_html[m.end():]) if m else ("", page_html)
     extra_css = BACK_CSS
     if back:
-        body = body.replace('<div class="eyebrow">', f'<div class="right"><a class="back" href="{BASE}/">&#8592; All reviews</a><div class="eyebrow">', 1)
+        body = body.replace('<div class="eyebrow">', f'<div class="right"><a class="back" href="{BASE}/"><span class="arr" aria-hidden="true">&#8592;</span>Weekly reviews</a><div class="eyebrow">', 1)
         body = body.replace('</div></div>\n<header class="title">', '</div></div></div>\n<header class="title">', 1)
     return ("<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
             "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">\n"
@@ -297,7 +297,7 @@ def main():
 </head>
 <body>
 <div class="page">
-<div class="masthead">{wordmark}<div class="right"><a class="back" href="/">&#8592; Monthly ROI dashboard</a></div></div>
+<div class="masthead">{wordmark}<div class="right"><a class="back" href="/"><span class="arr" aria-hidden="true">&#8592;</span>Monthly ROI dashboard</a></div></div>
 <header class="title"><h1>Meta Ads Weekly Reviews</h1><p class="lede">{esc(span)}</p></header>
 {fbar}
 <div class="wlist">{"".join(weeks_html) or '<div class="empty">No reviews yet.</div>'}</div>

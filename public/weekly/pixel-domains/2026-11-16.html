@@ -161,7 +161,7 @@ td.nowrap{white-space:nowrap}
 .client-list{font-size:13px;line-height:19px;color:var(--text-3)}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
-<style>.back{font:500 13px/20px 'Inter',sans-serif;color:var(--text-3);display:inline-flex;align-items:center;gap:6px}.back:hover{color:var(--text);text-decoration:none}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}</style>
+<style>.back{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:600 14px/20px 'Inter',sans-serif;box-shadow:var(--shadow-xs);white-space:nowrap;text-decoration:none;transition:background .1s linear,color .1s linear}.back:hover{background:var(--panel-2);color:var(--text);text-decoration:none}.back:focus-visible{outline:none;box-shadow:var(--focus)}.back .arr{font-weight:500}.masthead .right{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.masthead .eyebrow:empty{display:none}</style>
 </head>
 <body>
 <div class="page">
@@ -182,7 +182,7 @@ td.nowrap{white-space:nowrap}
 <rect width="181.789" height="22" fill="currentColor"></rect>
 </clipPath>
 </defs>
-</svg><div class="right"><a class="back" href="/weekly/">&#8592; All reviews</a><div class="eyebrow">Weekly Meta Ads review · Pixel domain check</div></div></div>
+</svg><div class="right"><a class="back" href="/weekly/"><span class="arr" aria-hidden="true">&#8592;</span>Weekly reviews</a><div class="eyebrow">Weekly Meta Ads review · Pixel domain check</div></div></div>
 <header class="title"><h1>Pixel domain check</h1><p class="lede">Verifies each client's Meta Pixel receives events only from that client's own site, link pages, GoHighLevel funnel and booking engine, and flags cross-contamination, silent pixels and split or duplicate setups.</p><div class="meta"><span class="chip">Run 16 November 2026</span><span class="chip">Rolling 7-day window, Purchase over 28 days</span><span class="chip">Sources: HiddenGem BM dataset listing, per-account listings, host and event totals, PMS bookings and CAPI state from the HiddenGem AI platform</span><span class="chip">Compared against 2026-11-09-pixel-domain-check.csv</span></div></header>
 
 <div class="stats"><div class="stat"><div class="label">Clients on sheet</div><div class="value">47</div><div class=hint>all matched to at least one pixel</div></div><div class="stat"><div class="label">Pixel rows reviewed</div><div class="value">54</div><div class=hint>53 distinct pixels; Starlight Haven's serves two accounts</div></div><div class="stat"><div class="label">Events, last 7 days</div><div class="value">901,154</div><div class=hint>shared pixel counted once</div></div><div class="stat"><div class="label"><span class="dot err"></span>Critical</div><div class="value">0</div><div class=hint>another client's domain firing into the pixel</div></div><div class="stat"><div class="label"><span class="dot warn"></span>Warning</div><div class="value">16</div><div class=hint>silent, split, duplicate or unconfirmed</div></div><div class="stat"><div class="label"><span class="dot ok"></span>Match</div><div class="value">37</div><div class=hint>events only from the client's own hosts</div></div><div class="stat"><div class="label"><span class="dot gray"></span>Blocked</div><div class="value">1</div><div class=hint>no pixel found or unreadable</div></div></div>
