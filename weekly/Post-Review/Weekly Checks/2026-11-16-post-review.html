@@ -1,0 +1,593 @@
+<title>Post-review W47</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#ffffff; --panel:#ffffff; --panel-2:#fafafa; --panel-3:#f5f5f5;
+  --border:#e5e5e5; --border-strong:#d4d4d4;
+  --text:#171717; --text-2:#404040; --text-3:#525252; --text-4:#737373;
+  --brand:#ffd60a; --brand-hover:#e0ba00; --on-brand:#0a0a0a; --brand-ring:#b89800;
+  --brand-text:#8a7100; --brand-bg:#fffceb; --brand-border:#8a7100;
+  --ok-text:#008138; --ok-dot:#00a544; --ok-bg:#f0fdf4; --ok-border:#dcfce7;
+  --warn-text:#a36100; --warn-dot:#cd8900; --warn-bg:#fefce8; --warn-border:#fef9c2;
+  --err-text:#bf000f; --err-dot:#e40014; --err-bg:#fef2f2; --err-border:#ffe2e2;
+  --gray-text:#404040; --gray-dot:#a1a1a1; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
+  --hover:#fafafa;
+  --shadow-xs:0 0 2px #0000001f,0 1px 2px #00000024;
+  --elev:0 0 2px #0000001f,0 8px 16px #00000024;
+  --focus:0 0 0 2px #ffffff,0 0 0 4px #8a7100;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
+  --border:#262626; --border-strong:#404040;
+  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
+  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
+  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
+  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
+  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
+  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
+  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --hover:#171717;
+  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
+  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
+  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
+  --border:#262626; --border-strong:#404040;
+  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
+  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
+  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
+  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
+  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
+  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
+  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --hover:#171717;
+  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
+  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
+  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+.page{max-width:1200px;margin:0 auto;padding-block:32px 64px;padding-inline:32px}
+@media (max-width:640px){.page{padding-inline:16px;padding-block:20px 48px}}
+a{color:var(--brand-text);text-decoration:none}a:hover{text-decoration:underline}
+code,.mono{font-family:'Roboto Mono',ui-monospace,'SF Mono',Menlo,monospace;font-size:.9em}
+.wordmark{display:block;color:var(--text);height:22px;width:auto}
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.masthead .eyebrow{font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
+header.title{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
+h1{font:600 36px/44px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+@media (max-width:640px){h1{font-size:30px;line-height:38px}}
+.lede{margin:0;color:var(--text-3);max-width:72ch}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border:1px solid var(--border);border-radius:9999px;background:var(--panel);font:500 12px/18px 'Inter',sans-serif;color:var(--text-3)}
+.chip .mono{font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));grid-auto-rows:1fr;gap:12px;margin-bottom:32px}
+.stats.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:640px){.stats,.stats.cols-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow-xs);display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat .label{font:500 13px/18px 'Inter',sans-serif;color:var(--text-3);display:flex;align-items:center;gap:6px}
+.stat .value{font:600 26px/32px 'Inter',sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat .hint{font:400 12px/18px 'Inter',sans-serif;color:var(--text-4)}
+.dot{width:8px;height:8px;border-radius:9999px;display:inline-block;flex:none}
+.dot.ok{background:var(--ok-dot)}.dot.warn{background:var(--warn-dot)}.dot.err{background:var(--err-dot)}.dot.gray{background:var(--gray-dot)}.dot.brand{background:var(--brand);box-shadow:inset 0 0 0 1px var(--brand-ring)}
+section{margin-bottom:36px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+h2{font:600 20px/30px 'Inter',sans-serif;letter-spacing:-.01em;margin:0}
+h3{font:600 16px/24px 'Inter',sans-serif;margin:0}
+.sec-desc{margin:2px 0 0;color:var(--text-3);font-size:14px;line-height:20px;max-width:80ch}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow-xs);overflow:hidden}
+.card + .card{margin-top:16px}
+.card-head{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.card-head .sub{color:var(--text-3);font-size:14px;line-height:20px}
+.card-body{padding:16px 20px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:20px}
+thead th{text-align:left;font:500 12px/18px 'Inter',sans-serif;color:var(--text-3);background:var(--panel-2);padding:10px 16px;border-bottom:1px solid var(--border);white-space:nowrap}
+tbody td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;color:var(--text-2)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--panel-2)}
+td.first{font-weight:500;color:var(--text);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mono{font-size:13px;white-space:nowrap;color:var(--text-3)}
+td.notes{min-width:280px;max-width:560px;font-size:13px;line-height:19px;color:var(--text-3)}
+td.domains{min-width:220px;max-width:360px;font-size:13px;line-height:19px;color:var(--text-3);word-break:break-word}
+td.nowrap{white-space:nowrap}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:2px 8px 2px 7px;border-radius:9999px;font:500 12px/18px 'Inter',sans-serif;white-space:nowrap;border:1px solid}
+.badge .dot{width:6px;height:6px}
+.badge.ok{color:var(--ok-text);background:var(--ok-bg);border-color:var(--ok-border)}
+.badge.warn{color:var(--warn-text);background:var(--warn-bg);border-color:var(--warn-border)}
+.badge.err{color:var(--err-text);background:var(--err-bg);border-color:var(--err-border)}
+.badge.gray{color:var(--gray-text);background:var(--gray-bg);border-color:var(--gray-border)}
+.badge.brand{color:var(--on-brand);background:var(--brand);border-color:var(--brand-hover)}
+.badge.brand .dot{background:var(--on-brand);box-shadow:none}
+.alert{border:1px solid;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.alert.err{background:var(--err-bg);border-color:var(--err-border)}
+.alert.warn{background:var(--warn-bg);border-color:var(--warn-border)}
+.alert.info{background:var(--brand-bg);border-color:var(--brand-border)}
+.alert .t{font:600 14px/20px 'Inter',sans-serif;color:var(--text)}
+.alert.err .t{color:var(--err-text)}.alert.warn .t{color:var(--warn-text)}.alert.info .t{color:var(--brand-text)}
+.alert p{margin:0;font-size:14px;line-height:21px;color:var(--text-2)}
+.alert ol{margin:0;padding-left:20px;font-size:14px;line-height:21px;color:var(--text-2);display:flex;flex-direction:column;gap:8px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;background:var(--panel);box-shadow:var(--shadow-xs);overflow:hidden}
+.seg button{appearance:none;border:0;background:transparent;font:500 13px/20px 'Inter',sans-serif;color:var(--text-3);padding:6px 12px;cursor:pointer;border-right:1px solid var(--border);transition:background .15s}
+.seg button:last-child{border-right:0}
+.seg button:hover{background:var(--panel-2)}
+.seg button[aria-pressed="true"]{background:var(--panel-3);color:var(--text)}
+.seg button:focus-visible{outline:none;box-shadow:var(--focus);position:relative;z-index:1}
+.empty{padding:20px;color:var(--text-4);font-size:14px}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:8px 16px;font-size:14px;line-height:21px;padding:16px 20px;border-top:1px solid var(--border)}
+.kv dt{color:var(--text-4);font-weight:500}.kv dd{margin:0;color:var(--text-2)}
+@media (max-width:640px){.kv{grid-template-columns:1fr;gap:2px 0}.kv dt{margin-top:8px}.kv dt:first-child{margin-top:0}}
+.tof{padding:12px 20px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-3)}
+.month{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;border-bottom:1px solid var(--border);background:var(--panel-2)}
+.month .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 20px}
+.month .stat+.stat{border-left:1px solid var(--border)}
+.month .stat .value{font-size:20px;line-height:28px}
+.month .stat .value .delta{font-size:14px;font-weight:500;margin-left:6px}
+.month .stat .value .delta.ok{color:var(--ok-text)}.month .stat .value .delta.err{color:var(--err-text)}.month .stat .value .delta.gray{color:var(--text-4)}
+.month .none{padding:12px 20px;font-size:14px;color:var(--text-4);grid-column:1/-1}
+@media (max-width:640px){.month .stat+.stat{border-left:0;border-top:1px solid var(--border)}}
+.meeting{padding:0}
+.meeting + .meeting{border-top:1px solid var(--border)}
+.meeting summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}
+.meeting summary::-webkit-details-marker{display:none}
+.meeting summary:hover{background:var(--panel-2)}
+.meeting summary:focus-visible{outline:none;box-shadow:inset var(--focus)}
+.meeting .chev{flex:none;width:8px;height:8px;margin-top:8px;border-right:1.5px solid var(--text-4);border-bottom:1.5px solid var(--text-4);transform:rotate(-45deg);transition:transform .15s}
+.meeting[open] .chev{transform:rotate(45deg)}
+.meeting .mtxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.meeting .mtitle{font:600 16px/24px 'Inter',sans-serif;color:var(--text)}
+.meeting .when{font-size:13px;line-height:18px;color:var(--text-4)}
+.meeting .mlead{font-size:14px;line-height:21px;color:var(--text-3);margin-top:4px;max-width:80ch}
+.meeting .mbody{padding:0 20px 20px 40px}
+.meeting p{margin:0 0 8px;font-size:14px;line-height:21px;color:var(--text-2);max-width:80ch}
+.meeting .lbl{font:600 13px/18px 'Inter',sans-serif;color:var(--text);margin:12px 0 4px}
+.meeting ul{margin:0;padding-left:20px;font-size:14px;line-height:21px;color:var(--text-2);max-width:80ch}
+.meeting li{margin-bottom:4px}
+.foot{border-top:1px solid var(--border);padding-top:20px;color:var(--text-4);font-size:13px;line-height:19px}
+.foot ul{margin:0 0 12px;padding-left:18px}.foot li{margin-bottom:4px}
+.foot p{margin:0}
+.client-list{font-size:13px;line-height:19px;color:var(--text-3)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+
+[hidden]{display:none!important}
+td.first a,.ccard a{color:inherit}
+td.first a:hover{color:var(--brand-text)}
+a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
+/* section openers: mono eyebrow in gold text, display-sm title */
+.sec{margin:0 0 56px}
+.sec-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;margin:0 0 16px}
+.eb{display:block;font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);margin:0 0 6px}
+.sec-top h2{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sec-top .sec-desc{margin-top:6px}
+@media (max-width:640px){.sec{margin-bottom:44px}.sec-top h2{font-size:24px;line-height:32px}}
+/* whole-section toggles (01, 03, 04): the heading opens and closes the section */
+.stgl>summary{list-style:none;cursor:pointer;display:block;margin:0 -14px;padding:12px 14px;border-radius:12px;transition:background .1s linear}
+.stgl>summary::-webkit-details-marker{display:none}
+.stgl>summary:hover{background:var(--hover)}
+.stgl>summary:focus-visible{box-shadow:var(--focus)}
+.stgl[open]>summary{margin-bottom:16px}
+.stgl .shead{display:flex;align-items:center;gap:14px}
+.stgl .shead h2{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.stgl .chev{flex:none;width:10px;height:10px;border-right:2px solid var(--text-3);border-bottom:2px solid var(--text-3);transform:rotate(-45deg);margin:0 2px;transition:transform .24s cubic-bezier(.2,0,0,1)}
+.stgl[open]>summary .chev{transform:rotate(45deg)}
+.stgl .tact{margin-left:auto;flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);box-shadow:var(--shadow-xs);font:600 14px/20px 'Inter',sans-serif;color:var(--text-2)}
+.stgl .tact::after{content:"Show"}
+.stgl[open] .tact::after{content:"Hide"}
+.stgl .sec-desc{display:block;margin:6px 0 0 28px}
+.stgl .smeta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0 28px}
+.sec.stgl{margin-bottom:28px}
+.sec.stgl[open]{margin-bottom:48px}
+.stgl .fbar{margin-bottom:16px}
+@media (max-width:640px){.stgl .shead h2{font-size:24px;line-height:32px}.stgl .sec-desc,.stgl .smeta{margin-left:0}}
+@media (prefers-reduced-motion: reduce){.stgl .chev{transition:none}}
+/* open state (2026-11-16, Shawal: "add shadows to show when a section is open"): an open section sits on a framed,
+   shadowed surface and an open list, client card or week card lifts with a stronger border. Dark mode adds a faint
+   gold hairline because a shadow alone barely shows on the near-black ground. */
+:root{--open-shadow:0 2px 4px #00000014,0 18px 40px -12px #00000047;--open-surface:#fafafa;--open-ring:#c4c4c4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--open-shadow:0 0 0 1px #ffd93538,0 18px 40px -12px #000000e6;--open-surface:#111111;--open-ring:#4d4d4d}}
+:root[data-theme="dark"]{--open-shadow:0 0 0 1px #ffd93538,0 18px 40px -12px #000000e6;--open-surface:#111111;--open-ring:#4d4d4d}
+.sec.stgl{border:1px solid transparent;border-radius:16px;transition:background .2s ease,box-shadow .2s ease,border-color .2s ease}
+.sec.stgl[open]{background:var(--open-surface);border-color:var(--open-ring);box-shadow:var(--open-shadow);padding:12px 22px 24px}
+.tgl,.ccard,.wk{transition:box-shadow .2s ease,border-color .2s ease}
+.tgl:not([open]),.ccard:not([open]),.wk:not([open]){box-shadow:none}
+.tgl[open],.ccard[open],.wk[open]{border-color:var(--open-ring);box-shadow:var(--open-shadow)}
+@media (max-width:640px){.sec.stgl[open]{padding:8px 12px 16px}}
+@media (prefers-reduced-motion: reduce){.sec.stgl,.tgl,.ccard,.wk{transition:none}}
+/* stat band */
+.band{display:grid;grid-template-columns:repeat(var(--n,8),minmax(0,1fr));margin:0 0 48px}
+.band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
+.band .stat .label{font-size:12px;line-height:18px;white-space:nowrap}
+.band .stat+.stat{border-left:1px solid var(--border)}
+.band .stat .value{font-size:24px;line-height:32px}
+.band .stat .hint{font-size:12px;line-height:16px}
+@media (max-width:1000px){.band{grid-template-columns:repeat(4,minmax(0,1fr))}.band .stat:nth-child(4n+1){border-left:0}.band .stat:nth-child(n+5){border-top:1px solid var(--border)}}
+@media (max-width:640px){.band{grid-template-columns:repeat(2,minmax(0,1fr))}.band .stat+.stat{border-left:0}.band .stat:nth-child(even){border-left:1px solid var(--border)}.band .stat:nth-child(n+3){border-top:1px solid var(--border)}}
+/* filter bar */
+.fbar{position:sticky;top:12px;z-index:10;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;padding:14px 18px;margin:0 0 20px;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--elev)}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld label{font:500 14px/20px 'Inter',sans-serif;color:var(--text-2)}
+.sel{position:relative;display:block}
+.sel::after{content:"";position:absolute;right:15px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.sel select{appearance:none;-webkit-appearance:none;width:100%;min-width:240px;height:40px;font:500 14px/20px 'Inter',sans-serif;color:var(--text);background:var(--panel);border:1px solid var(--border-strong);border-radius:8px;padding:0 38px 0 14px;cursor:pointer;box-shadow:var(--shadow-xs);transition:border-color .1s linear,background .1s linear}
+.sel select:hover{border-color:var(--text-4)}
+.sel select.on{border-color:var(--brand-border);background:var(--brand-bg);color:var(--brand-text)}
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:40px;padding:0 16px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:600 14px/20px 'Inter',sans-serif;cursor:pointer;box-shadow:var(--shadow-xs);transition:background .1s linear,color .1s linear}
+.btn:hover{background:var(--panel-2);color:var(--text)}
+.btn.sm{height:36px;padding:0 14px}
+.fsum{margin:0 0 0 auto;align-self:center;font-size:14px;line-height:20px;color:var(--text-3);text-align:right}
+.fsum strong{color:var(--text);font-weight:600}
+@media (max-width:640px){.fbar{position:static;padding:12px 14px}.fld{flex:1 1 100%}.sel select{min-width:0}.fsum{margin:0;width:100%;text-align:left}}
+/* tables */
+thead th{color:var(--text-3)}
+tbody tr:hover td{background:var(--panel-2)}
+td.camp{min-width:180px}
+td.lines{white-space:nowrap;font-variant-numeric:tabular-nums}
+td.type{min-width:110px}
+td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
+.tgl thead th,.tgl tbody td,#ovw thead th,#ovw tbody td{padding-left:12px;padding-right:12px}
+.tgl thead th:first-child,.tgl tbody td:first-child,#ovw thead th:first-child,#ovw tbody td:first-child{padding-left:20px}
+.tgl thead th:last-child,.tgl tbody td:last-child,#ovw thead th:last-child,#ovw tbody td:last-child{padding-right:20px}
+.tgl td.first,#ovw td.first{white-space:normal;min-width:130px}
+#ovw td.sum{min-width:300px;color:var(--text-2)}
+#ovw td.sum .clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#ovw td.st{white-space:nowrap}
+#ovw td.spend{font-weight:600;color:var(--text)}
+#ovw tr[data-href]{cursor:pointer}
+#ovw tr.muted td{color:var(--text-4)}
+#ovw tr.muted td.first{color:var(--text-3)}
+#ovw tr.grp td,#ovw tr.grp:hover td{background:var(--panel-2);font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding-top:8px;padding-bottom:8px}
+.stl{display:flex;flex-wrap:wrap;gap:6px}
+@media (max-width:640px){
+  #ovw thead{display:none}
+  #ovw,#ovw tbody{display:block}
+  #ovw tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name spend" "am am" "st st" "sum sum";gap:4px 12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+  #ovw tbody tr:last-child{border-bottom:0}
+  #ovw tbody td{display:block;padding:0!important;border:0!important;min-width:0!important;background:transparent!important}
+  #ovw td:nth-child(1){grid-area:name}#ovw td:nth-child(2){grid-area:am;font-size:13px;color:var(--text-4)}#ovw td:nth-child(2)::before{content:"AM "}
+  #ovw td:nth-child(3){grid-area:sum;font-size:13px;line-height:19px}#ovw td:nth-child(4){grid-area:st;margin:4px 0 2px}#ovw td:nth-child(5){grid-area:spend}
+  #ovw tbody tr.grp{display:block;padding:8px 16px;background:var(--panel-2)}
+}
+/* collapsible lists (section 2) and the notes toggle (section 4) */
+.stack{display:flex;flex-direction:column;gap:12px}
+.tgl>summary,.ccard>summary{list-style:none;cursor:pointer;transition:background .1s linear}
+.tgl>summary::-webkit-details-marker,.ccard>summary::-webkit-details-marker{display:none}
+.tgl>summary:hover,.ccard>summary:hover{background:var(--panel-2)}
+.tgl>summary:focus-visible,.ccard>summary:focus-visible{box-shadow:inset var(--focus);border-radius:12px}
+.tgl[open]>summary,.ccard[open]>summary{border-bottom:1px solid var(--border)}
+.tgl .chev,.ccard .chev{flex:none;width:8px;height:8px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:rotate(-45deg);transition:transform .24s cubic-bezier(.2,0,0,1)}
+.tgl[open]>summary .chev,.ccard[open]>summary .chev{transform:rotate(45deg)}
+.tgl>summary{display:flex;gap:14px;align-items:flex-start;padding:18px 20px}
+.tgl .chev{margin-top:9px}
+.tgl .ttxt{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.tgl .trow{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.tgl h3{font:600 20px/30px 'Inter',sans-serif;letter-spacing:-.01em;margin:0}
+.tgl .tmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tgl .tcount{font-size:12px;line-height:18px;color:var(--text-4)}
+.tgl .sec-desc{margin:0}
+.tgl .tact{flex:none;margin-top:5px;font:600 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
+.tgl .tact::after{content:"Show"}
+.tgl[open] .tact::after{content:"Hide"}
+/* per-client cards (section 3) */
+.cards{display:flex;flex-direction:column;gap:12px}
+.cards>.card+.card{margin-top:0}
+.cards>.card{scroll-margin-top:120px}
+.ccard>summary{display:grid;grid-template-columns:8px minmax(0,1fr) auto auto;grid-template-areas:"chev main states spend";gap:6px 18px;align-items:center;padding:16px 20px}
+.ccard .chev{grid-area:chev}
+.ccard .cmain{grid-area:main;min-width:0}
+.ccard .cstates{grid-area:states;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ccard .cspend{grid-area:spend;text-align:right;min-width:92px;font:600 16px/24px 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:var(--text)}
+.ccard .cspend small{display:block;font:400 12px/16px 'Inter',sans-serif;color:var(--text-4)}
+.ccard .cname{display:block;font:600 16px/24px 'Inter',sans-serif;color:var(--text)}
+.ccard .csub{display:block;font-size:13px;line-height:18px;color:var(--text-4)}
+@media (max-width:640px){.tgl>summary{padding:14px 16px}.tgl .tact{display:none}.ccard>summary{grid-template-columns:8px minmax(0,1fr) auto;grid-template-areas:"chev main spend" ". states states";padding:14px 16px}.ccard .cstates{justify-content:flex-start}}
+/* client campaign table (inside each card) */
+.ctable thead th,.ctable tbody td{padding-left:12px;padding-right:12px}
+.ctable thead th:first-child,.ctable tbody td:first-child{padding-left:20px}
+.ctable thead th:last-child,.ctable tbody td:last-child{padding-right:20px}
+.ctable tbody td{border-bottom:0}
+.ctable tbody+tbody tr:first-child td{border-top:1px solid var(--border)}
+.ctable tbody:hover td{background:var(--panel-2)}
+.ctable td.first{white-space:normal;min-width:190px}
+.ctable td.res,.ctable td.gov{white-space:normal;min-width:92px}
+.ctable tr.crow td{padding-bottom:8px}
+.ctable tr.cdet td{padding-top:0;padding-bottom:14px}
+.cdl{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:19px;color:var(--text-3);max-width:120ch}
+.cdl p{margin:0}
+.cdl span{font-weight:600;color:var(--text-2);margin-right:6px}
+@media (max-width:640px){
+  .ctable thead{display:none}
+  .ctable,.ctable tbody,.ctable tr.cdet,.ctable tr.cdet td{display:block}
+  .ctable tbody+tbody{border-top:1px solid var(--border)}
+  .ctable tbody+tbody tr:first-child td{border-top:0}
+  .ctable tr.crow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 12px;padding:14px 16px 8px}
+  .ctable tr.crow td{display:block;padding:0!important;text-align:left;white-space:normal;min-width:0!important;background:transparent!important}
+  .ctable tr.crow td.first{grid-column:1/-1}
+  .ctable tr.crow td[data-l]::before{content:attr(data-l);display:block;font:400 11px/16px 'Inter',sans-serif;color:var(--text-4)}
+  .ctable tr.cdet td{padding:0 16px 14px!important;background:transparent!important}
+}
+/* notes (section 4) */
+.nbody{padding:20px;display:flex;flex-direction:column;gap:28px}
+.nbody h4{font:600 16px/24px 'Inter',sans-serif;margin:0 0 4px}
+.nbody .sec-desc{margin:0 0 12px}
+.nbody p.np{margin:0;font-size:14px;line-height:21px;color:var(--text-2);max-width:90ch}
+.nbody ul.nl{margin:0;padding-left:18px;font-size:14px;line-height:21px;color:var(--text-2);display:flex;flex-direction:column;gap:6px;max-width:100ch}
+.mlist{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.genline{margin:0;padding-top:20px;border-top:1px solid var(--border);color:var(--text-4);font-size:13px;line-height:19px}
+@media (prefers-reduced-motion: reduce){.tgl .chev,.ccard .chev{transition:none}}
+
+.ccard .cspend{min-width:110px}
+.ccard .month{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.ctable td.dom{min-width:170px;max-width:260px;white-space:normal;font-size:13px;line-height:19px;color:var(--text-3);word-break:break-word}
+.ctable td.pid{white-space:normal;min-width:200px}
+.ctable td.pid .mono{display:block;font-size:12px;line-height:18px;color:var(--text-4)}
+.ccard .tof strong{color:var(--text-2);font-weight:600}
+.nbody .np+.np{margin-top:10px}
+
+.todo{margin:0;padding:4px 0;list-style:none;counter-reset:todo}
+.todo li{counter-increment:todo;display:grid;grid-template-columns:28px 1fr;gap:4px 8px;padding:12px 20px;border-top:1px solid var(--border);font-size:15px;line-height:22px;color:var(--text-2)}
+.todo li:first-child{border-top:0}
+.todo li::before{content:counter(todo);font:600 14px/22px 'Roboto Mono',monospace;color:var(--text-4)}
+.todo li a{font-weight:600;color:var(--text)}
+.todo .tid{grid-column:2;font:12px/18px 'Roboto Mono',monospace;color:var(--text-4)}
+.prsum{padding:16px 20px;font-size:15px;line-height:24px;color:var(--text-2);border-bottom:1px solid var(--border)}
+.pitem{padding:14px 20px;border-top:1px solid var(--border)}
+.pitem:first-child{border-top:0}
+.pitem h4{margin:0 0 4px;font-size:15px;line-height:22px;color:var(--text);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.pitem .num{font-size:13px;line-height:20px;color:var(--text-3);margin:0 0 6px}
+.pitem p{margin:0 0 6px;font-size:15px;line-height:23px;color:var(--text-2)}
+.pitem .lbl{display:block;margin:10px 0 2px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-4)}
+.pitem ul{margin:0;padding-left:18px;font-size:15px;line-height:23px;color:var(--text-2)}
+.pitem ul.ctx{font-size:14px;line-height:21px;color:var(--text-3)}
+.pitem .tasks li{list-style:none;margin-left:-18px}
+.pitem .tasks code{font-size:12px}
+.lrow{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(0,2.6fr);gap:4px 16px;padding:12px 20px;border-top:1px solid var(--border);font-size:14px;line-height:21px}
+.lrow:first-child{border-top:0}
+.lrow .who a{font-weight:600;color:var(--text)}
+.lrow .who small{display:block;color:var(--text-4);font-size:13px}
+.lrow .what{color:var(--text-2)}
+.lrow .what .next{display:block;color:var(--text);margin-top:2px}
+.msg{padding:14px 20px;border-top:1px solid var(--border)}
+.msg:first-child{border-top:0}
+.msg .mh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.msg .mh strong{font-size:15px;color:var(--text)}
+.msg .mh small{color:var(--text-4);font-size:13px;margin-left:6px;font-weight:400}
+.msg pre{margin:0;padding:12px 14px;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;white-space:pre-wrap;font:15px/23px 'Inter',sans-serif;color:var(--text-2)}
+@media (max-width:640px){.lrow{grid-template-columns:1fr}.todo li,.pitem,.msg,.lrow,.prsum{padding-left:16px;padding-right:16px}}
+</style>
+<div class="page">
+<div class="masthead"><svg class="wordmark" width="182" height="22" role="img" aria-label="HiddenGem" viewBox="0 0 182 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_17038_1393)">
+<mask id="mask0_17038_1393" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" class="wordmark" width="182" height="22" role="img" aria-label="HiddenGem">
+<path d="M181.789 0H0V22H181.789V0Z" fill="white"></path>
+</mask>
+<g mask="url(#mask0_17038_1393)">
+<path d="M1.99759 6.1986L4.27892 8.71593C4.33982 8.78316 4.3379 8.88615 4.27453 8.95105L3.43689 9.80861C3.36748 9.87961 3.2524 9.87711 3.18621 9.80297L0.0436212 6.2853C-0.0116724 6.22341 -0.014734 6.1308 0.0363505 6.0654L4.72183 0.0659632C4.75435 0.0243327 4.80421 0 4.85704 0H18.766C18.8189 0 18.8687 0.0243781 18.9012 0.0660753L23.579 6.06575C23.6299 6.13101 23.6268 6.22329 23.572 6.28517L20.2366 10.0406C20.1677 10.118 20.0467 10.1173 19.9788 10.0392L19.0701 8.99329C19.0131 8.92776 19.014 8.82995 19.0724 8.76561L21.3225 6.28093C21.3767 6.22109 21.3818 6.13155 21.3348 6.0659L18.1681 1.64247C18.1359 1.59747 18.0839 1.57078 18.0285 1.57078H5.58513C5.5329 1.57078 5.48353 1.59456 5.45097 1.6354L1.99057 5.97646C1.93814 6.04222 1.94112 6.13629 1.99759 6.1986Z" fill="#FFD602"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.39322 11.0132L10.8261 4.42997C10.9058 4.34845 11.0413 4.36584 11.0978 4.46482L13.3812 8.46486C13.4357 8.5604 13.5648 8.58061 13.646 8.50639L15.1517 7.12999C15.2231 7.06485 15.334 7.07132 15.3972 7.14428L18.9367 11.2299C18.9929 11.2947 18.9925 11.3912 18.9356 11.4555L11.9869 19.3426C11.9192 19.4193 11.7999 19.4201 11.731 19.3444L4.38884 11.2483C4.32789 11.1811 4.3298 11.078 4.39322 11.0132ZM10.9248 6.91583L11.1517 8.34667C11.1594 8.39549 11.1944 8.43554 11.2418 8.44972L11.9356 8.65781C11.9973 8.6763 12.0358 8.73752 12.0258 8.80108L11.4778 12.2717C11.4582 12.3954 11.6092 12.4713 11.6968 12.3818L15.0075 9.00375C15.0687 8.9412 15.1732 8.95688 15.2136 9.03463L15.47 9.52924C15.4867 9.5617 15.4889 9.5997 15.4761 9.63388L14.9764 10.9593C14.9276 11.0889 15.0899 11.1936 15.1879 11.0956L15.8872 10.3961C15.952 10.3315 16.0614 10.353 16.0969 10.4372L16.4108 11.1829C16.4297 11.2275 16.4217 11.279 16.3905 11.3159L15.925 11.866C15.8895 11.908 15.8846 11.968 15.9129 12.0153L16.1307 12.3784C16.1599 12.4268 16.1539 12.4886 16.1161 12.5306L12.0879 17.012C12.0363 17.0693 11.9462 17.0689 11.8955 17.0108L6.65475 11.0267C6.60994 10.9756 6.61268 10.8983 6.66102 10.8505L10.7072 6.84454C10.7817 6.77079 10.9084 6.81229 10.9248 6.91583Z" fill="#FFD602"></path>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M11.7276 20.4168C11.8133 20.5153 11.9666 20.515 12.0519 20.416L13.7709 18.4199C16.7919 18.6377 18.9927 19.3102 18.9927 20.1061C18.9927 21.0783 15.709 21.8664 11.6584 21.8664C7.60771 21.8664 4.32401 21.0783 4.32401 20.1061C4.32401 19.2736 6.73158 18.5762 9.96666 18.3929L11.7276 20.4168Z" fill="#FFD602"></path>
+<path d="M33.3008 19.9197V7.29021H35.2064V12.7786H41.5026V7.29021H43.4143V19.9197H41.5026V14.4128H35.2064V19.9197H33.3008ZM45.8677 19.9197V10.4476H47.7115V19.9197H45.8677ZM46.7989 8.98607C46.4782 8.98607 46.2028 8.87919 45.9726 8.6654C45.7464 8.44751 45.6334 8.1885 45.6334 7.88839C45.6334 7.58416 45.7464 7.32516 45.9726 7.11137C46.2028 6.89348 46.4782 6.78455 46.7989 6.78455C47.1196 6.78455 47.393 6.89348 47.619 7.11137C47.8493 7.32516 47.9644 7.58416 47.9644 7.88839C47.9644 8.1885 47.8493 8.44751 47.619 8.6654C47.393 8.87919 47.1196 8.98607 46.7989 8.98607ZM53.5644 20.1048C52.7998 20.1048 52.1173 19.9094 51.517 19.519C50.9208 19.1243 50.4522 18.5631 50.111 17.8354C49.7738 17.1036 49.6054 16.2259 49.6054 15.2022C49.6054 14.1784 49.7759 13.3028 50.1171 12.5751C50.4624 11.8475 50.9353 11.2904 51.5356 10.904C52.1358 10.5175 52.8161 10.3243 53.5767 10.3243C54.1647 10.3243 54.6375 10.4229 54.9951 10.6203C55.3569 10.8135 55.6365 11.0396 55.8338 11.2986C56.0353 11.5577 56.1915 11.7857 56.3025 11.9831H56.4134V7.29021H58.2573V19.9197H56.4566V18.4458H56.3025C56.1915 18.6474 56.0311 18.8775 55.8215 19.1366C55.6159 19.3955 55.3322 19.6217 54.9705 19.8149C54.6086 20.0082 54.1399 20.1048 53.5644 20.1048ZM53.9714 18.5322C54.5017 18.5322 54.9499 18.3925 55.3158 18.1129C55.6857 17.8293 55.9653 17.4366 56.1544 16.935C56.3477 16.4335 56.4442 15.8497 56.4442 15.1837C56.4442 14.5259 56.3497 13.9503 56.1607 13.4569C55.9715 12.9637 55.694 12.5793 55.3281 12.3038C54.9622 12.0283 54.51 11.8907 53.9714 11.8907C53.4163 11.8907 52.9539 12.0345 52.5839 12.3223C52.2139 12.6101 51.9342 13.0027 51.7451 13.5001C51.5602 13.9976 51.4677 14.5588 51.4677 15.1837C51.4677 15.8168 51.5623 16.3862 51.7514 16.8919C51.9405 17.3976 52.2201 17.7983 52.5901 18.0944C52.9642 18.3863 53.4246 18.5322 53.9714 18.5322ZM64.2613 20.1048C63.4965 20.1048 62.8142 19.9094 62.2139 19.519C61.6177 19.1243 61.1491 18.5631 60.8079 17.8354C60.4708 17.1036 60.3022 16.2259 60.3022 15.2022C60.3022 14.1784 60.4728 13.3028 60.814 12.5751C61.1593 11.8475 61.6322 11.2904 62.2324 10.904C62.8326 10.5175 63.5131 10.3243 64.2736 10.3243C64.8615 10.3243 65.3342 10.4229 65.6919 10.6203C66.0537 10.8135 66.3334 11.0396 66.5307 11.2986C66.732 11.5577 66.8883 11.7857 66.9994 11.9831H67.1103V7.29021H68.9541V19.9197H67.1535V18.4458H66.9994C66.8883 18.6474 66.728 18.8775 66.5183 19.1366C66.3127 19.3955 66.0291 19.6217 65.6673 19.8149C65.3055 20.0082 64.8368 20.1048 64.2613 20.1048ZM64.6682 18.5322C65.1986 18.5322 65.6467 18.3925 66.0126 18.1129C66.3827 17.8293 66.6622 17.4366 66.8513 16.935C67.0445 16.4335 67.1412 15.8497 67.1412 15.1837C67.1412 14.5259 67.0466 13.9503 66.8575 13.4569C66.6683 12.9637 66.3909 12.5793 66.025 12.3038C65.6591 12.0283 65.2068 11.8907 64.6682 11.8907C64.1132 11.8907 63.6507 12.0345 63.2807 12.3223C62.9107 12.6101 62.6312 13.0027 62.442 13.5001C62.257 13.9976 62.1645 14.5588 62.1645 15.1837C62.1645 15.8168 62.2591 16.3862 62.4483 16.8919C62.6373 17.3976 62.9169 17.7983 63.2869 18.0944C63.661 18.3863 64.1214 18.5322 64.6682 18.5322ZM75.4946 20.111C74.5613 20.111 73.7577 19.9115 73.0834 19.5127C72.4132 19.1099 71.8953 18.5446 71.5294 17.8169C71.1676 17.0851 70.9867 16.2279 70.9867 15.2453C70.9867 14.2751 71.1676 13.42 71.5294 12.68C71.8953 11.94 72.405 11.3624 73.0587 10.9471C73.7165 10.5319 74.4853 10.3243 75.3652 10.3243C75.8995 10.3243 76.4176 10.4127 76.9192 10.5894C77.4207 10.7662 77.8708 11.0437 78.2696 11.4219C78.6687 11.8002 78.9828 12.2914 79.2133 12.8958C79.4431 13.4961 79.5584 14.2258 79.5584 15.0851V15.7387H72.0288V14.3573H77.7516C77.7516 13.8723 77.653 13.4426 77.4556 13.0685C77.2583 12.6903 76.9808 12.3921 76.6231 12.1743C76.2695 11.9564 75.8544 11.8475 75.3774 11.8475C74.8594 11.8475 74.4072 11.9748 74.0207 12.2298C73.6384 12.4806 73.3423 12.8094 73.1327 13.2164C72.9272 13.6194 72.8244 14.0572 72.8244 14.53V15.6092C72.8244 16.2423 72.9354 16.7809 73.1574 17.2248C73.3835 17.6689 73.698 18.008 74.1009 18.2424C74.5038 18.4726 74.9745 18.5877 75.5131 18.5877C75.8626 18.5877 76.1812 18.5384 76.469 18.4397C76.7567 18.337 77.0055 18.1849 77.2151 17.9834C77.4248 17.7819 77.5852 17.5332 77.6961 17.2372L79.4418 17.5517C79.3012 18.0657 79.0505 18.5158 78.6889 18.9023C78.3316 19.2846 77.8811 19.5827 77.3384 19.7964C76.7999 20.0061 76.1853 20.111 75.4946 20.111ZM83.2743 14.2957V19.9197H81.4308V10.4476H83.2008V11.9893H83.3175C83.5358 11.4878 83.8765 11.0849 84.3412 10.7806C84.8102 10.4764 85.4002 10.3243 86.1112 10.3243C86.7568 10.3243 87.3223 10.4599 87.8071 10.7313C88.2919 10.9985 88.6687 11.3973 88.9359 11.9276C89.2033 12.4579 89.3365 13.1137 89.3365 13.8949V19.9197H87.493V14.1168C87.493 13.4303 87.3136 12.8937 86.9563 12.5072C86.5982 12.1168 86.1069 11.9215 85.4824 11.9215C85.0544 11.9215 84.6748 12.014 84.3412 12.1989C84.0127 12.3839 83.7512 12.6553 83.5581 13.013C83.3693 13.3665 83.2743 13.7941 83.2743 14.2957ZM100.331 11.2802C100.212 10.906 100.051 10.5709 99.8501 10.2749C99.6528 9.97482 99.4165 9.71992 99.1406 9.51025C98.8653 9.29647 98.5505 9.13408 98.1976 9.02307C97.8474 8.91207 97.4635 8.85658 97.0442 8.85658C96.3331 8.85658 95.6912 9.03952 95.12 9.40542C94.5487 9.77131 94.0963 10.3078 93.7634 11.015C93.4342 11.7179 93.2699 12.5793 93.2699 13.5988C93.2699 14.6225 93.4363 15.4879 93.7692 16.195C94.1028 16.9021 94.5588 17.4387 95.1386 17.8046C95.7179 18.1705 96.3778 18.3534 97.1184 18.3534C97.8049 18.3534 98.4029 18.2136 98.9129 17.9341C99.4266 17.6545 99.8235 17.2598 100.103 16.75C100.386 16.2361 100.528 15.6318 100.528 14.937L101.022 15.0295H97.408V13.4569H102.372V14.8939C102.372 15.9545 102.146 16.8754 101.694 17.6565C101.246 18.4336 100.625 19.0338 99.8315 19.4573C99.0419 19.8807 98.1377 20.0925 97.1184 20.0925C95.9751 20.0925 94.9723 19.8294 94.1085 19.3031C93.2491 18.7769 92.5791 18.0306 92.0986 17.0646C91.6174 16.0943 91.3768 14.9432 91.3768 13.6112C91.3768 12.6039 91.5165 11.6994 91.796 10.8978C92.0755 10.0961 92.4682 9.4157 92.9738 8.85658C93.4839 8.29334 94.0818 7.86373 94.7683 7.56771C95.4593 7.2676 96.2135 7.11754 97.0319 7.11754C97.7141 7.11754 98.3496 7.21827 98.9373 7.41971C99.5296 7.62116 100.056 7.90689 100.516 8.2769C100.98 8.6469 101.365 9.0868 101.669 9.59659C101.973 10.1023 102.179 10.6634 102.286 11.2802H100.331ZM108.552 20.111C107.618 20.111 106.815 19.9115 106.141 19.5127C105.471 19.1099 104.953 18.5446 104.587 17.8169C104.225 17.0851 104.044 16.2279 104.044 15.2453C104.044 14.2751 104.225 13.42 104.587 12.68C104.953 11.94 105.462 11.3624 106.116 10.9471C106.774 10.5319 107.543 10.3243 108.422 10.3243C108.957 10.3243 109.475 10.4127 109.976 10.5894C110.478 10.7662 110.928 11.0437 111.327 11.4219C111.725 11.8002 112.04 12.2914 112.271 12.8958C112.501 13.4961 112.616 14.2258 112.616 15.0851V15.7387H105.086V14.3573H110.809C110.809 13.8723 110.71 13.4426 110.513 13.0685C110.316 12.6903 110.038 12.3921 109.68 12.1743C109.326 11.9564 108.911 11.8475 108.435 11.8475C107.917 11.8475 107.464 11.9748 107.078 12.2298C106.695 12.4806 106.399 12.8094 106.19 13.2164C105.984 13.6194 105.881 14.0572 105.881 14.53V15.6092C105.881 16.2423 105.992 16.7809 106.214 17.2248C106.441 17.6689 106.755 18.008 107.158 18.2424C107.561 18.4726 108.032 18.5877 108.57 18.5877C108.92 18.5877 109.239 18.5384 109.526 18.4397C109.814 18.337 110.063 18.1849 110.272 17.9834C110.482 17.7819 110.643 17.5332 110.754 17.2372L112.498 17.5517C112.359 18.0657 112.108 18.5158 111.746 18.9023C111.388 19.2846 110.939 19.5827 110.396 19.7964C109.857 20.0061 109.242 20.111 108.552 20.111ZM114.488 19.9197V10.4476H116.257V11.9893H116.375C116.572 11.4672 116.895 11.0601 117.343 10.7683C117.791 10.4723 118.328 10.3243 118.953 10.3243C119.586 10.3243 120.117 10.4723 120.544 10.7683C120.976 11.0643 121.294 11.4713 121.5 11.9893H121.597C121.824 11.4836 122.185 11.0807 122.678 10.7806C123.171 10.4764 123.758 10.3243 124.441 10.3243C125.3 10.3243 126.001 10.5935 126.544 11.1321C127.091 11.6707 127.364 12.4827 127.364 13.568V19.9197H125.52V13.7407C125.52 13.0993 125.346 12.6347 124.996 12.347C124.646 12.0591 124.229 11.9153 123.744 11.9153C123.144 11.9153 122.678 12.1003 122.344 12.4703C122.012 12.8362 121.845 13.3069 121.845 13.8825V19.9197H120.008V13.6234C120.008 13.1096 119.847 12.6964 119.526 12.3839C119.205 12.0715 118.788 11.9153 118.274 11.9153C117.926 11.9153 117.603 12.0078 117.306 12.1929C117.015 12.3737 116.777 12.6265 116.597 12.9513C116.421 13.2761 116.331 13.6523 116.331 14.0799V19.9197H114.488ZM134.231 7.29021H136.545L140.566 17.1078H140.713L144.733 7.29021H147.047V19.9197H145.234V10.7806H145.117L141.392 19.9012H139.886L136.163 10.7744H136.045V19.9197H134.231V7.29021ZM153.577 20.111C152.644 20.111 151.841 19.9115 151.167 19.5127C150.496 19.1099 149.979 18.5446 149.613 17.8169C149.25 17.0851 149.07 16.2279 149.07 15.2453C149.07 14.2751 149.25 13.42 149.613 12.68C149.979 11.94 150.488 11.3624 151.142 10.9471C151.8 10.5319 152.569 10.3243 153.449 10.3243C153.983 10.3243 154.501 10.4127 155.003 10.5894C155.504 10.7662 155.955 11.0437 156.353 11.4219C156.751 11.8002 157.066 12.2914 157.297 12.8958C157.527 13.4961 157.642 14.2258 157.642 15.0851V15.7387H150.113V14.3573H155.834C155.834 13.8723 155.736 13.4426 155.539 13.0685C155.342 12.6903 155.064 12.3921 154.706 12.1743C154.353 11.9564 153.937 11.8475 153.46 11.8475C152.943 11.8475 152.49 11.9748 152.103 12.2298C151.722 12.4806 151.426 12.8094 151.216 13.2164C151.01 13.6194 150.907 14.0572 150.907 14.53V15.6092C150.907 16.2423 151.018 16.7809 151.241 17.2248C151.467 17.6689 151.781 18.008 152.184 18.2424C152.587 18.4726 153.057 18.5877 153.596 18.5877C153.946 18.5877 154.264 18.5384 154.552 18.4397C154.839 18.337 155.09 18.1849 155.299 17.9834C155.509 17.7819 155.669 17.5332 155.78 17.2372L157.525 17.5517C157.385 18.0657 157.134 18.5158 156.772 18.9023C156.414 19.2846 155.964 19.5827 155.422 19.7964C154.883 20.0061 154.269 20.111 153.577 20.111ZM163.059 20.1048C162.295 20.1048 161.613 19.9094 161.012 19.519C160.416 19.1243 159.947 18.5631 159.607 17.8354C159.27 17.1036 159.101 16.2259 159.101 15.2022C159.101 14.1784 159.272 13.3028 159.612 12.5751C159.959 11.8475 160.431 11.2904 161.031 10.904C161.631 10.5175 162.311 10.3243 163.072 10.3243C163.659 10.3243 164.133 10.4229 164.491 10.6203C164.852 10.8135 165.132 11.0396 165.329 11.2986C165.53 11.5577 165.687 11.7857 165.798 11.9831H165.909V7.29021H167.753V19.9197H165.952V18.4458H165.798C165.687 18.6474 165.527 18.8775 165.316 19.1366C165.111 19.3955 164.827 19.6217 164.466 19.8149C164.104 20.0082 163.635 20.1048 163.059 20.1048ZM163.467 18.5322C163.997 18.5322 164.445 18.3925 164.811 18.1129C165.182 17.8293 165.461 17.4366 165.651 16.935C165.843 16.4335 165.94 15.8497 165.94 15.1837C165.94 14.5259 165.845 13.9503 165.657 13.4569C165.468 12.9637 165.189 12.5793 164.824 12.3038C164.458 12.0283 164.005 11.8907 163.467 11.8907C162.912 11.8907 162.449 12.0345 162.079 12.3223C161.709 12.6101 161.43 13.0027 161.24 13.5001C161.055 13.9976 160.964 14.5588 160.964 15.1837C160.964 15.8168 161.057 16.3862 161.247 16.8919C161.436 17.3976 161.715 17.7983 162.086 18.0944C162.46 18.3863 162.92 18.5322 163.467 18.5322ZM170.212 19.9197V10.4476H172.055V19.9197H170.212ZM171.141 8.98607C170.822 8.98607 170.546 8.87919 170.316 8.6654C170.089 8.44751 169.977 8.1885 169.977 7.88839C169.977 7.58416 170.089 7.32516 170.316 7.11137C170.546 6.89348 170.822 6.78455 171.141 6.78455C171.462 6.78455 171.737 6.89348 171.962 7.11137C172.192 7.32516 172.307 7.58416 172.307 7.88839C172.307 8.1885 172.192 8.44751 171.962 8.6654C171.737 8.87919 171.462 8.98607 171.141 8.98607ZM177.119 20.1294C176.518 20.1294 175.976 20.0185 175.491 19.7964C175.004 19.5703 174.621 19.2434 174.337 18.8159C174.057 18.3883 173.918 17.8641 173.918 17.2434C173.918 16.7089 174.021 16.269 174.226 15.9237C174.431 15.5783 174.709 15.3049 175.059 15.1035C175.408 14.9021 175.799 14.75 176.23 14.6471C176.661 14.5443 177.102 14.4663 177.55 14.4128C178.117 14.347 178.577 14.2936 178.931 14.2524C179.285 14.2073 179.542 14.1353 179.702 14.0366C179.863 13.938 179.943 13.7777 179.943 13.5556V13.5124C179.943 12.9739 179.791 12.5567 179.486 12.2606C179.187 11.9646 178.738 11.8167 178.142 11.8167C177.521 11.8167 177.032 11.9543 176.674 12.2298C176.321 12.5011 176.076 12.8033 175.941 13.1363L174.208 12.7416C174.414 12.1661 174.712 11.7015 175.107 11.3479C175.507 10.9903 175.965 10.7313 176.483 10.5709C177 10.4065 177.546 10.3243 178.117 10.3243C178.495 10.3243 178.896 10.3695 179.32 10.4599C179.747 10.5463 180.146 10.7066 180.516 10.941C180.891 11.1753 181.197 11.5103 181.435 11.9461C181.674 12.3778 181.793 12.9389 181.793 13.6297V19.9197H179.992V18.6247H179.918C179.798 18.8633 179.62 19.0975 179.381 19.3277C179.143 19.558 178.837 19.7492 178.463 19.9012C178.088 20.0533 177.64 20.1294 177.119 20.1294ZM177.519 18.6494C178.029 18.6494 178.465 18.5487 178.826 18.3473C179.192 18.1457 179.47 17.8826 179.659 17.5579C179.852 17.229 179.948 16.8775 179.948 16.5034V15.2824C179.882 15.3481 179.756 15.4098 179.566 15.4674C179.381 15.5208 179.169 15.5681 178.931 15.6092C178.692 15.6462 178.461 15.6811 178.235 15.714C178.008 15.7427 177.819 15.7675 177.667 15.788C177.31 15.8333 176.982 15.9094 176.687 16.0161C176.395 16.1231 176.16 16.2772 175.984 16.4787C175.811 16.6761 175.724 16.9392 175.724 17.268C175.724 17.7244 175.893 18.0698 176.23 18.304C176.567 18.5343 176.997 18.6494 177.519 18.6494Z" fill="currentColor"></path>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_17038_1393">
+<rect width="181.789" height="22" fill="currentColor"></rect>
+</clipPath>
+</defs>
+</svg><div class="eyebrow"></div></div>
+<header class="title"><h1>Meta Ads Post-Review</h1><p class="lede">Actions from the 16 Nov 2026 review</p></header>
+
+<script type="application/json" id="bench-data">{"clients": [{"n": "Aranya Resorts", "a": "Anna"}, {"n": "Arca Boutique Hotel", "a": "Anna"}, {"n": "Asheville River Cabins", "a": "Charlotte"}, {"n": "Cabin Collective", "a": "Chiara"}, {"n": "Casey Key Resort", "a": "Nicole"}, {"n": "Dunya Camp", "a": "Chiara"}, {"n": "Endless Stays", "a": "Nicole"}, {"n": "FLOHOM", "a": "Makenna"}, {"n": "Glasscombe", "a": "Charlotte"}, {"n": "Gooseberry Lodges", "a": "Alicia"}, {"n": "Kimpton Mas Olas Resort", "a": "Charlotte"}, {"n": "Little River Landing", "a": "Makenna"}, {"n": "Lundy Farm", "a": "Charlotte"}, {"n": "Nine Pines Retreat", "a": "Nicole"}, {"n": "Paradise Pointe", "a": "Makenna"}, {"n": "Ridge & Falls", "a": "Makenna"}, {"n": "Selah Place", "a": "Alicia"}, {"n": "Starlight Haven Hot Springs", "a": "Charlotte"}, {"n": "Starlight Haven Weiss Lake", "a": "Charlotte"}, {"n": "Stay On 30A", "a": "Charlotte"}, {"n": "The Preserve", "a": "Alicia"}, {"n": "Treetop Hideaways", "a": "Kristal"}, {"n": "Walden Retreats", "a": "Anna"}]}</script>
+<div class="card band" style="--n:6"><div class="stat"><div class="label"><span class="dot err"></span>Flagged</div><div class="value">3</div><div class=hint>Action needed rows</div></div><div class="stat"><div class="label"><span class="dot brand"></span>Scale</div><div class="value">7</div><div class=hint>above 15x</div></div><div class="stat"><div class="label"><span class="dot warn"></span>Frequency</div><div class="value">2</div><div class=hint>above 5.0 in 14 days</div></div><div class="stat"><div class="label"><span class="dot err"></span>New clients</div><div class="value">13</div><div class=hint>5 due soon, 1 late or blocked</div></div><div class="stat"><div class="label">Tasks added</div><div class="value">18</div><div class=hint>23 existing tasks linked</div></div><div class="stat"><div class="label">AM messages</div><div class="value">4</div><div class=hint>creative asks, ready to send</div></div></div>
+<details class="sec stgl" open id="sec-todo">
+<summary><span class="eb">01 · This week</span><span class="shead"><span class="chev" aria-hidden="true"></span><h2>Do this week</h2><span class="tact" aria-hidden="true"></span></span><span class="sec-desc">The few changes that matter most, in order. Each links to the client's card.</span><span class="smeta"><span class="badge gray"><span class="dot gray"></span>6 actions</span></span></summary>
+<div class="card"><div class="prsum">No budget increases this week: every scale candidate is already at or over its CRM Ad Spend Range, so scaling means shifts inside the account or a client ask. The urgent items are new clients: The Preserve's $100/day BoF has not spent since 12 Nov, HiddenGem's Dunya and Arca campaigns must spend by 18 Nov, and three November clients still have not shared Meta access.</div><ol class="todo"><li><span><a href="#client-10">The Preserve</a>: BoF retargeting ($100/day since 12 Nov) has spent $0. Check the audience size, ad review status and the pixel's domain warning today.</span><span class="tid">preserve-bof-delivery</span></li><li><span><a href="#client-11">Dunya Camp</a>: HiddenGem's three campaigns were switched on 16 Nov and have not spent yet; confirm they deliver by the 18 Nov deadline.</span><span class="tid">dunya-legacy</span></li><li><span><a href="#client-12">Arca Boutique Hotel</a>: Only a $10/day giveaway exists (created 16 Nov, no spend). Launch MoF leads and BoF by the 18 Nov deadline.</span><span class="tid">arca-launch</span></li><li><span><strong>Lundy Farm, Nine Pines, Treetop Hideaways</strong>: Meta access still not shared; deadlines 24 to 27 Nov. Get the ad account, page and pixel assigned to the HG system user this week.</span><span class="tid">lundy-access</span></li><li><span><strong>Selah Place and Ridge &amp; Falls</strong>: Fix the double Purchase (2.5x and 1.8x the PMS bookings) before any BoF scale call; both ROAS reads are inflated.</span><span class="tid">selah-double-purchase</span></li><li><span><a href="#client-0">Little River Landing</a>: Turn on the HG AI CAPI first. The account is 0.5x blended over 30 days, so no budget moves until tracking is right.</span><span class="tid">lrl-capi</span></li></ol></div>
+</details>
+<section class="sec" id="lists">
+<div class="sec-top"><div><span class="eb">02 · Lists</span><h2>Flagged, scale, frequency, new clients and AM messages</h2><p class="sec-desc">Open a list to see one line per client and the next step.</p></div></div>
+<div class="stack"><details class="card tgl" id="sec-flagged">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>Flagged</h3><span class="tmeta"><span class="badge err"><span class="dot err"></span>1 flag</span><span class="badge warn"><span class="dot warn"></span>2 review</span></span></span><span class="sec-desc">Action needed in the benchmark (Sales, Retargeting and Prospecting below 5x), with what to change.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div><div class="lrow" data-client="Little River Landing" data-am="Makenna"><div class="who"><a href="#client-0">Little River Landing</a> <span class="badge err"><span class="dot err"></span>Flag</span><small>Makenna · BoF retargeting</small></div><div class="what">Tracking first: the pixel sees 45% of PMS online bookings with the HG AI CAPI off, and the three BoF title cards are 61 days old.<span class=next>→ Hold BoF ($20) and the new lookalike ($20) until the CAPI is on; judge the lookalike around 1 Dec.</span></div></div><div class="lrow" data-client="Endless Stays" data-am="Nicole"><div class="who"><a href="#client-1">Endless Stays</a> <span class="badge warn"><span class="dot warn"></span>Review</span><small>Nicole · BoF retargeting</small></div><div class="what">Demand is up (MTD $39.8k, +105%) but BoF attribution is weak; the 9.8x 'Ad 2' was paused while three 0-purchase ads keep spending.<span class=next>→ Hold at $200/day; judge the new lookalike around 24 Nov ($500 to $700 spent).</span></div></div><div class="lrow" data-client="FLOHOM" data-am="Makenna"><div class="who"><a href="#client-2">FLOHOM</a> <span class="badge warn"><span class="dot warn"></span>Review</span><small>Makenna · [Myrtle Beach] lookalike</small></div><div class="what">Myrtle Beach ads go to the all-listings page with a VIP100 offer and optimise for value; AD2 spent $229 for 0 purchases in 14 days.<span class=next>→ No change to the $70/day lookalike total until the landing page and optimisation fixes are in.</span></div></div></div>
+</details><details class="card tgl" id="sec-scale">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>Scale candidates</h3><span class="tmeta"><span class="badge brand"><span class="dot brand"></span>7 scale</span></span></span><span class="sec-desc">Above 15x. Checked against the CRM Ad Spend Range and ROAS goal before any increase.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div><div class="lrow" data-client="Stay On 30A" data-am="Charlotte"><div class="who"><a href="#client-3">Stay On 30A</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Charlotte · BoF retargeting</small></div><div class="what">At range, so no increase. BoF runs five 126-day-old ads; launch the 22 Oct reels, then shift budget from the lookalike.<span class=next>→ After the reels run a week, move $25/day from the LoL lookalike ($200) to BoF ($150) if BoF holds above 15x.</span></div></div><div class="lrow" data-client="Paradise Pointe" data-am="Makenna"><div class="who"><a href="#client-4">Paradise Pointe</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Makenna · MoF LoL lookalike</small></div><div class="what">Already scaled (lookalike $50 to $100 on 12 and 13 Nov); the account now runs 49% over its range without a recorded client OK.<span class=next>→ Get the client's OK and update the CRM range; hold the lookalike at $100 until learning ends (around 20 Nov).</span></div></div><div class="lrow" data-client="Asheville River Cabins" data-am="Charlotte"><div class="who"><a href="#client-5">Asheville River Cabins</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Charlotte · MoF - Broad</small></div><div class="what">The 26x is mostly retargeting history from before the 12 Nov switch to Broad; re-judge on 26 Nov before any increase.<span class=next>→ Hold. Over range already.</span></div></div><div class="lrow" data-client="Starlight Haven Weiss Lake" data-am="Charlotte"><div class="who"><a href="#client-6">Starlight Haven Weiss Lake</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Charlotte · BoF retargeting</small></div><div class="what">Strong and steady (Oct retargeting 24.2x), but over range; the gain is in fresher creative and a small shift from leads.<span class=next>→ After the reel swap runs a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x.</span></div></div><div class="lrow" data-client="Starlight Haven Hot Springs" data-am="Charlotte"><div class="who"><a href="#client-7">Starlight Haven Hot Springs</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Charlotte · BoF retargeting</small></div><div class="what">Scale inside the account: BoF $20 to $30, New Leads $30 to $20.<span class=next>→ BoF $20 to $30/day, New Leads $30 to $20/day (account stays at $75).</span></div></div><div class="lrow" data-client="Selah Place" data-am="Alicia"><div class="who"><a href="#client-8">Selah Place</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Alicia · BoF retargeting</small></div><div class="what">Don't scale on this read: the pixel logs 137 server Purchases for 54 PMS bookings (two senders), so true BoF ROAS is nearer 7x.<span class=next>→ Hold until the duplicate Purchase sender is fixed.</span></div></div><div class="lrow" data-client="Ridge &amp; Falls" data-am="Makenna"><div class="who"><a href="#client-9">Ridge &amp; Falls</a> <span class="badge brand"><span class="dot brand"></span>Scale</span><small>Makenna · BoF retargeting</small></div><div class="what">Not a budget scale: frequency 5.3 at only $15/day means the audience is small, and Purchases run 1.8x the PMS bookings.<span class=next>→ Hold BoF at $15. Check whether HELLO10 (4 bookings, $1.7k) is the sign-up code before judging the $50/day giveaway.</span></div></div></div>
+</details><details class="card tgl" id="sec-frequency">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>Frequency watch</h3><span class="tmeta"><span class="badge warn"><span class="dot warn"></span>2 frequency</span></span></span><span class="sec-desc">Sales campaigns above 5.0 frequency in 14 days: creative refresh or audience changes.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div><div class="lrow" data-client="Paradise Pointe" data-am="Makenna"><div class="who"><a href="#client-4">Paradise Pointe</a> <span class="badge warn"><span class="dot warn"></span>Frequency</span><small>Makenna · BoF retargeting</small></div><div class="what">Every BoF ad is a 111-day-old Price Anchor variant; the carousel runs at freq 4.2 with 0 purchases in 14 days.<span class=next>→ Launch the 22 Oct kids reels in BoF and pause the Price Anchor carousel when they go in.</span></div></div><div class="lrow" data-client="Ridge &amp; Falls" data-am="Makenna"><div class="who"><a href="#client-9">Ridge &amp; Falls</a> <span class="badge warn"><span class="dot warn"></span>Frequency</span><small>Makenna · BoF retargeting</small></div><div class="what">One ad does all the work; a new reel is the fix, which waits on the Drive folder being link-shared.<span class=next>→ Build the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') once the folder is shared.</span></div></div></div>
+</details><details class="card tgl" id="sec-new_clients">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>New clients</h3><span class="tmeta"><span class="badge ok"><span class="dot ok"></span>5 live</span><span class="badge warn"><span class="dot warn"></span>5 due soon</span><span class="badge err"><span class="dot err"></span>1 blocked</span><span class="badge gray"><span class="dot gray"></span>1 not started</span><span class="badge gray"><span class="dot gray"></span>1 watch</span></span></span><span class="sec-desc">CRM clients from the last 90 days: live by Funnel Build Due + 7 days, and our access to the ad account and pixel.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div><div class="lrow" data-client="The Preserve" data-am="Alicia"><div class="who"><a href="#client-10">The Preserve</a> <span class="badge ok"><span class="dot ok"></span>Live</span><small>Alicia</small></div><div class="what">Giveaway and leads are spending; BoF ($100/day since 12 Nov) has spent $0. The CRM still has no kickoff or funnel dates and reads Meta access Incomplete, though our system user can read the account.<span class=next>→ Find why BoF is not delivering.</span></div></div><div class="lrow" data-client="Dunya Camp" data-am="Chiara"><div class="who"><a href="#client-11">Dunya Camp</a> <span class="badge warn"><span class="dot warn"></span>Due soon</span><small>Chiara</small></div><div class="what">HiddenGem's giveaway, leads and BoF were switched on 16 Nov with no spend yet. The older custom-event funnel ('Fall step 2', 'Step 3') stays as it is (12 Nov decision) and 'fall winter purchase 2026' is the client's own campaign.<span class=next>→ Confirm HiddenGem's campaigns spend by 18 Nov.</span></div></div><div class="lrow" data-client="Arca Boutique Hotel" data-am="Anna"><div class="who"><a href="#client-12">Arca Boutique Hotel</a> <span class="badge warn"><span class="dot warn"></span>Due soon</span><small>Anna</small></div><div class="what">Only a $10/day giveaway exists (created 16 Nov, not spending yet); no MoF leads or BoF campaign. CRM range is $0.<span class=next>→ Launch MoF leads and BoF by 18 Nov; set the CRM Ad Spend Range.</span></div></div><div class="lrow" data-client="Lundy Farm" data-am="Charlotte"><div class="who"><a href="#client-13">Lundy Farm</a> <span class="badge warn"><span class="dot warn"></span>Due soon</span><small>Charlotte</small></div><div class="what">Meta access not shared and no ad account mapped, so nothing can be built or checked yet.<span class=next>→ Get the ad account, page and pixel shared and assigned to the HG - ROI Dashboard system user by 20 Nov.</span></div></div><div class="lrow" data-client="Nine Pines Retreat" data-am="Nicole"><div class="who"><a href="#client-14">Nine Pines Retreat</a> <span class="badge warn"><span class="dot warn"></span>Due soon</span><small>Nicole</small></div><div class="what">Meta access not shared and no ad account mapped.<span class=next>→ Get access by 20 Nov.</span></div></div><div class="lrow" data-client="Treetop Hideaways" data-am="Kristal"><div class="who"><a href="#client-15">Treetop Hideaways</a> <span class="badge warn"><span class="dot warn"></span>Due soon</span><small>Kristal</small></div><div class="what">Meta access not shared and no ad account mapped.<span class=next>→ Get access by 21 Nov.</span></div></div><div class="lrow" data-client="Aranya Resorts" data-am="Anna"><div class="who"><a href="#client-16">Aranya Resorts</a> <span class="badge err"><span class="dot err"></span>Blocked</span><small>Anna</small></div><div class="what">The CRM has no Meta Ads tier, no funnel due date and Meta access Incomplete, so there is no deadline to hold anyone to.<span class=next>→ Confirm with Anna whether Aranya runs Meta ads; if yes, set the tier and dates and get access.</span></div></div><div class="lrow" data-client="Walden Retreats" data-am="Anna"><div class="who"><a href="#client-17">Walden Retreats</a> <span class="badge ok"><span class="dot ok"></span>Live</span><small>Anna</small></div><div class="what">BoF was paused at the client's request over the VIP code; only the giveaway and leads run.<span class=next>→ Restart BoF once the VIP code works.</span></div></div><div class="lrow" data-client="Gooseberry Lodges" data-am="Alicia"><div class="who"><a href="#client-18">Gooseberry Lodges</a> <span class="badge ok"><span class="dot ok"></span>Live</span><small>Alicia</small></div><div class="what">On time, but the CRM range is $0 while Alicia wants to move toward $100/day, and Little Hotelier has no API for HG AI.<span class=next>→ Agree the monthly budget with the client and set the CRM range before raising spend.</span></div></div><div class="lrow" data-client="Cabin Collective" data-am="Chiara"><div class="who"><a href="#client-19">Cabin Collective</a> <span class="badge ok"><span class="dot ok"></span>Live</span><small>Chiara</small></div><div class="what">On track; the HG AI CAPI sent its first Purchases on 16 Nov while the CRM still reads the pixel as Not Connected.<span class=next>→ Update the CRM Meta Pixel Connection.</span></div></div><div class="lrow" data-client="Glasscombe" data-am="Charlotte"><div class="who"><a href="#client-20">Glasscombe</a> <span class="badge ok"><span class="dot ok"></span>Live</span><small>Charlotte</small></div><div class="what">On track. BoF 44x on 3 purchases ($70) is too early to act on.</div></div><div class="lrow" data-client="Kimpton Mas Olas Resort" data-am="Charlotte"><div class="who"><a href="#client-21">Kimpton Mas Olas Resort</a> <span class="badge gray"><span class="dot gray"></span>Not started</span><small>Charlotte</small></div><div class="what">Not started; check again next Monday.</div></div><div class="lrow" data-client="Casey Key Resort" data-am="Nicole"><div class="who"><a href="#client-22">Casey Key Resort</a> <span class="badge gray"><span class="dot gray"></span>Watch</span><small>Nicole</small></div><div class="what">Advanced in the CRM with no dates and no ad account; nothing to check until a kickoff is set.</div></div></div>
+</details><details class="card tgl" id="sec-msgs">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>Messages to AMs</h3><span class="tmeta"><span class="badge gray"><span class="dot gray"></span>4 messages</span></span></span><span class="sec-desc">One message per account manager with the creative asks for their clients. Copy and send in Google Chat.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div><div class="msg"><div class="mh"><strong>To Makenna<small>Paradise Pointe, Little River Landing, Ridge &amp; Falls, FLOHOM</small></strong><button type="button" class="btn" data-copy="msg-0">Copy</button></div><pre id="msg-0">Hi Makenna, a few creative asks from this week's Meta review:
+
+1. Paradise Pointe: can you QA the two 22 Oct kids reels ('I'm not saying you should take your kids here, but…' and 'the kids' review: can we live here?') so we can add them to BoF and the lookalike this week? BoF frequency is 5.4 and every ad is the same Price Anchor concept.
+2. Little River Landing: please QA the two 22 Oct reels ('POV: your weekend on Weiss Lake' and 'we should be at this lakefront resort instead…'). If you have time for one more, a short unit walkthrough or interior reel would beat another drone title card.
+3. Ridge &amp; Falls: could you set the Drive folder to 'anyone with the link can view'? The scripted reel is blocked until then.
+4. FLOHOM Myrtle Beach: do we have a winter offer from the client, or should we run FLO3FOR2 instead of VIP100 there?
+
+Thanks!</pre></div><div class="msg"><div class="mh"><strong>To Charlotte<small>Stay On 30A, Starlight Haven Weiss Lake, Starlight Haven Hot Springs, Asheville River Cabins</small></strong><button type="button" class="btn" data-copy="msg-1">Copy</button></div><pre id="msg-1">Hi Charlotte, creative asks from this week's Meta review:
+
+1. Stay On 30A: please QA 'insane group getaway' and 'beach house, golf cart &amp; the whole crew' so they can go into BoF. The current BoF ads are from July.
+2. Weiss Lake: same for 'date night, but make it an A-frame' and 'glamping, but make it luxury'. They'll replace the March 10% OFF videos.
+3. Hot Springs: 'cabin &gt; hotel, every time' can go into BoF as a fourth ad.
+4. Asheville: 'Girls Trip in North Carolina' and 'the weekend plan: cabins on the French Broad' for the new BoF on 26 Nov. The current retargeting videos are losing click-through.
+
+All of them are in the 22 Oct review pack. Thanks!</pre></div><div class="msg"><div class="mh"><strong>To Nicole<small>Endless Stays</small></strong><button type="button" class="btn" data-copy="msg-2">Copy</button></div><pre id="msg-2">Hi Nicole, for Endless Stays: BoF has been in review for 7 weeks at about 4x. Can you QA the two 22 Oct reels ('insane group getaway' and 'tag the group chat, this is the house') so we can test them in BoF? If the client has footage, one more video that opens on a hard claim (sleeps 20+, private pool, or price per person per night) would be the next test. Thanks!</pre></div><div class="msg"><div class="mh"><strong>To Alicia<small>Selah Place</small></strong><button type="button" class="btn" data-copy="msg-3">Copy</button></div><pre id="msg-3">Hi Alicia, for Selah Place: can you QA the 22 Oct reels ('quiet weekend, just us' and 'send this to your person') so we can add them to BoF retargeting? Thanks!</pre></div></div>
+</details></div>
+</section>
+<details class="sec stgl" id="sec-clients">
+<summary><span class="eb">03 · Per client</span><span class="shead"><span class="chev" aria-hidden="true"></span><h2>Client detail</h2><span class="tact" aria-hidden="true"></span></span><span class="sec-desc">Every client named above. Filter by account manager or client, then open a card for the numbers, the recommendation, the data behind it and the Fix List tasks.</span><span class="smeta"><span class="badge gray"><span class="dot gray"></span>23 clients</span></span></summary>
+<div class="fbar" id="fbar" role="search" aria-label="Filter client detail" hidden>
+<div class="fld"><label for="f-am">Account manager</label><span class="sel"><select id="f-am"><option value="all">All account managers</option><option value="Alicia">Alicia (3)</option><option value="Anna">Anna (3)</option><option value="Charlotte">Charlotte (7)</option><option value="Chiara">Chiara (2)</option><option value="Kristal">Kristal (1)</option><option value="Makenna">Makenna (4)</option><option value="Nicole">Nicole (3)</option></select></span></div>
+<div class="fld"><label for="f-client">Client</label><span class="sel"><select id="f-client"><option value="all">All clients</option><option value="Aranya Resorts">Aranya Resorts</option><option value="Arca Boutique Hotel">Arca Boutique Hotel</option><option value="Asheville River Cabins">Asheville River Cabins</option><option value="Cabin Collective">Cabin Collective</option><option value="Casey Key Resort">Casey Key Resort</option><option value="Dunya Camp">Dunya Camp</option><option value="Endless Stays">Endless Stays</option><option value="FLOHOM">FLOHOM</option><option value="Glasscombe">Glasscombe</option><option value="Gooseberry Lodges">Gooseberry Lodges</option><option value="Kimpton Mas Olas Resort">Kimpton Mas Olas Resort</option><option value="Little River Landing">Little River Landing</option><option value="Lundy Farm">Lundy Farm</option><option value="Nine Pines Retreat">Nine Pines Retreat</option><option value="Paradise Pointe">Paradise Pointe</option><option value="Ridge &amp; Falls">Ridge &amp; Falls</option><option value="Selah Place">Selah Place</option><option value="Starlight Haven Hot Springs">Starlight Haven Hot Springs</option><option value="Starlight Haven Weiss Lake">Starlight Haven Weiss Lake</option><option value="Stay On 30A">Stay On 30A</option><option value="The Preserve">The Preserve</option><option value="Treetop Hideaways">Treetop Hideaways</option><option value="Walden Retreats">Walden Retreats</option></select></span></div>
+<button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
+<p class="fsum" id="f-sum" aria-live="polite">23 clients across 7 account managers</p>
+<button type="button" class="btn" id="x-all">Expand all</button>
+</div><div class="cards"><details class="card ccard" id="client-0" data-client="Little River Landing" data-am="Makenna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Little River Landing</span><span class="csub">AM Makenna · Flagged</span></span><span class="cstates"><span class="badge err"><span class="dot err"></span>Flag</span></span><span class="cspend">4<small>tasks</small></span></summary>
+<div class="pitem"><h4>Flagged · BoF retargeting <span class="badge err"><span class="dot err"></span>Flag</span></h4><p class="num">14d ROAS 1.4x on $220 (1 purchase) · freq 3.4 · week 2 · blended 30d 0.5x · range 101% used</p><p>Tracking first: the pixel sees 45% of PMS online bookings with the HG AI CAPI off, and the three BoF title cards are 61 days old.</p><span class="lbl">Budget</span><ul><li>Hold BoF ($20) and the new lookalike ($20) until the CAPI is on; judge the lookalike around 1 Dec.</li><li>Decide on the $40/day giveaway: 1 sign-up booking in 30 days on Guesty, which does store codes.</li></ul><span class="lbl">Creative</span><ul><li>Launch the two 22 Oct reels ('POV: your weekend on Weiss Lake', 'we should be at this lakefront resort instead…'); they are in the review pack.</li><li>A unit walkthrough or interior reel instead of another drone title card.</li><li>A STAY10 price-led opener (price per night for 2+ nights) in the first second.</li></ul><span class="lbl">Data behind it</span><ul class="ctx"><li>BoF ads: Couples title card $125 / 0 purchases, General $77 / 1, Families $18 / 0 in 14 days; General CTR down 27% week on week.</li><li>MTD direct revenue $1.5k from 9 bookings, −18% on October.</li><li>Pixel: Purchase all server-side, browser never fires it.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>lrl-capi</code> · open · Turn on the HG AI CAPI for Little River Landing, or get the Guesty booking engine to fire Purchase in the browser.</li><li><code>lrl-rt-creatives</code> · open · Add 1 to 2 new BoF creatives in a different format: a unit interior or walkthrough, a price or STAY10-led opener, or a guest review. Not another drone title card. Add the best one to the lookalike too.</li><li><code>lrl-lookalike-review</code> · open · Judge the lookalike around 1 Dec or $300 spend, not after one more week. No new ads in it until then.</li><li><code>lrl-giveaway-decision</code> · new this run · Decide whether to cut the $40/day giveaway until the CAPI and new BoF creatives are in: 1 sign-up booking in 30 days on $1,937 of giveaway and lead spend (Guesty stores codes, so this read is reliable).</li></ul></div>
+</details><details class="card ccard" id="client-1" data-client="Endless Stays" data-am="Nicole">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Endless Stays</span><span class="csub">AM Nicole · Flagged</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Review</span></span><span class="cspend">4<small>tasks</small></span></summary>
+<div class="pitem"><h4>Flagged · BoF retargeting <span class="badge warn"><span class="dot warn"></span>Review</span></h4><p class="num">14d ROAS 4.1x on $961 (2 purchases) · week 7 · range 101% used · MTD revenue +105%</p><p>Demand is up (MTD $39.8k, +105%) but BoF attribution is weak; the 9.8x 'Ad 2' was paused while three 0-purchase ads keep spending.</p><span class="lbl">Budget</span><ul><li>Hold at $200/day; judge the new lookalike around 24 Nov ($500 to $700 spent).</li></ul><span class="lbl">Creative</span><ul><li>Use the 22 Oct reels already built for Endless ('insane group getaway', 'tag the group chat, this is the house') before briefing new ones.</li><li>Open on a hard claim: sleeps 20+, private pool, or price per person per night.</li><li>A guest-review reel for the group-trip buyer.</li></ul><span class="lbl">Data behind it</span><ul class="ctx"><li>Refresh 7: $567 / 1 purchase (4.5x); Ad 3: $176 / 1 (8.0x); Ad 1, Refresh 5 and 6: $187 / 0 in 14 days.</li><li>ViewContent and InitiateCheckout stopped firing around 28 Sep (endless-tracking).</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>endless-bof-swap</code> · open · BoF ad swap: turn Ad 2 back on, keep Ad 3 and Refresh 7, pause Ad 1, Refresh 5 and Refresh 6.</li><li><code>endless-bof-creatives</code> · open · Brief 1 to 2 new BoF videos that open on a specific claim: guest capacity, a standout amenity, or price per person.</li><li><code>endless-tracking</code> · open · Find out why ViewContent and InitiateCheckout stopped firing around 28 Sep, and restore them.</li><li><code>endless-lookalike-review</code> · open · Hold budgets as they are; judge the lookalike around 24 Nov once it passes $500 to $700.</li></ul></div>
+</details><details class="card ccard" id="client-2" data-client="FLOHOM" data-am="Makenna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">FLOHOM</span><span class="csub">AM Makenna · Flagged</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Review</span></span><span class="cspend">4<small>tasks</small></span></summary>
+<div class="pitem"><h4>Flagged · [Myrtle Beach] lookalike <span class="badge warn"><span class="dot warn"></span>Review</span></h4><p class="num">14d ROAS 3.3x on $282 (1 purchase) · main lookalike 6.2x (goal 7x) · MTD revenue −37%</p><p>Myrtle Beach ads go to the all-listings page with a VIP100 offer and optimise for value; AD2 spent $229 for 0 purchases in 14 days.</p><span class="lbl">Budget</span><ul><li>No change to the $70/day lookalike total until the landing page and optimisation fixes are in.</li></ul><span class="lbl">Creative</span><ul><li>Add the existing Myrtle Beach Price Anchor reel to the lookalike.</li><li>A winter or FLO3FOR2 offer reel once the offer is agreed.</li></ul><span class="lbl">Data behind it</span><ul class="ctx"><li>AD1 $40 / 1 purchase (23.4x), AD3 $13 / 0.</li><li>Pixel captures 96% of 98 PMS online bookings; the CAPI is off.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>flohom-mb-landing</code> · open · Point the Myrtle Beach ads at https://flohom.com/listings?location=North%20Myrtle%20Beach instead of flohom.com/listings.</li><li><code>flohom-mb-optimisation</code> · open · Switch the Myrtle Beach ad set from highest value to maximum number of conversions, like the main lookalike.</li><li><code>flohom-mb-price-reel</code> · open · Add the existing 'BoF - Myrtle Beach - Price Anchor - Reel - 07/21/26' to the Myrtle Beach lookalike.</li><li><code>flohom-mb-offer</code> · open · Align the Myrtle Beach offer: replace VIP100 with FLO3FOR2, or a winter offer if the client has one.</li></ul></div>
+</details><details class="card ccard" id="client-3" data-client="Stay On 30A" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Stay On 30A</span><span class="csub">AM Charlotte · Scale candidates</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · BoF retargeting <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 15.3x on $2,062 · freq 4.3 · $500/day = 101% of the $15k range · goal 7x</p><p>At range, so no increase. BoF runs five 126-day-old ads; launch the 22 Oct reels, then shift budget from the lookalike.</p><span class="lbl">Budget</span><ul><li>After the reels run a week, move $25/day from the LoL lookalike ($200) to BoF ($150) if BoF holds above 15x.</li></ul><span class="lbl">Creative</span><ul><li>Launch 'insane group getaway' and 'beach house, golf cart &amp; the whole crew' in BoF.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>30a-bof-creative</code> · open · QA and launch the 22 Oct reels ('insane group getaway' and 'beach house, golf cart &amp; the whole crew') in BoF retargeting.</li><li><code>30a-budget-shift</code> · open · After the new reels have run a week, move $25/day from the LoL lookalike ($200) to BoF ($150), if BoF holds above 15x.</li></ul></div>
+</details><details class="card ccard" id="client-4" data-client="Paradise Pointe" data-am="Makenna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Paradise Pointe</span><span class="csub">AM Makenna · Scale candidates, Frequency watch</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span><span class="badge warn"><span class="dot warn"></span>Frequency</span></span><span class="cspend">3<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · MoF LoL lookalike <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 20.8x on $864 (15 purchases) · $220/day = 149% of the $4.5k range · goal 10x</p><p>Already scaled (lookalike $50 to $100 on 12 and 13 Nov); the account now runs 49% over its range without a recorded client OK.</p><span class="lbl">Budget</span><ul><li>Get the client's OK and update the CRM range; hold the lookalike at $100 until learning ends (around 20 Nov).</li></ul><span class="lbl">Creative</span><ul><li>Second concept for the lookalike: the 22 Oct kids reels.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>paradise-crm-range</code> · open · Confirm the client approved the higher spend and update the CRM Ad Spend Range; hold the lookalike budget until it exits learning (check around 20 Nov).</li><li><code>paradise-bof-concept</code> · open · Add a second concept to BoF and the LoL lookalike, starting with the 22 Oct kids reels ('I'm not saying you should take your kids here, but…' and 'the kids' review: can we live here?'), with the code set to VIP100.</li></ul></div><div class="pitem"><h4>Frequency watch · BoF retargeting <span class="badge warn"><span class="dot warn"></span>Frequency</span></h4><p class="num">freq 5.45 (week 3) · 14d ROAS 13.2x on $681</p><p>Every BoF ad is a 111-day-old Price Anchor variant; the carousel runs at freq 4.2 with 0 purchases in 14 days.</p><span class="lbl">Creative</span><ul><li>Launch the 22 Oct kids reels in BoF and pause the Price Anchor carousel when they go in.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>paradise-bof-concept</code> · open · Add a second concept to BoF and the LoL lookalike, starting with the 22 Oct kids reels ('I'm not saying you should take your kids here, but…' and 'the kids' review: can we live here?'), with the code set to VIP100.</li><li><code>paradise-carousel-pause</code> · new this run · When the kids reels go into BoF, pause the Price Anchor carousel there (freq 4.2, 0 purchases on $131 in 14 days) so the new concept gets delivery.</li></ul></div>
+</details><details class="card ccard" id="client-5" data-client="Asheville River Cabins" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Asheville River Cabins</span><span class="csub">AM Charlotte · Scale candidates</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · MoF - Broad <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 26.2x on $556 (21 purchases) · $110/day = 111% of the $3k range · goal 5x</p><p>The 26x is mostly retargeting history from before the 12 Nov switch to Broad; re-judge on 26 Nov before any increase.</p><span class="lbl">Budget</span><ul><li>Hold. Over range already.</li></ul><span class="lbl">Creative</span><ul><li>On 26 Nov, add the 22 Oct reels ('Girls Trip in North Carolina', 'cabins on the French Broad') to the new BoF; RT VID1 and VID2 CTR fell 45% and 26% this week.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>asheville-bof-optimisation</code> · open · Switch the new retargeting ad set from highest value to maximum number of conversions, and re-judge MoF - Broad around 26 Nov.</li><li><code>asheville-bof-reels</code> · new this run · On 26 Nov, with the MoF - Broad re-judge, add the 22 Oct reels ('Girls Trip in North Carolina', 'cabins on the French Broad') to the new BoF. RT VID1 and VID2 CTR fell 45% and 26% this week.</li></ul></div>
+</details><details class="card ccard" id="client-6" data-client="Starlight Haven Weiss Lake" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Starlight Haven Weiss Lake</span><span class="csub">AM Charlotte · Scale candidates</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · BoF retargeting <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 17.6x on $644 (23 purchases) · $75/day = 109% of the $2.1k range · goal 7x</p><p>Strong and steady (Oct retargeting 24.2x), but over range; the gain is in fresher creative and a small shift from leads.</p><span class="lbl">Budget</span><ul><li>After the reel swap runs a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x.</li></ul><span class="lbl">Creative</span><ul><li>Swap the March '10% OFF' VID1 to VID3 for the 22 Oct reels ('date night, but make it an A-frame', 'glamping, but make it luxury').</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>weiss-bof-creative</code> · open · Swap the March '10% OFF - Weiss Lake VID1-3' retargeting ads for the 22 Oct reels ('date night, but make it an A-frame' and 'glamping, but make it luxury').</li><li><code>weiss-budget-shift</code> · new this run · After the reel swap has run a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x.</li></ul></div>
+</details><details class="card ccard" id="client-7" data-client="Starlight Haven Hot Springs" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Starlight Haven Hot Springs</span><span class="csub">AM Charlotte · Scale candidates</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · BoF retargeting <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 18.3x on $275 (9 purchases) · $75/day = 101% of the $2.25k range · goal 7x</p><p>Scale inside the account: BoF $20 to $30, New Leads $30 to $20.</p><span class="lbl">Budget</span><ul><li>BoF $20 to $30/day, New Leads $30 to $20/day (account stays at $75).</li></ul><span class="lbl">Creative</span><ul><li>Optional: add 'cabin &gt; hotel, every time' to BoF with the budget change.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>hotsprings-budget-shift</code> · open · Scale BoF: Website Retargeting $20 to $30 per day, and New Leads $30 to $20, so the account stays at $75/day.</li><li><code>hotsprings-cabin-reel</code> · open · Optional: add the 22 Oct 'cabin &gt; hotel, every time' reel to BoF as a fourth ad when making the budget change.</li></ul></div>
+</details><details class="card ccard" id="client-8" data-client="Selah Place" data-am="Alicia">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Selah Place</span><span class="csub">AM Alicia · Scale candidates</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · BoF retargeting <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 17.0x on $412 (14 purchases) · HiddenGem $100/day = 145% of the $2.1k range · goal 7x</p><p>Don't scale on this read: the pixel logs 137 server Purchases for 54 PMS bookings (two senders), so true BoF ROAS is nearer 7x.</p><span class="lbl">Budget</span><ul><li>Hold until the duplicate Purchase sender is fixed.</li></ul><span class="lbl">Creative</span><ul><li>Add the 22 Oct reels ('quiet weekend, just us', 'send this to your person') to BoF.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>selah-double-purchase</code> · new this run · Stop the double Purchase: 137 server Purchases for 54 PMS bookings in 28 days (HG AI CAPI and Hostaway's CAPI both send). Ask Leshan to dedupe by event_id or switch one sender off, then re-read BoF before scaling.</li><li><code>selah-bof-creative</code> · open · Add the 22 Oct reels ('quiet weekend, just us' and 'send this to your person') to BoF retargeting.</li></ul></div>
+</details><details class="card ccard" id="client-9" data-client="Ridge &amp; Falls" data-am="Makenna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Ridge &amp; Falls</span><span class="csub">AM Makenna · Scale candidates, Frequency watch</span></span><span class="cstates"><span class="badge brand"><span class="dot brand"></span>Scale</span><span class="badge warn"><span class="dot warn"></span>Frequency</span></span><span class="cspend">3<small>tasks</small></span></summary>
+<div class="pitem"><h4>Scale candidates · BoF retargeting <span class="badge brand"><span class="dot brand"></span>Scale</span></h4><p class="num">14d ROAS 22.9x on $211 (12 purchases) · freq 5.3 · $70/day = 101% of the $2.1k range</p><p>Not a budget scale: frequency 5.3 at only $15/day means the audience is small, and Purchases run 1.8x the PMS bookings.</p><span class="lbl">Budget</span><ul><li>Hold BoF at $15. Check whether HELLO10 (4 bookings, $1.7k) is the sign-up code before judging the $50/day giveaway.</li></ul><span class="lbl">Creative</span><ul><li>Share the Drive folder by link so the scripted reel can be built.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>ridge-falls-double-purchase</code> · new this run · Stop the double Purchase: 22 server Purchases for 12 PMS bookings in 28 days. Ask Leshan to dedupe by event_id or switch one sender off.</li><li><code>ridge-falls-hello10</code> · new this run · Check whether HELLO10 (4 bookings, $1,729 in 30 days) is the giveaway or sign-up code. If it is, add it to the benchmark's DISC_CODE so the Discovery read stops showing 0x.</li><li><code>ridge-falls-creative</code> · open · Share the Ridge &amp; Falls Drive folder by link so the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') can be built for BoF.</li></ul></div><div class="pitem"><h4>Frequency watch · BoF retargeting <span class="badge warn"><span class="dot warn"></span>Frequency</span></h4><p class="num">freq 5.34 (week 2) · Couples title card freq 4.9 carries all 12 purchases</p><p>One ad does all the work; a new reel is the fix, which waits on the Drive folder being link-shared.</p><span class="lbl">Creative</span><ul><li>Build the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') once the folder is shared.</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>ridge-falls-creative</code> · open · Share the Ridge &amp; Falls Drive folder by link so the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') can be built for BoF.</li></ul></div>
+</details><details class="card ccard" id="client-10" data-client="The Preserve" data-am="Alicia">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">The Preserve</span><span class="csub">AM Alicia · New clients</span></span><span class="cstates"><span class="badge ok"><span class="dot ok"></span>Live</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge ok"><span class="dot ok"></span>Live</span></h4><p class="num">HiddenGem campaigns first spent 11 Nov · $1,778 in 7 days · range $20k/month · goal 5x</p><p>Giveaway and leads are spending; BoF ($100/day since 12 Nov) has spent $0. The CRM still has no kickoff or funnel dates and reads Meta access Incomplete, though our system user can read the account.</p><span class="lbl">Next</span><ul><li>Find why BoF is not delivering.</li><li>Fill the CRM kickoff and funnel dates; mark Meta access Complete.</li></ul><span class="lbl">Flags</span><ul><li>BoF not delivering</li><li>Pixel domain warning (pixel check)</li><li>CRM dates missing</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>preserve-bof-delivery</code> · new this run · BoF retargeting ($100/day since 12 Nov) has spent $0. Check the Website Visitors audience size, the ads' review status and the pixel's domain warning, then fix whichever is blocking delivery.</li><li><code>preserve-crm</code> · new this run · Fill the CRM kickoff and Funnel Build Due dates and set 'Share Access to Meta Business Assets' to Complete (our system user can already read the account).</li></ul></div>
+</details><details class="card ccard" id="client-11" data-client="Dunya Camp" data-am="Chiara">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Dunya Camp</span><span class="csub">AM Chiara · New clients</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Due soon</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge warn"><span class="dot warn"></span>Due soon</span></h4><p class="num">Deadline 18 Nov (funnel due 11 Nov + 7) · old funnel $818 in 7 days</p><p>HiddenGem's giveaway, leads and BoF were switched on 16 Nov with no spend yet. The older custom-event funnel ('Fall step 2', 'Step 3') stays as it is (12 Nov decision) and 'fall winter purchase 2026' is the client's own campaign.</p><span class="lbl">Next</span><ul><li>Confirm HiddenGem's campaigns spend by 18 Nov.</li></ul><span class="lbl">Flags</span><ul><li>CRM range $0</li><li>No HG AI tenant (LuxuryRes)</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>dunya-legacy</code> · new this run · Confirm HiddenGem's giveaway, leads and BoF (switched on 16 Nov) are spending by the 18 Nov deadline. The older 'Fall step 2' / 'Step 3' custom-event funnel stays as it is (Shawal, 12 Nov) and 'fall winter purchase 2026' is the client's own campaign.</li></ul></div>
+</details><details class="card ccard" id="client-12" data-client="Arca Boutique Hotel" data-am="Anna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Arca Boutique Hotel</span><span class="csub">AM Anna · New clients</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Due soon</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge warn"><span class="dot warn"></span>Due soon</span></h4><p class="num">Deadline 18 Nov (funnel due 11 Nov + 7) · access ok · pixel firing</p><p>Only a $10/day giveaway exists (created 16 Nov, not spending yet); no MoF leads or BoF campaign. CRM range is $0.</p><span class="lbl">Next</span><ul><li>Launch MoF leads and BoF by 18 Nov; set the CRM Ad Spend Range.</li></ul><span class="lbl">Flags</span><ul><li>CRM range $0</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>arca-launch</code> · new this run · Launch the MoF lead and BoF campaigns by 18 Nov (only the $10/day giveaway exists, created 16 Nov) and set the CRM Ad Spend Range (now $0).</li></ul></div>
+</details><details class="card ccard" id="client-13" data-client="Lundy Farm" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Lundy Farm</span><span class="csub">AM Charlotte · New clients</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Due soon</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge warn"><span class="dot warn"></span>Due soon</span></h4><p class="num">Deadline 24 Nov (funnel due 17 Nov + 7)</p><p>Meta access not shared and no ad account mapped, so nothing can be built or checked yet.</p><span class="lbl">Next</span><ul><li>Get the ad account, page and pixel shared and assigned to the HG - ROI Dashboard system user by 20 Nov.</li></ul><span class="lbl">Flags</span><ul><li>No Meta access</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>lundy-access</code> · new this run · Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.</li></ul></div>
+</details><details class="card ccard" id="client-14" data-client="Nine Pines Retreat" data-am="Nicole">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Nine Pines Retreat</span><span class="csub">AM Nicole · New clients</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Due soon</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge warn"><span class="dot warn"></span>Due soon</span></h4><p class="num">Deadline 24 Nov (funnel due 17 Nov + 7)</p><p>Meta access not shared and no ad account mapped.</p><span class="lbl">Next</span><ul><li>Get access by 20 Nov.</li></ul><span class="lbl">Flags</span><ul><li>No Meta access</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>nine-pines-access</code> · new this run · Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.</li></ul></div>
+</details><details class="card ccard" id="client-15" data-client="Treetop Hideaways" data-am="Kristal">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Treetop Hideaways</span><span class="csub">AM Kristal · New clients</span></span><span class="cstates"><span class="badge warn"><span class="dot warn"></span>Due soon</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge warn"><span class="dot warn"></span>Due soon</span></h4><p class="num">Deadline 27 Nov (funnel due 20 Nov + 7)</p><p>Meta access not shared and no ad account mapped.</p><span class="lbl">Next</span><ul><li>Get access by 21 Nov.</li></ul><span class="lbl">Flags</span><ul><li>No Meta access</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>treetop-hideaways-access</code> · new this run · Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 21 Nov; campaigns are due live by 27 Nov.</li></ul></div>
+</details><details class="card ccard" id="client-16" data-client="Aranya Resorts" data-am="Anna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Aranya Resorts</span><span class="csub">AM Anna · New clients</span></span><span class="cstates"><span class="badge err"><span class="dot err"></span>Blocked</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge err"><span class="dot err"></span>Blocked</span></h4><p class="num">Kickoff 19 Oct · 28 days in</p><p>The CRM has no Meta Ads tier, no funnel due date and Meta access Incomplete, so there is no deadline to hold anyone to.</p><span class="lbl">Next</span><ul><li>Confirm with Anna whether Aranya runs Meta ads; if yes, set the tier and dates and get access.</li></ul><span class="lbl">Flags</span><ul><li>No Meta tier</li><li>No funnel due date</li><li>No Meta access</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>aranya-meta-scope</code> · new this run · Confirm with Anna whether Aranya runs Meta ads. If yes: set the CRM Meta Ads tier and Funnel Build Due date, and get Meta access shared (kickoff was 19 Oct).</li></ul></div>
+</details><details class="card ccard" id="client-17" data-client="Walden Retreats" data-am="Anna">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Walden Retreats</span><span class="csub">AM Anna · New clients</span></span><span class="cstates"><span class="badge ok"><span class="dot ok"></span>Live</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge ok"><span class="dot ok"></span>Live</span></h4><p class="num">Live 5 Oct (on time) · $20/day · BoF paused 14 Nov</p><p>BoF was paused at the client's request over the VIP code; only the giveaway and leads run.</p><span class="lbl">Next</span><ul><li>Restart BoF once the VIP code works.</li></ul><span class="lbl">Flags</span><ul><li>BoF paused</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>walden-bof-restart</code> · new this run · Restart BoF retargeting once the client confirms the VIP promo code works (paused 14 Nov at their request).</li></ul></div>
+</details><details class="card ccard" id="client-18" data-client="Gooseberry Lodges" data-am="Alicia">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Gooseberry Lodges</span><span class="csub">AM Alicia · New clients</span></span><span class="cstates"><span class="badge ok"><span class="dot ok"></span>Live</span></span><span class="cspend">2<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge ok"><span class="dot ok"></span>Live</span></h4><p class="num">Live 27 Oct (on time) · $80/day · BoF 0 purchases on $140 in 14 days</p><p>On time, but the CRM range is $0 while Alicia wants to move toward $100/day, and Little Hotelier has no API for HG AI.</p><span class="lbl">Next</span><ul><li>Agree the monthly budget with the client and set the CRM range before raising spend.</li></ul><span class="lbl">Flags</span><ul><li>CRM range $0</li><li>No PMS connection</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>gooseberry-crm-range</code> · new this run · Agree a monthly budget with the client and set the CRM Ad Spend Range (now $0) before raising spend toward $100/day.</li><li><code>gooseberry-review</code> · open · Check the rebuilt giveaway and MoF ads cleared Meta review. Nothing in the giveaway spends until they do.</li></ul></div>
+</details><details class="card ccard" id="client-19" data-client="Cabin Collective" data-am="Chiara">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Cabin Collective</span><span class="csub">AM Chiara · New clients</span></span><span class="cstates"><span class="badge ok"><span class="dot ok"></span>Live</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge ok"><span class="dot ok"></span>Live</span></h4><p class="num">Live 21 Oct (on time) · $30/day · BoF 19.5x on $147 (under the gate)</p><p>On track; the HG AI CAPI sent its first Purchases on 16 Nov while the CRM still reads the pixel as Not Connected.</p><span class="lbl">Next</span><ul><li>Update the CRM Meta Pixel Connection.</li></ul><span class="lbl">Flags</span><ul><li>CRM pixel status out of date</li></ul><span class="lbl">Fix List</span><ul class="tasks"><li><code>cabin-collective-crm-pixel</code> · new this run · Update the CRM 'Meta Pixel Connection' to Connected: the HG AI CAPI sent its first Purchases on 16 Nov.</li></ul></div>
+</details><details class="card ccard" id="client-20" data-client="Glasscombe" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Glasscombe</span><span class="csub">AM Charlotte · New clients</span></span><span class="cstates"><span class="badge ok"><span class="dot ok"></span>Live</span></span><span class="cspend">1<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge ok"><span class="dot ok"></span>Live</span></h4><p class="num">Live 13 Oct (on time) · $30/day · MTD revenue +209%</p><p>On track. BoF 44x on 3 purchases ($70) is too early to act on.</p><span class="lbl">Fix List</span><ul class="tasks"><li><code>glasscombe-lookalike</code> · open · Add a MoF Lookalike Sales campaign, the 4th campaign.</li></ul></div>
+</details><details class="card ccard" id="client-21" data-client="Kimpton Mas Olas Resort" data-am="Charlotte">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Kimpton Mas Olas Resort</span><span class="csub">AM Charlotte · New clients</span></span><span class="cstates"><span class="badge gray"><span class="dot gray"></span>Not started</span></span><span class="cspend">0<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge gray"><span class="dot gray"></span>Not started</span></h4><p class="num">Kickoff 20 Nov</p><p>Not started; check again next Monday.</p></div>
+</details><details class="card ccard" id="client-22" data-client="Casey Key Resort" data-am="Nicole">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">Casey Key Resort</span><span class="csub">AM Nicole · New clients</span></span><span class="cstates"><span class="badge gray"><span class="dot gray"></span>Watch</span></span><span class="cspend">0<small>tasks</small></span></summary>
+<div class="pitem"><h4>New clients <span class="badge gray"><span class="dot gray"></span>Watch</span></h4><p class="num">No kickoff date in the CRM</p><p>Advanced in the CRM with no dates and no ad account; nothing to check until a kickoff is set.</p></div>
+</details></div>
+</details>
+<details class="sec stgl" id="sec-notes">
+<summary><span class="eb">04 · Notes</span><span class="shead"><span class="chev" aria-hidden="true"></span><h2>Data and method notes</h2><span class="tact" aria-hidden="true"></span></span><span class="sec-desc">Gaps in this run's data and how the recommendations are made.</span><span class="smeta"><span class="badge gray"><span class="dot gray"></span>5 notes</span></span></summary>
+<div class="card"><div class="nbody"><div><h4>Data notes</h4><ul class="nl"><li>This week's flagged and scale accounts were already reviewed by hand earlier today (Fix List sources review-2026-11-16 and review-2026-11-16-scale); those 21 tasks are linked here, not duplicated.</li><li>Selah and Ridge &amp; Falls BoF ROAS are inflated by two Purchase senders (2.5x and 1.8x the PMS bookings).</li><li>No HG AI reports have been filed since 23 Sep, so the HG AI diagnosis lines are empty.</li><li>Asheville and both Starlight accounts have no PMS connection, so their ROAS is pixel-only.</li><li>CRM gaps: Ad Spend Range $0 for Arca, Dunya and Gooseberry; no dates for The Preserve and Casey Key; no Meta tier for Aranya.</li></ul></div><div><h4>How this is built</h4><ul class="nl"><li>Lists come from this week's client benchmark: Action needed (Flag and Review), Scale candidates (above 15x) and Frequency watch (above 5.0).</li><li>Each listed client is read with the ad-level Meta pull (7, 14 and 30 days), the ad spend check (live budget by campaign type), the pixel check, the CRM (Ad Spend Range, ROAS goal, PMS), PMS month to date, monthly ROI, meeting notes and the open Fix List tasks.</li><li>Scale calls compare live $/day × 30.4 with the CRM Ad Spend Range (a monthly budget) and the 5x minimum from the 11 Nov sync; over the range means a shift inside the account or a client ask.</li><li>New clients: kickoff in the last 90 days. Campaigns should be live by the CRM Funnel Build Due + 7 days; access means the HG - ROI Dashboard system user can read the ad account and its pixel.</li><li>Tasks already on the Fix List are linked, not duplicated. New tasks carry the source post-review-DATE.</li></ul></div></div></div>
+</details>
+<p class="genline">HiddenGem Marketing · weekly Meta Ads review · generated 16 November 2026 from the post-review JSON.</p>
+
+</div>
+<script>
+document.querySelectorAll('[data-filter-for]').forEach(seg=>{
+  const tbl=document.getElementById(seg.dataset.filterFor);
+  const rows=[...tbl.querySelectorAll('tbody tr')];
+  const empty=tbl.parentElement.querySelector('.empty');
+  seg.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+    const f=b.dataset.flag; let n=0;
+    rows.forEach(r=>{const show=f==='all'||r.dataset.flag===f; r.hidden=!show; if(show)n++;});
+    if(empty) empty.hidden=n>0;
+  }));
+});
+
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // section and list toggles: remember each viewer's open / closed choice
+  document.querySelectorAll('details.tgl[id],details.stgl[id]').forEach(d=>{
+    const key='post.tgl.'+d.id;
+    try{const v=localStorage.getItem(key); if(v==='open') d.open=true; else if(v==='closed') d.open=false;}catch(e){}
+    d.addEventListener('toggle',()=>{try{localStorage.setItem(key,d.open?'open':'closed');}catch(e){}});
+  });
+  const bar=document.getElementById('fbar'), dataEl=document.getElementById('bench-data'), sec=document.getElementById('sec-clients');
+  if(!bar||!dataEl) return;
+  const D=JSON.parse(dataEl.textContent);
+  const amSel=document.getElementById('f-am'), clSel=document.getElementById('f-client');
+  const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
+  const cards=[...document.querySelectorAll('.cards>details[data-client]')];
+  const ams=[...new Set(D.clients.map(c=>c.a).filter(Boolean))].sort();
+  const plural=(n,w)=>n+' '+w+(n===1?'':'s');
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function fillClients(){
+    const am=amSel.value, cur=clSel.value;
+    while(clSel.options.length>1) clSel.remove(1);
+    D.clients.filter(c=>am==='all'||c.a===am).forEach(c=>clSel.add(new Option(c.n,c.n)));
+    clSel.value=[...clSel.options].some(o=>o.value===cur)?cur:'all';
+  }
+  const match=(c,a)=>(amSel.value==='all'||a===amSel.value)&&(clSel.value==='all'||c===clSel.value);
+  function xlabel(){ const vis=cards.filter(c=>!c.hidden); xall.textContent=vis.length&&vis.every(c=>c.open)?'Collapse all':'Expand all'; }
+  // the filter narrows the client cards in this section only
+  function apply(){
+    const am=amSel.value, cl=clSel.value, on=am!=='all'||cl!=='all';
+    amSel.classList.toggle('on',am!=='all'); clSel.classList.toggle('on',cl!=='all');
+    let nc=0; cards.forEach(c=>{const s=match(c.dataset.client,c.dataset.am); c.hidden=!s; if(s){nc++; if(cl!=='all') c.open=true;}});
+    const who=[am!=='all'?esc(am):'',cl!=='all'?esc(cl):''].filter(Boolean).join(' · ');
+    sum.innerHTML=on?'Showing <strong>'+plural(nc,'client')+'</strong> of '+cards.length+' · '+who:plural(cards.length,'client')+' across '+ams.length+' account managers';
+    clr.hidden=!on; xlabel();
+    try{const u=new URL(location.href);
+      if(am==='all')u.searchParams.delete('am');else u.searchParams.set('am',am);
+      if(cl==='all')u.searchParams.delete('client');else u.searchParams.set('client',cl);
+      history.replaceState(null,'',u);}catch(e){}
+  }
+  amSel.addEventListener('change',()=>{fillClients();apply();});
+  clSel.addEventListener('change',apply);
+  clr.addEventListener('click',()=>{amSel.value='all';fillClients();clSel.value='all';apply();amSel.focus();});
+  const q=new URLSearchParams(location.search);
+  if(ams.includes(q.get('am'))) amSel.value=q.get('am');
+  fillClients();
+  if(D.clients.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
+  bar.hidden=false;
+  apply();
+  if(sec&&(amSel.value!=='all'||clSel.value!=='all')) sec.open=true;   // a shared filtered link lands on the cards
+  // a client name or an overview row opens that client's card (clearing a filter that hides it)
+  function openCard(id,scroll){
+    const d=document.getElementById(id); if(!d) return;
+    if(sec) sec.open=true;
+    if(d.hidden){ amSel.value='all'; fillClients(); clSel.value='all'; apply(); }
+    d.open=true; xlabel();
+    if(scroll){ try{history.replaceState(null,'','#'+id);}catch(e){} d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); d.querySelector('summary').focus({preventScroll:true}); }
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#client-"]');
+    if(a){ e.preventDefault(); openCard(a.getAttribute('href').slice(1),true); return; }
+    const tr=e.target.closest('tr[data-href]');
+    if(tr && !window.getSelection().toString()) openCard(tr.dataset.href.slice(1),true);
+  });
+  if(/^#client-\d+$/.test(location.hash)) openCard(location.hash.slice(1),true);
+  cards.forEach(c=>c.addEventListener('toggle',xlabel));
+  xall.addEventListener('click',()=>{const vis=cards.filter(c=>!c.hidden), open=!vis.every(c=>c.open); vis.forEach(c=>{c.open=open;}); xlabel();});
+})();
+
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-copy]'); if(!b) return;
+  const t=document.getElementById(b.dataset.copy); if(!t) return;
+  navigator.clipboard.writeText(t.innerText).then(()=>{const o=b.textContent; b.textContent='Copied'; setTimeout(()=>{b.textContent=o;},1500);}).catch(()=>{});
+});
+</script>

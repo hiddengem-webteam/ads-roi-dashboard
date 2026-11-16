@@ -35,3 +35,8 @@
   from = "/weekly/client-benchmark"
   to = "/weekly/client-benchmark/latest.html"
   status = 302
+
+[[redirects]]
+  from = "/weekly/post-review"
+  to = "/weekly/post-review/latest.html"
+  status = 302

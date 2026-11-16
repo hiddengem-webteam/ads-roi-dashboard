@@ -1,0 +1,966 @@
+{
+ "run_date": "2026-11-16",
+ "summary": "No budget increases this week: every scale candidate is already at or over its CRM Ad Spend Range, so scaling means shifts inside the account or a client ask. The urgent items are new clients: The Preserve's $100/day BoF has not spent since 12 Nov, HiddenGem's Dunya and Arca campaigns must spend by 18 Nov, and three November clients still have not shared Meta access.",
+ "top_actions": [
+  {
+   "client": "The Preserve",
+   "text": "BoF retargeting ($100/day since 12 Nov) has spent $0. Check the audience size, ad review status and the pixel's domain warning today.",
+   "task": "preserve-bof-delivery"
+  },
+  {
+   "client": "Dunya Camp",
+   "text": "HiddenGem's three campaigns were switched on 16 Nov and have not spent yet; confirm they deliver by the 18 Nov deadline.",
+   "task": "dunya-legacy"
+  },
+  {
+   "client": "Arca Boutique Hotel",
+   "text": "Only a $10/day giveaway exists (created 16 Nov, no spend). Launch MoF leads and BoF by the 18 Nov deadline.",
+   "task": "arca-launch"
+  },
+  {
+   "client": "Lundy Farm, Nine Pines, Treetop Hideaways",
+   "text": "Meta access still not shared; deadlines 24 to 27 Nov. Get the ad account, page and pixel assigned to the HG system user this week.",
+   "task": "lundy-access"
+  },
+  {
+   "client": "Selah Place and Ridge & Falls",
+   "text": "Fix the double Purchase (2.5x and 1.8x the PMS bookings) before any BoF scale call; both ROAS reads are inflated.",
+   "task": "selah-double-purchase"
+  },
+  {
+   "client": "Little River Landing",
+   "text": "Turn on the HG AI CAPI first. The account is 0.5x blended over 30 days, so no budget moves until tracking is right.",
+   "task": "lrl-capi"
+  }
+ ],
+ "sections": {
+  "flagged": [
+   {
+    "client": "Little River Landing",
+    "am": "Makenna",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "flag",
+    "metric": "14d ROAS 1.4x on $220 (1 purchase) · freq 3.4 · week 2 · blended 30d 0.5x · range 101% used",
+    "read": "Tracking first: the pixel sees 45% of PMS online bookings with the HG AI CAPI off, and the three BoF title cards are 61 days old.",
+    "budget": [
+     "Hold BoF ($20) and the new lookalike ($20) until the CAPI is on; judge the lookalike around 1 Dec.",
+     "Decide on the $40/day giveaway: 1 sign-up booking in 30 days on Guesty, which does store codes."
+    ],
+    "creative": [
+     "Launch the two 22 Oct reels ('POV: your weekend on Weiss Lake', 'we should be at this lakefront resort instead…'); they are in the review pack.",
+     "A unit walkthrough or interior reel instead of another drone title card.",
+     "A STAY10 price-led opener (price per night for 2+ nights) in the first second."
+    ],
+    "context": [
+     "BoF ads: Couples title card $125 / 0 purchases, General $77 / 1, Families $18 / 0 in 14 days; General CTR down 27% week on week.",
+     "MTD direct revenue $1.5k from 9 bookings, −18% on October.",
+     "Pixel: Purchase all server-side, browser never fires it."
+    ],
+    "tasks": [
+     "lrl-capi",
+     "lrl-rt-creatives",
+     "lrl-lookalike-review",
+     "lrl-giveaway-decision"
+    ]
+   },
+   {
+    "client": "Endless Stays",
+    "am": "Nicole",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "review",
+    "metric": "14d ROAS 4.1x on $961 (2 purchases) · week 7 · range 101% used · MTD revenue +105%",
+    "read": "Demand is up (MTD $39.8k, +105%) but BoF attribution is weak; the 9.8x 'Ad 2' was paused while three 0-purchase ads keep spending.",
+    "budget": [
+     "Hold at $200/day; judge the new lookalike around 24 Nov ($500 to $700 spent)."
+    ],
+    "creative": [
+     "Use the 22 Oct reels already built for Endless ('insane group getaway', 'tag the group chat, this is the house') before briefing new ones.",
+     "Open on a hard claim: sleeps 20+, private pool, or price per person per night.",
+     "A guest-review reel for the group-trip buyer."
+    ],
+    "context": [
+     "Refresh 7: $567 / 1 purchase (4.5x); Ad 3: $176 / 1 (8.0x); Ad 1, Refresh 5 and 6: $187 / 0 in 14 days.",
+     "ViewContent and InitiateCheckout stopped firing around 28 Sep (endless-tracking)."
+    ],
+    "tasks": [
+     "endless-bof-swap",
+     "endless-bof-creatives",
+     "endless-tracking",
+     "endless-lookalike-review"
+    ]
+   },
+   {
+    "client": "FLOHOM",
+    "am": "Makenna",
+    "campaign": "[Myrtle Beach] lookalike",
+    "type": "Lookalike",
+    "status": "review",
+    "metric": "14d ROAS 3.3x on $282 (1 purchase) · main lookalike 6.2x (goal 7x) · MTD revenue −37%",
+    "read": "Myrtle Beach ads go to the all-listings page with a VIP100 offer and optimise for value; AD2 spent $229 for 0 purchases in 14 days.",
+    "budget": [
+     "No change to the $70/day lookalike total until the landing page and optimisation fixes are in."
+    ],
+    "creative": [
+     "Add the existing Myrtle Beach Price Anchor reel to the lookalike.",
+     "A winter or FLO3FOR2 offer reel once the offer is agreed."
+    ],
+    "context": [
+     "AD1 $40 / 1 purchase (23.4x), AD3 $13 / 0.",
+     "Pixel captures 96% of 98 PMS online bookings; the CAPI is off."
+    ],
+    "tasks": [
+     "flohom-mb-landing",
+     "flohom-mb-optimisation",
+     "flohom-mb-price-reel",
+     "flohom-mb-offer"
+    ]
+   }
+  ],
+  "scale": [
+   {
+    "client": "Stay On 30A",
+    "am": "Charlotte",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "scale",
+    "metric": "14d ROAS 15.3x on $2,062 · freq 4.3 · $500/day = 101% of the $15k range · goal 7x",
+    "read": "At range, so no increase. BoF runs five 126-day-old ads; launch the 22 Oct reels, then shift budget from the lookalike.",
+    "budget": [
+     "After the reels run a week, move $25/day from the LoL lookalike ($200) to BoF ($150) if BoF holds above 15x."
+    ],
+    "creative": [
+     "Launch 'insane group getaway' and 'beach house, golf cart & the whole crew' in BoF."
+    ],
+    "tasks": [
+     "30a-bof-creative",
+     "30a-budget-shift"
+    ]
+   },
+   {
+    "client": "Paradise Pointe",
+    "am": "Makenna",
+    "campaign": "MoF LoL lookalike",
+    "type": "Lookalike",
+    "status": "scale",
+    "metric": "14d ROAS 20.8x on $864 (15 purchases) · $220/day = 149% of the $4.5k range · goal 10x",
+    "read": "Already scaled (lookalike $50 to $100 on 12 and 13 Nov); the account now runs 49% over its range without a recorded client OK.",
+    "budget": [
+     "Get the client's OK and update the CRM range; hold the lookalike at $100 until learning ends (around 20 Nov)."
+    ],
+    "creative": [
+     "Second concept for the lookalike: the 22 Oct kids reels."
+    ],
+    "tasks": [
+     "paradise-crm-range",
+     "paradise-bof-concept"
+    ]
+   },
+   {
+    "client": "Asheville River Cabins",
+    "am": "Charlotte",
+    "campaign": "MoF - Broad",
+    "type": "Lookalike",
+    "status": "scale",
+    "metric": "14d ROAS 26.2x on $556 (21 purchases) · $110/day = 111% of the $3k range · goal 5x",
+    "read": "The 26x is mostly retargeting history from before the 12 Nov switch to Broad; re-judge on 26 Nov before any increase.",
+    "budget": [
+     "Hold. Over range already."
+    ],
+    "creative": [
+     "On 26 Nov, add the 22 Oct reels ('Girls Trip in North Carolina', 'cabins on the French Broad') to the new BoF; RT VID1 and VID2 CTR fell 45% and 26% this week."
+    ],
+    "tasks": [
+     "asheville-bof-optimisation",
+     "asheville-bof-reels"
+    ]
+   },
+   {
+    "client": "Starlight Haven Weiss Lake",
+    "am": "Charlotte",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "scale",
+    "metric": "14d ROAS 17.6x on $644 (23 purchases) · $75/day = 109% of the $2.1k range · goal 7x",
+    "read": "Strong and steady (Oct retargeting 24.2x), but over range; the gain is in fresher creative and a small shift from leads.",
+    "budget": [
+     "After the reel swap runs a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x."
+    ],
+    "creative": [
+     "Swap the March '10% OFF' VID1 to VID3 for the 22 Oct reels ('date night, but make it an A-frame', 'glamping, but make it luxury')."
+    ],
+    "tasks": [
+     "weiss-bof-creative",
+     "weiss-budget-shift"
+    ]
+   },
+   {
+    "client": "Starlight Haven Hot Springs",
+    "am": "Charlotte",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "scale",
+    "metric": "14d ROAS 18.3x on $275 (9 purchases) · $75/day = 101% of the $2.25k range · goal 7x",
+    "read": "Scale inside the account: BoF $20 to $30, New Leads $30 to $20.",
+    "budget": [
+     "BoF $20 to $30/day, New Leads $30 to $20/day (account stays at $75)."
+    ],
+    "creative": [
+     "Optional: add 'cabin > hotel, every time' to BoF with the budget change."
+    ],
+    "tasks": [
+     "hotsprings-budget-shift",
+     "hotsprings-cabin-reel"
+    ]
+   },
+   {
+    "client": "Selah Place",
+    "am": "Alicia",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "scale",
+    "metric": "14d ROAS 17.0x on $412 (14 purchases) · HiddenGem $100/day = 145% of the $2.1k range · goal 7x",
+    "read": "Don't scale on this read: the pixel logs 137 server Purchases for 54 PMS bookings (two senders), so true BoF ROAS is nearer 7x.",
+    "budget": [
+     "Hold until the duplicate Purchase sender is fixed."
+    ],
+    "creative": [
+     "Add the 22 Oct reels ('quiet weekend, just us', 'send this to your person') to BoF."
+    ],
+    "tasks": [
+     "selah-double-purchase",
+     "selah-bof-creative"
+    ]
+   },
+   {
+    "client": "Ridge & Falls",
+    "am": "Makenna",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "scale",
+    "metric": "14d ROAS 22.9x on $211 (12 purchases) · freq 5.3 · $70/day = 101% of the $2.1k range",
+    "read": "Not a budget scale: frequency 5.3 at only $15/day means the audience is small, and Purchases run 1.8x the PMS bookings.",
+    "budget": [
+     "Hold BoF at $15. Check whether HELLO10 (4 bookings, $1.7k) is the sign-up code before judging the $50/day giveaway."
+    ],
+    "creative": [
+     "Share the Drive folder by link so the scripted reel can be built."
+    ],
+    "tasks": [
+     "ridge-falls-double-purchase",
+     "ridge-falls-hello10",
+     "ridge-falls-creative"
+    ]
+   }
+  ],
+  "frequency": [
+   {
+    "client": "Paradise Pointe",
+    "am": "Makenna",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "freq",
+    "metric": "freq 5.45 (week 3) · 14d ROAS 13.2x on $681",
+    "read": "Every BoF ad is a 111-day-old Price Anchor variant; the carousel runs at freq 4.2 with 0 purchases in 14 days.",
+    "creative": [
+     "Launch the 22 Oct kids reels in BoF and pause the Price Anchor carousel when they go in."
+    ],
+    "tasks": [
+     "paradise-bof-concept",
+     "paradise-carousel-pause"
+    ]
+   },
+   {
+    "client": "Ridge & Falls",
+    "am": "Makenna",
+    "campaign": "BoF retargeting",
+    "type": "BoF",
+    "status": "freq",
+    "metric": "freq 5.34 (week 2) · Couples title card freq 4.9 carries all 12 purchases",
+    "read": "One ad does all the work; a new reel is the fix, which waits on the Drive folder being link-shared.",
+    "creative": [
+     "Build the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') once the folder is shared."
+    ],
+    "tasks": [
+     "ridge-falls-creative"
+    ]
+   }
+  ],
+  "new_clients": [
+   {
+    "client": "The Preserve",
+    "am": "Alicia",
+    "status": "live",
+    "metric": "HiddenGem campaigns first spent 11 Nov · $1,778 in 7 days · range $20k/month · goal 5x",
+    "read": "Giveaway and leads are spending; BoF ($100/day since 12 Nov) has spent $0. The CRM still has no kickoff or funnel dates and reads Meta access Incomplete, though our system user can read the account.",
+    "flags": [
+     "BoF not delivering",
+     "Pixel domain warning (pixel check)",
+     "CRM dates missing"
+    ],
+    "next": [
+     "Find why BoF is not delivering.",
+     "Fill the CRM kickoff and funnel dates; mark Meta access Complete."
+    ],
+    "tasks": [
+     "preserve-bof-delivery",
+     "preserve-crm"
+    ]
+   },
+   {
+    "client": "Dunya Camp",
+    "am": "Chiara",
+    "status": "due",
+    "metric": "Deadline 18 Nov (funnel due 11 Nov + 7) · old funnel $818 in 7 days",
+    "read": "HiddenGem's giveaway, leads and BoF were switched on 16 Nov with no spend yet. The older custom-event funnel ('Fall step 2', 'Step 3') stays as it is (12 Nov decision) and 'fall winter purchase 2026' is the client's own campaign.",
+    "flags": [
+     "CRM range $0",
+     "No HG AI tenant (LuxuryRes)"
+    ],
+    "next": [
+     "Confirm HiddenGem's campaigns spend by 18 Nov."
+    ],
+    "tasks": [
+     "dunya-legacy"
+    ]
+   },
+   {
+    "client": "Arca Boutique Hotel",
+    "am": "Anna",
+    "status": "due",
+    "metric": "Deadline 18 Nov (funnel due 11 Nov + 7) · access ok · pixel firing",
+    "read": "Only a $10/day giveaway exists (created 16 Nov, not spending yet); no MoF leads or BoF campaign. CRM range is $0.",
+    "flags": [
+     "CRM range $0"
+    ],
+    "next": [
+     "Launch MoF leads and BoF by 18 Nov; set the CRM Ad Spend Range."
+    ],
+    "tasks": [
+     "arca-launch"
+    ]
+   },
+   {
+    "client": "Lundy Farm",
+    "am": "Charlotte",
+    "status": "due",
+    "metric": "Deadline 24 Nov (funnel due 17 Nov + 7)",
+    "read": "Meta access not shared and no ad account mapped, so nothing can be built or checked yet.",
+    "flags": [
+     "No Meta access"
+    ],
+    "next": [
+     "Get the ad account, page and pixel shared and assigned to the HG - ROI Dashboard system user by 20 Nov."
+    ],
+    "tasks": [
+     "lundy-access"
+    ]
+   },
+   {
+    "client": "Nine Pines Retreat",
+    "am": "Nicole",
+    "status": "due",
+    "metric": "Deadline 24 Nov (funnel due 17 Nov + 7)",
+    "read": "Meta access not shared and no ad account mapped.",
+    "flags": [
+     "No Meta access"
+    ],
+    "next": [
+     "Get access by 20 Nov."
+    ],
+    "tasks": [
+     "nine-pines-access"
+    ]
+   },
+   {
+    "client": "Treetop Hideaways",
+    "am": "Kristal",
+    "status": "due",
+    "metric": "Deadline 27 Nov (funnel due 20 Nov + 7)",
+    "read": "Meta access not shared and no ad account mapped.",
+    "flags": [
+     "No Meta access"
+    ],
+    "next": [
+     "Get access by 21 Nov."
+    ],
+    "tasks": [
+     "treetop-hideaways-access"
+    ]
+   },
+   {
+    "client": "Aranya Resorts",
+    "am": "Anna",
+    "status": "blocked",
+    "metric": "Kickoff 19 Oct · 28 days in",
+    "read": "The CRM has no Meta Ads tier, no funnel due date and Meta access Incomplete, so there is no deadline to hold anyone to.",
+    "flags": [
+     "No Meta tier",
+     "No funnel due date",
+     "No Meta access"
+    ],
+    "next": [
+     "Confirm with Anna whether Aranya runs Meta ads; if yes, set the tier and dates and get access."
+    ],
+    "tasks": [
+     "aranya-meta-scope"
+    ]
+   },
+   {
+    "client": "Walden Retreats",
+    "am": "Anna",
+    "status": "live",
+    "metric": "Live 5 Oct (on time) · $20/day · BoF paused 14 Nov",
+    "read": "BoF was paused at the client's request over the VIP code; only the giveaway and leads run.",
+    "flags": [
+     "BoF paused"
+    ],
+    "next": [
+     "Restart BoF once the VIP code works."
+    ],
+    "tasks": [
+     "walden-bof-restart"
+    ]
+   },
+   {
+    "client": "Gooseberry Lodges",
+    "am": "Alicia",
+    "status": "live",
+    "metric": "Live 27 Oct (on time) · $80/day · BoF 0 purchases on $140 in 14 days",
+    "read": "On time, but the CRM range is $0 while Alicia wants to move toward $100/day, and Little Hotelier has no API for HG AI.",
+    "flags": [
+     "CRM range $0",
+     "No PMS connection"
+    ],
+    "next": [
+     "Agree the monthly budget with the client and set the CRM range before raising spend."
+    ],
+    "tasks": [
+     "gooseberry-crm-range",
+     "gooseberry-review"
+    ]
+   },
+   {
+    "client": "Cabin Collective",
+    "am": "Chiara",
+    "status": "live",
+    "metric": "Live 21 Oct (on time) · $30/day · BoF 19.5x on $147 (under the gate)",
+    "read": "On track; the HG AI CAPI sent its first Purchases on 16 Nov while the CRM still reads the pixel as Not Connected.",
+    "flags": [
+     "CRM pixel status out of date"
+    ],
+    "next": [
+     "Update the CRM Meta Pixel Connection."
+    ],
+    "tasks": [
+     "cabin-collective-crm-pixel"
+    ]
+   },
+   {
+    "client": "Glasscombe",
+    "am": "Charlotte",
+    "status": "live",
+    "metric": "Live 13 Oct (on time) · $30/day · MTD revenue +209%",
+    "read": "On track. BoF 44x on 3 purchases ($70) is too early to act on.",
+    "tasks": [
+     "glasscombe-lookalike"
+    ]
+   },
+   {
+    "client": "Kimpton Mas Olas Resort",
+    "am": "Charlotte",
+    "status": "not-started",
+    "metric": "Kickoff 20 Nov",
+    "read": "Not started; check again next Monday."
+   },
+   {
+    "client": "Casey Key Resort",
+    "am": "Nicole",
+    "status": "watch",
+    "metric": "No kickoff date in the CRM",
+    "read": "Advanced in the CRM with no dates and no ad account; nothing to check until a kickoff is set."
+   }
+  ]
+ },
+ "am_messages": [
+  {
+   "am": "Makenna",
+   "clients": [
+    "Paradise Pointe",
+    "Little River Landing",
+    "Ridge & Falls",
+    "FLOHOM"
+   ],
+   "message": "Hi Makenna, a few creative asks from this week's Meta review:\n\n1. Paradise Pointe: can you QA the two 22 Oct kids reels ('I'm not saying you should take your kids here, but…' and 'the kids' review: can we live here?') so we can add them to BoF and the lookalike this week? BoF frequency is 5.4 and every ad is the same Price Anchor concept.\n2. Little River Landing: please QA the two 22 Oct reels ('POV: your weekend on Weiss Lake' and 'we should be at this lakefront resort instead…'). If you have time for one more, a short unit walkthrough or interior reel would beat another drone title card.\n3. Ridge & Falls: could you set the Drive folder to 'anyone with the link can view'? The scripted reel is blocked until then.\n4. FLOHOM Myrtle Beach: do we have a winter offer from the client, or should we run FLO3FOR2 instead of VIP100 there?\n\nThanks!"
+  },
+  {
+   "am": "Charlotte",
+   "clients": [
+    "Stay On 30A",
+    "Starlight Haven Weiss Lake",
+    "Starlight Haven Hot Springs",
+    "Asheville River Cabins"
+   ],
+   "message": "Hi Charlotte, creative asks from this week's Meta review:\n\n1. Stay On 30A: please QA 'insane group getaway' and 'beach house, golf cart & the whole crew' so they can go into BoF. The current BoF ads are from July.\n2. Weiss Lake: same for 'date night, but make it an A-frame' and 'glamping, but make it luxury'. They'll replace the March 10% OFF videos.\n3. Hot Springs: 'cabin > hotel, every time' can go into BoF as a fourth ad.\n4. Asheville: 'Girls Trip in North Carolina' and 'the weekend plan: cabins on the French Broad' for the new BoF on 26 Nov. The current retargeting videos are losing click-through.\n\nAll of them are in the 22 Oct review pack. Thanks!"
+  },
+  {
+   "am": "Nicole",
+   "clients": [
+    "Endless Stays"
+   ],
+   "message": "Hi Nicole, for Endless Stays: BoF has been in review for 7 weeks at about 4x. Can you QA the two 22 Oct reels ('insane group getaway' and 'tag the group chat, this is the house') so we can test them in BoF? If the client has footage, one more video that opens on a hard claim (sleeps 20+, private pool, or price per person per night) would be the next test. Thanks!"
+  },
+  {
+   "am": "Alicia",
+   "clients": [
+    "Selah Place"
+   ],
+   "message": "Hi Alicia, for Selah Place: can you QA the 22 Oct reels ('quiet weekend, just us' and 'send this to your person') so we can add them to BoF retargeting? Thanks!"
+  }
+ ],
+ "new_tasks": [
+  {
+   "id": "preserve-bof-delivery",
+   "account": "The Preserve",
+   "priority": "fix",
+   "change": "BoF retargeting ($100/day since 12 Nov) has spent $0. Check the Website Visitors audience size, the ads' review status and the pixel's domain warning, then fix whichever is blocking delivery.",
+   "where": "BoF - Website Retargeting Campaign - 11/12/2026"
+  },
+  {
+   "id": "preserve-crm",
+   "account": "The Preserve",
+   "priority": "tidy",
+   "change": "Fill the CRM kickoff and Funnel Build Due dates and set 'Share Access to Meta Business Assets' to Complete (our system user can already read the account).",
+   "where": "CRM - Clients - Onboarding"
+  },
+  {
+   "id": "dunya-legacy",
+   "account": "Dunya Camp",
+   "priority": "followup",
+   "change": "Confirm HiddenGem's giveaway, leads and BoF (switched on 16 Nov) are spending by the 18 Nov deadline. The older 'Fall step 2' / 'Step 3' custom-event funnel stays as it is (Shawal, 12 Nov) and 'fall winter purchase 2026' is the client's own campaign.",
+   "where": "Dunya Camp ad account"
+  },
+  {
+   "id": "arca-launch",
+   "account": "Arca Boutique Hotel",
+   "priority": "followup",
+   "change": "Launch the MoF lead and BoF campaigns by 18 Nov (only the $10/day giveaway exists, created 16 Nov) and set the CRM Ad Spend Range (now $0).",
+   "where": "Arca Ad account"
+  },
+  {
+   "id": "lundy-access",
+   "account": "Lundy Farm",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.",
+   "where": "Business Settings"
+  },
+  {
+   "id": "nine-pines-access",
+   "account": "Nine Pines Retreat",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.",
+   "where": "Business Settings"
+  },
+  {
+   "id": "treetop-hideaways-access",
+   "account": "Treetop Hideaways",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 21 Nov; campaigns are due live by 27 Nov.",
+   "where": "Business Settings"
+  },
+  {
+   "id": "aranya-meta-scope",
+   "account": "Aranya Resorts",
+   "priority": "confirm",
+   "change": "Confirm with Anna whether Aranya runs Meta ads. If yes: set the CRM Meta Ads tier and Funnel Build Due date, and get Meta access shared (kickoff was 19 Oct).",
+   "where": "CRM - Clients - Onboarding"
+  },
+  {
+   "id": "walden-bof-restart",
+   "account": "Walden Retreats",
+   "priority": "followup",
+   "change": "Restart BoF retargeting once the client confirms the VIP promo code works (paused 14 Nov at their request).",
+   "where": "BoF - Sales Campaign - Retargeting Website Visitors - 06/10/2026"
+  },
+  {
+   "id": "gooseberry-crm-range",
+   "account": "Gooseberry Lodges",
+   "priority": "confirm",
+   "change": "Agree a monthly budget with the client and set the CRM Ad Spend Range (now $0) before raising spend toward $100/day.",
+   "where": "CRM - Clients - Onboarding"
+  },
+  {
+   "id": "cabin-collective-crm-pixel",
+   "account": "Cabin Collective",
+   "priority": "tidy",
+   "change": "Update the CRM 'Meta Pixel Connection' to Connected: the HG AI CAPI sent its first Purchases on 16 Nov.",
+   "where": "CRM - Clients - Onboarding"
+  },
+  {
+   "id": "lrl-giveaway-decision",
+   "account": "Little River Landing",
+   "priority": "confirm",
+   "change": "Decide whether to cut the $40/day giveaway until the CAPI and new BoF creatives are in: 1 sign-up booking in 30 days on $1,937 of giveaway and lead spend (Guesty stores codes, so this read is reliable).",
+   "where": "ToF - Giveaway Traffic Campaign - AL - 09/16/2026"
+  },
+  {
+   "id": "paradise-carousel-pause",
+   "account": "Paradise Pointe",
+   "priority": "followup",
+   "change": "When the kids reels go into BoF, pause the Price Anchor carousel there (freq 4.2, 0 purchases on $131 in 14 days) so the new concept gets delivery.",
+   "where": "BoF - Sales Campaign - Retargeting Website Visitors"
+  },
+  {
+   "id": "asheville-bof-reels",
+   "account": "Asheville River Cabins",
+   "priority": "followup",
+   "change": "On 26 Nov, with the MoF - Broad re-judge, add the 22 Oct reels ('Girls Trip in North Carolina', 'cabins on the French Broad') to the new BoF. RT VID1 and VID2 CTR fell 45% and 26% this week.",
+   "where": "BoF - Website Retargeting Campaign - 12/11/26"
+  },
+  {
+   "id": "weiss-budget-shift",
+   "account": "Starlight Haven Weiss Lake",
+   "priority": "structure",
+   "change": "After the reel swap has run a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x.",
+   "where": "Website Retargeting Campaign - 03/03/26"
+  },
+  {
+   "id": "selah-double-purchase",
+   "account": "Selah Place",
+   "priority": "fix",
+   "change": "Stop the double Purchase: 137 server Purchases for 54 PMS bookings in 28 days (HG AI CAPI and Hostaway's CAPI both send). Ask Leshan to dedupe by event_id or switch one sender off, then re-read BoF before scaling.",
+   "where": "Pixel 1235173718368839"
+  },
+  {
+   "id": "ridge-falls-double-purchase",
+   "account": "Ridge & Falls",
+   "priority": "fix",
+   "change": "Stop the double Purchase: 22 server Purchases for 12 PMS bookings in 28 days. Ask Leshan to dedupe by event_id or switch one sender off.",
+   "where": "Pixel 1332286819018269"
+  },
+  {
+   "id": "ridge-falls-hello10",
+   "account": "Ridge & Falls",
+   "priority": "confirm",
+   "change": "Check whether HELLO10 (4 bookings, $1,729 in 30 days) is the giveaway or sign-up code. If it is, add it to the benchmark's DISC_CODE so the Discovery read stops showing 0x.",
+   "where": "Promo sheet / client-benchmark generate_report.py"
+  }
+ ],
+ "data_notes": [
+  "This week's flagged and scale accounts were already reviewed by hand earlier today (Fix List sources review-2026-11-16 and review-2026-11-16-scale); those 21 tasks are linked here, not duplicated.",
+  "Selah and Ridge & Falls BoF ROAS are inflated by two Purchase senders (2.5x and 1.8x the PMS bookings).",
+  "No HG AI reports have been filed since 23 Sep, so the HG AI diagnosis lines are empty.",
+  "Asheville and both Starlight accounts have no PMS connection, so their ROAS is pixel-only.",
+  "CRM gaps: Ad Spend Range $0 for Arca, Dunya and Gooseberry; no dates for The Preserve and Casey Key; no Meta tier for Aranya."
+ ],
+ "task_index": {
+  "30a-bof-creative": {
+   "account": "Stay on 30a",
+   "priority": "followup",
+   "change": "QA and launch the 22 Oct reels ('insane group getaway' and 'beach house, golf cart & the whole crew') in BoF retargeting.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "30a-budget-shift": {
+   "account": "Stay on 30a",
+   "priority": "structure",
+   "change": "After the new reels have run a week, move $25/day from the LoL lookalike ($200) to BoF ($150), if BoF holds above 15x.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "aranya-meta-scope": {
+   "account": "Aranya Resorts",
+   "priority": "confirm",
+   "change": "Confirm with Anna whether Aranya runs Meta ads. If yes: set the CRM Meta Ads tier and Funnel Build Due date, and get Meta access shared (kickoff was 19 Oct).",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "arca-launch": {
+   "account": "Arca Boutique Hotel",
+   "priority": "followup",
+   "change": "Launch the MoF lead and BoF campaigns by 18 Nov (only the $10/day giveaway exists, created 16 Nov) and set the CRM Ad Spend Range (now $0).",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "asheville-bof-optimisation": {
+   "account": "Asheville River Cabins",
+   "priority": "fix",
+   "change": "Switch the new retargeting ad set from highest value to maximum number of conversions, and re-judge MoF - Broad around 26 Nov.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "asheville-bof-reels": {
+   "account": "Asheville River Cabins",
+   "priority": "followup",
+   "change": "On 26 Nov, with the MoF - Broad re-judge, add the 22 Oct reels ('Girls Trip in North Carolina', 'cabins on the French Broad') to the new BoF. RT VID1 and VID2 CTR fell 45% and 26% this week.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "cabin-collective-crm-pixel": {
+   "account": "Cabin Collective",
+   "priority": "tidy",
+   "change": "Update the CRM 'Meta Pixel Connection' to Connected: the HG AI CAPI sent its first Purchases on 16 Nov.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "dunya-legacy": {
+   "account": "Dunya Camp",
+   "priority": "followup",
+   "change": "Confirm HiddenGem's giveaway, leads and BoF (switched on 16 Nov) are spending by the 18 Nov deadline. The older 'Fall step 2' / 'Step 3' custom-event funnel stays as it is (Shawal, 12 Nov) and 'fall winter purchase 2026' is the client's own campaign.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "endless-bof-creatives": {
+   "account": "Endless Stays",
+   "priority": "followup",
+   "change": "Brief 1 to 2 new BoF videos that open on a specific claim: guest capacity, a standout amenity, or price per person.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "endless-bof-swap": {
+   "account": "Endless Stays",
+   "priority": "fix",
+   "change": "BoF ad swap: turn Ad 2 back on, keep Ad 3 and Refresh 7, pause Ad 1, Refresh 5 and Refresh 6.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "endless-lookalike-review": {
+   "account": "Endless Stays",
+   "priority": "followup",
+   "change": "Hold budgets as they are; judge the lookalike around 24 Nov once it passes $500 to $700.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "endless-tracking": {
+   "account": "Endless Stays",
+   "priority": "fix",
+   "change": "Find out why ViewContent and InitiateCheckout stopped firing around 28 Sep, and restore them.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "flohom-mb-landing": {
+   "account": "FLOHOM",
+   "priority": "fix",
+   "change": "Point the Myrtle Beach ads at https://flohom.com/listings?location=North%20Myrtle%20Beach instead of flohom.com/listings.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "flohom-mb-offer": {
+   "account": "FLOHOM",
+   "priority": "confirm",
+   "change": "Align the Myrtle Beach offer: replace VIP100 with FLO3FOR2, or a winter offer if the client has one.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "flohom-mb-optimisation": {
+   "account": "FLOHOM",
+   "priority": "fix",
+   "change": "Switch the Myrtle Beach ad set from highest value to maximum number of conversions, like the main lookalike.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "flohom-mb-price-reel": {
+   "account": "FLOHOM",
+   "priority": "followup",
+   "change": "Add the existing 'BoF - Myrtle Beach - Price Anchor - Reel - 07/21/26' to the Myrtle Beach lookalike.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "glasscombe-lookalike": {
+   "account": "Glasscombe",
+   "priority": "structure",
+   "change": "Add a MoF Lookalike Sales campaign, the 4th campaign.",
+   "done": false,
+   "source": "structure-2026-11-13"
+  },
+  "gooseberry-crm-range": {
+   "account": "Gooseberry Lodges",
+   "priority": "confirm",
+   "change": "Agree a monthly budget with the client and set the CRM Ad Spend Range (now $0) before raising spend toward $100/day.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "gooseberry-review": {
+   "account": "Gooseberry Lodges",
+   "priority": "followup",
+   "change": "Check the rebuilt giveaway and MoF ads cleared Meta review. Nothing in the giveaway spends until they do.",
+   "done": false,
+   "source": "audit-2026-11-13"
+  },
+  "hotsprings-budget-shift": {
+   "account": "Starlight Haven Hot Springs",
+   "priority": "structure",
+   "change": "Scale BoF: Website Retargeting $20 to $30 per day, and New Leads $30 to $20, so the account stays at $75/day.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "hotsprings-cabin-reel": {
+   "account": "Starlight Haven Hot Springs",
+   "priority": "minor",
+   "change": "Optional: add the 22 Oct 'cabin > hotel, every time' reel to BoF as a fourth ad when making the budget change.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "lrl-capi": {
+   "account": "Little River Landing",
+   "priority": "fix",
+   "change": "Turn on the HG AI CAPI for Little River Landing, or get the Guesty booking engine to fire Purchase in the browser.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "lrl-giveaway-decision": {
+   "account": "Little River Landing",
+   "priority": "confirm",
+   "change": "Decide whether to cut the $40/day giveaway until the CAPI and new BoF creatives are in: 1 sign-up booking in 30 days on $1,937 of giveaway and lead spend (Guesty stores codes, so this read is reliable).",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "lrl-lookalike-review": {
+   "account": "Little River Landing",
+   "priority": "followup",
+   "change": "Judge the lookalike around 1 Dec or $300 spend, not after one more week. No new ads in it until then.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "lrl-rt-creatives": {
+   "account": "Little River Landing",
+   "priority": "followup",
+   "change": "Add 1 to 2 new BoF creatives in a different format: a unit interior or walkthrough, a price or STAY10-led opener, or a guest review. Not another drone title card. Add the best one to the lookalike too.",
+   "done": false,
+   "source": "review-2026-11-16"
+  },
+  "lundy-access": {
+   "account": "Lundy Farm",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "nine-pines-access": {
+   "account": "Nine Pines Retreat",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 20 Nov; campaigns are due live by 24 Nov.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "paradise-bof-concept": {
+   "account": "Paradise Pointe",
+   "priority": "followup",
+   "change": "Add a second concept to BoF and the LoL lookalike, starting with the 22 Oct kids reels ('I'm not saying you should take your kids here, but…' and 'the kids' review: can we live here?'), with the code set to VIP100.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "paradise-carousel-pause": {
+   "account": "Paradise Pointe",
+   "priority": "followup",
+   "change": "When the kids reels go into BoF, pause the Price Anchor carousel there (freq 4.2, 0 purchases on $131 in 14 days) so the new concept gets delivery.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "paradise-crm-range": {
+   "account": "Paradise Pointe",
+   "priority": "confirm",
+   "change": "Confirm the client approved the higher spend and update the CRM Ad Spend Range; hold the lookalike budget until it exits learning (check around 20 Nov).",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "preserve-bof-delivery": {
+   "account": "The Preserve",
+   "priority": "fix",
+   "change": "BoF retargeting ($100/day since 12 Nov) has spent $0. Check the Website Visitors audience size, the ads' review status and the pixel's domain warning, then fix whichever is blocking delivery.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "preserve-crm": {
+   "account": "The Preserve",
+   "priority": "tidy",
+   "change": "Fill the CRM kickoff and Funnel Build Due dates and set 'Share Access to Meta Business Assets' to Complete (our system user can already read the account).",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "ridge-falls-creative": {
+   "account": "Ridge & Falls",
+   "priority": "followup",
+   "change": "Share the Ridge & Falls Drive folder by link so the scripted reel ('Unfortunately, this getaway ruined all other getaways for me…') can be built for BoF.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "ridge-falls-double-purchase": {
+   "account": "Ridge & Falls",
+   "priority": "fix",
+   "change": "Stop the double Purchase: 22 server Purchases for 12 PMS bookings in 28 days. Ask Leshan to dedupe by event_id or switch one sender off.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "ridge-falls-hello10": {
+   "account": "Ridge & Falls",
+   "priority": "confirm",
+   "change": "Check whether HELLO10 (4 bookings, $1,729 in 30 days) is the giveaway or sign-up code. If it is, add it to the benchmark's DISC_CODE so the Discovery read stops showing 0x.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "selah-bof-creative": {
+   "account": "Selah Place",
+   "priority": "followup",
+   "change": "Add the 22 Oct reels ('quiet weekend, just us' and 'send this to your person') to BoF retargeting.",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "selah-double-purchase": {
+   "account": "Selah Place",
+   "priority": "fix",
+   "change": "Stop the double Purchase: 137 server Purchases for 54 PMS bookings in 28 days (HG AI CAPI and Hostaway's CAPI both send). Ask Leshan to dedupe by event_id or switch one sender off, then re-read BoF before scaling.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "treetop-hideaways-access": {
+   "account": "Treetop Hideaways",
+   "priority": "followup",
+   "change": "Get the ad account, Page and pixel shared to the HiddenGem BM and assigned to the HG - ROI Dashboard system user by 21 Nov; campaigns are due live by 27 Nov.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "walden-bof-restart": {
+   "account": "Walden Retreats",
+   "priority": "followup",
+   "change": "Restart BoF retargeting once the client confirms the VIP promo code works (paused 14 Nov at their request).",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  },
+  "weiss-bof-creative": {
+   "account": "Starlight Haven Weiss Lake",
+   "priority": "followup",
+   "change": "Swap the March '10% OFF - Weiss Lake VID1-3' retargeting ads for the 22 Oct reels ('date night, but make it an A-frame' and 'glamping, but make it luxury').",
+   "done": false,
+   "source": "review-2026-11-16-scale"
+  },
+  "weiss-budget-shift": {
+   "account": "Starlight Haven Weiss Lake",
+   "priority": "structure",
+   "change": "After the reel swap has run a week, move $5/day from New Leads ($25) to BoF ($50) if BoF holds above 15x.",
+   "done": false,
+   "source": "post-review-2026-11-16"
+  }
+ },
+ "tasks_added": [
+  "preserve-bof-delivery",
+  "preserve-crm",
+  "dunya-legacy",
+  "arca-launch",
+  "lundy-access",
+  "nine-pines-access",
+  "treetop-hideaways-access",
+  "aranya-meta-scope",
+  "walden-bof-restart",
+  "gooseberry-crm-range",
+  "cabin-collective-crm-pixel",
+  "lrl-giveaway-decision",
+  "paradise-carousel-pause",
+  "asheville-bof-reels",
+  "weiss-budget-shift",
+  "selah-double-purchase",
+  "ridge-falls-double-purchase",
+  "ridge-falls-hello10"
+ ]
+}

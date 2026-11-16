@@ -9,7 +9,7 @@ Output:
   public/weekly/<slug>/latest.html         copy of the newest page per workflow
 Redirects (/weekly/ad-spend -> latest, etc.) live in the repo's netlify.toml. Commit public/weekly after running this.
 """
-import csv, collections, datetime, html, os, re, shutil, sys
+import json, csv, collections, datetime, html, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_html import CSS, BENCH_CSS, wordmark, ROOT  # noqa: E402
 
@@ -23,6 +23,9 @@ WORKFLOWS = [
      "Which domains fire into each client's pixel, plus 28-day Purchase tracking."),
     ("client-benchmark", "Client benchmark", "Client Benchmark Reviews (advanced setups)/Weekly Checks", "-client-benchmark.html", "-client-benchmark.csv",
      "Advanced clients' Sales campaigns scored on 14-day ROAS, with one-line summaries."),
+    # 2026-11-16 (Shawal): the step after the three checks; its sidecar is the post-review JSON, not a CSV
+    ("post-review", "Post-review", "Post-Review/Weekly Checks", "-post-review.html", "-post-review.json",
+     "What to change: budget shifts, creative asks, new-client launch checks and the Fix List tasks."),
 ]
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
@@ -46,6 +49,12 @@ def wrap(page_html, back=True):
 def headline(slug, csv_path):
     """Short status line for the index card, from the CSV sidecar."""
     if not os.path.exists(csv_path): return []
+    if slug == "post-review":
+        pr = json.load(open(csv_path, encoding="utf-8")); S = pr.get("sections", {})
+        bad = sum(1 for x in S.get("new_clients", []) if x.get("status") in ("late", "blocked", "due"))
+        return [("err", f"{len(S.get('flagged', []))} flagged"), ("brand", f"{len(S.get('scale', []))} scale"),
+                ("warn", f"{len(S.get('frequency', []))} frequency"), ("warn" if bad else "gray", f"{bad} new clients to chase"),
+                ("plain", f"{len(pr.get('tasks_added', []))} tasks added")]
     rows = list(csv.DictReader(open(csv_path, encoding="utf-8")))
     if slug == "ad-spend" and rows and "total_live" in rows[0]:
         live = [r for r in rows if r["source"] == "live"]
@@ -125,7 +134,7 @@ def sources_for(date):
 
 def week_badges(slug, csv_path):
     """Key numbers for a week's collapsed row: spend per day, critical pixels, flags and scale."""
-    if not os.path.exists(csv_path): return []
+    if not os.path.exists(csv_path) or slug == "post-review": return []
     rows = list(csv.DictReader(open(csv_path, encoding="utf-8")))
     if slug == "ad-spend":
         if rows and "total_live" in rows[0]:
@@ -171,6 +180,7 @@ def main():
         cards, badges = [], []
         for slug, title, folder, suf, csv_suf, desc in WORKFLOWS:
             if slug not in by_date[date]:
+                if slug == "post-review" and date < "2026-11-16": continue  # the step started on 16 Nov 2026
                 cards.append(f'<div class="card rcard muted" data-review="{slug}"><div class="card-body"><h3>{esc(title)}</h3><p class="sec-desc">Not run this week.</p></div></div>'); continue
             href, hl = by_date[date][slug]
             chips = "".join(

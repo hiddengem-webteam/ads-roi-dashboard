@@ -96,3 +96,7 @@ weekly/Creative Reviews/pulls/
 
 # IG reel pulls (video + audio, re-pullable)
 weekly/IG Reel Reviews/pulls/
+
+# post-review working files (re-pullable, rebuilt every run)
+.claude/skills/post-review/ads.json
+weekly/Post-Review/inputs/

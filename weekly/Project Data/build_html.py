@@ -1332,8 +1332,156 @@ def build_bench():
     return page(f"Client benchmark {WEEK}","","Meta Ads Weekly Review",esc(span),[],body,js=BENCH_JS,css=BENCH_CSS)
 
 
+# =====================================================================
+# 4. POST-REVIEW (2026-11-16, Shawal): what to do after the three checks. Flagged, scale and frequency
+# accounts with budget and creative recommendations, new-client launch and access checks, messages to
+# AMs, and the Fix List tasks behind each line. Source: weekly/Post-Review/Weekly Checks/DATE-post-review.json
+# (written by the /post-review skill). Same four-section layout as the other weekly pages.
+# =====================================================================
+POST_JS = BENCH_JS.replace("'bench.tgl.'", "'post.tgl.'") + """
+document.addEventListener('click',e=>{const b=e.target.closest('button[data-copy]'); if(!b) return;
+  const t=document.getElementById(b.dataset.copy); if(!t) return;
+  navigator.clipboard.writeText(t.innerText).then(()=>{const o=b.textContent; b.textContent='Copied'; setTimeout(()=>{b.textContent=o;},1500);}).catch(()=>{});
+});
+"""
+POST_CSS = """
+.todo{margin:0;padding:4px 0;list-style:none;counter-reset:todo}
+.todo li{counter-increment:todo;display:grid;grid-template-columns:28px 1fr;gap:4px 8px;padding:12px 20px;border-top:1px solid var(--border);font-size:15px;line-height:22px;color:var(--text-2)}
+.todo li:first-child{border-top:0}
+.todo li::before{content:counter(todo);font:600 14px/22px 'Roboto Mono',monospace;color:var(--text-4)}
+.todo li a{font-weight:600;color:var(--text)}
+.todo .tid{grid-column:2;font:12px/18px 'Roboto Mono',monospace;color:var(--text-4)}
+.prsum{padding:16px 20px;font-size:15px;line-height:24px;color:var(--text-2);border-bottom:1px solid var(--border)}
+.pitem{padding:14px 20px;border-top:1px solid var(--border)}
+.pitem:first-child{border-top:0}
+.pitem h4{margin:0 0 4px;font-size:15px;line-height:22px;color:var(--text);display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.pitem .num{font-size:13px;line-height:20px;color:var(--text-3);margin:0 0 6px}
+.pitem p{margin:0 0 6px;font-size:15px;line-height:23px;color:var(--text-2)}
+.pitem .lbl{display:block;margin:10px 0 2px;font-size:12px;line-height:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--text-4)}
+.pitem ul{margin:0;padding-left:18px;font-size:15px;line-height:23px;color:var(--text-2)}
+.pitem ul.ctx{font-size:14px;line-height:21px;color:var(--text-3)}
+.pitem .tasks li{list-style:none;margin-left:-18px}
+.pitem .tasks code{font-size:12px}
+.lrow{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(0,2.6fr);gap:4px 16px;padding:12px 20px;border-top:1px solid var(--border);font-size:14px;line-height:21px}
+.lrow:first-child{border-top:0}
+.lrow .who a{font-weight:600;color:var(--text)}
+.lrow .who small{display:block;color:var(--text-4);font-size:13px}
+.lrow .what{color:var(--text-2)}
+.lrow .what .next{display:block;color:var(--text);margin-top:2px}
+.msg{padding:14px 20px;border-top:1px solid var(--border)}
+.msg:first-child{border-top:0}
+.msg .mh{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.msg .mh strong{font-size:15px;color:var(--text)}
+.msg .mh small{color:var(--text-4);font-size:13px;margin-left:6px;font-weight:400}
+.msg pre{margin:0;padding:12px 14px;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;white-space:pre-wrap;font:15px/23px 'Inter',sans-serif;color:var(--text-2)}
+@media (max-width:640px){.lrow{grid-template-columns:1fr}.todo li,.pitem,.msg,.lrow,.prsum{padding-left:16px;padding-right:16px}}
+"""
+PSTATUS = {"flag": ("err", "Flag"), "review": ("warn", "Review"), "scale": ("brand", "Scale"), "freq": ("warn", "Frequency"),
+           "late": ("err", "Late"), "blocked": ("err", "Blocked"), "due": ("warn", "Due soon"), "live": ("ok", "Live"),
+           "not-started": ("gray", "Not started"), "watch": ("gray", "Watch")}
+def pstatus(k): kind, label = PSTATUS.get(k, ("gray", k or "—")); return badge(kind, label)
+
+def build_post_review():
+    pr = json.load(open(f"{ROOT}/Post-Review/Weekly Checks/{DATE}-post-review.json", encoding="utf-8"))
+    S = pr.get("sections", {})
+    SECS = [("flagged", "Flagged", "flag", "Action needed in the benchmark (Sales, Retargeting and Prospecting below 5x), with what to change."),
+            ("scale", "Scale candidates", "scale", "Above 15x. Checked against the CRM Ad Spend Range and ROAS goal before any increase."),
+            ("frequency", "Frequency watch", "freq", "Sales campaigns above 5.0 frequency in 14 days: creative refresh or audience changes."),
+            ("new_clients", "New clients", "watch", "CRM clients from the last 90 days: live by Funnel Build Due + 7 days, and our access to the ad account and pixel.")]
+    tix = pr.get("task_index", {}); added = set(pr.get("tasks_added", []))
+    # one card per client, holding every item that names it, in list order
+    clients, by = [], {}
+    for key, title, kind, _ in SECS:
+        for it in S.get(key, []):
+            n = it["client"]
+            if n not in by:
+                by[n] = {"name": n, "am": it.get("am", ""), "items": []}; clients.append(by[n])
+            by[n]["items"].append((key, title, kind, it))
+    for i, c in enumerate(clients): c["id"] = f"client-{i}"
+    cid = {c["name"]: c["id"] for c in clients}
+    link = lambda n: f'<a href="#{cid[n]}">{esc(n)}</a>' if n in cid else f"<strong>{esc(n)}</strong>"
+
+    def task_li(t):
+        d = tix.get(t, {})
+        state = "new this run" if t in added else ("done" if d.get("done") else "open")
+        return f'<li><code>{esc(t)}</code> · {esc(state)} · {inline(d.get("change", ""))}</li>'
+    def item_html(key, title, kind, it):
+        st = it.get("status") or kind
+        bits = [f'<h4>{esc(title)}{(" · " + esc(it["campaign"])) if it.get("campaign") else ""} {pstatus(st)}</h4>']
+        if it.get("metric"): bits.append(f'<p class="num">{inline(it["metric"])}</p>')
+        if it.get("read"): bits.append(f'<p>{inline(it["read"])}</p>')
+        for lbl, k in (("Budget", "budget"), ("Creative", "creative"), ("Next", "next"), ("Flags", "flags")):
+            if it.get(k): bits.append(f'<span class="lbl">{lbl}</span><ul>' + "".join(f"<li>{inline(x)}</li>" for x in it[k]) + "</ul>")
+        if it.get("context"): bits.append('<span class="lbl">Data behind it</span><ul class="ctx">' + "".join(f"<li>{inline(x)}</li>" for x in it["context"]) + "</ul>")
+        if it.get("tasks"): bits.append('<span class="lbl">Fix List</span><ul class="tasks">' + "".join(task_li(t) for t in it["tasks"]) + "</ul>")
+        return f'<div class="pitem">{"".join(bits)}</div>'
+
+    n = {k: len(S.get(k, [])) for k, *_ in SECS}
+    nc = S.get("new_clients", [])
+    bad = sum(1 for x in nc if x.get("status") in ("late", "blocked"))
+    due = sum(1 for x in nc if x.get("status") == "due")
+    tiles = [("Flagged", str(n["flagged"]), "Action needed rows", "err"), ("Scale", str(n["scale"]), "above 15x", "brand"),
+             ("Frequency", str(n["frequency"]), "above 5.0 in 14 days", "warn"),
+             ("New clients", str(len(nc)), f"{due} due soon, {bad} late or blocked", "err" if bad else ("warn" if due else None)),
+             ("Tasks added", str(len(added)), f"{len(tix) - len(added)} existing tasks linked", None),
+             ("AM messages", str(len(pr.get("am_messages", []))), "creative asks, ready to send", None)]
+    band = "".join(stat(l, v, h, dot=d) for l, v, h, d in tiles)
+
+    top = pr.get("top_actions", [])
+    todo = ('<ol class="todo">' + "".join(f'<li><span>{link(t["client"])}: {inline(t["text"])}</span>' + (f'<span class="tid">{esc(t["task"])}</span>' if t.get("task") else "") + "</li>" for t in top) + "</ol>") if top else '<div class="empty">Nothing urgent this week.</div>'
+    sec1 = f'<div class="card"><div class="prsum">{inline(pr.get("summary", ""))}</div>{todo}</div>'
+
+    toggles = []
+    for key, title, kind, desc in SECS:
+        rows = S.get(key, [])
+        if not rows:
+            toggles.append(_toggle(key, title, desc, badge("gray", "None"), '<div class="empty">None this week.</div>')); continue
+        lr = []
+        for it in rows:
+            nxt = ([*(it.get("budget") or []), *(it.get("creative") or []), *(it.get("next") or [])] or [""])[0]
+            lr.append(f'<div class="lrow" data-client="{_attr(it["client"])}" data-am="{_attr(it.get("am", ""))}"><div class="who">{link(it["client"])} {pstatus(it.get("status") or kind)}'
+                      f'<small>{esc(it.get("am", ""))}{(" · " + esc(it["campaign"])) if it.get("campaign") else ""}</small></div>'
+                      f'<div class="what">{inline(it.get("read", ""))}{f"<span class=next>→ {inline(nxt)}</span>" if nxt else ""}</div></div>')
+        cnt = collections.Counter(it.get("status") or kind for it in rows)
+        meta = "".join(pstatus(k).replace(PSTATUS.get(k, ("", k))[1], f"{v} {PSTATUS.get(k, ('', k))[1].lower()}") for k, v in cnt.items())
+        toggles.append(_toggle(key, title, desc, meta, f'<div>{"".join(lr)}</div>'))
+    msgs = pr.get("am_messages", [])
+    mh = "".join(f'<div class="msg"><div class="mh"><strong>To {esc(m["am"])}<small>{esc(", ".join(m.get("clients", [])))}</small></strong><button type="button" class="btn" data-copy="msg-{i}">Copy</button></div><pre id="msg-{i}">{esc(m["message"])}</pre></div>' for i, m in enumerate(msgs))
+    toggles.append(_toggle("msgs", "Messages to AMs", "One message per account manager with the creative asks for their clients. Copy and send in Google Chat.", badge("gray", _plural(len(msgs), "message")), f"<div>{mh}</div>" if mh else '<div class="empty">No creative asks this week.</div>'))
+
+    chtml = []
+    for c in clients:
+        states = "".join(pstatus(it.get("status") or kind) for _, _, kind, it in c["items"])
+        sub = f'AM {esc(c["am"]) or "—"} · ' + esc(", ".join(dict.fromkeys(t for _, t, _, _ in c["items"])))
+        ntask = len({t for *_, it in c["items"] for t in it.get("tasks", [])})
+        chtml.append(_card(c, sub, states, str(ntask), "tasks", "".join(item_html(*x) for x in c["items"])))
+    fbar, data = _filter(clients)
+
+    notes = _notes([("Data notes", _ul(pr.get("data_notes", []))),
+                    ("How this is built", _ul(pr.get("method", [
+                        "Lists come from this week's client benchmark: Action needed (Flag and Review), Scale candidates (above 15x) and Frequency watch (above 5.0).",
+                        "Each listed client is read with the ad-level Meta pull (7, 14 and 30 days), the ad spend check (live budget by campaign type), the pixel check, the CRM (Ad Spend Range, ROAS goal, PMS), PMS month to date, monthly ROI, meeting notes and the open Fix List tasks.",
+                        "Scale calls compare live $/day × 30.4 with the CRM Ad Spend Range (a monthly budget) and the 5x minimum from the 11 Nov sync; over the range means a shift inside the account or a client ask.",
+                        "New clients: kickoff in the last 90 days. Campaigns should be live by the CRM Funnel Build Due + 7 days; access means the HG - ROI Dashboard system user can read the ad account and its pixel.",
+                        "Tasks already on the Fix List are linked, not duplicated. New tasks carry the source post-review-DATE."])))])
+    body = f"""
+{data}
+<div class="card band" style="--n:{len(tiles)}">{band}</div>
+{_stoggle("todo", "01", "This week", "Do this week", "The few changes that matter most, in order. Each links to the client's card.", badge("gray", _plural(len(top), "action")), sec1).replace('<details class="sec stgl"', '<details class="sec stgl" open', 1)}
+<section class="sec" id="lists">
+{_sec_top("02", "Lists", "Flagged, scale, frequency, new clients and AM messages", "Open a list to see one line per client and the next step.")}
+<div class="stack">{"".join(toggles)}</div>
+</section>
+{_stoggle("clients", "03", "Per client", "Client detail", "Every client named above. Filter by account manager or client, then open a card for the numbers, the recommendation, the data behind it and the Fix List tasks.", badge("gray", _plural(len(clients), "client")), fbar + f'<div class="cards">{"".join(chtml)}</div>')}
+{_stoggle("notes", "04", "Notes", "Data and method notes", "Gaps in this run's data and how the recommendations are made.", badge("gray", _plural(len(pr.get("data_notes", [])), "note")), notes)}
+{GENLINE.format(run=RUN).replace("from the saved report and CSV sidecar", "from the post-review JSON")}
+"""
+    return page(f"Post-review {WEEK}", "", "Meta Ads Post-Review", esc(f"Actions from the {_d.day} {_d:%b %Y} review"), [], body, js=POST_JS, css=BENCH_CSS + REVIEW_CSS + POST_CSS)
+
+
 if __name__ == "__main__":
     outs={
+     f"{ROOT}/Post-Review/Weekly Checks/{DATE}-post-review.html": build_post_review,
      f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.html": build_spend,
      f"{ROOT}/Meta Pixel Reviews/Weekly Checks/{DATE}-pixel-domain-check.html": build_pixel,
      f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.html": build_bench,
