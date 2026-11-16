@@ -1,6 +1,7 @@
 """HTML report builder for the three weekly Meta Ads reviews.
-Styled from the HiddenGem Media design system (claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk):
-Inter + Roboto Mono, neutral canvas, brand blue #0066DE for accents, semantic badges, no emoji.
+Styled from the HiddenGem Media design system (claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk, tokens.json; its generated
+tokens.css is stale): Inter + Roboto Mono, white / #0A0A0A canvas, gem yellow #FFD60A fills with gold text
+(#8A7100 light, #FFD935 dark), semantic badges, no emoji. Blue #0066DE was retired by the design system on 2026-10-22.
 Each page is published as a claude.ai artifact; republish to the same URL (see PROJECT.md section 4.4).
 """
 import csv, re, html, collections, os, json
@@ -18,38 +19,49 @@ wordmark = wordmark.replace('fill="#0A0D12"', 'fill="currentColor"').replace('wi
 
 CSS = """
 :root{
-  --bg:#fafafa; --panel:#ffffff; --panel-2:#fafafa; --panel-3:#f5f5f5;
+  --bg:#ffffff; --panel:#ffffff; --panel-2:#fafafa; --panel-3:#f5f5f5;
   --border:#e5e5e5; --border-strong:#d4d4d4;
   --text:#171717; --text-2:#404040; --text-3:#525252; --text-4:#737373;
-  --brand:#0066de; --brand-text:#004faa; --brand-bg:#f6f9ff; --brand-border:#cee0ff;
-  --ok-text:#15803d; --ok-dot:#16a34a; --ok-bg:#f0fdf4; --ok-border:#dcfce7;
-  --warn-text:#a16207; --warn-dot:#ca8a04; --warn-bg:#fefce8; --warn-border:#fef9c3;
-  --err-text:#b91c1c; --err-dot:#dc2626; --err-bg:#fef2f2; --err-border:#fee2e2;
-  --gray-text:#525252; --gray-dot:#a3a3a3; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
-  --shadow-xs:0 1px 2px 0 rgba(10,13,18,.05);
-  --focus:0 0 0 4px rgba(0,102,222,.24);
+  --brand:#ffd60a; --brand-hover:#e0ba00; --on-brand:#0a0a0a; --brand-ring:#b89800;
+  --brand-text:#8a7100; --brand-bg:#fffceb; --brand-border:#8a7100;
+  --ok-text:#008138; --ok-dot:#00a544; --ok-bg:#f0fdf4; --ok-border:#dcfce7;
+  --warn-text:#a36100; --warn-dot:#cd8900; --warn-bg:#fefce8; --warn-border:#fef9c2;
+  --err-text:#bf000f; --err-dot:#e40014; --err-bg:#fef2f2; --err-border:#ffe2e2;
+  --gray-text:#404040; --gray-dot:#a1a1a1; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
+  --shadow-xs:0 0 2px #0000001f,0 1px 2px #00000024;
+  --elev:0 0 2px #0000001f,0 8px 16px #00000024;
+  --focus:0 0 0 2px #ffffff,0 0 0 4px #8a7100;
+  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
+  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
   --border:#262626; --border-strong:#404040;
-  --text:#fafafa; --text-2:#d4d4d4; --text-3:#a3a3a3; --text-4:#a3a3a3;
-  --brand:#2b7fff; --brand-text:#cee0ff; --brand-bg:rgba(0,102,222,.16); --brand-border:rgba(43,127,255,.35);
-  --ok-text:#4ade80; --ok-dot:#22c55e; --ok-bg:rgba(34,197,94,.12); --ok-border:rgba(34,197,94,.3);
-  --warn-text:#facc15; --warn-dot:#eab308; --warn-bg:rgba(234,179,8,.12); --warn-border:rgba(234,179,8,.3);
-  --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
-  --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
-  --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
+  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
+  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
+  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
+  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
+  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
+  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
+  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
+  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
+  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
+  color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
+  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
   --border:#262626; --border-strong:#404040;
-  --text:#fafafa; --text-2:#d4d4d4; --text-3:#a3a3a3; --text-4:#a3a3a3;
-  --brand:#2b7fff; --brand-text:#cee0ff; --brand-bg:rgba(0,102,222,.16); --brand-border:rgba(43,127,255,.35);
-  --ok-text:#4ade80; --ok-dot:#22c55e; --ok-bg:rgba(34,197,94,.12); --ok-border:rgba(34,197,94,.3);
-  --warn-text:#facc15; --warn-dot:#eab308; --warn-bg:rgba(234,179,8,.12); --warn-border:rgba(234,179,8,.3);
-  --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
-  --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
-  --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
+  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
+  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
+  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
+  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
+  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
+  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
+  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
+  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
+  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
@@ -59,9 +71,10 @@ a{color:var(--brand-text);text-decoration:none}a:hover{text-decoration:underline
 code,.mono{font-family:'Roboto Mono',ui-monospace,'SF Mono',Menlo,monospace;font-size:.9em}
 .wordmark{display:block;color:var(--text);height:22px;width:auto}
 .masthead{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid var(--border);margin-bottom:28px}
-.masthead .eyebrow{font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--text-4)}
+.masthead .eyebrow{font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4)}
 header.title{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-h1{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font:600 36px/44px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+@media (max-width:640px){h1{font-size:30px;line-height:38px}}
 .lede{margin:0;color:var(--text-3);max-width:72ch}
 .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border:1px solid var(--border);border-radius:9999px;background:var(--panel);font:500 12px/18px 'Inter',sans-serif;color:var(--text-3)}
@@ -74,7 +87,7 @@ h1{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wra
 .stat .value{font:600 26px/32px 'Inter',sans-serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat .hint{font:400 12px/18px 'Inter',sans-serif;color:var(--text-4)}
 .dot{width:8px;height:8px;border-radius:9999px;display:inline-block;flex:none}
-.dot.ok{background:var(--ok-dot)}.dot.warn{background:var(--warn-dot)}.dot.err{background:var(--err-dot)}.dot.gray{background:var(--gray-dot)}.dot.brand{background:var(--brand)}
+.dot.ok{background:var(--ok-dot)}.dot.warn{background:var(--warn-dot)}.dot.err{background:var(--err-dot)}.dot.gray{background:var(--gray-dot)}.dot.brand{background:var(--brand);box-shadow:inset 0 0 0 1px var(--brand-ring)}
 section{margin-bottom:36px}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
 h2{font:600 20px/30px 'Inter',sans-serif;letter-spacing:-.01em;margin:0}
@@ -103,7 +116,8 @@ td.nowrap{white-space:nowrap}
 .badge.warn{color:var(--warn-text);background:var(--warn-bg);border-color:var(--warn-border)}
 .badge.err{color:var(--err-text);background:var(--err-bg);border-color:var(--err-border)}
 .badge.gray{color:var(--gray-text);background:var(--gray-bg);border-color:var(--gray-border)}
-.badge.brand{color:var(--brand-text);background:var(--brand-bg);border-color:var(--brand-border)}
+.badge.brand{color:var(--on-brand);background:var(--brand);border-color:var(--brand-hover)}
+.badge.brand .dot{background:var(--on-brand);box-shadow:none}
 .alert{border:1px solid;border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
 .alert.err{background:var(--err-bg);border-color:var(--err-border)}
 .alert.warn{background:var(--warn-bg);border-color:var(--warn-border)}
@@ -169,50 +183,9 @@ document.querySelectorAll('[data-filter-for]').forEach(seg=>{
 });
 """
 
-# Client benchmark page only: HiddenGem Media design system (claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk, tokens.json
-# as of Nov 2026: gem yellow #FFD60A fill, gold text, white / #0A0A0A canvas). The other weekly pages keep the earlier blue accent.
-_BENCH_DARK = """
-  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
-  --border:#262626; --border-strong:#404040;
-  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
-  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
-  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
-  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
-  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
-  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
-  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
-  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
-  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
-  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
-  color-scheme:dark;
-"""
+# Client benchmark page only: layout pieces (filter bar, stat band, sections, toggles, client cards). Tokens are in CSS above.
 BENCH_CSS = """
-:root{
-  --bg:#ffffff; --panel:#ffffff; --panel-2:#fafafa; --panel-3:#f5f5f5;
-  --border:#e5e5e5; --border-strong:#d4d4d4;
-  --text:#171717; --text-2:#404040; --text-3:#525252; --text-4:#737373;
-  --brand:#ffd60a; --brand-hover:#e0ba00; --on-brand:#0a0a0a; --brand-ring:#b89800;
-  --brand-text:#8a7100; --brand-bg:#fffceb; --brand-border:#8a7100;
-  --ok-text:#008138; --ok-dot:#00a544; --ok-bg:#f0fdf4; --ok-border:#dcfce7;
-  --warn-text:#a36100; --warn-dot:#cd8900; --warn-bg:#fefce8; --warn-border:#fef9c2;
-  --err-text:#bf000f; --err-dot:#e40014; --err-bg:#fef2f2; --err-border:#ffe2e2;
-  --gray-text:#404040; --gray-dot:#a1a1a1; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
-  --shadow-xs:0 0 2px #0000001f,0 1px 2px #00000024;
-  --elev:0 0 2px #0000001f,0 8px 16px #00000024;
-  --focus:0 0 0 2px #ffffff,0 0 0 4px #8a7100;
-  color-scheme:light;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){""" + _BENCH_DARK + """}}
-:root[data-theme="dark"]{""" + _BENCH_DARK + """}
 [hidden]{display:none!important}
-.masthead .eyebrow{letter-spacing:.14em}
-h1{font-size:36px;line-height:44px}
-@media (max-width:640px){h1{font-size:30px;line-height:38px}}
-.card{border-radius:12px}
-.badge.brand{color:var(--on-brand);background:var(--brand);border-color:var(--brand-hover)}
-.badge.brand .dot{background:var(--on-brand)}
-.dot.brand{background:var(--brand);box-shadow:inset 0 0 0 1px var(--brand-ring)}
-.badge .dot.brand{box-shadow:none}
 td.first a,.ccard a{color:inherit}
 td.first a:hover{color:var(--brand-text)}
 a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
@@ -309,6 +282,31 @@ td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
 .ccard .cname{display:block;font:600 16px/24px 'Inter',sans-serif;color:var(--text)}
 .ccard .csub{display:block;font-size:13px;line-height:18px;color:var(--text-4)}
 @media (max-width:640px){.tgl>summary{padding:14px 16px}.tgl .tact{display:none}.ccard>summary{grid-template-columns:8px minmax(0,1fr) auto;grid-template-areas:"chev main spend" ". states states";padding:14px 16px}.ccard .cstates{justify-content:flex-start}}
+/* client campaign table (inside each card) */
+.ctable thead th,.ctable tbody td{padding-left:12px;padding-right:12px}
+.ctable thead th:first-child,.ctable tbody td:first-child{padding-left:20px}
+.ctable thead th:last-child,.ctable tbody td:last-child{padding-right:20px}
+.ctable tbody td{border-bottom:0}
+.ctable tbody+tbody tr:first-child td{border-top:1px solid var(--border)}
+.ctable tbody:hover td{background:var(--panel-2)}
+.ctable td.first{white-space:normal;min-width:190px}
+.ctable td.res,.ctable td.gov{white-space:normal;min-width:92px}
+.ctable tr.crow td{padding-bottom:8px}
+.ctable tr.cdet td{padding-top:0;padding-bottom:14px}
+.cdl{display:flex;flex-direction:column;gap:2px;font-size:13px;line-height:19px;color:var(--text-3);max-width:120ch}
+.cdl p{margin:0}
+.cdl span{font-weight:600;color:var(--text-2);margin-right:6px}
+@media (max-width:640px){
+  .ctable thead{display:none}
+  .ctable,.ctable tbody,.ctable tr.cdet,.ctable tr.cdet td{display:block}
+  .ctable tbody+tbody{border-top:1px solid var(--border)}
+  .ctable tbody+tbody tr:first-child td{border-top:0}
+  .ctable tr.crow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 12px;padding:14px 16px 8px}
+  .ctable tr.crow td{display:block;padding:0!important;text-align:left;white-space:normal;min-width:0!important;background:transparent!important}
+  .ctable tr.crow td.first{grid-column:1/-1}
+  .ctable tr.crow td[data-l]::before{content:attr(data-l);display:block;font:400 11px/16px 'Inter',sans-serif;color:var(--text-4)}
+  .ctable tr.cdet td{padding:0 16px 14px!important;background:transparent!important}
+}
 /* notes (section 4) */
 .nbody{padding:20px;display:flex;flex-direction:column;gap:28px}
 .nbody h4{font:600 16px/24px 'Inter',sans-serif;margin:0 0 4px}
@@ -794,6 +792,31 @@ def state_badges(states):
     if out: return "".join(out)
     return badge("gray","Under gate") if c["Under gate"] else badge("gray","Not scored")
 
+def client_table(tid, trs):
+    """Per-client campaign table: the numbers on one row, diagnostics and notes on a line under it.
+    One <tbody> per campaign so hover and dividers treat the pair as one; stacks into labelled fields on phones."""
+    hdr=["Campaign","Type","Window","Spend","Results","Governing metric","Frequency","State","Change vs last week"]
+    th="".join(f'<th{" class=num" if h in ("Spend","Results","Governing metric","Frequency") else ""}>{esc(h)}</th>' for h in hdr)
+    def num(c):
+        return badge("warn"," ".join(c.replace("⚠️"," ").split())) if "⚠️" in c else inline(c)
+    bodies=[]
+    for r in trs:
+        r=r+[""]*(11-len(r))
+        camp,typ,win,spend,res,gov,freq,st,diag,notes,chg=r[:11]
+        tds=(f'<td class=first>{inline(camp)}</td>'
+             f'<td class=type data-l="Type">{inline(typ)}</td>'
+             f'<td class=nowrap data-l="Window">{inline(win)}</td>'
+             f'<td class=num data-l="Spend">{inline(spend)}</td>'
+             f'<td class="num res" data-l="Results">{inline(res)}</td>'
+             f'<td class="num gov" data-l="Governing metric">{inline(gov)}</td>'
+             f'<td class=num data-l="Frequency">{num(freq)}</td>'
+             f'<td class=nowrap data-l="State">{state_badge(st.strip())}</td>'
+             f'<td class=status data-l="Change vs last week">{inline(chg)}</td>')
+        det=[(l,v) for l,v in (("Diagnostics",diag),("Notes",notes)) if v.strip() and v.strip()!="—"]
+        dh="".join(f"<p><span>{l}</span>{inline(v)}</p>" for l,v in det)
+        bodies.append(f'<tbody data-flag="{flag_state(st)}"><tr class=crow>{tds}</tr>'+(f'<tr class=cdet><td colspan=9><div class=cdl>{dh}</div></td></tr>' if det else "")+'</tbody>')
+    return f'<div class="tablewrap"><table class="ctable" id="{tid}"><thead><tr>{th}</tr></thead>{"".join(bodies)}</table></div>'
+
 def build_bench():
     md=open(f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.md",encoding="utf-8").read()
     S=sections(md)
@@ -916,7 +939,7 @@ def build_bench():
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
         pausedl=[p for p in ps if p.startswith("Paused in window")]
         tid=f"c{i}"
-        if tbls and len(tbls[0][0])>=11: tbl=render_table(tid,chdr,tbls[0][1:],ckinds,flag_col=7,flag_map=flag_state)
+        if tbls and len(tbls[0][0])>=11: tbl=client_table(tid,tbls[0][1:])
         elif tbls: tbl=render_table(tid,old_chdr,tbls[0][1:],old_ckinds,flag_col=6,flag_map=flag_state)
         else: tbl=f'<div class="empty">{inline(nocamp[0]) if nocamp else "No scored campaigns."}</div>'
         notes_html="".join(f"<dt>Meeting notes</dt><dd>{fmt_note(n)}</dd>" for n in notes) if notes else "<dt>Meeting notes</dt><dd>Not mentioned in this week's meetings.</dd>"

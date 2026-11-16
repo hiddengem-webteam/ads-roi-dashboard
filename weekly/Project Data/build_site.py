@@ -22,7 +22,7 @@ WORKFLOWS = [
     ("pixel-domains", "Pixel domain check", "Meta Pixel Reviews/Weekly Checks", "-pixel-domain-check.html", "-pixel-domain-check.csv",
      "Which domains fire into each client's Meta Pixel; cross-contamination, silent and split pixels."),
     ("client-benchmark", "Client benchmark", "Client Benchmark Reviews (advanced setups)/Weekly Checks", "-client-benchmark.html", "-client-benchmark.csv",
-     "Lead Gen and Sales campaigns of CRM-Advanced clients scored against the Benchmarks doc."),
+     "Sales campaigns of CRM-Advanced clients scored against the Benchmarks doc, with every client's one-line summary."),
 ]
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
@@ -51,7 +51,7 @@ def headline(slug, csv_path):
         live = [r for r in rows if r["source"] == "live"]
         total = sum(float(r["total_live"] or 0) for r in live)
         c = collections.Counter(r["status"] for r in rows)
-        return [("brand", f"${total:,.0f}/day live"), ("warn", f"{c['up'] + c['down']} changed"), ("ok", f"{c['new']} new"),
+        return [("plain", f"${total:,.0f}/day live"), ("warn", f"{c['up'] + c['down']} changed"), ("ok", f"{c['new']} new"),
                 ("gray", f"{c['blocked']} blocked"), ("plain", f"{len(rows)} clients")]
     if slug in ("ad-spend", "pixel-domains"):
         c = collections.Counter(r["flag"] for r in rows)
@@ -61,7 +61,7 @@ def headline(slug, csv_path):
     c = collections.Counter(r["state"] for r in rows)
     return [("err", f"{c['Flag to Shawal']} flag"), ("warn", f"{c['Review w/ HG AI']} review"), ("gray", f"{c['Monitor']} monitor"),
             ("ok", f"{c['Healthy']} healthy"), ("brand", f"{c['Scale w/ HG AI']} scale"),
-            ("plain", f"{sum(1 for r in rows if r['state'] != 'Under gate')} scored, {c['Under gate']} under gate")]
+            ("plain", f"{sum(1 for r in rows if r['state'] not in ('Under gate', 'Tracked in Discovery', 'No promo data') and not r['state'].startswith('Not scored'))} scored, {c['Under gate']} under gate")]
 
 MD_PATHS = {
     "ad-spend": ("Ad Spends Checks/Weekly Checks", "-ad-spend-check.md"),
@@ -217,6 +217,7 @@ def main():
 .wk .wn{font:500 12px/18px 'Roboto Mono',monospace;color:var(--text-4)}
 .latest-list .wk{padding-left:12px}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.grid3>.card+.card{margin-top:0}
 .rcard{display:block;color:inherit;text-decoration:none;transition:box-shadow .15s,border-color .15s}
 .rcard:hover{text-decoration:none;border-color:var(--border-strong);box-shadow:0 4px 6px -1px rgba(10,13,18,.10),0 2px 4px -2px rgba(10,13,18,.06)}
 .rcard:focus-visible{outline:none;box-shadow:var(--focus)}
