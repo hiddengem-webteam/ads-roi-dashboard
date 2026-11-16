@@ -220,7 +220,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 @media (max-width:640px){.stgl .shead h2{font-size:24px;line-height:32px}.stgl .sec-desc,.stgl .smeta{margin-left:0}}
 @media (prefers-reduced-motion: reduce){.stgl .chev{transition:none}}
 /* stat band */
-.band{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));margin:0 0 48px}
+.band{display:grid;grid-template-columns:repeat(var(--n,8),minmax(0,1fr));margin:0 0 48px}
 .band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
 .band .stat .label{font-size:12px;line-height:18px;white-space:nowrap}
 .band .stat+.stat{border-left:1px solid var(--border)}
@@ -593,7 +593,7 @@ def build_spend_legacy(md, rows):
     return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
 
 # ---- 2026-10-15 onwards: live spend ledger, no sheet comparison ----
-STATUS = {"up":("brand","Up"),"down":("warn","Down"),"new":("ok","New"),"same":("gray","Same"),"unchanged":("gray","Same"),
+STATUS = {"up":("brand","Up"),"down":("warn","Down"),"new":("ok","New"),"same":("gray","Same"),"unchanged":("gray","Same"),"reshuffled":("brand","Reshuffled"),
           "blocked":("err","Blocked"),"first run":("gray","First run"),"removed":("gray","Removed")}
 def status_badge(c):
     k,l=STATUS.get(c.strip().lower(),("gray",c.strip())); return badge(k,l)
@@ -611,7 +611,7 @@ def build_spend_v2(md, rows):
     if has_prev:
         d=total-prev; hint=f"vs ${prev:,.0f} last run ({'+' if d>=0 else '−'}${abs(d):,.0f})"
     else: hint="first run"
-    changed=cnt["up"]+cnt["down"]+cnt["new"]
+    changed=cnt["up"]+cnt["down"]+cnt["new"]+cnt["reshuffled"]
     stats=(stat("Clients checked",str(len(rows)),f"{len(live)} live reads, {len(blocked)} blocked")
         +stat("Total live $/day",f"${total:,.0f}",hint)
         +stat("Spent last 7 days",f"${spent:,.0f}",f"${spent/7:,.0f} per day across {len(live)} accounts")
@@ -620,7 +620,7 @@ def build_spend_v2(md, rows):
         +stat("MoF Sales LoL",f"${tot('mof_sales_lol'):,.0f}","per day")
         +stat("BoF Sales",f"${tot('bof_sales'):,.0f}","per day")
         +(stat("Other",f"${tot('other'):,.0f}","per day") if tot("other") else "")
-        +stat("Changed since last run",str(changed),f"{cnt['up']} up, {cnt['down']} down, {cnt['new']} new",dot="brand"))
+        +stat("Changed since last run",str(changed),f"{cnt['up']} up, {cnt['down']} down, {cnt['new']} new"+(f", {cnt['reshuffled']} reshuffled" if cnt['reshuffled'] else ""),dot="brand"))
     ch_lines=S.get("Changes since last week",[]); ch_t=tables(ch_lines)
     if ch_t and len(ch_t[0])>1:
         ch=render_table("changes",ch_t[0][0],ch_t[0][1:],["first","text","num","num","num","badge","notes"],flag_col=5,flag_map=status_group,badge_fn=status_badge)
@@ -635,7 +635,7 @@ def build_spend_v2(md, rows):
     body=f"""
 <div class="stats">{stats}</div>
 <section>
-  <div class="sec-head"><div><h2>Changes since last run</h2><p class="sec-desc">Clients whose live daily budget moved, largest change first, with the campaigns behind it.</p></div></div>
+  <div class="sec-head"><div><h2>Changes since last run</h2><p class="sec-desc">Clients whose live daily budget or campaign mix moved, largest change first, with the campaigns behind it.</p></div></div>
   <div class="card">{ch}</div>
 </section>
 <section>
@@ -770,6 +770,10 @@ def one_liner(text):
     """Opening line of a client's weekly notes, for the overview table."""
     t=re.sub(r"^HG AI notes[^:]*:\s*","",text.strip())
     t=re.sub(r"^no HG AI reports? this week(?: \([^)]*\))?\.\s*","",t,flags=re.I)
+    old=re.match(r"^none dropped in[^.]*\.\s*",t,flags=re.I)   # notes format before 26 Oct
+    if old:
+        t=t[old.end():]
+        if not re.search(r"\d+(?:\.\d+)?x\b|\$[\d,]+|purchase|CPL|\bleads?\b",t): return ""   # a meeting aside, not a weekly read
     sents=[x for x in re.split(r"(?<=[.!?])\s+(?=[A-Z(\"$])",t) if x]
     if not sents: return ""
     out=sents[0]
@@ -778,6 +782,23 @@ def one_liner(text):
     out=re.sub(r"\(\s+",  "(", re.sub(r"\s+\)", ")", out))
     return out[:1].upper()+out[1:]
 
+SHORT_TYPE = {"Retargeting (BoF)":"BoF","Lead Gen (MoF)":"Lead Gen","Prospecting (MoF lookalike)":"Lookalike","Sales (MoF lookalike)":"Lookalike","Sales":"Sales"}
+STATE_SHORT = {"Flag to Shawal":"Flag","Review w/ HG AI":"Review","Monitor":"Monitor","Healthy":"Healthy","Scale w/ HG AI":"Scale"}
+def rows_summary(crows):
+    """One line from a client's CSV rows: each scored campaign's metric and state, worst first."""
+    order={s:i for i,s in enumerate(SCORED_ORDER)}
+    scored=sorted([r for r in crows if r["state"] in order],key=lambda r:(order[r["state"]],-float(r["spend"] or 0)))
+    parts=[]
+    for r in scored[:3]:
+        v=r.get("governing_value") or ""
+        if r.get("governing_metric")=="cpl": m=f"${float(v):.2f} CPL" if v else "no leads"
+        else: m=f"{float(v):.1f}x ROAS" if v else "0 purchases"
+        parts.append(f"{SHORT_TYPE.get(r['type'],r['type'])} {m}, {STATE_SHORT[r['state']]}")
+    if scored[3:]: parts.append(f"+{len(scored)-3} more")
+    if parts: return "; ".join(parts)+"."
+    gate=sum(1 for r in crows if r["state"]=="Under gate")
+    return f"All {gate} campaign{'s' if gate!=1 else ''} under the spend gate." if gate else ""
+
 def state_badges(states):
     """One badge per scored state a client has this week, worst first; '2 Healthy' when repeated."""
     c=collections.Counter(states)
@@ -785,29 +806,32 @@ def state_badges(states):
     if out: return "".join(out)
     return badge("gray","Under gate") if c["Under gate"] else badge("gray","Not scored")
 
-def client_table(tid, trs):
+def client_table(tid, hdr_row, trs):
     """Per-client campaign table: the numbers on one row, diagnostics and notes on a line under it.
     One <tbody> per campaign so hover and dividers treat the pair as one; stacks into labelled fields on phones."""
-    hdr=["Campaign","Type","Window","Spend","Results","Governing metric","Frequency","State","Change vs last week"]
+    keys=["campaign","type","window","spend","results","governing","frequency","state","diagnostics","notes","change"]
+    pos={k:next((i for i,h in enumerate(hdr_row) if h.strip().lower().startswith(k)),None) for k in keys}
+    has_f=pos["frequency"] is not None
+    hdr=["Campaign","Type","Window","Spend","Results","Governing metric"]+(["Frequency"] if has_f else [])+["State","Change vs last week"]
     th="".join(f'<th{" class=num" if h in ("Spend","Results","Governing metric","Frequency") else ""}>{esc(h)}</th>' for h in hdr)
     def num(c):
         return badge("warn"," ".join(c.replace("⚠️"," ").split())) if "⚠️" in c else inline(c)
-    bodies=[]
+    bodies=[]   # columns found by header name: reports before 2026-10-06 have no Frequency column
     for r in trs:
-        r=r+[""]*(11-len(r))
-        camp,typ,win,spend,res,gov,freq,st,diag,notes,chg=r[:11]
+        get=lambda k:(r[pos[k]] if pos[k] is not None and pos[k]<len(r) else "")
+        camp,typ,win,spend,res,gov,freq,st,diag,notes,chg=(get(k) for k in keys)
         tds=(f'<td class=first>{inline(camp)}</td>'
              f'<td class=type data-l="Type">{inline(typ)}</td>'
              f'<td class=nowrap data-l="Window">{inline(win)}</td>'
              f'<td class=num data-l="Spend">{inline(spend)}</td>'
              f'<td class="num res" data-l="Results">{inline(res)}</td>'
              f'<td class="num gov" data-l="Governing metric">{inline(gov)}</td>'
-             f'<td class=num data-l="Frequency">{num(freq)}</td>'
+             +(f'<td class=num data-l="Frequency">{num(freq)}</td>' if has_f else '')+
              f'<td class=nowrap data-l="State">{state_badge(st.strip())}</td>'
              f'<td class=status data-l="Change vs last week">{inline(chg)}</td>')
         det=[(l,v) for l,v in (("Diagnostics",diag),("Notes",notes)) if v.strip() and v.strip()!="—"]
         dh="".join(f"<p><span>{l}</span>{inline(v)}</p>" for l,v in det)
-        bodies.append(f'<tbody data-flag="{flag_state(st)}"><tr class=crow>{tds}</tr>'+(f'<tr class=cdet><td colspan=9><div class=cdl>{dh}</div></td></tr>' if det else "")+'</tbody>')
+        bodies.append(f'<tbody data-flag="{flag_state(st)}"><tr class=crow>{tds}</tr>'+(f'<tr class=cdet><td colspan={len(hdr)}><div class=cdl>{dh}</div></td></tr>' if det else "")+'</tbody>')
     return f'<div class="tablewrap"><table class="ctable" id="{tid}"><thead><tr>{th}</tr></thead>{"".join(bodies)}</table></div>'
 
 def build_bench():
@@ -840,6 +864,17 @@ def build_bench():
         hg=[p for p in ps if p.startswith("HG AI notes")]
         clients.append({"name":parts[0],"am":parts[1].replace("AM ","") if len(parts)>1 else "","parts":parts,"lines":c["lines"],"ps":ps,
                         "spend":int(m.group(1).replace(",","")) if m else 0,"summary":one_liner(hg[0]) if hg else ""})
+    rows_by_client=collections.defaultdict(list)
+    for r in rows: rows_by_client[r["client"]].append(r)
+    has_blended=any(p.startswith("Blended 30d") for c in clients for p in c["ps"])
+    if not has_blended:   # reports before 30 Oct: no all-campaign 30-day spend line
+        for c in clients: c["spend"]=round(sum(float(r["spend"] or 0) for r in rows_by_client[c["name"]]))
+    for c in clients:
+        if not c["summary"]: c["summary"]=rows_summary(rows_by_client[c["name"]])
+    spend_hdr,spend_sub=("Spend, 30 days","spend, 30 days") if has_blended else ("Spend in scoring windows","spend, scoring windows")
+    # Lead Gen campaigns carried a CPL state until the 28 Oct / 4 Nov rule changes
+    lead_era=any(r["type"].startswith("Lead Gen") and r["state"] in SCORED_ORDER for r in rows)
+    has_freq=bool(rows) and "freq_flag" in rows[0]
     clients.sort(key=lambda c:-c["spend"])
     for i,c in enumerate(clients): c["id"]=f"client-{i}"
     card_id={c["name"]:c["id"] for c in clients}
@@ -859,12 +894,13 @@ def build_bench():
     adv_val=m_adv.group(1) if m_adv else adv_raw
     band=(stat("Advanced clients",adv_val,f"+{len(unmapped)} without an ad account" if unmapped else "with an ad account",key="clients")
         +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} under the spend gate",key="scored")
-        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"Under 2x or no purchases",dot="err",key="flag")
-        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"2 to 5x",dot="warn",key="review")
-        +stat("Monitor",str(cnt["Monitor"]),"5 to 8x",dot="gray",key="monitor")
-        +stat("Healthy",str(cnt["Healthy"]),"8 to 15x",dot="ok",key="healthy")
-        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"Above 15x",dot="brand",key="scale")
-        +stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Refresh creative",dot="warn",key="freq"))
+        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"CPL $2.50+ or no leads; ROAS under 2x" if lead_era else "Under 2x or no purchases",dot="err",key="flag")
+        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00–2.50; ROAS 2–5x" if lead_era else "2 to 5x",dot="warn",key="review")
+        +stat("Monitor",str(cnt["Monitor"]),"CPL $0.50–1.00; ROAS 5–8x" if lead_era else "5 to 8x",dot="gray",key="monitor")
+        +stat("Healthy",str(cnt["Healthy"]),"CPL $0.30–0.50; ROAS 8–15x" if lead_era else "8 to 15x",dot="ok",key="healthy")
+        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"CPL under $0.30; ROAS above 15x" if lead_era else "Above 15x",dot="brand",key="scale")
+        +(stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Refresh creative",dot="warn",key="freq") if has_freq else ""))
+    n_tiles=8 if has_freq else 7
 
     # ---------- section 1: all clients
     otr=[]
@@ -881,7 +917,7 @@ def build_bench():
                        f'<td class=first>{esc(u["name"])}</td><td class=nowrap>{esc(u["am"]) or "—"}</td>'
                        f'<td class=sum>Advanced in the CRM, no ad account mapped yet, so nothing is scored.</td>'
                        f'<td class=st>{badge("gray","No ad account")}</td><td class=num>—</td></tr>')
-    overview=(f'<div class="tablewrap"><table id="ovw" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Summary</th><th>State</th><th class=num>Spend, 30 days</th></tr></thead>'
+    overview=(f'<div class="tablewrap"><table id="ovw" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Summary</th><th>State</th><th class=num>{spend_hdr}</th></tr></thead>'
               f'<tbody>{"".join(otr)}</tbody></table><div class="empty" hidden>No clients match this filter.</div></div>')
 
     # ---------- section 2: campaign lists
@@ -910,9 +946,6 @@ def build_bench():
 </details>"""
 
     # ---------- section 3: one collapsible card per client
-    chdr=["Campaign","Type","Window","Spend","Results","Governing metric","Frequency","State","Diagnostics vs investigate lines","Notes","Change vs last week"]
-    ckinds=["first","nowrap","nowrap","num","num","num","num","badge","notes","notes","nowrap"]
-    old_chdr=chdr[:6]+chdr[7:]; old_ckinds=ckinds[:6]+ckinds[7:]   # reports before 2026-10-06 have no Frequency column
     def strip_lbl(p,lbl): return re.sub(r"^"+lbl+r"[^:]*:\s*","",p)
     MN=re.compile(r"^Meeting notes\s*"); PZ=re.compile(r"^Paused in window, not scored:\s*")
     def fmt_note(n):
@@ -932,8 +965,7 @@ def build_bench():
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
         pausedl=[p for p in ps if p.startswith("Paused in window")]
         tid=f"c{i}"
-        if tbls and len(tbls[0][0])>=11: tbl=client_table(tid,tbls[0][1:])
-        elif tbls: tbl=render_table(tid,old_chdr,tbls[0][1:],old_ckinds,flag_col=6,flag_map=flag_state)
+        if tbls: tbl=client_table(tid,tbls[0][0],tbls[0][1:])
         else: tbl=f'<div class="empty">{inline(nocamp[0]) if nocamp else "No scored campaigns."}</div>'
         notes_html="".join(f"<dt>Meeting notes</dt><dd>{fmt_note(n)}</dd>" for n in notes) if notes else "<dt>Meeting notes</dt><dd>Not mentioned in this week's meetings.</dd>"
         paused_html="".join(f"<dt>Paused in window</dt><dd>{inline(PZ.sub('',pl))}</dd>" for pl in pausedl)
@@ -945,7 +977,7 @@ def build_bench():
 </dl>"""
         spend=f'${c["spend"]:,}' if c["spend"] else "—"
         chtml.append(f"""<details class="card ccard" id="{c["id"]}" data-client="{attr(name)}" data-am="{attr(am)}">
-<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">{esc(name)}</span><span class="csub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></span></span><span class="cstates">{src_badge}{state_badges(states_by_client.get(name,[]))}</span><span class="cspend">{spend}<small>spend, 30 days</small></span></summary>
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">{esc(name)}</span><span class="csub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></span></span><span class="cstates">{src_badge}{state_badges(states_by_client.get(name,[]))}</span><span class="cspend">{spend}<small>{spend_sub}</small></span></summary>
 {month_strip(month[0]) if month else ""}
 <div class="tof">{inline(tof[0]) if tof else ""}</div>
 {f'<div class="tof">{inline(blend[0])}</div>' if blend else ""}
@@ -1014,14 +1046,14 @@ def build_bench():
     ovw_meta=badge("gray",f"{n_all} clients")+(badge("gray",f"{len(unmapped)} without an ad account") if unmapped else "")
     body=f"""
 <script type="application/json" id="bench-data">{data}</script>
-<div class="card band">{band}</div>
-{stoggle("overview","01","Overview","One-liner summary (advanced clients)","Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail.",ovw_meta,f'<div class="card">{overview}</div>')}
+<div class="card band" style="--n:{n_tiles}">{band}</div>
+{stoggle("overview","01","Overview","One-liner summary (advanced clients)",("Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail." if has_blended else "Every CRM-Advanced client, highest spend first (scored campaigns: Lead Gen over 30 days, Sales over 14 days). State shows this week's scored campaigns, worst first; the summary lists them. Click a row for the full detail."),ovw_meta,f'<div class="card">{overview}</div>')}
 <section class="sec" id="lists">
-{sec_top("02","Campaign lists","Action needed, scale and frequency","Sales-objective campaigns only. Open a list to see its rows.")}
+{sec_top("02","Campaign lists","Action needed, scale and frequency" if fkey else "Action needed and scale","Lead Gen (CPL) and Sales (ROAS) campaigns. Open a list to see its rows." if lead_era else "Sales-objective campaigns only. Open a list to see its rows.")}
 <div class="stack">
 {toggle("act","Action needed","Flag to Shawal before Review w/ HG AI, highest spend first.",tmeta("act",act_rows,6,"states"),act)}
 {toggle("scale","Scale candidates","Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.",tmeta("scale",sc_rows,6,"count","brand"),sc)}
-{toggle("freq","Frequency watch","14-day frequency above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw)}
+{toggle("freq","Frequency watch","14-day frequency above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw) if fkey else ""}
 </div>
 </section>
 {stoggle("clients","03","Per client","Client detail","Every client with an ad account, in the overview's order. Filter by account manager or client, then open a card for this month's bookings, the campaign table, monthly ROI and notes.",badge("gray",f"{len(clients)} clients"),fbar+f'<div class="cards">{"".join(chtml)}</div>')}
@@ -1029,7 +1061,7 @@ def build_bench():
 <p class="genline">HiddenGem Marketing · weekly Meta Ads review · generated {RUN} from the saved report and CSV sidecar.</p>
 """
     # Header: the 14-day scoring window only. The pulls use Meta's last_14d preset, which ends the day before the run.
-    w0,w1=_d-datetime.timedelta(days=14),_d-datetime.timedelta(days=1)
+    w0,w1=_d-datetime.timedelta(days=30 if lead_era else 14),_d-datetime.timedelta(days=1)
     span=(f"{w0.day} {w0:%b} – {w1.day} {w1:%b %Y}" if w0.year==w1.year else f"{w0.day} {w0:%b %Y} – {w1.day} {w1:%b %Y}")
     return page(f"Client benchmark {WEEK}","","Meta Ads Weekly Review",esc(span),[],body,js=BENCH_JS,css=BENCH_CSS)
 

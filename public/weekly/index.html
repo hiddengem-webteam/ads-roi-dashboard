@@ -193,7 +193,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 @media (max-width:640px){.stgl .shead h2{font-size:24px;line-height:32px}.stgl .sec-desc,.stgl .smeta{margin-left:0}}
 @media (prefers-reduced-motion: reduce){.stgl .chev{transition:none}}
 /* stat band */
-.band{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));margin:0 0 48px}
+.band{display:grid;grid-template-columns:repeat(var(--n,8),minmax(0,1fr));margin:0 0 48px}
 .band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
 .band .stat .label{font-size:12px;line-height:18px;white-space:nowrap}
 .band .stat+.stat{border-left:1px solid var(--border)}
