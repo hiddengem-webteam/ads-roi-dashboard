@@ -247,6 +247,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 thead th{color:var(--text-3)}
 tbody tr:hover td{background:var(--panel-2)}
 td.camp{min-width:180px}
+td.lines{white-space:nowrap;font-variant-numeric:tabular-nums}
 td.type{min-width:110px}
 td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
 .tgl thead th,.tgl tbody td,#ovw thead th,#ovw tbody td{padding-left:12px;padding-right:12px}
@@ -485,6 +486,7 @@ def render_table(tid, header, rows, kinds, flag_col=None, flag_map=None, first_c
             elif k=="notes": tds.append(f"<td class=notes>{inline(c)}</td>")
             elif k=="domains": tds.append(f"<td class=domains>{inline(c).replace(', ',', <wbr>')}</td>")
             elif k=="nowrap": tds.append(f"<td class=nowrap>{inline(c)}</td>")
+            elif k=="lines": tds.append(f'<td class=lines>{"<br>".join(inline(x) for x in c.split(chr(10)))}</td>')
             else: tds.append(f"<td>{inline(c)}</td>")
         trs.append(f"<tr{attrs}>{''.join(tds)}</tr>")
     return f'<div class="tablewrap"><table id="{tid}"{table_attrs}><thead><tr>{th}</tr></thead><tbody>{"".join(trs)}</tbody></table><div class="empty" hidden>No rows match this filter.</div></div>'
@@ -1117,7 +1119,7 @@ def build_bench():
     adv_raw=hdrv.get("Advanced clients","—"); m_adv=re.match(r"(\d+)\s*\(\+(\d+) unmapped\)",adv_raw)
     adv_val=m_adv.group(1) if m_adv else adv_raw
     band=(stat("Advanced clients",adv_val,f"+{len(unmapped)} without an ad account" if unmapped else "with an ad account",key="clients")
-        +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} under the spend gate",key="scored")
+        +stat("Campaigns scored",str(scored),f"{sum(1 for r in rows if r['state']=='Under gate' and (lead_era or not r['type'].startswith('Lead Gen')))} under the spend gate",key="scored")
         +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"CPL $2.50+ or no leads; ROAS under 2x" if lead_era else "Under 2x or no purchases",dot="err",key="flag")
         +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"CPL $1.00–2.50; ROAS 2–5x" if lead_era else "2 to 5x",dot="warn",key="review")
         +stat("Monitor",str(cnt["Monitor"]),"CPL $0.50–1.00; ROAS 5–8x" if lead_era else "5 to 8x",dot="gray",key="monitor")
@@ -1155,6 +1157,32 @@ def build_bench():
     fkinds=["first","text","camp","type","num","num","num","badge"]
     frows=[r for r in tables(S[fkey[0]])[0][1:] if r and r[0].strip()!="—"] if fkey and tables(S[fkey[0]]) else []
     fw=render_table("freq",fhdr,frows,fkinds,flag_col=7,flag_map=flag_state,row_attrs=who,first_href=href,table_attrs=" data-ftable") if frows else '<div class="empty">No Sales or Retargeting campaign above a frequency of 5 this week.</div>'
+    # Under the spend gate: read from each client's own table (spend, results, 30-day read, change vs last week).
+    # Since 4 Nov Lead Gen carries no state at any spend, so only Sales-objective rows belong on this list.
+    GATE_RE=re.compile(r"spend \$([\d,.]+) < \$([\d,]+) gate")
+    def one(s): return re.sub(r"\b1 (purchase|lead)s\b",r"1 \1",s)
+    grows=[]
+    for c in clients:
+        t=tables(c["lines"])
+        if not t: continue
+        h=[x.strip().lower() for x in t[0][0]]
+        col={k:next((i for i,x in enumerate(h) if x.startswith(k)),None) for k in ("campaign","type","window","spend","results","governing","state","notes","change")}
+        for r in t[0][1:]:
+            g=lambda k:(r[col[k]].strip() if col[k] is not None and col[k]<len(r) else "")
+            if g("state")!="Under gate" or (not lead_era and g("type").startswith("Lead Gen")): continue
+            m=GATE_RE.search(g("notes")); spent=float(m.group(1).replace(",","")) if m else float(re.sub(r"[^\d.]","",g("spend")) or 0)
+            gap=f"${max(0,int(m.group(2).replace(',',''))-spent):,.0f} of ${m.group(2)}" if m else "—"
+            gov=g("governing").replace("(diagnostic)","").strip()
+            read=f'{g("window")} '+(one(g("results")) if gov.endswith("—") or not gov else f"{gov} · {one(g('results'))}")
+            m30=re.search(r"30d ROAS ([\d.]+x), (\d+) purchases?",g("notes"))
+            if m30 and g("window")!="30d": read+="\n"+one(f"30d ROAS {m30.group(1)} · {m30.group(2)} purchases")
+            grows.append((spent,[c["name"],c["am"],g("campaign"),g("type"),f'{g("spend")} / {g("window")}',gap,read,g("change")]))
+    grows=[r for _,r in sorted(grows,key=lambda x:-x[0])]   # nearest the gate first
+    ghdr=["Client","AM","Campaign","Type","Spend / window","Left to gate","Read so far","Status vs last week"]
+    gkinds=["first","text","camp","type","num","num","lines","status"]
+    gw=render_table("gate",ghdr,grows,gkinds,row_attrs=who,first_href=href,table_attrs=" data-ftable") if grows else '<div class="empty">No campaign under the spend gate this week.</div>'
+    n_gcl=len({r[0] for r in grows})
+    gmeta=(f'<span class="tmeta" data-meta-for="gate">'+(badge("gray",_plural(len(grows),"campaign"))+badge("gray",_plural(n_gcl,"client")) if grows else badge("gray","None"))+'</span>')
     def tmeta(tid, trows, state_col, mode, kind="gray", unit="campaign"):
         """Badges in a toggle's header; the filter script rewrites them in the same format."""
         if mode=="states":
@@ -1273,11 +1301,12 @@ def build_bench():
 <div class="card band" style="--n:{n_tiles}">{band}</div>
 {stoggle("overview","01","Overview","One-liner summary (advanced clients)",("Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail." if has_blended else "Every CRM-Advanced client, highest spend first (scored campaigns: Lead Gen over 30 days, Sales over 14 days). State shows this week's scored campaigns, worst first; the summary lists them. Click a row for the full detail."),ovw_meta,f'<div class="card">{overview}</div>')}
 <section class="sec" id="lists">
-{sec_top("02","Campaign lists","Action needed, scale and frequency" if fkey else "Action needed and scale","Lead Gen (CPL) and Sales (ROAS) campaigns. Open a list to see its rows." if lead_era else "Sales-objective campaigns only. Open a list to see its rows.")}
+{sec_top("02","Campaign lists","Action needed, scale, frequency and spend gate" if fkey else "Action needed, scale and spend gate","Lead Gen (CPL) and Sales (ROAS) campaigns. Open a list to see its rows." if lead_era else "Sales-objective campaigns only. Open a list to see its rows.")}
 <div class="stack">
 {toggle("act","Action needed","Flag to Shawal before Review w/ HG AI, highest spend first.",tmeta("act",act_rows,6,"states"),act)}
 {toggle("scale","Scale candidates","Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.",tmeta("scale",sc_rows,6,"count","brand"),sc)}
 {toggle("freq","Frequency watch","14-day frequency above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw) if fkey else ""}
+{toggle("gate","Under the spend gate",("Campaigns below their spend gate ($200 in 14 days for Sales, $100 in 30 days for Lead Gen), so they carry no state yet. Nearest the gate first; the reads are early signal only." if lead_era else "Sales campaigns below the $200 gate in 14 days, so they carry no state yet. Nearest the gate first; the 14-day and 30-day reads are early signal only."),gmeta,gw)}
 </div>
 </section>
 {stoggle("clients","03","Per client","Client detail","Every client with an ad account, in the overview's order. Filter by account manager or client, then open a card for this month's bookings, the campaign table, monthly ROI and notes.",badge("gray",f"{len(clients)} clients"),fbar+f'<div class="cards">{"".join(chtml)}</div>')}
