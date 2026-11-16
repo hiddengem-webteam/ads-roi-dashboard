@@ -28,6 +28,7 @@ CSS = """
   --warn-text:#a36100; --warn-dot:#cd8900; --warn-bg:#fefce8; --warn-border:#fef9c2;
   --err-text:#bf000f; --err-dot:#e40014; --err-bg:#fef2f2; --err-border:#ffe2e2;
   --gray-text:#404040; --gray-dot:#a1a1a1; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
+  --hover:#fafafa;
   --shadow-xs:0 0 2px #0000001f,0 1px 2px #00000024;
   --elev:0 0 2px #0000001f,0 8px 16px #00000024;
   --focus:0 0 0 2px #ffffff,0 0 0 4px #8a7100;
@@ -43,6 +44,7 @@ CSS = """
   --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
   --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
   --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --hover:#171717;
   --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
   --elev:0 0 2px #0000003d,0 8px 16px #00000047;
   --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
@@ -58,6 +60,7 @@ CSS = """
   --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
   --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
   --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --hover:#171717;
   --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
   --elev:0 0 2px #0000003d,0 8px 16px #00000047;
   --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
@@ -196,6 +199,26 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 .sec-top h2{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
 .sec-top .sec-desc{margin-top:6px}
 @media (max-width:640px){.sec{margin-bottom:44px}.sec-top h2{font-size:24px;line-height:32px}}
+/* whole-section toggles (01, 03, 04): the heading opens and closes the section */
+.stgl>summary{list-style:none;cursor:pointer;display:block;margin:0 -14px;padding:12px 14px;border-radius:12px;transition:background .1s linear}
+.stgl>summary::-webkit-details-marker{display:none}
+.stgl>summary:hover{background:var(--hover)}
+.stgl>summary:focus-visible{box-shadow:var(--focus)}
+.stgl[open]>summary{margin-bottom:16px}
+.stgl .shead{display:flex;align-items:center;gap:14px}
+.stgl .shead h2{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.stgl .chev{flex:none;width:10px;height:10px;border-right:2px solid var(--text-3);border-bottom:2px solid var(--text-3);transform:rotate(-45deg);margin:0 2px;transition:transform .24s cubic-bezier(.2,0,0,1)}
+.stgl[open]>summary .chev{transform:rotate(45deg)}
+.stgl .tact{margin-left:auto;flex:none;display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);box-shadow:var(--shadow-xs);font:600 14px/20px 'Inter',sans-serif;color:var(--text-2)}
+.stgl .tact::after{content:"Show"}
+.stgl[open] .tact::after{content:"Hide"}
+.stgl .sec-desc{display:block;margin:6px 0 0 28px}
+.stgl .smeta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0 28px}
+.sec.stgl{margin-bottom:28px}
+.sec.stgl[open]{margin-bottom:48px}
+.stgl .fbar{margin-bottom:16px}
+@media (max-width:640px){.stgl .shead h2{font-size:24px;line-height:32px}.stgl .sec-desc,.stgl .smeta{margin-left:0}}
+@media (prefers-reduced-motion: reduce){.stgl .chev{transition:none}}
 /* stat band */
 .band{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));margin:0 0 48px}
 .band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
@@ -322,64 +345,37 @@ td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
 # and remembered open/closed state of the toggle sections (per viewer, localStorage).
 BENCH_JS = """
 (function(){
-  const bar=document.getElementById('fbar'), dataEl=document.getElementById('bench-data');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // section and list toggles: remember each viewer's open / closed choice
+  document.querySelectorAll('details.tgl[id],details.stgl[id]').forEach(d=>{
+    const key='bench.tgl.'+d.id;
+    try{const v=localStorage.getItem(key); if(v==='open') d.open=true; else if(v==='closed') d.open=false;}catch(e){}
+    d.addEventListener('toggle',()=>{try{localStorage.setItem(key,d.open?'open':'closed');}catch(e){}});
+  });
+  const bar=document.getElementById('fbar'), dataEl=document.getElementById('bench-data'), sec=document.getElementById('sec-clients');
   if(!bar||!dataEl) return;
   const D=JSON.parse(dataEl.textContent);
-  const ALL=D.clients.concat(D.unmapped);
   const amSel=document.getElementById('f-am'), clSel=document.getElementById('f-client');
   const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
   const cards=[...document.querySelectorAll('.cards>details[data-client]')];
-  const tables=[...document.querySelectorAll('table[data-ftable]')];
-  const LBL=[['flag','err','Flag to Shawal'],['review','warn','Review w/ HG AI'],['monitor','gray','Monitor'],['healthy','ok','Healthy'],['scale','brand','Scale w/ HG AI']];
-  const NOT_SCORED=s=>s==='Under gate'||s==='Tracked in Discovery'||s==='No promo data'||s.startsWith('Not scored');
-  const ams=[...new Set(ALL.map(c=>c.a).filter(Boolean))].sort();
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const stats={};
-  document.querySelectorAll('[data-stat]').forEach(el=>{const v=el.querySelector('.value'),h=el.querySelector('.hint');stats[el.dataset.stat]={v,h,v0:v.textContent,h0:h?h.innerHTML:''};});
-  const badge=(k,t)=>'<span class="badge '+k+'"><span class="dot '+k+'"></span>'+t+'</span>';
+  const ams=[...new Set(D.clients.map(c=>c.a).filter(Boolean))].sort();
   const plural=(n,w)=>n+' '+w+(n===1?'':'s');
   const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   function fillClients(){
     const am=amSel.value, cur=clSel.value;
-    while(clSel.children.length>1) clSel.removeChild(clSel.lastChild);
-    [['With an ad account',D.clients],['Without an ad account',D.unmapped]].forEach(([label,list])=>{
-      const l=list.filter(c=>am==='all'||c.a===am); if(!l.length) return;
-      const g=document.createElement('optgroup'); g.label=label; l.forEach(c=>g.appendChild(new Option(c.n,c.n))); clSel.appendChild(g);
-    });
+    while(clSel.options.length>1) clSel.remove(1);
+    D.clients.filter(c=>am==='all'||c.a===am).forEach(c=>clSel.add(new Option(c.n,c.n)));
     clSel.value=[...clSel.options].some(o=>o.value===cur)?cur:'all';
   }
   const match=(c,a)=>(amSel.value==='all'||a===amSel.value)&&(clSel.value==='all'||c===clSel.value);
-  function meta(t,vis,tot,on){
-    const box=document.querySelector('[data-meta-for="'+t.id+'"]'); if(!box) return;
-    const unit=box.dataset.unit||'campaign'; let h='';
-    if(box.dataset.meta==='states'){const c={};vis.forEach(r=>{c[r.dataset.flag]=(c[r.dataset.flag]||0)+1;});LBL.forEach(([k,kind,l])=>{if(c[k])h+=badge(kind,c[k]+' '+l);});}
-    else if(vis.length) h=badge(box.dataset.kind||'gray',plural(vis.length,unit));
-    if(!vis.length) h=badge('gray',on?'None for this filter':'None');
-    if(on) h+='<span class="tcount">of '+plural(tot,unit)+' this week</span>';
-    box.innerHTML=h;
-  }
-  function xlabel(){ if(!xall) return; const vis=cards.filter(c=>!c.hidden); xall.textContent=vis.length&&vis.every(c=>c.open)?'Collapse all':'Expand all'; }
+  function xlabel(){ const vis=cards.filter(c=>!c.hidden); xall.textContent=vis.length&&vis.every(c=>c.open)?'Collapse all':'Expand all'; }
+  // the filter narrows the client cards in this section only
   function apply(){
     const am=amSel.value, cl=clSel.value, on=am!=='all'||cl!=='all';
     amSel.classList.toggle('on',am!=='all'); clSel.classList.toggle('on',cl!=='all');
-    tables.forEach(t=>{
-      const rows=[...t.tBodies[0].rows].filter(r=>!r.hasAttribute('data-grp')), vis=rows.filter(r=>match(r.dataset.client,r.dataset.am));
-      rows.forEach(r=>{r.hidden=!vis.includes(r);});
-      t.querySelectorAll('tr[data-grp]').forEach(g=>{g.hidden=!vis.some(r=>r.hasAttribute('data-unmapped'));});
-      t.hidden=!vis.length; const e=t.parentElement.querySelector('.empty'); if(e) e.hidden=!!vis.length;
-      meta(t,vis,rows.length,on);
-    });
     let nc=0; cards.forEach(c=>{const s=match(c.dataset.client,c.dataset.am); c.hidden=!s; if(s){nc++; if(cl!=='all') c.open=true;}});
-    const nu=D.unmapped.filter(c=>match(c.n,c.a)).length;
-    const R=D.rows.filter(r=>match(r[0],r[1])), n={};
-    R.forEach(r=>{n[r[2]]=(n[r[2]]||0)+1;});
-    const set=(k,v,h)=>{const s=stats[k]; if(!s) return; s.v.textContent=on?v:s.v0; if(s.h&&h!==undefined) s.h.innerHTML=on?h:s.h0;};
-    set('clients',String(nc),'of '+D.clients.length+' with an ad account'+(nu?', +'+nu+' without':''));
-    set('scored',String(R.filter(r=>!NOT_SCORED(r[2])).length),(n['Under gate']||0)+' under the spend gate');
-    [['flag','Flag to Shawal'],['review','Review w/ HG AI'],['monitor','Monitor'],['healthy','Healthy'],['scale','Scale w/ HG AI']].forEach(([k,s])=>set(k,String(n[s]||0)));
-    set('freq',String(R.filter(r=>r[3]).length));
     const who=[am!=='all'?esc(am):'',cl!=='all'?esc(cl):''].filter(Boolean).join(' · ');
-    sum.innerHTML=on?'Showing <strong>'+plural(nc+nu,'client')+'</strong> of '+ALL.length+' · '+who:ALL.length+' Advanced clients across '+ams.length+' account managers';
+    sum.innerHTML=on?'Showing <strong>'+plural(nc,'client')+'</strong> of '+cards.length+' · '+who:plural(cards.length,'client')+' across '+ams.length+' account managers';
     clr.hidden=!on; xlabel();
     try{const u=new URL(location.href);
       if(am==='all')u.searchParams.delete('am');else u.searchParams.set('am',am);
@@ -392,12 +388,15 @@ BENCH_JS = """
   const q=new URLSearchParams(location.search);
   if(ams.includes(q.get('am'))) amSel.value=q.get('am');
   fillClients();
-  if(ALL.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
+  if(D.clients.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
   bar.hidden=false;
   apply();
-  // a client name or overview row opens that client's card
+  if(sec&&(amSel.value!=='all'||clSel.value!=='all')) sec.open=true;   // a shared filtered link lands on the cards
+  // a client name or an overview row opens that client's card (clearing a filter that hides it)
   function openCard(id,scroll){
     const d=document.getElementById(id); if(!d) return;
+    if(sec) sec.open=true;
+    if(d.hidden){ amSel.value='all'; fillClients(); clSel.value='all'; apply(); }
     d.open=true; xlabel();
     if(scroll){ try{history.replaceState(null,'','#'+id);}catch(e){} d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); d.querySelector('summary').focus({preventScroll:true}); }
   }
@@ -409,13 +408,7 @@ BENCH_JS = """
   });
   if(/^#client-\\d+$/.test(location.hash)) openCard(location.hash.slice(1),true);
   cards.forEach(c=>c.addEventListener('toggle',xlabel));
-  if(xall) xall.addEventListener('click',()=>{const vis=cards.filter(c=>!c.hidden), open=!vis.every(c=>c.open); vis.forEach(c=>{c.open=open;}); xlabel();});
-  // section toggles: remember each viewer's open / closed choice
-  document.querySelectorAll('details.tgl[id]').forEach(d=>{
-    const key='bench.tgl.'+d.id;
-    try{const v=localStorage.getItem(key); if(v==='open') d.open=true; else if(v==='closed') d.open=false;}catch(e){}
-    d.addEventListener('toggle',()=>{try{localStorage.setItem(key,d.open?'open':'closed');}catch(e){}});
-  });
+  xall.addEventListener('click',()=>{const vis=cards.filter(c=>!c.hidden), open=!vis.every(c=>c.open); vis.forEach(c=>{c.open=open;}); xlabel();});
 })();
 """
 
@@ -516,7 +509,7 @@ def page(title, eyebrow, h1, lede, chips, body, js="", css=""):
 <style>{CSS}{css}</style>
 <div class="page">
 <div class="masthead">{wordmark}<div class="eyebrow">{esc(eyebrow)}</div></div>
-<header class="title"><h1>{esc(h1)}</h1><p class="lede">{lede}</p><div class="meta">{chips_html}</div></header>
+<header class="title"><h1>{esc(h1)}</h1><p class="lede">{lede}</p>{f'<div class="meta">{chips_html}</div>' if chips_html else ""}</header>
 {body}
 </div>
 <script>{JS}{js}</script>
@@ -989,61 +982,56 @@ def build_bench():
     states_para=[p for p in paras(S["_pre"]) if p.startswith("States come from")]
     nm=len(meetings)
     m_lbl=f"{nm} meeting" + ("s" if nm!=1 else "")
-    notes_meta=f'<span class="tmeta">{badge("gray", m_lbl)}{badge("gray", f"{len(foot)} method notes")}</span>'
+    notes_meta=badge("gray", m_lbl)+badge("gray", f"{len(foot)} method notes")
     notes_inner=f"""<div class="nbody">
 <div><h4>Weekly Meta Ads meetings since last run</h4><p class="sec-desc">Notes by Gemini attached to the calendar events, read via Drive. Summary, decisions and next steps as Gemini wrote them; client-specific sentences are also pulled into each client's card. Transcript not used.</p>{meet_block}</div>
 <div><h4>How states are assigned</h4><p class="np">{inline(states_para[0]) if states_para else "—"}</p></div>
 <div><h4>Method and scope</h4><ul class="nl">{"".join(f"<li>{inline(b)}</li>" for b in foot)}</ul></div>
 </div>"""
 
-    # ---------- filter bar (shown by the script; useless without it)
-    am_counts=collections.Counter(a for a in [c["am"] for c in clients]+[u["am"] for u in unmapped] if a)
+    # ---------- filter bar for the client detail section (filters the client cards only; shown by the script)
+    am_counts=collections.Counter(c["am"] for c in clients if c["am"])
     am_opts="".join(f'<option value="{attr(a)}">{esc(a)} ({n})</option>' for a,n in sorted(am_counts.items()))
-    def opts(lst): return "".join(f'<option value="{attr(n)}">{esc(n)}</option>' for n in sorted((x["name"] for x in lst),key=str.lower))
-    cl_opts=f'<optgroup label="With an ad account">{opts(clients)}</optgroup>'+(f'<optgroup label="Without an ad account">{opts(unmapped)}</optgroup>' if unmapped else "")
-    n_all=len(clients)+len(unmapped)
-    fbar=f"""<div class="fbar" id="fbar" role="search" aria-label="Filter this review" hidden>
+    cl_opts="".join(f'<option value="{attr(n)}">{esc(n)}</option>' for n in sorted((c["name"] for c in clients),key=str.lower))
+    fbar=f"""<div class="fbar" id="fbar" role="search" aria-label="Filter client detail" hidden>
 <div class="fld"><label for="f-am">Account manager</label><span class="sel"><select id="f-am"><option value="all">All account managers</option>{am_opts}</select></span></div>
 <div class="fld"><label for="f-client">Client</label><span class="sel"><select id="f-client"><option value="all">All clients</option>{cl_opts}</select></span></div>
 <button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
-<p class="fsum" id="f-sum" aria-live="polite">{n_all} Advanced clients across {len(am_counts)} account managers</p>
+<p class="fsum" id="f-sum" aria-live="polite">{len(clients)} clients across {len(am_counts)} account managers</p>
+<button type="button" class="btn" id="x-all">Expand all</button>
 </div>"""
-    data=json.dumps({"clients":[{"n":c["name"],"a":c["am"]} for c in sorted(clients,key=lambda c:c["name"].lower())],
-                     "unmapped":[{"n":u["name"],"a":u["am"]} for u in sorted(unmapped,key=lambda u:u["name"].lower())],
-                     "rows":[[r["client"],r["am"],r["state"],1 if r.get("freq_flag")=="yes" else 0] for r in rows]},ensure_ascii=False).replace("</","<\\/")
+    data=json.dumps({"clients":[{"n":c["name"],"a":c["am"]} for c in sorted(clients,key=lambda c:c["name"].lower())]},ensure_ascii=False).replace("</","<\\/")
 
     def sec_top(n, eyebrow, title, desc, actions=""):
         return f'<div class="sec-top"><div><span class="eb">{n} · {esc(eyebrow)}</span><h2>{esc(title)}</h2><p class="sec-desc">{desc}</p></div>{actions}</div>'
+    def stoggle(sid, n, eyebrow, title, desc, meta, inner):
+        """A whole section that opens and closes from its own heading."""
+        return f"""<details class="sec stgl" id="sec-{sid}">
+<summary><span class="eb">{n} · {esc(eyebrow)}</span><span class="shead"><span class="chev" aria-hidden="true"></span><h2>{esc(title)}</h2><span class="tact" aria-hidden="true"></span></span><span class="sec-desc">{desc}</span><span class="smeta">{meta}</span></summary>
+{inner}
+</details>"""
+    n_all=len(clients)+len(unmapped)
+    ovw_meta=badge("gray",f"{n_all} clients")+(badge("gray",f"{len(unmapped)} without an ad account") if unmapped else "")
     body=f"""
-{fbar}
 <script type="application/json" id="bench-data">{data}</script>
 <div class="card band">{band}</div>
-<section class="sec" id="overview">
-{sec_top("01","Overview","All clients","Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail.")}
-<div class="card">{overview}</div>
-</section>
+{stoggle("overview","01","Overview","One-liner summary (advanced clients)","Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail.",ovw_meta,f'<div class="card">{overview}</div>')}
 <section class="sec" id="lists">
-{sec_top("02","Campaign lists","Action needed, scale and frequency","Sales-objective campaigns only. Open a list to see its rows; the counts follow the filter.")}
+{sec_top("02","Campaign lists","Action needed, scale and frequency","Sales-objective campaigns only. Open a list to see its rows.")}
 <div class="stack">
 {toggle("act","Action needed","Flag to Shawal before Review w/ HG AI, highest spend first.",tmeta("act",act_rows,6,"states"),act)}
 {toggle("scale","Scale candidates","Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.",tmeta("scale",sc_rows,6,"count","brand"),sc)}
 {toggle("freq","Frequency watch","14-day frequency above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw)}
 </div>
 </section>
-<section class="sec" id="clients">
-{sec_top("03","Per client","Client detail","Same order as the overview. Each card holds this month's bookings, the campaign table, monthly ROI and the client's notes.",'<button type="button" class="btn sm" id="x-all">Expand all</button>')}
-<div class="cards">{"".join(chtml)}</div>
-</section>
-<section class="sec" id="notes">
-{sec_top("04","Notes","Meeting summary and report notes","This week's Meta Ads meeting notes, how states are assigned, and the method behind the numbers.")}
-{toggle("notes","Meta Ads meetings and notes","Gemini meeting summaries, the state rules and the report's method notes.",notes_meta,notes_inner)}
-</section>
+{stoggle("clients","03","Per client","Client detail","Every client with an ad account, in the overview's order. Filter by account manager or client, then open a card for this month's bookings, the campaign table, monthly ROI and notes.",badge("gray",f"{len(clients)} clients"),fbar+f'<div class="cards">{"".join(chtml)}</div>')}
+{stoggle("notes","04","Notes","Meeting summary and report notes","This week's Meta Ads meeting notes, how states are assigned, and the method behind the numbers.",notes_meta,f'<div class="card">{notes_inner}</div>')}
 <p class="genline">HiddenGem Marketing · weekly Meta Ads review · generated {RUN} from the saved report and CSV sidecar.</p>
 """
-    lede="Scores each CRM-Advanced client's Sales-objective Meta campaigns (Retargeting, Prospecting, Sales) on 14-day pixel ROAS against the Benchmarks doc decision table, with this month's bookings, monthly ROI and this week's meeting notes. Lead Gen and Discovery spend are shown for context."
-    rl=run_line(S); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for the (\d+) accounts",rl)
-    chips=[f"Run {RUN}","Sales campaigns: 14-day pixel ROAS, $200 gate","Lead Gen and Discovery: context only"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
-    return page(f"Client benchmark {WEEK}","Weekly Meta Ads review · Client benchmark","Client benchmark review",lede,[esc(c) for c in chips],body,js=BENCH_JS,css=BENCH_CSS)
+    # Header: the 14-day scoring window only. The pulls use Meta's last_14d preset, which ends the day before the run.
+    w0,w1=_d-datetime.timedelta(days=14),_d-datetime.timedelta(days=1)
+    span=(f"{w0.day} {w0:%b} – {w1.day} {w1:%b %Y}" if w0.year==w1.year else f"{w0.day} {w0:%b %Y} – {w1.day} {w1:%b %Y}")
+    return page(f"Client benchmark {WEEK}","","Meta Ads Weekly Review",esc(span),[],body,js=BENCH_JS,css=BENCH_CSS)
 
 
 if __name__ == "__main__":
