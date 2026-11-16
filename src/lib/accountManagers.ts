@@ -3,13 +3,12 @@
 // Base list: whose July 2026 direct-booking spreadsheet each client's data came from (every client
 // appears in exactly one AM's file). Added 2026-11-16 for clients that list was missing: the Master
 // Meta Ads sheet's AM column (weekly ad spend check, 9 Nov 2026), and North Star Lodge & Resort from
-// the CRM via the 9 Nov client benchmark. Three clients read differently on the Master sheet today
-// (Nature Nooks and Stay with Branch: Kristal; The Outpost: Ananya) and are left as below until Shawal
-// confirms the change.
+// the CRM via the 9 Nov client benchmark. Nature Nooks and Stay with Branch (Kristal) and The Outpost
+// (Ananya) follow the Master sheet since 2026-11-16 (Shawal); the CRM still listed The Outpost under Anna.
 export const ACCOUNT_MANAGERS: Record<string, string> = {
   'Three Suns Cabins': 'Anna',
   'Stay Different': 'Anna',
-  'The Outpost': 'Anna',
+  'The Outpost': 'Ananya',
   'Ponderosa Pines Resort': 'Anna',
   'Bison Ridge Retreat': 'Chiara',
   'Stay Southern Illinois': 'Chiara',
@@ -20,7 +19,7 @@ export const ACCOUNT_MANAGERS: Record<string, string> = {
   'Inspired Retreats': 'Makenna',
   'Flohom': 'Makenna',
   'The Cohost Company': 'Makenna',
-  'Stay with Branch': 'Charlotte',
+  'Stay with Branch': 'Kristal',
   'Asheville River Cabins': 'Charlotte',
   'Myrinn': 'Charlotte',
   'Home Base': 'Charlotte',
@@ -30,7 +29,7 @@ export const ACCOUNT_MANAGERS: Record<string, string> = {
   'Dwell': 'Charlotte',
   'Starlight Haven Hot Springs': 'Charlotte',
   'Starlight Haven Weiss Lake': 'Charlotte',
-  'Nature Nooks': 'Alicia',
+  'Nature Nooks': 'Kristal',
   'Wanderin Star Farms': 'Alicia',
   'Hiawassee Glamping': 'Alicia',
   'Awayframes': 'Alicia',

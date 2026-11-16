@@ -7,37 +7,37 @@ import { cn } from '@/lib/utils';
 
 const FLAG_CONFIG: Record<FlagType, { label: string; className: string; icon: React.ElementType }> = {
   'unrecognized-code': {
-    label: 'Unrecognized Code',
+    label: 'Unrecognized code',
     className: 'text-[var(--danger)] bg-[var(--err-bg)] border-[var(--err-border)]',
     icon: AlertCircle,
   },
   'missing-from-promo-sheet': {
-    label: 'Missing from Promo Sheet',
+    label: 'Missing from promo sheet',
     className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
   'net-income-warning': {
-    label: 'NET INCOME Revenue',
+    label: 'NET INCOME revenue',
     className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
   'name-only-match': {
-    label: 'Name-Only Match',
+    label: 'Name-only match',
     className: 'text-[var(--brand)] bg-[var(--fill-blue)] border-[var(--border)]',
     icon: Info,
   },
   'platform-email': {
-    label: 'Platform Email Excluded',
+    label: 'Platform email excluded',
     className: 'text-[var(--muted)] bg-[var(--fill-gray)] border-[var(--border)]',
     icon: Info,
   },
   'no-pms-data': {
-    label: 'Parse Error',
+    label: 'Parse error',
     className: 'text-[var(--danger)] bg-[var(--err-bg)] border-[var(--err-border)]',
     icon: AlertCircle,
   },
   'missing-ghl': {
-    label: 'Missing GHL Data',
+    label: 'Missing GHL data',
     className: 'text-[var(--warning-ink)] bg-[var(--warn-bg)] border-[var(--warn-border)]',
     icon: AlertTriangle,
   },
@@ -73,7 +73,7 @@ export default function FlagPanel({ flags }: { flags: Flag[] }) {
             const Icon = config.icon;
             return (
               <div key={type} className="px-6 py-4">
-                <p className="text-[11px] font-semibold text-[var(--muted-soft)] uppercase tracking-[0.04em] mb-2">
+                <p className="text-[11px] font-medium text-[var(--muted-soft)] mb-2">
                   {config.label}
                 </p>
                 <ul className="space-y-2">

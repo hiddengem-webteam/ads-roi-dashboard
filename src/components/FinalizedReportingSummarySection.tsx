@@ -88,7 +88,7 @@ function SummaryCard({
 }) {
   return (
     <div className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] px-6 py-6">
-      <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-2">{label}</p>
+      <p className="text-[12px] font-medium text-[var(--muted)] mb-2">{label}</p>
       {value ? (
         <>
           <p className="text-[26px] font-semibold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
@@ -196,21 +196,21 @@ export default function FinalizedReportingSummarySection({
     <div className="space-y-4">
       {note && (
         <div className="bg-[var(--fill-blue)] border border-[var(--brand-border)] rounded-[12px] px-5 py-3.5">
-          <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Note</p>
+          <p className="text-[11px] font-semibold text-[var(--brand)] mb-1">Note</p>
           <p className="text-[13px] text-[var(--foreground)] leading-relaxed">{note}</p>
         </div>
       )}
       {/* Row 1: overall direct booking totals */}
       <div className="grid grid-cols-2 gap-4">
         <SummaryCard
-          label="Total Direct Bookings"
+          label="Total direct bookings"
           value={bookingCount > 0 ? formatNumber(bookingCount) : undefined}
           sub={bookingCount > 0 ? 'All sources' : undefined}
           placeholder="No PMS data"
           trend={trend('bookings')}
         />
         <SummaryCard
-          label="Total Direct Booking Revenue"
+          label="Total direct booking revenue"
           value={hasDisplayRevenue ? formatCurrency(displayRevenue) : undefined}
           sub={hasDisplayRevenue ? revenueSub : undefined}
           placeholder="No revenue data"
@@ -221,21 +221,21 @@ export default function FinalizedReportingSummarySection({
       {/* Row 2: Meta ad spend + attribution */}
       <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="Overall Spend"
+          label="Overall spend"
           value={hasSpend ? formatCurrency(totalSpend) : undefined}
           sub={hasSpend ? 'All campaign types combined' : undefined}
           placeholder="No ad data"
           trend={trend('spend', true)}
         />
         <SummaryCard
-          label="Total Direct Bookings Attributed to Meta"
+          label="Total direct bookings attributed to Meta"
           value={hasMetaAttributedBookings ? formatNumber(metaAttributedBookings) : undefined}
           sub={hasMetaAttributedBookings ? (metaAttributedBookingsRaw > metaAttributedBookings ? 'Followers + Retargeting + New Leads · capped at total bookings' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
           trend={trend('attributedBookings')}
         />
         <SummaryCard
-          label="Cost per Total Direct Bookings Attributed to Meta"
+          label="Cost per total direct bookings attributed to Meta"
           value={costPerMetaBooking !== null ? formatCurrency(costPerMetaBooking) : undefined}
           sub={costPerMetaBooking !== null ? `${formatCurrency(totalSpend)} ÷ ${metaAttributedBookings} booking${metaAttributedBookings !== 1 ? 's' : ''}` : undefined}
           placeholder="No data"
@@ -246,14 +246,14 @@ export default function FinalizedReportingSummarySection({
       {/* Row 3: Meta ad efficiency + revenue */}
       <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="% of Booking Value"
+          label="% of booking value"
           value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : undefined}
           sub={pctOfBookingValue !== null ? `${formatCurrency(totalSpend)} spend ÷ ${formatCurrency(metaAttributedRevenue)} Meta-attributed revenue` : undefined}
           placeholder="No data"
           trend={trend('pctOfBookingValue', true)}
         />
         <SummaryCard
-          label="Direct Booking Revenue (Attributed to Meta Ads)"
+          label="Direct booking revenue (attributed to Meta Ads)"
           value={hasMetaAttributedRevenue ? formatCurrency(metaAttributedRevenue) : undefined}
           sub={hasMetaAttributedRevenue ? (metaAttributedRevenueRaw > metaAttributedRevenue ? 'Followers + Retargeting + New Leads · capped at total revenue' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
@@ -275,7 +275,7 @@ export default function FinalizedReportingSummarySection({
           why the two cards above match. */}
       {hasMetaAttributedRevenue && metaAttributedRevenueRaw > metaAttributedRevenue && (
         <div className="bg-[var(--fill-blue)] border border-[var(--brand-border)] rounded-[12px] px-5 py-3.5">
-          <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Why attributed revenue equals total direct revenue</p>
+          <p className="text-[11px] font-semibold text-[var(--brand)] mb-1">Why attributed revenue equals total direct revenue</p>
           <p className="text-[13px] text-[var(--foreground)] leading-relaxed">
             Promo-code bookings ({formatCurrency(followersRan ? campaignRevenue.followers : 0)}), Meta-reported retargeting purchases ({formatCurrency(retargetingRan ? campaignRevenue.retargeting : 0)}) and lead-form bookings ({formatCurrency(newLeadsRan ? campaignRevenue.newLeads : 0)}) add up to {formatCurrency(metaAttributedRevenueRaw)}, more than the {formatCurrency(capRevenue)} of direct booking revenue in {period.label}. The buckets overlap (a guest who used a promo code can also be counted by Meta as a retargeting purchase), so Meta-attributed revenue is capped at 100% of direct revenue and the ROAS uses the capped figure.
           </p>
@@ -285,7 +285,7 @@ export default function FinalizedReportingSummarySection({
       {/* Row 4: combined leads from the client reporting sheet */}
       <div className="grid grid-cols-1 gap-4">
         <SummaryCard
-          label="Total Leads"
+          label="Total leads"
           value={totalLeads !== null && totalLeads > 0 ? formatNumber(totalLeads) : undefined}
           sub={totalLeads !== null && totalLeads > 0 ? `New leads in ${period.label} · from client reporting sheet` : undefined}
           placeholder="Not listed in the client reporting sheet"

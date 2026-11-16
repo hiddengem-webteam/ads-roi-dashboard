@@ -39,7 +39,7 @@ function SummaryCard({
 }) {
   return (
     <div className="bg-[var(--surface)] rounded-[12px] border border-[var(--border)] shadow-[var(--shadow-xs)] px-6 py-6">
-      <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-2">{label}</p>
+      <p className="text-[12px] font-medium text-[var(--muted)] mb-2">{label}</p>
       {value ? (
         <>
           <p className="text-[26px] font-semibold text-[var(--foreground)] tracking-[-0.01em] leading-[1.15] july-tabular">{value}</p>
@@ -136,13 +136,13 @@ export default function ClientSummarySection({
       {/* Row 1: overall direct booking totals */}
       <div className="grid grid-cols-2 gap-4">
         <SummaryCard
-          label="Total Direct Bookings"
+          label="Total direct bookings"
           value={bookingCount > 0 ? formatNumber(bookingCount) : undefined}
           sub={bookingCount > 0 ? 'All sources' : undefined}
           placeholder="No PMS data"
         />
         <SummaryCard
-          label="Total Direct Booking Revenue"
+          label="Total direct booking revenue"
           value={hasRevenue ? formatCurrency(directBookingRevenue) : undefined}
           sub={revenueSub}
           placeholder="No PMS data"
@@ -152,19 +152,19 @@ export default function ClientSummarySection({
       {/* Row 2: Meta ad spend + attribution */}
       <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="Overall Spend"
+          label="Overall spend"
           value={hasSpend ? formatCurrency(totalSpend) : undefined}
           sub={hasSpend ? 'All campaign types combined' : undefined}
           placeholder="No ad data"
         />
         <SummaryCard
-          label="Total Direct Bookings Attributed to Meta"
+          label="Total direct bookings attributed to Meta"
           value={hasMetaAttributedBookings ? formatNumber(metaAttributedBookings) : undefined}
           sub={hasMetaAttributedBookings ? (metaAttributedBookingsRaw > metaAttributedBookings ? 'Followers + Retargeting + New Leads · capped at total bookings' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
         />
         <SummaryCard
-          label="Cost per Total Direct Bookings Attributed to Meta"
+          label="Cost per total direct bookings attributed to Meta"
           value={costPerMetaBooking !== null ? formatCurrency(costPerMetaBooking) : undefined}
           sub={costPerMetaBooking !== null ? `${formatCurrency(totalSpend)} ÷ ${metaAttributedBookings} booking${metaAttributedBookings !== 1 ? 's' : ''}` : undefined}
           placeholder="No data"
@@ -174,13 +174,13 @@ export default function ClientSummarySection({
       {/* Row 3: Meta ad efficiency + revenue */}
       <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="% of Booking Value"
+          label="% of booking value"
           value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : undefined}
           sub={pctOfBookingValue !== null ? `Cost per Meta booking ÷ ${formatCurrency(avgDirectBookingValue)} avg booking value` : undefined}
           placeholder="No data"
         />
         <SummaryCard
-          label="Direct Booking Revenue (Attributed to Meta Ads)"
+          label="Direct booking revenue (attributed to Meta Ads)"
           value={hasMetaAttributedRevenue ? formatCurrency(metaAttributedRevenue) : undefined}
           sub={hasMetaAttributedRevenue ? (metaAttributedRevenueRaw > metaAttributedRevenue ? 'Followers + Retargeting + New Leads · capped at total revenue' : 'Followers + Retargeting + New Leads') : undefined}
           placeholder="No attribution data"
@@ -198,19 +198,19 @@ export default function ClientSummarySection({
           contact list. */}
       <div className="grid grid-cols-3 gap-4">
         <SummaryCard
-          label="Meta Ads Leads (from GHL)"
+          label="Meta Ads leads (from GHL)"
           value={ghlTagLeads?.['meta ads lead'] != null ? formatNumber(ghlTagLeads['meta ads lead']) : undefined}
           sub={ghlTagLeads?.['meta ads lead'] != null ? 'Meta lead ads · tag “meta ads lead”' : undefined}
           placeholder="No GHL data"
         />
         <SummaryCard
-          label="Instagram Leads (from GHL)"
+          label="Instagram leads (from GHL)"
           value={ghlTagLeads?.['instagram lead'] != null ? formatNumber(ghlTagLeads['instagram lead']) : undefined}
           sub={ghlTagLeads?.['instagram lead'] != null ? 'IG bio + organic · tag “instagram lead”' : undefined}
           placeholder="No GHL data"
         />
         <SummaryCard
-          label="Facebook Leads (from GHL)"
+          label="Facebook leads (from GHL)"
           value={ghlTagLeads?.['facebook lead'] != null ? formatNumber(ghlTagLeads['facebook lead']) : undefined}
           sub={ghlTagLeads?.['facebook lead'] != null ? 'FB bio + organic · tag “facebook lead”' : undefined}
           placeholder="No GHL data"

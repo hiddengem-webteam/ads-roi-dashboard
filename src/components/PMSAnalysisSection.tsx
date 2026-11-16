@@ -75,10 +75,10 @@ function PromoCodeTable({ codes }: { codes: PromoCodeResult[] }) {
         <thead>
           <tr className="bg-[var(--fill-gray)] border-b border-[var(--border)]">
             <Th></Th>
-            <Th>Guest Name</Th>
+            <Th>Guest name</Th>
             <Th>Email</Th>
             <Th>Code</Th>
-            <Th right>Amount Paid</Th>
+            <Th right>Amount paid</Th>
           </tr>
         </thead>
         <tbody className="divide-y divide-[var(--divider)]">
@@ -119,7 +119,7 @@ function EmailMatchTable({ matches, showSource }: { matches: EmailMatchRow[]; sh
             <Th>Guest</Th>
             <Th>Email</Th>
             {showSource && <Th>Source</Th>}
-            <Th>Matched Via</Th>
+            <Th>Matched via</Th>
             <Th right>Bookings</Th>
             <Th right>Revenue</Th>
           </tr>
@@ -169,7 +169,7 @@ function CollapsibleList({
           onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setOpen((v) => !v)}
           className="flex items-center gap-2 cursor-pointer select-none"
         >
-          <span className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em]">{label}</span>
+          <span className="text-[12px] font-medium text-[var(--muted)]">{label}</span>
           <span className="text-[12px] text-[var(--muted-soft)] font-normal">({count})</span>
           <ChevronDown
             className={`w-4 h-4 text-[var(--muted-soft)] transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
@@ -193,7 +193,7 @@ function EmptyState({ message }: { message: string }) {
 function Th({ children, right }: { children?: React.ReactNode; right?: boolean }) {
   return (
     <th
-      className={`px-4 py-3 text-[11px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] ${
+      className={`px-4 py-3 text-[11px] font-medium text-[var(--muted)] ${
         right ? 'text-right' : 'text-left'
       }`}
     >
@@ -240,7 +240,7 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
       {showPromo && (
       <Card>
         <CardContent>
-          <SectionLabel number={1} title="Promo Code Analysis" />
+          <SectionLabel number={1} title="Promo code analysis" />
 
           {promoCode.netIncomeWarning && (
             <div className="flex items-center gap-2 text-[12px] text-[var(--warning-ink)] bg-[var(--warn-bg)] border border-[var(--warn-border)] rounded-[8px] px-3 py-2 mb-4">
@@ -250,9 +250,9 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           )}
 
           <div className="grid grid-cols-3 gap-3 mb-5">
-            <StatCard label="Total Uses" value={totalPromoUses} />
-            <StatCard label="Total Revenue" value={formatCurrency(totalPromoRev)} />
-            <StatCard label="Codes Active" value={`${activeCodeCount} of ${promoCode.codes.length}`} />
+            <StatCard label="Total uses" value={totalPromoUses} />
+            <StatCard label="Total revenue" value={formatCurrency(totalPromoRev)} />
+            <StatCard label="Codes active" value={`${activeCodeCount} of ${promoCode.codes.length}`} />
           </div>
 
           {/* Per-code summary pills */}
@@ -286,7 +286,7 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           )}
 
           <CollapsibleList
-            label="Promo Code List"
+            label="Promo code list"
             count={promoCode.codes.flatMap((c) => c.guests).length}
             copyButton={<CopyButton getText={() => promoListToTabText(promoCode.codes)} label="Copy list" />}
           >
@@ -317,22 +317,22 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           scripts/sync-ghl-email-matches.mts) */}
       <Card>
         <CardContent>
-          <SectionLabel number={showPromo ? 2 : 1} title="Ads Email Analysis" />
+          <SectionLabel number={showPromo ? 2 : 1} title="Ads email analysis" />
           {emailMatches ? (
             <>
               <div className="grid grid-cols-3 gap-3 mb-5">
                 <StatCard
-                  label="Matched Emails"
+                  label="Matched emails"
                   value={formatNumber(emailMatches.ads.matchedEmails)}
                   sub="Booking emails matched to Meta-ads leads in GHL"
                 />
                 <StatCard
-                  label="Attributed Bookings"
+                  label="Attributed bookings"
                   value={formatNumber(emailMatches.ads.bookings)}
                   sub="Bookings by those guests this period"
                 />
                 <StatCard
-                  label="Attributed Revenue"
+                  label="Attributed revenue"
                   value={formatCurrency(emailMatches.ads.revenue)}
                   sub="Revenue from the matched emails"
                 />
@@ -355,22 +355,22 @@ export default function PMSAnalysisSection({ analysis, emailMatches }: PMSAnalys
           organic Instagram or Facebook */}
       <Card>
         <CardContent>
-          <SectionLabel number={showPromo ? 3 : 2} title="Organic Lead Email Analysis" />
+          <SectionLabel number={showPromo ? 3 : 2} title="Organic lead email analysis" />
           {emailMatches ? (
             <>
               <div className="grid grid-cols-3 gap-3 mb-5">
                 <StatCard
-                  label="Matched Emails"
+                  label="Matched emails"
                   value={formatNumber(emailMatches.organic.matchedEmails)}
                   sub={`Instagram ${emailMatches.organic.instagram ?? 0} · Facebook ${emailMatches.organic.facebook ?? 0}`}
                 />
                 <StatCard
-                  label="Attributed Bookings"
+                  label="Attributed bookings"
                   value={formatNumber(emailMatches.organic.bookings)}
                   sub="Bookings by those guests this period"
                 />
                 <StatCard
-                  label="Attributed Revenue"
+                  label="Attributed revenue"
                   value={formatCurrency(emailMatches.organic.revenue)}
                   sub="Revenue from the matched emails"
                 />

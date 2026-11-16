@@ -100,7 +100,7 @@ function CampaignPanel({
       <div className="grid grid-cols-3 gap-3">
         <StatCard label="Spend" value={formatCurrency(s.spend)} sub="Facebook Ads Manager" />
         <StatCard label="Impressions" value={formatNumber(s.impressions)} sub="Facebook Ads Manager" />
-        <StatCard label="Link Clicks" value={formatNumber(s.linkClicks)} sub="Facebook Ads Manager" />
+        <StatCard label="Link clicks" value={formatNumber(s.linkClicks)} sub="Facebook Ads Manager" />
       </div>
 
 
@@ -113,7 +113,7 @@ function CampaignPanel({
             sub="Facebook lead form submissions"
           />
           <StatCard
-            label="Cost Per Lead"
+            label="Cost per lead"
             value={s.leads > 0 ? formatCurrency(s.spend / s.leads) : '—'}
             sub={s.leads > 0 ? `${formatCurrency(s.spend)} ÷ ${formatNumber(s.leads)} leads` : undefined}
           />
@@ -125,17 +125,17 @@ function CampaignPanel({
         <>
           <div className="grid grid-cols-3 gap-3">
             <StatCard
-              label="Total Bookings"
+              label="Total bookings"
               value={formatNumber(attributedBookings)}
               sub={totalBookingsSub}
             />
             <StatCard
-              label="Cost Per Booking"
+              label="Cost per booking"
               value={costPerBooking !== null ? formatCurrency(costPerBooking) : '—'}
               sub={costPerBooking !== null ? `${formatCurrency(s.spend)} ÷ ${attributedBookings} booking${attributedBookings !== 1 ? 's' : ''}` : undefined}
             />
             <StatCard
-              label="% of Booking Value"
+              label="% of booking value"
               value={pctOfBookingValue !== null ? `${pctOfBookingValue.toFixed(1)}%` : '—'}
               sub={pctOfBookingValue !== null ? `Cost per booking ÷ ${formatCurrency(campaignAvgBookingValue!)} avg booking value (this campaign)` : undefined}
             />
@@ -143,7 +143,7 @@ function CampaignPanel({
 
           <div className="grid grid-cols-3 gap-3">
             <StatCard
-              label="Booking Revenue"
+              label="Booking revenue"
               value={bookingRevenue > 0 ? formatCurrency(bookingRevenue) : '—'}
               sub={bookingRevenueSub}
             />
@@ -190,8 +190,8 @@ export default function FacebookStatsSection({ stats, campaignRevenue, instagram
     <Card>
       {/* Section label */}
       <div className="px-6 pt-5 pb-0">
-        <p className="text-[12px] font-semibold text-[var(--muted)] uppercase tracking-[0.04em] mb-4">
-          Facebook Campaign Stats
+        <p className="text-[12px] font-medium text-[var(--muted)] mb-4">
+          Facebook campaign stats
         </p>
         {/* Tabs */}
         <div className="flex gap-2 border-b border-[var(--border)] -mx-6 px-6">
