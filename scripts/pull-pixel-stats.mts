@@ -1,6 +1,6 @@
 /**
  * Weekly pixel pull for the pixel domain check, through the Meta Marketing API
- * with the HiddenGem-Claude system user token (META_ACCESS_TOKEN in .env).
+ * with the HG - ROI Dashboard system user token (META_ACCESS_TOKEN in .env).
  * Replaces the claude.ai Meta connector path from 2026-10-19.
  *
  *   npx tsx scripts/pull-pixel-stats.mts [YYYY-MM-DD]

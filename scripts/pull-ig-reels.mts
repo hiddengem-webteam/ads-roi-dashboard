@@ -5,7 +5,7 @@
  *
  *   npx tsx scripts/pull-ig-reels.mts <client name as the Facebook Page is named> [YYYY-MM-DD] [--days 90] [--top 5] [--out DIR]
  *
- * Access (2026-10-21): the HiddenGem-Claude system user token (META_ACCESS_TOKEN in .env)
+ * Access (2026-10-21): the HG - ROI Dashboard system user token (META_ACCESS_TOKEN in .env)
  * with instagram_basic + instagram_manage_insights. /me/accounts does not expand the IG
  * account for a system user, so the Page's own token resolves it; media and insights
  * are then read with the system user token. Reels with licensed audio carry no media_url,

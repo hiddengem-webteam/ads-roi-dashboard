@@ -1,6 +1,6 @@
 /**
  * Weekly campaign pull for the client benchmark review, through the Meta
- * Marketing API with the HiddenGem-Claude system user token (META_ACCESS_TOKEN
+ * Marketing API with the HG - ROI Dashboard system user token (META_ACCESS_TOKEN
  * in .env). Replaces the claude.ai Meta connector's ads_get_ad_entities calls
  * from 2026-10-19.
  *

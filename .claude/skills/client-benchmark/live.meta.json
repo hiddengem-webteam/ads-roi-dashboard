@@ -1,8 +1,10 @@
 {
- "run_date": "2026-11-09",
- "pulled_from": "2026-11-09T15:57:32.380Z",
- "pulled_to": "2026-11-09T16:00:39.437Z",
- "accounts": 24,
- "rows": 167,
- "errors": []
+ "run_date": "2026-11-16",
+ "pulled_from": "2026-11-16T16:44:43.665Z",
+ "pulled_to": "2026-11-16T16:50:34.954Z",
+ "accounts": 26,
+ "rows": 185,
+ "errors": [
+  "Dunya Camp (629838998232110) activities: 1 An unknown error occurred"
+ ]
 }

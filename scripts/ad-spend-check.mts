@@ -1,6 +1,6 @@
 /**
  * Weekly ad spend check: the live daily budget per client and per campaign
- * type, read straight from the Meta Marketing API with the HiddenGem-Claude
+ * type, read straight from the Meta Marketing API with the HG - ROI Dashboard
  * system user token (META_ACCESS_TOKEN in .env, gitignored). No comparison
  * against the Master sheet's documented budget (dropped 2026-10-15, Shawal):
  * the report is a spend ledger plus the week-over-week change.
@@ -215,17 +215,18 @@ async function main() {
         change = total - prevTotal;
         status = change > 0.005 ? 'up' : change < -0.005 ? 'down' : 'unchanged';
         const pc = prev.campaigns?.get(c.id);
-        if (status !== 'unchanged') {
-          if (pc) {
-            const parts: string[] = [];
-            for (const [name, b] of detail) {
-              if (!pc.has(name)) parts.push(`added ${name} ${money(b)}`);
-              else if (Math.abs(pc.get(name)! - b) > 0.005) parts.push(`${name} ${money(pc.get(name)!)} to ${money(b)}`);
-            }
-            for (const [name, b] of pc) if (!detail.has(name)) parts.push(`removed ${name} ${money(b)}`);
-            whatChanged = parts.join('; ');
-          } else whatChanged = 'total only; the previous run did not record campaigns';
-        }
+        if (pc) {
+          const parts: string[] = [];
+          for (const [name, b] of detail) {
+            if (!pc.has(name)) parts.push(`added ${name} ${money(b)}`);
+            else if (Math.abs(pc.get(name)! - b) > 0.005) parts.push(`${name} ${money(pc.get(name)!)} to ${money(b)}`);
+          }
+          for (const [name, b] of pc) if (!detail.has(name)) parts.push(`removed ${name} ${money(b)}`);
+          // Same total but a different campaign mix (2026-11-16: three accounts funded a new
+          // lookalike by cutting other campaigns and were hidden as "unchanged").
+          if (status === 'unchanged' && parts.length) status = 'reshuffled';
+          if (status !== 'unchanged') whatChanged = parts.join('; ');
+        } else if (status !== 'unchanged') whatChanged = 'total only; the previous run did not record campaigns';
       }
     }
     rows.push({ c, sums, total, detail, err, spend7d: sp, prevTotal, change, status, whatChanged });
@@ -250,16 +251,16 @@ async function main() {
   const spentRows = live.filter((r) => r.spend7d !== null);
   const spent7 = spentRows.reduce((s, r) => s + (r.spend7d ?? 0), 0);
   const prevTotalAll = live.reduce((s, r) => s + (r.prevTotal ?? 0), 0);
-  const changed = rows.filter((r) => ['up', 'down', 'new'].includes(r.status)).sort((a, b) => Math.abs(b.change ?? b.total) - Math.abs(a.change ?? a.total));
+  const changed = rows.filter((r) => ['up', 'down', 'new', 'reshuffled'].includes(r.status)).sort((a, b) => Math.abs(b.change ?? b.total) - Math.abs(a.change ?? a.total));
   const ledger = [...rows].sort((a, b) => b.total - a.total || a.c.client.localeCompare(b.c.client));
-  const statusWord: Record<string, string> = { up: 'Up', down: 'Down', new: 'New', unchanged: 'Same', blocked: 'Blocked', first_run: 'First run' };
+  const statusWord: Record<string, string> = { up: 'Up', down: 'Down', new: 'New', unchanged: 'Same', reshuffled: 'Reshuffled', blocked: 'Blocked', first_run: 'First run' };
   const removed = prev ? [...prev.totals.keys()].filter((id) => !clients.some((c) => c.id === id)) : [];
   const n = rows.length;
-  const up = rows.filter((r) => r.status === 'up').length, down = rows.filter((r) => r.status === 'down').length, nnew = rows.filter((r) => r.status === 'new').length;
+  const up = rows.filter((r) => r.status === 'up').length, down = rows.filter((r) => r.status === 'down').length, nnew = rows.filter((r) => r.status === 'new').length, resh = rows.filter((r) => r.status === 'reshuffled').length;
 
   const L: string[] = [];
   L.push(`# Ad spend check — ${RUN_DATE}`, '');
-  L.push(`Run: ${longDate(RUN_DATE)} (${weekday(RUN_DATE)}; live reads ${ptTime(t0)}–${ptTime(t1)} PT through the Meta Marketing API with the HiddenGem-Claude system user). ${prev ? `Compared against ${prev.file}.` : 'First run, no prior report.'}`, '');
+  L.push(`Run: ${longDate(RUN_DATE)} (${weekday(RUN_DATE)}; live reads ${ptTime(t0)}–${ptTime(t1)} PT through the Meta Marketing API with the HG - ROI Dashboard system user). ${prev ? `Compared against ${prev.file}.` : 'First run, no prior report.'}`, '');
   L.push('Meta Ad Spends tab: not pushed yet.', '');
   L.push('| Clients | Live reads | Blocked | Total live $/day | ToF Giveaway | MoF Leads | MoF Sales LoL | BoF Sales | Other | Spent last 7 days |');
   L.push('|---|---|---|---|---|---|---|---|---|---|');
@@ -290,13 +291,13 @@ async function main() {
   L.push(`- Clients checked: ${n}, from the client map in PROJECT.md section 5.${offboarded.length ? ` Offboarded, not checked: ${offboarded.join(', ')}.` : ''}`);
   L.push(`- Live reads: ${live.length} through the Marketing API. Blocked: ${blocked.length}${blocked.length ? ` (${blocked.map((r) => r.c.client).join(', ')})` : ''}.`);
   L.push(`- Total live $/day: ${money(totalLive)} (${BUCKETS.filter((k) => byType[k] > 0).map((k) => `${BUCKET_LABEL[k]} ${money(byType[k])}`).join(', ')})${prev ? `, vs ${money(prevTotalAll)} for the same accounts last run` : ''}. Spent in the last 7 days: ${money(spent7)} across ${spentRows.length} accounts (${money(spent7 / 7)}/day).`);
-  L.push(`- Changes: ${up} up, ${down} down, ${nnew} new, ${rows.filter((r) => r.status === 'unchanged').length} unchanged${removed.length ? `, ${removed.length} removed` : ''}.`);
+  L.push(`- Changes: ${up} up, ${down} down, ${nnew} new, ${resh} reshuffled (same total, different campaigns), ${rows.filter((r) => r.status === 'unchanged').length} unchanged${removed.length ? `, ${removed.length} removed` : ''}.`);
   L.push(`- Previous report: ${prev ? prev.file : 'none, first run'}`);
   L.push('- Budgets come from the API in cents and are divided by 100; a campaign with no campaign-level budget is summed from its active ad sets; campaigns past their stop time are ignored. Types by objective first, then name.');
   L.push('');
   fs.writeFileSync(path.join(OUT_DIR, `${RUN_DATE}-ad-spend-check.md`), L.join('\n'), 'utf8');
 
-  console.log(`\n${n} clients, ${live.length} live reads, ${blocked.length} blocked. Total live ${money(totalLive)}/day; ${up} up, ${down} down, ${nnew} new. Spent 7d ${money(spent7)}.`);
+  console.log(`\n${n} clients, ${live.length} live reads, ${blocked.length} blocked. Total live ${money(totalLive)}/day; ${up} up, ${down} down, ${nnew} new, ${resh} reshuffled. Spent 7d ${money(spent7)}.`);
   console.log(`Wrote weekly/Ad Spends Checks/Weekly Checks/${RUN_DATE}-ad-spend-check.csv and .md`);
 }
 await main();

@@ -30,7 +30,7 @@ npx tsx scripts/ad-spend-check.mts YYYY-MM-DD
 
 The script reads every non-offboarded client in the map, pulls each account's ACTIVE campaigns (campaign `daily_budget`, else the sum of its ACTIVE ad sets' `daily_budget`; cents divided by 100; campaigns past their `stop_time` ignored), buckets them by objective first and then name into ToF Giveaway / MoF Leads / MoF Sales LoL / BoF Sales / Other, reads the account's 7-day `spend`, and diffs the totals and campaign lists against the previous run. It writes:
 
-- `YYYY-MM-DD-ad-spend-check.csv`: `run_date, client, am, ad_account_id, source, tof_giveaway, mof_leads, mof_sales_lol, bof_sales, other, total_live, spend_7d, prev_total, change, status, what_changed, campaigns`. `source` is `live` or `blocked`; `status` is `up`, `down`, `new`, `unchanged`, `blocked` or `first_run`.
+- `YYYY-MM-DD-ad-spend-check.csv`: `run_date, client, am, ad_account_id, source, tof_giveaway, mof_leads, mof_sales_lol, bof_sales, other, total_live, spend_7d, prev_total, change, status, what_changed, campaigns`. `source` is `live` or `blocked`; `status` is `up`, `down`, `new`, `reshuffled` (same total, different campaign mix; added 2026-11-16), `unchanged`, `blocked` or `first_run`.
 - `YYYY-MM-DD-ad-spend-check.md`: header line with the live-read window, a `Meta Ad Spends tab: not pushed yet.` line, the counts table, **Changes since last week**, **Live spend by client** (sorted by total $/day, highest first) and the **Footer**.
 
 If the script reports an account as blocked, do not retry. Note it in the chat summary; the row stays in the report with `n/a` figures. If `META_ACCESS_TOKEN` is missing, stop and say so; there is no connector fallback for this report.
