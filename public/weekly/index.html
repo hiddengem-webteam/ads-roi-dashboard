@@ -372,7 +372,6 @@ td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
 <header class="title"><h1>Meta Ads Weekly Reviews</h1><p class="lede">21 Sep – 16 Nov 2026</p></header>
 <div class="fbar" id="fbar" role="search" aria-label="Filter reviews" hidden>
 <div class="fld"><label for="f-month">Month</label><span class="sel"><select id="f-month"><option value="all">All months</option><option value="2026-11">November 2026 (3)</option><option value="2026-10">October 2026 (4)</option><option value="2026-09">September 2026 (2)</option></select></span></div>
-<div class="fld"><label for="f-review">Review</label><span class="sel"><select id="f-review"><option value="all">All reviews</option><option value="ad-spend">Ad spend check</option><option value="pixel-domains">Pixel domain check</option><option value="client-benchmark">Client benchmark</option></select></span></div>
 <button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
 <p class="fsum" id="f-sum" aria-live="polite">9 weeks</p>
 <button type="button" class="btn" id="x-all">Expand all</button>
@@ -519,7 +518,7 @@ td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
 <script>
 (function(){
   const bar=document.getElementById('fbar'); if(!bar) return;
-  const mSel=document.getElementById('f-month'), rSel=document.getElementById('f-review');
+  const mSel=document.getElementById('f-month');   // Review filter removed 2026-11-16 (Shawal)
   const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
   const weeks=[...document.querySelectorAll('details.wk')], empty=document.getElementById('w-empty');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -527,29 +526,27 @@ td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
   const label=s=>s.options[s.selectedIndex].text.replace(/ \(\d+\)$/,'');
   function xlabel(){ const vis=weeks.filter(w=>!w.hidden); xall.textContent=vis.length&&vis.every(w=>w.open)?'Collapse all':'Expand all'; }
   function apply(){
-    const m=mSel.value, r=rSel.value, on=m!=='all'||r!=='all';
-    mSel.classList.toggle('on',m!=='all'); rSel.classList.toggle('on',r!=='all');
+    const m=mSel.value, on=m!=='all';
+    mSel.classList.toggle('on',on);
     let n=0;
     weeks.forEach(w=>{
       const s=m==='all'||w.dataset.month===m; w.hidden=!s; if(s) n++;
-      w.querySelectorAll('[data-review]').forEach(el=>{el.hidden=r!=='all'&&el.dataset.review!==r;});
     });
     empty.hidden=n>0;
-    const who=[m!=='all'?label(mSel):'',r!=='all'?label(rSel):''].filter(Boolean).join(' · ');
+    const who=on?label(mSel):'';
     sum.innerHTML=on?'Showing <strong>'+plural(n,'week')+'</strong> of '+weeks.length+' · '+who:plural(weeks.length,'week');
     clr.hidden=!on; xlabel();
     try{const u=new URL(location.href);
       if(m==='all')u.searchParams.delete('month');else u.searchParams.set('month',m);
-      if(r==='all')u.searchParams.delete('review');else u.searchParams.set('review',r);
+      u.searchParams.delete('review');
       history.replaceState(null,'',u);}catch(e){}
   }
-  mSel.addEventListener('change',apply); rSel.addEventListener('change',apply);
-  clr.addEventListener('click',()=>{mSel.value='all';rSel.value='all';apply();mSel.focus();});
+  mSel.addEventListener('change',apply);
+  clr.addEventListener('click',()=>{mSel.value='all';apply();mSel.focus();});
   xall.addEventListener('click',()=>{const vis=weeks.filter(w=>!w.hidden), open=!vis.every(w=>w.open); vis.forEach(w=>{w.open=open;}); xlabel();});
   weeks.forEach(w=>w.addEventListener('toggle',xlabel));
   const q=new URLSearchParams(location.search), has=(s,v)=>[...s.options].some(o=>o.value===v);
   if(has(mSel,q.get('month'))) mSel.value=q.get('month');
-  if(has(rSel,q.get('review'))) rSel.value=q.get('review');
   bar.hidden=false; apply();
   // an old #YYYY-MM-DD link opens that week (widening the month filter if needed)
   const h=location.hash.slice(1), t=/^\d{4}-\d{2}-\d{2}$/.test(h)&&document.getElementById(h);

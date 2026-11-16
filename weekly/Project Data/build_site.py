@@ -162,7 +162,7 @@ def main():
             latest[slug] = dates[-1]
             shutil.copyfile(os.path.join(out_dir, f"{dates[-1]}.html"), os.path.join(out_dir, "latest.html"))
     # redirects (/weekly/<slug> -> latest) are declared in the repo's netlify.toml, not generated here
-    # index: a filter bar (month, review) and one collapsible card per week, latest open
+    # index: a filter bar (month) and one collapsible card per week, latest open
     weeks_html = []
     dates_desc = sorted(by_date, reverse=True)
     for i, date in enumerate(dates_desc):
@@ -195,7 +195,6 @@ def main():
     for date in dates_desc:
         months.setdefault(date[:7], []).append(date)
     month_opts = "".join(f'<option value="{ym}">{datetime.date.fromisoformat(ds[0]).strftime("%B %Y")} ({len(ds)})</option>' for ym, ds in months.items())
-    review_opts = "".join(f'<option value="{slug}">{esc(title)}</option>' for slug, title, *_ in WORKFLOWS)
     if by_date:
         d0, d1 = datetime.date.fromisoformat(min(by_date)), datetime.date.fromisoformat(max(by_date))
         span = f"{d0.day} {d0:%b} – {d1.day} {d1:%b %Y}" if d0.year == d1.year else f"{d0.day} {d0:%b %Y} – {d1.day} {d1:%b %Y}"
@@ -203,7 +202,6 @@ def main():
         span = "No reviews yet"
     fbar = f"""<div class="fbar" id="fbar" role="search" aria-label="Filter reviews" hidden>
 <div class="fld"><label for="f-month">Month</label><span class="sel"><select id="f-month"><option value="all">All months</option>{month_opts}</select></span></div>
-<div class="fld"><label for="f-review">Review</label><span class="sel"><select id="f-review"><option value="all">All reviews</option>{review_opts}</select></span></div>
 <button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
 <p class="fsum" id="f-sum" aria-live="polite">{n_weeks} week{"s" if n_weeks != 1 else ""}</p>
 <button type="button" class="btn" id="x-all">Expand all</button>
@@ -247,7 +245,7 @@ def main():
     index_js = """
 (function(){
   const bar=document.getElementById('fbar'); if(!bar) return;
-  const mSel=document.getElementById('f-month'), rSel=document.getElementById('f-review');
+  const mSel=document.getElementById('f-month');   // Review filter removed 2026-11-16 (Shawal)
   const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
   const weeks=[...document.querySelectorAll('details.wk')], empty=document.getElementById('w-empty');
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -255,29 +253,27 @@ def main():
   const label=s=>s.options[s.selectedIndex].text.replace(/ \\(\\d+\\)$/,'');
   function xlabel(){ const vis=weeks.filter(w=>!w.hidden); xall.textContent=vis.length&&vis.every(w=>w.open)?'Collapse all':'Expand all'; }
   function apply(){
-    const m=mSel.value, r=rSel.value, on=m!=='all'||r!=='all';
-    mSel.classList.toggle('on',m!=='all'); rSel.classList.toggle('on',r!=='all');
+    const m=mSel.value, on=m!=='all';
+    mSel.classList.toggle('on',on);
     let n=0;
     weeks.forEach(w=>{
       const s=m==='all'||w.dataset.month===m; w.hidden=!s; if(s) n++;
-      w.querySelectorAll('[data-review]').forEach(el=>{el.hidden=r!=='all'&&el.dataset.review!==r;});
     });
     empty.hidden=n>0;
-    const who=[m!=='all'?label(mSel):'',r!=='all'?label(rSel):''].filter(Boolean).join(' · ');
+    const who=on?label(mSel):'';
     sum.innerHTML=on?'Showing <strong>'+plural(n,'week')+'</strong> of '+weeks.length+' · '+who:plural(weeks.length,'week');
     clr.hidden=!on; xlabel();
     try{const u=new URL(location.href);
       if(m==='all')u.searchParams.delete('month');else u.searchParams.set('month',m);
-      if(r==='all')u.searchParams.delete('review');else u.searchParams.set('review',r);
+      u.searchParams.delete('review');
       history.replaceState(null,'',u);}catch(e){}
   }
-  mSel.addEventListener('change',apply); rSel.addEventListener('change',apply);
-  clr.addEventListener('click',()=>{mSel.value='all';rSel.value='all';apply();mSel.focus();});
+  mSel.addEventListener('change',apply);
+  clr.addEventListener('click',()=>{mSel.value='all';apply();mSel.focus();});
   xall.addEventListener('click',()=>{const vis=weeks.filter(w=>!w.hidden), open=!vis.every(w=>w.open); vis.forEach(w=>{w.open=open;}); xlabel();});
   weeks.forEach(w=>w.addEventListener('toggle',xlabel));
   const q=new URLSearchParams(location.search), has=(s,v)=>[...s.options].some(o=>o.value===v);
   if(has(mSel,q.get('month'))) mSel.value=q.get('month');
-  if(has(rSel,q.get('review'))) rSel.value=q.get('review');
   bar.hidden=false; apply();
   // an old #YYYY-MM-DD link opens that week (widening the month filter if needed)
   const h=location.hash.slice(1), t=/^\\d{4}-\\d{2}-\\d{2}$/.test(h)&&document.getElementById(h);
