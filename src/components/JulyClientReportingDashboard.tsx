@@ -101,13 +101,13 @@ export default function JulyClientReportingDashboard() {
             <div className="flex items-center gap-1">
               <button
                 onClick={() => setActiveView('overview')}
-                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+                className={`px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'overview' ? 'bg-[var(--brand-fill)] text-[var(--on-brand)]' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 Overview
               </button>
               <button
                 onClick={() => setActiveView('client')}
-                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand)] text-white' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
+                className={`flex items-center gap-2 px-3.5 py-2 text-[13px] font-semibold rounded-[8px] transition-colors duration-150 ${activeView === 'client' ? 'bg-[var(--brand-fill)] text-[var(--on-brand)]' : 'text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--fill-cool)]'}`}
               >
                 {activeView === 'client' && currentClient ? (
                   <>

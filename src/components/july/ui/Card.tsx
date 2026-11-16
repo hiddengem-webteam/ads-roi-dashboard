@@ -53,15 +53,15 @@ export function StatCard({
     <div
       className={cn(
         'rounded-[12px] px-5 py-4',
-        accent ? 'bg-[var(--brand)] text-white' : 'bg-[var(--fill-gray)] border border-[var(--border)]',
+        accent ? 'bg-[var(--brand-fill)] text-[var(--on-brand)]' : 'bg-[var(--fill-gray)] border border-[var(--border)]',
         className,
       )}
     >
-      <p className={cn('text-[12px] font-medium mb-2', accent ? 'text-white/70' : 'text-[var(--muted)]')}>{label}</p>
-      <p className={cn('text-[20px] font-bold tracking-[-0.01em] july-tabular', accent ? 'text-white' : 'text-[var(--foreground)]')}>
+      <p className={cn('text-[12px] font-medium mb-2', accent ? 'text-[var(--on-brand)]/70' : 'text-[var(--muted)]')}>{label}</p>
+      <p className={cn('text-[20px] font-bold tracking-[-0.01em] july-tabular', accent ? 'text-[var(--on-brand)]' : 'text-[var(--foreground)]')}>
         {value}
       </p>
-      {sub && <p className={cn('text-[12px] mt-1', accent ? 'text-white/60' : 'text-[var(--muted-soft)]')}>{sub}</p>}
+      {sub && <p className={cn('text-[12px] mt-1', accent ? 'text-[var(--on-brand)]/60' : 'text-[var(--muted-soft)]')}>{sub}</p>}
     </div>
   );
 }

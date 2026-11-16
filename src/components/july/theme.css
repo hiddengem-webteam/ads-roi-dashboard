@@ -1,17 +1,20 @@
-/* HiddenGem Media design system, shared with the weekly Meta Ads reviews
-   (weekly/Project Data/build_html.py): Inter + Roboto Mono, neutral canvas,
-   brand blue for accents only, semantic badges, light and dark themes.
+/* HiddenGem Media design system (claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk, tokens.json; its generated
+   tokens.css is stale), shared with the weekly Meta Ads reviews (weekly/Project Data/build_html.py).
+   Since 2026-11-16: gem yellow #FFD60A fills with near-black text, gold text #8A7100 (light) / #FFD935
+   (dark), white / #0A0A0A canvas, DS status ramps. The blue #0066DE accent was retired by the design
+   system on 2026-10-22.
 
-   The class is still called .july-theme for history's sake: it was scoped to
-   /july first, then adopted by the main dashboard (Aug 2026), and on
-   2026-10-15 re-tokenised to match the weekly reports so / and /weekly read
-   as one product. Component code keeps the old variable names; the values
-   below map them onto the weekly palette. */
+   The class is still called .july-theme for history's sake (scoped to /july first, adopted by the main
+   dashboard in Aug 2026). Component code keeps the old variable names; the values below map them onto
+   the design system:
+     --brand            gold ink: text, icons, borders, bars and dots (never a fill under text)
+     --brand-fill       gem yellow fill, always with --on-brand text (white on yellow fails contrast)
+     --brand-bg/-text   gold tint + gold text (selected tabs, sidebar selection, brand badges) */
 
 .july-theme {
-  /* Canvas + surfaces (weekly: --bg / --panel / --panel-2 / --panel-3) */
-  --background: #fafafa;
-  --canvas-tint: #fafafa;
+  /* Canvas + surfaces */
+  --background: #ffffff;
+  --canvas-tint: #ffffff;
   --surface: #ffffff;
   --surface-strong: #ffffff;
   --panel-2: #fafafa;
@@ -20,41 +23,44 @@
   --border-strong: #d4d4d4;
   --divider: #e5e5e5;
 
-  /* Ink (weekly: --text / --text-3 / --text-4) */
+  /* Ink */
   --foreground: #171717;
   --text-2: #404040;
   --muted: #525252;
   --muted-soft: #737373;
 
   /* Brand + roles */
-  --brand: #0066de;
-  --brand-deep: #004faa;
-  --brand-text: #004faa;
-  --brand-bg: #f6f9ff;
-  --brand-border: #cee0ff;
-  --info: #0066de;
-  --success: #16a34a;
-  --success-ink: #15803d;
-  --warning: #ca8a04;
-  --warning-ink: #a16207;
-  --danger: #dc2626;
-  --gold: #ca8a04;
-  --ai-purple: #0066de;
-  --ai-purple-soft: #2b7fff;
+  --brand: #8a7100;
+  --brand-deep: #5f4e00;
+  --brand-text: #8a7100;
+  --brand-bg: #fffceb;
+  --brand-border: #ffed9b;
+  --brand-fill: #ffd60a;
+  --brand-fill-hover: #e0ba00;
+  --on-brand: #0a0a0a;
+  --info: #8a7100;
+  --success: #00a544;
+  --success-ink: #008138;
+  --warning: #cd8900;
+  --warning-ink: #a36100;
+  --danger: #e40014;
+  --gold: #cd8900;
+  --ai-purple: #8a7100;
+  --ai-purple-soft: #b89800;
 
   /* Semantic badge sets (weekly names) */
-  --ok-text: #15803d; --ok-dot: #16a34a; --ok-bg: #f0fdf4; --ok-border: #dcfce7;
-  --warn-text: #a16207; --warn-dot: #ca8a04; --warn-bg: #fefce8; --warn-border: #fef9c3;
-  --err-text: #b91c1c; --err-dot: #dc2626; --err-bg: #fef2f2; --err-border: #fee2e2;
-  --gray-text: #525252; --gray-dot: #a3a3a3; --gray-bg: #f5f5f5; --gray-border: #e5e5e5;
+  --ok-text: #008138; --ok-dot: #00a544; --ok-bg: #f0fdf4; --ok-border: #dcfce7;
+  --warn-text: #a36100; --warn-dot: #cd8900; --warn-bg: #fefce8; --warn-border: #fef9c2;
+  --err-text: #bf000f; --err-dot: #e40014; --err-bg: #fef2f2; --err-border: #ffe2e2;
+  --gray-text: #404040; --gray-dot: #a1a1a1; --gray-bg: #f5f5f5; --gray-border: #e5e5e5;
 
-  /* Fills used by older components */
-  --fill-blue: #f6f9ff;
+  /* Fills used by older components (the "blue" tint is the gold tint now) */
+  --fill-blue: #fffceb;
   --fill-gray: #f5f5f5;
   --fill-cool: #fafafa;
 
-  --shadow-xs: 0 1px 2px 0 rgba(10, 13, 18, .05);
-  --focus: 0 0 0 4px rgba(0, 102, 222, .24);
+  --shadow-xs: 0 0 2px #0000001f, 0 1px 2px #00000024;
+  --focus: 0 0 0 2px #ffffff, 0 0 0 4px #8a7100;
 
   color: var(--foreground);
   background: var(--background);
@@ -68,34 +74,38 @@
     --canvas-tint: #0a0a0a;
     --surface: #171717;
     --surface-strong: #171717;
-    --panel-2: #1f1f1f;
+    --panel-2: #262626;
     --panel-3: #262626;
     --border: #262626;
     --border-strong: #404040;
     --divider: #262626;
     --foreground: #fafafa;
-    --text-2: #d4d4d4;
-    --muted: #a3a3a3;
-    --muted-soft: #a3a3a3;
-    --brand: #2b7fff;
-    --brand-deep: #cee0ff;
-    --brand-text: #cee0ff;
-    --brand-bg: rgba(0, 102, 222, .16);
-    --brand-border: rgba(43, 127, 255, .35);
-    --info: #2b7fff;
-    --success: #22c55e; --success-ink: #4ade80;
-    --warning: #eab308; --warning-ink: #facc15;
-    --danger: #ef4444;
-    --gold: #eab308;
-    --ai-purple: #2b7fff; --ai-purple-soft: #cee0ff;
-    --ok-text: #4ade80; --ok-dot: #22c55e; --ok-bg: rgba(34, 197, 94, .12); --ok-border: rgba(34, 197, 94, .3);
-    --warn-text: #facc15; --warn-dot: #eab308; --warn-bg: rgba(234, 179, 8, .12); --warn-border: rgba(234, 179, 8, .3);
-    --err-text: #f87171; --err-dot: #ef4444; --err-bg: rgba(239, 68, 68, .12); --err-border: rgba(239, 68, 68, .3);
-    --gray-text: #d4d4d4; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
-    --fill-blue: rgba(0, 102, 222, .16);
+    --text-2: #e5e5e5;
+    --muted: #d4d4d4;
+    --muted-soft: #a1a1a1;
+    --brand: #ffd935;
+    --brand-deep: #ffe15e;
+    --brand-text: #ffd935;
+    --brand-bg: #3b3000;
+    --brand-border: rgba(255, 214, 10, .3);
+    --brand-fill: #ffd60a;
+    --brand-fill-hover: #ffd935;
+    --on-brand: #0a0a0a;
+    --info: #ffd935;
+    --success: #00c758; --success-ink: #05df72;
+    --warning: #edb200; --warning-ink: #fac800;
+    --danger: #fb2c36;
+    --gold: #edb200;
+    --ai-purple: #ffd935; --ai-purple-soft: #ffe15e;
+    --ok-text: #05df72; --ok-dot: #00c758; --ok-bg: #032e15; --ok-border: rgba(0, 199, 88, .3);
+    --warn-text: #fac800; --warn-dot: #edb200; --warn-bg: #432004; --warn-border: rgba(237, 178, 0, .3);
+    --err-text: #ff6568; --err-dot: #fb2c36; --err-bg: #460809; --err-border: rgba(251, 44, 54, .35);
+    --gray-text: #e5e5e5; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
+    --fill-blue: #3b3000;
     --fill-gray: #262626;
-    --fill-cool: #1f1f1f;
-    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, .4);
+    --fill-cool: #262626;
+    --shadow-xs: 0 0 2px #0000003d, 0 1px 2px #00000047;
+    --focus: 0 0 0 2px #0a0a0a, 0 0 0 4px #ffd935;
     color-scheme: dark;
   }
 }
@@ -104,34 +114,38 @@
   --canvas-tint: #0a0a0a;
   --surface: #171717;
   --surface-strong: #171717;
-  --panel-2: #1f1f1f;
+  --panel-2: #262626;
   --panel-3: #262626;
   --border: #262626;
   --border-strong: #404040;
   --divider: #262626;
   --foreground: #fafafa;
-  --text-2: #d4d4d4;
-  --muted: #a3a3a3;
-  --muted-soft: #a3a3a3;
-  --brand: #2b7fff;
-  --brand-deep: #cee0ff;
-  --brand-text: #cee0ff;
-  --brand-bg: rgba(0, 102, 222, .16);
-  --brand-border: rgba(43, 127, 255, .35);
-  --info: #2b7fff;
-  --success: #22c55e; --success-ink: #4ade80;
-  --warning: #eab308; --warning-ink: #facc15;
-  --danger: #ef4444;
-  --gold: #eab308;
-  --ai-purple: #2b7fff; --ai-purple-soft: #cee0ff;
-  --ok-text: #4ade80; --ok-dot: #22c55e; --ok-bg: rgba(34, 197, 94, .12); --ok-border: rgba(34, 197, 94, .3);
-  --warn-text: #facc15; --warn-dot: #eab308; --warn-bg: rgba(234, 179, 8, .12); --warn-border: rgba(234, 179, 8, .3);
-  --err-text: #f87171; --err-dot: #ef4444; --err-bg: rgba(239, 68, 68, .12); --err-border: rgba(239, 68, 68, .3);
-  --gray-text: #d4d4d4; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
-  --fill-blue: rgba(0, 102, 222, .16);
+  --text-2: #e5e5e5;
+  --muted: #d4d4d4;
+  --muted-soft: #a1a1a1;
+  --brand: #ffd935;
+  --brand-deep: #ffe15e;
+  --brand-text: #ffd935;
+  --brand-bg: #3b3000;
+  --brand-border: rgba(255, 214, 10, .3);
+  --brand-fill: #ffd60a;
+  --brand-fill-hover: #ffd935;
+  --on-brand: #0a0a0a;
+  --info: #ffd935;
+  --success: #00c758; --success-ink: #05df72;
+  --warning: #edb200; --warning-ink: #fac800;
+  --danger: #fb2c36;
+  --gold: #edb200;
+  --ai-purple: #ffd935; --ai-purple-soft: #ffe15e;
+  --ok-text: #05df72; --ok-dot: #00c758; --ok-bg: #032e15; --ok-border: rgba(0, 199, 88, .3);
+  --warn-text: #fac800; --warn-dot: #edb200; --warn-bg: #432004; --warn-border: rgba(237, 178, 0, .3);
+  --err-text: #ff6568; --err-dot: #fb2c36; --err-bg: #460809; --err-border: rgba(251, 44, 54, .35);
+  --gray-text: #e5e5e5; --gray-dot: #737373; --gray-bg: #262626; --gray-border: #404040;
+  --fill-blue: #3b3000;
   --fill-gray: #262626;
-  --fill-cool: #1f1f1f;
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, .4);
+  --fill-cool: #262626;
+  --shadow-xs: 0 0 2px #0000003d, 0 1px 2px #00000047;
+  --focus: 0 0 0 2px #0a0a0a, 0 0 0 4px #ffd935;
   color-scheme: dark;
 }
 

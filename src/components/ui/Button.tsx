@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variants = {
-  default: 'bg-[var(--brand)] text-white hover:bg-[var(--brand-deep)]',
+  default: 'bg-[var(--brand-fill)] text-[var(--on-brand)] hover:bg-[var(--brand-fill-hover)]',
   outline: 'bg-[var(--surface)] border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--fill-cool)]',
   ghost: 'text-[var(--brand)] hover:bg-[var(--fill-blue)]',
   destructive: 'bg-[var(--danger)] text-white hover:bg-[var(--err-text)]',

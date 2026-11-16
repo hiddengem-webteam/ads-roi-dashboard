@@ -51,18 +51,19 @@ type View = 'overview' | 'client';
 // The selected month, client and view live in the URL (?period=&client=&view=)
 // so a refresh, a shared link or a month switch keeps the page you were on
 // (Nicole, Nov 2026). Read once on load, written on every change.
-function readUrlState(): { period: string | null; client: string | null; view: View | null } {
-  if (typeof window === 'undefined') return { period: null, client: null, view: null };
+function readUrlState(): { period: string | null; client: string | null; view: View | null; am: string } {
+  if (typeof window === 'undefined') return { period: null, client: null, view: null, am: '' };
   const params = new URLSearchParams(window.location.search);
   const view = params.get('view');
   return {
     period: params.get('period'),
     client: params.get('client'),
     view: view === 'client' || view === 'overview' ? view : null,
+    am: params.get('am') ?? '',
   };
 }
 
-function writeUrlState(period: string, client: string, view: View) {
+function writeUrlState(period: string, client: string, view: View, am: string) {
   if (typeof window === 'undefined') return;
   const params = new URLSearchParams();
   params.set('period', period);
@@ -70,6 +71,7 @@ function writeUrlState(period: string, client: string, view: View) {
     params.set('client', client);
     params.set('view', view);
   }
+  if (am) params.set('am', am);
   const next = `${window.location.pathname}?${params.toString()}`;
   if (`${window.location.pathname}${window.location.search}` !== next) {
     window.history.replaceState(null, '', next);
@@ -85,6 +87,8 @@ export default function Dashboard() {
   const [selectedPeriodId, setSelectedPeriodId] = useState<string>('');
   const [selectedClient, setSelectedClient] = useState<string>('');
   const [activeView, setActiveView] = useState<View>('overview');
+  // Account manager filter (sidebar list + Overview table), kept in ?am=
+  const [amFilter, setAmFilter] = useState<string>(() => readUrlState().am);
   // Client/view the URL asked for on first load, applied once the period's data is in.
   const pendingUrlState = useRef<{ client: string | null; view: View | null } | null>(null);
   // Current selection, readable from the period-load effect without re-running it.
@@ -207,8 +211,8 @@ export default function Dashboard() {
   // Mirror the selection into the URL once the month has loaded.
   useEffect(() => {
     if (loading || !selectedPeriodId) return;
-    writeUrlState(selectedPeriodId, selectedClient, activeView);
-  }, [loading, selectedPeriodId, selectedClient, activeView]);
+    writeUrlState(selectedPeriodId, selectedClient, activeView, amFilter);
+  }, [loading, selectedPeriodId, selectedClient, activeView, amFilter]);
 
   // The signed-off or snapshot month before the selected one feeds the
   // change-vs-last-month line on each summary card. Fetch it if not cached.
@@ -285,12 +289,13 @@ export default function Dashboard() {
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       {!loading && !error && orderedClients.length > 0 && (
-        <div className="bg-[var(--surface-strong)] border-r border-[var(--border)] flex flex-col overflow-hidden flex-shrink-0 w-[220px]">
+        <div className="bg-[var(--surface-strong)] border-r border-[var(--border)] flex flex-col overflow-hidden flex-shrink-0 w-[240px]">
           <Sidebar
             clients={orderedClients}
             selectedClient={activeView !== 'overview' ? selectedClient : ''}
             onSelectClient={(name) => goToClient(name)}
-            periodLabel={currentPeriod?.label}
+            amFilter={amFilter}
+            onAmFilter={setAmFilter}
           />
         </div>
       )}
@@ -344,7 +349,7 @@ export default function Dashboard() {
                 <select
                   value={selectedPeriodId}
                   onChange={(e) => setSelectedPeriodId(e.target.value)}
-                  className="appearance-none text-[13px] font-semibold border border-[var(--border-strong)] rounded-[12px] pl-4 pr-9 py-2 bg-[var(--surface-strong)] text-[var(--foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--brand)] shadow-[var(--shadow-xs)]"
+                  className="appearance-none h-9 text-[13px] font-semibold border border-[var(--border-strong)] rounded-[8px] pl-3.5 pr-9 bg-[var(--surface-strong)] text-[var(--foreground)] hover:border-[var(--muted-soft)] cursor-pointer shadow-[var(--shadow-xs)]"
                 >
                   {periods.map((p) => (
                     <option key={p.id} value={p.id}>{p.label}{p.finalized && isFinal(p.finalized) ? ' · Final' : ''}</option>
@@ -363,10 +368,13 @@ export default function Dashboard() {
             manifestClients={loadedClients ?? currentPeriod?.clients ?? []}
             data={data}
             onSelectClient={(name) => goToClient(name)}
+            periodId={selectedPeriodId}
+            periodLabel={currentPeriod?.label ?? ''}
+            amFilter={amFilter}
           />
         )}
 
-        <div className="px-8 py-8 max-w-5xl space-y-6">
+        <div className="px-8 py-8 max-w-[1200px] mx-auto w-full space-y-6">
           {/* Loading */}
           {loading && (
             <div className="flex flex-col items-center justify-center py-40 gap-4">

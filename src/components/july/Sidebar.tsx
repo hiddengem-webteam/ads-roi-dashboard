@@ -77,8 +77,8 @@ export default function Sidebar({ clients, selectedClient, onSelectClient, perio
       {/* Brand */}
       <div className="px-5 pt-6 pb-5 border-b border-[var(--border)]">
         <div className="flex items-center gap-2.5 mb-1">
-          <div className="w-7 h-7 bg-[var(--brand)] rounded-[10px] flex items-center justify-center flex-shrink-0">
-            <BarChart3 className="w-3.5 h-3.5 text-white" />
+          <div className="w-7 h-7 bg-[var(--brand-fill)] rounded-[10px] flex items-center justify-center flex-shrink-0">
+            <BarChart3 className="w-3.5 h-3.5 text-[var(--on-brand)]" />
           </div>
           <span className="font-bold text-[var(--foreground)] text-[14px] tracking-[-0.01em]">ROI Dashboard</span>
         </div>

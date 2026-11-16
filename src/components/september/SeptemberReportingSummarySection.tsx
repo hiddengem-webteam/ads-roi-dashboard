@@ -138,7 +138,7 @@ export default function AugustReportingSummarySection({
   return (
     <div className="space-y-4">
       {note && (
-        <div className="bg-[var(--fill-blue)] border border-[rgba(10,95,255,.18)] rounded-[14px] px-5 py-3.5">
+        <div className="bg-[var(--fill-blue)] border border-[var(--brand-border)] rounded-[14px] px-5 py-3.5">
           <p className="text-[11px] font-semibold text-[var(--brand)] uppercase tracking-[0.04em] mb-1">Note</p>
           <p className="text-[13px] text-[var(--foreground)] leading-relaxed">{note}</p>
         </div>

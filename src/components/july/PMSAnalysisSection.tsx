@@ -34,7 +34,7 @@ interface PMSAnalysisSectionProps {
 function SectionLabel({ number, title }: { number: number; title: string }) {
   return (
     <div className="flex items-center gap-3 mb-5">
-      <span className="w-6 h-6 rounded-full bg-[var(--brand)] text-white text-[12px] font-bold flex items-center justify-center flex-shrink-0">
+      <span className="w-6 h-6 rounded-full bg-[var(--brand-fill)] text-[var(--on-brand)] text-[12px] font-bold flex items-center justify-center flex-shrink-0">
         {number}
       </span>
       <h3 className="text-[16px] font-bold text-[var(--foreground)] tracking-[-0.01em]">{title}</h3>
@@ -243,7 +243,7 @@ export default function PMSAnalysisSection({ analysis, facebookStats }: PMSAnaly
                   key={c.code}
                   className={`text-[12px] px-3 py-1.5 rounded-[10px] font-mono font-medium border ${
                     c.uses > 0
-                      ? 'bg-[var(--brand)] text-white border-[var(--brand)]'
+                      ? 'bg-[var(--brand-fill)] text-[var(--on-brand)] border-[var(--brand-fill)]'
                       : 'bg-[var(--fill-gray)] text-[var(--muted-soft)] border-[var(--border)]'
                   }`}
                 >
