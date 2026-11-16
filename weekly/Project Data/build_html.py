@@ -28,7 +28,6 @@ CSS = """
   --gray-text:#525252; --gray-dot:#a3a3a3; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
   --shadow-xs:0 1px 2px 0 rgba(10,13,18,.05);
   --focus:0 0 0 4px rgba(0,102,222,.24);
-  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
@@ -40,7 +39,6 @@ CSS = """
   --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
   --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
   --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
-  color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
@@ -52,7 +50,6 @@ CSS = """
   --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
   --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
   --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
-  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
@@ -155,50 +152,6 @@ td.nowrap{white-space:nowrap}
 .foot ul{margin:0 0 12px;padding-left:18px}.foot li{margin-bottom:4px}
 .foot p{margin:0}
 .client-list{font-size:13px;line-height:19px;color:var(--text-3)}
-.fbar[hidden],.fbar [hidden],.tgl [hidden],.cards>[hidden]{display:none!important}
-td.camp{min-width:180px}
-td.type{min-width:110px}
-td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
-.tgl thead th,.tgl tbody td{padding-left:12px;padding-right:12px}
-.tgl thead th:first-child,.tgl tbody td:first-child{padding-left:20px}.tgl thead th:last-child,.tgl tbody td:last-child{padding-right:20px}
-.tgl td.first{white-space:normal;min-width:120px}
-td.first a{color:inherit}td.first a:hover{color:var(--brand-text)}
-/* client benchmark: filter bar */
-.fbar{position:sticky;top:12px;z-index:10;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;padding:14px 18px;margin:0 0 20px;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 12px -2px rgba(10,13,18,.10),var(--shadow-xs)}
-.fld{display:flex;flex-direction:column;gap:4px;min-width:0}
-.fld label{font:500 12px/18px 'Inter',sans-serif;color:var(--text-3)}
-.sel{position:relative;display:block}
-.sel::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:translateY(-70%) rotate(45deg);pointer-events:none}
-.sel select{appearance:none;-webkit-appearance:none;width:100%;min-width:220px;font:500 14px/20px 'Inter',sans-serif;color:var(--text);background:var(--panel);border:1px solid var(--border-strong);border-radius:8px;padding:8px 36px 8px 12px;cursor:pointer;box-shadow:var(--shadow-xs)}
-.sel select:hover{border-color:var(--text-4)}
-.sel select:focus-visible{outline:none;border-color:var(--brand);box-shadow:var(--focus)}
-.sel select.on{border-color:var(--brand);background:var(--brand-bg);color:var(--brand-text)}
-.btn{appearance:none;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;box-shadow:var(--shadow-xs)}
-.btn:hover{background:var(--panel-2);color:var(--text)}
-.btn:focus-visible{outline:none;box-shadow:var(--focus)}
-.fsum{margin:0 0 0 auto;align-self:center;font-size:13px;line-height:19px;color:var(--text-3);text-align:right}
-.fsum strong{color:var(--text);font-weight:600}
-.cards{display:flex;flex-direction:column;gap:16px}
-.cards>.card+.card{margin-top:0}
-.cards>.card{scroll-margin-top:110px}
-@media (max-width:640px){.fbar{position:static;padding:12px 14px}.fld{flex:1 1 140px}.sel select{min-width:0}.fsum{margin:0;width:100%;text-align:left}}
-/* client benchmark: collapsible table sections */
-.tgl>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}
-.tgl>summary::-webkit-details-marker{display:none}
-.tgl>summary:hover{background:var(--panel-2)}
-.tgl>summary:focus-visible{outline:none;box-shadow:inset var(--focus)}
-.tgl[open]>summary{border-bottom:1px solid var(--border)}
-.tgl .chev{flex:none;width:8px;height:8px;margin-top:10px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:rotate(-45deg);transition:transform .15s}
-.tgl[open]>summary .chev{transform:rotate(45deg)}
-.tgl .ttxt{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
-.tgl .trow{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
-.tgl .tmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.tgl .tcount{font-size:12px;line-height:18px;color:var(--text-4)}
-.tgl .sec-desc{margin:0}
-.tgl .tact{flex:none;margin-top:4px;font:500 13px/20px 'Inter',sans-serif;color:var(--brand-text)}
-.tgl .tact::after{content:"Show"}
-.tgl[open] .tact::after{content:"Hide"}
-@media (max-width:640px){.tgl>summary{padding:14px 16px}.tgl .tact{display:none}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 """
 
@@ -216,6 +169,157 @@ document.querySelectorAll('[data-filter-for]').forEach(seg=>{
 });
 """
 
+# Client benchmark page only: HiddenGem Media design system (claude.ai/artifact/GXb4YMfP8uFmoTPhnWujSk, tokens.json
+# as of Nov 2026: gem yellow #FFD60A fill, gold text, white / #0A0A0A canvas). The other weekly pages keep the earlier blue accent.
+_BENCH_DARK = """
+  --bg:#0a0a0a; --panel:#171717; --panel-2:#262626; --panel-3:#262626;
+  --border:#262626; --border-strong:#404040;
+  --text:#fafafa; --text-2:#e5e5e5; --text-3:#d4d4d4; --text-4:#a1a1a1;
+  --brand:#ffd60a; --brand-hover:#ffd935; --on-brand:#0a0a0a; --brand-ring:#ffd60a;
+  --brand-text:#ffd935; --brand-bg:#3b3000; --brand-border:#ffd935;
+  --ok-text:#05df72; --ok-dot:#00c758; --ok-bg:#032e15; --ok-border:rgba(0,199,88,.3);
+  --warn-text:#fac800; --warn-dot:#edb200; --warn-bg:#432004; --warn-border:rgba(237,178,0,.3);
+  --err-text:#ff6568; --err-dot:#fb2c36; --err-bg:#460809; --err-border:rgba(251,44,54,.35);
+  --gray-text:#e5e5e5; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
+  --shadow-xs:0 0 2px #0000003d,0 1px 2px #00000047;
+  --elev:0 0 2px #0000003d,0 8px 16px #00000047;
+  --focus:0 0 0 2px #0a0a0a,0 0 0 4px #ffd935;
+  color-scheme:dark;
+"""
+BENCH_CSS = """
+:root{
+  --bg:#ffffff; --panel:#ffffff; --panel-2:#fafafa; --panel-3:#f5f5f5;
+  --border:#e5e5e5; --border-strong:#d4d4d4;
+  --text:#171717; --text-2:#404040; --text-3:#525252; --text-4:#737373;
+  --brand:#ffd60a; --brand-hover:#e0ba00; --on-brand:#0a0a0a; --brand-ring:#b89800;
+  --brand-text:#8a7100; --brand-bg:#fffceb; --brand-border:#8a7100;
+  --ok-text:#008138; --ok-dot:#00a544; --ok-bg:#f0fdf4; --ok-border:#dcfce7;
+  --warn-text:#a36100; --warn-dot:#cd8900; --warn-bg:#fefce8; --warn-border:#fef9c2;
+  --err-text:#bf000f; --err-dot:#e40014; --err-bg:#fef2f2; --err-border:#ffe2e2;
+  --gray-text:#404040; --gray-dot:#a1a1a1; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
+  --shadow-xs:0 0 2px #0000001f,0 1px 2px #00000024;
+  --elev:0 0 2px #0000001f,0 8px 16px #00000024;
+  --focus:0 0 0 2px #ffffff,0 0 0 4px #8a7100;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){""" + _BENCH_DARK + """}}
+:root[data-theme="dark"]{""" + _BENCH_DARK + """}
+[hidden]{display:none!important}
+.masthead .eyebrow{letter-spacing:.14em}
+h1{font-size:36px;line-height:44px}
+@media (max-width:640px){h1{font-size:30px;line-height:38px}}
+.card{border-radius:12px}
+.badge.brand{color:var(--on-brand);background:var(--brand);border-color:var(--brand-hover)}
+.badge.brand .dot{background:var(--on-brand)}
+.dot.brand{background:var(--brand);box-shadow:inset 0 0 0 1px var(--brand-ring)}
+.badge .dot.brand{box-shadow:none}
+td.first a,.ccard a{color:inherit}
+td.first a:hover{color:var(--brand-text)}
+a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{outline:none;box-shadow:var(--focus);border-radius:8px}
+/* section openers: mono eyebrow in gold text, display-sm title */
+.sec{margin:0 0 56px}
+.sec-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 16px;flex-wrap:wrap;margin:0 0 16px}
+.eb{display:block;font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-text);margin:0 0 6px}
+.sec-top h2{font:600 30px/38px 'Inter',sans-serif;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sec-top .sec-desc{margin-top:6px}
+@media (max-width:640px){.sec{margin-bottom:44px}.sec-top h2{font-size:24px;line-height:32px}}
+/* stat band */
+.band{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));margin:0 0 48px}
+.band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
+.band .stat .label{font-size:12px;line-height:18px;white-space:nowrap}
+.band .stat+.stat{border-left:1px solid var(--border)}
+.band .stat .value{font-size:24px;line-height:32px}
+.band .stat .hint{font-size:12px;line-height:16px}
+@media (max-width:1000px){.band{grid-template-columns:repeat(4,minmax(0,1fr))}.band .stat:nth-child(4n+1){border-left:0}.band .stat:nth-child(n+5){border-top:1px solid var(--border)}}
+@media (max-width:640px){.band{grid-template-columns:repeat(2,minmax(0,1fr))}.band .stat+.stat{border-left:0}.band .stat:nth-child(even){border-left:1px solid var(--border)}.band .stat:nth-child(n+3){border-top:1px solid var(--border)}}
+/* filter bar */
+.fbar{position:sticky;top:12px;z-index:10;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;padding:14px 18px;margin:0 0 20px;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:var(--elev)}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld label{font:500 14px/20px 'Inter',sans-serif;color:var(--text-2)}
+.sel{position:relative;display:block}
+.sel::after{content:"";position:absolute;right:15px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.sel select{appearance:none;-webkit-appearance:none;width:100%;min-width:240px;height:40px;font:500 14px/20px 'Inter',sans-serif;color:var(--text);background:var(--panel);border:1px solid var(--border-strong);border-radius:8px;padding:0 38px 0 14px;cursor:pointer;box-shadow:var(--shadow-xs);transition:border-color .1s linear,background .1s linear}
+.sel select:hover{border-color:var(--text-4)}
+.sel select.on{border-color:var(--brand-border);background:var(--brand-bg);color:var(--brand-text)}
+.btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:40px;padding:0 16px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:600 14px/20px 'Inter',sans-serif;cursor:pointer;box-shadow:var(--shadow-xs);transition:background .1s linear,color .1s linear}
+.btn:hover{background:var(--panel-2);color:var(--text)}
+.btn.sm{height:36px;padding:0 14px}
+.fsum{margin:0 0 0 auto;align-self:center;font-size:14px;line-height:20px;color:var(--text-3);text-align:right}
+.fsum strong{color:var(--text);font-weight:600}
+@media (max-width:640px){.fbar{position:static;padding:12px 14px}.fld{flex:1 1 100%}.sel select{min-width:0}.fsum{margin:0;width:100%;text-align:left}}
+/* tables */
+thead th{color:var(--text-3)}
+tbody tr:hover td{background:var(--panel-2)}
+td.camp{min-width:180px}
+td.type{min-width:110px}
+td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
+.tgl thead th,.tgl tbody td,#ovw thead th,#ovw tbody td{padding-left:12px;padding-right:12px}
+.tgl thead th:first-child,.tgl tbody td:first-child,#ovw thead th:first-child,#ovw tbody td:first-child{padding-left:20px}
+.tgl thead th:last-child,.tgl tbody td:last-child,#ovw thead th:last-child,#ovw tbody td:last-child{padding-right:20px}
+.tgl td.first,#ovw td.first{white-space:normal;min-width:130px}
+#ovw td.sum{min-width:300px;color:var(--text-2)}
+#ovw td.sum .clamp{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#ovw td.st{white-space:nowrap}
+#ovw td.spend{font-weight:600;color:var(--text)}
+#ovw tr[data-href]{cursor:pointer}
+#ovw tr.muted td{color:var(--text-4)}
+#ovw tr.muted td.first{color:var(--text-3)}
+#ovw tr.grp td,#ovw tr.grp:hover td{background:var(--panel-2);font:500 12px/18px 'Roboto Mono',ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3);padding-top:8px;padding-bottom:8px}
+.stl{display:flex;flex-wrap:wrap;gap:6px}
+@media (max-width:640px){
+  #ovw thead{display:none}
+  #ovw,#ovw tbody{display:block}
+  #ovw tbody tr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"name spend" "am am" "st st" "sum sum";gap:4px 12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+  #ovw tbody tr:last-child{border-bottom:0}
+  #ovw tbody td{display:block;padding:0!important;border:0!important;min-width:0!important;background:transparent!important}
+  #ovw td:nth-child(1){grid-area:name}#ovw td:nth-child(2){grid-area:am;font-size:13px;color:var(--text-4)}#ovw td:nth-child(2)::before{content:"AM "}
+  #ovw td:nth-child(3){grid-area:sum;font-size:13px;line-height:19px}#ovw td:nth-child(4){grid-area:st;margin:4px 0 2px}#ovw td:nth-child(5){grid-area:spend}
+  #ovw tbody tr.grp{display:block;padding:8px 16px;background:var(--panel-2)}
+}
+/* collapsible lists (section 2) and the notes toggle (section 4) */
+.stack{display:flex;flex-direction:column;gap:12px}
+.tgl>summary,.ccard>summary{list-style:none;cursor:pointer;transition:background .1s linear}
+.tgl>summary::-webkit-details-marker,.ccard>summary::-webkit-details-marker{display:none}
+.tgl>summary:hover,.ccard>summary:hover{background:var(--panel-2)}
+.tgl>summary:focus-visible,.ccard>summary:focus-visible{box-shadow:inset var(--focus);border-radius:12px}
+.tgl[open]>summary,.ccard[open]>summary{border-bottom:1px solid var(--border)}
+.tgl .chev,.ccard .chev{flex:none;width:8px;height:8px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:rotate(-45deg);transition:transform .24s cubic-bezier(.2,0,0,1)}
+.tgl[open]>summary .chev,.ccard[open]>summary .chev{transform:rotate(45deg)}
+.tgl>summary{display:flex;gap:14px;align-items:flex-start;padding:18px 20px}
+.tgl .chev{margin-top:9px}
+.tgl .ttxt{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.tgl .trow{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.tgl h3{font:600 20px/30px 'Inter',sans-serif;letter-spacing:-.01em;margin:0}
+.tgl .tmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tgl .tcount{font-size:12px;line-height:18px;color:var(--text-4)}
+.tgl .sec-desc{margin:0}
+.tgl .tact{flex:none;margin-top:5px;font:600 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
+.tgl .tact::after{content:"Show"}
+.tgl[open] .tact::after{content:"Hide"}
+/* per-client cards (section 3) */
+.cards{display:flex;flex-direction:column;gap:12px}
+.cards>.card+.card{margin-top:0}
+.cards>.card{scroll-margin-top:120px}
+.ccard>summary{display:grid;grid-template-columns:8px minmax(0,1fr) auto auto;grid-template-areas:"chev main states spend";gap:6px 18px;align-items:center;padding:16px 20px}
+.ccard .chev{grid-area:chev}
+.ccard .cmain{grid-area:main;min-width:0}
+.ccard .cstates{grid-area:states;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ccard .cspend{grid-area:spend;text-align:right;min-width:92px;font:600 16px/24px 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:var(--text)}
+.ccard .cspend small{display:block;font:400 12px/16px 'Inter',sans-serif;color:var(--text-4)}
+.ccard .cname{display:block;font:600 16px/24px 'Inter',sans-serif;color:var(--text)}
+.ccard .csub{display:block;font-size:13px;line-height:18px;color:var(--text-4)}
+@media (max-width:640px){.tgl>summary{padding:14px 16px}.tgl .tact{display:none}.ccard>summary{grid-template-columns:8px minmax(0,1fr) auto;grid-template-areas:"chev main spend" ". states states";padding:14px 16px}.ccard .cstates{justify-content:flex-start}}
+/* notes (section 4) */
+.nbody{padding:20px;display:flex;flex-direction:column;gap:28px}
+.nbody h4{font:600 16px/24px 'Inter',sans-serif;margin:0 0 4px}
+.nbody .sec-desc{margin:0 0 12px}
+.nbody p.np{margin:0;font-size:14px;line-height:21px;color:var(--text-2);max-width:90ch}
+.nbody ul.nl{margin:0;padding-left:18px;font-size:14px;line-height:21px;color:var(--text-2);display:flex;flex-direction:column;gap:6px;max-width:100ch}
+.mlist{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.genline{margin:0;padding-top:20px;border-top:1px solid var(--border);color:var(--text-4);font-size:13px;line-height:19px}
+@media (prefers-reduced-motion: reduce){.tgl .chev,.ccard .chev{transition:none}}
+"""
+
 # Client benchmark only: AM / client filter (stats, the three toggle tables, client cards; state kept in ?am=&client=)
 # and remembered open/closed state of the toggle sections (per viewer, localStorage).
 BENCH_JS = """
@@ -223,13 +327,15 @@ BENCH_JS = """
   const bar=document.getElementById('fbar'), dataEl=document.getElementById('bench-data');
   if(!bar||!dataEl) return;
   const D=JSON.parse(dataEl.textContent);
+  const ALL=D.clients.concat(D.unmapped);
   const amSel=document.getElementById('f-am'), clSel=document.getElementById('f-client');
-  const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum');
-  const cards=[...document.querySelectorAll('.cards>.card[data-client]')];
+  const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
+  const cards=[...document.querySelectorAll('.cards>details[data-client]')];
   const tables=[...document.querySelectorAll('table[data-ftable]')];
   const LBL=[['flag','err','Flag to Shawal'],['review','warn','Review w/ HG AI'],['monitor','gray','Monitor'],['healthy','ok','Healthy'],['scale','brand','Scale w/ HG AI']];
   const NOT_SCORED=s=>s==='Under gate'||s==='Tracked in Discovery'||s==='No promo data'||s.startsWith('Not scored');
-  const ams=[...new Set(D.clients.map(c=>c.a))].sort();
+  const ams=[...new Set(ALL.map(c=>c.a).filter(Boolean))].sort();
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const stats={};
   document.querySelectorAll('[data-stat]').forEach(el=>{const v=el.querySelector('.value'),h=el.querySelector('.hint');stats[el.dataset.stat]={v,h,v0:v.textContent,h0:h?h.innerHTML:''};});
   const badge=(k,t)=>'<span class="badge '+k+'"><span class="dot '+k+'"></span>'+t+'</span>';
@@ -237,8 +343,11 @@ BENCH_JS = """
   const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   function fillClients(){
     const am=amSel.value, cur=clSel.value;
-    while(clSel.options.length>1) clSel.remove(1);
-    D.clients.filter(c=>am==='all'||c.a===am).forEach(c=>clSel.add(new Option(c.n,c.n)));
+    while(clSel.children.length>1) clSel.removeChild(clSel.lastChild);
+    [['With an ad account',D.clients],['Without an ad account',D.unmapped]].forEach(([label,list])=>{
+      const l=list.filter(c=>am==='all'||c.a===am); if(!l.length) return;
+      const g=document.createElement('optgroup'); g.label=label; l.forEach(c=>g.appendChild(new Option(c.n,c.n))); clSel.appendChild(g);
+    });
     clSel.value=[...clSel.options].some(o=>o.value===cur)?cur:'all';
   }
   const match=(c,a)=>(amSel.value==='all'||a===amSel.value)&&(clSel.value==='all'||c===clSel.value);
@@ -251,27 +360,29 @@ BENCH_JS = """
     if(on) h+='<span class="tcount">of '+plural(tot,unit)+' this week</span>';
     box.innerHTML=h;
   }
+  function xlabel(){ if(!xall) return; const vis=cards.filter(c=>!c.hidden); xall.textContent=vis.length&&vis.every(c=>c.open)?'Collapse all':'Expand all'; }
   function apply(){
     const am=amSel.value, cl=clSel.value, on=am!=='all'||cl!=='all';
     amSel.classList.toggle('on',am!=='all'); clSel.classList.toggle('on',cl!=='all');
     tables.forEach(t=>{
-      const rows=[...t.tBodies[0].rows], vis=rows.filter(r=>match(r.dataset.client,r.dataset.am));
+      const rows=[...t.tBodies[0].rows].filter(r=>!r.hasAttribute('data-grp')), vis=rows.filter(r=>match(r.dataset.client,r.dataset.am));
       rows.forEach(r=>{r.hidden=!vis.includes(r);});
+      t.querySelectorAll('tr[data-grp]').forEach(g=>{g.hidden=!vis.some(r=>r.hasAttribute('data-unmapped'));});
       t.hidden=!vis.length; const e=t.parentElement.querySelector('.empty'); if(e) e.hidden=!!vis.length;
       meta(t,vis,rows.length,on);
     });
-    let nc=0; cards.forEach(c=>{const s=match(c.dataset.client,c.dataset.am); c.hidden=!s; if(s) nc++;});
+    let nc=0; cards.forEach(c=>{const s=match(c.dataset.client,c.dataset.am); c.hidden=!s; if(s){nc++; if(cl!=='all') c.open=true;}});
+    const nu=D.unmapped.filter(c=>match(c.n,c.a)).length;
     const R=D.rows.filter(r=>match(r[0],r[1])), n={};
     R.forEach(r=>{n[r[2]]=(n[r[2]]||0)+1;});
     const set=(k,v,h)=>{const s=stats[k]; if(!s) return; s.v.textContent=on?v:s.v0; if(s.h&&h!==undefined) s.h.innerHTML=on?h:s.h0;};
-    const ctx=R.filter(r=>r[2].startsWith('Not scored')).length;
-    set('clients',String(nc),(am!=='all'?esc(am)+"'s clients, ":'')+'of '+D.clients.length+' with an ad account');
-    set('scored',String(R.filter(r=>!NOT_SCORED(r[2])).length),(n['Under gate']||0)+' more under the spend gate'+(ctx?', '+ctx+' Lead Gen and Discovery rows for context':''));
+    set('clients',String(nc),'of '+D.clients.length+' with an ad account'+(nu?', +'+nu+' without':''));
+    set('scored',String(R.filter(r=>!NOT_SCORED(r[2])).length),(n['Under gate']||0)+' under the spend gate');
     [['flag','Flag to Shawal'],['review','Review w/ HG AI'],['monitor','Monitor'],['healthy','Healthy'],['scale','Scale w/ HG AI']].forEach(([k,s])=>set(k,String(n[s]||0)));
     set('freq',String(R.filter(r=>r[3]).length));
     const who=[am!=='all'?esc(am):'',cl!=='all'?esc(cl):''].filter(Boolean).join(' · ');
-    sum.innerHTML=on?'Showing <strong>'+plural(nc,'client')+'</strong> of '+cards.length+' · '+who:plural(cards.length,'client')+' across '+ams.length+' account managers';
-    clr.hidden=!on;
+    sum.innerHTML=on?'Showing <strong>'+plural(nc+nu,'client')+'</strong> of '+ALL.length+' · '+who:ALL.length+' Advanced clients across '+ams.length+' account managers';
+    clr.hidden=!on; xlabel();
     try{const u=new URL(location.href);
       if(am==='all')u.searchParams.delete('am');else u.searchParams.set('am',am);
       if(cl==='all')u.searchParams.delete('client');else u.searchParams.set('client',cl);
@@ -283,10 +394,25 @@ BENCH_JS = """
   const q=new URLSearchParams(location.search);
   if(ams.includes(q.get('am'))) amSel.value=q.get('am');
   fillClients();
-  if(D.clients.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
+  if(ALL.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
   bar.hidden=false;
   apply();
-  // toggle sections: remember each viewer's open / closed choice
+  // a client name or overview row opens that client's card
+  function openCard(id,scroll){
+    const d=document.getElementById(id); if(!d) return;
+    d.open=true; xlabel();
+    if(scroll){ try{history.replaceState(null,'','#'+id);}catch(e){} d.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); d.querySelector('summary').focus({preventScroll:true}); }
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#client-"]');
+    if(a){ e.preventDefault(); openCard(a.getAttribute('href').slice(1),true); return; }
+    const tr=e.target.closest('tr[data-href]');
+    if(tr && !window.getSelection().toString()) openCard(tr.dataset.href.slice(1),true);
+  });
+  if(/^#client-\\d+$/.test(location.hash)) openCard(location.hash.slice(1),true);
+  cards.forEach(c=>c.addEventListener('toggle',xlabel));
+  if(xall) xall.addEventListener('click',()=>{const vis=cards.filter(c=>!c.hidden), open=!vis.every(c=>c.open); vis.forEach(c=>{c.open=open;}); xlabel();});
+  // section toggles: remember each viewer's open / closed choice
   document.querySelectorAll('details.tgl[id]').forEach(d=>{
     const key='bench.tgl.'+d.id;
     try{const v=localStorage.getItem(key); if(v==='open') d.open=true; else if(v==='closed') d.open=false;}catch(e){}
@@ -384,12 +510,12 @@ def stat(label, value, hint="", dot=None, key=None):
     k=f' data-stat="{key}"' if key else ""
     return f'<div class="stat"{k}><div class="label">{d}{esc(label)}</div><div class="value">{esc(value)}</div>{f"<div class=hint>{inline(hint)}</div>" if hint else ""}</div>'
 
-def page(title, eyebrow, h1, lede, chips, body, js=""):
+def page(title, eyebrow, h1, lede, chips, body, js="", css=""):
     chips_html="".join(f'<span class="chip">{c}</span>' for c in chips)
     return f"""<title>{esc(title)}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap">
-<style>{CSS}</style>
+<style>{CSS}{css}</style>
 <div class="page">
 <div class="masthead">{wordmark}<div class="eyebrow">{esc(eyebrow)}</div></div>
 <header class="title"><h1>{esc(h1)}</h1><p class="lede">{lede}</p><div class="meta">{chips_html}</div></header>
@@ -647,65 +773,102 @@ def month_strip(p):
         f'<div class="stat"><div class="label">Promo codes this month</div><div class="value">{esc(promo_val)}</div><div class="hint">{esc(promo_hint)}</div></div>'
         '</div>')
 
+SCORED_ORDER = ("Flag to Shawal","Review w/ HG AI","Monitor","Healthy","Scale w/ HG AI")
+
+def one_liner(text):
+    """Opening line of a client's weekly notes, for the overview table."""
+    t=re.sub(r"^HG AI notes[^:]*:\s*","",text.strip())
+    t=re.sub(r"^no HG AI reports? this week(?: \([^)]*\))?\.\s*","",t,flags=re.I)
+    sents=[x for x in re.split(r"(?<=[.!?])\s+(?=[A-Z(\"$])",t) if x]
+    if not sents: return ""
+    out=sents[0]
+    if len(out)<50 and len(sents)>1: out+=" "+sents[1]
+    for k in FLAG: out=out.replace(k,"")
+    out=re.sub(r"\(\s+",  "(", re.sub(r"\s+\)", ")", out))
+    return out[:1].upper()+out[1:]
+
+def state_badges(states):
+    """One badge per scored state a client has this week, worst first; '2 Healthy' when repeated."""
+    c=collections.Counter(states)
+    out=[badge(STATE[s], (f"{c[s]} " if c[s]>1 else "")+s) for s in SCORED_ORDER if c[s]]
+    if out: return "".join(out)
+    return badge("gray","Under gate") if c["Under gate"] else badge("gray","Not scored")
+
 def build_bench():
     md=open(f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.md",encoding="utf-8").read()
     S=sections(md)
     rows=list(csv.DictReader(open(f"{ROOT}/Client Benchmark Reviews (advanced setups)/Weekly Checks/{DATE}-client-benchmark.csv",encoding="utf-8")))
     cnt=collections.Counter(r["state"] for r in rows)
-    clients={r["client"] for r in rows}
     # 'Not scored (discovery)' / 'Not scored (lead gen)' rows (4 Nov 2026 rule) are context, not scored
     def not_scored(s): return s in ("Under gate","Tracked in Discovery","No promo data") or s.startswith("Not scored")
     scored=sum(1 for r in rows if not not_scored(r["state"]))
-    ctx_rows=sum(1 for r in rows if r["state"].startswith("Not scored"))
-    ct0=tables(S["_pre"]); hdrv=dict(zip(ct0[0][0],ct0[0][1])) if ct0 and len(ct0[0])>1 else {}
-    adv_raw=hdrv.get("Advanced clients","—"); m_adv=re.match(r"(\d+)\s*\(\+(\d+) unmapped\)",adv_raw)
-    adv_val=m_adv.group(1) if m_adv else adv_raw; adv_extra=f", {m_adv.group(2)} Advanced without an ad account" if m_adv else ""
-    stats=(stat("Advanced clients",adv_val,f"{hdrv.get('Live reads','—')} live reads, {hdrv.get('From CSV','—')} from the CSV export{adv_extra}",key="clients")
-        +stat("Rows scored",str(scored),f"{cnt['Under gate']} more under the spend gate"+(f", {cnt['Tracked in Discovery']} lead rows tracked in Discovery, {cnt['No promo data']} Discovery rows without promo data" if cnt.get("Tracked in Discovery") or cnt.get("No promo data") else "")+(f", {ctx_rows} Lead Gen and Discovery rows for context" if ctx_rows else ""),key="scored")
-        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"ROAS under 2x or no purchases",dot="err",key="flag")
-        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"ROAS 2 to 5x",dot="warn",key="review")
-        +stat("Monitor",str(cnt["Monitor"]),"ROAS 5 to 8x",dot="gray",key="monitor")
-        +stat("Healthy",str(cnt["Healthy"]),"ROAS 8 to 15x",dot="ok",key="healthy")
-        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"ROAS above 15x",dot="brand",key="scale")
-        +stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Sales/Retargeting campaigns to refresh creative on; state unchanged",dot="warn",key="freq"))
-    # meetings
-    mkey=[k for k in S if k.startswith("Weekly Meta Ads meetings")][0]
-    mlines=S[mkey]; meetings=[]; cur=None
-    for l in mlines:
-        if l.startswith("### "):
-            cur={"head":l[4:].strip(),"lines":[]}; meetings.append(cur)
-        elif cur is not None: cur["lines"].append(l)
-    mhtml=[]
-    for m in meetings:
-        parts=[p.strip() for p in m["head"].split(" — ")]
-        title,date=parts[0],parts[1]; doc=re.sub(r"[`doc ]","",parts[2]) if len(parts)>2 else ""
-        ls=m["lines"]; summ=[]; dec=[]; nxt=[]; mode="s"
-        for l in ls:
-            t=l.strip()
-            if not t: continue
-            if t=="Decisions:": mode="d"; continue
-            if t=="Next steps:": mode="n"; continue
-            if mode=="s": summ.append(t)
-            elif mode=="d" and t.startswith("- "): dec.append(t[2:])
-            elif mode=="n" and t.startswith("- "): nxt.append(t[2:])
-        sp="".join(f"<p>{inline(p)}</p>" for p in summ)
-        dh=f'<div class="lbl">Decisions</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in dec)}</ul>' if dec else ""
-        nh=f'<div class="lbl">Next steps</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in nxt)}</ul>' if nxt else ""
-        lead = inline(summ[0]) if summ else ""
-        rest = "".join(f"<p>{inline(p)}</p>" for p in summ[1:])
-        mhtml.append(f'<details class="meeting"><summary><span class="chev" aria-hidden="true"></span><span class="mtxt"><span class="mtitle">{esc(title)}</span><span class="when">{esc(date)} · Notes by Gemini · doc <span class="mono">{esc(doc)}</span></span>{f"<span class=mlead>{lead}</span>" if lead else ""}</span></summary><div class="mbody">{rest}{dh}{nh}</div></details>')
-    # client cards, in report order: name -> AM and anchor, for the filter and the client links in the tables
-    pkey=[k for k in S if k.startswith("Per client")][0]
-    card_list=[]
-    for l in S[pkey]:
-        if l.startswith("### "):
-            parts=[p.strip() for p in l[4:].split(" — ")]
-            card_list.append((parts[0], parts[1].replace("AM ","") if len(parts)>1 else ""))
-    card_id={n:f"client-{i}" for i,(n,_) in enumerate(card_list)}
     def attr(s): return html.escape(s.strip(), quote=True)
     def who(r): return f' data-client="{attr(r[0])}" data-am="{attr(r[1])}"'
-    def href(c): return f"#{card_id[c.strip()]}" if c.strip() in card_id else None
+    foot=bullets(S["Footer"])
 
+    # ---------- per-client blocks, sorted by 30-day spend (all HiddenGem campaigns), highest first
+    pkey=[k for k in S if k.startswith("Per client")][0]
+    blocks=[]; cur=None
+    for l in S[pkey]:
+        if l.startswith("### "):
+            cur={"head":l[4:].strip(),"lines":[]}; blocks.append(cur)
+        elif cur is not None: cur["lines"].append(l)
+    states_by_client=collections.defaultdict(list)
+    for r in rows: states_by_client[r["client"]].append(r["state"])
+    clients=[]
+    for c in blocks:
+        parts=[p.strip() for p in c["head"].split(" — ")]
+        ps=paras(c["lines"])
+        blend=[p for p in ps if p.startswith("Blended 30d")]
+        m=re.search(r"spend \$([\d,]+)",blend[0]) if blend else None
+        hg=[p for p in ps if p.startswith("HG AI notes")]
+        clients.append({"name":parts[0],"am":parts[1].replace("AM ","") if len(parts)>1 else "","parts":parts,"lines":c["lines"],"ps":ps,
+                        "spend":int(m.group(1).replace(",","")) if m else 0,"summary":one_liner(hg[0]) if hg else ""})
+    clients.sort(key=lambda c:-c["spend"])
+    for i,c in enumerate(clients): c["id"]=f"client-{i}"
+    card_id={c["name"]:c["id"] for c in clients}
+    def href(cell): return f"#{card_id[cell.strip()]}" if cell.strip() in card_id else None
+
+    # Advanced in the CRM with no ad account mapped (named in the report footer)
+    unmapped=[]
+    for b in foot:
+        m=re.search(r"no ad account mapping[^:]*:\s*(.+?)\.(?:\s|$)",b)
+        if m:
+            for n,a in re.findall(r"([^,()]+?) \(AM ([^)]+)\)",m.group(1)):
+                unmapped.append({"name":n.strip(),"am":"" if a.strip() in ("—","-") else a.strip()})
+
+    # ---------- stat band
+    ct0=tables(S["_pre"]); hdrv=dict(zip(ct0[0][0],ct0[0][1])) if ct0 and len(ct0[0])>1 else {}
+    adv_raw=hdrv.get("Advanced clients","—"); m_adv=re.match(r"(\d+)\s*\(\+(\d+) unmapped\)",adv_raw)
+    adv_val=m_adv.group(1) if m_adv else adv_raw
+    band=(stat("Advanced clients",adv_val,f"+{len(unmapped)} without an ad account" if unmapped else "with an ad account",key="clients")
+        +stat("Campaigns scored",str(scored),f"{cnt['Under gate']} under the spend gate",key="scored")
+        +stat("Flag to Shawal",str(cnt["Flag to Shawal"]),"Under 2x or no purchases",dot="err",key="flag")
+        +stat("Review w/ HG AI",str(cnt["Review w/ HG AI"]),"2 to 5x",dot="warn",key="review")
+        +stat("Monitor",str(cnt["Monitor"]),"5 to 8x",dot="gray",key="monitor")
+        +stat("Healthy",str(cnt["Healthy"]),"8 to 15x",dot="ok",key="healthy")
+        +stat("Scale w/ HG AI",str(cnt["Scale w/ HG AI"]),"Above 15x",dot="brand",key="scale")
+        +stat("Frequency over 5",str(sum(1 for r in rows if r.get("freq_flag")=="yes")),"Refresh creative",dot="warn",key="freq"))
+
+    # ---------- section 1: all clients
+    otr=[]
+    for c in clients:
+        summ=f'<span class="clamp" title="{attr(re.sub(r"[`*]","",c["summary"]))}">{inline(c["summary"])}</span>' if c["summary"] else "—"
+        otr.append(f'<tr data-client="{attr(c["name"])}" data-am="{attr(c["am"])}" data-href="#{c["id"]}">'
+                   f'<td class=first><a href="#{c["id"]}">{esc(c["name"])}</a></td><td class=nowrap>{esc(c["am"])}</td>'
+                   f'<td class=sum>{summ}</td><td class=st><span class=stl>{state_badges(states_by_client.get(c["name"],[]))}</span></td>'
+                   f'<td class="num spend">{"$"+format(c["spend"],",") if c["spend"] else "—"}</td></tr>')
+    if unmapped:
+        otr.append(f'<tr class=grp data-grp><td colspan=5>Without an ad account · {len(unmapped)}</td></tr>')
+        for u in unmapped:
+            otr.append(f'<tr class=muted data-unmapped data-client="{attr(u["name"])}" data-am="{attr(u["am"])}">'
+                       f'<td class=first>{esc(u["name"])}</td><td class=nowrap>{esc(u["am"]) or "—"}</td>'
+                       f'<td class=sum>Advanced in the CRM, no ad account mapped yet, so nothing is scored.</td>'
+                       f'<td class=st>{badge("gray","No ad account")}</td><td class=num>—</td></tr>')
+    overview=(f'<div class="tablewrap"><table id="ovw" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Summary</th><th>State</th><th class=num>Spend, 30 days</th></tr></thead>'
+              f'<tbody>{"".join(otr)}</tbody></table><div class="empty" hidden>No clients match this filter.</div></div>')
+
+    # ---------- section 2: campaign lists
     hdr=["Client","AM","Campaign","Type","Spend / window","Governing metric","State","Status vs last week"]
     kinds=["first","text","camp","type","num","num","badge","status"]
     act_rows=tables(S["Action needed"])[0][1:]; sc_rows=tables(S["Scale candidates"])[0][1:]
@@ -716,43 +879,39 @@ def build_bench():
     fkinds=["first","text","camp","type","num","num","num","badge"]
     frows=[r for r in tables(S[fkey[0]])[0][1:] if r and r[0].strip()!="—"] if fkey and tables(S[fkey[0]]) else []
     fw=render_table("freq",fhdr,frows,fkinds,flag_col=7,flag_map=flag_state,row_attrs=who,first_href=href,table_attrs=" data-ftable") if frows else '<div class="empty">No Sales or Retargeting campaign above a frequency of 5 this week.</div>'
-
-    def tmeta(tid, trows, state_col, mode, kind="gray"):
-        """Badges in a toggle's header; the filter script rewrites them with the same format."""
+    def tmeta(tid, trows, state_col, mode, kind="gray", unit="campaign"):
+        """Badges in a toggle's header; the filter script rewrites them in the same format."""
         if mode=="states":
             c=collections.Counter(r[state_col].strip() for r in trows)
-            h="".join(badge(STATE[s], f"{c[s]} {s}") for s in ("Flag to Shawal","Review w/ HG AI","Monitor","Healthy","Scale w/ HG AI") if c[s])
+            h="".join(badge(STATE[s], f"{c[s]} {s}") for s in SCORED_ORDER if c[s])
         else:
-            h=badge(kind, f"{len(trows)} campaign{'s' if len(trows)!=1 else ''}") if trows else ""
-        return f'<span class="tmeta" data-meta-for="{tid}" data-meta="{mode}" data-kind="{kind}" data-unit="campaign">{h or badge("gray","None")}</span>'
-    def toggle(tid, title, desc, meta, inner, open_=False):
-        return f"""<section>
-<details class="card tgl" id="sec-{tid}"{" open" if open_ else ""}>
-<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h2>{esc(title)}</h2>{meta}</span><span class="sec-desc">{desc}</span></span><span class="tact" aria-hidden="true"></span></summary>
+            h=badge(kind, f"{len(trows)} {unit}{'s' if len(trows)!=1 else ''}") if trows else ""
+        return f'<span class="tmeta" data-meta-for="{tid}" data-meta="{mode}" data-kind="{kind}" data-unit="{unit}">{h or badge("gray","None")}</span>'
+    def toggle(tid, title, desc, meta, inner):
+        return f"""<details class="card tgl" id="sec-{tid}">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>{esc(title)}</h3>{meta}</span><span class="sec-desc">{desc}</span></span><span class="tact" aria-hidden="true"></span></summary>
 {inner}
-</details>
-</section>"""
+</details>"""
 
-    # per client
-    plines=S[pkey]; clients_blocks=[]; cur=None
-    for l in plines:
-        if l.startswith("### "):
-            cur={"head":l[4:].strip(),"lines":[]}; clients_blocks.append(cur)
-        elif cur is not None: cur["lines"].append(l)
-    chtml=[]
+    # ---------- section 3: one collapsible card per client
     chdr=["Campaign","Type","Window","Spend","Results","Governing metric","Frequency","State","Diagnostics vs investigate lines","Notes","Change vs last week"]
     ckinds=["first","nowrap","nowrap","num","num","num","num","badge","notes","notes","nowrap"]
-    # reports before 2026-10-06 have no Frequency column
-    old_chdr=chdr[:6]+chdr[7:]; old_ckinds=ckinds[:6]+ckinds[7:]
-    for i,c in enumerate(clients_blocks):
-        parts=[p.strip() for p in c["head"].split(" — ")]
-        name=parts[0]; am=parts[1].replace("AM ",""); acct=parts[2].replace("account ",""); src=parts[3]
+    old_chdr=chdr[:6]+chdr[7:]; old_ckinds=ckinds[:6]+ckinds[7:]   # reports before 2026-10-06 have no Frequency column
+    def strip_lbl(p,lbl): return re.sub(r"^"+lbl+r"[^:]*:\s*","",p)
+    MN=re.compile(r"^Meeting notes\s*"); PZ=re.compile(r"^Paused in window, not scored:\s*")
+    def fmt_note(n):
+        n=MN.sub('',n).lstrip(':').strip()
+        m=re.match(r"^\(([^)]*?) (\d{4}-\d{2}-\d{2})\):\s*(.*)$",n)
+        return f"<strong>{esc(m.group(1))}, {esc(m.group(2))}.</strong> {inline(m.group(3))}" if m else inline(n)
+    chtml=[]
+    for i,c in enumerate(clients):
+        parts=c["parts"]; name=c["name"]; am=c["am"]
+        acct=parts[2].replace("account ","") if len(parts)>2 else ""; src=parts[3] if len(parts)>3 else "live"
         m=re.match(r"(.*)\((\d+)\)$",acct); acct_name,acct_id=(m.group(1).strip(),m.group(2)) if m else (acct,"")
-        src_badge=badge("ok","Live read") if src.startswith("live") else badge("warn","CSV export, provisional")
-        ps=paras(c["lines"]); tbls=tables(c["lines"])
+        src_badge="" if src.startswith("live") else badge("warn","CSV export, provisional")
+        ps=c["ps"]; tbls=tables(c["lines"])
         tof=[p for p in ps if p.startswith("ToF")]; roi=[p for p in ps if p.startswith("Monthly ROI")]
-        blend=[p for p in ps if p.startswith("Blended 30d")]
-        month=[p for p in ps if p.startswith("This month")]
+        blend=[p for p in ps if p.startswith("Blended 30d")]; month=[p for p in ps if p.startswith("This month")]
         notes=[p for p in ps if p.startswith("Meeting notes")]; hg=[p for p in ps if p.startswith("HG AI notes")]
         nocamp=[p for p in ps if p.startswith("No Lead Gen") or p.startswith("No live Lead Gen")]
         pausedl=[p for p in ps if p.startswith("Paused in window")]
@@ -760,63 +919,109 @@ def build_bench():
         if tbls and len(tbls[0][0])>=11: tbl=render_table(tid,chdr,tbls[0][1:],ckinds,flag_col=7,flag_map=flag_state)
         elif tbls: tbl=render_table(tid,old_chdr,tbls[0][1:],old_ckinds,flag_col=6,flag_map=flag_state)
         else: tbl=f'<div class="empty">{inline(nocamp[0]) if nocamp else "No scored campaigns."}</div>'
-        def strip_lbl(p,lbl): return re.sub(r"^"+lbl+r"[^:]*:\s*","",p)
-        MN=re.compile(r"^Meeting notes\s*")
-        def fmt_note(n):
-            n=MN.sub('',n).lstrip(':').strip()
-            m=re.match(r"^\(([^)]*?) (\d{4}-\d{2}-\d{2})\):\s*(.*)$",n)
-            return f"<strong>{esc(m.group(1))}, {esc(m.group(2))}.</strong> {inline(m.group(3))}" if m else inline(n)
         notes_html="".join(f"<dt>Meeting notes</dt><dd>{fmt_note(n)}</dd>" for n in notes) if notes else "<dt>Meeting notes</dt><dd>Not mentioned in this week's meetings.</dd>"
-        PZ=re.compile(r"^Paused in window, not scored:\s*")
         paused_html="".join(f"<dt>Paused in window</dt><dd>{inline(PZ.sub('',pl))}</dd>" for pl in pausedl)
+        hgt=strip_lbl(hg[0],"HG AI notes") if hg else ""
         kv=f"""<dl class="kv">
 {paused_html}<dt>Monthly ROI</dt><dd>{inline(strip_lbl(roi[0],"Monthly ROI")) if roi else "—"}</dd>
 {notes_html}
-<dt>HG AI notes</dt><dd>{inline(strip_lbl(hg[0],"HG AI notes")[:1].upper()+strip_lbl(hg[0],"HG AI notes")[1:]) if hg else "—"}</dd>
+<dt>HG AI notes</dt><dd>{inline(hgt[:1].upper()+hgt[1:]) if hg else "—"}</dd>
 </dl>"""
-        chtml.append(f"""<div class="card" id="client-{i}" data-client="{attr(name)}" data-am="{attr(am)}">
-<div class="card-head"><div><h3>{esc(name)}</h3><div class="sub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></div></div>{src_badge}</div>
+        spend=f'${c["spend"]:,}' if c["spend"] else "—"
+        chtml.append(f"""<details class="card ccard" id="{c["id"]}" data-client="{attr(name)}" data-am="{attr(am)}">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">{esc(name)}</span><span class="csub">AM {esc(am)} · {esc(acct_name)} <span class="mono">{esc(acct_id)}</span></span></span><span class="cstates">{src_badge}{state_badges(states_by_client.get(name,[]))}</span><span class="cspend">{spend}<small>spend, 30 days</small></span></summary>
 {month_strip(month[0]) if month else ""}
 <div class="tof">{inline(tof[0]) if tof else ""}</div>
 {f'<div class="tof">{inline(blend[0])}</div>' if blend else ""}
 {tbl}
 {kv}
-</div>""")
+</details>""")
+
+    # ---------- section 4: meetings and report notes
+    mkey=[k for k in S if k.startswith("Weekly Meta Ads meetings")][0]
+    meetings=[]; cur=None
+    for l in S[mkey]:
+        if l.startswith("### "):
+            cur={"head":l[4:].strip(),"lines":[]}; meetings.append(cur)
+        elif cur is not None: cur["lines"].append(l)
+    mhtml=[]
+    for m in meetings:
+        parts=[p.strip() for p in m["head"].split(" — ")]
+        title,date=parts[0],parts[1]; doc=re.sub(r"[`doc ]","",parts[2]) if len(parts)>2 else ""
+        summ=[]; dec=[]; nxt=[]; mode="s"
+        for l in m["lines"]:
+            t=l.strip()
+            if not t: continue
+            if t=="Decisions:": mode="d"; continue
+            if t=="Next steps:": mode="n"; continue
+            if mode=="s": summ.append(t)
+            elif mode=="d" and t.startswith("- "): dec.append(t[2:])
+            elif mode=="n" and t.startswith("- "): nxt.append(t[2:])
+        dh=f'<div class="lbl">Decisions</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in dec)}</ul>' if dec else ""
+        nh=f'<div class="lbl">Next steps</div><ul>{"".join(f"<li>{inline(d)}</li>" for d in nxt)}</ul>' if nxt else ""
+        lead=inline(summ[0]) if summ else ""
+        rest="".join(f"<p>{inline(p)}</p>" for p in summ[1:])
+        mhtml.append(f'<details class="meeting"><summary><span class="chev" aria-hidden="true"></span><span class="mtxt"><span class="mtitle">{esc(title)}</span><span class="when">{esc(date)} · Notes by Gemini · doc <span class="mono">{esc(doc)}</span></span>{f"<span class=mlead>{lead}</span>" if lead else ""}</span></summary><div class="mbody">{rest}{dh}{nh}</div></details>')
+    meet_block=f'<div class="mlist">{"".join(mhtml)}</div>' if mhtml else '<p class="np">No Meta Ads meeting notes since the last run.</p>'
     states_para=[p for p in paras(S["_pre"]) if p.startswith("States come from")]
-    # filter bar: shown by the script (useless without it); options rendered here so the page reads right before it runs
-    am_counts=collections.Counter(a for _,a in card_list)
+    nm=len(meetings)
+    m_lbl=f"{nm} meeting" + ("s" if nm!=1 else "")
+    notes_meta=f'<span class="tmeta">{badge("gray", m_lbl)}{badge("gray", f"{len(foot)} method notes")}</span>'
+    notes_inner=f"""<div class="nbody">
+<div><h4>Weekly Meta Ads meetings since last run</h4><p class="sec-desc">Notes by Gemini attached to the calendar events, read via Drive. Summary, decisions and next steps as Gemini wrote them; client-specific sentences are also pulled into each client's card. Transcript not used.</p>{meet_block}</div>
+<div><h4>How states are assigned</h4><p class="np">{inline(states_para[0]) if states_para else "—"}</p></div>
+<div><h4>Method and scope</h4><ul class="nl">{"".join(f"<li>{inline(b)}</li>" for b in foot)}</ul></div>
+</div>"""
+
+    # ---------- filter bar (shown by the script; useless without it)
+    am_counts=collections.Counter(a for a in [c["am"] for c in clients]+[u["am"] for u in unmapped] if a)
     am_opts="".join(f'<option value="{attr(a)}">{esc(a)} ({n})</option>' for a,n in sorted(am_counts.items()))
-    cl_opts="".join(f'<option value="{attr(n)}">{esc(n)}</option>' for n,_ in sorted(card_list,key=lambda x:x[0].lower()))
+    def opts(lst): return "".join(f'<option value="{attr(n)}">{esc(n)}</option>' for n in sorted((x["name"] for x in lst),key=str.lower))
+    cl_opts=f'<optgroup label="With an ad account">{opts(clients)}</optgroup>'+(f'<optgroup label="Without an ad account">{opts(unmapped)}</optgroup>' if unmapped else "")
+    n_all=len(clients)+len(unmapped)
     fbar=f"""<div class="fbar" id="fbar" role="search" aria-label="Filter this review" hidden>
 <div class="fld"><label for="f-am">Account manager</label><span class="sel"><select id="f-am"><option value="all">All account managers</option>{am_opts}</select></span></div>
 <div class="fld"><label for="f-client">Client</label><span class="sel"><select id="f-client"><option value="all">All clients</option>{cl_opts}</select></span></div>
 <button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
-<p class="fsum" id="f-sum" aria-live="polite">{len(card_list)} clients across {len(am_counts)} account managers</p>
+<p class="fsum" id="f-sum" aria-live="polite">{n_all} Advanced clients across {len(am_counts)} account managers</p>
 </div>"""
-    data=json.dumps({"clients":[{"n":n,"a":a} for n,a in sorted(card_list,key=lambda x:x[0].lower())],
+    data=json.dumps({"clients":[{"n":c["name"],"a":c["am"]} for c in sorted(clients,key=lambda c:c["name"].lower())],
+                     "unmapped":[{"n":u["name"],"a":u["am"]} for u in sorted(unmapped,key=lambda u:u["name"].lower())],
                      "rows":[[r["client"],r["am"],r["state"],1 if r.get("freq_flag")=="yes" else 0] for r in rows]},ensure_ascii=False).replace("</","<\\/")
+
+    def sec_top(n, eyebrow, title, desc, actions=""):
+        return f'<div class="sec-top"><div><span class="eb">{n} · {esc(eyebrow)}</span><h2>{esc(title)}</h2><p class="sec-desc">{desc}</p></div>{actions}</div>'
     body=f"""
 {fbar}
 <script type="application/json" id="bench-data">{data}</script>
-<div class="stats cols-4">{stats}</div>
-<div class="alert info"><div class="t">How states are assigned</div><p>{inline(states_para[0]) if states_para else ""}</p></div>
-<section>
-  <div class="sec-head"><div><h2>Weekly Meta Ads meetings since last run</h2><p class="sec-desc">Notes by Gemini attached to the calendar events, read via Drive. Summary, decisions and next steps as Gemini wrote them; client-specific sentences are pulled into each client's card below. Transcript not used.</p></div></div>
-  <div class="card">{"".join(mhtml)}</div>
+<div class="card band">{band}</div>
+<section class="sec" id="overview">
+{sec_top("01","Overview","All clients","Every CRM-Advanced client, highest 30-day ad spend first (all HiddenGem campaigns). State shows this week's scored Sales campaigns, worst first; the summary is the opening line of the client's notes. Click a row for the full detail.")}
+<div class="card">{overview}</div>
 </section>
-{toggle("act","Action needed","Sales, Retargeting and Prospecting campaigns first, then Discovery buckets, then Lead Gen tracking checks. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.",tmeta("act",act_rows,6,"states"),act)}
+<section class="sec" id="lists">
+{sec_top("02","Campaign lists","Action needed, scale and frequency","Sales-objective campaigns only. Open a list to see its rows; the counts follow the filter.")}
+<div class="stack">
+{toggle("act","Action needed","Flag to Shawal before Review w/ HG AI, highest spend first.",tmeta("act",act_rows,6,"states"),act)}
 {toggle("scale","Scale candidates","Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.",tmeta("scale",sc_rows,6,"count","brand"),sc)}
-{toggle("freq","Frequency watch","Sales, Retargeting and Prospecting campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw)}
-<section>
-  <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is judged inside the client's Discovery bucket row; the Blended 30d line is the all-campaign view, not de-duplicated. Click a client name in the tables above to jump to its card.</p></div></div>
-  <div class="cards">{"".join(chtml)}</div>
+{toggle("freq","Frequency watch","14-day frequency above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.",tmeta("freq",frows,7,"count","warn"),fw)}
+</div>
 </section>
-{footer(bullets(S["Footer"]))}
+<section class="sec" id="clients">
+{sec_top("03","Per client","Client detail","Same order as the overview. Each card holds this month's bookings, the campaign table, monthly ROI and the client's notes.",'<button type="button" class="btn sm" id="x-all">Expand all</button>')}
+<div class="cards">{"".join(chtml)}</div>
+</section>
+<section class="sec" id="notes">
+{sec_top("04","Notes","Meeting summary and report notes","This week's Meta Ads meeting notes, how states are assigned, and the method behind the numbers.")}
+{toggle("notes","Meta Ads meetings and notes","Gemini meeting summaries, the state rules and the report's method notes.",notes_meta,notes_inner)}
+</section>
+<p class="genline">HiddenGem Marketing · weekly Meta Ads review · generated {RUN} from the saved report and CSV sidecar.</p>
 """
-    lede="Scores each CRM-Advanced client's three buckets on ROAS against the Benchmarks doc decision table: Discovery (giveaway + lead campaigns, sign-up promo-code revenue), Prospecting (lookalike sales, pixel) and Retargeting (pixel), with monthly ROI context and this week's meeting notes."
+    lede="Scores each CRM-Advanced client's Sales-objective Meta campaigns (Retargeting, Prospecting, Sales) on 14-day pixel ROAS against the Benchmarks doc decision table, with this month's bookings, monthly ROI and this week's meeting notes. Lead Gen and Discovery spend are shown for context."
     rl=run_line(S); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for the (\d+) accounts",rl)
-    chips=[f"Run {RUN}","Discovery: 30-day window, promo-code ROAS, $200 gate","Sales/Retargeting/Prospecting: 14-day window, pixel ROAS, $200 gate","Lead Gen: CPL diagnostic, $100 tracking gate"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
-    return page(f"Client benchmark {WEEK}","Weekly Meta Ads review · Client benchmark, advanced setups","Client benchmark review",lede,[esc(c) for c in chips],body,js=BENCH_JS)
+    chips=[f"Run {RUN}","Sales campaigns: 14-day pixel ROAS, $200 gate","Lead Gen and Discovery: context only"]+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} accounts"] if m2 else [])+[compare_chip(S)]
+    return page(f"Client benchmark {WEEK}","Weekly Meta Ads review · Client benchmark","Client benchmark review",lede,[esc(c) for c in chips],body,js=BENCH_JS,css=BENCH_CSS)
+
 
 if __name__ == "__main__":
     outs={
