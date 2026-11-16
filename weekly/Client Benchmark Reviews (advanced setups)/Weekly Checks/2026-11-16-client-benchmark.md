@@ -604,7 +604,7 @@ Monthly ROI: October: spend $1,295, 26 Meta-attributed bookings, blended ROAS 16
 
 Meeting notes: not mentioned in this week's meetings.
 
-HG AI notes: no HG AI reports this week (none filed since 23 Sep). HiddenGem's BoF was paused on 14 Nov (Ananya) while it read 34.8x on 9 purchases ($120, under the gate), so the account runs only the giveaway and the lead campaign at $20/day; worth asking Anna why. The pixel recorded 85 Purchase in 7 days with no PMS to check against (pixel check).
+HG AI notes: no HG AI reports this week (none filed since 23 Sep). HiddenGem's BoF was paused on 14 Nov (Ananya) at the client's request over an issue with the VIP promo code, while it read 34.8x on 9 purchases ($120, under the gate); the account runs only the giveaway and the lead campaign at $20/day until it restarts. The pixel recorded 85 Purchase in 7 days with no PMS to check against (pixel check).
 
 ### American River Resort — AM Nicole — account American River Resort (953162737054331) — live read
 
