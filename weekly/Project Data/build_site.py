@@ -23,9 +23,10 @@ WORKFLOWS = [
      "Which domains fire into each client's pixel, plus 28-day Purchase tracking."),
     ("client-benchmark", "Client benchmark", "Client Benchmark Reviews (advanced setups)/Weekly Checks", "-client-benchmark.html", "-client-benchmark.csv",
      "Advanced clients' Sales campaigns scored on 14-day ROAS, with one-line summaries."),
-    # 2026-11-16 (Shawal): the step after the three checks; its sidecar is the post-review JSON, not a CSV
-    ("post-review", "Post-review", "Post-Review/Weekly Checks", "-post-review.html", "-post-review.json",
-     "What to change: budget shifts, creative asks, new-client launch checks and the Fix List tasks."),
+    # Post-review card and pages paused 2026-11-16 (Shawal: "remove this from the report for now, we will work on
+    # the todo list and email updates later"). To bring it back, restore this entry:
+    # ("post-review", "Post-review", "Post-Review/Weekly Checks", "-post-review.html", "-post-review.json",
+    #  "What to change: budget shifts, creative asks, new-client launch checks and the Fix List tasks."),
 ]
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 

@@ -2,11 +2,13 @@
  * End-of-day Meta Ads Fix List email (2026-11-16, Shawal): the tasks ticked off today on the
  * Fix List artifact (https://claude.ai/artifact/5Zraak85dw6QaXeFWVJWJn), sent around 4:30 pm.
  *
- *   npx tsx scripts/send-fixlist-digest.mts --dump DIR [--names FILE] [--hours N] [--end ISO] [--dry-run]
+ *   npx tsx scripts/send-fixlist-digest.mts --dump DIR [--names FILE] [--hours N] [--end ISO] [--dry-run | --ids]
+ *   (--ids prints the doneBy user ids in the window and exits; the Mac job turns them into names)
  *
  * DIR is an ArtifactData out_dir dump of the artifact's `tasks` collection (DIR/tasks/<id>.json),
  * made by the session that runs this (the artifact database is only reachable through ArtifactData).
- * FILE maps doneBy user ids to names ({"u_...": "Shawal"}), from ArtifactData action "profiles".
+ * FILE maps doneBy user ids to names ({"u_...": "Shawal"}), from ArtifactData action "profiles";
+ * --names-json '{...}' passes the same map inline (used by scripts/fixlist-digest-job.sh).
  * Window: the hours since the previous digest, ending now (or --end): 24 hours, or 72 on a Monday so the
  * weekend is covered by a Monday-to-Friday schedule. A fixed calendar day would drop tasks ticked after the
  * 4:30 pm send. Sends through Mailtrap only (scripts/lib/mailtrap.mts).
@@ -28,7 +30,8 @@ const weekday = new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'short
 const HOURS = Number(flag('--hours') ?? (weekday === 'Mon' ? 72 : 24));
 const START = new Date(END.getTime() - HOURS * 3600e3);
 const inWindow = (iso?: string) => !!iso && new Date(iso) > START && new Date(iso) <= END;
-const names: Record<string, string> = flag('--names') ? JSON.parse(fs.readFileSync(flag('--names')!, 'utf8')) : {};
+const names: Record<string, string> = flag('--names-json') ? JSON.parse(flag('--names-json')!)
+  : flag('--names') ? JSON.parse(fs.readFileSync(flag('--names')!, 'utf8')) : {};
 const FIXLIST = 'https://claude.ai/artifact/5Zraak85dw6QaXeFWVJWJn';
 
 const tdir = path.join(DUMP, 'tasks');
@@ -44,6 +47,10 @@ const nice = new Date(DATE + 'T12:00:00Z').toLocaleDateString('en-GB', { weekday
 const who = (t: any) => names[t.doneBy] ?? (t.doneBy ? 'a teammate' : '');
 const time = (iso: string) => new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' }).format(new Date(iso));
 
+if (args.includes('--ids')) {  // the doneBy ids in the window, for ArtifactData "profiles" -> --names file
+  console.log(JSON.stringify([...new Set(done.map((t: any) => t.doneBy).filter(Boolean))]));
+  process.exit(0);
+}
 const byAcct = new Map<string, any[]>();
 for (const t of done) byAcct.set(t.account, [...(byAcct.get(t.account) ?? []), t]);
 const openFix = open.filter((t: any) => t.priority === 'fix').length;
