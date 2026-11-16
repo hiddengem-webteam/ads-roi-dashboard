@@ -539,113 +539,270 @@ def run_line(S):
     return ""
 
 # =====================================================================
+# Shared layout for the ad spend and pixel pages (2026-11-16, Shawal: "for ad spend and pixel review
+# pages - follow same practices"). Same structure as the client benchmark page: title and date window
+# only, a stat band, 01 Overview (one row per client, highest live $/day first), 02 collapsible lists,
+# 03 per-client cards behind the account manager / client filter, 04 notes. Reuses BENCH_CSS and the
+# BENCH_JS filter, with its own localStorage prefix per page.
+# =====================================================================
+SPEND_JS = BENCH_JS.replace("'bench.tgl.'", "'spend.tgl.'")
+PIXEL_JS = BENCH_JS.replace("'bench.tgl.'", "'pixel.tgl.'")
+REVIEW_CSS = """
+.ccard .cspend{min-width:110px}
+.ccard .month{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.ctable td.dom{min-width:170px;max-width:260px;white-space:normal;font-size:13px;line-height:19px;color:var(--text-3);word-break:break-word}
+.ctable td.pid{white-space:normal;min-width:200px}
+.ctable td.pid .mono{display:block;font-size:12px;line-height:18px;color:var(--text-4)}
+.ccard .tof strong{color:var(--text-2);font-weight:600}
+.nbody .np+.np{margin-top:10px}
+"""
+
+def _attr(s): return html.escape((s or "").strip(), quote=True)
+def _f(x):
+    try: return float(x or 0)
+    except ValueError: return 0.0
+def _money(v): return f"${v:,.0f}"
+def _signed(v): return ("+" if v >= 0 else "−") + f"${abs(v):,.0f}"
+def _plural(n, w): return f"{n} {w}{'' if n == 1 else 's'}"
+def _span(a, b):
+    return f"{a.day} {a:%b} – {b.day} {b:%b %Y}" if a.year == b.year else f"{a.day} {a:%b %Y} – {b.day} {b:%b %Y}"
+def _norm(s): return re.sub(r"[^a-z0-9]", "", (s or "").lower())
+def _cap(s): s = (s or "").strip(); return s[:1].upper() + s[1:]
+
+def _stoggle(sid, n, eyebrow, title, desc, meta, inner):
+    return f"""<details class="sec stgl" id="sec-{sid}">
+<summary><span class="eb">{n} · {esc(eyebrow)}</span><span class="shead"><span class="chev" aria-hidden="true"></span><h2>{esc(title)}</h2><span class="tact" aria-hidden="true"></span></span><span class="sec-desc">{desc}</span><span class="smeta">{meta}</span></summary>
+{inner}
+</details>"""
+def _sec_top(n, eyebrow, title, desc):
+    return f'<div class="sec-top"><div><span class="eb">{n} · {esc(eyebrow)}</span><h2>{esc(title)}</h2><p class="sec-desc">{desc}</p></div></div>'
+def _toggle(tid, title, desc, meta, inner):
+    return f"""<details class="card tgl" id="sec-{tid}">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h3>{esc(title)}</h3><span class="tmeta">{meta or badge("gray","None")}</span></span><span class="sec-desc">{desc}</span></span><span class="tact" aria-hidden="true"></span></summary>
+{inner}
+</details>"""
+def _overview(trs, last_hdr, empty="No clients."):
+    return (f'<div class="tablewrap"><table id="ovw"><thead><tr><th>Client</th><th>AM</th><th>Summary</th><th>Status</th><th class=num>{esc(last_hdr)}</th></tr></thead>'
+            f'<tbody>{"".join(trs) or f"<tr><td colspan=5>{esc(empty)}</td></tr>"}</tbody></table></div>')
+def _ovw_row(c, summary, states, value):
+    summ = f'<span class="clamp" title="{_attr(re.sub(r"[`*]", "", summary))}">{inline(summary)}</span>' if summary else "—"
+    return (f'<tr data-client="{_attr(c["name"])}" data-am="{_attr(c["am"])}" data-href="#{c["id"]}">'
+            f'<td class=first><a href="#{c["id"]}">{esc(c["name"])}</a></td><td class=nowrap>{esc(c["am"]) or "—"}</td>'
+            f'<td class=sum>{summ}</td><td class=st><span class=stl>{states}</span></td><td class="num spend">{value}</td></tr>')
+def _card(c, sub_html, states, value, value_sub, inner):
+    return f"""<details class="card ccard" id="{c["id"]}" data-client="{_attr(c["name"])}" data-am="{_attr(c["am"])}">
+<summary><span class="chev" aria-hidden="true"></span><span class="cmain"><span class="cname">{esc(c["name"])}</span><span class="csub">{sub_html}</span></span><span class="cstates">{states}</span><span class="cspend">{value}<small>{esc(value_sub)}</small></span></summary>
+{inner}
+</details>"""
+def _filter(clients):
+    am_counts = collections.Counter(c["am"] for c in clients if c["am"])
+    am_opts = "".join(f'<option value="{_attr(a)}">{esc(a)} ({n})</option>' for a, n in sorted(am_counts.items()))
+    cl_opts = "".join(f'<option value="{_attr(c["name"])}">{esc(c["name"])}</option>' for c in sorted(clients, key=lambda c: c["name"].lower()))
+    fbar = f"""<div class="fbar" id="fbar" role="search" aria-label="Filter client detail" hidden>
+<div class="fld"><label for="f-am">Account manager</label><span class="sel"><select id="f-am"><option value="all">All account managers</option>{am_opts}</select></span></div>
+<div class="fld"><label for="f-client">Client</label><span class="sel"><select id="f-client"><option value="all">All clients</option>{cl_opts}</select></span></div>
+<button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
+<p class="fsum" id="f-sum" aria-live="polite">{_plural(len(clients), "client")} across {len(am_counts)} account managers</p>
+<button type="button" class="btn" id="x-all">Expand all</button>
+</div>"""
+    data = json.dumps({"clients": [{"n": c["name"], "a": c["am"]} for c in sorted(clients, key=lambda c: c["name"].lower())]}, ensure_ascii=False).replace("</", "<\\/")
+    return fbar, f'<script type="application/json" id="bench-data">{data}</script>'
+def _notes(blocks):
+    """blocks: list of (heading, html) for section 04."""
+    return '<div class="card"><div class="nbody">' + "".join(f"<div><h4>{esc(h)}</h4>{b}</div>" for h, b in blocks if b) + "</div></div>"
+def _ul(items): return '<ul class="nl">' + "".join(f"<li>{inline(b)}</li>" for b in items) + "</ul>" if items else ""
+def _tiles(tiles): return '<div class="month">' + "".join(stat(l, v, h) for l, v, h in tiles) + "</div>"
+GENLINE = '<p class="genline">HiddenGem Marketing · weekly Meta Ads review · generated {run} from the saved report and CSV sidecar.</p>'
+
+def _spend_by_client():
+    """Same-date ad spend CSV: client -> (AM, live $/day). The pixel page uses it for the AM filter and the spend order."""
+    p = f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.csv"
+    if not os.path.exists(p): return {}
+    out = {}
+    for r in csv.DictReader(open(p, encoding="utf-8")):
+        v = r.get("total_live") if "total_live" in r else r.get("actual_daily_budget")
+        out[_norm(r["client"])] = (r.get("am", "") or "", _f(v) if (v or "") != "" else None)
+    return out
+
+# =====================================================================
 # 1. AD SPEND CHECK
 # =====================================================================
-def build_spend_legacy(md, rows):
-    """Pre-2026-10-15 format: documented sheet budget vs live, with Match / Warning / Critical flags."""
-    S=sections(md)
-    cnt=collections.Counter(r["flag"] for r in rows)
-    live=[r for r in rows if r["sheet_status"]=="Live"]
-    documented=sum(float(r["sheet_daily_budget"] or 0) for r in live)
-    liveread=[r for r in rows if r["source"]=="live"]
-    confirmed=sum(float(r["actual_daily_budget"] or 0) for r in liveread)
-    doc_same=sum(float(r["sheet_daily_budget"] or 0) for r in liveread)
-    all_actual=sum(float(r["actual_daily_budget"] or 0) for r in rows)
-    n_csv=sum(1 for r in rows if r["source"]=="csv")
-    stats=(stat("Clients on sheet",str(len(rows)),f"{len(live)} live, {len(rows)-len(live)} not live or paused")
-        +stat("Live connector reads",str(len(liveread)),f"{n_csv} scored from the CSV export, {cnt.get('blocker',0)} blocked")
-        +stat("Documented live $/day",f"${documented:,.0f}","Master sheet, Live rows")
-        +stat("Confirmed live $/day",f"${confirmed:,.0f}",f"vs ${doc_same:,.0f} documented for the same {len(liveread)} accounts")
-        +stat("Critical",str(cnt["critical"]),"over 25% off or spend on a dark account",dot="err")
-        +stat("Warning",str(cnt["warning"]),"10 to 25% off, or a sheet note that changes the figure",dot="warn")
-        +stat("Match",str(cnt["match"]),"within 10% or $5",dot="ok")
-        +stat("Blocked",str(cnt.get("blocker",0)),"account unreadable by the connector and absent from the export",dot="gray"))
-    issues=tables(S["Issues, action needed"])[0]
-    it=render_table("issues",["Client","AM","Flag","Sheet $/day","Actual $/day","Status vs last week","Next action"],issues[1:],
-        ["first","text","badge","num","num","nowrap","notes"],flag_col=2,flag_map=flag_sym)
-    allrows=tables(S["All accounts"])[0]
-    at=render_table("all",["Client","AM","Sheet status","Sheet $/day","Actual $/day","Match","Notes and issues"],allrows[1:],
-        ["first","text","nowrap","num","num","badge","notes"],flag_col=5,flag_map=flag_sym)
-    fixed_block=fixed_html(S)
-    notsheet=paras(S["Not on the sheet"])
-    body=f"""
-<div class="stats">{stats}</div>
-<section>
-  <div class="sec-head"><div><h2>Issues, action needed</h2><p class="sec-desc">Critical rows first, then warnings. Each row carries a next action written for the account manager.</p></div></div>
-  <div class="card">{it}</div>
-</section>
-<section>
-  <div class="sec-head"><div><h2>Fixed since last week</h2></div></div>
-  <div class="card">{fixed_block}</div>
-</section>
-<section>
-  <div class="sec-head"><div><h2>All accounts</h2><p class="sec-desc">Every client on the Master sheet, alphabetical. {n_csv} accounts the connector cannot read are scored from the Ads Manager export; the source is named in the row.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
-  <div class="card">{at}</div>
-</section>
-<section>
-  <div class="alert warn"><div class="t">Active accounts with spend and no Master sheet row</div><p>{inline(notsheet[0])}</p></div>
-</section>
-{footer(bullets(S["Footer"]))}
-"""
-    lede="Compares the documented daily budget on the Master Meta Ads sheet against the live daily budget in each client's ad account. Every client on the sheet is checked, including Not Live and Paused."
-    rl=run_line(S); m1=re.search(r"live reads ([^,)]+)",rl); m2=re.search(r"CSV export (\d{4}-\d{2}-\d{2}) to (\d{4}-\d{2}-\d{2}) for (\d+) blocked accounts",rl)
-    chips=[f"Run {RUN}"]+([f"Live reads {m1.group(1).replace('–',' to ')}"] if m1 else [])+([f"CSV export {m2.group(1)} to {m2.group(2)} for {m2.group(3)} blocked accounts"] if m2 else [])+[compare_chip(S)]
-    return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
-
-# ---- 2026-10-15 onwards: live spend ledger, no sheet comparison ----
 STATUS = {"up":("brand","Up"),"down":("warn","Down"),"new":("ok","New"),"same":("gray","Same"),"unchanged":("gray","Same"),"reshuffled":("brand","Reshuffled"),
-          "blocked":("err","Blocked"),"first run":("gray","First run"),"removed":("gray","Removed")}
+          "blocked":("err","Blocked"),"first run":("gray","First run"),"first_run":("gray","First run"),"removed":("gray","Removed")}
 def status_badge(c):
     k,l=STATUS.get(c.strip().lower(),("gray",c.strip())); return badge(k,l)
-def status_group(c): return "same" if c.strip().lower() in ("same","unchanged","first run") else "changed"
+def status_group(c): return "same" if c.strip().lower() in ("same","unchanged","first run","first_run") else "changed"
+FLAGWORD = {"critical":("err","Critical"),"warning":("warn","Warning"),"match":("ok","Match"),"blocker":("gray","Blocked")}
+FLAG_ORDER = ("critical","blocker","warning","match")
+def flagword_badge(f): k,l=FLAGWORD.get(f,("gray",f or "—")); return badge(k,l)
+
+def _campaigns(cell):
+    out = []
+    for part in [p.strip() for p in (cell or "").split("; ") if p.strip()]:
+        m = re.match(r"^(.*) \$([\d,.]+)$", part)
+        out.append((m.group(1), _f(m.group(2).replace(",", ""))) if m else (part, None))
+    return sorted(out, key=lambda x: -(x[1] or 0))
 
 def build_spend_v2(md, rows):
-    S=sections(md)
-    live=[r for r in rows if r["source"]=="live"]
-    blocked=[r for r in rows if r["source"]!="live"]
-    tot=lambda k: sum(float(r[k] or 0) for r in live)
-    total=tot("total_live"); spent=tot("spend_7d")
-    has_prev=any(r["prev_total"] for r in live)
-    prev=sum(float(r["prev_total"] or 0) for r in live if r["prev_total"])
-    cnt=collections.Counter(r["status"] for r in rows)
-    if has_prev:
-        d=total-prev; hint=f"vs ${prev:,.0f} last run ({'+' if d>=0 else '−'}${abs(d):,.0f})"
-    else: hint="first run"
-    changed=cnt["up"]+cnt["down"]+cnt["new"]+cnt["reshuffled"]
-    stats=(stat("Clients checked",str(len(rows)),f"{len(live)} live reads, {len(blocked)} blocked")
-        +stat("Total live $/day",f"${total:,.0f}",hint)
-        +stat("Spent last 7 days",f"${spent:,.0f}",f"${spent/7:,.0f} per day across {len(live)} accounts")
-        +stat("ToF Giveaway",f"${tot('tof_giveaway'):,.0f}","per day")
-        +stat("MoF Leads",f"${tot('mof_leads'):,.0f}","per day")
-        +stat("MoF Sales LoL",f"${tot('mof_sales_lol'):,.0f}","per day")
-        +stat("BoF Sales",f"${tot('bof_sales'):,.0f}","per day")
-        +(stat("Other",f"${tot('other'):,.0f}","per day") if tot("other") else "")
-        +stat("Changed since last run",str(changed),f"{cnt['up']} up, {cnt['down']} down, {cnt['new']} new"+(f", {cnt['reshuffled']} reshuffled" if cnt['reshuffled'] else ""),dot="brand"))
-    ch_lines=S.get("Changes since last week",[]); ch_t=tables(ch_lines)
-    if ch_t and len(ch_t[0])>1:
-        ch=render_table("changes",ch_t[0][0],ch_t[0][1:],["first","text","num","num","num","badge","notes"],flag_col=5,flag_map=status_group,badge_fn=status_badge)
+    S = sections(md)
+    live = [r for r in rows if r["source"] == "live"]; blocked = [r for r in rows if r["source"] != "live"]
+    tot = lambda k: sum(_f(r[k]) for r in live)
+    total, spent = tot("total_live"), tot("spend_7d")
+    has_prev = any(r["prev_total"] for r in live); prev = sum(_f(r["prev_total"]) for r in live if r["prev_total"])
+    cnt = collections.Counter(r["status"] for r in rows)
+    CHG = ("up", "down", "new", "reshuffled"); changed = sum(cnt[k] for k in CHG)
+    hint = (f"vs ${prev:,.0f} last run ({_signed(total - prev)})" if has_prev else "first run")
+    chg_hint = ", ".join(f"{cnt[k]} {k}" for k in CHG if cnt[k]) or "none"
+    tiles = [("Clients checked", str(len(rows)), f"{len(live)} live reads, {len(blocked)} blocked", None),
+             ("Total live $/day", _money(total), hint, None),
+             ("Spent last 7 days", _money(spent), f"${spent/7:,.0f} per day", None),
+             ("ToF Giveaway", _money(tot("tof_giveaway")), "per day", None),
+             ("MoF Leads", _money(tot("mof_leads")), "per day", None),
+             ("MoF Sales LoL", _money(tot("mof_sales_lol")), "per day", None),
+             ("BoF Sales", _money(tot("bof_sales")), "per day", None)]
+    if tot("other"): tiles.append(("Other", _money(tot("other")), "per day", None))
+    tiles.append(("Changed", str(changed), chg_hint, "brand"))
+    band = "".join(stat(l, v, h, dot=d) for l, v, h, d in tiles)
+
+    clients = sorted(({"name": r["client"], "am": r["am"], "r": r} for r in rows), key=lambda c: (-_f(c["r"]["total_live"]), c["name"].lower()))
+    for i, c in enumerate(clients): c["id"] = f"client-{i}"
+    card_id = {c["name"]: c["id"] for c in clients}
+    href = lambda cell: (f"#{card_id[cell.strip()]}" if cell.strip() in card_id else None)
+    TYPES = [("tof_giveaway", "ToF"), ("mof_leads", "Leads"), ("mof_sales_lol", "LoL"), ("bof_sales", "BoF"), ("other", "Other")]
+    def mix(r): return " · ".join(f"{l} {_money(_f(r[k]))}" for k, l in TYPES if _f(r[k])) or "No active campaigns"
+
+    # 01 overview
+    otr = []
+    for c in clients:
+        r = c["r"]; st = r["status"]
+        if r["source"] != "live": summ = "Account not readable this run."
+        elif st in ("up", "down", "reshuffled") and r["what_changed"]: summ = _cap(r["what_changed"])
+        elif st == "new": summ = "New this run. " + mix(r) + "."
+        else: summ = mix(r) + "."
+        val = "n/a" if r["source"] != "live" else _money(_f(r["total_live"]))
+        otr.append(_ovw_row(c, summ, status_badge(st.replace("_", " ")), val))
+
+    # 02 lists
+    ch_t = tables(S.get("Changes since last week", []))
+    if ch_t and len(ch_t[0]) > 1:
+        ch_rows = [r[:6] + [_cap(r[6])] + r[7:] if len(r) > 6 else r for r in ch_t[0][1:]]
+        ch = render_table("changes", ["Client", "AM", "Last week", "This week", "Change", "Status", "What changed"], ch_rows,
+                          ["first", "text", "num", "num", "num", "badge", "notes"], flag_col=5, flag_map=status_group, badge_fn=status_badge, first_href=href)
+        sc = collections.Counter(r[5].strip() for r in ch_rows if len(r) > 5)
+        ch_meta = "".join(badge(STATUS.get(s.lower(), ("gray",))[0], f"{n} {s.lower()}") for s, n in sc.items())
     else:
-        ps=paras(ch_lines); ch=f'<div class="card-body" style="color:var(--text-3);font-size:14px">{inline(ps[0]) if ps else "None."}</div>'
-    led=tables(S["Live spend by client"])[0]
-    lt=render_table("ledger",led[0],led[1:],["first","text","num","num","num","num","num","num","num","num","badge","notes"],flag_col=10,flag_map=status_group,badge_fn=status_badge)
-    pre=paras(S["_pre"]); rl=run_line(S)
-    m1=re.search(r"live reads ([^)]+?) through",rl)
-    tab=next((p_ for p_ in pre if p_.startswith("Meta Ad Spends tab:")),"")
-    chips=[f"Run {RUN}"]+([f"Live reads {m1.group(1).replace('–',' to ')}"] if m1 else [])+([tab.rstrip('.')] if tab else [])+[compare_chip(S)]
-    body=f"""
-<div class="stats">{stats}</div>
-<section>
-  <div class="sec-head"><div><h2>Changes since last run</h2><p class="sec-desc">Clients whose live daily budget or campaign mix moved, largest change first, with the campaigns behind it.</p></div></div>
-  <div class="card">{ch}</div>
+        ps = paras(S.get("Changes since last week", [])); ch = f'<div class="empty">{inline(ps[0]) if ps else "No budget changes."}</div>'; ch_meta = ""
+    zero = [r for r in live if _f(r["total_live"]) == 0]
+    zt = render_table("zero", ["Client", "AM", "Spent 7d", "Status vs last week"],
+                      [[r["client"], r["am"], _money(_f(r["spend_7d"])), r["status"].replace("_", " ")] for r in zero],
+                      ["first", "text", "num", "badge"], badge_fn=status_badge, first_href=href) if zero else '<div class="empty">Every live account has an active budget.</div>'
+    lists = (_toggle("changes", "Changes since last run", "Clients whose live daily budget or campaign mix moved, largest change first, with the campaigns behind it.", ch_meta, ch)
+             + _toggle("zero", "Accounts at $0/day", "Mapped accounts with no active campaign budget at run time (paused, waiting to launch, or ads off).", badge("gray", _plural(len(zero), "account")) if zero else "", zt))
+    if blocked:
+        bt = render_table("blocked", ["Client", "AM", "Account", "Error"], [[r["client"], r["am"], r["ad_account_id"], r["campaigns"]] for r in blocked],
+                          ["first", "text", "mono", "notes"], first_href=href)
+        lists += _toggle("blocked", "Blocked accounts", "Accounts the API could not read this run; their rows carry n/a.", badge("err", _plural(len(blocked), "account")), bt)
+
+    # 03 per client
+    chtml = []
+    for i, c in enumerate(clients):
+        r = c["r"]; ok = r["source"] == "live"
+        tl = [(l2, _money(_f(r[k])), "per day") for k, l2 in (("tof_giveaway", "ToF Giveaway"), ("mof_leads", "MoF Leads"), ("mof_sales_lol", "MoF Sales LoL"), ("bof_sales", "BoF Sales"), ("other", "Other")) if k != "other" or _f(r[k])]
+        tl.append(("Spent last 7 days", _money(_f(r["spend_7d"])), f"${_f(r['spend_7d'])/7:,.0f} per day"))
+        if r["prev_total"]:
+            tl.append(("Last run", _money(_f(r["prev_total"])), f"{_signed(_f(r['change']))} this run" if _f(r["change"]) else "no change"))
+        camps = _campaigns(r["campaigns"]) if ok else []
+        ct = (render_table(f"c{i}", ["Campaign", "Daily budget"], [[n, _money(b) if b is not None else "—"] for n, b in camps], ["first", "num"])
+              if camps else f'<div class="empty">{"Account not readable this run." if not ok else "No active campaigns at run time."}</div>')
+        wc = f'<div class="tof"><strong>What changed.</strong> {inline(_cap(r["what_changed"]))}</div>' if r["what_changed"] else ""
+        inner = (_tiles(tl) if ok else "") + wc + ct
+        sub = f'AM {esc(c["am"]) or "—"} · account <span class="mono">{esc(r["ad_account_id"])}</span>'
+        chtml.append(_card(c, sub, status_badge(r["status"].replace("_", " ")), "n/a" if not ok else _money(_f(r["total_live"])), "per day", inner))
+    fbar, data = _filter(clients)
+
+    # 04 notes
+    pre = paras(S["_pre"]); rl = run_line(S)
+    tab = next((p_ for p_ in pre if p_.startswith("Meta Ad Spends tab:")), "")
+    notes = _notes([("Run", "".join(f'<p class="np">{inline(p_)}</p>' for p_ in (rl, tab) if p_)),
+                    ("Method and scope", _ul(bullets(S["Footer"])))])
+    body = f"""
+{data}
+<div class="card band" style="--n:{len(tiles)}">{band}</div>
+{_stoggle("overview", "01", "Overview", "Live budget by client", "Every client in the map, highest live daily budget first, with what changed since the last run or the budget by campaign type. Click a row for the client's campaigns.", badge("gray", _plural(len(clients), "client")), f'<div class="card">{_overview(otr, "Live $/day")}</div>')}
+<section class="sec" id="lists">
+{_sec_top("02", "Lists", "Changes and idle accounts", "Open a list to see its rows.")}
+<div class="stack">{lists}</div>
 </section>
-<section>
-  <div class="sec-head"><div><h2>Live spend by client</h2><p class="sec-desc">Every client in the map, highest daily budget first. Spent 7d is the account's actual spend over the last 7 days.</p></div>{seg("ledger",[("all","All"),("changed","Changed"),("same","Unchanged")])}</div>
-  <div class="card">{lt}</div>
-</section>
-{footer(bullets(S["Footer"]))}
+{_stoggle("clients", "03", "Per client", "Client detail", "Every client, in the overview's order. Filter by account manager or client, then open a card for the budget by campaign type, the 7-day spend and the live campaigns.", badge("gray", _plural(len(clients), "client")), fbar + f'<div class="cards">{"".join(chtml)}</div>')}
+{_stoggle("notes", "04", "Notes", "Run and method notes", "When the budgets were read, the Meta Ad Spends tab update, and how campaigns are bucketed.", badge("gray", _plural(len(bullets(S["Footer"])), "note")), notes)}
+{GENLINE.format(run=RUN)}
 """
-    lede="Live daily budget per client and per campaign type, read from each client's ad account through the Meta Marketing API, with the change since the previous run. The same rows are appended to the Meta Ad Spends tab of the Master Meta Ads sheet."
-    return page(f"Ad spend check {WEEK}","Weekly Meta Ads review · Ad spend check","Ad spend check",lede,[esc(c) for c in chips],body)
+    w0, w1 = _d - datetime.timedelta(days=7), _d - datetime.timedelta(days=1)
+    lede = f"Live budgets on {_d.day} {_d:%b %Y} · spend {_span(w0, w1)}"
+    return page(f"Ad spend check {WEEK}", "", "Ad Spend Check", esc(lede), [], body, js=SPEND_JS, css=BENCH_CSS + REVIEW_CSS)
+
+def build_spend_legacy(md, rows):
+    """Reports up to 2026-10-13: documented sheet budget vs live, with Match / Warning / Critical flags."""
+    S = sections(md)
+    cnt = collections.Counter(r["flag"] for r in rows)
+    live = [r for r in rows if r["sheet_status"] == "Live"]
+    documented = sum(_f(r["sheet_daily_budget"]) for r in live)
+    liveread = [r for r in rows if r["source"] == "live"]
+    confirmed = sum(_f(r["actual_daily_budget"]) for r in liveread); doc_same = sum(_f(r["sheet_daily_budget"]) for r in liveread)
+    n_csv = sum(1 for r in rows if r["source"] == "csv")
+    tiles = [("Clients on sheet", str(len(rows)), f"{len(live)} live, {len(rows)-len(live)} not live or paused", None),
+             ("Live connector reads", str(len(liveread)), f"{n_csv} from the CSV export, {cnt.get('blocker',0)} blocked", None),
+             ("Documented live $/day", _money(documented), "Master sheet, Live rows", None),
+             ("Confirmed live $/day", _money(confirmed), f"vs {_money(doc_same)} documented for the same accounts", None),
+             ("Critical", str(cnt["critical"]), "over 25% off, or spend on a dark account", "err"),
+             ("Warning", str(cnt["warning"]), "10 to 25% off, or a sheet note", "warn"),
+             ("Match", str(cnt["match"]), "within 10% or $5", "ok"),
+             ("Blocked", str(cnt.get("blocker", 0)), "unreadable and absent from the export", "gray")]
+    band = "".join(stat(l, v, h, dot=d) for l, v, h, d in tiles)
+    clients = sorted(({"name": r["client"], "am": r["am"], "r": r} for r in rows), key=lambda c: (-_f(c["r"]["actual_daily_budget"]), c["name"].lower()))
+    for i, c in enumerate(clients): c["id"] = f"client-{i}"
+    card_id = {c["name"]: c["id"] for c in clients}
+    href = lambda cell: (f"#{card_id[cell.strip()]}" if cell.strip() in card_id else None)
+    otr = [_ovw_row(c, one_liner(c["r"]["notes"]) or "—", flagword_badge(c["r"]["flag"]),
+                    _money(_f(c["r"]["actual_daily_budget"])) if c["r"]["actual_daily_budget"] != "" else "—") for c in clients]
+    it_rows = tables(S["Issues, action needed"])[0][1:]
+    it = render_table("issues", ["Client", "AM", "Flag", "Sheet $/day", "Actual $/day", "Status vs last week", "Next action"], it_rows,
+                      ["first", "text", "badge", "num", "num", "nowrap", "notes"], flag_col=2, flag_map=flag_sym, first_href=href)
+    ic = collections.Counter(flag_sym(r[2]) for r in it_rows if len(r) > 2)
+    imeta = "".join(badge(k, f"{ic[k]} {l}") for k, l in (("err", "critical"), ("warn", "warning"), ("gray", "blocked")) if ic[k])
+    fixed_lines = S.get("Fixed since last week", []); ft = tables(fixed_lines)
+    fmeta = badge("ok", _plural(len(ft[0]) - 1, "row")) if ft and len(ft[0]) > 1 else ""
+    notsheet = paras(S.get("Not on the sheet", []))
+    lists = (_toggle("issues", "Issues, action needed", "Critical rows first, then warnings. Each row carries a next action for the account manager.", imeta, it)
+             + _toggle("fixed", "Fixed since last week", "Rows flagged last week that match this week.", fmeta, fixed_html(S))
+             + (_toggle("notsheet", "Active accounts with no Master sheet row", "Accounts with spend that the sheet does not list yet.", "", f'<div class="card-body"><p class="np">{inline(notsheet[0])}</p></div>') if notsheet else ""))
+    chtml = []
+    for i, c in enumerate(clients):
+        r = c["r"]
+        tl = [("Sheet $/day", _money(_f(r["sheet_daily_budget"])) if r["sheet_daily_budget"] != "" else "—", f"Master sheet, {r['sheet_status'] or '—'}"),
+              ("Actual $/day", _money(_f(r["actual_daily_budget"])) if r["actual_daily_budget"] != "" else "—", f"source: {r['source']}"),
+              ("Spent last 7 days", _money(_f(r["spend_7d"])) if r["spend_7d"] != "" else "—", "")]
+        st = {"new": "New flag", "still_open": f"Still open, week {r['weeks_open']}", "fixed": "Fixed", "unchanged": "Unchanged", "first_run": "First run"}.get(r["diff_status"], r["diff_status"])
+        inner = _tiles(tl) + f'<dl class="kv"><dt>Vs last week</dt><dd>{esc(st) or "—"}</dd><dt>Notes</dt><dd>{inline(r["notes"]) or "—"}</dd></dl>'
+        sub = f'AM {esc(c["am"]) or "—"} · account <span class="mono">{esc(r["ad_account_id"])}</span>'
+        chtml.append(_card(c, sub, flagword_badge(r["flag"]), _money(_f(r["actual_daily_budget"])) if r["actual_daily_budget"] != "" else "—", "actual per day", inner))
+    fbar, data = _filter(clients)
+    rl = run_line(S)
+    notes = _notes([("Run", f'<p class="np">{inline(rl)}</p>' if rl else ""), ("Method and scope", _ul(bullets(S["Footer"])))])
+    body = f"""
+{data}
+<div class="card band" style="--n:{len(tiles)}">{band}</div>
+{_stoggle("overview", "01", "Overview", "Sheet budget vs live", "Every client on the Master sheet, highest live daily budget first, with the flag and the opening line of its note. Click a row for the detail.", badge("gray", _plural(len(clients), "client")), f'<div class="card">{_overview(otr, "Actual $/day")}</div>')}
+<section class="sec" id="lists">
+{_sec_top("02", "Lists", "Issues and fixes", "Open a list to see its rows.")}
+<div class="stack">{lists}</div>
+</section>
+{_stoggle("clients", "03", "Per client", "Client detail", "Every client, in the overview's order. Filter by account manager or client, then open a card for the sheet and live budgets and the note.", badge("gray", _plural(len(clients), "client")), fbar + f'<div class="cards">{"".join(chtml)}</div>')}
+{_stoggle("notes", "04", "Notes", "Run and method notes", "When the budgets were read and how the flags are set.", badge("gray", _plural(len(bullets(S["Footer"])), "note")), notes)}
+{GENLINE.format(run=RUN)}
+"""
+    lede = f"Sheet vs live budgets on {_d.day} {_d:%b %Y}"
+    return page(f"Ad spend check {WEEK}", "", "Ad Spend Check", esc(lede), [], body, js=SPEND_JS, css=BENCH_CSS + REVIEW_CSS)
 
 def build_spend():
     md=open(f"{ROOT}/Ad Spends Checks/Weekly Checks/{DATE}-ad-spend-check.md",encoding="utf-8").read()
@@ -656,84 +813,151 @@ def build_spend():
 # =====================================================================
 # 2. PIXEL DOMAIN CHECK
 # =====================================================================
+PFLAG = {"critical": ("err", "Purchase critical"), "warning": ("warn", "Purchase warning")}
+DIFFWORD = {"new": "New", "fixed": "Fixed", "unchanged": "Unchanged", "first_run": "First run", "removed": "Removed"}
+def _diffword(r):
+    if r.get("diff_status") == "still_open": return f"Still open, week {r.get('weeks_open') or '?'}"
+    return DIFFWORD.get(r.get("diff_status", ""), r.get("diff_status", "") or "—")
+
+def pixel_table(tid, prs, purchase_era):
+    """One tbody per pixel: numbers on one row, the notes under it (same pattern as the benchmark's campaign table)."""
+    hdr = ["Pixel", "Events (7d)"] + (["Purchase (28d, b / s)"] if purchase_era else []) + ["Domains seen", "Expected", "Match", "Vs last week"]
+    th = "".join(f'<th{" class=num" if h == "Events (7d)" else ""}>{esc(h)}</th>' for h in hdr)
+    bodies = []
+    for r in prs:
+        ev = int(_f(r["events_7d"]))
+        pur = ""
+        if purchase_era:
+            p28 = int(_f(r.get("purchase_28d"))); pb = r.get("purchase_28d_browser") or 0; ps_ = r.get("purchase_28d_server") or 0
+            pcell = f"{p28:,} ({pb}b / {ps_}s)" if p28 else "0"
+            pur = f'<td class=nowrap data-l="Purchase (28d, b / s)">{pcell}</td>'
+        tds = (f'<td class=pid>{esc(r["pixel_name"])}<span class="mono">{esc(r["pixel_id"])}</span></td>'
+               f'<td class=num data-l="Events (7d)">{ev:,}</td>{pur}'
+               f'<td class=dom data-l="Domains seen">{esc(r["domains_seen"].replace("|", ", ")) or "none"}</td>'
+               f'<td class=dom data-l="Expected">{esc(r["expected_domains"].replace("|", ", "))}{" <span class=mono>(" + esc(r["expected_source"]) + ")</span>" if r.get("expected_source") else ""}</td>'
+               f'<td class=nowrap data-l="Match">{flagword_badge(r["flag"])}</td><td class=status data-l="Vs last week">{esc(_diffword(r))}</td>')
+        det = f'<tr class=cdet><td colspan={len(hdr)}><div class=cdl><p><span>Notes</span>{inline(r["notes"])}</p></div></td></tr>' if r["notes"].strip() else ""
+        bodies.append(f'<tbody><tr class=crow>{tds}</tr>{det}</tbody>')
+    return f'<div class="tablewrap"><table class="ctable" id="{tid}"><thead><tr>{th}</tr></thead>{"".join(bodies)}</table></div>'
+
 def build_pixel():
-    md=open(f"{ROOT}/Meta Pixel Reviews/Weekly Checks/{DATE}-pixel-domain-check.md",encoding="utf-8").read()
-    S=sections(md)
-    rows=list(csv.DictReader(open(f"{ROOT}/Meta Pixel Reviews/Weekly Checks/{DATE}-pixel-domain-check.csv",encoding="utf-8")))
-    cnt=collections.Counter(r["flag"] for r in rows)
-    distinct={r["pixel_id"] for r in rows}
-    seen=set(); tot=0
+    md = open(f"{ROOT}/Meta Pixel Reviews/Weekly Checks/{DATE}-pixel-domain-check.md", encoding="utf-8").read()
+    S = sections(md)
+    rows = list(csv.DictReader(open(f"{ROOT}/Meta Pixel Reviews/Weekly Checks/{DATE}-pixel-domain-check.csv", encoding="utf-8")))
+    purchase_era = bool(rows) and "purchase_flag" in rows[0]
+    spend = _spend_by_client()
+    cnt = collections.Counter(r["flag"] for r in rows)
+    seen = set(); tot = 0
     for r in rows:
         if r["pixel_id"] in seen: continue
-        seen.add(r["pixel_id"]); tot+=int(r["events_7d"] or 0)
-    m_cs=re.search(r"\*\*Clients on sheet:\*\*\s*(\d+)(?:\s*\((\d+) checked\))?",md)
-    cs_n=m_cs.group(1) if m_cs else "42"; cs_sub=(f"{m_cs.group(2)} checked, offboarded excluded" if (m_cs and m_cs.group(2)) else "all matched to at least one pixel")
-    stats=(stat("Clients on sheet",cs_n,cs_sub)
-        +stat("Pixel rows reviewed",str(len(rows)),f"{len(distinct)} distinct pixels; Starlight Haven's serves two accounts")
-        +stat("Events, last 7 days",f"{tot:,}","shared pixel counted once")
-        +stat("Critical",str(cnt["critical"]),"another client's domain firing into the pixel",dot="err")
-        +stat("Warning",str(cnt["warning"]),"silent, split, duplicate or unconfirmed",dot="warn")
-        +stat("Match",str(cnt["match"]),"events only from the client's own hosts",dot="ok")
-        +stat("Blocked",str(cnt.get("blocker",0)),"no pixel found or unreadable",dot="gray"))
-    crit_lines=S["Critical issues (❌ and 🔴)"]
-    crit_paras=paras(crit_lines)
-    # first para is the bold intro, then numbered items, then effect
-    intro=crit_paras[0]; items=[p for p in crit_paras if re.match(r"^\d\. ",p)]; effect=[p for p in crit_paras[1:] if not re.match(r"^\d\. ",p)]
-    NUM=re.compile(r"^\d\. ")
-    items_html="".join(f"<li>{inline(NUM.sub('',p))}</li>" for p in items)
-    crit_alert=f'<div class="alert err"><div class="t">{inline(intro).replace("<strong>","").replace("</strong>","")}</div><ol>{items_html}</ol>{"".join(f"<p>{inline(p)}</p>" for p in effect)}</div>'
-    # Reports up to 2026-10-26 have 8 columns; from 2026-10-30 a "Purchase (28d, browser / server)" column sits after Events (7d).
-    hdr8=["Client","Pixel name","Pixel ID","Events (7d)","Domains seen","Expected domain(s)","Match","Notes and issues"]
-    kinds8=["first","text","mono","num","domains","domains","badge","notes"]
-    hdr9=hdr8[:4]+["Purchase (28d, b / s)"]+hdr8[4:]; kinds9=kinds8[:4]+["nowrap"]+kinds8[4:]
-    def px_table(tid, lines):
-        t=tables(lines)
-        if not t: return '<div class="empty">None.</div>'
-        nine=len(t[0][0])>=9
-        return render_table(tid,hdr9 if nine else hdr8,t[0][1:],kinds9 if nine else kinds8,flag_col=7 if nine else 6,flag_map=flag_sym)
-    ct=px_table("crit",crit_lines)
-    wt=px_table("warn",S["Warnings (⚠️)"])
-    at=px_table("all",S["All pixels (alphabetical by client)"])
-    fixed_block=fixed_html(S, kinds=kinds9 if any(len(t[0])>=9 for t in tables(S.get("Fixed since last week",[]))) else None)
-    purchase_block=""
+        seen.add(r["pixel_id"]); tot += int(_f(r["events_7d"]))
+    m_cs = re.search(r"\*\*Clients on sheet:\*\*\s*([^·]+?)\s*·", md)
+    cs_txt = m_cs.group(1).strip() if m_cs else str(len({r["client"] for r in rows}))
+    m2 = re.match(r"^(\d+)\s*(.*)$", cs_txt); cs_n, cs_sub = (m2.group(1), m2.group(2).strip()) if m2 else (cs_txt, "")
+    if cs_sub.startswith("(") and cs_sub.endswith(")") and cs_sub.count("(") == 1: cs_sub = cs_sub[1:-1]
+    pflags = collections.Counter(r.get("purchase_flag", "") for r in rows) if purchase_era else collections.Counter()
+    tiles = [("Clients on sheet", cs_n, cs_sub or "matched to at least one pixel", None),
+             ("Pixel rows", str(len(rows)), f"{len(seen)} distinct pixels", None),
+             ("Events, last 7 days", f"{tot:,}", "each shared pixel counted once", None),
+             ("Critical", str(cnt["critical"]), "another client's domain on the pixel", "err"),
+             ("Warning", str(cnt["warning"]), "silent, split, duplicate or unconfirmed", "warn"),
+             ("Match", str(cnt["match"]), "only the client's own hosts", "ok"),
+             ("Blocked", str(cnt.get("blocker", 0)), "no pixel found or unreadable", "gray")]
+    if purchase_era: tiles.append(("Purchase flags", str(pflags["critical"] + pflags["warning"]), f"{pflags['critical']} critical, {pflags['warning']} warning, 28 days", "warn"))
+    band = "".join(stat(l, v, h, dot=d) for l, v, h, d in tiles)
+
+    # clients: pixel rows grouped by client, ordered by the client's live $/day (same order as the ad spend page)
+    by = collections.OrderedDict()
+    for r in rows: by.setdefault(r["client"], []).append(r)
+    clients = []
+    for name, prs in by.items():
+        am, usd = spend.get(_norm(name), ("", None))
+        worst = min(prs, key=lambda r: FLAG_ORDER.index(r["flag"]) if r["flag"] in FLAG_ORDER else 9)
+        ev = sum(int(_f(r["events_7d"])) for r in {r["pixel_id"]: r for r in prs}.values())
+        judged = next((r for r in prs if r.get("purchase_flag") not in ("", "see", None)), prs[0]) if purchase_era else None
+        clients.append({"name": name, "am": am, "usd": usd, "prs": prs, "worst": worst, "events": ev, "judged": judged})
+    clients.sort(key=lambda c: (c["usd"] is None, -(c["usd"] or 0), c["name"].lower()))
+    for i, c in enumerate(clients): c["id"] = f"client-{i}"
+    card_id = {c["name"]: c["id"] for c in clients}
+    href = lambda cell: (f"#{card_id[cell.strip()]}" if cell.strip() in card_id else None)
+    am_of = {c["name"]: c["am"] for c in clients}
+    def states(c):
+        fl = collections.Counter(r["flag"] for r in c["prs"])
+        out = "".join(badge(FLAGWORD[f][0], (f"{fl[f]} " if fl[f] > 1 else "") + FLAGWORD[f][1]) for f in FLAG_ORDER if fl[f])
+        j = c["judged"]
+        if j is not None and j.get("purchase_flag") in PFLAG: out += badge(*PFLAG[j["purchase_flag"]])
+        return out
+
+    # 01 overview
+    otr = [_ovw_row(c, one_liner(c["worst"]["notes"]) or "—", states(c), _money(c["usd"]) if c["usd"] is not None else "—") for c in clients]
+
+    # 02 lists
+    def issue_table(tid, sel):
+        trs = [[r["client"], am_of.get(r["client"], "") or "—", r["pixel_id"], f'{int(_f(r["events_7d"])):,}', FLAGWORD.get(r["flag"], ("", r["flag"]))[1], _diffword(r), r["notes"]] for r in sel]
+        return render_table(tid, ["Client", "AM", "Pixel ID", "Events (7d)", "Match", "Vs last week", "Notes" if tid == "fixed" else "Issue and next action"], trs,
+                            ["first", "text", "mono", "num", "badge", "status", "notes"], badge_fn=lambda s: badge({"Critical": "err", "Blocked": "gray", "Warning": "warn", "Match": "ok"}.get(s, "gray"), s), first_href=href) if trs else '<div class="empty">None this week.</div>'
+    crit = [r for r in rows if r["flag"] in ("critical", "blocker")]; warn = [r for r in rows if r["flag"] == "warning"]
+    crit_paras = [p for p in paras(S.get("Critical issues (❌ and 🔴)", [])) if not re.match(r"^\d+\. ", p)]
+    cmeta = "".join(badge(k, f"{n} {l}") for k, l, n in (("err", "critical", cnt["critical"]), ("gray", "blocked", cnt.get("blocker", 0))) if n)
+    wnew = sum(1 for r in warn if r["diff_status"] == "new")
+    wmeta = (badge("warn", _plural(len(warn), "warning")) + (badge("gray", f"{wnew} new") if wnew else "")) if warn else ""
+    lists = (_toggle("crit", "Critical and blocked", inline(crit_paras[0]) if crit_paras else "Another client's domain firing into the pixel, or no readable pixel.", cmeta, issue_table("crit", crit))
+             + _toggle("warn", "Warnings", "Silent or low-volume pixels, split funnels, double counting, pixels not shared to the ad account, and expected domains to confirm.", wmeta, issue_table("warn", warn)))
     if "Purchase check (last 28 days)" in S:
-        pl=S["Purchase check (last 28 days)"]; pt=tables(pl)
-        pdesc=" ".join(paras(pl)[:1])
+        pl = S["Purchase check (last 28 days)"]; pt = tables(pl)
         if pt:
-            phdr=["Client","Pixel ID","Purchase 28d (b / s)","Purchase 7d","Last Purchase","PMS online bookings 28d","Capture","Sales $/day","HG AI CAPI","Flag","Why"]
-            pkinds=["first","mono","nowrap","num","nowrap","num","nowrap","num","nowrap","badge","notes"]
-            ptab=render_table("purchase",phdr,pt[0][1:],pkinds,flag_col=9,flag_map=flag_sym)
-        else: ptab='<div class="empty">No client flagged on Purchase this week.</div>'
-        purchase_block=f"""
-<section>
-  <div class="sec-head"><div><h2>Purchase check, last 28 days</h2><p class="sec-desc">{inline(pdesc)}</p></div></div>
-  <div class="card">{ptab}</div>
-</section>"""
-    body=f"""
-<div class="stats">{stats}</div>
-<section>
-  <div class="sec-head"><div><h2>Critical issues</h2><p class="sec-desc">Cross-contamination: a host that belongs to another sheet client firing into this pixel, at any volume.</p></div></div>
-  {crit_alert}
-  <div class="card">{ct}</div>
+            # compact: the pixel ID, 7-day count and last Purchase are in the client card
+            phdr = ["Client", "AM", "Purchase 28d (b / s)", "PMS online 28d", "Capture", "Flag", "Why"]
+            prow = [[r[0], am_of.get(r[0].strip(), "") or "—", r[2], r[5], r[6], r[9], r[10]] for r in pt[0][1:] if len(r) >= 11]
+            ptab = render_table("purchase", phdr, prow, ["first", "text", "nowrap", "num", "nowrap", "badge", "notes"], flag_col=5, flag_map=flag_sym, first_href=href)
+        else: ptab = '<div class="empty">No client flagged on Purchase this week.</div>'
+        pmeta = "".join(badge(k, f"{n} {l}") for k, l, n in (("err", "critical", pflags["critical"]), ("warn", "warning", pflags["warning"])) if n)
+        lists += _toggle("purchase", "Purchase check, last 28 days", "Purchase events against the PMS online bookings of the same 28 days, for clients with a Sales budget. Critical first.", pmeta, ptab)
+    fixed = [r for r in rows if r["diff_status"] == "fixed"]
+    if fixed:
+        ftab = issue_table("fixed", fixed)
+    else:
+        fps = paras(S.get("Fixed since last week", [])); ftab = f'<div class="empty">{inline(fps[0]) if fps else "Nothing fixed since last week."}</div>'
+    lists += _toggle("fixed", "Fixed since last week", "Pixel rows flagged last week that are clean this week, with what changed.", badge("ok", _plural(len(fixed), "row")) if fixed else "", ftab)
+
+    # 03 per client
+    chtml = []
+    for i, c in enumerate(clients):
+        prs = c["prs"]; j = c["judged"]; inner = ""
+        if purchase_era and j is not None:
+            p28 = int(_f(j.get("purchase_28d"))); onl = j.get("pms_online_bookings_28d", "")
+            cap = f"{p28/_f(onl)*100:.0f}% capture" if onl not in ("", None) and _f(onl) > 0 else "no PMS bookings to compare"
+            inner += _tiles([("Purchase, 28 days", f"{p28:,}", f"{j.get('purchase_28d_browser') or 0} browser / {j.get('purchase_28d_server') or 0} server"),
+                             ("Purchase, 7 days", str(int(_f(j.get("purchase_7d")))), f"last {j.get('purchase_last') or '—'}"),
+                             ("PMS online bookings, 28 days", onl if onl not in ("", None) else "—", cap),
+                             ("Sales budget", _money(_f(j.get("sales_budget_per_day"))) if j.get("sales_budget_per_day") not in ("", None) else "—", "per day, BoF + LoL"),
+                             ("HG AI CAPI", j.get("hgai_capi") or "—", "platform Conversions API")])
+            if j.get("purchase_flag") in PFLAG and j.get("purchase_note"):
+                inner += f'<div class="tof"><strong>Purchase check: {esc(PFLAG[j["purchase_flag"]][1].split()[1])}.</strong> {inline(j["purchase_note"])}</div>'
+        inner += pixel_table(f"p{i}", prs, purchase_era)
+        n_px = len({r["pixel_id"] for r in prs})
+        sub = f'AM {esc(c["am"]) or "—"} · {_plural(n_px, "pixel")}' + (f' · {_money(c["usd"])}/day live' if c["usd"] is not None else "")
+        chtml.append(_card(c, sub, states(c), f'{c["events"]:,}', "events, 7 days", inner))
+    fbar, data = _filter(clients)
+
+    # 04 notes: the week in brief (prose from the report) and the method
+    brief = [p for p in paras(S.get("Warnings (⚠️)", [])) if not p[:1].isdigit()] + crit_paras[1:]
+    notes = _notes([("This week", "".join(f'<p class="np">{inline(p)}</p>' for p in brief)), ("Method and scope", _ul(bullets(S["Footer"])))])
+    body = f"""
+{data}
+<div class="card band" style="--n:{len(tiles)}">{band}</div>
+{_stoggle("overview", "01", "Overview", "Pixel status by client", "Every client with a pixel row, highest live daily budget first (the ad spend check's order), with the domain flags, the Purchase flag and the opening line of the worst row's note. Click a row for the client's pixels.", badge("gray", _plural(len(clients), "client")), f'<div class="card">{_overview(otr, "Live $/day")}</div>')}
+<section class="sec" id="lists">
+{_sec_top("02", "Lists", "Issues, Purchase check and fixes" if purchase_era else "Issues and fixes", "Open a list to see its rows.")}
+<div class="stack">{lists}</div>
 </section>
-<section>
-  <div class="sec-head"><div><h2>Warnings</h2><p class="sec-desc">Silent or low-volume pixels, funnels split across two pixels, double counting, pixels not shared to the ad account, and expected domains that still need confirming.</p></div></div>
-  <div class="card">{wt}</div>
-</section>
-<section>
-  <div class="sec-head"><div><h2>Fixed since last week</h2></div></div>
-  <div class="card">{fixed_block}</div>
-</section>
-{purchase_block}
-<section>
-  <div class="sec-head"><div><h2>All pixels</h2><p class="sec-desc">Alphabetical by client. Domains come from the pixel's own 7-day host breakdown in Meta; expected domains are from the expected-domains file, inferred from the brand name unless marked otherwise.</p></div>{seg("all",[("all","All"),("err","Critical"),("warn","Warning"),("ok","Match")])}</div>
-  <div class="card">{at}</div>
-</section>
-{footer(bullets(S["Footer"]))}
+{_stoggle("clients", "03", "Per client", "Client detail", "Every client, in the overview's order. Filter by account manager or client, then open a card for the Purchase numbers and each pixel's events, domains and notes.", badge("gray", _plural(len(clients), "client")), fbar + f'<div class="cards">{"".join(chtml)}</div>')}
+{_stoggle("notes", "04", "Notes", "This week and method notes", "What moved this week, and how pixels, domains and Purchase volume are judged.", badge("gray", _plural(len(bullets(S["Footer"])), "note")), notes)}
+{GENLINE.format(run=RUN)}
 """
-    lede="Verifies each client's Meta Pixel receives events only from that client's own site, link pages, GoHighLevel funnel and booking engine, and flags cross-contamination, silent pixels and split or duplicate setups."
-    chips=[f"Run {RUN}","Rolling 7-day window" + (", Purchase over 28 days" if purchase_block else ""),"Sources: HiddenGem BM dataset listing, per-account listings, host and event totals"+(", PMS bookings and CAPI state from the HiddenGem AI platform" if purchase_block else ""),compare_chip(S)]
-    return page(f"Pixel domain check {WEEK}","Weekly Meta Ads review · Pixel domain check","Pixel domain check",lede,[esc(c) for c in chips],body)
+    w0 = _d - datetime.timedelta(days=7)
+    lede = f"Events {_span(w0, _d)}" + (" · Purchase over 28 days" if purchase_era else "")
+    return page(f"Pixel domain check {WEEK}", "", "Pixel Domain Check", esc(lede), [], body, js=PIXEL_JS, css=BENCH_CSS + REVIEW_CSS)
 
 # =====================================================================
 # 3. CLIENT BENCHMARK
