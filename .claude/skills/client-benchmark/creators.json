@@ -1045,5 +1045,82 @@
   "account": "629838998232110",
   "campaign": "ToF - Giveaway Traffic Campaign",
   "note": "added by hand 2026-11-16: Dunya Camp's activity log failed in the pull script (unknown error), read separately"
+ },
+ "120252454204380469": {
+  "name": "John Martin",
+  "actor_id": "29033315026341043",
+  "created": "2026-11-12",
+  "account": "528888625350386",
+  "campaign": "BoF - Website Retargeting Campaign - 11/12/2026"
+ },
+ "120252437484110469": {
+  "name": "John Martin",
+  "actor_id": "29033315026341043",
+  "created": "2026-11-11",
+  "account": "528888625350386",
+  "campaign": "MoF - Lead Campaign - Retargeting Engagers -  11/11/26"
+ },
+ "120252420514270469": {
+  "name": "John Martin",
+  "actor_id": "29033315026341043",
+  "created": "2026-11-10",
+  "account": "528888625350386",
+  "campaign": "ToF - Giveaway Campaign - 11/10/2026"
+ },
+ "120252086507700469": {
+  "name": "Maddy Watson",
+  "actor_id": "2901898250185135",
+  "created": "2026-10-21",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Conv_Tac:Retargeting_Typ:ABO_Of:EVG_CT:Standard_Notes:"
+ },
+ "120252086412940469": {
+  "name": "Maddy Watson",
+  "actor_id": "2901898250185135",
+  "created": "2026-10-21",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Conv_Tac:Prospecting_Typ:ABO_Of:EVG_CT:Standard_Notes:"
+ },
+ "120252084635830469": {
+  "name": "Maddy Watson",
+  "actor_id": "2901898250185135",
+  "created": "2026-10-20",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Lead_Tac:Prospecting_Typ:ABO_Of:EVG_CT:Standard_Notes:"
+ },
+ "120251408807680469": {
+  "name": "Maddy Watson",
+  "actor_id": "2901898250185135",
+  "created": "2026-09-17",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Conversion_Tac:Prospecting_Typ:ABO_Of:EVG_CT:Standard_Notes:"
+ },
+ "120251401578780469": {
+  "name": "Michael Hourigan",
+  "actor_id": "10239581136572149",
+  "created": "2026-09-16",
+  "account": "528888625350386",
+  "campaign": "Leads | Preserve Sporting Club | Newport Boat Show"
+ },
+ "120251098895640469": {
+  "name": "Maddy Watson",
+  "actor_id": "2901898250185135",
+  "created": "2026-08-28",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Lead_Tac:Prospecting_Typ:CBO_Of:EVG_CT:Standard_Notes:"
+ },
+ "120250555449430469": {
+  "name": "Michael Hourigan",
+  "actor_id": "10239581136572149",
+  "created": "2026-08-05",
+  "account": "528888625350386",
+  "campaign": "Leads | Preserve Sporting Club | RLP"
+ },
+ "120250175252770469": {
+  "name": "Daniel Hafdahl",
+  "actor_id": "2247898725763430",
+  "created": "2026-07-20",
+  "account": "528888625350386",
+  "campaign": "Cl:Preserve_Ch:Meta_Obj:Lead_Tac:Retargeting_Typ:CBO_Of:EVG_CT:Standard_Notes:"
  }
 }

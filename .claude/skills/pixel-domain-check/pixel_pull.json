@@ -18,6 +18,12 @@
    "offboarded": false
   },
   {
+   "client": "Arca Boutique Hotel",
+   "am": "Anna",
+   "id": "1003623765640520",
+   "offboarded": false
+  },
+  {
    "client": "Asheville River Cabins",
    "am": "Charlotte",
    "id": "615836588009747",
@@ -57,6 +63,12 @@
    "client": "Columbia Gorge Getaways",
    "am": "Chiara",
    "id": "490940113157881",
+   "offboarded": false
+  },
+  {
+   "client": "Dunya Camp",
+   "am": "Chiara",
+   "id": "629838998232110",
    "offboarded": false
   },
   {
@@ -240,15 +252,15 @@
    "offboarded": false
   },
   {
-   "client": "The Cohost Company",
-   "am": "Makenna",
-   "id": "9141035462679902",
-   "offboarded": false
-  },
-  {
    "client": "The Outpost",
    "am": "Ananya",
    "id": "1530849534802936",
+   "offboarded": false
+  },
+  {
+   "client": "The Preserve",
+   "am": "Alicia",
+   "id": "528888625350386",
    "offboarded": false
   },
   {
@@ -422,6 +434,12 @@
   ],
   "Gooseberry Lodges": [
    "3431371590511492"
+  ],
+  "Dunya Camp": [
+   "229378313100169"
+  ],
+  "The Preserve": [
+   "541451090721842"
   ]
  },
  "listing_errors": {},
@@ -9254,6 +9272,416 @@
     "server": 0
    },
    "error": ""
+  },
+  {
+   "id": "229378313100169",
+   "name": "Dunya Camp Pixel",
+   "owner_business": {
+    "id": "4863743860323428",
+    "name": "Dunya Camp"
+   },
+   "last_fired_time": "2026-11-15T23:59:34+0000",
+   "listed_in": [
+    "hg_client_pixels",
+    "act_629838998232110"
+   ],
+   "attached_to": [
+    "629838998232110"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "dunyacamp.com": {
+     "count": 32207,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 1014,
+      "2026-11-10": 4238,
+      "2026-11-11": 4191,
+      "2026-11-12": 4334,
+      "2026-11-13": 4760,
+      "2026-11-14": 4535,
+      "2026-11-15": 4960,
+      "2026-11-16": 4175
+     }
+    },
+    "luxuryres.com": {
+     "count": 21948,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 785,
+      "2026-11-10": 3289,
+      "2026-11-11": 2926,
+      "2026-11-12": 2942,
+      "2026-11-13": 3145,
+      "2026-11-14": 2988,
+      "2026-11-15": 3248,
+      "2026-11-16": 2625
+     }
+    },
+    "www.luxuryres.com": {
+     "count": 234,
+     "first": "2026-11-09T19:00:00+0000",
+     "last": "2026-11-16T15:00:00+0000",
+     "daily": {
+      "2026-11-09": 8,
+      "2026-11-10": 10,
+      "2026-11-11": 20,
+      "2026-11-12": 82,
+      "2026-11-13": 29,
+      "2026-11-14": 18,
+      "2026-11-15": 26,
+      "2026-11-16": 41
+     }
+    },
+    "go.dunyacamp.com": {
+     "count": 186,
+     "first": "2026-11-10T20:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-10": 4,
+      "2026-11-11": 16,
+      "2026-11-12": 14,
+      "2026-11-13": 22,
+      "2026-11-15": 2,
+      "2026-11-16": 128
+     }
+    },
+    "127.0.0.1": {
+     "count": 38,
+     "first": "2026-11-11T20:00:00+0000",
+     "last": "2026-11-13T15:00:00+0000",
+     "daily": {
+      "2026-11-11": 32,
+      "2026-11-13": 6
+     }
+    },
+    "dunyacamp.showitpreview.com": {
+     "count": 28,
+     "first": "2026-11-13T20:00:00+0000",
+     "last": "2026-11-13T20:00:00+0000",
+     "daily": {
+      "2026-11-13": 28
+     }
+    },
+    "app.showit.com": {
+     "count": 17,
+     "first": "2026-11-13T20:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-13": 16,
+      "2026-11-16": 1
+     }
+    },
+    "dunya-landing-page.netlify.app": {
+     "count": 2,
+     "first": "2026-11-15T17:00:00+0000",
+     "last": "2026-11-15T17:00:00+0000",
+     "daily": {
+      "2026-11-15": 2
+     }
+    }
+   },
+   "events": {
+    "PageView": 15792,
+    "Step 2": 11454,
+    "Step 1": 10939,
+    "30_sec_on_page": 6219,
+    "60_sec_on_page": 3833,
+    "engaged_user": 2684,
+    "120_sec_on_page": 1973,
+    "InitiateCheckout": 2099,
+    "Cancellation": 136,
+    "Step 3": 110,
+    "Lead": 16,
+    "form_submit": 20,
+    "Purchase": 4,
+    "book_now_button": 1
+   },
+   "sources": {
+    "SERVER": 28149,
+    "BROWSER": 26511
+   },
+   "total_events": 55280,
+   "server_events": 28149,
+   "events_28d": {
+    "PageView": 60740,
+    "Step 2": 49613,
+    "Step 1": 44491,
+    "30_sec_on_page": 24636,
+    "60_sec_on_page": 15263,
+    "engaged_user": 10666,
+    "InitiateCheckout": 8613,
+    "120_sec_on_page": 7288,
+    "Cancellation": 491,
+    "Step 3": 445,
+    "form_submit": 70,
+    "Purchase": 26,
+    "Lead": 26,
+    "book_now_button": 1
+   },
+   "total_events_28d": 222369,
+   "purchase_28d": {
+    "total": 26,
+    "browser": 13,
+    "server": 13,
+    "other": 0,
+    "daily": {
+     "2026-10-21": 2,
+     "2026-10-22": 2,
+     "2026-10-23": 2,
+     "2026-10-31": 4,
+     "2026-11-02": 4,
+     "2026-11-04": 6,
+     "2026-11-08": 2,
+     "2026-11-13": 4
+    },
+    "first": "2026-10-21T15:00:00+0000",
+    "last": "2026-11-13T19:00:00+0000"
+   },
+   "purchase_7d": {
+    "total": 4,
+    "browser": 2,
+    "server": 2
+   },
+   "error": "",
+   "note": "added from the 16 Nov afternoon pull (window ends 2026-11-16T18:06:15.227Z)"
+  },
+  {
+   "id": "2065306940514005",
+   "name": "Dunya Website",
+   "owner_business": {
+    "id": "4863743860323428",
+    "name": "Dunya Camp"
+   },
+   "last_fired_time": "2025-10-27T02:47:50+0000",
+   "listed_in": [
+    "hg_client_pixels"
+   ],
+   "attached_to": [],
+   "in_map": false,
+   "fired_28d": false,
+   "hosts": {},
+   "events": {},
+   "sources": {},
+   "total_events": 0,
+   "server_events": 0,
+   "events_28d": {},
+   "total_events_28d": 0,
+   "purchase_28d": {
+    "total": 0,
+    "browser": 0,
+    "server": 0,
+    "other": 0,
+    "daily": {},
+    "first": "",
+    "last": ""
+   },
+   "purchase_7d": {
+    "total": 0,
+    "browser": 0,
+    "server": 0
+   },
+   "error": "",
+   "skipped": "not fired in 28d and not mapped",
+   "note": "added from the 16 Nov afternoon pull (window ends 2026-11-16T18:06:15.227Z)"
+  },
+  {
+   "id": "541451090721842",
+   "name": "Preserve Properties's Pixel",
+   "owner_business": {
+    "id": "673709063689586",
+    "name": "Preserve Properties"
+   },
+   "last_fired_time": "2026-11-16T17:59:12+0000",
+   "listed_in": [
+    "act_528888625350386"
+   ],
+   "attached_to": [
+    "528888625350386"
+   ],
+   "in_map": true,
+   "fired_28d": true,
+   "hosts": {
+    "www.thepreserveri.com": {
+     "count": 51977,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 2337,
+      "2026-11-10": 4511,
+      "2026-11-11": 4949,
+      "2026-11-12": 5501,
+      "2026-11-13": 6631,
+      "2026-11-14": 6872,
+      "2026-11-15": 10841,
+      "2026-11-16": 10335
+     }
+    },
+    "preservemembership.com": {
+     "count": 1258,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 123,
+      "2026-11-10": 136,
+      "2026-11-11": 137,
+      "2026-11-12": 149,
+      "2026-11-13": 159,
+      "2026-11-14": 155,
+      "2026-11-15": 114,
+      "2026-11-16": 285
+     }
+    },
+    "dbsteak.com": {
+     "count": 1330,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 136,
+      "2026-11-10": 196,
+      "2026-11-11": 280,
+      "2026-11-12": 321,
+      "2026-11-13": 277,
+      "2026-11-14": 42,
+      "2026-11-15": 52,
+      "2026-11-16": 26
+     }
+    },
+    "preserveaspot.com": {
+     "count": 2489,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-09": 98,
+      "2026-11-10": 894,
+      "2026-11-11": 414,
+      "2026-11-12": 569,
+      "2026-11-13": 369,
+      "2026-11-14": 29,
+      "2026-11-15": 80,
+      "2026-11-16": 36
+     }
+    },
+    "invalid.invalid": {
+     "count": 7,
+     "first": "2026-11-09T18:00:00+0000",
+     "last": "2026-11-13T16:00:00+0000",
+     "daily": {
+      "2026-11-09": 1,
+      "2026-11-10": 4,
+      "2026-11-11": 1,
+      "2026-11-13": 1
+     }
+    },
+    "book.thepreserveri.com": {
+     "count": 7,
+     "first": "2026-11-09T21:00:00+0000",
+     "last": "2026-11-15T21:00:00+0000",
+     "daily": {
+      "2026-11-09": 1,
+      "2026-11-11": 2,
+      "2026-11-13": 3,
+      "2026-11-15": 1
+     }
+    },
+    "linktr.ee": {
+     "count": 5,
+     "first": "2026-11-10T14:00:00+0000",
+     "last": "2026-11-14T08:00:00+0000",
+     "daily": {
+      "2026-11-10": 4,
+      "2026-11-14": 1
+     }
+    },
+    "bio.thepreserveri.com": {
+     "count": 5843,
+     "first": "2026-11-10T23:00:00+0000",
+     "last": "2026-11-16T17:00:00+0000",
+     "daily": {
+      "2026-11-10": 1,
+      "2026-11-11": 416,
+      "2026-11-12": 452,
+      "2026-11-13": 1096,
+      "2026-11-14": 1185,
+      "2026-11-15": 1732,
+      "2026-11-16": 961
+     }
+    }
+   },
+   "events": {
+    "PageView": 42146,
+    "ViewContent": 14852,
+    "Lead": 2665,
+    "CompleteRegistration": 1783,
+    "InitiateCheckout": 1114,
+    "MenuDownload": 498,
+    "Contact": 172,
+    "__missing_event": 8,
+    "Purchase": 9,
+    "linkClick": 4
+   },
+   "sources": {
+    "BROWSER": 62912,
+    "SERVER": 12
+   },
+   "total_events": 63251,
+   "server_events": 12,
+   "events_28d": {
+    "PageView": 124703,
+    "ViewContent": 42953,
+    "Lead": 3576,
+    "CompleteRegistration": 2319,
+    "InitiateCheckout": 1789,
+    "MenuDownload": 824,
+    "Contact": 603,
+    "linkClick": 64,
+    "Purchase": 43,
+    "__missing_event": 8
+   },
+   "total_events_28d": 176882,
+   "purchase_28d": {
+    "total": 19,
+    "browser": 0,
+    "server": 19,
+    "other": 0,
+    "daily": {
+     "2026-10-21": 2,
+     "2026-10-23": 2,
+     "2026-10-27": 1,
+     "2026-10-31": 1,
+     "2026-11-01": 1,
+     "2026-11-04": 1,
+     "2026-11-05": 2,
+     "2026-11-06": 1,
+     "2026-11-07": 1,
+     "2026-11-09": 1,
+     "2026-11-11": 2,
+     "2026-11-13": 3,
+     "2026-11-15": 1
+    },
+    "first": "2026-10-21T21:00:00+0000",
+    "last": "2026-11-15T21:00:00+0000"
+   },
+   "purchase_7d": {
+    "total": 7,
+    "browser": 0,
+    "server": 7
+   },
+   "error": "",
+   "note": "added from the 16 Nov afternoon pull (window ends 2026-11-16T18:06:15.227Z)"
+  }
+ ],
+ "late_additions": [
+  {
+   "pulled_at": "2026-11-16T18:06:15.227Z",
+   "pixels": [
+    "229378313100169",
+    "2065306940514005",
+    "541451090721842"
+   ]
   }
  ]
 }
