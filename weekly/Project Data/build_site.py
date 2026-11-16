@@ -11,18 +11,18 @@ Redirects (/weekly/ad-spend -> latest, etc.) live in the repo's netlify.toml. Co
 """
 import csv, collections, datetime, html, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_html import CSS, wordmark, ROOT  # noqa: E402
+from build_html import CSS, BENCH_CSS, wordmark, ROOT  # noqa: E402
 
 SITE = os.path.join(os.path.dirname(ROOT), "public", "weekly")  # <repo>/public/weekly
 BASE = "/weekly"  # URL prefix on the merged site
 WORKFLOWS = [
     # slug, title, folder, filename suffix, csv suffix, one-line description
     ("ad-spend", "Ad spend check", "Ad Spends Checks/Weekly Checks", "-ad-spend-check.html", "-ad-spend-check.csv",
-     "Live daily budget per client and campaign type from each ad account, with the change since the previous run."),
+     "Live daily budget per client and campaign type, and what changed since last week."),
     ("pixel-domains", "Pixel domain check", "Meta Pixel Reviews/Weekly Checks", "-pixel-domain-check.html", "-pixel-domain-check.csv",
-     "Which domains fire into each client's Meta Pixel; cross-contamination, silent and split pixels."),
+     "Which domains fire into each client's pixel, plus 28-day Purchase tracking."),
     ("client-benchmark", "Client benchmark", "Client Benchmark Reviews (advanced setups)/Weekly Checks", "-client-benchmark.html", "-client-benchmark.csv",
-     "Sales campaigns of CRM-Advanced clients scored against the Benchmarks doc, with every client's one-line summary."),
+     "Advanced clients' Sales campaigns scored on 14-day ROAS, with one-line summaries."),
 ]
 DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
 
@@ -121,12 +121,30 @@ def sources_for(date):
     if not items:
         return ""
     chips = "".join(f'<span class="src {k}"><span class="dot {k}"></span>{esc(t)}</span>' for k, t in items)
-    return f'<div class="sources"><span class="src-label">Data sources in addition to Meta MCP</span>{chips}</div>'
+    return f'<div class="sources"><span class="src-label">Other data sources</span>{chips}</div>'
+
+def week_badges(slug, csv_path):
+    """Key numbers for a week's collapsed row: spend per day, critical pixels, flags and scale."""
+    if not os.path.exists(csv_path): return []
+    rows = list(csv.DictReader(open(csv_path, encoding="utf-8")))
+    if slug == "ad-spend":
+        if rows and "total_live" in rows[0]:
+            total = sum(float(r["total_live"] or 0) for r in rows if r["source"] == "live")
+            return [("gray", f"Spend ${total:,.0f}/day")]
+        n = collections.Counter(r["flag"] for r in rows)["critical"]
+        return [("err" if n else "gray", f"{n} spend critical")]
+    if slug == "pixel-domains":
+        n = collections.Counter(r["flag"] for r in rows)["critical"]
+        return [("err", f"{n} critical pixel{'s' if n != 1 else ''}") if n else ("ok", "No critical pixels")]
+    c = collections.Counter(r["state"] for r in rows)
+    f, sc = c["Flag to Shawal"], c["Scale w/ HG AI"]
+    return [("err" if f else "gray", f"{f} flag{'s' if f != 1 else ''}"), ("brand", f"{sc} scale")]
 
 def main():
     if os.path.isdir(SITE): shutil.rmtree(SITE)
     os.makedirs(SITE)
     by_date = collections.defaultdict(dict)  # date -> slug -> (href, headline)
+    csvs = collections.defaultdict(dict)     # date -> slug -> CSV sidecar path
     latest = {}
     for slug, title, folder, suf, csv_suf, desc in WORKFLOWS:
         src_dir = os.path.join(ROOT, folder)
@@ -139,151 +157,131 @@ def main():
             page = open(os.path.join(src_dir, fn), encoding="utf-8").read()
             open(os.path.join(out_dir, f"{date}.html"), "w", encoding="utf-8").write(wrap(page))
             by_date[date][slug] = (f"{BASE}/{slug}/{date}.html", headline(slug, os.path.join(src_dir, date + csv_suf)))
+            csvs[date][slug] = os.path.join(src_dir, date + csv_suf)
         if dates:
             latest[slug] = dates[-1]
             shutil.copyfile(os.path.join(out_dir, f"{dates[-1]}.html"), os.path.join(out_dir, "latest.html"))
     # redirects (/weekly/<slug> -> latest) are declared in the repo's netlify.toml, not generated here
-    # index
-    sections = []
-    for date in sorted(by_date, reverse=True):
+    # index: a filter bar (month, review) and one collapsible card per week, latest open
+    weeks_html = []
+    dates_desc = sorted(by_date, reverse=True)
+    for i, date in enumerate(dates_desc):
         d = datetime.date.fromisoformat(date)
         label = d.strftime("%A %-d %B %Y"); week = f"W{d.isocalendar()[1]}"
-        cards = []
+        cards, badges = [], []
         for slug, title, folder, suf, csv_suf, desc in WORKFLOWS:
             if slug not in by_date[date]:
-                cards.append(f'<div class="card rcard muted"><div class="card-body"><h3>{esc(title)}</h3><p class="sec-desc">Not run this week.</p></div></div>'); continue
+                cards.append(f'<div class="card rcard muted" data-review="{slug}"><div class="card-body"><h3>{esc(title)}</h3><p class="sec-desc">Not run this week.</p></div></div>'); continue
             href, hl = by_date[date][slug]
             chips = "".join(
                 (f'<span class="chip">{esc(t)}</span>' if k == "plain" else f'<span class="badge {k}"><span class="dot {k}"></span>{esc(t)}</span>')
                 for k, t in hl)
-            cards.append(f'''<a class="card rcard" href="{href}"><div class="card-body">
+            cards.append(f'''<a class="card rcard" href="{href}" data-review="{slug}"><div class="card-body">
 <h3>{esc(title)}</h3><p class="sec-desc">{esc(desc)}</p>
 <div class="hl">{chips}</div>
 <div class="open">Open report &#8594;</div></div></a>''')
-        sections.append(f'''<section class="week" id="{date}" data-month="{date[:7]}">
-<div class="sec-head"><div><h2>{esc(label)}</h2><p class="sec-desc">{week} · run date {date}</p></div></div>
-{sources_for(date)}
+            badges += [f'<span class="badge {k}" data-review="{slug}"><span class="dot {k}"></span>{esc(t)}</span>'
+                       for k, t in week_badges(slug, csvs[date][slug])]
+        eyebrow = f"{week} · Latest" if i == 0 else week
+        weeks_html.append(f'''<details class="card wk" id="{date}" data-month="{date[:7]}"{" open" if i == 0 else ""}>
+<summary><span class="chev" aria-hidden="true"></span><span class="wmain"><span class="eb">{esc(eyebrow)}</span><span class="wtitle">{esc(label)}</span></span><span class="wbadges">{"".join(badges)}</span><span class="tact" aria-hidden="true"></span></summary>
+<div class="wbody">
 <div class="grid3">{"".join(cards)}</div>
-</section>''')
-    if not sections:
-        sections.append('<div class="empty">No reviews yet.</div>')
+{sources_for(date)}
+</div>
+</details>''')
     n_weeks = len(by_date)
-    first = min(by_date) if by_date else ""
-    # ---- sidebar: months -> Mondays
     months = collections.OrderedDict()
-    for date in sorted(by_date, reverse=True):
+    for date in dates_desc:
         months.setdefault(date[:7], []).append(date)
-    side_items = []
-    for i, (ym, dates) in enumerate(months.items()):
-        d0 = datetime.date.fromisoformat(dates[0])
-        label = d0.strftime("%B %Y"); n = len(dates)
-        weeks = "".join(
-            f'<li><a class="wk" href="#{dt}" data-week="{dt}">{datetime.date.fromisoformat(dt).strftime("%a %-d %b")}'
-            f'<span class="wn">W{datetime.date.fromisoformat(dt).isocalendar()[1]}</span></a></li>' for dt in dates)
-        side_items.append(
-            f'<li class="mo"><button type="button" class="month" data-month="{ym}" aria-expanded="{"true" if i == 0 else "false"}" aria-controls="m-{ym}">'
-            f'<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>'
-            f'<span class="mlabel">{esc(label)}</span><span class="count">{n} week{"s" if n != 1 else ""}</span></button>'
-            f'<ul class="weeks" id="m-{ym}"{"" if i == 0 else " hidden"}>{weeks}</ul></li>')
-    sidebar = f'''<nav class="side" aria-label="Reviews by month">
-<div class="side-title">Browse</div>
-<ul class="months">
-<li><button type="button" class="month all" data-month="all" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="mlabel">All weeks</span><span class="count">{n_weeks}</span></button></li>
-{"".join(side_items)}
-</ul>
-<div class="side-title" style="margin-top:20px">Latest</div>
-<ul class="months latest-list">{"".join(f'<li><a class="wk" href="{BASE}/{slug}/latest.html">{esc(title)}</a></li>' for slug, title, *_ in WORKFLOWS if slug in latest)}</ul>
-</nav>'''
+    month_opts = "".join(f'<option value="{ym}">{datetime.date.fromisoformat(ds[0]).strftime("%B %Y")} ({len(ds)})</option>' for ym, ds in months.items())
+    review_opts = "".join(f'<option value="{slug}">{esc(title)}</option>' for slug, title, *_ in WORKFLOWS)
+    if by_date:
+        d0, d1 = datetime.date.fromisoformat(min(by_date)), datetime.date.fromisoformat(max(by_date))
+        span = f"{d0.day} {d0:%b} – {d1.day} {d1:%b %Y}" if d0.year == d1.year else f"{d0.day} {d0:%b %Y} – {d1.day} {d1:%b %Y}"
+    else:
+        span = "No reviews yet"
+    fbar = f"""<div class="fbar" id="fbar" role="search" aria-label="Filter reviews" hidden>
+<div class="fld"><label for="f-month">Month</label><span class="sel"><select id="f-month"><option value="all">All months</option>{month_opts}</select></span></div>
+<div class="fld"><label for="f-review">Review</label><span class="sel"><select id="f-review"><option value="all">All reviews</option>{review_opts}</select></span></div>
+<button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
+<p class="fsum" id="f-sum" aria-live="polite">{n_weeks} week{"s" if n_weeks != 1 else ""}</p>
+<button type="button" class="btn" id="x-all">Expand all</button>
+</div>"""
     index_css = """
-.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
-.side{position:sticky;top:24px}
-.side-title{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);padding:0 12px 6px}
-.months{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
-.month{appearance:none;width:100%;display:flex;align-items:center;gap:8px;padding:8px 12px;border:0;border-radius:8px;background:transparent;color:var(--text-2);font:500 14px/20px 'Inter',sans-serif;text-align:left;cursor:pointer;transition:background .15s,color .15s}
-.month:hover{background:var(--panel-3);color:var(--text)}
-.month:focus-visible{outline:none;box-shadow:var(--focus)}
-.month[aria-expanded="true"],.month[aria-pressed="true"]{background:var(--brand-bg);color:var(--brand-text)}
-.month .mlabel{flex:1}
-.month .count{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4)}
-.month[aria-expanded="true"] .count,.month[aria-pressed="true"] .count{color:inherit;opacity:.8}
-.month svg{flex:none;color:var(--text-4)}
-.month[aria-expanded="true"] svg,.month[aria-pressed="true"] svg{color:inherit}
-.chev{transition:transform .15s}
-.month[aria-expanded="true"]:not(.collapsed) .chev{transform:rotate(90deg)}
-.weeks{list-style:none;margin:2px 0 6px;padding:0 0 0 14px;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--border);margin-left:19px}
-.wk{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 10px;border-radius:6px;color:var(--text-3);font:400 14px/20px 'Inter',sans-serif;text-decoration:none}
-.wk:hover{background:var(--panel-3);color:var(--text);text-decoration:none}
-.wk[aria-current="true"]{color:var(--brand-text);font-weight:500}
-.wk .wn{font:500 12px/18px 'Roboto Mono',monospace;color:var(--text-4)}
-.latest-list .wk{padding-left:12px}
+.wlist{display:flex;flex-direction:column;gap:12px}
+.wlist>.card+.card{margin-top:0}
+.wk{scroll-margin-top:110px}
+.wk>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:10px minmax(0,1fr) auto auto;grid-template-areas:"chev main badges act";gap:8px 18px;align-items:center;padding:16px 20px;transition:background .1s linear}
+.wk>summary::-webkit-details-marker{display:none}
+.wk>summary:hover{background:var(--panel-2)}
+.wk>summary:focus-visible{box-shadow:inset var(--focus);border-radius:12px}
+.wk[open]>summary{border-bottom:1px solid var(--border)}
+.wk .chev{grid-area:chev;width:8px;height:8px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:rotate(-45deg);transition:transform .24s cubic-bezier(.2,0,0,1)}
+.wk[open]>summary .chev{transform:rotate(45deg)}
+.wk .wmain{grid-area:main;display:flex;flex-direction:column;min-width:0}
+.wk .eb{margin:0}
+.wk .wtitle{font:600 20px/30px 'Inter',sans-serif;letter-spacing:-.01em;color:var(--text)}
+.wk .wbadges{grid-area:badges;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.wk .tact{grid-area:act;font:600 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
+.wk .tact::after{content:"Show"}
+.wk[open] .tact::after{content:"Hide"}
+.wbody{padding:20px;display:flex;flex-direction:column;gap:16px}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .grid3>.card+.card{margin-top:0}
-.rcard{display:block;color:inherit;text-decoration:none;transition:box-shadow .15s,border-color .15s}
-.rcard:hover{text-decoration:none;border-color:var(--border-strong);box-shadow:0 4px 6px -1px rgba(10,13,18,.10),0 2px 4px -2px rgba(10,13,18,.06)}
+.rcard{display:block;color:inherit;text-decoration:none;box-shadow:none;transition:border-color .1s linear,background .1s linear}
+.rcard:hover{text-decoration:none;border-color:var(--border-strong);background:var(--hover)}
 .rcard:focus-visible{outline:none;box-shadow:var(--focus)}
 .rcard .card-body{display:flex;flex-direction:column;gap:10px;height:100%}
 .rcard .hl{display:flex;flex-wrap:wrap;gap:6px}
-.rcard .open{margin-top:auto;font:500 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
+.rcard .open{margin-top:auto;font:600 14px/20px 'Inter',sans-serif;color:var(--brand-text)}
 .rcard.muted{opacity:.6}
-.week{scroll-margin-top:24px}
-.sources{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0 0 16px}
+.sources{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin:0}
 .src-label{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin-right:2px}
 .src{display:inline-flex;align-items:center;gap:6px;font:400 12px/18px 'Inter',sans-serif;color:var(--text-3);padding:2px 10px 2px 8px;border:1px solid var(--border);border-radius:9999px;background:var(--panel)}
 .src .dot{width:6px;height:6px}
-.week+.week{border-top:1px solid var(--border);padding-top:28px}
-.month-head{font:500 12px/18px 'Inter',sans-serif;color:var(--text-4);margin:0 0 12px}
-@media (max-width:900px){
-  .layout{grid-template-columns:1fr;gap:20px}
-  .side{position:static;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px;box-shadow:var(--shadow-xs)}
-}
+.genline{margin:24px 0 0}
+@media (max-width:640px){.wk>summary{grid-template-columns:10px minmax(0,1fr);grid-template-areas:"chev main" ". badges";padding:14px 16px}.wk .wbadges{justify-content:flex-start}.wk .tact{display:none}.wbody{padding:16px}}
+@media (prefers-reduced-motion: reduce){.wk .chev{transition:none}}
 """
     index_js = """
 (function(){
-  const monthBtns=[...document.querySelectorAll('.month[data-month]')];
-  const weekLinks=[...document.querySelectorAll('.wk[data-week]')];
-  const sections=[...document.querySelectorAll('section.week')];
-  const head=document.getElementById('month-head');
-  function show(month){
-    monthBtns.forEach(b=>{
-      const isAll=b.dataset.month==='all';
-      if(isAll){ b.setAttribute('aria-pressed', month==='all'?'true':'false'); return; }
-      const on=b.dataset.month===month;
-      b.setAttribute('aria-expanded', on?'true':'false');
-      if(on) b.classList.remove('collapsed');
-      const list=document.getElementById(b.getAttribute('aria-controls')); if(list) list.hidden=!on;
-    });
+  const bar=document.getElementById('fbar'); if(!bar) return;
+  const mSel=document.getElementById('f-month'), rSel=document.getElementById('f-review');
+  const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum'), xall=document.getElementById('x-all');
+  const weeks=[...document.querySelectorAll('details.wk')], empty=document.getElementById('w-empty');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const plural=(n,w)=>n+' '+w+(n===1?'':'s');
+  const label=s=>s.options[s.selectedIndex].text.replace(/ \\(\\d+\\)$/,'');
+  function xlabel(){ const vis=weeks.filter(w=>!w.hidden); xall.textContent=vis.length&&vis.every(w=>w.open)?'Collapse all':'Expand all'; }
+  function apply(){
+    const m=mSel.value, r=rSel.value, on=m!=='all'||r!=='all';
+    mSel.classList.toggle('on',m!=='all'); rSel.classList.toggle('on',r!=='all');
     let n=0;
-    sections.forEach(s=>{const v=month==='all'||s.dataset.month===month; s.hidden=!v; if(v)n++;});
-    if(head){
-      if(month==='all') head.textContent='All '+n+' week'+(n===1?'':'s');
-      else { const d=new Date(month+'-01T00:00:00'); head.textContent=d.toLocaleString('en-GB',{month:'long',year:'numeric'})+' \u00b7 '+n+' week'+(n===1?'':'s'); }
-    }
-    try{localStorage.setItem('reviews.month',month);}catch(e){}
+    weeks.forEach(w=>{
+      const s=m==='all'||w.dataset.month===m; w.hidden=!s; if(s) n++;
+      w.querySelectorAll('[data-review]').forEach(el=>{el.hidden=r!=='all'&&el.dataset.review!==r;});
+    });
+    empty.hidden=n>0;
+    const who=[m!=='all'?label(mSel):'',r!=='all'?label(rSel):''].filter(Boolean).join(' · ');
+    sum.innerHTML=on?'Showing <strong>'+plural(n,'week')+'</strong> of '+weeks.length+' · '+who:plural(weeks.length,'week');
+    clr.hidden=!on; xlabel();
+    try{const u=new URL(location.href);
+      if(m==='all')u.searchParams.delete('month');else u.searchParams.set('month',m);
+      if(r==='all')u.searchParams.delete('review');else u.searchParams.set('review',r);
+      history.replaceState(null,'',u);}catch(e){}
   }
-  function current(week){ weekLinks.forEach(a=>a.setAttribute('aria-current', a.dataset.week===week?'true':'false')); }
-  monthBtns.forEach(b=>b.addEventListener('click',()=>{
-    const m=b.dataset.month;
-    if(m!=='all' && b.getAttribute('aria-expanded')==='true'){
-      // already selected: collapse or re-open its week list, keep the filter
-      const list=document.getElementById(b.getAttribute('aria-controls'));
-      const open=list && !list.hidden;
-      if(list) list.hidden=open;
-      b.classList.toggle('collapsed', open);
-      return;
-    }
-    b.classList.remove('collapsed');
-    show(m); current(null);
-  }));
-  weekLinks.forEach(a=>a.addEventListener('click',e=>{
-    const w=a.dataset.week; show(w.slice(0,7)); current(w);
-    const t=document.getElementById(w); if(t){ e.preventDefault(); history.replaceState(null,'','#'+w); t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'}); }
-  }));
-  let start=null;
-  const h=location.hash.replace('#','');
-  if(/^\d{4}-\d{2}-\d{2}$/.test(h) && document.getElementById(h)){ start=h.slice(0,7); show(start); current(h); document.getElementById(h).scrollIntoView(); return; }
-  try{ const saved=localStorage.getItem('reviews.month'); if(saved && (saved==='all' || monthBtns.some(b=>b.dataset.month===saved))) start=saved; }catch(e){}
-  if(!start){ const first=monthBtns.find(b=>b.dataset.month!=='all'); start=first?first.dataset.month:'all'; }
-  show(start);
+  mSel.addEventListener('change',apply); rSel.addEventListener('change',apply);
+  clr.addEventListener('click',()=>{mSel.value='all';rSel.value='all';apply();mSel.focus();});
+  xall.addEventListener('click',()=>{const vis=weeks.filter(w=>!w.hidden), open=!vis.every(w=>w.open); vis.forEach(w=>{w.open=open;}); xlabel();});
+  weeks.forEach(w=>w.addEventListener('toggle',xlabel));
+  const q=new URLSearchParams(location.search), has=(s,v)=>[...s.options].some(o=>o.value===v);
+  if(has(mSel,q.get('month'))) mSel.value=q.get('month');
+  if(has(rSel,q.get('review'))) rSel.value=q.get('review');
+  bar.hidden=false; apply();
+  // an old #YYYY-MM-DD link opens that week (widening the month filter if needed)
+  const h=location.hash.slice(1), t=/^\\d{4}-\\d{2}-\\d{2}$/.test(h)&&document.getElementById(h);
+  if(t){ if(t.hidden){mSel.value='all';apply();} t.open=true; xlabel(); t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); }
 })();
 """
     index = f"""<!doctype html>
@@ -292,26 +290,19 @@ def main():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Meta Ads weekly reviews</title>
+<title>Meta Ads Weekly Reviews</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap">
-<style>{CSS}{index_css}{BACK_CSS}</style>
+<style>{CSS}{BENCH_CSS}{index_css}{BACK_CSS}</style>
 </head>
 <body>
 <div class="page">
-<div class="masthead">{wordmark}<div class="right"><a class="back" href="/">&#8592; Monthly ROI dashboard</a><div class="eyebrow">Weekly Meta Ads review · Archive</div></div></div>
-<header class="title"><h1>Meta Ads weekly reviews</h1>
-<p class="lede">Every Monday's ad spend check, pixel domain check and client benchmark review. Pick a month on the left to see its weeks; each report compares against the previous week, so a flag that stays open shows how many weeks it has been open.</p>
-<div class="meta"><span class="chip">{n_weeks} week{"s" if n_weeks != 1 else ""} on file</span><span class="chip">Since {first}</span><span class="chip">Internal, HiddenGem Marketing</span></div>
-</header>
-<div class="layout">
-{sidebar}
-<main>
-<p class="month-head" id="month-head"></p>
-{"".join(sections)}
-<div class="foot"><p>Built from the dated reports in weekly/*/Weekly Checks. Served at /weekly/ by the ROI dashboard. Numbers on the cards come from each report's CSV sidecar.</p></div>
-</main>
-</div>
+<div class="masthead">{wordmark}<div class="right"><a class="back" href="/">&#8592; Monthly ROI dashboard</a></div></div>
+<header class="title"><h1>Meta Ads Weekly Reviews</h1><p class="lede">{esc(span)}</p></header>
+{fbar}
+<div class="wlist">{"".join(weeks_html) or '<div class="empty">No reviews yet.</div>'}</div>
+<div class="empty" id="w-empty" hidden>No weeks match this filter.</div>
+<p class="genline">Built from the dated reports in weekly/*/Weekly Checks. Served at /weekly/ by the ROI dashboard. Numbers on the cards come from each report's CSV sidecar.</p>
 </div>
 <script>{index_js}</script>
 </body>
