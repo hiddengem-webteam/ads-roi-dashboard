@@ -192,6 +192,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible,select:focus-visible{
 .stgl .fbar{margin-bottom:16px}
 @media (max-width:640px){.stgl .shead h2{font-size:24px;line-height:32px}.stgl .sec-desc,.stgl .smeta{margin-left:0}}
 @media (prefers-reduced-motion: reduce){.stgl .chev{transition:none}}
+/* open state (2026-11-16, Shawal: "add shadows to show when a section is open"): an open section sits on a framed,
+   shadowed surface and an open list, client card or week card lifts with a stronger border. Dark mode adds a faint
+   gold hairline because a shadow alone barely shows on the near-black ground. */
+:root{--open-shadow:0 2px 4px #00000014,0 18px 40px -12px #00000047;--open-surface:#fafafa;--open-ring:#c4c4c4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--open-shadow:0 0 0 1px #ffd93538,0 18px 40px -12px #000000e6;--open-surface:#111111;--open-ring:#4d4d4d}}
+:root[data-theme="dark"]{--open-shadow:0 0 0 1px #ffd93538,0 18px 40px -12px #000000e6;--open-surface:#111111;--open-ring:#4d4d4d}
+.sec.stgl{border:1px solid transparent;border-radius:16px;transition:background .2s ease,box-shadow .2s ease,border-color .2s ease}
+.sec.stgl[open]{background:var(--open-surface);border-color:var(--open-ring);box-shadow:var(--open-shadow);padding:12px 22px 24px}
+.tgl,.ccard,.wk{transition:box-shadow .2s ease,border-color .2s ease}
+.tgl:not([open]),.ccard:not([open]),.wk:not([open]){box-shadow:none}
+.tgl[open],.ccard[open],.wk[open]{border-color:var(--open-ring);box-shadow:var(--open-shadow)}
+@media (max-width:640px){.sec.stgl[open]{padding:8px 12px 16px}}
+@media (prefers-reduced-motion: reduce){.sec.stgl,.tgl,.ccard,.wk{transition:none}}
 /* stat band */
 .band{display:grid;grid-template-columns:repeat(var(--n,8),minmax(0,1fr));margin:0 0 48px}
 .band .stat{border:0;border-radius:0;box-shadow:none;background:transparent;padding:14px 12px 14px 14px;gap:2px}
