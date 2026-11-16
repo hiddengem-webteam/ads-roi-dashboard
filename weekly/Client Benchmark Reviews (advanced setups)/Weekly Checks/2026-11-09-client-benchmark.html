@@ -13,6 +13,7 @@
   --gray-text:#525252; --gray-dot:#a3a3a3; --gray-bg:#f5f5f5; --gray-border:#e5e5e5;
   --shadow-xs:0 1px 2px 0 rgba(10,13,18,.05);
   --focus:0 0 0 4px rgba(0,102,222,.24);
+  color-scheme:light;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
@@ -24,6 +25,7 @@
   --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
   --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
   --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
+  color-scheme:dark;
 }}
 :root[data-theme="dark"]{
   --bg:#0a0a0a; --panel:#171717; --panel-2:#1f1f1f; --panel-3:#262626;
@@ -35,6 +37,7 @@
   --err-text:#f87171; --err-dot:#ef4444; --err-bg:rgba(239,68,68,.12); --err-border:rgba(239,68,68,.3);
   --gray-text:#d4d4d4; --gray-dot:#737373; --gray-bg:#262626; --gray-border:#404040;
   --shadow-xs:0 1px 2px 0 rgba(0,0,0,.4);
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/24px 'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
@@ -137,6 +140,50 @@ td.nowrap{white-space:nowrap}
 .foot ul{margin:0 0 12px;padding-left:18px}.foot li{margin-bottom:4px}
 .foot p{margin:0}
 .client-list{font-size:13px;line-height:19px;color:var(--text-3)}
+.fbar[hidden],.fbar [hidden],.tgl [hidden],.cards>[hidden]{display:none!important}
+td.camp{min-width:180px}
+td.type{min-width:110px}
+td.status{min-width:140px;font-size:13px;line-height:19px;color:var(--text-3)}
+.tgl thead th,.tgl tbody td{padding-left:12px;padding-right:12px}
+.tgl thead th:first-child,.tgl tbody td:first-child{padding-left:20px}.tgl thead th:last-child,.tgl tbody td:last-child{padding-right:20px}
+.tgl td.first{white-space:normal;min-width:120px}
+td.first a{color:inherit}td.first a:hover{color:var(--brand-text)}
+/* client benchmark: filter bar */
+.fbar{position:sticky;top:12px;z-index:10;display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 16px;padding:14px 18px;margin:0 0 20px;background:var(--panel);border:1px solid var(--border);border-radius:12px;box-shadow:0 4px 12px -2px rgba(10,13,18,.10),var(--shadow-xs)}
+.fld{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fld label{font:500 12px/18px 'Inter',sans-serif;color:var(--text-3)}
+.sel{position:relative;display:block}
+.sel::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.sel select{appearance:none;-webkit-appearance:none;width:100%;min-width:220px;font:500 14px/20px 'Inter',sans-serif;color:var(--text);background:var(--panel);border:1px solid var(--border-strong);border-radius:8px;padding:8px 36px 8px 12px;cursor:pointer;box-shadow:var(--shadow-xs)}
+.sel select:hover{border-color:var(--text-4)}
+.sel select:focus-visible{outline:none;border-color:var(--brand);box-shadow:var(--focus)}
+.sel select.on{border-color:var(--brand);background:var(--brand-bg);color:var(--brand-text)}
+.btn{appearance:none;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 14px;border:1px solid var(--border-strong);border-radius:8px;background:var(--panel);color:var(--text-2);font:500 14px/20px 'Inter',sans-serif;cursor:pointer;box-shadow:var(--shadow-xs)}
+.btn:hover{background:var(--panel-2);color:var(--text)}
+.btn:focus-visible{outline:none;box-shadow:var(--focus)}
+.fsum{margin:0 0 0 auto;align-self:center;font-size:13px;line-height:19px;color:var(--text-3);text-align:right}
+.fsum strong{color:var(--text);font-weight:600}
+.cards{display:flex;flex-direction:column;gap:16px}
+.cards>.card+.card{margin-top:0}
+.cards>.card{scroll-margin-top:110px}
+@media (max-width:640px){.fbar{position:static;padding:12px 14px}.fld{flex:1 1 140px}.sel select{min-width:0}.fsum{margin:0;width:100%;text-align:left}}
+/* client benchmark: collapsible table sections */
+.tgl>summary{list-style:none;cursor:pointer;display:flex;gap:12px;align-items:flex-start;padding:16px 20px;transition:background .15s}
+.tgl>summary::-webkit-details-marker{display:none}
+.tgl>summary:hover{background:var(--panel-2)}
+.tgl>summary:focus-visible{outline:none;box-shadow:inset var(--focus)}
+.tgl[open]>summary{border-bottom:1px solid var(--border)}
+.tgl .chev{flex:none;width:8px;height:8px;margin-top:10px;border-right:1.5px solid var(--text-3);border-bottom:1.5px solid var(--text-3);transform:rotate(-45deg);transition:transform .15s}
+.tgl[open]>summary .chev{transform:rotate(45deg)}
+.tgl .ttxt{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+.tgl .trow{display:flex;align-items:center;gap:8px 12px;flex-wrap:wrap}
+.tgl .tmeta{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tgl .tcount{font-size:12px;line-height:18px;color:var(--text-4)}
+.tgl .sec-desc{margin:0}
+.tgl .tact{flex:none;margin-top:4px;font:500 13px/20px 'Inter',sans-serif;color:var(--brand-text)}
+.tgl .tact::after{content:"Show"}
+.tgl[open] .tact::after{content:"Hide"}
+@media (max-width:640px){.tgl>summary{padding:14px 16px}.tgl .tact{display:none}}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
 </style>
 <div class="page">
@@ -160,27 +207,40 @@ td.nowrap{white-space:nowrap}
 </svg><div class="eyebrow">Weekly Meta Ads review · Client benchmark, advanced setups</div></div>
 <header class="title"><h1>Client benchmark review</h1><p class="lede">Scores each CRM-Advanced client's three buckets on ROAS against the Benchmarks doc decision table: Discovery (giveaway + lead campaigns, sign-up promo-code revenue), Prospecting (lookalike sales, pixel) and Retargeting (pixel), with monthly ROI context and this week's meeting notes.</p><div class="meta"><span class="chip">Run 9 November 2026</span><span class="chip">Discovery: 30-day window, promo-code ROAS, $200 gate</span><span class="chip">Sales/Retargeting/Prospecting: 14-day window, pixel ROAS, $200 gate</span><span class="chip">Lead Gen: CPL diagnostic, $100 tracking gate</span><span class="chip">Compared against 2026-11-02-client-benchmark.csv</span></div></header>
 
-<div class="stats cols-4"><div class="stat"><div class="label">Advanced clients</div><div class="value">24</div><div class=hint>24 live reads, 0 from the CSV export, 9 Advanced without an ad account</div></div><div class="stat"><div class="label">Rows scored</div><div class="value">66</div><div class=hint>10 more under the spend gate</div></div><div class="stat"><div class="label"><span class="dot err"></span>Flag to Shawal</div><div class="value">3</div><div class=hint>ROAS under 2x or no purchases / sign-up bookings; Lead Gen tracking check (zero leads over the gate)</div></div><div class="stat"><div class="label"><span class="dot warn"></span>Review w/ HG AI</div><div class="value">1</div><div class=hint>ROAS 2 to 5x</div></div><div class="stat"><div class="label"><span class="dot gray"></span>Monitor</div><div class="value">5</div><div class=hint>ROAS 5 to 8x</div></div><div class="stat"><div class="label"><span class="dot ok"></span>Healthy</div><div class="value">5</div><div class=hint>ROAS 8 to 15x</div></div><div class="stat"><div class="label"><span class="dot brand"></span>Scale w/ HG AI</div><div class="value">7</div><div class=hint>ROAS above 15x</div></div><div class="stat"><div class="label"><span class="dot warn"></span>Frequency over 5</div><div class="value">2</div><div class=hint>Sales/Retargeting campaigns to refresh creative on; state unchanged</div></div></div>
+<div class="fbar" id="fbar" role="search" aria-label="Filter this review" hidden>
+<div class="fld"><label for="f-am">Account manager</label><span class="sel"><select id="f-am"><option value="all">All account managers</option><option value="Alicia">Alicia (4)</option><option value="Anna">Anna (3)</option><option value="Charlotte">Charlotte (7)</option><option value="Chiara">Chiara (2)</option><option value="Makenna">Makenna (6)</option><option value="Nicole">Nicole (2)</option></select></span></div>
+<div class="fld"><label for="f-client">Client</label><span class="sel"><select id="f-client"><option value="all">All clients</option><option value="American River Resort">American River Resort</option><option value="Asheville River Cabins">Asheville River Cabins</option><option value="AwayFrames">AwayFrames</option><option value="Bison Ridge Retreat">Bison Ridge Retreat</option><option value="Cabin Collective">Cabin Collective</option><option value="Endless Stays">Endless Stays</option><option value="FLOHOM">FLOHOM</option><option value="Glasscombe">Glasscombe</option><option value="Green Springs Inn">Green Springs Inn</option><option value="Little River Landing">Little River Landing</option><option value="North Star Lodge &amp; Resort">North Star Lodge &amp; Resort</option><option value="Paradise Pointe">Paradise Pointe</option><option value="Ponderosa Pines Resort">Ponderosa Pines Resort</option><option value="Ridge &amp; Falls">Ridge &amp; Falls</option><option value="Selah Place">Selah Place</option><option value="Starlight Haven Hot Springs">Starlight Haven Hot Springs</option><option value="Starlight Haven Weiss Lake">Starlight Haven Weiss Lake</option><option value="Stay On 30A">Stay On 30A</option><option value="Stay Saluda NC">Stay Saluda NC</option><option value="Sunapee Stays">Sunapee Stays</option><option value="The Outpost">The Outpost</option><option value="Treetop Escapes">Treetop Escapes</option><option value="Tàberg Falls">Tàberg Falls</option><option value="Walden Retreats">Walden Retreats</option></select></span></div>
+<button type="button" class="btn" id="f-clear" hidden>Clear filters</button>
+<p class="fsum" id="f-sum" aria-live="polite">24 clients across 6 account managers</p>
+</div>
+<script type="application/json" id="bench-data">{"clients": [{"n": "American River Resort", "a": "Nicole"}, {"n": "Asheville River Cabins", "a": "Charlotte"}, {"n": "AwayFrames", "a": "Alicia"}, {"n": "Bison Ridge Retreat", "a": "Chiara"}, {"n": "Cabin Collective", "a": "Chiara"}, {"n": "Endless Stays", "a": "Nicole"}, {"n": "FLOHOM", "a": "Makenna"}, {"n": "Glasscombe", "a": "Charlotte"}, {"n": "Green Springs Inn", "a": "Alicia"}, {"n": "Little River Landing", "a": "Makenna"}, {"n": "North Star Lodge & Resort", "a": "Charlotte"}, {"n": "Paradise Pointe", "a": "Makenna"}, {"n": "Ponderosa Pines Resort", "a": "Anna"}, {"n": "Ridge & Falls", "a": "Makenna"}, {"n": "Selah Place", "a": "Alicia"}, {"n": "Starlight Haven Hot Springs", "a": "Charlotte"}, {"n": "Starlight Haven Weiss Lake", "a": "Charlotte"}, {"n": "Stay On 30A", "a": "Charlotte"}, {"n": "Stay Saluda NC", "a": "Makenna"}, {"n": "Sunapee Stays", "a": "Charlotte"}, {"n": "The Outpost", "a": "Anna"}, {"n": "Treetop Escapes", "a": "Makenna"}, {"n": "Tàberg Falls", "a": "Alicia"}, {"n": "Walden Retreats", "a": "Anna"}], "rows": [["FLOHOM", "Makenna", "Review w/ HG AI", 0], ["FLOHOM", "Makenna", "Healthy", 0], ["FLOHOM", "Makenna", "Not scored (lead gen)", 0], ["FLOHOM", "Makenna", "Healthy", 0], ["FLOHOM", "Makenna", "Not scored (discovery)", 0], ["Treetop Escapes", "Makenna", "Not scored (lead gen)", 0], ["Treetop Escapes", "Makenna", "Scale w/ HG AI", 0], ["Treetop Escapes", "Makenna", "Not scored (discovery)", 0], ["Paradise Pointe", "Makenna", "Not scored (lead gen)", 0], ["Paradise Pointe", "Makenna", "Healthy", 1], ["Paradise Pointe", "Makenna", "Scale w/ HG AI", 0], ["Paradise Pointe", "Makenna", "Not scored (discovery)", 0], ["Asheville River Cabins", "Charlotte", "Scale w/ HG AI", 0], ["Asheville River Cabins", "Charlotte", "Not scored (lead gen)", 0], ["Asheville River Cabins", "Charlotte", "Not scored (discovery)", 0], ["Green Springs Inn", "Alicia", "Under gate", 0], ["Green Springs Inn", "Alicia", "Not scored (lead gen)", 0], ["Green Springs Inn", "Alicia", "Not scored (discovery)", 0], ["Starlight Haven Hot Springs", "Charlotte", "Not scored (lead gen)", 0], ["Starlight Haven Hot Springs", "Charlotte", "Scale w/ HG AI", 0], ["Starlight Haven Hot Springs", "Charlotte", "Not scored (discovery)", 0], ["Starlight Haven Weiss Lake", "Charlotte", "Not scored (lead gen)", 0], ["Starlight Haven Weiss Lake", "Charlotte", "Scale w/ HG AI", 0], ["Starlight Haven Weiss Lake", "Charlotte", "Not scored (discovery)", 0], ["Stay Saluda NC", "Makenna", "Not scored (lead gen)", 0], ["Stay Saluda NC", "Makenna", "Scale w/ HG AI", 0], ["Stay Saluda NC", "Makenna", "Not scored (discovery)", 0], ["Endless Stays", "Nicole", "Flag to Shawal", 0], ["Endless Stays", "Nicole", "Not scored (lead gen)", 0], ["Endless Stays", "Nicole", "Not scored (discovery)", 0], ["Stay On 30A", "Charlotte", "Healthy", 0], ["Stay On 30A", "Charlotte", "Not scored (lead gen)", 0], ["Stay On 30A", "Charlotte", "Healthy", 0], ["Stay On 30A", "Charlotte", "Not scored (discovery)", 0], ["AwayFrames", "Alicia", "Not scored (lead gen)", 0], ["AwayFrames", "Alicia", "Monitor", 0], ["AwayFrames", "Alicia", "Flag to Shawal", 0], ["AwayFrames", "Alicia", "Not scored (discovery)", 0], ["Bison Ridge Retreat", "Chiara", "Not scored (lead gen)", 0], ["Bison Ridge Retreat", "Chiara", "Under gate", 0], ["Bison Ridge Retreat", "Chiara", "Not scored (discovery)", 0], ["American River Resort", "Nicole", "Not scored (discovery)", 0], ["Tàberg Falls", "Alicia", "Not scored (lead gen)", 0], ["Tàberg Falls", "Alicia", "Monitor", 0], ["Tàberg Falls", "Alicia", "Monitor", 0], ["Tàberg Falls", "Alicia", "Not scored (discovery)", 0], ["Ponderosa Pines Resort", "Anna", "Monitor", 0], ["Ponderosa Pines Resort", "Anna", "Not scored (lead gen)", 0], ["Ponderosa Pines Resort", "Anna", "Not scored (discovery)", 0], ["The Outpost", "Anna", "Under gate", 0], ["The Outpost", "Anna", "Not scored (discovery)", 0], ["Selah Place", "Alicia", "Not scored (lead gen)", 0], ["Selah Place", "Alicia", "Monitor", 0], ["Selah Place", "Alicia", "Not scored (discovery)", 0], ["Ridge & Falls", "Makenna", "Not scored (lead gen)", 0], ["Ridge & Falls", "Makenna", "Scale w/ HG AI", 1], ["Ridge & Falls", "Makenna", "Not scored (discovery)", 0], ["Little River Landing", "Makenna", "Not scored (lead gen)", 0], ["Little River Landing", "Makenna", "Flag to Shawal", 0], ["Little River Landing", "Makenna", "Not scored (discovery)", 0], ["North Star Lodge & Resort", "Charlotte", "Under gate", 0], ["North Star Lodge & Resort", "Charlotte", "Under gate", 0], ["North Star Lodge & Resort", "Charlotte", "Under gate", 0], ["North Star Lodge & Resort", "Charlotte", "Not scored (discovery)", 0], ["Walden Retreats", "Anna", "Not scored (lead gen)", 0], ["Walden Retreats", "Anna", "Under gate", 0], ["Walden Retreats", "Anna", "Not scored (discovery)", 0], ["Glasscombe", "Charlotte", "Not scored (lead gen)", 0], ["Glasscombe", "Charlotte", "Under gate", 0], ["Glasscombe", "Charlotte", "Not scored (discovery)", 0], ["Cabin Collective", "Chiara", "Not scored (lead gen)", 0], ["Cabin Collective", "Chiara", "Under gate", 0], ["Cabin Collective", "Chiara", "Not scored (discovery)", 0], ["Sunapee Stays", "Charlotte", "Not scored (lead gen)", 0], ["Sunapee Stays", "Charlotte", "Under gate", 0], ["Sunapee Stays", "Charlotte", "Not scored (discovery)", 0]]}</script>
+<div class="stats cols-4"><div class="stat" data-stat="clients"><div class="label">Advanced clients</div><div class="value">24</div><div class=hint>24 live reads, 0 from the CSV export, 9 Advanced without an ad account</div></div><div class="stat" data-stat="scored"><div class="label">Rows scored</div><div class="value">21</div><div class=hint>10 more under the spend gate, 45 Lead Gen and Discovery rows for context</div></div><div class="stat" data-stat="flag"><div class="label"><span class="dot err"></span>Flag to Shawal</div><div class="value">3</div><div class=hint>ROAS under 2x or no purchases</div></div><div class="stat" data-stat="review"><div class="label"><span class="dot warn"></span>Review w/ HG AI</div><div class="value">1</div><div class=hint>ROAS 2 to 5x</div></div><div class="stat" data-stat="monitor"><div class="label"><span class="dot gray"></span>Monitor</div><div class="value">5</div><div class=hint>ROAS 5 to 8x</div></div><div class="stat" data-stat="healthy"><div class="label"><span class="dot ok"></span>Healthy</div><div class="value">5</div><div class=hint>ROAS 8 to 15x</div></div><div class="stat" data-stat="scale"><div class="label"><span class="dot brand"></span>Scale w/ HG AI</div><div class="value">7</div><div class=hint>ROAS above 15x</div></div><div class="stat" data-stat="freq"><div class="label"><span class="dot warn"></span>Frequency over 5</div><div class="value">2</div><div class=hint>Sales/Retargeting campaigns to refresh creative on; state unchanged</div></div></div>
 <div class="alert info"><div class="t">How states are assigned</div><p>States come from the Decision Making table in the Benchmarks doc and apply to Sales-objective campaigns only (Shawal, 4 Nov 2026): Retargeting, Prospecting and Sales campaigns on 14-day pixel ROAS with a $200 gate. Bands: above 15x Scale, 8–15x Healthy, 5–8x Monitor, 2–5x Review, under 2x or zero purchases Flag, inclusive on the lower bound. Lead Gen rows (leads, CPL) and the Discovery bucket row (giveaway + lead spend against 30-day sign-up promo-code revenue from the PMS) are listed under each client for context and carry no state.</p></div>
 <section>
   <div class="sec-head"><div><h2>Weekly Meta Ads meetings since last run</h2><p class="sec-desc">Notes by Gemini attached to the calendar events, read via Drive. Summary, decisions and next steps as Gemini wrote them; client-specific sentences are pulled into each client's card below. Transcript not used.</p></div></div>
   <div class="card"><details class="meeting"><summary><span class="chev" aria-hidden="true"></span><span class="mtxt"><span class="mtitle">Meta Ads Strategy</span><span class="when">2026-11-04 · Notes by Gemini · doc <span class="mono">1YGFhUZLiLaM4gLPEVPwLOYxrQ3Ef78eO70ja_rXKnF</span></span><span class=mlead>Strategic shift to independent luxury resorts and asset organization for The Preserve kickoff</span></span></summary><div class="mbody"><p>Resort Targeting and PMS</p><p>Team discussed transitioning toward independent resorts and boutique hotels generating over 1000000 dollars monthly. Discussion covered PMS integration limitations with Res Nexus and Guestie.</p><p>Content and Compliance Strategy</p><p>Team reviewed high-definition video assets and planned custom landing pages for sample reels. Compliance checks using Claude were proposed to avoid Meta ad bans on sporting club content.</p><p>Kickoff and NDA Guidelines</p><p>Team coordinated asset downloading and scheduling for the upcoming client kickoff call. Strict adherence to non disclosure agreement guidelines was emphasized for public sharing restrictions.</p><div class="lbl">Decisions</div><ul><li>Follower Giveaway Proposal Strategy The participants discussed proposing a follower giveaway on the kickoff call while noting they would fall back to lookalike and retargeting ads if the client declines.</li><li>Adopting Independent Resorts As Focus The group aligned on making independent resorts and boutique hotels their primary target market moving forward.</li><li>Custom Coded Sample Page Creation The team agreed to create a custom-coded landing page showcasing multiple sample reel categories rather than using a Google Drive link.</li><li>Meta Terms Compliance Content Filtering The team decided to run all content photos and video clips through an analysis with Claude against Meta terms of service to remove flagged material.</li><li>Migrating and organizing client asset drive The team aligned on downloading all client assets and copying them into their own shared drive to be organized by Alicia and Makenna.</li></ul><div class="lbl">Next steps</div><ul><li>[Leshan, Gillian] Request PMS Exception: Contact the availability exchange partner for Res Nexus to request an exception regarding API access for lower client counts.</li><li>[Leshan] Verify Meta Tracking: Confirm the connection and proper Meta ad tracking for The Preserve to integrate data with Hidden AI.</li><li>[Aiden, Makenna, Alicia] Organize Client Footage: Filter and categorize raw footage provided by the client into distinct themes including wedding, off-roading, and Hobbit house content.</li><li>[Anton] Create Landing Page: Build a custom landing page to host and display organized sample content reels for client review.</li><li>[Leshan Patterson] Analyze Meta Policies: Run all photos and video clips through artificial intelligence tools to identify potential Meta policy violations. Communicate any worrisome or flagged content for removal or adjustment.</li><li>[Dustin Baker] Estimate Booking Metrics: Use artificial intelligence to analyze the resort website and determine the average daily rate and average booking value.</li><li>[Dustin Baker] Send Kickoff Link: Resend the link for the kickoff call to the clients to ensure they receive it and book a slot.</li><li>[Alicia Morin, Makenna Moran] Organize Client Assets: Download all provided client assets and store them in the team drive. Sort and structure the content into categories for easy review.</li><li>[Anton] Create Reels: Produce 3 voiceover reels for each category including Bentley, Hobbit House, Christmas, and wedding themes. Create additional samples specifically showcasing the restaurant.</li><li>[Dustin Baker] Verify NDA Scope: Consult artificial intelligence to clarify the non-disclosure agreement regarding publicly referencing the client partnership in sales calls.</li><li>[The group] Coordinate Asset Downloads: Post updates in the team chat regarding which asset folders have been downloaded to facilitate collaborative task completion.</li></ul></div></details></div>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Action needed</h2><p class="sec-desc">Sales, Retargeting and Prospecting campaigns first, then Discovery buckets, then Lead Gen tracking checks. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.</p></div></div>
-  <div class="card"><div class="tablewrap"><table id="act"><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th><th>Status vs last week</th></tr></thead><tbody><tr data-flag="flag"><td class=first>Endless Stays</td><td>Nicole</td><td>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$1,034 / 14d</td><td class=num>ROAS —</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=nowrap>Still open, week 6 (was Review w/ HG AI)</td></tr><tr data-flag="flag"><td class=first>AwayFrames</td><td>Alicia</td><td>MoF - Lookalike Sales Campaign - 10/29/2026</td><td class=nowrap>Prospecting (MoF lookalike)</td><td class=num>$550 / 14d</td><td class=num>ROAS 1.9x</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=nowrap>Still open, week 2</td></tr><tr data-flag="flag"><td class=first>Little River Landing</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$212 / 14d</td><td class=num>ROAS —</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=nowrap>New flag, was Under gate</td></tr><tr data-flag="review"><td class=first>FLOHOM</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$693 / 14d</td><td class=num>ROAS 3.7x</td><td class=nowrap><span class="badge warn"><span class="dot warn"></span>Review w/ HG AI</span></td><td class=nowrap>New flag, was Monitor</td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div></div>
+<details class="card tgl" id="sec-act">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h2>Action needed</h2><span class="tmeta" data-meta-for="act" data-meta="states" data-kind="gray" data-unit="campaign"><span class="badge err"><span class="dot err"></span>3 Flag to Shawal</span><span class="badge warn"><span class="dot warn"></span>1 Review w/ HG AI</span></span></span><span class="sec-desc">Sales, Retargeting and Prospecting campaigns first, then Discovery buckets, then Lead Gen tracking checks. Within each, Flag to Shawal before Review w/ HG AI, highest spend first.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div class="tablewrap"><table id="act" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th><th>Status vs last week</th></tr></thead><tbody><tr data-flag="flag" data-client="Endless Stays" data-am="Nicole"><td class=first><a href="#client-2">Endless Stays</a></td><td>Nicole</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=type>Retargeting (BoF)</td><td class=num>$1,034 / 14d</td><td class=num>ROAS —</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=status>Still open, week 6 (was Review w/ HG AI)</td></tr><tr data-flag="flag" data-client="AwayFrames" data-am="Alicia"><td class=first><a href="#client-3">AwayFrames</a></td><td>Alicia</td><td class=camp>MoF - Lookalike Sales Campaign - 10/29/2026</td><td class=type>Prospecting (MoF lookalike)</td><td class=num>$550 / 14d</td><td class=num>ROAS 1.9x</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=status>Still open, week 2</td></tr><tr data-flag="flag" data-client="Little River Landing" data-am="Makenna"><td class=first><a href="#client-10">Little River Landing</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors - 09/16/2026</td><td class=type>Retargeting (BoF)</td><td class=num>$212 / 14d</td><td class=num>ROAS —</td><td class=nowrap><span class="badge err"><span class="dot err"></span>Flag to Shawal</span></td><td class=status>New flag, was Under gate</td></tr><tr data-flag="review" data-client="FLOHOM" data-am="Makenna"><td class=first><a href="#client-8">FLOHOM</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=type>Retargeting (BoF)</td><td class=num>$693 / 14d</td><td class=num>ROAS 3.7x</td><td class=nowrap><span class="badge warn"><span class="dot warn"></span>Review w/ HG AI</span></td><td class=status>New flag, was Monitor</td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div>
+</details>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Scale candidates</h2><p class="sec-desc">Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.</p></div></div>
-  <div class="card"><div class="tablewrap"><table id="scale"><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th><th>Status vs last week</th></tr></thead><tbody><tr data-flag="scale"><td class=first>Paradise Pointe</td><td>Makenna</td><td>MoF - LoL Sales Campaign - 09/28/26</td><td class=nowrap>Prospecting (MoF lookalike)</td><td class=num>$694 / 14d</td><td class=num>ROAS 23.0x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Was Healthy</td></tr><tr data-flag="scale"><td class=first>Starlight Haven Weiss Lake</td><td>Charlotte</td><td>Website Retargeting Campaign - 03/03/26</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$619 / 14d</td><td class=num>ROAS 26.2x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Unchanged</td></tr><tr data-flag="scale"><td class=first>Treetop Escapes</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$560 / 14d</td><td class=num>ROAS 18.1x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Unchanged</td></tr><tr data-flag="scale"><td class=first>Asheville River Cabins</td><td>Charlotte</td><td>BoF - Website Retargeting Campaign - 06/08/26</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$429 / 14d</td><td class=num>ROAS 26.4x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Was Monitor</td></tr><tr data-flag="scale"><td class=first>Stay Saluda NC</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$415 / 14d</td><td class=num>ROAS 20.1x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Was Healthy</td></tr><tr data-flag="scale"><td class=first>Starlight Haven Hot Springs</td><td>Charlotte</td><td>Website Retargeting Campaign - 03/03/26</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$277 / 14d</td><td class=num>ROAS 15.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Unchanged</td></tr><tr data-flag="scale"><td class=first>Ridge &amp; Falls</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26</td><td class=nowrap>Retargeting (BoF)</td><td class=num>$210 / 14d</td><td class=num>ROAS 19.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=nowrap>Was Under gate</td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div></div>
+<details class="card tgl" id="sec-scale">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h2>Scale candidates</h2><span class="tmeta" data-meta-for="scale" data-meta="count" data-kind="brand" data-unit="campaign"><span class="badge brand"><span class="dot brand"></span>7 campaigns</span></span></span><span class="sec-desc">Campaigns above the Scale line. Full context goes to HG AI, which picks where budget goes.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div class="tablewrap"><table id="scale" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th><th>Status vs last week</th></tr></thead><tbody><tr data-flag="scale" data-client="Paradise Pointe" data-am="Makenna"><td class=first><a href="#client-4">Paradise Pointe</a></td><td>Makenna</td><td class=camp>MoF - LoL Sales Campaign - 09/28/26</td><td class=type>Prospecting (MoF lookalike)</td><td class=num>$694 / 14d</td><td class=num>ROAS 23.0x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Was Healthy</td></tr><tr data-flag="scale" data-client="Starlight Haven Weiss Lake" data-am="Charlotte"><td class=first><a href="#client-12">Starlight Haven Weiss Lake</a></td><td>Charlotte</td><td class=camp>Website Retargeting Campaign - 03/03/26</td><td class=type>Retargeting (BoF)</td><td class=num>$619 / 14d</td><td class=num>ROAS 26.2x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Unchanged</td></tr><tr data-flag="scale" data-client="Treetop Escapes" data-am="Makenna"><td class=first><a href="#client-5">Treetop Escapes</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=type>Retargeting (BoF)</td><td class=num>$560 / 14d</td><td class=num>ROAS 18.1x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Unchanged</td></tr><tr data-flag="scale" data-client="Asheville River Cabins" data-am="Charlotte"><td class=first><a href="#client-11">Asheville River Cabins</a></td><td>Charlotte</td><td class=camp>BoF - Website Retargeting Campaign - 06/08/26</td><td class=type>Retargeting (BoF)</td><td class=num>$429 / 14d</td><td class=num>ROAS 26.4x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Was Monitor</td></tr><tr data-flag="scale" data-client="Stay Saluda NC" data-am="Makenna"><td class=first><a href="#client-9">Stay Saluda NC</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=type>Retargeting (BoF)</td><td class=num>$415 / 14d</td><td class=num>ROAS 20.1x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Was Healthy</td></tr><tr data-flag="scale" data-client="Starlight Haven Hot Springs" data-am="Charlotte"><td class=first><a href="#client-7">Starlight Haven Hot Springs</a></td><td>Charlotte</td><td class=camp>Website Retargeting Campaign - 03/03/26</td><td class=type>Retargeting (BoF)</td><td class=num>$277 / 14d</td><td class=num>ROAS 15.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Unchanged</td></tr><tr data-flag="scale" data-client="Ridge &amp; Falls" data-am="Makenna"><td class=first><a href="#client-13">Ridge &amp; Falls</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26</td><td class=type>Retargeting (BoF)</td><td class=num>$210 / 14d</td><td class=num>ROAS 19.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td><td class=status>Was Under gate</td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div>
+</details>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Frequency watch</h2><p class="sec-desc">Sales, Retargeting and Prospecting campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.</p></div></div>
-  <div class="card"><div class="tablewrap"><table id="freq"><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Frequency</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th></tr></thead><tbody><tr data-flag="healthy"><td class=first>Paradise Pointe</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=nowrap>Retargeting (BoF)</td><td class=num>5.68</td><td class=num>$695 / 14d</td><td class=num>ROAS 15.0x</td><td class=nowrap><span class="badge ok"><span class="dot ok"></span>Healthy</span></td></tr><tr data-flag="scale"><td class=first>Ridge &amp; Falls</td><td>Makenna</td><td>BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26</td><td class=nowrap>Retargeting (BoF)</td><td class=num>5.21</td><td class=num>$210 / 14d</td><td class=num>ROAS 19.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div></div>
+<details class="card tgl" id="sec-freq">
+<summary><span class="chev" aria-hidden="true"></span><span class="ttxt"><span class="trow"><h2>Frequency watch</h2><span class="tmeta" data-meta-for="freq" data-meta="count" data-kind="warn" data-unit="campaign"><span class="badge warn"><span class="dot warn"></span>2 campaigns</span></span></span><span class="sec-desc">Sales, Retargeting and Prospecting campaigns whose 14-day frequency is above 5.0. Frequency does not change the ROAS state; this is the list to refresh creative or widen the audience on.</span></span><span class="tact" aria-hidden="true"></span></summary>
+<div class="tablewrap"><table id="freq" data-ftable><thead><tr><th>Client</th><th>AM</th><th>Campaign</th><th>Type</th><th class=num>Frequency</th><th class=num>Spend / window</th><th class=num>Governing metric</th><th>State</th></tr></thead><tbody><tr data-flag="healthy" data-client="Paradise Pointe" data-am="Makenna"><td class=first><a href="#client-4">Paradise Pointe</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors</td><td class=type>Retargeting (BoF)</td><td class=num>5.68</td><td class=num>$695 / 14d</td><td class=num>ROAS 15.0x</td><td class=nowrap><span class="badge ok"><span class="dot ok"></span>Healthy</span></td></tr><tr data-flag="scale" data-client="Ridge &amp; Falls" data-am="Makenna"><td class=first><a href="#client-13">Ridge &amp; Falls</a></td><td>Makenna</td><td class=camp>BoF - Sales Campaign - Retargeting Website Visitors - 09/01/26</td><td class=type>Retargeting (BoF)</td><td class=num>5.21</td><td class=num>$210 / 14d</td><td class=num>ROAS 19.5x</td><td class=nowrap><span class="badge brand"><span class="dot brand"></span>Scale w/ HG AI</span></td></tr></tbody></table><div class="empty" hidden>No rows match this filter.</div></div>
+</details>
 </section>
 <section>
-  <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is judged inside the client's Discovery bucket row; the Blended 30d line is the all-campaign view, not de-duplicated.</p></div></div>
-  <div class="card" id="client-0">
+  <div class="sec-head"><div><h2>Per client</h2><p class="sec-desc">Ordered by scored MoF and BoF spend, highest first. ToF spend is judged inside the client's Discovery bucket row; the Blended 30d line is the all-campaign view, not de-duplicated. Click a client name in the tables above to jump to its card.</p></div></div>
+  <div class="cards"><div class="card" id="client-0" data-client="Stay On 30A" data-am="Charlotte">
 <div class="card-head"><div><h3>Stay On 30A</h3><div class="sub">AM Charlotte · Stay on 30a Ads <span class="mono">25640434272252212</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$97,383</div><div class="hint">32 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+25%</span></div><div class="hint">$77,986 from 27 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">17 uses</div><div class="hint">EARLY BIRD DIRECT ×8, WELCOME100 ×5, VIP100 ×4, WELCOMEBACK15 ×2, ESCAPE30A ×1</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $2,989 over 30 days.</div>
@@ -191,7 +251,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). The lookalike slips from Scale (17.3x) to Healthy at 13.9x on 6 purchases ($2,772 in 14 days, the largest Sales spend in the review); BoF holds Healthy at 14.7x on 8 purchases ($2,082), frequency 3.8. Budget unchanged at $500/day. Direct revenue month to date $97.4k, +25% on the same days of October. Pixel: 70 Purchase against 67 PMS online bookings (Guesty CAPI).</dd>
 </dl>
-</div><div class="card" id="client-1">
+</div><div class="card" id="client-1" data-client="Tàberg Falls" data-am="Alicia">
 <div class="card-head"><div><h3>Tàberg Falls</h3><div class="sub">AM Alicia · Táberg Falls <span class="mono">827872700004659</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$23,256</div><div class="hint">14 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+25%</span></div><div class="hint">$18,541 from 14 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">0 uses</div><div class="hint">Hostaway does not store code names</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,611 over 30 days.</div>
@@ -202,7 +262,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). Lookalike Fixed: from Review (2.1x) to Monitor at 6.0x on 4 purchases ($1,166), its second week at $100/day. BoF slips from Healthy (12.0x) to Monitor at 7.3x on 5 purchases ($1,241). Discovery read (context only) 0.0x: $3,005 of giveaway and lead spend in 30 days and not one Hostaway coupon booking, so the sign-up code is either unused or not reaching the PMS; worth Alicia checking the code works on the booking engine. Direct revenue month to date +25% on October. Pixel: 31 Purchase against 38 PMS online bookings (82%).</dd>
 </dl>
-</div><div class="card" id="client-2">
+</div><div class="card" id="client-2" data-client="Endless Stays" data-am="Nicole">
 <div class="card-head"><div><h3>Endless Stays</h3><div class="sub">AM Nicole · Endless Stays <span class="mono">896372356081479</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$20,141</div><div class="hint">11 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+56%</span></div><div class="hint">$12,925 from 9 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by hospitable</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $2,244 over 30 days.</div>
@@ -213,7 +273,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF goes from Review (4.2x, five weeks) to Flag: 0 purchases attributed on $1,034 in 14 days (2 purchases, 2.8x over 30). The PMS shows 16 online bookings in 28 days and month-to-date direct revenue is +56% on October, and the pixel's 13 Purchases all arrive server-side from the HG AI CAPI with no browser Purchase on the booking confirmation, so the gap looks like attribution as much as performance. Question for Nicole and Shawal: hold BoF at $75/day while the confirmation page gets a browser Purchase, or cut it.</dd>
 </dl>
-</div><div class="card" id="client-3">
+</div><div class="card" id="client-3" data-client="AwayFrames" data-am="Alicia">
 <div class="card-head"><div><h3>AwayFrames</h3><div class="sub">AM Alicia · Awayframes Ad Account <span class="mono">2471256056603833</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$9,916</div><div class="hint">7 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+194%</span></div><div class="hint">$3,377 from 4 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">0 uses</div><div class="hint">Hostaway does not store code names</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,100 over 30 days.</div>
@@ -224,7 +284,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). The 10/29 lookalike stays Flag at 1.9x on 1 purchase ($550 in 14 days), second week. BoF drops from Scale (19.9x) to Monitor at 7.3x on 7 purchases ($696), frequency 4.8, in its first full fortnight at $50/day. Both follow the 29 Oct jump from $30 to $200/day. Bookings are rising anyway: month-to-date direct revenue $9.9k against $3.4k on the same days of October (+194%).</dd>
 </dl>
-</div><div class="card" id="client-4">
+</div><div class="card" id="client-4" data-client="Paradise Pointe" data-am="Makenna">
 <div class="card-head"><div><h3>Paradise Pointe</h3><div class="sub">AM Makenna · Paradise Pointe Ads <span class="mono">1585826092078255</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$42,105</div><div class="hint">40 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+25%</span></div><div class="hint">$33,786 from 40 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">21 uses</div><div class="hint">WELCOME100 ×21</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $748 over 30 days.</div>
@@ -235,7 +295,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). The LoL lookalike moves up from Healthy (12.7x) to Scale at 23.0x on 12 purchases ($694). BoF dips from Scale (25.0x) to Healthy at 15.0x, just under the Scale line, on 8 purchases ($695); its frequency of 5.68 is the highest in the review (Frequency watch, second week). Discovery read (context only) 57.6x: WELCOME100 ×69 ($81.5k) on $1,496.</dd>
 </dl>
-</div><div class="card" id="client-5">
+</div><div class="card" id="client-5" data-client="Treetop Escapes" data-am="Makenna">
 <div class="card-head"><div><h3>Treetop Escapes</h3><div class="sub">AM Makenna · Treetop Escapes Ads <span class="mono">967636478877602</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$19,140</div><div class="hint">19 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+34%</span></div><div class="hint">$14,276 from 17 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">7 uses</div><div class="hint">WELCOME100 ×6, WELCOME10 ×1</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $902 over 30 days.</div>
@@ -246,7 +306,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF holds Scale at 18.1x on 12 purchases ($560), frequency 3.5. Discovery read (context only) 12.3x: WELCOME100 ×16 and WELCOME10 ×2 on $1,803.</dd>
 </dl>
-</div><div class="card" id="client-6">
+</div><div class="card" id="client-6" data-client="Ponderosa Pines Resort" data-am="Anna">
 <div class="card-head"><div><h3>Ponderosa Pines Resort</h3><div class="sub">AM Anna · Ponderosa Pines Resort <span class="mono">1058846326445255</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$15,844</div><div class="hint">51 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+66%</span></div><div class="hint">$9,552 from 42 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by newbook</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,195 over 30 days.</div>
@@ -257,7 +317,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF slips from Healthy (10.5x) to Monitor at 7.4x on 13 purchases ($552). Read the ROAS as an upper bound: the pixel check shows the Newbook confirmation firing about 1.7 browser Purchases per PMS booking, so attributed purchases and value are inflated. Leads $1.22 on 493. No promo data (Newbook stores no code).</dd>
 </dl>
-</div><div class="card" id="client-7">
+</div><div class="card" id="client-7" data-client="Starlight Haven Hot Springs" data-am="Charlotte">
 <div class="card-head"><div><h3>Starlight Haven Hot Springs</h3><div class="sub">AM Charlotte · Starlight Haven Hot Springs <span class="mono">901138032027913</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $751 over 30 days.</div>
@@ -268,7 +328,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF stays Scale at 15.5x on 6 purchases ($277), down from 24.2x and just above the Scale line. Leads $0.33 on 2,753.</dd>
 </dl>
-</div><div class="card" id="client-8">
+</div><div class="card" id="client-8" data-client="FLOHOM" data-am="Makenna">
 <div class="card-head"><div><h3>FLOHOM</h3><div class="sub">AM Makenna · FLOHOM Ads <span class="mono">2100710320122219</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$13,845</div><div class="hint">17 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−66%</span></div><div class="hint">$40,832 from 47 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">7 uses</div><div class="hint">Hostaway does not store code names</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $299 over 30 days.</div>
@@ -279,7 +339,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF slips from Monitor (5.3x) to Review at 3.7x on 4 purchases ($693 in 14 days; 4.7x over 30), a new Action row. The main lookalike drops from Scale (19.8x) to Healthy at 12.0x on 9 purchases; the Myrtle Beach lookalike holds Healthy at 8.2x. Month-to-date direct revenue is $13.8k, −66% on the same days of October (17 bookings against 47), so the lower ROAS tracks a slower booking month, not a tracking change: the pixel still captures 99% of online bookings. Budget $140/day, matching the November target.</dd>
 </dl>
-</div><div class="card" id="client-9">
+</div><div class="card" id="client-9" data-client="Stay Saluda NC" data-am="Makenna">
 <div class="card-head"><div><h3>Stay Saluda NC</h3><div class="sub">AM Makenna · Stay Saluda Ads <span class="mono">1863632561215857</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$9,928</div><div class="hint">15 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+49%</span></div><div class="hint">$6,683 from 11 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">10 uses</div><div class="hint">ENJOY10 ×8, VIP10 ×2</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $896 over 30 days.</div>
@@ -290,7 +350,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF up from Healthy (8.1x) to Scale at 20.1x on 12 purchases ($415), frequency 4.4. Discovery read (context only) 9.9x: ENJOY10 ×15 and WELCOME10 ×3 on $1,490.</dd>
 </dl>
-</div><div class="card" id="client-10">
+</div><div class="card" id="client-10" data-client="Little River Landing" data-am="Makenna">
 <div class="card-head"><div><h3>Little River Landing</h3><div class="sub">AM Makenna · Little River Landing <span class="mono">884285717873613</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$1,096</div><div class="hint">7 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+42%</span></div><div class="hint">$770 from 4 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">0 uses</div><div class="hint">no codes applied</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,786 over 30 days.</div>
@@ -301,7 +361,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF crosses the $200 gate with 0 purchases ($212 in 14 days), a new Flag. Read it with the pixel check: Little River is  on Purchase tracking (4 Purchase in 28 days against 13 PMS online bookings; HG AI CAPI off, the browser never fires Purchase), so the zero is mainly missing tracking. Turning the CAPI on comes before judging the campaign. Discovery read (context only) 0.2x: one WELCOME10 booking on $1,936 of giveaway and lead spend.</dd>
 </dl>
-</div><div class="card" id="client-11">
+</div><div class="card" id="client-11" data-client="Asheville River Cabins" data-am="Charlotte">
 <div class="card-head"><div><h3>Asheville River Cabins</h3><div class="sub">AM Charlotte · Asheville River Cabins Ads <span class="mono">615836588009747</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,212 over 30 days.</div>
@@ -312,7 +372,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF up from Monitor (7.9x) to Scale at 26.4x on 20 purchases ($429), frequency 2.2; Dustin raised it from $30 to $50/day on 8 Nov. All of its Purchases are browser-side (no CAPI reaches the pixel), see the pixel check.</dd>
 </dl>
-</div><div class="card" id="client-12">
+</div><div class="card" id="client-12" data-client="Starlight Haven Weiss Lake" data-am="Charlotte">
 <div class="card-head"><div><h3>Starlight Haven Weiss Lake</h3><div class="sub">AM Charlotte · Starlight Haven Weiss Lake <span class="mono">74756899</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $0 over 30 days.</div>
@@ -323,7 +383,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF Scale at 26.2x on 31 purchases ($619), up from 19.6x. Leads $1.13 on 663.</dd>
 </dl>
-</div><div class="card" id="client-13">
+</div><div class="card" id="client-13" data-client="Ridge &amp; Falls" data-am="Makenna">
 <div class="card-head"><div><h3>Ridge &amp; Falls</h3><div class="sub">AM Makenna · Ridge &amp; Falls ad <span class="mono">1313401330776046</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$2,340</div><div class="hint">6 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+121%</span></div><div class="hint">$1,057 from 3 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">3 uses</div><div class="hint">HELLO10 ×2, STAY10 ×1</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $1,509 over 30 days.</div>
@@ -334,7 +394,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF crosses the gate straight into Scale at 19.5x on 10 purchases ($210), with frequency 5.21 (Frequency watch). Treat the ROAS as inflated: the pixel receives about 1.8 server Purchases per PMS booking (HG AI CAPI plus a second sender), so Meta likely counts many bookings twice. Discovery read 0.0x: the only coded bookings were HELLO10 and STAY10, which are not sign-up codes.</dd>
 </dl>
-</div><div class="card" id="client-14">
+</div><div class="card" id="client-14" data-client="Selah Place" data-am="Alicia">
 <div class="card-head"><div><h3>Selah Place</h3><div class="sub">AM Alicia · Selah.place <span class="mono">1275283434220508</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$7,355</div><div class="hint">17 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−35%</span></div><div class="hint">$11,317 from 20 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">6 uses</div><div class="hint">Hostaway does not store code names</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $850 over 30 days.</div>
@@ -345,7 +405,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). HiddenGem's BoF Fixed: from Review (3.9x) to Monitor at 5.6x on 8 purchases ($414), frequency 4.5. The pixel's server Purchases run 2.4x the PMS bookings (HG AI CAPI plus Hostaway's CAPI), so this ROAS is likely overstated too. The client now runs most of the account: Nathan Herrington's Willow Top-5 Audiences sales campaign ($175/day, 0.7x on $1,720 in 14 days) and, from 5 and 7 Nov, two Black Walnut campaigns ($130/day leads, $50/day sales) on a new Black Walnut pixel. HiddenGem's three campaigns are $70 of the account's $465/day.</dd>
 </dl>
-</div><div class="card" id="client-15">
+</div><div class="card" id="client-15" data-client="Sunapee Stays" data-am="Charlotte">
 <div class="card-head"><div><h3>Sunapee Stays</h3><div class="sub">AM Charlotte · Sunapee Stays Ads Account <span class="mono">651114096215889</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$1,970</div><div class="hint">6 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−85%</span></div><div class="hint">$13,540 from 25 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by ownerrez</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $897 over 30 days.</div>
@@ -356,7 +416,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF under the gate, 0 purchases on $142 (5.1x over 30 days). Month-to-date direct revenue $2.0k against $13.5k on the same days of October (−85%).</dd>
 </dl>
-</div><div class="card" id="client-16">
+</div><div class="card" id="client-16" data-client="Green Springs Inn" data-am="Alicia">
 <div class="card-head"><div><h3>Green Springs Inn</h3><div class="sub">AM Alicia · Green Springs Inn <span class="mono">1390516335151357</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$16,161</div><div class="hint">31 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+40%</span></div><div class="hint">$11,524 from 26 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">11 uses</div><div class="hint">Hostaway does not store code names</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $601 over 30 days.</div>
@@ -367,7 +427,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF under the gate at 20.0x on 5 purchases ($138). Discovery read (context only) 17.5x on 31 Hostaway coupon bookings (no code names).</dd>
 </dl>
-</div><div class="card" id="client-17">
+</div><div class="card" id="client-17" data-client="The Outpost" data-am="Anna">
 <div class="card-head"><div><h3>The Outpost</h3><div class="sub">AM Anna · The Outpost Grand Canyon <span class="mono">1530849534802936</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$3,410</div><div class="hint">9 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−60%</span></div><div class="hint">$8,427 from 17 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by newbook</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $897 over 30 days.</div>
@@ -378,7 +438,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). Only the 10/08 BoF spent ($142, 1 purchase, 1.5x), under the gate; the 08/29 BoF ($10/day) did not spend again, so it is idle (decision 30). Direct revenue month to date −60% on October.</dd>
 </dl>
-</div><div class="card" id="client-18">
+</div><div class="card" id="client-18" data-client="Walden Retreats" data-am="Anna">
 <div class="card-head"><div><h3>Walden Retreats</h3><div class="sub">AM Anna · Walden Retreats <span class="mono">973261794434226</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $301 over 30 days.</div>
@@ -389,7 +449,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). HiddenGem's BoF under the gate at 5.3x on 4 purchases ($139; 23.7x over 30 days). The client paused its last two wedding-lead campaigns on 2 and 5 Nov, so the account is back to HiddenGem's three campaigns at $30/day.</dd>
 </dl>
-</div><div class="card" id="client-19">
+</div><div class="card" id="client-19" data-client="North Star Lodge &amp; Resort" data-am="Charlotte">
 <div class="card-head"><div><h3>North Star Lodge &amp; Resort</h3><div class="sub">AM Charlotte · North Star Lodge &amp; Resort Ads <span class="mono">2003562593933799</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$12,362</div><div class="hint">25 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−61%</span></div><div class="hint">$31,726 from 62 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by cloudbeds</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $599 over 30 days.</div>
@@ -400,7 +460,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF under the gate at 5.7x on 1 purchase ($70). Of the two lead campaigns, 10/02 still has 1 lead on $83 in 30 days while 10/26 has 29 at $2.34, so the older one is worth pausing (Charlotte). Direct revenue month to date −61% on October. Pixel: the Cloudbeds browser Purchase is still mostly missing (pixel check).</dd>
 </dl>
-</div><div class="card" id="client-20">
+</div><div class="card" id="client-20" data-client="Bison Ridge Retreat" data-am="Chiara">
 <div class="card-head"><div><h3>Bison Ridge Retreat</h3><div class="sub">AM Chiara · Bison Ridge Retreat Ad Account <span class="mono">950241787963535</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $599 over 30 days.</div>
@@ -411,7 +471,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF under the gate, 0 purchases on $71; the pixel has no Purchase in 28 days, so BoF has no conversion signal to optimise on (pixel check ).</dd>
 </dl>
-</div><div class="card" id="client-21">
+</div><div class="card" id="client-21" data-client="Glasscombe" data-am="Charlotte">
 <div class="card-head"><div><h3>Glasscombe</h3><div class="sub">AM Charlotte · Glasscombe <span class="mono">2030318804465316</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$5,551</div><div class="hint">10 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta ok">+298%</span></div><div class="hint">$1,393 from 3 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by cloudbeds</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $527 over 30 days.</div>
@@ -422,7 +482,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). Both under the gate: leads $0.31 on 409 ($128), BoF 0 purchases on $69. The pixel took 20 Purchase this week (30 in 28 days), so BoF's zero is attribution, not tracking. Direct revenue month to date $5.6k against $1.4k on the same days of October.</dd>
 </dl>
-</div><div class="card" id="client-22">
+</div><div class="card" id="client-22" data-client="Cabin Collective" data-am="Chiara">
 <div class="card-head"><div><h3>Cabin Collective</h3><div class="sub">AM Chiara · Cabin Collective <span class="mono">2194562394139883</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="stat"><div class="label">Direct revenue this month</div><div class="value">$14,895</div><div class="hint">9 bookings, booked 1 Nov–9 Nov</div></div><div class="stat"><div class="label">vs previous month, same days</div><div class="value"><span class="delta err">−32%</span></div><div class="hint">$21,841 from 12 bookings, 1 Oct–9 Oct</div></div><div class="stat"><div class="label">Promo codes this month</div><div class="value">—</div><div class="hint">not tracked by ownerrez</div></div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $186 over 30 days.</div>
@@ -433,7 +493,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). BoF under the gate at 36.7x on 5 purchases ($138). Leads $1.19 on 157. Master sheet still reads Not Live.</dd>
 </dl>
-</div><div class="card" id="client-23">
+</div><div class="card" id="client-23" data-client="American River Resort" data-am="Nicole">
 <div class="card-head"><div><h3>American River Resort</h3><div class="sub">AM Nicole · American River Resort <span class="mono">953162737054331</span></div></div><span class="badge ok"><span class="dot ok"></span>Live read</span></div>
 <div class="month"><div class="none">This month: no PMS connection on the HiddenGem AI platform, so direct revenue and promo codes are not tracked here.</div></div>
 <div class="tof">ToF (Discovery / Keyword) spend, context only (inside the Discovery bucket row): $196 over 30 days.</div>
@@ -444,7 +504,7 @@ td.nowrap{white-space:nowrap}
 <dt>Meeting notes</dt><dd>not mentioned in this week's meetings.</dd>
 <dt>HG AI notes</dt><dd>No HG AI reports this week (none filed since 23 Sep). Ads off since 15 Oct: paused, not offboarded. Nothing scored.</dd>
 </dl>
-</div>
+</div></div>
 </section>
 <div class="foot"><ul><li>Windows: Lead Gen last 30 days, Sales/Retargeting last 14 days (live). CSV accounts use the export period 2026-10-19 to 2026-10-25 (7 days) and are provisional.</li><li>Gates: $100 Lead Gen, $200 Sales/Retargeting. Campaigns under the gate are listed but not judged.</li><li>Classification: by campaign objective (OUTCOME_LEADS → Lead Gen; OUTCOME_SALES → Sales, split into Retargeting (BoF) or MoF lookalike by name; OUTCOME_TRAFFIC / OUTCOME_ENGAGEMENT → ToF, not scored). CSV accounts have no objective column, so classification there is by name.</li><li>Prospecting (MoF lookalike) sales campaigns are scored on the Retargeting ROAS bands because they optimise for purchases. The Benchmarks doc has no separate band for prospecting; Dustin floated a 3x floor on 28 Oct, not yet adopted.</li><li>Scope (Shawal, 2026-11-04): only Sales-objective campaigns carry a state. Lead Gen rows and the Discovery bucket row are context only; they never enter Action needed, Scale candidates or the counts. Rows that were Flag or Review last week on CPL or promo ROAS read "No longer scored" in the diff.</li><li>Discovery bucket (from 2026-10-30, Meta Ads Strategy 2026-10-28; context only since 2026-11-04): one row per client combining the 30-day spend of every HiddenGem ToF (giveaway, keyword) and Lead Gen campaign that spent in the window, paused ones included, against the 30-day revenue of direct bookings carrying a sign-up promo code (WELCOME*, ENJOY*, SIGNUP*, GIVEAWAY*) from the HiddenGem AI platform (pms_mtd.sql). Other codes (VIP, WELCOMEBACK, RETURNING, EARLY BIRD, agent or influencer codes) are listed in the row but not counted. Hostaway stores only a coupon id, so every coupon booking counts there. The promo ROAS is printed for reading only. Clients on a PMS that stores no promo code (Hospitable, Cloudbeds, OwnerRez, Newbook, Lodgify, Uplisting) show no promo data.</li><li>Lead Gen CPL is not a state (28 Oct) and, since 4 Nov, neither is the zero-leads tracking check. CPL stays in the Governing metric column as a diagnostic and the Lead Gen investigate lines still apply.</li><li>Blended 30d line per client: 30-day spend of every HiddenGem campaign against pixel purchase value (Sales rows, spend × ROAS) plus sign-up promo revenue. Not de-duplicated; it is the blended view Dustin asked to keep alongside the buckets, so a budget shift between buckets that lowers the blend is visible.</li><li>Data path: Marketing API v21.0 insights at campaign level through <code>scripts/pull-campaign-insights.mts</code> (purchases = omni_purchase, leads = lead, ROAS = purchase_roas, link clicks = inline_link_clicks), the same fields the claude.ai connector exposed. The connector is no longer used for this report (Shawal, 2026-10-19).</li><li>CTR on live rows is Meta's CTR (all clicks), not link CTR. The doc's click-rate lines are probably link CTR, so treat the CTR diagnostic as indicative.</li><li>Frequency and cost per booking are diagnostics only and do not change the state (decision 2026-09-21). From 2026-10-06 (Shawal) every Sales / Retargeting row shows its frequency, and any value above 5.0 is marked  in that column and listed in the Frequency watch section; CSV rows use impressions / reach summed over ad sets, which overstates frequency where ad sets overlap.</li><li>Only campaigns live (ACTIVE) at run time are scored. Paused campaigns that spent inside the window are listed per client as "Paused in window" and never enter Action needed or the counts (decision 2026-09-23).</li><li>Client-run campaigns (created by a non-HiddenGem login per the account activity log, listed under the client, never scored): Selah Place: SP / Willow / Pre-Sales / VIP List / 10-2026 (Nathan Jay Herrington), Instagram post: 🔥 𝐒𝐀𝐂𝐑𝐈𝐅𝐈𝐂𝐄 𝐈𝐒 𝐑𝐄𝐐𝐔𝐈𝐑𝐄𝐃 🔥... (Live Intentionally Today LIT), SP / Willow / Lead Gen / VIP List / 10-2026 (Nathan Jay Herrington), SP / Willow / Sales / Top-5 Audiences / 11-2026 (Nathan Jay Herrington), SP / Black Walnut / Leads / Early Access / 11-2026 (Nathan Jay Herrington); Walden Retreats: TOF Wedding Leads 10.8.26 (Lindsey Cooke), TOF Wedding Leads (alt aud) 10.9.26 (Lindsey Cooke), MOF Wedding Leads 10.27.26 (Lindsey Cooke). Creators are known for campaigns created in the last 180 days; older campaigns are scored as usual.</li><li>Unclassified campaigns: none.</li><li>Previous report: 2026-11-02-client-benchmark.csv. Diff joined on campaign_id for live rows and client + campaign name for CSV rows. Diff counts: 2 new, 2 still open, 2 fixed, 70 unchanged, 0 removed.</li><li>Scope changes vs 2 Nov: none (same 24 accounts); Sunapee Stays kept in scope (CRM Meta Ads column reads Basic since 19 Oct; kept as Advanced at Shawal's request (2026-10-26)). Advanced in the CRM but with no ad account mapping in PROJECT.md section 5, not scored: Treetop Hideaways (AM Kristal), Casey Key Resort (AM —), Arca Roatan (AM Anna), Gooseberry Lodges (AM Alicia), Dunya Camp (AM Chiara), Nine Pines Retreat (AM Nicole), Lundy Farm (AM Charlotte), The Preserve (AM Alicia), Kimpton Mas Olas Resort (AM Charlotte). Gooseberry Lodges (no ads running yet, Shawal 9 Nov) and Nine Pines Retreats are on the Master Meta Ads sheet without an account ID.</li><li>HG AI reports read from <code>HG AI Reports/</code> at the project root, dated since the previous run: none.</li><li>Selah Place's campaigns are named with pipes in Meta ("SP | Willow | Sales | Top-5 Audiences | 11-2026"); shown here with slashes.</li><li>Meeting notes: every "Meta Ads Strategy", "Meta Ads Sync" or "Meta Ads x HiddenGem AI Sync" calendar event since the previous run that has a "Notes by Gemini" attachment, read via Drive. Client names are matched with an alias list (Flow Home = FLOHOM, Tabber / Tipik Falls / Debug Falls = Tàberg Falls, Sailor Place = Selah Place, Stay on 38 = Stay On 30A, Ashwood River Cabins = Asheville River Cabins).</li><li>This month line: direct booking revenue by booking date from the HiddenGem AI platform (pms_bookings, platform direct/OTA rules, tenants on a shared PMS account narrowed to their own properties), month to date at the run date, against the same day span of the previous month. Promo codes come from the booking payload: Guesty stores the code, Hostaway only a coupon id (counted, no names), Hospitable and Cloudbeds nothing. Pulled with pms_mtd.sql through the Supabase connector. Clients without a PMS connection on the platform show no figures.</li><li>Monthly ROI context from <code>Monthly ROI data/</code> (July 2026, August 2026, September 2026, October 2026). Revenue there comes from the Client Performance Tracking sheet, not the pixel, so its ROAS is not comparable to the pixel ROAS above.</li></ul><p>HiddenGem Marketing · weekly Meta Ads review · generated 9 November 2026 from the saved report and CSV sidecar.</p></div>
 
@@ -461,4 +521,79 @@ document.querySelectorAll('[data-filter-for]').forEach(seg=>{
     if(empty) empty.hidden=n>0;
   }));
 });
+
+(function(){
+  const bar=document.getElementById('fbar'), dataEl=document.getElementById('bench-data');
+  if(!bar||!dataEl) return;
+  const D=JSON.parse(dataEl.textContent);
+  const amSel=document.getElementById('f-am'), clSel=document.getElementById('f-client');
+  const clr=document.getElementById('f-clear'), sum=document.getElementById('f-sum');
+  const cards=[...document.querySelectorAll('.cards>.card[data-client]')];
+  const tables=[...document.querySelectorAll('table[data-ftable]')];
+  const LBL=[['flag','err','Flag to Shawal'],['review','warn','Review w/ HG AI'],['monitor','gray','Monitor'],['healthy','ok','Healthy'],['scale','brand','Scale w/ HG AI']];
+  const NOT_SCORED=s=>s==='Under gate'||s==='Tracked in Discovery'||s==='No promo data'||s.startsWith('Not scored');
+  const ams=[...new Set(D.clients.map(c=>c.a))].sort();
+  const stats={};
+  document.querySelectorAll('[data-stat]').forEach(el=>{const v=el.querySelector('.value'),h=el.querySelector('.hint');stats[el.dataset.stat]={v,h,v0:v.textContent,h0:h?h.innerHTML:''};});
+  const badge=(k,t)=>'<span class="badge '+k+'"><span class="dot '+k+'"></span>'+t+'</span>';
+  const plural=(n,w)=>n+' '+w+(n===1?'':'s');
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function fillClients(){
+    const am=amSel.value, cur=clSel.value;
+    while(clSel.options.length>1) clSel.remove(1);
+    D.clients.filter(c=>am==='all'||c.a===am).forEach(c=>clSel.add(new Option(c.n,c.n)));
+    clSel.value=[...clSel.options].some(o=>o.value===cur)?cur:'all';
+  }
+  const match=(c,a)=>(amSel.value==='all'||a===amSel.value)&&(clSel.value==='all'||c===clSel.value);
+  function meta(t,vis,tot,on){
+    const box=document.querySelector('[data-meta-for="'+t.id+'"]'); if(!box) return;
+    const unit=box.dataset.unit||'campaign'; let h='';
+    if(box.dataset.meta==='states'){const c={};vis.forEach(r=>{c[r.dataset.flag]=(c[r.dataset.flag]||0)+1;});LBL.forEach(([k,kind,l])=>{if(c[k])h+=badge(kind,c[k]+' '+l);});}
+    else if(vis.length) h=badge(box.dataset.kind||'gray',plural(vis.length,unit));
+    if(!vis.length) h=badge('gray',on?'None for this filter':'None');
+    if(on) h+='<span class="tcount">of '+plural(tot,unit)+' this week</span>';
+    box.innerHTML=h;
+  }
+  function apply(){
+    const am=amSel.value, cl=clSel.value, on=am!=='all'||cl!=='all';
+    amSel.classList.toggle('on',am!=='all'); clSel.classList.toggle('on',cl!=='all');
+    tables.forEach(t=>{
+      const rows=[...t.tBodies[0].rows], vis=rows.filter(r=>match(r.dataset.client,r.dataset.am));
+      rows.forEach(r=>{r.hidden=!vis.includes(r);});
+      t.hidden=!vis.length; const e=t.parentElement.querySelector('.empty'); if(e) e.hidden=!!vis.length;
+      meta(t,vis,rows.length,on);
+    });
+    let nc=0; cards.forEach(c=>{const s=match(c.dataset.client,c.dataset.am); c.hidden=!s; if(s) nc++;});
+    const R=D.rows.filter(r=>match(r[0],r[1])), n={};
+    R.forEach(r=>{n[r[2]]=(n[r[2]]||0)+1;});
+    const set=(k,v,h)=>{const s=stats[k]; if(!s) return; s.v.textContent=on?v:s.v0; if(s.h&&h!==undefined) s.h.innerHTML=on?h:s.h0;};
+    const ctx=R.filter(r=>r[2].startsWith('Not scored')).length;
+    set('clients',String(nc),(am!=='all'?esc(am)+"'s clients, ":'')+'of '+D.clients.length+' with an ad account');
+    set('scored',String(R.filter(r=>!NOT_SCORED(r[2])).length),(n['Under gate']||0)+' more under the spend gate'+(ctx?', '+ctx+' Lead Gen and Discovery rows for context':''));
+    [['flag','Flag to Shawal'],['review','Review w/ HG AI'],['monitor','Monitor'],['healthy','Healthy'],['scale','Scale w/ HG AI']].forEach(([k,s])=>set(k,String(n[s]||0)));
+    set('freq',String(R.filter(r=>r[3]).length));
+    const who=[am!=='all'?esc(am):'',cl!=='all'?esc(cl):''].filter(Boolean).join(' · ');
+    sum.innerHTML=on?'Showing <strong>'+plural(nc,'client')+'</strong> of '+cards.length+' · '+who:plural(cards.length,'client')+' across '+ams.length+' account managers';
+    clr.hidden=!on;
+    try{const u=new URL(location.href);
+      if(am==='all')u.searchParams.delete('am');else u.searchParams.set('am',am);
+      if(cl==='all')u.searchParams.delete('client');else u.searchParams.set('client',cl);
+      history.replaceState(null,'',u);}catch(e){}
+  }
+  amSel.addEventListener('change',()=>{fillClients();apply();});
+  clSel.addEventListener('change',apply);
+  clr.addEventListener('click',()=>{amSel.value='all';fillClients();clSel.value='all';apply();amSel.focus();});
+  const q=new URLSearchParams(location.search);
+  if(ams.includes(q.get('am'))) amSel.value=q.get('am');
+  fillClients();
+  if(D.clients.some(c=>c.n===q.get('client'))) clSel.value=q.get('client');
+  bar.hidden=false;
+  apply();
+  // toggle sections: remember each viewer's open / closed choice
+  document.querySelectorAll('details.tgl[id]').forEach(d=>{
+    const key='bench.tgl.'+d.id;
+    try{const v=localStorage.getItem(key); if(v==='open') d.open=true; else if(v==='closed') d.open=false;}catch(e){}
+    d.addEventListener('toggle',()=>{try{localStorage.setItem(key,d.open?'open':'closed');}catch(e){}});
+  });
+})();
 </script>
