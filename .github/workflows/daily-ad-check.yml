@@ -1,0 +1,75 @@
+name: Daily ad check
+
+# Every night (midnight ET): finds Meta ads created, edited or switched on since the last run in every client
+# account, runs the rule checks and a Claude review of the copy and video frames, and emails the
+# results to Shawal through Mailtrap. Script and details: scripts/ad-copy-check/daily.py
+#
+# Repo secrets needed: META_ACCESS_TOKEN, ANTHROPIC_API_KEY, MAIL_TRAP_API_KEY, AD_CHECK_TO (who gets the email)
+# The repo is public, so the script logs counts only; the email is the only place results appear.
+
+on:
+  schedule:
+    - cron: "0 5 * * *"    # 05:00 UTC = midnight ET in winter, 1:00 ET in summer (GitHub can start it a little late)
+  workflow_dispatch:
+    inputs:
+      since_hours:
+        description: "Look back this many hours instead of since the last run (blank = since the last run)"
+        required: false
+        default: ""
+      no_send:
+        description: "Run the review but don't send the email"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-ad-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ffmpeg and a word list
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg wamerican-large > /dev/null
+
+      - name: Install Python packages
+        run: pip install --quiet -r scripts/ad-copy-check/requirements.txt
+
+      - name: Restore review history
+        uses: actions/cache/restore@v4
+        with:
+          path: scripts/ad-copy-check/.state
+          key: ad-check-state-${{ github.run_id }}
+          restore-keys: ad-check-state-
+
+      - name: Check new and changed ads
+        env:
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAIL_TRAP_API_KEY: ${{ secrets.MAIL_TRAP_API_KEY }}
+          AD_CHECK_TO: ${{ secrets.AD_CHECK_TO }}
+          DICT_PATH: /usr/share/dict/american-english-large
+          SINCE_HOURS: ${{ inputs.since_hours }}
+          NO_SEND: ${{ inputs.no_send }}
+        run: |
+          args=()
+          if [ -n "$SINCE_HOURS" ]; then args+=(--since-hours "$SINCE_HOURS"); fi
+          if [ "$NO_SEND" = "true" ]; then args+=(--no-send); fi
+          python scripts/ad-copy-check/daily.py --out "$RUNNER_TEMP/ad-check" "${args[@]}"
+
+      - name: Save review history
+        if: always() && hashFiles('scripts/ad-copy-check/.state/reviewed.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: scripts/ad-copy-check/.state
+          key: ad-check-state-${{ github.run_id }}
