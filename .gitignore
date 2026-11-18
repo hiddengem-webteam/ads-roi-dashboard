@@ -100,3 +100,7 @@ weekly/IG Reel Reviews/pulls/
 # post-review working files (re-pullable, rebuilt every run)
 .claude/skills/post-review/ads.json
 weekly/Post-Review/inputs/
+
+# daily ad check: local review cache
+scripts/ad-copy-check/.state/
+__pycache__/
