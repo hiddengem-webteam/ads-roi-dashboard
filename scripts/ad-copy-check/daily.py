@@ -509,11 +509,7 @@ def build_email(results, meta, wordmark_src=None):
     a(f'<p style="margin:0 0 10px;color:{T["text3"]};font-size:16px;line-height:24px">{lede}</p>')
     if meta.get("intro"):
         a(f'<p style="margin:0 0 12px;color:{T["text3"]};font-size:14px;line-height:21px">{esc(meta["intro"])}</p>')
-    chips = [f'{meta["accounts"]} accounts scanned', f'{meta["reviewed"]} reviewed by Claude']
-    if meta.get("reused"):
-        chips.append(f'{meta["reused"]} reused reviews')
-    if meta.get("cost") is not None:
-        chips.append(f'about ${meta["cost"]:.2f} Claude usage')
+    chips = [f'{meta["accounts"]} accounts scanned', f'{meta["reviewed"] + meta.get("reused", 0)} reviewed by Claude']
     a('<div style="margin:0 0 24px">' + "".join(
         f'<span style="display:inline-block;margin:0 6px 6px 0;padding:2px 10px;border:1px solid {T["border"]};border-radius:9999px;'
         f'background:{T["panel"]};font:500 12px/18px {SANS};color:{T["text3"]}">{esc(c)}</span>' for c in chips) + "</div>")
@@ -665,9 +661,8 @@ def build_email(results, meta, wordmark_src=None):
         a(f'<p style="font-size:15px;color:{T["text2"]}">No ads were created, edited or switched on since {esc(meta.get("since_label", ""))}.</p>')
 
     # footer
-    foot = [f'{meta["accounts"]} ad accounts scanned', f'{meta["reviewed"]} creatives reviewed by Claude', f'{meta["reused"]} reused from earlier reviews']
-    if meta.get("cost") is not None:
-        foot.append(f'about ${meta["cost"]:.2f} in Claude usage')
+    # cost and cache counts stay in the run log only (Shawal, 18 Nov: not in the email)
+    foot = [f'{meta["accounts"]} ad accounts scanned', f'{meta["reviewed"] + meta.get("reused", 0)} creatives reviewed by Claude']
     if meta.get("skipped_reviews"):
         foot.append(f'{meta["skipped_reviews"]} creatives over the review cap, rule checks only')
     if meta.get("failed"):
