@@ -1,19 +1,8 @@
 {
- "run_date": "2026-11-16",
- "pulled_from": "2026-11-16T16:44:43.665Z",
- "pulled_to": "2026-11-16T16:50:34.954Z",
- "accounts": 26,
- "rows": 185,
- "errors": [
-  "Dunya Camp (629838998232110) activities: 1 An unknown error occurred"
- ],
- "late_additions": [
-  {
-   "client": "The Preserve",
-   "pulled_from": "2026-11-16T18:06:23.312Z",
-   "pulled_to": "2026-11-16T18:10:03.893Z",
-   "rows": 11,
-   "errors": []
-  }
- ]
+ "run_date": "2026-11-23",
+ "pulled_from": "2026-11-23T15:05:01.272Z",
+ "pulled_to": "2026-11-23T15:11:07.601Z",
+ "accounts": 27,
+ "rows": 217,
+ "errors": []
 }

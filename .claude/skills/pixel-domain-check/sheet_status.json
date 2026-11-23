@@ -1,5 +1,5 @@
 {
- "run_date": "2026-11-16",
+ "run_date": "2026-11-23",
  "source": "Master Meta Ads sheet, tab Meta Ad Links (Client Business, Attribution Tracking Setup, Status)",
  "rows": [
   [
@@ -226,6 +226,11 @@
    "Cabin Collective",
    "(6/10) CAPI Setup (HG Ai)",
    "Not Live"
+  ],
+  [
+   "Arca Boutique Hotel",
+   "",
+   "Live"
   ],
   [
    "Gooseberry Lodges",

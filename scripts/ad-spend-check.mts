@@ -169,6 +169,7 @@ async function spend7d(accountId: string): Promise<number | null> {
 }
 
 const cents = (v?: string) => (v ? Number(v) / 100 : 0);
+const pausedCbo: string[] = [];
 const today = new Date(RUN_DATE + 'T23:59:59Z');
 const money = (n: number) => `$${n.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
 const signed = (n: number) => (n > 0 ? `+${money(n)}` : n < 0 ? `−${money(-n)}` : '$0');
@@ -195,6 +196,13 @@ async function main() {
         if (cp.effective_status !== 'ACTIVE') continue;
         if (cp.stop_time && new Date(cp.stop_time) < today) continue; // old boosted posts stay ACTIVE forever
         let b = cents(cp.daily_budget);
+        // A campaign-budget (CBO) campaign whose ad sets are all paused cannot deliver: count it as $0 and list it
+        // in the footer (2026-11-23: The Preserve's two 20 Nov MoF campaigns read +$200/day with both ad sets paused).
+        const sets = cp.adsets?.data ?? [];
+        if (b && sets.length && sets.every((a) => /^(PAUSED|ARCHIVED|DELETED)$/.test(a.effective_status))) {
+          pausedCbo.push(`${c.client}: ${cp.name} (${money(b)}/day campaign budget)`);
+          continue;
+        }
         if (!b && cp.adsets?.data) b = cp.adsets.data.filter((a) => a.effective_status === 'ACTIVE').reduce((s, a) => s + cents(a.daily_budget), 0);
         if (!b) continue;
         sums[bucket(cp.objective, cp.name)] += b;
@@ -293,7 +301,8 @@ async function main() {
   L.push(`- Total live $/day: ${money(totalLive)} (${BUCKETS.filter((k) => byType[k] > 0).map((k) => `${BUCKET_LABEL[k]} ${money(byType[k])}`).join(', ')})${prev ? `, vs ${money(prevTotalAll)} for the same accounts last run` : ''}. Spent in the last 7 days: ${money(spent7)} across ${spentRows.length} accounts (${money(spent7 / 7)}/day).`);
   L.push(`- Changes: ${up} up, ${down} down, ${nnew} new, ${resh} reshuffled (same total, different campaigns), ${rows.filter((r) => r.status === 'unchanged').length} unchanged${removed.length ? `, ${removed.length} removed` : ''}.`);
   L.push(`- Previous report: ${prev ? prev.file : 'none, first run'}`);
-  L.push('- Budgets come from the API in cents and are divided by 100; a campaign with no campaign-level budget is summed from its active ad sets; campaigns past their stop time are ignored. Types by objective first, then name.');
+  if (pausedCbo.length) L.push(`- Not counted: campaigns set Active with a campaign budget but every ad set paused, so they cannot spend: ${pausedCbo.join('; ')}.`);
+  L.push('- Budgets come from the API in cents and are divided by 100; a campaign with no campaign-level budget is summed from its active ad sets; a campaign-budget campaign whose ad sets are all paused counts as $0 (since 2026-11-23); campaigns past their stop time are ignored. Types by objective first, then name.');
   L.push('');
   fs.writeFileSync(path.join(OUT_DIR, `${RUN_DATE}-ad-spend-check.md`), L.join('\n'), 'utf8');
 
